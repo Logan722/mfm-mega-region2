@@ -2,16 +2,22 @@
 
 ## Quick Start (New Chat Workflow)
 
-```
-1. Clone the repo:
-   git clone https://<PAT>@github.com/Logan722/mfm-mega-region2.git repo
+Each chat reads files from and pushes files to GitHub directly via the API — **no cloning.**
 
-2. Make changes in /home/claude/repo/
+```bash
+# Read existing files
+curl -s -H "Authorization: token <PAT>" \
+  https://api.github.com/repos/Logan722/mfm-mega-region2/contents/
 
-3. Commit & push:
-   git add . && git commit -m "Description" && git push origin main
+# Create a new file
+curl -s -X PUT -H "Authorization: token <PAT>" \
+  https://api.github.com/repos/Logan722/mfm-mega-region2/contents/<path> \
+  -d '{"message":"commit message","content":"<base64_content>"}'
 
-4. Site auto-deploys via Netlify
+# Update an existing file (requires sha from GET response)
+curl -s -X PUT -H "Authorization: token <PAT>" \
+  https://api.github.com/repos/Logan722/mfm-mega-region2/contents/<path> \
+  -d '{"message":"commit message","content":"<base64_content>","sha":"<sha>"}'
 ```
 
 > **Important:** Always rotate the GitHub PAT after each session. Generate a new one at GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens (Contents read/write on this repo).
@@ -371,13 +377,13 @@ Work is split across separate chats for efficiency. Each chat handles a focused 
 | **Chat 8: CMS & Polish** | Decap CMS setup, SEO, cross-links, final deployment | ⬜ TODO |
 
 ### How Each Chat Should Start
-Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md` file (it's in the project files) and then cloning the repo with a fresh PAT:
+Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md` file (it's in the project files) and then using the GitHub API with a fresh PAT:
 
 ```
 1. Read WEBSITE-REFERENCE.md for full context
-2. Clone: git clone https://<NEW_PAT>@github.com/Logan722/mfm-mega-region2.git repo
+2. Use GitHub API to check existing files in the repo
 3. Do the work for that chat's scope
-4. Commit & push: git add . && git commit -m "Description" && git push origin main
+4. Push files to GitHub via the API
 5. Rotate the PAT after the session
 ```
 
