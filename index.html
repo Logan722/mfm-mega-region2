@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PAGE TITLE -->
+  <title>MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Mountain of Fire and Miracles Ministries, Mega Region 2 USA. A ministry devoted to the revival of apostolic signs, wonders and miracles. Join us for prayer, healing, and breakthrough.">
+  <meta name="theme-color" content="#0a0710">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries">
+  <meta property="og:description" content="A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.">
+  <meta property="og:image" content="img/logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/site.css">
+
+  <!-- Netlify Identity Widget (needed for CMS) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <div class="nav-logo-text">
+          MFM Mega Region 2
+          <span>USA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="events.html">Events</a>
+        <a href="branches.html">Branches</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="img/logo.jpg" alt="" width="40" height="40">
+      <span>MFM Mega Region 2</span>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="sermons.html">Sermons</a>
+      <a href="events.html">Events</a>
+      <a href="branches.html">Branches</a>
+    </nav>
+    <div class="drawer-footer">
+      <p class="drawer-scripture">
+        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+        <cite>— Jeremiah 23:29</cite>
+      </p>
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════ -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <img src="img/logo.jpg" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="120" height="120">
+        <p class="eyebrow" style="justify-content:center">Mountain of Fire and Miracles Ministries</p>
+        <h1>Welcome to <span class="fire-underline">Mega Region 2</span></h1>
+        <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
+
+        <blockquote class="hero-scripture" style="border:none; text-align:center; padding:0; margin:0 auto 36px; max-width:520px;">
+          "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
+          <cite>— Obadiah 1:17</cite>
+        </blockquote>
+
+        <div class="btn-group btn-group--center">
+          <a href="sermons.html" class="btn btn--primary">Watch Sermons</a>
+          <a href="about.html" class="btn btn--secondary">Our Mission</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         LATEST SERMON (YouTube RSS)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="latestSermon">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">From the Pulpit</p>
+          <h2>Latest Sermon</h2>
+          <p>Watch the most recent message from MFM Mega Region 2 USA.</p>
+        </div>
+
+        <!-- Featured Video -->
+        <div class="reveal" id="featuredSermonWrap" style="max-width:800px; margin:0 auto 48px;">
+          <!-- Loading skeleton -->
+          <div class="video-embed skeleton" id="featuredSermonSkeleton" style="aspect-ratio:16/9;"></div>
+          <div id="featuredSermon" style="display:none;"></div>
+        </div>
+
+        <!-- Recent Sermons Grid -->
+        <div class="grid grid--3 reveal-stagger" id="recentSermonsGrid">
+          <!-- Populated by JS — 3 skeleton placeholders -->
+          <div class="card skeleton reveal" style="height:260px;"></div>
+          <div class="card skeleton reveal" style="height:260px;"></div>
+          <div class="card skeleton reveal" style="height:260px;"></div>
+        </div>
+
+        <div class="text-center reveal" style="margin-top:40px;">
+          <a href="sermons.html" class="btn btn--secondary btn--sm">View All Sermons →</a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         WEEKLY PROGRAMS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="programs">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Weekly Programs</p>
+          <h2>Join Us in Prayer</h2>
+          <p>Connect with us every week for prayer, healing, and breakthrough across multiple time zones.</p>
+        </div>
+
+        <!-- Healing & Deliverance Hour -->
+        <div class="program-card reveal" style="margin-bottom: var(--gutter);">
+          <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour — Weekly Prayer, Healing, Breakthrough" class="program-card-img">
+          <div class="program-card-body">
+            <span class="badge badge--fire">Every Tuesday</span>
+            <h3 style="margin-top:12px;">Healing &amp; Deliverance Hour</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">An online prayerline for weekly prayer, healing, and breakthrough. Come expectant — the God of fire answers by fire.</p>
+            <ul class="program-card-schedule">
+              <li>7:00 PM CT (Central Time)</li>
+              <li>8:00 PM ET (Eastern Time)</li>
+            </ul>
+            <div style="margin-top:20px;">
+              <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Join on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Open Heaven Encounter -->
+        <div class="program-card reveal">
+          <img src="img/open-heaven-encounter.jpg" alt="Open Heaven Encounter — Every Thursday, International Prayer Service" class="program-card-img">
+          <div class="program-card-body">
+            <span class="badge badge--purple">Every Thursday</span>
+            <h3 style="margin-top:12px;">Open Heaven Encounter</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">An international prayer service connecting believers across USA, Ghana, UK, Nigeria, and Canada for a powerful encounter with God.</p>
+            <ul class="program-card-schedule">
+              <li>6:00 PM CST (USA)</li>
+              <li>12:00 AM GMT (Ghana / UK)</li>
+              <li>1:00 AM WAT (Nigeria)</li>
+              <li>7:00 PM EST (Canada)</li>
+            </ul>
+            <div style="margin-top:20px;">
+              <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Join on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         UPCOMING EVENT SPOTLIGHT
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="eventSpotlight">
+      <div class="container">
+        <div class="event-banner reveal">
+          <div class="event-banner-date">
+            <span class="month">Every</span>
+            <span class="day" style="font-size:1.4rem;">1st Sat</span>
+          </div>
+          <div class="event-banner-content">
+            <span class="badge badge--fire" style="margin-bottom:12px;">Monthly Program</span>
+            <h3>Power Must Change Hands (PMCH)</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem; margin-top:8px;">
+              A powerful monthly prayer program held every first Saturday. Join thousands of believers worldwide in aggressive prayer and spiritual warfare.
+            </p>
+            <p style="color:var(--text-dim); font-size:0.82rem; margin-top:4px;">
+              8:00 AM – 11:30 AM · MFM USA Prayer City, 10000 Kleckley Dr, Houston TX 77075
+            </p>
+            <div style="margin-top:20px;">
+              <a href="events.html" class="btn btn--secondary btn--sm">View All Events →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         ABOUT TEASER
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="aboutTeaser">
+      <div class="container">
+        <div class="grid grid--2" style="align-items:center; gap:48px;">
+
+          <!-- Text Column -->
+          <div class="reveal">
+            <p class="eyebrow">About Us</p>
+            <h2>A Do-It-Yourself <span class="text-fire">Gospel Ministry</span></h2>
+            <p style="margin-top:16px;">
+              Mountain of Fire and Miracles Ministries (MFM) is a full gospel ministry where your hands are trained to wage war and your fingers to do battle. Founded by Dr. D.K. Olukoya, MFM is devoted to the revival of apostolic signs, wonders, and miracles.
+            </p>
+            <p>
+              Mega Region 2 USA, headquartered at MFM Prayer City in Houston, TX, is led by Pastor Olumide Oni — a prophet, evangelist, pastor, teacher, and prolific author of over 107 anointed books.
+            </p>
+            <blockquote style="margin-top:24px;">
+              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
+              <cite>— Psalm 144:1</cite>
+            </blockquote>
+            <div style="margin-top:24px;">
+              <a href="about.html" class="btn btn--primary btn--sm">Learn More About Us →</a>
+            </div>
+          </div>
+
+          <!-- Image / Info Column -->
+          <div class="reveal reveal--right">
+            <div class="panel panel--glow" style="text-align:center;">
+              <img src="img/photos/pastor-oni-gold.jpg" alt="Pastor Olumide Oni — Principal Regional Overseer, MFM Mega Region 2 USA" style="width:200px; height:200px; border-radius:50%; object-fit:cover; margin:0 auto 20px; border:3px solid var(--purple-dim); box-shadow:0 8px 30px rgba(123,45,142,0.2);">
+              <h3>Pastor Olumide Oni</h3>
+              <p style="color:var(--text-muted); font-size:0.85rem; margin-top:4px;">Principal Regional Overseer</p>
+              <p style="color:var(--text-muted); font-size:0.85rem;">Mega Region 2, North America</p>
+              <hr class="divider" style="margin:20px 0;">
+              <p style="color:var(--text-dim); font-size:0.8rem;">
+                General Overseer: <strong style="color:var(--cream);">Dr. D.K. Olukoya</strong>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         CONNECT (Social Media Strip)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="connect">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Stay Connected</p>
+          <h2>Follow Us Online</h2>
+          <p>Join our community across social media for daily inspiration, prayer updates, and live broadcasts.</p>
+        </div>
+
+        <div class="grid grid--4 reveal-stagger" style="text-align:center;">
+
+          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="panel reveal" style="text-decoration:none; transition: border-color 0.4s, transform 0.4s;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--fire)" style="margin:0 auto 12px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <h4 style="color:var(--cream); margin-bottom:4px;">YouTube</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">@mfmmegaregion2usa</p>
+          </a>
+
+          <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="panel reveal" style="text-decoration:none; transition: border-color 0.4s, transform 0.4s;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--purple-light)" style="margin:0 auto 12px;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <h4 style="color:var(--cream); margin-bottom:4px;">Facebook</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">MFM Mega Region 2 USA</p>
+          </a>
+
+          <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="panel reveal" style="text-decoration:none; transition: border-color 0.4s, transform 0.4s;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--fire-light)" style="margin:0 auto 12px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            <h4 style="color:var(--cream); margin-bottom:4px;">Instagram</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">@mfmmegaregion2usa</p>
+          </a>
+
+          <a href="https://wa.me/?text=Join+MFM+Mega+Region+2" target="_blank" rel="noopener" class="panel reveal" style="text-decoration:none; transition: border-color 0.4s, transform 0.4s;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#25D366" style="margin:0 auto 12px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <h4 style="color:var(--cream); margin-bottom:4px;">WhatsApp</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">mfmmegregion2</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <div class="footer-logo-text">
+              MFM Mega Region 2
+              <span>Mountain of Fire &amp; Miracles Ministries</span>
+            </div>
+          </a>
+          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="footer-social">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About MFM</a></li>
+            <li><a href="sermons.html">Sermons</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="branches.html">Branches</a></li>
+          </ul>
+        </div>
+
+        <!-- Programs -->
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="events.html">Healing &amp; Deliverance Hour</a></li>
+            <li><a href="events.html">Open Heaven Encounter</a></li>
+            <li><a href="events.html">Power Must Change Hands</a></li>
+            <li><a href="events.html">Sunday Worship</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                MFM USA Prayer City<br>
+                10000 Kleckley Dr<br>
+                Houston, TX 77075
+              </a>
+            </li>
+            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+        <p>General Overseer: Dr. D.K. Olukoya</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FILM GRAIN OVERLAY
+       ═══════════════════════════════════════════════════════ -->
+  <div class="grain" aria-hidden="true">
+    <svg>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile Drawer Toggle ── */
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      }
+
+      hamburger.addEventListener('click', function () {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+
+      overlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    })();
+
+
+    /* ── Sticky Nav Scroll Effect ── */
+    (function () {
+      const nav = document.getElementById('siteNav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+
+    /* ── Scroll-Triggered Reveals ── */
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ── Footer Year ── */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+    /* ── Active Nav Link ── */
+    (function () {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+
+    /* ── Netlify Identity Redirect (for CMS) ── */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+
+
+    /* ══════════════════════════════════════════════════════════
+       YouTube RSS → Latest Sermon & Recent Grid
+       ══════════════════════════════════════════════════════════ */
+    (function () {
+      var CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
+      var RSS_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+      var PROXY_URLS = [
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(RSS_URL),
+        'https://corsproxy.io/?' + encodeURIComponent(RSS_URL)
+      ];
+
+      // Don't fetch from file:// protocol
+      if (window.location.protocol === 'file:') {
+        showPreviewMode();
+        return;
+      }
+
+      fetchWithFallback(PROXY_URLS, 0);
+
+      function fetchWithFallback(urls, index) {
+        if (index >= urls.length) {
+          showFallback();
+          return;
+        }
+
+        fetch(urls[index])
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.text();
+          })
+          .then(function (xml) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(xml, 'application/xml');
+            var entries = doc.querySelectorAll('entry');
+
+            if (!entries.length) {
+              showFallback();
+              return;
+            }
+
+            renderFeatured(entries[0]);
+            renderGrid(entries);
+          })
+          .catch(function () {
+            fetchWithFallback(urls, index + 1);
+          });
+      }
+
+      function getVideoId(entry) {
+        var idEl = entry.querySelector('id');
+        if (idEl) {
+          var parts = idEl.textContent.split(':');
+          return parts[parts.length - 1];
+        }
+        // fallback: try link href
+        var link = entry.querySelector('link');
+        if (link) {
+          var href = link.getAttribute('href') || '';
+          var match = href.match(/[?&]v=([^&]+)/);
+          if (match) return match[1];
+        }
+        return null;
+      }
+
+      function renderFeatured(entry) {
+        var videoId = getVideoId(entry);
+        var title = entry.querySelector('title') ? entry.querySelector('title').textContent : 'Latest Sermon';
+
+        var skeleton = document.getElementById('featuredSermonSkeleton');
+        var wrapper = document.getElementById('featuredSermon');
+
+        if (videoId) {
+          wrapper.innerHTML =
+            '<div class="video-embed">' +
+              '<iframe src="https://www.youtube.com/embed/' + videoId + '?rel=0" ' +
+              'title="' + escapeAttr(title) + '" ' +
+              'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+              'allowfullscreen loading="lazy"></iframe>' +
+            '</div>' +
+            '<h3 style="margin-top:20px; text-align:center;">' + escapeHTML(title) + '</h3>';
+        }
+
+        skeleton.style.display = 'none';
+        wrapper.style.display = 'block';
+      }
+
+      function renderGrid(entries) {
+        var grid = document.getElementById('recentSermonsGrid');
+        var html = '';
+        // Skip first (featured), show next 3
+        var start = 1;
+        var count = 0;
+
+        for (var i = start; i < entries.length && count < 3; i++) {
+          var entry = entries[i];
+          var videoId = getVideoId(entry);
+          if (!videoId) continue;
+
+          var title = entry.querySelector('title') ? entry.querySelector('title').textContent : 'Sermon';
+          var published = entry.querySelector('published') ? entry.querySelector('published').textContent : '';
+          var dateStr = published ? formatDate(published) : '';
+
+          // Use namespace-aware approach for media:group/media:thumbnail
+          var thumb = 'https://img.youtube.com/vi/' + videoId + '/mqdefault.jpg';
+
+          html +=
+            '<a href="https://www.youtube.com/watch?v=' + videoId + '" target="_blank" rel="noopener" class="card sermon-card reveal">' +
+              '<div class="card-img" style="position:relative; overflow:hidden;">' +
+                '<img src="' + thumb + '" alt="' + escapeAttr(title) + '" style="width:100%; aspect-ratio:16/9; object-fit:cover;" loading="lazy">' +
+                '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,7,16,0.4);opacity:0;transition:opacity 0.4s;">' +
+                  '<svg width="40" height="40" viewBox="0 0 24 24" fill="var(--white)"><path d="M8 5v14l11-7z"/></svg>' +
+                '</div>' +
+              '</div>' +
+              '<div class="card-body">' +
+                '<h4 style="font-size:0.95rem; line-height:1.35;">' + escapeHTML(title) + '</h4>' +
+                (dateStr ? '<div class="card-meta">' + dateStr + '</div>' : '') +
+              '</div>' +
+            '</a>';
+
+          count++;
+        }
+
+        if (html) {
+          grid.innerHTML = html;
+          // Re-observe for reveal animations
+          var newReveals = grid.querySelectorAll('.reveal');
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+          newReveals.forEach(function (el) { observer.observe(el); });
+        }
+      }
+
+      function showFallback() {
+        var skeleton = document.getElementById('featuredSermonSkeleton');
+        var wrapper = document.getElementById('featuredSermon');
+        var grid = document.getElementById('recentSermonsGrid');
+
+        wrapper.innerHTML =
+          '<div class="video-embed">' +
+            '<iframe src="https://www.youtube.com/embed/?listType=user_uploads&list=UCr3gSJPBQDjN8CEbj86Pyug" ' +
+            'title="MFM Mega Region 2 USA — Latest Sermons" ' +
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ' +
+            'allowfullscreen loading="lazy"></iframe>' +
+          '</div>';
+
+        skeleton.style.display = 'none';
+        wrapper.style.display = 'block';
+
+        grid.innerHTML =
+          '<div class="panel text-center" style="grid-column:1/-1;">' +
+            '<p style="color:var(--text-muted);">Visit our <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" style="color:var(--fire-light);">YouTube channel</a> for all sermons.</p>' +
+          '</div>';
+      }
+
+      function showPreviewMode() {
+        var skeleton = document.getElementById('featuredSermonSkeleton');
+        var wrapper = document.getElementById('featuredSermon');
+        var grid = document.getElementById('recentSermonsGrid');
+
+        wrapper.innerHTML =
+          '<div class="preview-banner" style="border-radius:12px; padding:24px;">Preview Mode — Sermons load from YouTube when hosted on a live server.</div>';
+
+        skeleton.style.display = 'none';
+        wrapper.style.display = 'block';
+
+        grid.innerHTML =
+          '<div class="panel text-center" style="grid-column:1/-1;">' +
+            '<p style="color:var(--text-muted);">Sermon cards will appear here when deployed.</p>' +
+          '</div>';
+      }
+
+      function formatDate(isoString) {
+        try {
+          var d = new Date(isoString);
+          return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        } catch (e) {
+          return '';
+        }
+      }
+
+      function escapeHTML(str) {
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function escapeAttr(str) {
+        return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+    })();
+  </script>
+
+</body>
+</html>
