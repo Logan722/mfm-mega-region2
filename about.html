@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PAGE TITLE -->
+  <title>About — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="About Mountain of Fire and Miracles Ministries, Mega Region 2 USA. Our mission, vision, leadership, and the 11 objectives of MFM under Dr. D.K. Olukoya.">
+  <meta name="theme-color" content="#0a0710">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About — MFM Mega Region 2 USA">
+  <meta property="og:description" content="A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God.">
+  <meta property="og:image" content="img/logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/site.css">
+
+  <!-- About Page Styles -->
+  <style>
+    /* ── Objectives List ── */
+    .objectives-list {
+      counter-reset: objective;
+      display: grid;
+      gap: 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .objective-item {
+      counter-increment: objective;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .objective-item:last-child {
+      border-bottom: none;
+    }
+
+    .objective-item::before {
+      content: counter(objective, decimal-leading-zero);
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--fire);
+      flex-shrink: 0;
+      min-width: 36px;
+      line-height: 1.5;
+    }
+
+    .objective-item p {
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── Featured Leader Bio ── */
+    .featured-leader {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .featured-leader-photo-wrap {
+      position: relative;
+    }
+
+    .featured-leader-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--purple-dim);
+      box-shadow: 0 12px 48px rgba(123, 45, 142, 0.2);
+    }
+
+    .featured-leader-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 16px;
+      border: 1px solid var(--purple-glow);
+      pointer-events: none;
+    }
+
+    .featured-leader-body {
+      padding-top: 8px;
+    }
+
+    .featured-leader-body h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin-bottom: 4px;
+    }
+
+    .featured-leader-body .leader-role {
+      font-size: 0.9rem;
+      color: var(--fire);
+      font-weight: 500;
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+
+    .featured-leader-body p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* ── Couple Section ── */
+    .couple-section {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .couple-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid var(--purple-dim);
+      box-shadow: 0 12px 48px rgba(123, 45, 142, 0.15);
+    }
+
+    /* ── Identity Statement Cards ── */
+    .identity-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .identity-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--fire), var(--purple));
+    }
+
+    .identity-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+
+    .identity-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* ── GO Pair Grid ── */
+    .go-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .go-card {
+      text-align: center;
+    }
+
+    .go-card-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 24px;
+      border: 3px solid var(--purple-dim);
+      box-shadow: 0 8px 36px rgba(123, 45, 142, 0.2);
+    }
+
+    .go-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    .go-card .leader-role {
+      font-size: 0.85rem;
+      color: var(--fire);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .go-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 280px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .featured-leader {
+        grid-template-columns: 220px 1fr;
+        gap: 32px;
+      }
+
+      .couple-section {
+        grid-template-columns: 1fr 260px;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .featured-leader {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .featured-leader-photo {
+        width: 220px;
+        margin: 0 auto;
+      }
+
+      .featured-leader-photo-wrap {
+        display: flex;
+        justify-content: center;
+      }
+
+      .featured-leader-photo-wrap::after {
+        display: none;
+      }
+
+      .featured-leader-body {
+        text-align: left;
+      }
+
+      .couple-section {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .couple-photo {
+        width: 260px;
+        margin: 0 auto;
+        order: -1;
+      }
+
+      .couple-section .couple-text {
+        text-align: left;
+      }
+
+      .go-pair {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        max-width: 320px;
+      }
+
+      .objective-item {
+        gap: 14px;
+        padding: 16px 0;
+      }
+
+      .objective-item::before {
+        font-size: 1.15rem;
+        min-width: 30px;
+      }
+    }
+  </style>
+
+  <!-- Netlify Identity Widget (needed for CMS) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <div class="nav-logo-text">
+          MFM Mega Region 2
+          <span>USA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="events.html">Events</a>
+        <a href="branches.html">Branches</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="img/logo.jpg" alt="" width="40" height="40">
+      <span>MFM Mega Region 2</span>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="sermons.html">Sermons</a>
+      <a href="events.html">Events</a>
+      <a href="branches.html">Branches</a>
+    </nav>
+    <div class="drawer-footer">
+      <p class="drawer-scripture">
+        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+        <cite>— Jeremiah 23:29</cite>
+      </p>
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE CONTENT
+       ═══════════════════════════════════════════════════════ -->
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="hero hero--short">
+      <div class="hero-content">
+        <img src="img/logo.jpg" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
+        <p class="eyebrow" style="justify-content:center">About Us</p>
+        <h1><span class="fire-underline">Fire</span> in the Word · Fire on the Mountain · Fire in the Bone</h1>
+        <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         MISSION & IDENTITY
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Our Identity</p>
+          <h2>Mountain of Fire &amp; Miracles Ministries</h2>
+          <p>A ministry birthed in the fire of prayer, devoted to seeing the power of God demonstrated without limits.</p>
+        </div>
+
+        <!-- Identity Cards -->
+        <div class="grid grid--2 reveal-stagger" style="margin-bottom:48px;">
+          <div class="identity-card reveal">
+            <h3 class="text-cream">Our Mission</h3>
+            <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
+          </div>
+
+          <div class="identity-card reveal">
+            <h3 class="text-cream">Our Identity</h3>
+            <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+            <blockquote style="margin-top:16px; padding:12px 0 12px 20px; font-size:1rem;">
+              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
+              <cite>— Psalm 144:1</cite>
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Key Scriptures -->
+        <div class="panel panel--glow reveal" style="text-align:center; max-width:700px; margin:0 auto;">
+          <p class="eyebrow" style="justify-content:center; margin-bottom:24px;">Logo Scripture References</p>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:24px;">
+            <div>
+              <p class="text-fire" style="font-weight:600; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">Fire in the Word</p>
+              <p class="text-muted" style="font-size:0.85rem;">Jeremiah 23:29</p>
+            </div>
+            <div>
+              <p class="text-fire" style="font-weight:600; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">Fire on the Mountain</p>
+              <p class="text-muted" style="font-size:0.85rem;">Deuteronomy 4:11</p>
+            </div>
+            <div>
+              <p class="text-fire" style="font-weight:600; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">Fire in the Bone</p>
+              <p class="text-muted" style="font-size:0.85rem;">Jeremiah 20:9</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         11 MISSION OBJECTIVES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Mission Objectives</p>
+          <h2>The Mandate of MFM</h2>
+          <p>Eleven pillars that define the purpose and direction of Mountain of Fire and Miracles Ministries worldwide.</p>
+        </div>
+
+        <div class="objectives-list reveal">
+          <div class="objective-item">
+            <p>To propagate the gospel of our Lord Jesus Christ all over the world</p>
+          </div>
+          <div class="objective-item">
+            <p>To promote the revival of Apostolic signs, wonders and miracles</p>
+          </div>
+          <div class="objective-item">
+            <p>To bring together children of God who are lost in dead churches</p>
+          </div>
+          <div class="objective-item">
+            <p>To train believers in the art and science of spiritual warfare</p>
+          </div>
+          <div class="objective-item">
+            <p>To train believers to receive Holy Ghost baptism and fire</p>
+          </div>
+          <div class="objective-item">
+            <p>To turn the joy of our enemies to sorrow — Deliverance ministry</p>
+          </div>
+          <div class="objective-item">
+            <p>To build an aggressive end-time army for the Lord</p>
+          </div>
+          <div class="objective-item">
+            <p>To deliver those who have become slaves to pastors, prophets and apostles</p>
+          </div>
+          <div class="objective-item">
+            <p>To build up heavenly-bound and aggressive Christians</p>
+          </div>
+          <div class="objective-item">
+            <p>To build up prayer eagles</p>
+          </div>
+          <div class="objective-item">
+            <p>To purify the Pentecostal dirtiness of this age</p>
+          </div>
+        </div>
+
+        <blockquote class="reveal" style="max-width:640px; margin:48px auto 0; text-align:center; border:none; padding:0;">
+          "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
+          <cite>— Obadiah 1:17</cite>
+        </blockquote>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         MEGA REGION 2 IDENTITY
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container container--narrow">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Mega Region 2</p>
+          <h2>Our Region in North America</h2>
+        </div>
+
+        <div class="reveal" style="max-width:720px; margin:0 auto;">
+          <p style="font-size:1.05rem; line-height:1.85; color:var(--text-muted);">
+            MFM Mega Region 2 is a regional jurisdiction of Mountain of Fire and Miracles Ministries in the United States of America. Headquartered at <strong style="color:var(--cream);">MFM USA Prayer City</strong> in Houston, Texas, the region oversees multiple branches and serves as a center for prayer, deliverance, and the advancement of the gospel across North America.
+          </p>
+          <p style="font-size:1.05rem; line-height:1.85; color:var(--text-muted);">
+            Under the leadership of <strong style="color:var(--cream);">Pastor Olumide Oni</strong> as Principal Regional Overseer, the region operates weekly prayer programs that connect believers across international time zones — including the <em>Healing &amp; Deliverance Hour</em> every Tuesday and the <em>Open Heaven Encounter</em> every Thursday, reaching the USA, Ghana, UK, Nigeria, and Canada.
+          </p>
+          <p style="font-size:1.05rem; line-height:1.85; color:var(--text-muted);">
+            The monthly <strong style="color:var(--cream);">Power Must Change Hands (PMCH)</strong> programme, held on the first Saturday of every month at Prayer City, remains a cornerstone of the MFM prayer mandate — a gathering where stubborn situations are addressed by fire.
+          </p>
+        </div>
+
+        <hr class="divider divider--fire reveal" style="margin:56px auto; max-width:200px;">
+
+        <!-- Prayer City HQ Card -->
+        <div class="panel panel--glow reveal" style="max-width:520px; margin:0 auto; text-align:center;">
+          <p class="text-fire" style="font-weight:600; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Headquarters</p>
+          <h3 style="font-size:1.3rem; margin-bottom:8px;">MFM USA Prayer City</h3>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:4px;">10000 Kleckley Dr</p>
+          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:16px;">Houston, TX 77075</p>
+          <a href="tel:+18327888504" style="color:var(--fire-light); font-size:0.95rem; text-decoration:none;">(832) 788-8504</a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         LEADERSHIP
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Leadership</p>
+          <h2>Servants of the Most High</h2>
+          <p>The men and women of God leading this ministry in prayer, fire, and the demonstration of power.</p>
+        </div>
+
+
+        <!-- ── General Overseer & Mummy G.O. ── -->
+        <div class="go-pair reveal-stagger" style="margin-bottom:80px;">
+
+          <div class="go-card reveal">
+            <img src="img/photos/dr-dk-olukoya.jpg" alt="Dr. D.K. Olukoya — General Overseer, MFM Worldwide" class="go-card-photo">
+            <h3>Dr. D.K. Olukoya</h3>
+            <p class="leader-role">General Overseer, MFM Worldwide</p>
+            <p>Founder and General Overseer of Mountain of Fire and Miracles Ministries worldwide. A man of prayer, a scholar, and a vessel through whom the Lord has raised an end-time army across the nations.</p>
+          </div>
+
+          <div class="go-card reveal">
+            <img src="img/photos/pastor-shade-olukoya.jpg" alt="Pastor (Dr.) Mrs. Shade Olukoya — Mummy G.O." class="go-card-photo">
+            <h3>Pastor (Dr.) Mrs. Shade Olukoya</h3>
+            <p class="leader-role">Mummy G.O., MFM Worldwide</p>
+            <p>A woman of faith and a dedicated servant of God who stands beside the General Overseer in the ministry's global mandate of prayer and deliverance.</p>
+          </div>
+
+        </div>
+
+        <hr class="divider divider--fire reveal" style="max-width:200px; margin:0 auto 80px;">
+
+
+        <!-- ── Principal Regional Overseer — Pastor Olumide Oni ── -->
+        <div class="featured-leader reveal" style="margin-bottom:80px;">
+
+          <div class="featured-leader-photo-wrap">
+            <img src="img/photos/pastor-oni-gold.jpg" alt="Pastor Olumide Oni — Principal Regional Overseer, Mega Region 2 USA" class="featured-leader-photo">
+          </div>
+
+          <div class="featured-leader-body">
+            <p class="eyebrow">Principal Regional Overseer</p>
+            <h3>Pastor Olumide Oni</h3>
+            <p class="leader-role">Mega Region 2 USA &amp; MFM North America HQ</p>
+
+            <p>Pastor Olumide Oni is a prophet, evangelist, pastor, teacher, husband and father — a man through whom the fire of God burns brightly across nations.</p>
+
+            <p>His ministry journey within MFM has taken him through multiple assignments of increasing responsibility: from Kubwa to MFM Lugbe Region in Abuja, then to MFM Wuye/Utako (the International Headquarters Annex in Abuja), and now to MFM North America Headquarters at Prayer City, Houston, Texas — where he serves as the Principal Regional Overseer of Mega Region 2.</p>
+
+            <p>A prolific author of over 107 anointed books, with thousands distributed monthly within Nigeria and overseas, Pastor Oni is known for dynamic teaching, administrative excellence, and a powerful personal testimony of God's deliverance.</p>
+
+            <p>Under his leadership, Mega Region 2 has grown into a vibrant centre of prayer and spiritual warfare, with weekly programmes that connect believers across multiple continents and time zones.</p>
+          </div>
+
+        </div>
+
+
+        <!-- ── Pastor (Mrs.) Oluwatoyin Oni ── -->
+        <div class="couple-section reveal">
+
+          <div class="couple-text">
+            <p class="eyebrow">Co-Laborer in Ministry</p>
+            <h3 style="font-size:clamp(1.4rem, 2.5vw, 1.8rem); margin-bottom:20px;">Pastor (Mrs.) Oluwatoyin Oni</h3>
+
+            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
+              Pastor (Mrs.) Oluwatoyin Oni stands alongside Pastor Olumide Oni as a devoted partner in ministry, faith, and family. Together they serve the congregation of Mega Region 2 with dedication, love, and the fire of the Holy Ghost.
+            </p>
+            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
+              A woman of prayer and purpose, she plays a vital role in the spiritual life and growth of the region, exemplifying the call of Proverbs 31 — strength, dignity, and wisdom in the house of God.
+            </p>
+          </div>
+
+          <img src="img/photos/couple-gold.jpg" alt="Pastor Olumide Oni and Pastor (Mrs.) Oluwatoyin Oni" class="couple-photo">
+
+        </div>
+
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         CONNECT CTA
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" style="padding-bottom:var(--section-y);">
+      <div class="container" style="text-align:center;">
+        <div class="reveal">
+          <p class="eyebrow" style="justify-content:center;">Join the Fire</p>
+          <h2 style="margin-bottom:16px;">Be Part of What God Is Doing</h2>
+          <p style="color:var(--text-muted); max-width:520px; margin:0 auto 32px; font-size:1.05rem;">
+            Connect with MFM Mega Region 2 through our weekly programmes, visit Prayer City, or find a branch near you.
+          </p>
+          <div class="btn-group btn-group--center">
+            <a href="events.html" class="btn btn--primary">View Programs</a>
+            <a href="branches.html" class="btn btn--secondary">Find a Branch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <div class="footer-logo-text">
+              MFM Mega Region 2
+              <span>Mountain of Fire &amp; Miracles Ministries</span>
+            </div>
+          </a>
+          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="footer-social">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About MFM</a></li>
+            <li><a href="sermons.html">Sermons</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="branches.html">Branches</a></li>
+          </ul>
+        </div>
+
+        <!-- Programs -->
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="events.html">Healing &amp; Deliverance Hour</a></li>
+            <li><a href="events.html">Open Heaven Encounter</a></li>
+            <li><a href="events.html">Power Must Change Hands</a></li>
+            <li><a href="events.html">Sunday Worship</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                MFM USA Prayer City<br>
+                10000 Kleckley Dr<br>
+                Houston, TX 77075
+              </a>
+            </li>
+            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+        <p>General Overseer: Dr. D.K. Olukoya</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FILM GRAIN OVERLAY
+       ═══════════════════════════════════════════════════════ -->
+  <div class="grain" aria-hidden="true">
+    <svg>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile Drawer Toggle ── */
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      }
+
+      hamburger.addEventListener('click', function () {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+
+      overlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    })();
+
+
+    /* ── Sticky Nav Scroll Effect ── */
+    (function () {
+      const nav = document.getElementById('siteNav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+
+    /* ── Scroll-Triggered Reveals ── */
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ── Footer Year ── */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+    /* ── Active Nav Link ── */
+    (function () {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+
+    /* ── Netlify Identity Redirect (for CMS) ── */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
