@@ -310,18 +310,27 @@ collections:
 
 ## Photo / Asset Inventory
 
+### Brand Assets
 | Filename | Description | Used On |
 |----------|-------------|---------|
 | `img/logo.jpg` | MFM Mega Region 2 USA emblem (purple circle, mountain/fire, gold ribbon) | Nav, hero, footer |
 | `img/healing-deliverance-hour.jpg` | Healing & Deliverance Hour flyer — Tuesdays 7pm CT / 8pm ET | Home, Events |
 | `img/open-heaven-encounter.jpg` | Open Heaven Encounter flyer — Thursdays, multi-timezone | Home, Events |
 
-### Pending Assets (to be provided)
-- [ ] Photos of Pastor Olumide Oni (for About page)
-- [ ] Photos of Pastor (Mrs.) Oluwatoyin Oni
+### Leadership Photos
+| Filename | Subject | Source |
+|----------|---------|--------|
+| `img/photos/dr-dk-olukoya.jpg` | Dr. D.K. Olukoya — General Overseer, MFM Worldwide | Official MFM website |
+| `img/photos/pastor-shade-olukoya.jpg` | Pastor (Dr.) Mrs. Shade Olukoya — Mummy G.O. | Official MFM website |
+| `img/photos/pastor-oni-gold.jpg` | Pastor Olumide Oni — gold suit, blossoms | Reused from pastor site |
+| `img/photos/pastor-oni-gold2.jpg` | Pastor Olumide Oni — gold suit, angle 2 | Reused from pastor site |
+| `img/photos/pastor-portrait.jpg` | Pastor Olumide Oni — original headshot | Reused from pastor site |
+| `img/photos/couple-gold.jpg` | Pastor & Pastor (Mrs.) Oni — matching gold | Reused from pastor site |
+| `img/photos/couple-blue.jpg` | Pastor & Pastor (Mrs.) Oni — matching blue, staircase | Reused from pastor site |
+
+### Pending Assets
 - [ ] Photos of Prayer City / church building
 - [ ] Photos from events/services
-- [ ] Dr. D.K. Olukoya photo (if appropriate to feature)
 - [ ] Branch-specific photos
 
 ---
@@ -343,6 +352,34 @@ collections:
 | CMS | Decap CMS | Free, Git-based, no server maintenance — same as pastor site |
 | YouTube integration | RSS auto-pull | No API key needed, auto-updates, proven approach from pastor site |
 | Hosting | Netlify free tier | $0, auto-deploy, built-in forms, Identity for CMS |
+
+---
+
+## Multi-Chat Workflow
+
+Work is split across separate chats for efficiency. Each chat handles a focused scope and commits/pushes to the repo independently.
+
+| Chat | Scope | Status |
+|------|-------|--------|
+| **Chat 1: Planning** | Research, repo setup, reference doc, asset gathering | ✅ Complete |
+| **Chat 2: Design System** | `css/site.css` — global styles, nav, footer, mobile drawer, shared components | ⬜ TODO |
+| **Chat 3: Home Page** | `index.html` — hero, latest sermon, weekly programs, event spotlight, about teaser | ⬜ TODO |
+| **Chat 4: About Page** | `about.html` — MFM mission, Mega Region 2 identity, leadership bios (Oni, Olukoya) | ⬜ TODO |
+| **Chat 5: Sermons Page** | `sermons.html` — YouTube RSS integration, sermon grid | ⬜ TODO |
+| **Chat 6: Events Page** | `events.html` — weekly programs, PMCH, crusades, Women Foundation | ⬜ TODO |
+| **Chat 7: Branches Page** | `branches.html` — Prayer City HQ, regional branches (data TBD) | ⬜ TODO |
+| **Chat 8: CMS & Polish** | Decap CMS setup, SEO, cross-links, final deployment | ⬜ TODO |
+
+### How Each Chat Should Start
+Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md` file (it's in the project files) and then cloning the repo with a fresh PAT:
+
+```
+1. Read WEBSITE-REFERENCE.md for full context
+2. Clone: git clone https://<NEW_PAT>@github.com/Logan722/mfm-mega-region2.git repo
+3. Do the work for that chat's scope
+4. Commit & push: git add . && git commit -m "Description" && git push origin main
+5. Rotate the PAT after the session
+```
 
 ---
 
