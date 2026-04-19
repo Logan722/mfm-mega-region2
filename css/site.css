@@ -1,9 +1,9 @@
 /* ============================================================
-   MFM MEGA REGION 2 USA — "Cathedral Fire" Design System
+   MFM MEGA REGION 2 USA — "Royal Flame" Design System
    ──────────────────────────────────────────────────────────
-   Adapted from "Cinematic Cathedral" (Pastor Oni personal site)
-   Purple (royal priesthood) + Fire Orange on deep purple-black
-   Built April 2026
+   Dual-tone: twilight navy (hero, nav, footer) + white/cream
+   Gold primary accent · Fire orange secondary accent
+   Built April 2026 · Theme Overhaul (Chat 8)
    ============================================================ */
 
 /* ── Google Fonts ── */
@@ -11,57 +11,72 @@
 
 
 /* ============================================================
-   1. DESIGN TOKENS
+   1. DESIGN TOKENS — Royal Flame Palette
    ============================================================ */
 :root {
-  /* ── Brand Palette ── */
-  --bg:            #0a0710;
-  --bg-2:          #0f0b18;
-  --bg-panel:      #0d0916;
+  /* ── Backgrounds ── */
+  --bg-navy:        #142240;
+  --bg-navy-deep:   #0f1a30;
+  --bg-navy-panel:  #1a2d4d;
+  --bg-white:       #ffffff;
+  --bg-cream:       #f8f6f1;
+  --bg-sand:        #f5f3ee;
+  --bg-sand-border: #e8e4da;
 
-  --purple:        #7b2d8e;
-  --purple-light:  #9b4dae;
-  --purple-soft:   #a35db5;
-  --purple-dim:    #5a2068;
-  --purple-glow:   rgba(123, 45, 142, 0.22);
+  /* Backward-compat aliases (body / nav / hero / footer) */
+  --bg:             #142240;
+  --bg-2:           #0f1a30;
+  --bg-panel:       #1a2d4d;
 
-  --fire:          #e85d26;
-  --fire-light:    #ff7a3d;
-  --fire-dim:      rgba(232, 93, 38, 0.25);
+  /* ── Accents ── */
+  --gold:           #c9952c;
+  --gold-light:     #d4a853;
+  --gold-dim:       #8b6f33;
+  --gold-glow:      rgba(201, 149, 44, 0.18);
 
-  --gold:          #d4a853;
-  --gold-dim:      #8b6f33;
+  --fire:           #e85d26;
+  --fire-light:     #ff7a3d;
+  --fire-dim:       rgba(232, 93, 38, 0.25);
 
-  --cream:         #f2e8d5;
-  --white:         #ffffff;
-  --text:          #e0d8ea;
-  --text-muted:    #8a7f96;
-  --text-dim:      #6a5f7a;
+  /* ── Text on navy ── */
+  --cream:          #f0e6d0;
+  --white:          #ffffff;
+  --text:           #8899b8;
+  --text-muted:     #8899b8;
+  --text-dim:       #6a7a96;
 
-  --line:          rgba(123, 45, 142, 0.22);
-  --line-strong:   rgba(123, 45, 142, 0.45);
+  /* ── Text on white/cream ── */
+  --navy:           #142240;
+  --text-on-white:  #5a6270;
+  --text-dim-white: #8a8f98;
+
+  /* ── Borders ── */
+  --line:           rgba(201, 149, 44, 0.15);
+  --line-strong:    rgba(201, 149, 44, 0.35);
+  --line-white:     #e8e4da;
+  --line-white-strong: #d4cfc4;
 
   /* ── Typography ── */
-  --font-serif:    'Fraunces', Georgia, serif;
-  --font-sans:     'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif:     'Fraunces', Georgia, serif;
+  --font-sans:      'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
 
   /* ── Spacing ── */
-  --gutter:        24px;
-  --section-y:     120px;
-  --container-max: 1200px;
+  --gutter:         24px;
+  --section-y:      120px;
+  --container-max:  1200px;
 
   /* ── Motion ── */
-  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
-  --dur:           0.4s;
-  --dur-slow:      0.7s;
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.65, 0, 0.35, 1);
+  --dur:            0.4s;
+  --dur-slow:       0.7s;
 
   /* ── Z-Index Scale ── */
-  --z-grain:       1;
-  --z-content:     2;
-  --z-nav:         100;
-  --z-overlay:     199;
-  --z-drawer:      200;
+  --z-grain:        1;
+  --z-content:      2;
+  --z-nav:          100;
+  --z-overlay:      199;
+  --z-drawer:       200;
 }
 
 
@@ -101,7 +116,7 @@ img {
 }
 
 a {
-  color: var(--purple-light);
+  color: var(--gold-light);
   text-decoration: none;
   transition: color var(--dur) var(--ease-out);
 }
@@ -127,7 +142,7 @@ ul, ol {
    3. TYPOGRAPHY
    ============================================================ */
 
-/* ── Headings ── */
+/* ── Headings (default: on navy) ── */
 h1, h2, h3, h4, h5, h6,
 .heading {
   font-family: var(--font-serif);
@@ -181,10 +196,6 @@ p:last-child {
   color: var(--fire);
 }
 
-.text-purple {
-  color: var(--purple-light);
-}
-
 .text-gold {
   color: var(--gold);
 }
@@ -223,7 +234,7 @@ blockquote,
   font-weight: 300;
   font-size: 1.15rem;
   color: var(--cream);
-  border-left: 3px solid var(--purple);
+  border-left: 3px solid var(--gold);
   padding: 16px 0 16px 24px;
   margin: 24px 0;
   line-height: 1.6;
@@ -258,7 +269,7 @@ blockquote cite,
 
 
 /* ============================================================
-   4. ATMOSPHERE EFFECTS
+   4. ATMOSPHERE EFFECTS (navy sections only)
    ============================================================ */
 
 /* ── Ambient Background Gradients ── */
@@ -269,9 +280,9 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(123, 45, 142, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(232, 93, 38, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(123, 45, 142, 0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201, 149, 44, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(232, 93, 38, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, rgba(201, 149, 44, 0.03) 0%, transparent 70%);
 }
 
 /* ── Light Shaft ── */
@@ -286,8 +297,8 @@ body::after {
   pointer-events: none;
   background: radial-gradient(
     ellipse at center,
-    rgba(123, 45, 142, 0.07) 0%,
-    rgba(232, 93, 38, 0.03) 30%,
+    rgba(201, 149, 44, 0.06) 0%,
+    rgba(232, 93, 38, 0.02) 30%,
     transparent 70%
   );
   animation: breathe 8s var(--ease-in-out) infinite;
@@ -304,7 +315,7 @@ body::after {
   inset: 0;
   z-index: var(--z-grain);
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   mix-blend-mode: overlay;
 }
 
@@ -342,13 +353,277 @@ body::after {
   position: relative;
 }
 
-.section--dark {
-  background: var(--bg-2);
+/* Navy section (dramatic) */
+.section--navy {
+  background: var(--bg-navy);
 }
 
-.section--panel {
-  background: var(--bg-panel);
+/* Dark navy section */
+.section--dark {
+  background: var(--bg-navy-deep);
 }
+
+/* ── WHITE SECTION — clean, sharp ── */
+.section--white {
+  background: var(--bg-white);
+}
+
+.section--white h1,
+.section--white h2,
+.section--white h3,
+.section--white h4,
+.section--white .heading {
+  color: var(--navy);
+}
+
+.section--white p,
+.section--white li,
+.section--white address {
+  color: var(--text-on-white);
+}
+
+.section--white .text-muted,
+.section--white .card-body p,
+.section--white .program-card-body p {
+  color: var(--text-on-white);
+}
+
+.section--white .text-dim,
+.section--white .card-meta {
+  color: var(--text-dim-white);
+}
+
+.section--white .eyebrow {
+  color: var(--gold);
+}
+
+.section--white .eyebrow::before {
+  background: var(--gold);
+}
+
+.section--white blockquote,
+.section--white .scripture {
+  color: var(--navy);
+  border-left-color: var(--gold);
+}
+
+.section--white .divider {
+  background: var(--line-white);
+}
+
+.section--white a {
+  color: var(--gold);
+}
+
+.section--white a:hover {
+  color: var(--fire);
+}
+
+.section--white .section-header p {
+  color: var(--text-on-white);
+}
+
+.section--white h4 {
+  color: var(--navy);
+}
+
+/* Cards on white backgrounds */
+.section--white .card,
+.section--white .panel,
+.section--white .program-card,
+.section--white .branch-card,
+.section--white .schedule-card,
+.section--white .event-highlight,
+.section--white .identity-card {
+  background: var(--bg-sand);
+  border-color: var(--bg-sand-border);
+}
+
+.section--white .card:hover,
+.section--white .panel:hover,
+.section--white .branch-card:hover,
+.section--white .schedule-card:hover {
+  border-color: var(--line-white-strong);
+  box-shadow: 0 12px 40px rgba(20, 34, 64, 0.08);
+}
+
+.section--white .card h3,
+.section--white .card h4,
+.section--white .panel h3,
+.section--white .panel h4,
+.section--white .branch-card h3,
+.section--white .schedule-card h3,
+.section--white .event-highlight h3,
+.section--white .identity-card h3 {
+  color: var(--navy);
+}
+
+/* Forms on white */
+.section--white .form-input,
+.section--white .form-textarea,
+.section--white .form-select,
+.section--white .sermon-search {
+  background: var(--bg-white);
+  border-color: var(--line-white-strong);
+  color: var(--navy);
+}
+
+.section--white .form-input:focus,
+.section--white .form-textarea:focus,
+.section--white .sermon-search:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
+.section--white .form-input::placeholder,
+.section--white .form-textarea::placeholder,
+.section--white .sermon-search::placeholder {
+  color: var(--text-dim-white);
+}
+
+
+/* ── CREAM SECTION ── */
+.section--cream {
+  background: var(--bg-cream);
+}
+
+.section--cream h1,
+.section--cream h2,
+.section--cream h3,
+.section--cream h4,
+.section--cream .heading {
+  color: var(--navy);
+}
+
+.section--cream p,
+.section--cream li,
+.section--cream address {
+  color: var(--text-on-white);
+}
+
+.section--cream .text-muted,
+.section--cream .card-body p,
+.section--cream .program-card-body p {
+  color: var(--text-on-white);
+}
+
+.section--cream .text-dim,
+.section--cream .card-meta {
+  color: var(--text-dim-white);
+}
+
+.section--cream .eyebrow {
+  color: var(--gold);
+}
+
+.section--cream .eyebrow::before {
+  background: var(--gold);
+}
+
+.section--cream blockquote,
+.section--cream .scripture {
+  color: var(--navy);
+  border-left-color: var(--gold);
+}
+
+.section--cream .divider {
+  background: var(--line-white);
+}
+
+.section--cream a {
+  color: var(--gold);
+}
+
+.section--cream a:hover {
+  color: var(--fire);
+}
+
+.section--cream .section-header p {
+  color: var(--text-on-white);
+}
+
+.section--cream h4 {
+  color: var(--navy);
+}
+
+/* Cards on cream backgrounds */
+.section--cream .card,
+.section--cream .panel,
+.section--cream .program-card,
+.section--cream .branch-card,
+.section--cream .schedule-card,
+.section--cream .event-highlight,
+.section--cream .identity-card {
+  background: var(--bg-white);
+  border-color: var(--bg-sand-border);
+}
+
+.section--cream .card:hover,
+.section--cream .panel:hover,
+.section--cream .branch-card:hover,
+.section--cream .schedule-card:hover {
+  border-color: var(--line-white-strong);
+  box-shadow: 0 12px 40px rgba(20, 34, 64, 0.08);
+}
+
+.section--cream .card h3,
+.section--cream .card h4,
+.section--cream .panel h3,
+.section--cream .panel h4,
+.section--cream .branch-card h3,
+.section--cream .schedule-card h3,
+.section--cream .event-highlight h3,
+.section--cream .identity-card h3 {
+  color: var(--navy);
+}
+
+/* ── Event banner on light sections ── */
+.section--white .event-banner,
+.section--cream .event-banner {
+  background: linear-gradient(135deg, rgba(201, 149, 44, 0.08), rgba(232, 93, 38, 0.05));
+  border-color: var(--line-white-strong);
+}
+
+.section--white .event-banner h3,
+.section--cream .event-banner h3 {
+  color: var(--navy);
+}
+
+.section--white .event-banner-date,
+.section--cream .event-banner-date {
+  background: var(--bg-white);
+  border-color: var(--line-white-strong);
+}
+
+.section--white .event-banner-date .day,
+.section--cream .event-banner-date .day {
+  color: var(--navy);
+}
+
+/* ── Program cards on light sections ── */
+.section--white .program-card,
+.section--cream .program-card {
+  border-color: var(--bg-sand-border);
+}
+
+.section--white .program-card-body h3,
+.section--cream .program-card-body h3 {
+  color: var(--navy);
+}
+
+.section--white .program-card-schedule li,
+.section--cream .program-card-schedule li {
+  color: var(--text-on-white);
+}
+
+/* ── Badge on light sections ── */
+.section--white .badge--gold,
+.section--cream .badge--gold {
+  background: var(--gold-glow);
+  color: var(--gold);
+  border-color: rgba(201, 149, 44, 0.3);
+}
+
 
 /* ── Grids ── */
 .grid {
@@ -414,7 +689,7 @@ body::after {
 
 /* Scrolled state — added via JS */
 .site-nav.scrolled {
-  background: rgba(10, 7, 16, 0.92);
+  background: rgba(20, 34, 64, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 10px 0;
@@ -499,7 +774,7 @@ body::after {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--fire);
+  background: var(--gold);
   transition: width var(--dur) var(--ease-out);
 }
 
@@ -598,7 +873,7 @@ body::after {
 .drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 7, 16, 0.8);
+  background: rgba(15, 26, 48, 0.8);
   z-index: var(--z-overlay);
   opacity: 0;
   visibility: hidden;
@@ -621,7 +896,7 @@ body::after {
   width: min(320px, 85vw);
   height: 100vh;
   height: 100dvh;
-  background: var(--bg-2);
+  background: var(--bg-navy-deep);
   z-index: var(--z-drawer);
   transform: translateX(100%);
   transition: transform var(--dur-slow) var(--ease-out);
@@ -681,12 +956,12 @@ body.drawer-open {
 
 .drawer-nav a:hover,
 .drawer-nav a.active {
-  background: var(--purple-glow);
+  background: var(--gold-glow);
   color: var(--cream);
 }
 
 .drawer-nav a.active {
-  border-right: 3px solid var(--fire);
+  border-right: 3px solid var(--gold);
 }
 
 .drawer-footer {
@@ -752,7 +1027,7 @@ body.drawer-open {
   inset: 0;
   background:
     linear-gradient(180deg, var(--bg) 0%, transparent 30%, transparent 60%, var(--bg) 100%),
-    linear-gradient(90deg, rgba(10, 7, 16, 0.7), rgba(10, 7, 16, 0.4));
+    linear-gradient(90deg, rgba(20, 34, 64, 0.7), rgba(20, 34, 64, 0.4));
 }
 
 /* ── Hero Content ── */
@@ -766,7 +1041,7 @@ body.drawer-open {
   width: 120px;
   height: 120px;
   margin: 0 auto 32px;
-  filter: drop-shadow(0 4px 24px rgba(123, 45, 142, 0.3));
+  filter: drop-shadow(0 4px 24px rgba(201, 149, 44, 0.25));
   animation: floatIn 1.2s var(--ease-out) both;
 }
 
@@ -787,10 +1062,10 @@ body.drawer-open {
   animation: fadeUp 0.8s var(--ease-out) 0.6s both;
 }
 
-/* ── Fire underline for hero heading ── */
+/* ── Gold underline for hero heading ── */
 .fire-underline {
   display: inline;
-  background-image: linear-gradient(90deg, var(--fire), var(--fire-light));
+  background-image: linear-gradient(90deg, var(--gold), var(--gold-light));
   background-repeat: no-repeat;
   background-size: 100% 3px;
   background-position: 0 92%;
@@ -830,17 +1105,17 @@ body.drawer-open {
   border: none;
 }
 
-/* ── Primary: Purple → Fire on hover ── */
+/* ── Primary: Gold ── */
 .btn--primary {
-  background: var(--purple);
+  background: var(--gold);
   color: var(--white);
-  box-shadow: 0 4px 20px rgba(123, 45, 142, 0.3);
+  box-shadow: 0 4px 20px rgba(201, 149, 44, 0.3);
 }
 
 .btn--primary:hover {
-  background: var(--purple-light);
+  background: var(--gold-light);
   color: var(--white);
-  box-shadow: 0 4px 30px rgba(123, 45, 142, 0.45);
+  box-shadow: 0 4px 30px rgba(201, 149, 44, 0.45);
   transform: translateY(-2px);
 }
 
@@ -852,10 +1127,24 @@ body.drawer-open {
 }
 
 .btn--secondary:hover {
-  border-color: var(--fire);
-  color: var(--fire-light);
-  background: var(--fire-dim);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  background: var(--gold-glow);
   transform: translateY(-2px);
+}
+
+/* Secondary on light backgrounds */
+.section--white .btn--secondary,
+.section--cream .btn--secondary {
+  color: var(--navy);
+  border-color: var(--line-white-strong);
+}
+
+.section--white .btn--secondary:hover,
+.section--cream .btn--secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-glow);
 }
 
 /* ── Fire: Solid fire CTA ── */
@@ -894,7 +1183,7 @@ body.drawer-open {
 
 /* ── Base Card ── */
 .card {
-  background: var(--bg-2);
+  background: var(--bg-navy-deep);
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
@@ -906,7 +1195,7 @@ body.drawer-open {
 .card:hover {
   border-color: var(--line-strong);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(123, 45, 142, 0.12);
+  box-shadow: 0 12px 40px rgba(201, 149, 44, 0.08);
 }
 
 .card-img {
@@ -941,7 +1230,7 @@ body.drawer-open {
 .program-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: var(--bg-2);
+  background: var(--bg-navy-deep);
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
@@ -950,8 +1239,8 @@ body.drawer-open {
 }
 
 .program-card:hover {
-  border-color: var(--purple-dim);
-  box-shadow: 0 12px 40px rgba(123, 45, 142, 0.12);
+  border-color: var(--gold-dim);
+  box-shadow: 0 12px 40px rgba(201, 149, 44, 0.08);
 }
 
 .program-card-img {
@@ -1021,7 +1310,7 @@ body.drawer-open {
   justify-content: center;
   font-size: 2rem;
   color: var(--white);
-  background: rgba(10, 7, 16, 0.4);
+  background: rgba(20, 34, 64, 0.4);
   opacity: 0;
   transition: opacity var(--dur) var(--ease-out);
 }
@@ -1039,7 +1328,7 @@ body.drawer-open {
 }
 
 .panel--glow {
-  box-shadow: 0 0 60px rgba(123, 45, 142, 0.08);
+  box-shadow: 0 0 60px rgba(201, 149, 44, 0.06);
 }
 
 /* ── Leader Card (about page) ── */
@@ -1053,8 +1342,8 @@ body.drawer-open {
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 20px;
-  border: 3px solid var(--purple-dim);
-  box-shadow: 0 8px 30px rgba(123, 45, 142, 0.2);
+  border: 3px solid var(--gold-dim);
+  box-shadow: 0 8px 30px rgba(201, 149, 44, 0.15);
 }
 
 .leader-card h3 {
@@ -1100,7 +1389,7 @@ body.drawer-open {
    12. FOOTER
    ============================================================ */
 .site-footer {
-  background: var(--bg-2);
+  background: var(--bg-navy-deep);
   border-top: 1px solid var(--line);
   padding: 80px 0 40px;
   position: relative;
@@ -1182,7 +1471,7 @@ body.drawer-open {
 }
 
 .footer-col a:hover {
-  color: var(--fire-light);
+  color: var(--gold-light);
 }
 
 /* ── Footer Social ── */
@@ -1206,8 +1495,8 @@ body.drawer-open {
 }
 
 .footer-social a:hover {
-  background: var(--purple);
-  border-color: var(--purple);
+  background: var(--gold);
+  border-color: var(--gold);
   color: var(--white);
 }
 
@@ -1235,7 +1524,7 @@ body.drawer-open {
 }
 
 .footer-bottom a:hover {
-  color: var(--fire-light);
+  color: var(--gold-light);
 }
 
 @media (max-width: 900px) {
@@ -1339,8 +1628,8 @@ body.drawer-open {
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px var(--purple-glow);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-glow);
 }
 
 .form-textarea {
@@ -1358,14 +1647,14 @@ body.drawer-open {
    15. MISC COMPONENTS
    ============================================================ */
 
-/* ── Sermon Play Overlay (for embedded video) ── */
+/* ── Video Embed ── */
 .video-embed {
   position: relative;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.3);
 }
 
 .video-embed iframe {
@@ -1374,9 +1663,9 @@ body.drawer-open {
   border: none;
 }
 
-/* ── Branch Card (map style) ── */
+/* ── Branch Card ── */
 .branch-card {
-  background: var(--bg-2);
+  background: var(--bg-navy-deep);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 28px;
@@ -1385,8 +1674,8 @@ body.drawer-open {
 }
 
 .branch-card:hover {
-  border-color: var(--purple-dim);
-  box-shadow: 0 8px 30px rgba(123, 45, 142, 0.1);
+  border-color: var(--gold-dim);
+  box-shadow: 0 8px 30px rgba(201, 149, 44, 0.08);
 }
 
 .branch-card h3 {
@@ -1421,10 +1710,17 @@ body.drawer-open {
   border-radius: 4px;
 }
 
+.badge--gold {
+  background: var(--gold-glow);
+  color: var(--gold-light);
+  border: 1px solid rgba(201, 149, 44, 0.3);
+}
+
+/* Keep --purple badge name for backward compat, map to gold */
 .badge--purple {
-  background: var(--purple-glow);
-  color: var(--purple-light);
-  border: 1px solid rgba(123, 45, 142, 0.3);
+  background: var(--gold-glow);
+  color: var(--gold-light);
+  border: 1px solid rgba(201, 149, 44, 0.3);
 }
 
 .badge--fire {
@@ -1436,7 +1732,7 @@ body.drawer-open {
 /* ── Featured Event Banner ── */
 .event-banner {
   background:
-    linear-gradient(135deg, rgba(123, 45, 142, 0.15), rgba(232, 93, 38, 0.08));
+    linear-gradient(135deg, rgba(201, 149, 44, 0.10), rgba(232, 93, 38, 0.06));
   border: 1px solid var(--line-strong);
   border-radius: 12px;
   padding: 40px;
@@ -1489,9 +1785,9 @@ body.drawer-open {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--bg-2) 25%,
+    var(--bg-navy-deep) 25%,
     var(--bg-panel) 50%,
-    var(--bg-2) 75%
+    var(--bg-navy-deep) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
