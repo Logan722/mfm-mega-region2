@@ -719,6 +719,9 @@ body::after {
   height: 48px;
   object-fit: contain;
   transition: transform var(--dur) var(--ease-out);
+  /* Clean logo rendering - no background artifacts */
+  background: transparent;
+  image-rendering: auto;
 }
 
 .site-nav.scrolled .nav-logo img {
@@ -1043,6 +1046,10 @@ body.drawer-open {
   margin: 0 auto 32px;
   filter: drop-shadow(0 4px 24px rgba(201, 149, 44, 0.25));
   animation: floatIn 1.2s var(--ease-out) both;
+  /* Ensure clean transparency on navy backgrounds */
+  background: transparent;
+  mix-blend-mode: normal;
+  image-rendering: auto;
 }
 
 .hero h1 {
@@ -1414,6 +1421,11 @@ body.drawer-open {
   align-items: center;
   gap: 12px;
   text-decoration: none;
+}
+
+/* Ensure logo transparency across all contexts */
+img[src*="logo"] {
+  background: transparent !important;
 }
 
 .footer-logo img {
