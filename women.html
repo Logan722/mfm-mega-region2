@@ -245,6 +245,48 @@
       color: var(--text-on-navy);
       line-height: 1.5;
     }
+
+    /* ── Women Foundation Video Grid ── */
+    .wf-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gutter, 24px);
+    }
+    @media (max-width: 640px) {
+      .wf-video-grid { grid-template-columns: 1fr; }
+    }
+    .wf-video-item {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-sand, #f5f3ee);
+      border: 1px solid var(--bg-sand-border, #e8e4da);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+    }
+    .wf-video-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+    .wf-video-item .video-embed iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: 0;
+    }
+    .wf-video-info {
+      padding: 14px 18px 16px;
+    }
+    .wf-video-info h4 {
+      font-family: var(--font-serif, 'Fraunces', serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy, #142240);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .wf-video-info p {
+      font-size: 0.8rem;
+      color: var(--text-dim-white, #8a8f98);
+    }
   </style>
 </head>
 <body>
@@ -429,16 +471,69 @@
           <p>Archived teachings, prayers, and testimonies from our Women Foundation meetings.</p>
         </div>
 
-        <div class="playlist-panel reveal">
-          <div class="video-embed">
-            <iframe
-              src="https://www.youtube.com/embed/videoseries?list=PLW7hBicEbKy-13BzJgdAuKoXCXtPiF2vM"
-              title="MFM Women Foundation — Mega Region 2 USA"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy">
-            </iframe>
+        <!-- Individual Video Embeds -->
+        <div class="wf-video-grid reveal">
+          <div class="wf-video-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/FBRzA38XqXc" title="BREAKTHROUGH ALERT! Day 1 of A NEW THING | MFM Women Conference | Raleigh NC" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="wf-video-info">
+              <h4>BREAKTHROUGH ALERT! Day 1 — A NEW THING</h4>
+              <p>MFM Women Conference | Raleigh NC</p>
+            </div>
           </div>
+          <div class="wf-video-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/fObOeAewtF4" title="Oil to Emerge | Women Foundation Conference | MFM Dallas, TX" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="wf-video-info">
+              <h4>Oil to Emerge — Women Foundation Conference</h4>
+              <p>Live Stream | MFM Dallas, TX</p>
+            </div>
+          </div>
+          <div class="wf-video-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/9V7K82rEod8" title="My Time of Restoration | Pastor (Mrs.) Oluwatoyin Oni" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="wf-video-info">
+              <h4>My Time of Restoration</h4>
+              <p>Pastor (Mrs.) Oluwatoyin Oni</p>
+            </div>
+          </div>
+          <div class="wf-video-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/JPoNddOvpcI" title="Pastor (Mrs.) Oluwatoyin Oni's Message | Beauty From Ashes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="wf-video-info">
+              <h4>Beauty From Ashes — Message</h4>
+              <p>Pastor (Mrs.) Oluwatoyin Oni</p>
+            </div>
+          </div>
+          <div class="wf-video-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/RoT7c6SYzbA" title="Becoming A Mother in Israel | Powerful Drama Inspired by Deborah — MFM Austin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="wf-video-info">
+              <h4>Becoming A Mother in Israel</h4>
+              <p>A Powerful Drama — MFM Austin</p>
+            </div>
+          </div>
+          <div class="wf-video-item">
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/6ko9fPkL4hQ" title="The Role of Health In Becoming A Mother In Israel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="wf-video-info">
+              <h4>The Role of Health In Becoming A Mother In Israel</h4>
+              <p>Geraldine Sellu, DNP, FNP-BC</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:32px;" class="reveal">
+          <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy-13BzJgdAuKoXCXtPiF2vM" target="_blank" rel="noopener" class="btn btn--primary btn--sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px; vertical-align:-2px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            View Full Playlist on YouTube →
+          </a>
         </div>
 
       </div>
@@ -569,7 +664,6 @@
       <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
-        <p>General Overseer: Dr. D.K. Olukoya</p>
       </div>
     </div>
   </footer>
