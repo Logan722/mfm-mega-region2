@@ -28,6 +28,137 @@
 
   <!-- Page-specific styles -->
   <style>
+    /* ── Split Hero Layout ── */
+    .hero--split {
+      text-align: left;
+      justify-content: flex-start;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    .hero-split-inner {
+      position: relative;
+      z-index: var(--z-content);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 48px;
+      max-width: var(--container-max);
+      width: 100%;
+      margin: 0 auto;
+    }
+    .hero-split-text {
+      max-width: 560px;
+    }
+    .hero-split-text .eyebrow {
+      justify-content: flex-start;
+      animation: fadeUp 0.8s var(--ease-out) 0.1s both;
+    }
+    .hero-split-text h1 {
+      margin-bottom: 20px;
+      animation: fadeUp 0.8s var(--ease-out) 0.25s both;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 28px;
+      max-width: none;
+      animation: fadeUp 0.8s var(--ease-out) 0.4s both;
+    }
+    .hero-verse {
+      border: none;
+      padding: 0;
+      margin: 0 0 32px;
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.65;
+      max-width: 480px;
+      animation: fadeUp 0.8s var(--ease-out) 0.5s both;
+    }
+    .hero-verse cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--gold-dim);
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+    .hero-split-text .btn-group {
+      animation: fadeUp 0.8s var(--ease-out) 0.6s both;
+    }
+
+    /* Right: Logo with glow */
+    .hero-split-logo {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floatIn 1.2s var(--ease-out) 0.3s both;
+    }
+    .hero-logo-glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,149,44,0.18) 0%, rgba(201,149,44,0.06) 50%, transparent 72%);
+      pointer-events: none;
+    }
+    .hero-emblem-split {
+      position: relative;
+      width: 280px;
+      height: auto;
+      filter: drop-shadow(0 8px 32px rgba(201,149,44,0.3));
+      background: transparent;
+      mix-blend-mode: normal;
+      image-rendering: auto;
+    }
+
+    /* Mobile: stack text-first, logo below */
+    @media (max-width: 768px) {
+      .hero--split {
+        padding-top: 120px;
+        padding-bottom: 80px;
+        min-height: auto;
+      }
+      .hero-split-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .hero-split-text {
+        max-width: 100%;
+        order: 1;
+      }
+      .hero-split-text .eyebrow {
+        justify-content: center;
+      }
+      .hero-split-logo {
+        order: 2;
+      }
+      .hero-emblem-split {
+        width: 180px;
+      }
+      .hero-logo-glow {
+        width: 220px;
+        height: 220px;
+      }
+      .hero-split-text .btn-group {
+        justify-content: center;
+      }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .hero-emblem-split {
+        width: 220px;
+      }
+      .hero-logo-glow {
+        width: 280px;
+        height: 280px;
+      }
+    }
     /* ── Identity Strip ── */
     .identity-strip {
       text-align: center;
@@ -308,22 +439,32 @@
        ═══════════════════════════════════════════════════════ -->
   <main>
 
-    <section class="hero">
-      <div class="hero-content">
-        <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="120" height="120">
-        <p class="eyebrow" style="justify-content:center">Mountain of Fire and Miracles Ministries</p>
-        <h1>Welcome to <span class="fire-underline">Mega Region 2</span></h1>
-        <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
+    <section class="hero hero--split">
+      <div class="hero-split-inner">
 
-        <blockquote class="hero-scripture" style="border:none; text-align:center; padding:0; margin:0 auto 36px; max-width:540px;">
-          "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
-          <cite>— Obadiah 1:17</cite>
-        </blockquote>
+        <!-- Left: Text -->
+        <div class="hero-split-text">
+          <p class="eyebrow">Mountain of Fire and Miracles Ministries</p>
+          <h1>Welcome to <span class="fire-underline">Mega Region 2</span></h1>
+          <p class="hero-subtitle">A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
 
-        <div class="btn-group btn-group--center">
-          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary">Watch Live</a>
-          <a href="about.html" class="btn btn--secondary">About Us</a>
+          <blockquote class="hero-verse">
+            "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
+            <cite>— Obadiah 1:17</cite>
+          </blockquote>
+
+          <div class="btn-group">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary">Watch Live</a>
+            <a href="about.html" class="btn btn--secondary">About Us</a>
+          </div>
         </div>
+
+        <!-- Right: Logo -->
+        <div class="hero-split-logo">
+          <div class="hero-logo-glow"></div>
+          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem-split">
+        </div>
+
       </div>
     </section>
 
