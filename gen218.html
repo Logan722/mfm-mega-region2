@@ -3,235 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- PAGE TITLE -->
   <title>Gen218 — Christian Singles | MFM Mega Region 2 USA</title>
-
-  <!-- SEO Meta -->
   <meta name="description" content="Gen218 — MFM Christian Singles Ministry. A community preparing singles for marriage through spiritual growth, fellowship, and the Word of God. Genesis 2:18.">
   <meta name="theme-color" content="#142240">
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Gen218 — Christian Singles | MFM Mega Region 2 USA">
   <meta property="og:description" content="It is not good that the man should be alone. Gen218 — preparing singles for marriage through the Word, prayer, and fellowship.">
   <meta property="og:image" content="img/gen218-logo.jpg">
   <meta property="og:type" content="website">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png">
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="css/site.css">
 
-  <!-- Gen218 Page Styles -->
   <style>
-    /* ── Hero Logo ── */
     .gen218-hero-logo {
-      width: 140px;
-      height: 140px;
-      object-fit: contain;
-      border-radius: 20px;
-      margin-bottom: 24px;
+      width: 140px; height: 140px; object-fit: contain;
+      border-radius: 20px; margin-bottom: 24px;
       box-shadow: 0 8px 40px rgba(201, 149, 44, 0.25);
     }
 
+    /* ── Coordinator ── */
+    .coordinator { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
+    @media (max-width: 768px) { .coordinator { grid-template-columns: 1fr; text-align: center; } }
+    .coordinator-photo { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+    .coordinator-photo img { width: 100%; height: auto; display: block; aspect-ratio: 3/4; object-fit: cover; object-position: top center; }
+    .coordinator-text h2 { font-family: 'Fraunces', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 4px; }
+    .coordinator-text .role { font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; color: var(--fire); font-weight: 500; letter-spacing: 0.03em; margin-bottom: 20px; }
+    .coordinator-text p { color: var(--text-on-white); line-height: 1.8; font-size: 0.95rem; margin-bottom: 12px; }
+
+    /* ── Scripture Band ── */
+    .scripture-band { background: var(--bg-navy); padding: 64px 24px; text-align: center; position: relative; overflow: hidden; }
+    .scripture-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(201,149,44,0.08) 0%, transparent 70%); pointer-events: none; }
+    .scripture-band blockquote { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 400; font-style: italic; line-height: 1.7; color: var(--cream); border: none; padding: 0; }
+    .scripture-band cite { display: block; margin-top: 16px; font-style: normal; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
+
+    /* ── About Grid ── */
+    .about-gen218-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+    .about-gen218-grid .about-text p { font-size: 1rem; color: var(--text-on-white); line-height: 1.8; margin-bottom: 16px; }
+    .about-sidebar { background: linear-gradient(135deg, rgba(201,149,44,0.08), rgba(232,93,38,0.04)); border: 1px solid var(--line-white); border-radius: 12px; padding: 32px; }
+    .about-sidebar h3 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 16px; }
+    .about-sidebar ul { list-style: none; padding: 0; margin: 0; }
+    .about-sidebar li { font-size: 0.9rem; color: var(--text-on-white); padding: 10px 0; border-bottom: 1px solid var(--line-white); display: flex; align-items: center; gap: 10px; }
+    .about-sidebar li:last-child { border-bottom: none; }
+    .about-sidebar .check-icon { color: var(--gold); flex-shrink: 0; }
+    @media (max-width: 768px) { .about-gen218-grid { grid-template-columns: 1fr; } }
+
     /* ── Category Cards ── */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--gutter);
-    }
-
-    .category-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 36px 24px;
-      text-align: center;
-      transition: border-color var(--dur) var(--ease-out),
-                  transform var(--dur) var(--ease-out);
-    }
-
-    .category-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-3px);
-    }
-
-    .category-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--gold-glow, rgba(201, 149, 44, 0.18));
-    }
-
-    .category-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-    }
-
-    .category-card .age-range {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--fire);
-      margin-bottom: 12px;
-    }
-
-    .category-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    @media (max-width: 900px) {
-      .category-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 520px) {
-      .category-grid { grid-template-columns: 1fr; }
-    }
+    .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); }
+    .category-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 12px; padding: 36px 24px; text-align: center; transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+    .category-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .category-icon { width: 56px; height: 56px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gold-glow, rgba(201,149,44,0.18)); }
+    .category-card h3 { font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 6px; }
+    .category-card .age-range { font-size: 0.82rem; font-weight: 600; color: var(--fire); margin-bottom: 12px; }
+    .category-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; }
+    @media (max-width: 900px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .category-grid { grid-template-columns: 1fr; } }
 
     /* ── Activity Cards ── */
-    .activity-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--gutter);
-    }
-
-    .activity-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 32px 24px;
-      transition: border-color var(--dur) var(--ease-out);
-    }
-
-    .activity-card:hover {
-      border-color: var(--line-strong);
-    }
-
-    .activity-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-    }
-
-    .activity-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    .activity-icon {
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      background: var(--gold-glow, rgba(201, 149, 44, 0.18));
-      margin-bottom: 16px;
-    }
-
-    @media (max-width: 768px) {
-      .activity-grid { grid-template-columns: 1fr; }
-    }
+    .activity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+    .activity-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 12px; padding: 32px 24px; transition: border-color var(--dur) var(--ease-out); }
+    .activity-card:hover { border-color: var(--line-strong); }
+    .activity-card h3 { font-family: var(--font-serif); font-size: 1.05rem; margin-bottom: 8px; }
+    .activity-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+    .activity-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: var(--gold-glow, rgba(201,149,44,0.18)); margin-bottom: 16px; }
+    @media (max-width: 768px) { .activity-grid { grid-template-columns: 1fr; } }
 
     /* ── Video Grid ── */
-    .gen218-video-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--gutter);
-    }
-
-    .gen218-video-item {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color var(--dur) var(--ease-out),
-                  transform var(--dur) var(--ease-out);
-    }
-
-    .gen218-video-item:hover {
-      border-color: var(--line-strong);
-      transform: translateY(-2px);
-    }
-
-    .gen218-video-info {
-      padding: 16px 20px;
-    }
-
-    .gen218-video-info h4 {
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .gen218-video-info p {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-
-    @media (max-width: 900px) {
-      .gen218-video-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 520px) {
-      .gen218-video-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Scripture Highlight ── */
-    .gen218-scripture {
-      font-family: var(--font-serif);
-      font-size: clamp(1.15rem, 2vw, 1.4rem);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--cream);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    .gen218-scripture cite {
-      display: block;
-      margin-top: 16px;
-      font-family: var(--font-sans);
-      font-style: normal;
-      font-size: 0.82rem;
-      color: var(--gold);
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
+    .gen218-video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+    .gen218-video-item { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+    .gen218-video-item:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+    .gen218-video-info { padding: 16px 20px; }
+    .gen218-video-info h4 { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .gen218-video-info p { font-size: 0.8rem; color: var(--text-dim); }
+    @media (max-width: 900px) { .gen218-video-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .gen218-video-grid { grid-template-columns: 1fr; } }
   </style>
 
-  <!-- Netlify Identity Widget (needed for CMS) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════════════════
-       NAVIGATION
-       ═══════════════════════════════════════════════════════ -->
   <nav class="site-nav" id="siteNav">
     <div class="nav-inner">
-
-      <!-- Logo -->
       <a href="index.html" class="nav-logo">
         <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48">
-        <div class="nav-logo-text">
-          MFM Mega Region 2
-          <span>USA</span>
-        </div>
+        <div class="nav-logo-text">MFM Mega Region 2<span>USA</span></div>
       </a>
-
-      <!-- Desktop Links -->
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -241,23 +96,11 @@
         <a href="women.html">Women</a>
         <a href="branches.html">Branches</a>
       </div>
-
-      <!-- Hamburger (mobile) -->
-      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       MOBILE DRAWER
-       ═══════════════════════════════════════════════════════ -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
-
   <aside class="drawer" id="drawer">
     <div class="drawer-header">
       <img src="img/logo.png" alt="" width="40" height="40">
@@ -273,17 +116,10 @@
       <a href="branches.html">Branches</a>
     </nav>
     <div class="drawer-footer">
-      <p class="drawer-scripture">
-        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
-        <cite>— Jeremiah 23:29</cite>
-      </p>
+      <p class="drawer-scripture">"Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"<cite>— Jeremiah 23:29</cite></p>
     </div>
   </aside>
 
-
-  <!-- ═══════════════════════════════════════════════════════
-       PAGE CONTENT
-       ═══════════════════════════════════════════════════════ -->
   <main>
 
     <!-- ── HERO ── -->
@@ -301,265 +137,181 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         ABOUT GEN218
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white" id="about-gen218">
+    <!-- ── COORDINATOR ── -->
+    <section class="section section--white" id="coordinator">
       <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">About the Ministry</p>
-          <h2>What is Gen218?</h2>
-        </div>
-
-        <div class="content-block reveal" style="max-width:800px; margin:0 auto;">
-          <p style="font-size:1.05rem; color:var(--text-on-white); line-height:1.8; margin-bottom:20px;">
-            Gen218 — named after <strong>Genesis 2:18</strong> — is the MFM Christian Singles Ministry, a divine movement burdened with a vision of preparing singles for marriage. The program addresses singles on every plane — spiritual, financial, psychological, and emotional — until each individual is fully furnished and prepared for God's purpose in marriage.
-          </p>
-          <p style="font-size:1.05rem; color:var(--text-on-white); line-height:1.8; margin-bottom:20px;">
-            Through monthly meetings, powerful teachings from the Word of God, prayer sessions, seminars, and fellowship activities, Gen218 creates a supportive and uplifting community for Christian singles seeking meaningful relationships, spiritual growth, and a deeper walk with Christ.
-          </p>
-          <p style="font-size:1.05rem; color:var(--text-on-white); line-height:1.8;">
-            At MFM Mega Region 2, Gen218 is not just a program — it is a family where singles are equipped, empowered, and positioned for destiny. Whether you are newly entering adulthood, navigating the journey of singleness, or a single parent building a future, there is a place for you.
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         COORDINATOR
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" id="coordinator" style="padding-top:80px; padding-bottom:80px;">
-      <div class="container">
-        <div class="event-banner reveal" style="align-items:center;">
-          <div class="event-banner-date" style="min-width:auto; padding:20px 28px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div class="coordinator reveal">
+          <div class="coordinator-photo">
+            <img src="img/photos/pastor-obatunsin.jpg" alt="Pastor Segun Obatunsin — Gen218 Coordinator, MFM Mega Region 2 USA" loading="lazy">
           </div>
-          <div class="event-banner-content">
-            <span class="badge badge--fire" style="margin-bottom:10px;">Regional Coordinator</span>
-            <h3>Pastor Segun Obatunsin</h3>
-            <p style="color:var(--text-on-white); font-size:0.95rem; margin-top:6px;">
-              Gen218 Coordinator, MFM Mega Region 2 USA · MFM Austin, Texas
-            </p>
-            <p style="color:var(--text-dim); font-size:0.88rem; margin-top:12px;">
-              Under the leadership of Pastor Segun Obatunsin, Gen218 in Mega Region 2 provides a Spirit-filled environment where singles are equipped for purposeful relationships, spiritual maturity, and God-ordained marriages.
-            </p>
+          <div class="coordinator-text">
+            <p class="eyebrow">Gen218 Coordinator</p>
+            <h2>Pastor Segun Obatunsin</h2>
+            <p class="role">Gen218 Singles Ministry · MFM Austin, Texas</p>
+            <p>Pastor Segun Obatunsin serves as the Gen218 Coordinator for MFM Mega Region 2 USA. Stationed at MFM Austin, Texas, he carries a burden for the spiritual growth, preparation, and positioning of singles within the ministry.</p>
+            <p>Under his leadership, Gen218 in Mega Region 2 provides a Spirit-filled environment where singles are equipped on every plane — spiritual, financial, psychological, and emotional — until each individual is fully furnished and prepared for God's purpose in marriage.</p>
+            <p>Through monthly meetings, conferences, and powerful teachings from the Word of God, Pastor Obatunsin nurtures a community where singles can find fellowship, purpose, and the fire of God for their journey ahead.</p>
           </div>
         </div>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         SCRIPTURE BAND
-         ═══════════════════════════════════════════════════════ -->
+    <!-- ── SCRIPTURE BAND ── -->
     <div class="scripture-band">
-      <blockquote class="gen218-scripture reveal">
+      <blockquote class="reveal">
         "And the Lord God said, It is not good that the man should be alone; I will make him an help meet for him."
         <cite>— Genesis 2:18</cite>
       </blockquote>
     </div>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         CATEGORIES
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" id="categories">
+    <!-- ── ABOUT GEN218 ── -->
+    <section class="section section--cream" id="about-gen218">
       <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">About the Ministry</p>
+          <h2>What is Gen218?</h2>
+        </div>
+        <div class="about-gen218-grid reveal">
+          <div class="about-text">
+            <p>Gen218 — named after <strong>Genesis 2:18</strong> — is the MFM Christian Singles Ministry, a divine movement burdened with a vision of preparing singles for marriage. The program addresses singles on every plane — spiritual, financial, psychological, and emotional — until each individual is fully furnished and prepared for God's purpose in marriage.</p>
+            <p>Through monthly meetings, powerful teachings from the Word of God, prayer sessions, seminars, and fellowship activities, Gen218 creates a supportive and uplifting community for Christian singles seeking meaningful relationships, spiritual growth, and a deeper walk with Christ.</p>
+            <p>At MFM Mega Region 2, Gen218 is not just a program — it is a family where singles are equipped, empowered, and positioned for destiny. Whether you are newly entering adulthood, navigating the journey of singleness, or a single parent building a future, there is a place for you.</p>
+          </div>
+          <div class="about-sidebar">
+            <h3>Gen218 Focus Areas</h3>
+            <ul>
+              <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Spiritual growth &amp; prayer life</li>
+              <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Relationship readiness</li>
+              <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Financial empowerment</li>
+              <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Emotional &amp; psychological health</li>
+              <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Career development</li>
+              <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Marriage preparation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
+
+    <!-- ── CATEGORIES ── -->
+    <section class="section section--white" id="categories">
+      <div class="container">
         <div class="section-header text-center reveal">
           <p class="eyebrow">Who Is Gen218 For?</p>
           <h2>Singles Categories</h2>
           <p>Gen218 has tailored programs and support for every category of single believer.</p>
         </div>
-
         <div class="category-grid reveal-stagger">
-
           <div class="category-card reveal">
-            <div class="category-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
-            </div>
+            <div class="category-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg></div>
             <h3>Young Singles</h3>
             <div class="age-range">Ages 18–24</div>
             <p>Young adults stepping into independence, identity, and purpose. Building strong spiritual foundations for the journey ahead.</p>
           </div>
-
           <div class="category-card reveal">
-            <div class="category-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
+            <div class="category-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <h3>Due Singles</h3>
             <div class="age-range">Ages 25–29</div>
             <p>Singles in the season of expectation and preparation. Trusting God's timing while actively developing in every area of life.</p>
           </div>
-
           <div class="category-card reveal">
-            <div class="category-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
+            <div class="category-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
             <h3>Adult Singles</h3>
             <div class="age-range">Ages 30+</div>
             <p>Mature believers walking in faith, career, and purpose — pressing forward with confidence that God's plan is perfect.</p>
           </div>
-
           <div class="category-card reveal">
-            <div class="category-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><circle cx="19" cy="11" r="2.5"/><path d="M19 8.5V6"/></svg>
-            </div>
+            <div class="category-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><circle cx="19" cy="11" r="2.5"/><path d="M19 8.5V6"/></svg></div>
             <h3>Single Parents</h3>
             <div class="age-range">All Ages</div>
             <p>Parents navigating life solo, raising children in the fear of God. Supported, valued, and empowered for the next chapter.</p>
           </div>
-
         </div>
-
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         ACTIVITIES & MEETINGS
-         ═══════════════════════════════════════════════════════ -->
+    <!-- ── ACTIVITIES ── -->
     <section class="section section--dark" id="activities">
       <div class="container">
-
         <div class="section-header text-center reveal">
           <p class="eyebrow">What We Do</p>
           <h2>Programs &amp; Activities</h2>
           <p>Gen218 offers a rich calendar of spiritual, educational, and social activities designed to build whole and ready believers.</p>
         </div>
-
         <div class="activity-grid reveal-stagger">
-
           <div class="activity-card reveal">
-            <div class="activity-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
+            <div class="activity-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
             <h3>Monthly Meetings</h3>
             <p>Regular gatherings with powerful teachings from the Word of God, testimonies, prayer sessions, and fellowship. Every meeting is an encounter with the God who answers by fire.</p>
           </div>
-
           <div class="activity-card reveal">
-            <div class="activity-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            </div>
+            <div class="activity-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
             <h3>Seminars &amp; Conferences</h3>
             <p>Focused teaching events covering relationships, career, finances, emotional health, spiritual warfare, and preparation for marriage — equipping singles on every plane.</p>
           </div>
-
           <div class="activity-card reveal">
-            <div class="activity-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
+            <div class="activity-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <h3>Fellowship &amp; Social Activities</h3>
             <p>Outings, retreats, game nights, and community events that build genuine friendships and create space for God to connect hearts in wholesome, faith-centered fellowship.</p>
           </div>
-
         </div>
-
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         VIDEOS
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white" id="videos">
+    <!-- ── VIDEOS ── -->
+    <section class="section section--cream" id="videos">
       <div class="container">
-
         <div class="section-header text-center reveal">
           <p class="eyebrow">Watch</p>
           <h2>Gen218 Messages</h2>
-          <p>Monthly meetings, teachings, and powerful ministrations from the Gen218 singles program.</p>
+          <p>Teachings, conferences, and powerful ministrations from the Gen218 singles program.</p>
         </div>
-
         <div class="gen218-video-grid reveal-stagger">
-
           <div class="gen218-video-item reveal">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/rfoSc15XN98" title="Opening Charge by Pastor Segun Obatusin — GEN 218 Single's Conference: It Is My Time To Rejoice" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="gen218-video-info">
-              <h4>Opening Charge — It Is My Time To Rejoice</h4>
-              <p>Pastor Segun Obatunsin · Gen218 Conference</p>
-            </div>
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/rfoSc15XN98" title="Opening Charge by Pastor Segun Obatunsin — GEN 218 Conference" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <div class="gen218-video-info"><h4>Opening Charge — It Is My Time To Rejoice</h4><p>Pastor Segun Obatunsin · Gen218 Conference</p></div>
           </div>
-
           <div class="gen218-video-item reveal">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/KHPNqOX5HrQ" title="How To Maintain & Sustain A Relationship — Pastor Israel — GEN 218 Single's Conference" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="gen218-video-info">
-              <h4>How To Maintain &amp; Sustain A Relationship</h4>
-              <p>Pastor Israel · Gen218 Conference</p>
-            </div>
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/KHPNqOX5HrQ" title="How To Maintain & Sustain A Relationship — Pastor Israel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <div class="gen218-video-info"><h4>How To Maintain &amp; Sustain A Relationship</h4><p>Pastor Israel · Gen218 Conference</p></div>
           </div>
-
           <div class="gen218-video-item reveal">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/Y7Ff2ss7VAc" title="Educative Session — GEN 218 Single's Conference: It Is My Time To Rejoice" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="gen218-video-info">
-              <h4>Educative Session — It Is My Time To Rejoice</h4>
-              <p>Gen218 Singles Conference</p>
-            </div>
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/Y7Ff2ss7VAc" title="Educative Session — GEN 218 Conference" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <div class="gen218-video-info"><h4>Educative Session — It Is My Time To Rejoice</h4><p>Gen218 Singles Conference</p></div>
           </div>
-
           <div class="gen218-video-item reveal">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/Wl9snkkLOfU" title="Question & Answer Session — GEN 218 Single's Conference: It Is My Time To Rejoice" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="gen218-video-info">
-              <h4>Q&amp;A Session — It Is My Time To Rejoice</h4>
-              <p>Gen218 Singles Conference</p>
-            </div>
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/Wl9snkkLOfU" title="Q&A Session — GEN 218 Conference" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <div class="gen218-video-info"><h4>Q&amp;A Session — It Is My Time To Rejoice</h4><p>Gen218 Singles Conference</p></div>
           </div>
-
           <div class="gen218-video-item reveal">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/qyI2dmHkmMg" title="MFM Gen218 Singles with Dr. D.K. Olukoya — April 2023" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="gen218-video-info">
-              <h4>Gen218 Singles with Dr. D.K. Olukoya</h4>
-              <p>April 2023</p>
-            </div>
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/qyI2dmHkmMg" title="MFM Gen218 Singles with Dr. D.K. Olukoya" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <div class="gen218-video-info"><h4>Gen218 Singles with Dr. D.K. Olukoya</h4><p>April 2023</p></div>
           </div>
-
           <div class="gen218-video-item reveal">
-            <div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/yer1drWNL5s" title="The Science of Prayer — Gen218 Singles with Dr. D.K. Olukoya" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="gen218-video-info">
-              <h4>The Science of Prayer — Gen218</h4>
-              <p>Dr. D.K. Olukoya · March 2023</p>
-            </div>
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/yer1drWNL5s" title="The Science of Prayer — Gen218 with Dr. D.K. Olukoya" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+            <div class="gen218-video-info"><h4>The Science of Prayer — Gen218</h4><p>Dr. D.K. Olukoya · March 2023</p></div>
           </div>
-
         </div>
-
         <div style="text-align:center; margin-top:36px;" class="reveal">
           <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px; vertical-align:-2px;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             More on YouTube →
           </a>
         </div>
-
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
-         CONNECT CTA
-         ═══════════════════════════════════════════════════════ -->
+    <!-- ── CONNECT CTA ── -->
     <section class="section section--dark" id="connect">
       <div class="container">
         <div class="event-banner reveal" style="text-align:center; flex-direction:column; gap:20px;">
           <h3 style="font-size:clamp(1.4rem, 2.5vw, 1.8rem);">Join the Gen218 Community</h3>
-          <p style="color:var(--text-muted); font-size:0.95rem; max-width:560px; margin:0 auto;">
-            Connect with Christian singles across MFM Mega Region 2. Follow us on social media for meeting announcements, updates, and fellowship opportunities.
-          </p>
+          <p style="color:var(--text-muted); font-size:0.95rem; max-width:560px; margin:0 auto;">Connect with Christian singles across MFM Mega Region 2. Follow us on social media for meeting announcements, updates, and fellowship opportunities.</p>
           <div class="btn-group btn-group--center" style="margin-top:8px;">
             <a href="https://instagram.com/gen218singles_mfm" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Instagram @gen218singles_mfm</a>
             <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">YouTube</a>
@@ -572,37 +324,21 @@
   </main>
 
 
-  <!-- ═══════════════════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════════════════ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-
-        <!-- Brand Column -->
         <div class="footer-brand">
           <a href="index.html" class="footer-logo">
             <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="52" height="52">
-            <div class="footer-logo-text">
-              MFM Mega Region 2
-              <span>Mountain of Fire &amp; Miracles Ministries</span>
-            </div>
+            <div class="footer-logo-text">MFM Mega Region 2<span>Mountain of Fire &amp; Miracles Ministries</span></div>
           </a>
           <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
           <div class="footer-social">
-            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-            </a>
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
           </div>
         </div>
-
-        <!-- Quick Links -->
         <div class="footer-col">
           <h4>Quick Links</h4>
           <ul>
@@ -613,8 +349,6 @@
             <li><a href="branches.html">Branches</a></li>
           </ul>
         </div>
-
-        <!-- Ministries -->
         <div class="footer-col">
           <h4>Ministries</h4>
           <ul>
@@ -625,156 +359,29 @@
             <li><a href="events.html#pmch">Power Must Change Hands</a></li>
           </ul>
         </div>
-
-        <!-- Contact -->
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li>
-              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
-                MFM USA Prayer City<br>
-                10000 Kleckley Dr<br>
-                Houston, TX 77075
-              </a>
-            </li>
+            <li><a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">MFM USA Prayer City<br>10000 Kleckley Dr<br>Houston, TX 77075</a></li>
             <li><a href="tel:+18327888504">(832) 788-8504</a></li>
           </ul>
         </div>
-
       </div>
-
-      <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
+  <div class="grain" aria-hidden="true"><svg><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)"/></svg></div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       FILM GRAIN OVERLAY
-       ═══════════════════════════════════════════════════════ -->
-  <div class="grain" aria-hidden="true">
-    <svg>
-      <filter id="noiseFilter">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-      </filter>
-      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
-    </svg>
-  </div>
-
-
-  <!-- ═══════════════════════════════════════════════════════
-       SCRIPTS
-       ═══════════════════════════════════════════════════════ -->
   <script>
-    /* ── Mobile Drawer Toggle ── */
-    (function () {
-      const hamburger = document.getElementById('navHamburger');
-      const drawer = document.getElementById('drawer');
-      const overlay = document.getElementById('drawerOverlay');
-
-      function openDrawer() {
-        hamburger.classList.add('open');
-        hamburger.setAttribute('aria-expanded', 'true');
-        drawer.classList.add('open');
-        overlay.classList.add('open');
-        document.body.classList.add('drawer-open');
-      }
-
-      function closeDrawer() {
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        drawer.classList.remove('open');
-        overlay.classList.remove('open');
-        document.body.classList.remove('drawer-open');
-      }
-
-      hamburger.addEventListener('click', function () {
-        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-      });
-
-      overlay.addEventListener('click', closeDrawer);
-
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && drawer.classList.contains('open')) {
-          closeDrawer();
-        }
-      });
-    })();
-
-
-    /* ── Sticky Nav Scroll Effect ── */
-    (function () {
-      const nav = document.getElementById('siteNav');
-      let ticking = false;
-
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          requestAnimationFrame(function () {
-            nav.classList.toggle('scrolled', window.scrollY > 60);
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-    })();
-
-
-    /* ── Scroll-Triggered Reveals ── */
-    (function () {
-      const reveals = document.querySelectorAll('.reveal');
-      if (!reveals.length) return;
-
-      const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      reveals.forEach(function (el) {
-        observer.observe(el);
-      });
-    })();
-
-
-    /* ── Footer Year ── */
-    (function () {
-      const el = document.getElementById('footerYear');
-      if (el) el.textContent = new Date().getFullYear();
-    })();
-
-
-    /* ── Active Nav Link ── */
-    (function () {
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
-      navLinks.forEach(function (link) {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-        }
-      });
-    })();
-
-
-    /* ── Netlify Identity Redirect (for CMS) ── */
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', function (user) {
-        if (!user) {
-          window.netlifyIdentity.on('login', function () {
-            document.location.href = '/admin/';
-          });
-        }
-      });
-    }
+    (function(){var h=document.getElementById('navHamburger'),d=document.getElementById('drawer'),o=document.getElementById('drawerOverlay');function open(){h.classList.add('open');h.setAttribute('aria-expanded','true');d.classList.add('open');o.classList.add('open');document.body.classList.add('drawer-open');}function close(){h.classList.remove('open');h.setAttribute('aria-expanded','false');d.classList.remove('open');o.classList.remove('open');document.body.classList.remove('drawer-open');}h.addEventListener('click',function(){d.classList.contains('open')?close():open();});o.addEventListener('click',close);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open'))close();});})();
+    (function(){var n=document.getElementById('siteNav');var t=false;window.addEventListener('scroll',function(){if(!t){requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>60);t=false;});t=true;}});})();
+    (function(){var r=document.querySelectorAll('.reveal');if(!r.length)return;var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}});},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});r.forEach(function(el){obs.observe(el);});})();
+    (function(){var el=document.getElementById('footerYear');if(el)el.textContent=new Date().getFullYear();})();
+    (function(){var p=window.location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-links a, .drawer-nav a').forEach(function(l){l.classList.remove('active');if(l.getAttribute('href')===p)l.classList.add('active');});})();
+    if(window.netlifyIdentity){window.netlifyIdentity.on('init',function(u){if(!u){window.netlifyIdentity.on('login',function(){document.location.href='/admin/'});}});}
   </script>
-
 </body>
 </html>
