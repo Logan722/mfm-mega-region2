@@ -9,16 +9,16 @@
 
   <!-- SEO Meta -->
   <meta name="description" content="Watch sermons and teachings from MFM Mega Region 2 USA. Messages from Pastor Olumide Oni and guest ministers — fire-filled, scripture-rooted preaching.">
-  <meta name="theme-color" content="#0a0710">
+  <meta name="theme-color" content="#142240">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Sermons — MFM Mega Region 2 USA">
   <meta property="og:description" content="Watch sermons and teachings from Mountain of Fire and Miracles Ministries, Mega Region 2 USA.">
-  <meta property="og:image" content="img/logo.jpg">
+  <meta property="og:image" content="img/logo.png">
   <meta property="og:type" content="website">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+  <link rel="icon" type="image/png" href="img/logo.png">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/site.css">
@@ -45,7 +45,7 @@
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-dim);
+      color: var(--text-dim-white);
       pointer-events: none;
       transition: color var(--dur) var(--ease-out);
     }
@@ -55,8 +55,8 @@
       padding: 14px 16px 14px 46px;
       font-family: var(--font-sans);
       font-size: 0.9rem;
-      color: var(--text);
-      background: var(--bg-2);
+      color: var(--navy);
+      background: var(--bg-white);
       border: 1px solid var(--line-strong);
       border-radius: 8px;
       outline: none;
@@ -65,13 +65,17 @@
     }
 
     .sermon-search:focus {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 3px var(--purple-glow);
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+
+    .sermon-search {
+      border-color: var(--line-white-strong);
     }
 
     .sermon-search:focus + svg,
     .sermon-search:focus ~ svg {
-      color: var(--purple-light);
+      color: var(--gold-light);
     }
 
     .sermon-search::placeholder {
@@ -80,7 +84,7 @@
 
     .sermon-count {
       font-size: 0.82rem;
-      color: var(--text-dim);
+      color: var(--text-dim-white);
       white-space: nowrap;
     }
 
@@ -126,7 +130,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(10, 7, 16, 0.35);
+      background: rgba(20, 34, 64, 0.35);
       opacity: 0;
       transition: opacity var(--dur) var(--ease-out);
     }
@@ -138,7 +142,7 @@
     .play-circle {
       width: 52px;
       height: 52px;
-      background: rgba(123, 45, 142, 0.85);
+      background: rgba(201, 149, 44, 0.90);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -149,7 +153,7 @@
 
     .sermon-card:hover .play-circle {
       transform: scale(1.1);
-      background: var(--purple);
+      background: var(--gold);
     }
 
     .play-circle svg {
@@ -164,7 +168,7 @@
     }
 
     .sermons-empty svg {
-      color: var(--text-dim);
+      color: var(--text-dim-white);
       margin-bottom: 20px;
     }
 
@@ -174,14 +178,14 @@
     }
 
     .sermons-empty p {
-      color: var(--text-muted);
+      color: var(--text-on-white);
       font-size: 0.95rem;
     }
 
     /* ── Skeleton Grid ── */
     .skeleton-card {
-      background: var(--bg-2);
-      border: 1px solid var(--line);
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
       border-radius: 12px;
       overflow: hidden;
     }
@@ -189,7 +193,7 @@
     .skeleton-thumb {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: linear-gradient(90deg, var(--bg-2) 25%, var(--bg-panel) 50%, var(--bg-2) 75%);
+      background: linear-gradient(90deg, var(--bg-sand) 25%, var(--bg-cream) 50%, var(--bg-sand) 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
     }
@@ -201,7 +205,7 @@
     .skeleton-line {
       height: 14px;
       border-radius: 4px;
-      background: linear-gradient(90deg, var(--bg-2) 25%, var(--bg-panel) 50%, var(--bg-2) 75%);
+      background: linear-gradient(90deg, var(--bg-sand) 25%, var(--bg-cream) 50%, var(--bg-sand) 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
       margin-bottom: 10px;
@@ -219,7 +223,7 @@
     }
 
     .sermons-cta p {
-      color: var(--text-muted);
+      color: var(--text-on-white);
       font-size: 0.95rem;
       margin-bottom: 20px;
     }
@@ -238,7 +242,7 @@
 
       <!-- Logo -->
       <a href="index.html" class="nav-logo">
-        <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48">
         <div class="nav-logo-text">
           MFM Mega Region 2
           <span>USA</span>
@@ -272,7 +276,7 @@
 
   <aside class="drawer" id="drawer">
     <div class="drawer-header">
-      <img src="img/logo.jpg" alt="" width="40" height="40">
+      <img src="img/logo.png" alt="" width="40" height="40">
       <span>MFM Mega Region 2</span>
     </div>
     <nav class="drawer-nav">
@@ -300,7 +304,7 @@
     <!-- ── HERO ── -->
     <section class="hero hero--short">
       <div class="hero-content">
-        <img src="img/logo.jpg" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
+        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
         <p class="eyebrow" style="justify-content:center">Teachings &amp; Messages</p>
         <h1>Sermons from the <span class="fire-underline">Mountain</span></h1>
         <p>Fire-filled, scripture-rooted messages from MFM Mega Region 2 USA. Be blessed, be strengthened, be delivered.</p>
@@ -309,7 +313,7 @@
 
 
     <!-- ── SERMONS GRID ── -->
-    <section class="section">
+    <section class="section section--white">
       <div class="container">
 
         <!-- Toolbar: search + count -->
@@ -383,7 +387,7 @@
         <!-- Brand Column -->
         <div class="footer-brand">
           <a href="index.html" class="footer-logo">
-            <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="52" height="52">
             <div class="footer-logo-text">
               MFM Mega Region 2
               <span>Mountain of Fire &amp; Miracles Ministries</span>
