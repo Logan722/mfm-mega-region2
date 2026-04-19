@@ -152,34 +152,54 @@ repo/
 
 ---
 
-## Design System — "Cathedral Fire"
+## Design System — "Royal Flame"
 
 ### Philosophy
-Adapted from the "Cinematic Cathedral" design language of the Pastor Olumide Oni personal site. Same premium, movie-poster quality aesthetic, but re-themed to match MFM's official brand colors: purple (royal priesthood) and fire orange, on a dark base.
+Adapted from the "Cinematic Cathedral" design language of the Pastor Olumide Oni personal site. Premium, movie-poster quality aesthetic re-themed as "Royal Flame" — a dual-tone design using **twilight navy** for dramatic sections (hero, nav, footer) and **white/cream** for readable content sections. Gold is the primary accent (warmth, royalty), fire orange is the secondary (energy, urgency).
+
+### Layout Pattern — Layout 1
+- **Nav, Hero, Footer:** Twilight navy (#142240) — cinematic, dramatic
+- **Content sections:** Alternate between white (#ffffff) and warm cream (#f8f6f1)
+- **Cards on white:** Warm sand (#f5f3ee) with subtle border (#e8e4da)
+- **Cards on navy:** Semi-transparent gold tint with gold border
 
 ### Color Tokens (CSS Variables)
 ```css
-/* MFM Brand Palette */
---bg:            #0a0710;                           /* Deep purple-black */
---bg-2:          #0f0b18;                           /* Panel background */
---bg-panel:      #0d0916;
---purple:        #7b2d8e;                           /* Primary — royal priesthood */
---purple-light:  #9b4dae;
---purple-soft:   #a35db5;
---purple-dim:    #5a2068;
---purple-glow:   rgba(123, 45, 142, 0.22);
---fire:          #e85d26;                           /* Secondary — fire accent */
+/* Royal Flame Palette */
+
+/* --- Backgrounds --- */
+--bg-navy:       #142240;                           /* Hero, nav, footer, dramatic sections */
+--bg-navy-deep:  #0f1a30;                           /* Deeper navy for layering */
+--bg-navy-panel: #1a2d4d;                           /* Panels/cards on navy */
+--bg-white:      #ffffff;                           /* Primary content background */
+--bg-cream:      #f8f6f1;                           /* Alternate content sections */
+--bg-sand:       #f5f3ee;                           /* Cards on white */
+--bg-sand-border:#e8e4da;                           /* Card borders on white */
+
+/* --- Accents --- */
+--gold:          #c9952c;                           /* Primary accent — warmth, royalty */
+--gold-light:    #d4a853;
+--gold-dim:      #8b6f33;
+--gold-glow:     rgba(201, 149, 44, 0.18);
+--fire:          #e85d26;                           /* Secondary accent — energy, urgency */
 --fire-light:    #ff7a3d;
 --fire-dim:      rgba(232, 93, 38, 0.25);
---gold:          #d4a853;                           /* Tertiary — inherited from pastor site */
---gold-dim:      #8b6f33;
---cream:         #f2e8d5;                           /* Headings / emphasis */
---white:         #ffffff;
---text:          #e0d8ea;                           /* Body text */
---text-muted:    #8a7f96;
---text-dim:      #6a5f7a;
---line:          rgba(123, 45, 142, 0.22);          /* Subtle borders */
---line-strong:   rgba(123, 45, 142, 0.45);
+
+/* --- Text on navy backgrounds --- */
+--cream:         #f0e6d0;                           /* Headings on navy */
+--text-on-navy:  #8899b8;                           /* Body text on navy */
+--text-dim-navy: #6a7a96;                           /* Muted text on navy */
+
+/* --- Text on white/cream backgrounds --- */
+--navy:          #142240;                           /* Headings on white */
+--text-on-white: #5a6270;                           /* Body text on white */
+--text-dim-white:#8a8f98;                           /* Muted text on white */
+
+/* --- Borders --- */
+--line-navy:     rgba(201, 149, 44, 0.15);          /* Subtle borders on navy */
+--line-navy-strong: rgba(201, 149, 44, 0.35);
+--line-white:    #e8e4da;                           /* Subtle borders on white */
+--line-white-strong: #d4cfc4;
 ```
 
 ### Typography
@@ -195,23 +215,33 @@ Adapted from the "Cinematic Cathedral" design language of the Pastor Olumide Oni
 --container-max: 1200px;
 ```
 
-### Atmosphere Effects (same as pastor site)
-- **Light shaft:** Fixed radial gradient with breathing animation (purple/fire tint)
-- **Film grain:** SVG noise overlay, mix-blend-mode: overlay
+### Atmosphere Effects
+- **Light shaft:** Radial gradient on navy sections only (gold/warm tint)
+- **Film grain:** SVG noise overlay on navy sections, mix-blend-mode: overlay
 - **Scroll-triggered reveals:** `.reveal` class with IntersectionObserver
-- **Ambient gradients:** Body::before with layered radial gradients
+- **No atmosphere effects on white sections** — keep them clean and sharp
+
+### Section Rhythm (Layout 1 Pattern)
+```
+[NAV]           → navy
+[HERO]          → navy (with atmosphere effects)
+[SERMON]        → white
+[PROGRAMS]      → cream
+[EVENT]         → navy (dramatic spotlight)
+[ABOUT TEASER]  → cream
+[FOOTER]        → navy
+```
 
 ### Design Differences from Pastor Oni Site
 | Feature | Pastor Oni Site | MFM Mega Region 2 Site |
 |---------|----------------|----------------------|
-| Primary accent | Gold (#d4a853) | Purple (#7b2d8e) |
+| Primary accent | Gold (#d4a853) | Gold (#c9952c) |
 | Secondary accent | — | Fire orange (#e85d26) |
-| Background tint | Warm brown-black | Cool purple-black |
-| Logo treatment | Monogram circle | MFM emblem (logo.jpg) |
+| Background | Warm brown-black throughout | Dual-tone: navy + white/cream |
+| Logo treatment | Monogram circle | MFM emblem (logo.png) |
 | Content focus | Individual pastor | Regional ministry |
 | Brand scripture | 1 Kings 18:38 | Jer 23:29, Deut 4:11, Jer 20:9 |
-
----
+| Layout rhythm | All-dark, uniform | Alternating navy/white sections |
 
 ## Page-by-Page Reference
 
@@ -374,7 +404,8 @@ Work is split across separate chats for efficiency. Each chat handles a focused 
 | **Chat 5: Sermons Page** | `sermons.html` — YouTube RSS integration, sermon grid | ⬜ TODO |
 | **Chat 6: Events Page** | `events.html` — weekly programs, PMCH, crusades, Women Foundation | ⬜ TODO |
 | **Chat 7: Branches Page** | `branches.html` — Prayer City HQ, regional branches (data TBD) | ⬜ TODO |
-| **Chat 8: CMS & Polish** | Decap CMS setup, SEO, cross-links, final deployment | ⬜ TODO |
+| **Chat 8: Theme Overhaul** | Apply Royal Flame theme to CSS + all pages, swap logo.png, delete logo.jpg | ⬜ TODO |
+| **Chat 9: CMS & Polish** | Decap CMS setup, SEO, cross-links, final deployment | ⬜ TODO |
 
 ### How Each Chat Should Start
 Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md` file (it's in the project files) and then using the GitHub API with a fresh PAT:
