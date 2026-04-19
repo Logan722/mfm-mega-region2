@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PAGE TITLE -->
+  <title>Events &amp; Programs — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Events and programs at MFM Mega Region 2 USA. Healing &amp; Deliverance Hour, Open Heaven Encounter, Power Must Change Hands, Sunday Worship, and more.">
+  <meta name="theme-color" content="#0a0710">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Events &amp; Programs — MFM Mega Region 2 USA">
+  <meta property="og:description" content="Join us for weekly prayer, healing, deliverance, and breakthrough. Healing &amp; Deliverance Hour every Tuesday, Open Heaven Encounter every Thursday, PMCH every 1st Saturday.">
+  <meta property="og:image" content="img/logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/site.css">
+
+  <!-- Events Page Styles -->
+  <style>
+    /* ── Schedule Grid ── */
+    .schedule-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 32px;
+      transition: border-color var(--dur) var(--ease-out),
+                  transform var(--dur) var(--ease-out);
+    }
+
+    .schedule-card:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+    }
+
+    .schedule-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .schedule-card .schedule-time {
+      font-size: 0.85rem;
+      color: var(--fire);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .schedule-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Event Highlight Cards ── */
+    .event-highlight {
+      background:
+        linear-gradient(135deg, rgba(123, 45, 142, 0.10), rgba(232, 93, 38, 0.06));
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 36px;
+      transition: border-color var(--dur) var(--ease-out);
+    }
+
+    .event-highlight:hover {
+      border-color: var(--line-strong);
+    }
+
+    .event-highlight h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .event-highlight p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .event-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .event-meta svg {
+      flex-shrink: 0;
+    }
+
+    /* ── Quick Schedule Strip ── */
+    .schedule-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px;
+      background: var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .schedule-strip-item {
+      background: var(--bg-panel);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .schedule-strip-item .strip-day {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .schedule-strip-item .strip-program {
+      font-size: 0.82rem;
+      color: var(--fire);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .schedule-strip-item .strip-time {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+  </style>
+
+  <!-- Netlify Identity Widget (needed for CMS) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <div class="nav-logo-text">
+          MFM Mega Region 2
+          <span>USA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="events.html" class="active">Events</a>
+        <a href="branches.html">Branches</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="img/logo.jpg" alt="" width="40" height="40">
+      <span>MFM Mega Region 2</span>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sermons.html">Sermons</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="branches.html">Branches</a>
+    </nav>
+    <div class="drawer-footer">
+      <p class="drawer-scripture">
+        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+        <cite>— Jeremiah 23:29</cite>
+      </p>
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE CONTENT
+       ═══════════════════════════════════════════════════════ -->
+  <main>
+
+    <!-- ── HERO ── -->
+    <section class="hero hero--short">
+      <div class="hero-content">
+        <img src="img/logo.jpg" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
+        <p class="eyebrow" style="justify-content:center">Events &amp; Programs</p>
+        <h1>Where <span class="fire-underline">Fire</span> Falls</h1>
+        <p>Weekly prayer, monthly warfare, and special encounters — join us as we press into the presence of God for healing, deliverance, and breakthrough.</p>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         WEEKLY SCHEDULE STRIP
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">At a Glance</p>
+          <h2>Weekly Schedule</h2>
+        </div>
+
+        <div class="schedule-strip reveal">
+          <div class="schedule-strip-item">
+            <div class="strip-day">Tuesday</div>
+            <div class="strip-program">Healing &amp; Deliverance Hour</div>
+            <div class="strip-time">7 PM CT / 8 PM ET</div>
+          </div>
+          <div class="schedule-strip-item">
+            <div class="strip-day">Wednesday</div>
+            <div class="strip-program">Manna Water Service</div>
+            <div class="strip-time">At All Branches</div>
+          </div>
+          <div class="schedule-strip-item">
+            <div class="strip-day">Thursday</div>
+            <div class="strip-program">Open Heaven Encounter</div>
+            <div class="strip-time">6 PM CST · Multi-timezone</div>
+          </div>
+          <div class="schedule-strip-item">
+            <div class="strip-day">Friday</div>
+            <div class="strip-program">Prayer Rain</div>
+            <div class="strip-time">At All Branches</div>
+          </div>
+          <div class="schedule-strip-item">
+            <div class="strip-day">Sunday</div>
+            <div class="strip-program">Worship Service</div>
+            <div class="strip-time">At All Branches</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         HEALING & DELIVERANCE HOUR
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="healing-deliverance">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Weekly Online Program</p>
+          <h2>Healing &amp; Deliverance Hour</h2>
+          <p>An online prayerline for weekly prayer, healing, and breakthrough. Come expectant — the God of fire answers by fire.</p>
+        </div>
+
+        <div class="program-card reveal">
+          <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour — Weekly Prayer, Healing, Breakthrough. Every Tuesday 7 PM CT / 8 PM ET" class="program-card-img">
+          <div class="program-card-body">
+            <span class="badge badge--fire">Every Tuesday</span>
+            <h3 style="margin-top:12px;">Weekly Prayer · Healing · Breakthrough</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">
+              The Healing &amp; Deliverance Hour is a weekly online prayerline where believers gather to pray targeted, fire-filled prayers for healing, deliverance, and total breakthrough. No matter where you are, connect with us and experience the power of God.
+            </p>
+            <ul class="program-card-schedule">
+              <li>7:00 PM CT (Central Time)</li>
+              <li>8:00 PM ET (Eastern Time)</li>
+            </ul>
+
+            <blockquote style="margin-top:24px; font-size:1rem; padding:12px 0 12px 20px;">
+              "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+              <cite>— Jeremiah 23:29</cite>
+            </blockquote>
+
+            <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:12px;">
+              <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Join on YouTube</a>
+              <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Join on Facebook</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         OPEN HEAVEN ENCOUNTER
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="open-heaven">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">International Prayer Service</p>
+          <h2>Open Heaven Encounter</h2>
+          <p>Connecting believers across USA, Ghana, UK, Nigeria, and Canada for a powerful weekly encounter with God.</p>
+        </div>
+
+        <div class="program-card reveal">
+          <img src="img/open-heaven-encounter.jpg" alt="Open Heaven Encounter — Every Thursday, International Prayer Service across multiple time zones" class="program-card-img">
+          <div class="program-card-body">
+            <span class="badge badge--purple">Every Thursday</span>
+            <h3 style="margin-top:12px;">International Prayer · Open Heavens · Encounter</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">
+              The Open Heaven Encounter is a weekly international prayer service that bridges time zones and continents. Believers from the USA, Ghana, the United Kingdom, Nigeria, and Canada come together under one anointing, pressing into God for open heavens and divine encounters.
+            </p>
+            <ul class="program-card-schedule">
+              <li>🇺🇸 6:00 PM CST (USA)</li>
+              <li>🇬🇭 12:00 AM GMT (Ghana)</li>
+              <li>🇬🇧 12:00 AM GMT (United Kingdom)</li>
+              <li>🇳🇬 1:00 AM WAT (Nigeria)</li>
+              <li>🇨🇦 7:00 PM EST (Canada)</li>
+            </ul>
+
+            <blockquote style="margin-top:24px; font-size:1rem; padding:12px 0 12px 20px;">
+              "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
+              <cite>— Obadiah 1:17</cite>
+            </blockquote>
+
+            <div style="margin-top:20px;">
+              <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Join on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         POWER MUST CHANGE HANDS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="pmch">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Monthly Program</p>
+          <h2>Power Must Change Hands</h2>
+          <p>A powerful monthly prayer program where thousands of believers worldwide engage in aggressive spiritual warfare.</p>
+        </div>
+
+        <div class="event-banner reveal">
+          <div class="event-banner-date">
+            <span class="month">Every</span>
+            <span class="day" style="font-size:1.4rem;">1st Sat</span>
+          </div>
+          <div class="event-banner-content">
+            <span class="badge badge--fire" style="margin-bottom:12px;">PMCH · First Saturday Monthly</span>
+            <h3>Power Must Change Hands</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem; margin-top:8px;">
+              PMCH is a flagship MFM program held on the first Saturday of every month. It is a time of intense spiritual warfare, midnight prayers, and aggressive intercession. Whatever is holding your destiny captive — Power Must Change Hands!
+            </p>
+            <p style="color:var(--text-dim); font-size:0.82rem; margin-top:8px;">
+              8:00 AM – 11:30 AM · MFM USA Prayer City, 10000 Kleckley Dr, Houston TX 77075
+            </p>
+
+            <blockquote style="margin-top:20px; font-size:0.95rem; padding:10px 0 10px 18px;">
+              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
+              <cite>— Psalm 144:1</cite>
+            </blockquote>
+
+            <div style="margin-top:20px;">
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Get Directions →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         REGULAR SERVICES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="services">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Regular Services</p>
+          <h2>At All Branches</h2>
+          <p>These programs run weekly across all MFM Mega Region 2 USA branches.</p>
+        </div>
+
+        <div class="grid grid--3 reveal-stagger">
+
+          <div class="schedule-card reveal">
+            <span class="badge badge--purple" style="margin-bottom:16px;">Weekly</span>
+            <h3>Sunday Worship Service</h3>
+            <div class="schedule-time">Every Sunday</div>
+            <p>The main weekly gathering for praise, worship, the Word of God, and prayer at all MFM branches under Mega Region 2.</p>
+          </div>
+
+          <div class="schedule-card reveal">
+            <span class="badge badge--fire" style="margin-bottom:16px;">Weekly</span>
+            <h3>Manna Water Service</h3>
+            <div class="schedule-time">Every Wednesday</div>
+            <p>A midweek service for spiritual nourishment, the Word of God, and the ministration of anointed water for healing and breakthrough.</p>
+          </div>
+
+          <div class="schedule-card reveal">
+            <span class="badge badge--purple" style="margin-bottom:16px;">Weekly</span>
+            <h3>Prayer Rain</h3>
+            <div class="schedule-time">Every Friday</div>
+            <p>A dedicated night of aggressive prayer — rain down fire on every obstacle, every barrier, and every stronghold. Let there be a downpour of answered prayers.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         SPECIAL EVENTS & CRUSADES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="special-events">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Special Events</p>
+          <h2>Crusades &amp; Conferences</h2>
+          <p>Special combined services, deliverance crusades, and regional conferences throughout the year.</p>
+        </div>
+
+        <div class="grid grid--2 reveal-stagger">
+
+          <div class="event-highlight reveal">
+            <span class="badge badge--fire" style="margin-bottom:16px;">Periodic</span>
+            <h3>Deliverance Crusades</h3>
+            <p>
+              Special combined deliverance services bringing together all branches for concentrated spiritual warfare, mass prayer, and powerful testimonies of God's deliverance. The God of Elijah answers by fire.
+            </p>
+            <div class="event-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Dates announced on social media
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                MFM USA Prayer City, Houston TX
+              </span>
+            </div>
+          </div>
+
+          <div class="event-highlight reveal">
+            <span class="badge badge--purple" style="margin-bottom:16px;">Monthly</span>
+            <h3>Women Foundation Events</h3>
+            <p>
+              Monthly gatherings for the women of MFM Mega Region 2. A time of fellowship, teaching, prayer, and empowerment for the women building the Kingdom alongside their families and community.
+            </p>
+            <div class="event-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Monthly — contact for schedule
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                (832) 788-8504
+              </span>
+            </div>
+          </div>
+
+          <div class="event-highlight reveal">
+            <span class="badge badge--fire" style="margin-bottom:16px;">Annual</span>
+            <h3>Regional Conferences</h3>
+            <p>
+              Annual conferences bringing together all Mega Region 2 branches for multiple days of intensive teaching, worship, spiritual warfare, and fellowship under the anointing.
+            </p>
+            <div class="event-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Dates announced annually
+              </span>
+            </div>
+          </div>
+
+          <div class="event-highlight reveal">
+            <span class="badge badge--purple" style="margin-bottom:16px;">Special</span>
+            <h3>Youth Church Programs</h3>
+            <p>
+              Special programs, retreats, and events organized by the MFM Mega Region 2 Youth Church — raising an aggressive end-time army of young believers on fire for God.
+            </p>
+            <div class="event-meta">
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                6910 N Eldridge Pkwy, Houston TX 77041
+              </span>
+              <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                (346) 414-5880
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         STAY UPDATED CTA
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="stay-updated">
+      <div class="container">
+        <div class="event-banner reveal" style="text-align:center; flex-direction:column; gap:20px;">
+          <h3 style="font-size:clamp(1.4rem, 2.5vw, 1.8rem);">Never Miss an Event</h3>
+          <p style="color:var(--text-muted); font-size:0.92rem; max-width:560px; margin:0 auto;">
+            Follow us on social media for announcements, live broadcasts, and event updates. Join our WhatsApp group for instant notifications.
+          </p>
+          <div class="btn-group btn-group--center" style="margin-top:8px;">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">YouTube</a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Facebook</a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <div class="footer-logo-text">
+              MFM Mega Region 2
+              <span>Mountain of Fire &amp; Miracles Ministries</span>
+            </div>
+          </a>
+          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="footer-social">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About MFM</a></li>
+            <li><a href="sermons.html">Sermons</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="branches.html">Branches</a></li>
+          </ul>
+        </div>
+
+        <!-- Programs -->
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="events.html#healing-deliverance">Healing &amp; Deliverance Hour</a></li>
+            <li><a href="events.html#open-heaven">Open Heaven Encounter</a></li>
+            <li><a href="events.html#pmch">Power Must Change Hands</a></li>
+            <li><a href="events.html#services">Sunday Worship</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                MFM USA Prayer City<br>
+                10000 Kleckley Dr<br>
+                Houston, TX 77075
+              </a>
+            </li>
+            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+        <p>General Overseer: Dr. D.K. Olukoya</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FILM GRAIN OVERLAY
+       ═══════════════════════════════════════════════════════ -->
+  <div class="grain" aria-hidden="true">
+    <svg>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile Drawer Toggle ── */
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      }
+
+      hamburger.addEventListener('click', function () {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+
+      overlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    })();
+
+
+    /* ── Sticky Nav Scroll Effect ── */
+    (function () {
+      const nav = document.getElementById('siteNav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+
+    /* ── Scroll-Triggered Reveals ── */
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ── Footer Year ── */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+    /* ── Active Nav Link ── */
+    (function () {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+
+    /* ── Netlify Identity Redirect (for CMS) ── */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
