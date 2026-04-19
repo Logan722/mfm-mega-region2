@@ -25,127 +25,364 @@
 
   <!-- About Page Styles -->
   <style>
-    /* ── Objectives List ── */
-    .objectives-list {
-      counter-reset: objective;
-      display: grid;
-      gap: 0;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .objective-item {
-      counter-increment: objective;
-      display: flex;
-      align-items: baseline;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--line-white);
-    }
-
-    .objective-item:last-child {
-      border-bottom: none;
-    }
-
-    .objective-item::before {
-      content: counter(objective, decimal-leading-zero);
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--fire);
-      flex-shrink: 0;
-      min-width: 36px;
-      line-height: 1.5;
-    }
-
-    .objective-item p {
-      margin: 0;
-      color: var(--text-on-white);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    /* ── Featured Leader Bio ── */
-    .featured-leader {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .featured-leader-photo-wrap {
+    /* ── Cinematic Hero ── */
+    .about-hero {
       position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--bg-navy);
+      overflow: hidden;
     }
 
-    .featured-leader-photo {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid var(--gold-dim);
-      box-shadow: 0 12px 48px rgba(201, 149, 44, 0.2);
-    }
-
-    .featured-leader-photo-wrap::after {
+    .about-hero::before {
       content: '';
       position: absolute;
-      inset: -6px;
-      border-radius: 16px;
-      border: 1px solid var(--gold-glow);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201, 149, 44, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 30% 80%, rgba(232, 93, 38, 0.06) 0%, transparent 60%);
       pointer-events: none;
     }
 
-    .featured-leader-body {
-      padding-top: 8px;
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--bg-navy), transparent);
+      pointer-events: none;
     }
 
-    .featured-leader-body h3 {
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
-      margin-bottom: 4px;
+    .about-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      padding: 160px 24px 120px;
     }
 
-    .featured-leader-body .leader-role {
-      font-size: 0.9rem;
-      color: var(--fire);
+    .about-hero .hero-emblem {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 32px;
+      filter: drop-shadow(0 8px 40px rgba(201, 149, 44, 0.3));
+      animation: emblemFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes emblemFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .about-hero .fire-motto {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .about-hero .fire-motto span {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
       font-weight: 500;
-      margin-bottom: 24px;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
-    .featured-leader-body p {
-      color: var(--text-muted);
+    .about-hero .fire-motto .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--fire);
+      flex-shrink: 0;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    .about-hero h1 strong {
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--fire-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-hero .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-on-navy);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── Decorative Divider ── */
+    .flame-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .flame-divider::before,
+    .flame-divider::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim));
+    }
+
+    .flame-divider::after {
+      background: linear-gradient(90deg, var(--gold-dim), transparent);
+    }
+
+    .flame-divider svg {
+      flex-shrink: 0;
+    }
+
+    /* ── Identity Cards (Redesigned) ── */
+    .identity-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .identity-card-v2 {
+      position: relative;
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 16px;
+      padding: 44px 36px 40px;
+      overflow: hidden;
+    }
+
+    .identity-card-v2::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--fire), var(--gold));
+    }
+
+    .identity-card-v2 .card-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 16px;
+    }
+
+    .identity-card-v2 h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .identity-card-v2 p {
+      color: var(--text-on-white);
       font-size: 0.95rem;
       line-height: 1.8;
     }
 
-    /* ── Couple Section ── */
-    .couple-section {
+    .identity-card-v2 blockquote {
+      margin-top: 20px;
+      padding: 16px 0 0 20px;
+      border-left: 2px solid var(--gold);
+      border-top: none;
+      border-right: none;
+      border-bottom: none;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-on-white);
+    }
+
+    .identity-card-v2 blockquote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Scripture Trio ── */
+    .scripture-trio {
       display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 48px;
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .couple-photo {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid var(--gold-dim);
-      box-shadow: 0 12px 48px rgba(201, 149, 44, 0.15);
+    .scripture-trio-item {
+      padding: 24px 16px;
+      position: relative;
     }
 
-    /* ── Identity Statement Cards ── */
-    .identity-card {
-      background: var(--bg-sand);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 12px;
-      padding: 36px;
+    .scripture-trio-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: var(--bg-sand-border);
+    }
+
+    .scripture-trio-item .fire-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 6px;
+    }
+
+    .scripture-trio-item .ref {
+      font-size: 0.82rem;
+      color: var(--text-dim-white);
+      font-family: var(--font-serif);
+    }
+
+    /* ── Objectives Grid (2-column on desktop) ── */
+    .objectives-grid {
+      counter-reset: objective;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 56px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .obj-item {
+      counter-increment: objective;
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--bg-sand-border);
+    }
+
+    .obj-item::before {
+      content: counter(objective, decimal-leading-zero);
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--fire);
+      flex-shrink: 0;
+      min-width: 32px;
+      line-height: 1.6;
+    }
+
+    .obj-item p {
+      margin: 0;
+      color: var(--text-on-white);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    /* ── Statement Band (full-width navy) ── */
+    .statement-band {
+      background: var(--bg-navy);
+      padding: 80px 24px;
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    .identity-card::before {
+    .statement-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201, 149, 44, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .statement-band blockquote {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--cream);
+      border: none;
+      padding: 0;
+    }
+
+    .statement-band cite {
+      display: block;
+      margin-top: 20px;
+      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Region Info Panel ── */
+    .region-content {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .region-content p {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--text-on-white);
+      margin-bottom: 16px;
+    }
+
+    .region-content strong {
+      color: var(--navy);
+    }
+
+    .region-content em {
+      color: var(--navy);
+      font-style: italic;
+    }
+
+    .hq-card {
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 14px;
+      padding: 36px;
+      text-align: center;
+      max-width: 480px;
+      margin: 48px auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hq-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -155,129 +392,276 @@
       background: linear-gradient(90deg, var(--gold), var(--fire), var(--gold));
     }
 
-    .identity-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 16px;
+    .hq-card .hq-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 12px;
+    }
+
+    .hq-card h3 {
+      font-size: 1.25rem;
       color: var(--navy);
+      margin-bottom: 8px;
     }
 
-    .identity-card p {
+    .hq-card p {
       color: var(--text-on-white);
-      font-size: 0.95rem;
-      line-height: 1.8;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 4px;
     }
 
-    /* ── GO Pair Grid ── */
-    .go-pair {
+    .hq-card a {
+      color: var(--fire);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .hq-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── GO Pair (Editorial) ── */
+    .go-editorial {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      max-width: 700px;
+      gap: 56px;
+      max-width: 720px;
       margin: 0 auto;
     }
 
-    .go-card {
+    .go-profile {
       text-align: center;
     }
 
-    .go-card-photo {
+    .go-profile-photo {
       width: 200px;
       height: 200px;
       border-radius: 50%;
       object-fit: cover;
       margin: 0 auto 24px;
-      border: 3px solid var(--gold-dim);
-      box-shadow: 0 8px 36px rgba(201, 149, 44, 0.2);
+      border: 3px solid rgba(201, 149, 44, 0.3);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .go-card h3 {
-      font-size: 1.25rem;
+    .go-profile:hover .go-profile-photo {
+      transform: scale(1.03);
+    }
+
+    .go-profile h3 {
+      font-size: 1.2rem;
+      color: var(--cream);
       margin-bottom: 6px;
     }
 
-    .go-card .leader-role {
-      font-size: 0.85rem;
-      color: var(--fire);
+    .go-profile .role {
+      font-size: 0.82rem;
+      color: var(--fire-light);
       font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .go-profile p {
+      font-size: 0.88rem;
+      color: var(--text-on-navy);
+      line-height: 1.7;
+      max-width: 290px;
+      margin: 0 auto;
+    }
+
+    /* ── Featured Leader (Magazine Spread) ── */
+    .leader-spread {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .leader-spread--reverse {
+      grid-template-columns: 1fr 300px;
+    }
+
+    .leader-photo-frame {
+      position: relative;
+    }
+
+    .leader-photo-frame img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 16px 56px rgba(0, 0, 0, 0.25);
+    }
+
+    .leader-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 18px;
+      border: 1px solid rgba(201, 149, 44, 0.15);
+      pointer-events: none;
+    }
+
+    .leader-bio {
+      padding-top: 8px;
+    }
+
+    .leader-bio .eyebrow {
       margin-bottom: 12px;
     }
 
-    .go-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      max-width: 280px;
-      margin: 0 auto;
-      line-height: 1.7;
+    .leader-bio h3 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    /* Dark section text */
+    .section--dark .leader-bio h3 {
+      color: var(--cream);
+    }
+
+    .section--dark .leader-bio p {
+      color: var(--text-on-navy);
+    }
+
+    /* Cream section text */
+    .section--cream .leader-bio h3 {
+      color: var(--navy);
+    }
+
+    .section--cream .leader-bio p {
+      color: var(--text-on-white);
+    }
+
+    .leader-bio .role {
+      font-size: 0.85rem;
+      color: var(--fire);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+
+    .leader-bio p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 12px;
+    }
+
+    .leader-bio .book-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px 20px;
+      background: rgba(201, 149, 44, 0.08);
+      border: 1px solid rgba(201, 149, 44, 0.2);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 500;
     }
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .featured-leader {
-        grid-template-columns: 220px 1fr;
-        gap: 32px;
+      .identity-duo {
+        grid-template-columns: 1fr;
       }
 
-      .couple-section {
-        grid-template-columns: 1fr 260px;
-        gap: 32px;
+      .objectives-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .go-editorial {
+        gap: 40px;
+      }
+
+      .leader-spread,
+      .leader-spread--reverse {
+        grid-template-columns: 240px 1fr;
+        gap: 36px;
       }
     }
 
     @media (max-width: 700px) {
-      .featured-leader {
+      .about-hero {
+        min-height: 70vh;
+      }
+
+      .about-hero-inner {
+        padding: 140px 20px 80px;
+      }
+
+      .about-hero .fire-motto span {
+        font-size: 0.68rem;
+      }
+
+      .scripture-trio {
         grid-template-columns: 1fr;
-        gap: 24px;
-        text-align: center;
+        gap: 0;
       }
 
-      .featured-leader-photo {
-        width: 220px;
-        margin: 0 auto;
-      }
-
-      .featured-leader-photo-wrap {
-        display: flex;
-        justify-content: center;
-      }
-
-      .featured-leader-photo-wrap::after {
+      .scripture-trio-item:not(:last-child)::after {
         display: none;
       }
 
-      .featured-leader-body {
-        text-align: left;
+      .scripture-trio-item {
+        padding: 12px 0;
       }
 
-      .couple-section {
+      .go-editorial {
         grid-template-columns: 1fr;
-        gap: 24px;
-        text-align: center;
+        gap: 48px;
+        max-width: 300px;
+        margin: 0 auto;
       }
 
-      .couple-photo {
-        width: 260px;
+      .leader-spread,
+      .leader-spread--reverse {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .leader-photo-frame {
+        max-width: 240px;
         margin: 0 auto;
+      }
+
+      .leader-photo-frame::after {
+        display: none;
+      }
+
+      .leader-spread--reverse .leader-photo-frame {
         order: -1;
       }
 
-      .couple-section .couple-text {
-        text-align: left;
+      .leader-bio {
+        text-align: center;
       }
 
-      .go-pair {
-        grid-template-columns: 1fr;
-        gap: 48px;
-        max-width: 320px;
+      .leader-bio .eyebrow {
+        justify-content: center;
       }
 
-      .objective-item {
+      .leader-bio .book-stat {
+        margin: 16px auto 0;
+      }
+
+      .obj-item {
         gap: 14px;
         padding: 16px 0;
       }
 
-      .objective-item::before {
-        font-size: 1.15rem;
-        min-width: 30px;
+      .obj-item::before {
+        font-size: 1.1rem;
+        min-width: 28px;
       }
     }
   </style>
@@ -353,18 +737,28 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       PAGE CONTENT
+       HERO
        ═══════════════════════════════════════════════════════ -->
 
   <main>
 
-    <!-- ── HERO ── -->
-    <section class="hero hero--short">
-      <div class="hero-content">
-        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
-        <p class="eyebrow" style="justify-content:center">About Us</p>
-        <h1><span class="fire-underline">Fire</span> in the Word · Fire on the Mountain · Fire in the Bone</h1>
-        <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+    <section class="about-hero">
+      <div class="about-hero-inner">
+        <div class="reveal">
+          <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="120" height="120">
+
+          <div class="fire-motto">
+            <span>Fire in the Word</span>
+            <span class="dot"></span>
+            <span>Fire on the Mountain</span>
+            <span class="dot"></span>
+            <span>Fire in the Bone</span>
+          </div>
+
+          <h1>Mountain of <strong>Fire</strong> &amp; Miracles Ministries</h1>
+
+          <p class="hero-sub">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+        </div>
       </div>
     </section>
 
@@ -377,42 +771,49 @@
 
         <div class="section-header text-center reveal">
           <p class="eyebrow">Our Identity</p>
-          <h2>Mountain of Fire &amp; Miracles Ministries</h2>
+          <h2>Who We Are</h2>
           <p>A ministry birthed in the fire of prayer, devoted to seeing the power of God demonstrated without limits.</p>
         </div>
 
         <!-- Identity Cards -->
-        <div class="grid grid--2 reveal-stagger" style="margin-bottom:48px;">
-          <div class="identity-card reveal">
-            <h3 class="text-cream">Our Mission</h3>
+        <div class="identity-duo reveal-stagger" style="margin-bottom:48px;">
+
+          <div class="identity-card-v2 reveal">
+            <p class="card-label">Our Mission</p>
+            <h3>Revival of Apostolic Signs</h3>
             <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
           </div>
 
-          <div class="identity-card reveal">
-            <h3 class="text-cream">Our Identity</h3>
+          <div class="identity-card-v2 reveal">
+            <p class="card-label">Our Identity</p>
+            <h3>Trained for Battle</h3>
             <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
-            <blockquote style="margin-top:16px; padding:12px 0 12px 20px; font-size:1rem;">
+            <blockquote>
               "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
               <cite>— Psalm 144:1</cite>
             </blockquote>
           </div>
+
         </div>
 
-        <!-- Key Scriptures -->
-        <div class="panel panel--glow reveal" style="text-align:center; max-width:700px; margin:0 auto;">
+        <!-- Scripture Trio -->
+        <div class="reveal" style="margin-top:24px;">
+          <div class="flame-divider" style="margin-bottom:32px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2c0 4-4 6-4 10a4 4 0 0 0 8 0c0-4-4-6-4-10z" fill="var(--fire)" opacity="0.7"/><path d="M12 6c0 2.5-2.5 3.75-2.5 6.25a2.5 2.5 0 0 0 5 0C14.5 9.75 12 8.5 12 6z" fill="var(--gold)"/></svg>
+          </div>
           <p class="eyebrow" style="justify-content:center; margin-bottom:24px;">Logo Scripture References</p>
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:24px;">
-            <div>
-              <p class="text-fire" style="font-weight:600; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">Fire in the Word</p>
-              <p class="text-muted" style="font-size:0.85rem;">Jeremiah 23:29</p>
+          <div class="scripture-trio">
+            <div class="scripture-trio-item">
+              <p class="fire-label">Fire in the Word</p>
+              <p class="ref">Jeremiah 23:29</p>
             </div>
-            <div>
-              <p class="text-fire" style="font-weight:600; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">Fire on the Mountain</p>
-              <p class="text-muted" style="font-size:0.85rem;">Deuteronomy 4:11</p>
+            <div class="scripture-trio-item">
+              <p class="fire-label">Fire on the Mountain</p>
+              <p class="ref">Deuteronomy 4:11</p>
             </div>
-            <div>
-              <p class="text-fire" style="font-weight:600; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;">Fire in the Bone</p>
-              <p class="text-muted" style="font-size:0.85rem;">Jeremiah 20:9</p>
+            <div class="scripture-trio-item">
+              <p class="fire-label">Fire in the Bone</p>
+              <p class="ref">Jeremiah 20:9</p>
             </div>
           </div>
         </div>
@@ -433,83 +834,65 @@
           <p>Eleven pillars that define the purpose and direction of Mountain of Fire and Miracles Ministries worldwide.</p>
         </div>
 
-        <div class="objectives-list reveal">
-          <div class="objective-item">
-            <p>To propagate the gospel of our Lord Jesus Christ all over the world</p>
-          </div>
-          <div class="objective-item">
-            <p>To promote the revival of Apostolic signs, wonders and miracles</p>
-          </div>
-          <div class="objective-item">
-            <p>To bring together children of God who are lost in dead churches</p>
-          </div>
-          <div class="objective-item">
-            <p>To train believers in the art and science of spiritual warfare</p>
-          </div>
-          <div class="objective-item">
-            <p>To train believers to receive Holy Ghost baptism and fire</p>
-          </div>
-          <div class="objective-item">
-            <p>To turn the joy of our enemies to sorrow — Deliverance ministry</p>
-          </div>
-          <div class="objective-item">
-            <p>To build an aggressive end-time army for the Lord</p>
-          </div>
-          <div class="objective-item">
-            <p>To deliver those who have become slaves to pastors, prophets and apostles</p>
-          </div>
-          <div class="objective-item">
-            <p>To build up heavenly-bound and aggressive Christians</p>
-          </div>
-          <div class="objective-item">
-            <p>To build up prayer eagles</p>
-          </div>
-          <div class="objective-item">
-            <p>To purify the Pentecostal dirtiness of this age</p>
-          </div>
+        <div class="objectives-grid reveal">
+          <div class="obj-item"><p>To propagate the gospel of our Lord Jesus Christ all over the world</p></div>
+          <div class="obj-item"><p>To promote the revival of Apostolic signs, wonders and miracles</p></div>
+          <div class="obj-item"><p>To bring together children of God who are lost in dead churches</p></div>
+          <div class="obj-item"><p>To train believers in the art and science of spiritual warfare</p></div>
+          <div class="obj-item"><p>To train believers to receive Holy Ghost baptism and fire</p></div>
+          <div class="obj-item"><p>To turn the joy of our enemies to sorrow — Deliverance ministry</p></div>
+          <div class="obj-item"><p>To build an aggressive end-time army for the Lord</p></div>
+          <div class="obj-item"><p>To deliver those who have become slaves to pastors, prophets and apostles</p></div>
+          <div class="obj-item"><p>To build up heavenly-bound and aggressive Christians</p></div>
+          <div class="obj-item"><p>To build up prayer eagles</p></div>
+          <div class="obj-item"><p>To purify the Pentecostal dirtiness of this age</p></div>
         </div>
-
-        <blockquote class="reveal" style="max-width:640px; margin:48px auto 0; text-align:center; border:none; padding:0;">
-          "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
-          <cite>— Obadiah 1:17</cite>
-        </blockquote>
 
       </div>
     </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         STATEMENT BAND (Obadiah 1:17)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="statement-band">
+      <blockquote class="reveal">
+        "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
+        <cite>— Obadiah 1:17</cite>
+      </blockquote>
+    </div>
 
 
     <!-- ═══════════════════════════════════════════════════════
          MEGA REGION 2 IDENTITY
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white">
-      <div class="container container--narrow">
+      <div class="container">
 
         <div class="section-header text-center reveal">
           <p class="eyebrow">Mega Region 2</p>
           <h2>Our Region in North America</h2>
         </div>
 
-        <div class="reveal" style="max-width:720px; margin:0 auto;">
-          <p style="font-size:1.05rem; line-height:1.85; color:var(--text-muted);">
-            MFM Mega Region 2 is a regional jurisdiction of Mountain of Fire and Miracles Ministries in the United States of America. Headquartered at <strong style="color:var(--navy);">MFM USA Prayer City</strong> in Houston, Texas, the region oversees multiple branches and serves as a center for prayer, deliverance, and the advancement of the gospel across North America.
+        <div class="region-content reveal">
+          <p>
+            MFM Mega Region 2 is a regional jurisdiction of Mountain of Fire and Miracles Ministries in the United States of America. Headquartered at <strong>MFM USA Prayer City</strong> in Houston, Texas, the region oversees multiple branches and serves as a center for prayer, deliverance, and the advancement of the gospel across North America.
           </p>
-          <p style="font-size:1.05rem; line-height:1.85; color:var(--text-muted);">
-            Under the leadership of <strong style="color:var(--navy);">Pastor Olumide Oni</strong> as Principal Regional Overseer, the region operates weekly prayer programs that connect believers across international time zones — including the <em>Healing &amp; Deliverance Hour</em> every Tuesday and the <em>Open Heaven Encounter</em> every Thursday, reaching the USA, Ghana, UK, Nigeria, and Canada.
+          <p>
+            Under the leadership of <strong>Pastor Olumide Oni</strong> as Principal Regional Overseer, the region operates weekly prayer programs that connect believers across international time zones — including the <em>Healing &amp; Deliverance Hour</em> every Tuesday and the <em>Open Heaven Encounter</em> every Thursday, reaching the USA, Ghana, UK, Nigeria, and Canada.
           </p>
-          <p style="font-size:1.05rem; line-height:1.85; color:var(--text-muted);">
-            The monthly <strong style="color:var(--navy);">Power Must Change Hands (PMCH)</strong> programme, held on the first Saturday of every month at Prayer City, remains a cornerstone of the MFM prayer mandate — a gathering where stubborn situations are addressed by fire.
+          <p>
+            The monthly <strong>Power Must Change Hands (PMCH)</strong> programme, held on the first Saturday of every month at Prayer City, remains a cornerstone of the MFM prayer mandate — a gathering where stubborn situations are addressed by fire.
           </p>
         </div>
 
-        <hr class="divider divider--fire reveal" style="margin:56px auto; max-width:200px;">
-
-        <!-- Prayer City HQ Card -->
-        <div class="panel panel--glow reveal" style="max-width:520px; margin:0 auto; text-align:center;">
-          <p class="text-fire" style="font-weight:600; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Headquarters</p>
-          <h3 style="font-size:1.3rem; margin-bottom:8px;">MFM USA Prayer City</h3>
-          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:4px;">10000 Kleckley Dr</p>
-          <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:16px;">Houston, TX 77075</p>
-          <a href="tel:+18327888504" style="color:var(--fire-light); font-size:0.95rem; text-decoration:none;">(832) 788-8504</a>
+        <!-- HQ Card -->
+        <div class="hq-card reveal">
+          <p class="hq-label">Headquarters</p>
+          <h3>MFM USA Prayer City</h3>
+          <p>10000 Kleckley Dr</p>
+          <p style="margin-bottom:16px;">Houston, TX 77075</p>
+          <a href="tel:+18327888504">(832) 788-8504</a>
         </div>
 
       </div>
@@ -517,7 +900,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         LEADERSHIP
+         LEADERSHIP — G.O. & MUMMY G.O.
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--dark">
       <div class="container">
@@ -528,22 +911,21 @@
           <p>The men and women of God leading this ministry in prayer, fire, and the demonstration of power.</p>
         </div>
 
+        <!-- G.O. & Mummy G.O. -->
+        <div class="go-editorial reveal-stagger" style="margin-bottom:80px;">
 
-        <!-- ── General Overseer & Mummy G.O. ── -->
-        <div class="go-pair reveal-stagger" style="margin-bottom:80px;">
-
-          <div class="go-card reveal">
-            <img src="img/photos/Daniel Olukoya 2.png" alt="Dr. D.K. Olukoya — General Overseer, MFM Worldwide" class="go-card-photo">
+          <div class="go-profile reveal">
+            <img src="img/photos/Daniel Olukoya 2.png" alt="Dr. D.K. Olukoya — General Overseer, MFM Worldwide" class="go-profile-photo">
             <h3>Dr. D.K. Olukoya</h3>
-            <p class="leader-role">General Overseer, MFM Worldwide</p>
+            <p class="role">General Overseer, MFM Worldwide</p>
             <p>Founder and General Overseer of Mountain of Fire and Miracles Ministries worldwide. A man of prayer, a scholar, and a vessel through whom the Lord has raised an end-time army across the nations.</p>
           </div>
 
-          <div class="go-card reveal">
-            <img src="img/photos/shade olukoya.jpeg" alt="Pastor (Dr.) Mrs. Shade Olukoya — Mummy G.O." class="go-card-photo">
+          <div class="go-profile reveal">
+            <img src="img/photos/shade olukoya.jpeg" alt="Pastor (Dr.) Mrs. Shade Olukoya — Mummy G.O." class="go-profile-photo">
             <h3>Pastor (Dr.) Mrs. Shade Olukoya</h3>
-            <p class="leader-role">Mummy G.O., MFM Worldwide</p>
-            <p>A woman of faith and a dedicated servant of God who stands beside the General Overseer in the ministry's global mandate of prayer and deliverance.</p>
+            <p class="role">Mummy G.O., MFM Worldwide</p>
+            <p>A woman of faith and a dedicated servant of God who stands beside the General Overseer in the ministry's global mandate of prayer and deliverance. International Coordinator of the MFM Women Foundation.</p>
           </div>
 
         </div>
@@ -551,47 +933,49 @@
         <hr class="divider divider--fire reveal" style="max-width:200px; margin:0 auto 80px;">
 
 
-        <!-- ── Principal Regional Overseer — Pastor Olumide Oni ── -->
-        <div class="featured-leader reveal" style="margin-bottom:80px;">
+        <!-- ── Pastor Olumide Oni ── -->
+        <div class="leader-spread reveal" style="margin-bottom:80px;">
 
-          <div class="featured-leader-photo-wrap">
-            <img src="img/photos/pastor-oni-gold.jpg" alt="Pastor Olumide Oni — Principal Regional Overseer, Mega Region 2 USA" class="featured-leader-photo">
+          <div class="leader-photo-frame">
+            <img src="img/photos/pastor-oni-gold.jpg" alt="Pastor Olumide Oni — Principal Regional Overseer, Mega Region 2 USA">
           </div>
 
-          <div class="featured-leader-body">
+          <div class="leader-bio">
             <p class="eyebrow">Principal Regional Overseer</p>
             <h3>Pastor Olumide Oni</h3>
-            <p class="leader-role">Mega Region 2 USA &amp; MFM North America HQ</p>
+            <p class="role">Mega Region 2 USA &amp; MFM North America HQ</p>
 
             <p>Pastor Olumide Oni is a prophet, evangelist, pastor, teacher, husband and father — a man through whom the fire of God burns brightly across nations.</p>
 
             <p>His ministry journey within MFM has taken him through multiple assignments of increasing responsibility: from Kubwa to MFM Lugbe Region in Abuja, then to MFM Wuye/Utako (the International Headquarters Annex in Abuja), and now to MFM North America Headquarters at Prayer City, Houston, Texas — where he serves as the Principal Regional Overseer of Mega Region 2.</p>
 
-            <p>A prolific author of over 107 anointed books, with thousands distributed monthly within Nigeria and overseas, Pastor Oni is known for dynamic teaching, administrative excellence, and a powerful personal testimony of God's deliverance.</p>
+            <p>Known for dynamic teaching, administrative excellence, and a powerful personal testimony of God's deliverance, Pastor Oni leads Mega Region 2 as a vibrant centre of prayer and spiritual warfare, with weekly programmes connecting believers across multiple continents.</p>
 
-            <p>Under his leadership, Mega Region 2 has grown into a vibrant centre of prayer and spiritual warfare, with weekly programmes that connect believers across multiple continents and time zones.</p>
+            <div class="book-stat">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              Author of 107+ anointed books
+            </div>
           </div>
 
         </div>
 
 
         <!-- ── Pastor (Mrs.) Oluwatoyin Oni ── -->
-        <div class="couple-section reveal">
+        <div class="leader-spread leader-spread--reverse reveal">
 
-          <div class="couple-text">
+          <div class="leader-bio">
             <p class="eyebrow">Co-Laborer in Ministry</p>
-            <h3 style="font-size:clamp(1.4rem, 2.5vw, 1.8rem); margin-bottom:8px;">Pastor (Mrs.) Oluwatoyin Oni</h3>
-            <p class="leader-role" style="margin-bottom:20px;">Regional Coordinator, Women Foundation · Mega Region 2 USA</p>
+            <h3>Pastor (Mrs.) Oluwatoyin Oni</h3>
+            <p class="role">Regional Coordinator, Women Foundation · Mega Region 2 USA</p>
 
-            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
-              Pastor (Mrs.) Oluwatoyin Oni stands alongside Pastor Olumide Oni as a devoted partner in ministry, faith, and family. Together they serve the congregation of Mega Region 2 with dedication, love, and the fire of the Holy Ghost.
-            </p>
-            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.8;">
-              A woman of prayer and purpose, she plays a vital role in the spiritual life and growth of the region, exemplifying the call of Proverbs 31 — strength, dignity, and wisdom in the house of God.
-            </p>
+            <p>Pastor (Mrs.) Oluwatoyin Oni stands alongside Pastor Olumide Oni as a devoted partner in ministry, faith, and family. Together they serve the congregation of Mega Region 2 with dedication, love, and the fire of the Holy Ghost.</p>
+
+            <p>A woman of prayer and purpose, she plays a vital role in the spiritual life and growth of the region, exemplifying the call of Proverbs 31 — strength, dignity, and wisdom in the house of God. As Regional Coordinator of the MFM Women Foundation, she leads with compassion, equipping women for their God-ordained destiny.</p>
           </div>
 
-          <img src="img/photos/mrs-oni-burgundy.jpg" alt="Pastor (Mrs.) Oluwatoyin Oni" class="couple-photo">
+          <div class="leader-photo-frame">
+            <img src="img/photos/mrs-oni-burgundy.jpg" alt="Pastor (Mrs.) Oluwatoyin Oni">
+          </div>
 
         </div>
 
@@ -839,4 +1223,3 @@
 
 </body>
 </html>
-
