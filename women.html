@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PAGE TITLE -->
+  <title>Women Foundation — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="MFM Women Foundation, Mega Region 2 USA. Empowerment, prayer, and deliverance for women of purpose and destiny. Coordinated by Pastor (Mrs.) Oluwatoyin Oni.">
+  <meta name="theme-color" content="#142240">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Women Foundation — MFM Mega Region 2 USA">
+  <meta property="og:description" content="MFM Women Foundation — empowerment, prayer, and deliverance for women of purpose and destiny.">
+  <meta property="og:image" content="img/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/site.css">
+
+  <!-- Netlify Identity Widget (needed for CMS) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+
+  <!-- Women Page Styles -->
+  <style>
+    /* ── Coordinator Section ── */
+    .coordinator {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .coordinator {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    .coordinator-photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .coordinator-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+
+    .coordinator-text h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .coordinator-text .role {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.88rem;
+      color: var(--fire);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      margin-bottom: 20px;
+    }
+
+    .coordinator-text p {
+      color: var(--text-on-white);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    /* ── Scripture Band ── */
+    .scripture-band {
+      background: var(--bg-navy);
+      padding: 64px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scripture-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201, 149, 44, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .scripture-band blockquote {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--cream);
+      border: none;
+      padding: 0;
+    }
+
+    .scripture-band cite {
+      display: block;
+      margin-top: 16px;
+      font-style: normal;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Pillars Grid ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gutter);
+    }
+
+    @media (max-width: 768px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+
+    .pillar-card {
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 14px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s,
+                  box-shadow 0.4s;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-dim);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .pillar-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .pillar-card p {
+      font-size: 0.88rem;
+      color: var(--text-on-white);
+      line-height: 1.7;
+    }
+
+    /* ── Playlist Player ── */
+    .playlist-panel {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .playlist-panel .video-embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+    }
+
+    .playlist-panel .video-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ── Connect Strip ── */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gutter);
+    }
+
+    @media (max-width: 640px) {
+      .connect-grid { grid-template-columns: 1fr; }
+    }
+
+    .connect-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: var(--cream);
+      padding: 36px 24px;
+      border-radius: 14px;
+      background: var(--bg-navy-panel);
+      border: 1px solid var(--line-navy);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s;
+    }
+
+    .connect-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-navy-strong);
+    }
+
+    .connect-card svg {
+      margin-bottom: 16px;
+    }
+
+    .connect-card h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--cream);
+    }
+
+    .connect-card p {
+      font-size: 0.82rem;
+      color: var(--text-on-navy);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <div class="nav-logo-text">
+          MFM Mega Region 2
+          <span>USA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="media.html">Media</a>
+        <a href="events.html">Events</a>
+        <a href="women.html">Women</a>
+        <a href="branches.html">Branches</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="img/logo.png" alt="" width="40" height="40">
+      <span>MFM Mega Region 2</span>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="media.html">Media</a>
+      <a href="events.html">Events</a>
+      <a href="women.html">Women Foundation</a>
+      <a href="branches.html">Branches</a>
+    </nav>
+    <div class="drawer-footer">
+      <p class="drawer-scripture">
+        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+        <cite>— Jeremiah 23:29</cite>
+      </p>
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════════ -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow" style="justify-content:center">Mountain of Fire and Miracles Ministries</p>
+        <h1>MFM <span class="fire-underline">Women Foundation</span></h1>
+        <p>Mega Region 2 USA — Empowerment, prayer, and deliverance for women of purpose and destiny.</p>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         COORDINATOR
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--white" id="coordinator">
+      <div class="container">
+
+        <div class="coordinator reveal">
+          <!-- Photo -->
+          <div class="coordinator-photo">
+            <img src="img/photos/mrs-oni-burgundy.jpg" alt="Pastor (Mrs.) Oluwatoyin Oni — Regional Coordinator, MFM Women Foundation" loading="lazy">
+          </div>
+
+          <!-- Bio -->
+          <div class="coordinator-text">
+            <p class="eyebrow">Regional Coordinator</p>
+            <h2>Pastor (Mrs.) Oluwatoyin Oni</h2>
+            <p class="role">MFM Women Foundation · Mega Region 2 USA</p>
+            <p>
+              Pastor (Mrs.) Oluwatoyin Oni serves faithfully alongside her husband, Pastor Olumide Oni, the Principal Regional Overseer of MFM Mega Region 2 in North America. A woman of deep prayer, unwavering faith, and tender compassion, she carries a burden for the spiritual growth and empowerment of women across the region.
+            </p>
+            <p>
+              Under her leadership, the Women Foundation equips women with the Word of God, builds a culture of fervent prayer, and provides a space for healing, deliverance, and restoration. Her ministry reflects the heart of a shepherd — nurturing, correcting, and lifting women into their God-ordained destiny.
+            </p>
+            <p>
+              She is a devoted mother and a living testimony of grace, purpose, and the fire of God at work in the lives of women who dare to believe.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         SCRIPTURE BAND
+         ═══════════════════════════════════════════════════════ -->
+    <div class="scripture-band">
+      <blockquote class="reveal">
+        "She is clothed with strength and dignity; she can laugh at the days to come. She speaks with wisdom, and faithful instruction is on her tongue."
+        <cite>— Proverbs 31:25–26 (NIV)</cite>
+      </blockquote>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         THREE PILLARS
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--cream" id="pillars">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Our Focus</p>
+          <h2>Three Pillars of the Women Foundation</h2>
+          <p>Building women of fire, faith, and purpose through the power of the Holy Ghost.</p>
+        </div>
+
+        <div class="pillars-grid reveal-stagger">
+
+          <!-- 1) Monthly Meetings -->
+          <div class="pillar-card reveal">
+            <div class="pillar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3>Monthly Meetings</h3>
+            <p>Dedicated gatherings where women come together for Bible study, prayer, and fellowship — strengthening bonds of sisterhood and deepening their walk with God.</p>
+          </div>
+
+          <!-- 2) Empowerment Programs -->
+          <div class="pillar-card reveal">
+            <div class="pillar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Empowerment Programs</h3>
+            <p>Equipping women for excellence in every sphere — career, marriage, motherhood, and ministry — through conferences, workshops, and Spirit-led mentorship.</p>
+          </div>
+
+          <!-- 3) Deliverance for Women -->
+          <div class="pillar-card reveal">
+            <div class="pillar-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Deliverance for Women</h3>
+            <p>Targeted prayer sessions and deliverance services addressing the unique spiritual battles women face — breaking chains and releasing divine freedom.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         EMBEDDED PLAYLIST
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--white" id="playlist">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Watch</p>
+          <h2>Women Foundation Messages</h2>
+          <p>Archived teachings, prayers, and testimonies from our Women Foundation meetings.</p>
+        </div>
+
+        <div class="playlist-panel reveal">
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube.com/embed/videoseries?list=PLW7hBicEbKy-13BzJgdAuKoXCXtPiF2vM"
+              title="MFM Women Foundation — Mega Region 2 USA"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         CONNECT STRIP
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="connect">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Get Involved</p>
+          <h2>Connect with the Women Foundation</h2>
+        </div>
+
+        <div class="connect-grid reveal-stagger">
+
+          <!-- Visit Prayer City -->
+          <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="connect-card reveal">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <h4>Visit Prayer City</h4>
+            <p>MFM USA Prayer City<br>10000 Kleckley Dr<br>Houston, TX 77075</p>
+          </a>
+
+          <!-- Call -->
+          <a href="tel:+18327888504" class="connect-card reveal">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <h4>Call Us</h4>
+            <p>(832) 788-8504<br>MFM Mega Region 2</p>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="connect-card reveal">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--fire)"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <h4>Watch on YouTube</h4>
+            <p>Subscribe for all Women Foundation messages and more.</p>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <div class="footer-logo-text">
+              MFM Mega Region 2
+              <span>Mountain of Fire &amp; Miracles Ministries</span>
+            </div>
+          </a>
+          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="footer-social">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About MFM</a></li>
+            <li><a href="media.html">Media Library</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="branches.html">Branches</a></li>
+          </ul>
+        </div>
+
+        <!-- Programs -->
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="events.html">Healing &amp; Deliverance Hour</a></li>
+            <li><a href="events.html">Open Heaven Encounter</a></li>
+            <li><a href="events.html">Power Must Change Hands</a></li>
+            <li><a href="women.html">Women Foundation</a></li>
+          </ul>
+        </div>
+
+        <!-- MFM Network -->
+        <div class="footer-col">
+          <h4>MFM Network</h4>
+          <ul>
+            <li><a href="https://mountainoffire.org" target="_blank" rel="noopener">MFM Worldwide</a></li>
+            <li><a href="https://www.mfmmegaregion2yc.org" target="_blank" rel="noopener">Youth Church</a></li>
+            <li><a href="women.html">Women Foundation</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                MFM USA Prayer City<br>
+                10000 Kleckley Dr<br>
+                Houston, TX 77075
+              </a>
+            </li>
+            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+        <p>General Overseer: Dr. D.K. Olukoya</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FILM GRAIN OVERLAY
+       ═══════════════════════════════════════════════════════ -->
+  <div class="grain" aria-hidden="true">
+    <svg>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile Drawer Toggle ── */
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      }
+
+      hamburger.addEventListener('click', function () {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+
+      overlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    })();
+
+
+    /* ── Sticky Nav Scroll Effect ── */
+    (function () {
+      const nav = document.getElementById('siteNav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+
+    /* ── Scroll-Triggered Reveals ── */
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ── Footer Year ── */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+    /* ── Active Nav Link ── */
+    (function () {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+
+    /* ── Netlify Identity Redirect (for CMS) ── */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
