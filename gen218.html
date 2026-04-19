@@ -14,10 +14,135 @@
   <link rel="stylesheet" href="css/site.css">
 
   <style>
-    .gen218-hero-logo {
-      width: 140px; height: 140px; object-fit: contain;
-      border-radius: 20px; margin-bottom: 24px;
-      box-shadow: 0 8px 40px rgba(201, 149, 44, 0.25);
+    /* ── Split Hero ── */
+    .gen218-hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding: 140px var(--gutter) var(--section-y);
+      overflow: hidden;
+    }
+
+    .gen218-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-max, 1200px);
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .gen218-hero-text {
+      animation: fadeUp 0.8s var(--ease-out) both;
+    }
+
+    .gen218-hero-text .eyebrow {
+      justify-content: flex-start;
+    }
+
+    .gen218-hero-text h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .gen218-hero-text .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted, #8899b8);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 12px;
+    }
+
+    .gen218-hero-text .hero-scripture {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--cream, #f0e6d0);
+      opacity: 0.7;
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .gen218-hero-text .hero-scripture cite {
+      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .gen218-hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 0.8s var(--ease-out) 0.3s both;
+    }
+
+    .gen218-logo-frame {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gen218-logo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,149,44,0.15) 0%, rgba(201,149,44,0.06) 40%, transparent 70%);
+      animation: pulseGlow 4s ease-in-out infinite;
+    }
+
+    .gen218-logo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 28px;
+      border: 1px solid rgba(201,149,44,0.2);
+    }
+
+    .gen218-logo-frame img {
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 4px 20px rgba(201,149,44,0.15);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+
+    @media (max-width: 900px) {
+      .gen218-hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      .gen218-hero-text .eyebrow { justify-content: center; }
+      .gen218-hero-text .hero-subtitle,
+      .gen218-hero-text .hero-scripture { margin-left: auto; margin-right: auto; }
+      .gen218-hero-text .btn-group { justify-content: center; }
+      .gen218-hero-visual { order: -1; }
+      .gen218-logo-frame { width: 220px; height: 220px; }
+      .gen218-logo-frame img { width: 200px; height: 200px; }
     }
 
     /* ── Coordinator ── */
@@ -123,16 +248,31 @@
   <main>
 
     <!-- ── HERO ── -->
-    <section class="hero">
-      <div class="hero-content">
-        <img src="img/gen218-logo.jpg" alt="Gen218 — Christian Singles Ministry" class="gen218-hero-logo">
-        <p class="eyebrow" style="justify-content:center">Christian Singles Ministry</p>
-        <h1>Gen<span class="fire-underline">218</span></h1>
-        <p>It is not good that the man should be alone — preparing singles for marriage through the Word of God, prayer, and fellowship.</p>
-        <div class="btn-group btn-group--center">
-          <a href="#about-gen218" class="btn btn--primary">Learn More</a>
-          <a href="#videos" class="btn btn--secondary">Watch Messages</a>
+    <section class="gen218-hero">
+      <div class="gen218-hero-inner">
+
+        <!-- Text Side -->
+        <div class="gen218-hero-text">
+          <p class="eyebrow">Christian Singles Ministry</p>
+          <h1>Gen<span class="fire-underline">218</span></h1>
+          <p class="hero-subtitle">A divine movement preparing singles for marriage — equipping believers on every plane through the Word of God, prayer, and fellowship.</p>
+          <p class="hero-scripture">
+            "And the Lord God said, It is not good that the man should be alone; I will make him an help meet for him."
+            <br><cite>— Genesis 2:18</cite>
+          </p>
+          <div class="btn-group">
+            <a href="#coordinator" class="btn btn--primary">Meet the Coordinator</a>
+            <a href="#videos" class="btn btn--secondary">Watch Messages</a>
+          </div>
         </div>
+
+        <!-- Logo Side -->
+        <div class="gen218-hero-visual">
+          <div class="gen218-logo-frame">
+            <img src="img/gen218-logo.jpg" alt="Gen218 — Christian Singles Ministry">
+          </div>
+        </div>
+
       </div>
     </section>
 
