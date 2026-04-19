@@ -8,7 +8,7 @@
   <title>Women Foundation — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries</title>
 
   <!-- SEO Meta -->
-  <meta name="description" content="MFM Women Foundation, Mega Region 2 USA. Empowerment, prayer, and deliverance for women of purpose and destiny. Coordinated by Pastor (Mrs.) Oluwatoyin Oni.">
+  <meta name="description" content="MFM Women Foundation, Mega Region 2 USA. Empowerment, prayer, and deliverance for women of purpose and destiny. Led internationally by Pastor (Dr.) Mrs. Shade Olukoya and regionally by Pastor (Mrs.) Oluwatoyin Oni.">
   <meta name="theme-color" content="#142240">
 
   <!-- Open Graph -->
@@ -28,19 +28,68 @@
 
   <!-- Women Page Styles -->
   <style>
-    /* ── Coordinator Section ── */
+    /* ── International Coordinator (Featured Hero-like) ── */
+    .intl-coordinator {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 56px;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .intl-coordinator-photo {
+      position: relative;
+    }
+
+    .intl-coordinator-photo img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 20px 64px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(201, 149, 44, 0.25);
+    }
+
+    .intl-coordinator-photo::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 20px;
+      border: 1px solid rgba(201, 149, 44, 0.12);
+      pointer-events: none;
+    }
+
+    .intl-coordinator-text h2 {
+      font-family: var(--font-serif, 'Fraunces', serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+
+    .intl-coordinator-text .role {
+      font-family: var(--font-sans, 'Inter Tight', sans-serif);
+      font-size: 0.88rem;
+      color: var(--fire-light);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      margin-bottom: 24px;
+    }
+
+    .intl-coordinator-text p {
+      color: var(--text-on-navy);
+      line-height: 1.85;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    /* ── Regional Coordinator ── */
     .coordinator {
       display: grid;
       grid-template-columns: 1fr 1.4fr;
       gap: 48px;
       align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .coordinator {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
     }
 
     .coordinator-photo {
@@ -129,10 +178,6 @@
       gap: var(--gutter);
     }
 
-    @media (max-width: 768px) {
-      .pillars-grid { grid-template-columns: 1fr; }
-    }
-
     .pillar-card {
       background: var(--bg-sand);
       border: 1px solid var(--bg-sand-border);
@@ -174,28 +219,49 @@
       line-height: 1.7;
     }
 
-    /* ── Playlist Player ── */
-    .playlist-panel {
-      max-width: 800px;
-      margin: 0 auto;
-      border-radius: 14px;
+    /* ── Women Foundation Video Grid ── */
+    .wf-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gutter, 24px);
+    }
+
+    .wf-video-item {
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      background: var(--bg-sand, #f5f3ee);
+      border: 1px solid var(--bg-sand-border, #e8e4da);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
     }
 
-    .playlist-panel .video-embed {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 */
+    .wf-video-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
     }
 
-    .playlist-panel .video-embed iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .wf-video-item .video-embed iframe {
       width: 100%;
-      height: 100%;
-      border: none;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: 0;
+    }
+
+    .wf-video-info {
+      padding: 14px 18px 16px;
+    }
+
+    .wf-video-info h4 {
+      font-family: var(--font-serif, 'Fraunces', serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy, #142240);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .wf-video-info p {
+      font-size: 0.8rem;
+      color: var(--text-dim-white, #8a8f98);
     }
 
     /* ── Connect Strip ── */
@@ -203,10 +269,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: var(--gutter);
-    }
-
-    @media (max-width: 640px) {
-      .connect-grid { grid-template-columns: 1fr; }
     }
 
     .connect-card {
@@ -246,46 +308,52 @@
       line-height: 1.5;
     }
 
-    /* ── Women Foundation Video Grid ── */
-    .wf-video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--gutter, 24px);
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .intl-coordinator {
+        grid-template-columns: 260px 1fr;
+        gap: 36px;
+      }
     }
-    @media (max-width: 640px) {
+
+    @media (max-width: 768px) {
+      .intl-coordinator {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 28px;
+      }
+
+      .intl-coordinator-photo {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .intl-coordinator-photo::after {
+        display: none;
+      }
+
+      .intl-coordinator-text {
+        text-align: left;
+      }
+
+      .intl-coordinator-text .eyebrow {
+        justify-content: center;
+      }
+
+      .coordinator {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .coordinator-text {
+        text-align: left;
+      }
+
+      .pillars-grid { grid-template-columns: 1fr; }
+
       .wf-video-grid { grid-template-columns: 1fr; }
-    }
-    .wf-video-item {
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--bg-sand, #f5f3ee);
-      border: 1px solid var(--bg-sand-border, #e8e4da);
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
-    }
-    .wf-video-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    }
-    .wf-video-item .video-embed iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      display: block;
-      border: 0;
-    }
-    .wf-video-info {
-      padding: 14px 18px 16px;
-    }
-    .wf-video-info h4 {
-      font-family: var(--font-serif, 'Fraunces', serif);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--navy, #142240);
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-    .wf-video-info p {
-      font-size: 0.8rem;
-      color: var(--text-dim-white, #8a8f98);
+
+      .connect-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -372,10 +440,54 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         COORDINATOR
+         INTERNATIONAL COORDINATOR — Pastor (Dr.) Mrs. Shade Olukoya
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="international-coordinator">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">International Leadership</p>
+          <h2>Women Foundation Worldwide</h2>
+          <p>The MFM Women Foundation operates globally under the visionary leadership of Mummy G.O., raising women of fire and purpose across all nations.</p>
+        </div>
+
+        <div class="intl-coordinator reveal">
+          <!-- Photo -->
+          <div class="intl-coordinator-photo">
+            <img src="img/photos/shade olukoya.jpeg" alt="Pastor (Dr.) Mrs. Shade Olukoya — International Coordinator, MFM Women Foundation" loading="lazy">
+          </div>
+
+          <!-- Bio -->
+          <div class="intl-coordinator-text">
+            <p class="eyebrow">International Coordinator</p>
+            <h2>Pastor (Dr.) Mrs. Shade Olukoya</h2>
+            <p class="role">MFM Women Foundation Worldwide · Mummy G.O.</p>
+            <p>
+              Pastor (Dr.) Mrs. Shade Olukoya, widely known and reverently addressed as Mummy G.O., is the International Coordinator of the MFM Women Foundation. A woman of extraordinary faith, deep prayer, and unwavering commitment to the kingdom of God, she oversees the Women Foundation across all MFM regions and nations worldwide.
+            </p>
+            <p>
+              Under her leadership, the Women Foundation has grown into a powerful arm of the ministry — equipping, empowering, and raising women who walk in the fire and authority of the Holy Ghost. Her ministry carries the heartbeat of heaven for women: deliverance from every bondage, restoration of divine purpose, and the raising of virtuous women who are battle-ready for the end-time harvest.
+            </p>
+            <p>
+              She stands faithfully alongside Dr. D.K. Olukoya, the General Overseer of MFM Worldwide, as a pillar of strength, prayer, and godly counsel in the global ministry. Her life and ministry exemplify the Proverbs 31 woman — clothed with strength and dignity, speaking with wisdom and faithful instruction.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         REGIONAL COORDINATOR — Pastor (Mrs.) Oluwatoyin Oni
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="coordinator">
       <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Regional Leadership</p>
+          <h2>Women Foundation — Mega Region 2</h2>
+        </div>
 
         <div class="coordinator reveal">
           <!-- Photo -->
@@ -463,7 +575,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         EMBEDDED PLAYLIST
+         EMBEDDED VIDEOS
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="playlist">
       <div class="container">
@@ -800,4 +912,3 @@
 
 </body>
 </html>
-
