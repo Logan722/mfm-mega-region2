@@ -145,6 +145,95 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
+
+    /* ── Video Embed Sections ── */
+    .playlist-section {
+      margin-bottom: 64px;
+    }
+    .playlist-section:last-child {
+      margin-bottom: 0;
+    }
+    .playlist-section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .playlist-section-header h3 {
+      font-family: var(--font-serif, 'Fraunces', serif);
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-weight: 600;
+      color: var(--navy);
+      margin: 0;
+    }
+    .playlist-section-header .badge {
+      background: var(--fire);
+      color: #fff;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .playlist-section-header a {
+      margin-left: auto;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .playlist-section-header a:hover {
+      color: var(--fire);
+    }
+    .video-embed-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gutter, 24px);
+    }
+    @media (max-width: 640px) {
+      .video-embed-grid { grid-template-columns: 1fr; }
+    }
+    .video-embed-grid .video-item {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-sand, #f5f3ee);
+      border: 1px solid var(--bg-sand-border, #e8e4da);
+    }
+    .video-embed-grid .video-item iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: 0;
+    }
+    .video-embed-grid .video-item .video-title {
+      padding: 12px 16px;
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--navy, #142240);
+      line-height: 1.4;
+    }
+
+    /* Dark variant for navy sections */
+    .section--dark .playlist-section-header h3 { color: var(--cream); }
+    .section--dark .video-embed-grid .video-item {
+      background: var(--bg-panel, #1a2d4d);
+      border-color: rgba(201, 149, 44, 0.2);
+    }
+    .section--dark .video-embed-grid .video-item .video-title {
+      color: var(--cream);
+    }
+    /* Cream variant */
+    .section--cream .video-embed-grid .video-item {
+      background: #fff;
+      border-color: var(--bg-sand-border, #e8e4da);
+    }
+
     /* ── Search Box ── */
     .search-wrap {
       max-width: 480px;
@@ -370,73 +459,152 @@
     <!-- ═══════════════════════════════════════════════════════
          PLAYLIST SPOTLIGHT
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white" id="playlists">
+    <!-- ═══════════════════════════════════════════════════════
+         HEALING & DELIVERANCE HOUR
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--white" id="healingDeliverance">
       <div class="container">
 
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Featured Playlists</p>
-          <h2>Watch by Program</h2>
-          <p>Dive into our curated collections — each playlist gathers every episode of a program in one place.</p>
+        <div class="playlist-section reveal">
+          <div class="playlist-section-header">
+            <h3>Healing &amp; Deliverance Hour</h3>
+            <span class="badge">Tuesdays</span>
+            <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy8rmJhbgv_ZkJiU8aZeo7UI" target="_blank" rel="noopener">View Full Playlist →</a>
+          </div>
+          <div class="video-embed-grid">
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/li5WlKy5Dtk" title="Quenching The Fire of Afflictions Inside Your Organs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Quenching The Fire of Afflictions Inside Your Organs</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/LdWDxW78uvA" title="Sermon & Prayer on Faith Materials | Healing & Deliverance Hour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Sermon &amp; Prayer on Faith Materials | H&amp;D Hour</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/16UPYb52l9I" title="Prayers Against Infirmity & Deliverance From The Bondage Of The Wicked" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Prayers Against Infirmity &amp; Deliverance From Bondage</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/azP0flKD-gI" title="A Battle Cry For Deliverance | Healing & Deliverance Hour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">A Battle Cry For Deliverance | H&amp;D Hour</div>
+            </div>
+          </div>
         </div>
 
-        <div class="playlist-grid reveal-stagger">
+      </div>
+    </section>
 
-          <!-- 1) Healing & Deliverance Hour -->
-          <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy8rmJhbgv_ZkJiU8aZeo7UI" target="_blank" rel="noopener" class="playlist-card reveal">
-            <div class="playlist-card-bg" style="background-image:url('img/healing-deliverance-hour.jpg')"></div>
-            <div class="playlist-card-overlay"></div>
-            <span class="playlist-card-badge">Tuesdays</span>
-            <div class="play-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div class="playlist-card-content">
-              <h3>Healing &amp; Deliverance Hour</h3>
-              <p>Weekly prayer, healing, and breakthrough — the God of fire answers by fire.</p>
-            </div>
-          </a>
 
-          <!-- 2) Open Heaven Encounter -->
-          <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy_RDrai6p1R0Y0ClZ15ehMz" target="_blank" rel="noopener" class="playlist-card reveal">
-            <div class="playlist-card-bg" style="background-image:url('img/open-heaven-encounter.jpg')"></div>
-            <div class="playlist-card-overlay"></div>
-            <span class="playlist-card-badge">Thursdays</span>
-            <div class="play-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div class="playlist-card-content">
-              <h3>Open Heaven Encounter</h3>
-              <p>International prayer service connecting believers across five nations.</p>
-            </div>
-          </a>
+    <!-- ═══════════════════════════════════════════════════════
+         SERMONS & MESSAGES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--cream" id="sermons">
+      <div class="container">
 
-          <!-- 3) Women Foundation -->
-          <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy-13BzJgdAuKoXCXtPiF2vM" target="_blank" rel="noopener" class="playlist-card reveal">
-            <div class="playlist-card-bg" style="background-image:url('img/photos/mrs-oni-burgundy.jpg')"></div>
-            <div class="playlist-card-overlay"></div>
-            <span class="playlist-card-badge">Monthly</span>
-            <div class="play-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+        <div class="playlist-section reveal">
+          <div class="playlist-section-header">
+            <h3>Sermons &amp; Messages</h3>
+            <span class="badge">Weekly</span>
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener">View All on YouTube →</a>
+          </div>
+          <div class="video-embed-grid">
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/Pkcynl_foUM" title="Prayer Against Stubborn Condition | Pastor Olumide Oni" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Prayer Against Stubborn Condition | Pastor Olumide Oni</div>
             </div>
-            <div class="playlist-card-content">
-              <h3>Women Foundation</h3>
-              <p>Empowerment, prayer, and the Word for women of purpose and destiny.</p>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/GYCQRppzFSY" title="Deeply Rooted Problems Must Surrender | Pastor Olumide Oni" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Deeply Rooted Problems Must Surrender | Pastor Olumide Oni</div>
             </div>
-          </a>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/gFsLV2o6ib8" title="Getting Your Divine Position Back | Pastor David Popoola" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Getting Your Divine Position Back | Pastor David Popoola</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/u4Br6Hzd6S4" title="If You Don't Need It, Reject It | Pastor Olumide Oni" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">If You Don&#39;t Need It, Reject It | Pastor Olumide Oni</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/b3afwDk4tM0" title="Deliverance From the Spirit of Depression | Pastor David Popoola" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Deliverance From the Spirit of Depression | Pastor David Popoola</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/aa0S897364o" title="DOMINION CODE: Unlocking Heaven's Power" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">DOMINION CODE: Unlocking Heaven&#39;s Power in a World Gone Dark</div>
+            </div>
+          </div>
+        </div>
 
-          <!-- 4) End of Year Thanksgiving -->
-          <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy9Iq-Nsg7mEdR76J2UHqzHV" target="_blank" rel="noopener" class="playlist-card reveal">
-            <div class="playlist-card-bg" style="background-image:url('img/photos/pastor-oni-gold2.jpg')"></div>
-            <div class="playlist-card-overlay"></div>
-            <span class="playlist-card-badge">Annual</span>
-            <div class="play-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <div class="playlist-card-content">
-              <h3>End of Year Thanksgiving</h3>
-              <p>Annual celebration of God's faithfulness — praise, testimony, and prophetic declarations.</p>
-            </div>
-          </a>
+      </div>
+    </section>
 
+
+    <!-- ═══════════════════════════════════════════════════════
+         WOMEN FOUNDATION
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--white" id="womenFoundation">
+      <div class="container">
+
+        <div class="playlist-section reveal">
+          <div class="playlist-section-header">
+            <h3>Women Foundation</h3>
+            <span class="badge">Monthly</span>
+            <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy-13BzJgdAuKoXCXtPiF2vM" target="_blank" rel="noopener">View Full Playlist →</a>
+          </div>
+          <div class="video-embed-grid">
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/FBRzA38XqXc" title="BREAKTHROUGH ALERT! Day 1 of A NEW THING | MFM Women Conference" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">BREAKTHROUGH ALERT! Day 1 — A NEW THING | Women Conference</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/fObOeAewtF4" title="Oil to Emerge | Women Foundation Conference | MFM Dallas" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Oil to Emerge | Women Foundation Conference | MFM Dallas</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/9V7K82rEod8" title="My Time of Restoration | Pastor (Mrs.) Oluwatoyin Oni" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">My Time of Restoration | Pastor (Mrs.) Oluwatoyin Oni</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/RoT7c6SYzbA" title="Becoming A Mother in Israel | Drama Inspired by Deborah" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Becoming A Mother in Israel | Drama — MFM Austin</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         SPECIAL EVENTS & PMCH
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--cream" id="specialEvents">
+      <div class="container">
+
+        <div class="playlist-section reveal">
+          <div class="playlist-section-header">
+            <h3>Special Events &amp; PMCH</h3>
+            <span class="badge">Monthly / Annual</span>
+            <a href="https://www.youtube.com/playlist?list=PLW7hBicEbKy9Iq-Nsg7mEdR76J2UHqzHV" target="_blank" rel="noopener">View Full Playlist →</a>
+          </div>
+          <div class="video-embed-grid">
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/1XOfQj2vLMM" title="Deliverance Crusade 2025 | MFM Mega Region 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Deliverance Crusade 2025 | MFM Mega Region 2</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/sgPxqe_RPnE" title="Praise & Worship @ April PMCH '25" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Praise &amp; Worship @ April PMCH &#39;25</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/jD5xLABdHsU" title="Word of Exhortation | Pastor Olumide Oni | Thanksgiving Service 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Word of Exhortation | Pastor Olumide Oni | Thanksgiving 2024</div>
+            </div>
+            <div class="video-item reveal">
+              <iframe src="https://www.youtube.com/embed/MfSJD5aPLIw" title="Citation and Awards Presentation | Thanksgiving Service 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              <div class="video-title">Citation &amp; Awards | Thanksgiving Service 2024</div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -576,7 +744,6 @@
       <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
-        <p>General Overseer: Dr. D.K. Olukoya</p>
       </div>
     </div>
   </footer>
