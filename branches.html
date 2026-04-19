@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PAGE TITLE -->
+  <title>Branches — MFM Mega Region 2 USA</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Find MFM Mega Region 2 branches near you. Visit Prayer City HQ in Houston, TX or connect with regional branches across the USA.">
+  <meta name="theme-color" content="#0a0710">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Branches — MFM Mega Region 2 USA">
+  <meta property="og:description" content="Find MFM Mega Region 2 branches near you. Visit Prayer City HQ in Houston, TX or connect with a branch across the USA.">
+  <meta property="og:image" content="img/logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/site.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    /* ── HQ Featured Card ── */
+    .hq-card {
+      background: var(--bg-2);
+      border: 1px solid var(--line-strong);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(123, 45, 142, 0.12);
+    }
+
+    .hq-card-map {
+      width: 100%;
+      height: 320px;
+      border: none;
+      display: block;
+    }
+
+    .hq-card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      padding: 36px;
+    }
+
+    .hq-info h3 {
+      font-family: var(--font-serif);
+      color: var(--cream);
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .hq-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .hq-detail svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--purple-light);
+    }
+
+    .hq-detail a {
+      color: var(--text);
+    }
+
+    .hq-detail a:hover {
+      color: var(--fire-light);
+    }
+
+    .hq-schedule h4 {
+      font-family: var(--font-serif);
+      color: var(--cream);
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+    }
+
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.88rem;
+    }
+
+    .schedule-row:last-child {
+      border-bottom: none;
+    }
+
+    .schedule-day {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .schedule-time {
+      color: var(--text-muted);
+    }
+
+    .schedule-note {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 12px;
+    }
+
+    /* ── Youth Church Card ── */
+    .youth-card {
+      background:
+        linear-gradient(135deg, rgba(232, 93, 38, 0.06), rgba(123, 45, 142, 0.08));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .youth-card h3 {
+      font-family: var(--font-serif);
+      color: var(--cream);
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .youth-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .youth-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .youth-details .hq-detail {
+      margin-bottom: 0;
+    }
+
+    .youth-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    /* ── Regional Branches Grid ── */
+    .branches-placeholder {
+      text-align: center;
+      padding: 48px 24px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 12px;
+      background: var(--bg-2);
+    }
+
+    .branches-placeholder p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .branches-placeholder .btn {
+      margin-top: 16px;
+    }
+
+    /* ── CTA Section ── */
+    .cta-box {
+      background:
+        linear-gradient(135deg, rgba(123, 45, 142, 0.15), rgba(232, 93, 38, 0.08));
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      padding: 48px;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.4rem, 2vw + 0.5rem, 2rem);
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 24px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hq-card-body {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px;
+      }
+
+      .hq-card-map {
+        height: 240px;
+      }
+
+      .youth-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .youth-links {
+        align-items: flex-start;
+      }
+
+      .cta-box {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+
+  <!-- Netlify Identity Widget (needed for CMS) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <div class="nav-logo-text">
+          MFM Mega Region 2
+          <span>USA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="sermons.html">Sermons</a>
+        <a href="events.html">Events</a>
+        <a href="branches.html" class="active">Branches</a>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="img/logo.jpg" alt="" width="40" height="40">
+      <span>MFM Mega Region 2</span>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="sermons.html">Sermons</a>
+      <a href="events.html">Events</a>
+      <a href="branches.html" class="active">Branches</a>
+    </nav>
+    <div class="drawer-footer">
+      <p class="drawer-scripture">
+        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+        <cite>— Jeremiah 23:29</cite>
+      </p>
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE CONTENT
+       ═══════════════════════════════════════════════════════ -->
+
+  <main>
+
+    <!-- ── Hero ── -->
+    <section class="hero hero--short">
+      <div class="hero-content">
+        <img src="img/logo.jpg" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
+        <p class="eyebrow" style="justify-content:center">Our Locations</p>
+        <h1>Find Your <span class="fire-underline">Fire</span></h1>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         PRAYER CITY HQ — Featured
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="prayer-city">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Headquarters</p>
+          <h2>MFM USA Prayer City</h2>
+          <p>The regional headquarters of Mountain of Fire and Miracles Ministries, Mega Region 2 USA — where the fire burns and heaven touches earth.</p>
+        </div>
+
+        <div class="hq-card reveal">
+          <!-- Embedded Google Map -->
+          <iframe
+            class="hq-card-map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.5!2d-95.2616!3d29.6249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf57fba4c1e7%3A0x7f9a15b2e0d5c4a8!2s10000%20Kleckley%20Dr%2C%20Houston%2C%20TX%2077075!5e0!3m2!1sen!2sus!4v1713400000000"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="MFM USA Prayer City — 10000 Kleckley Dr, Houston, TX 77075">
+          </iframe>
+
+          <div class="hq-card-body">
+            <!-- Location & Contact Info -->
+            <div class="hq-info">
+              <h3>Location &amp; Contact</h3>
+
+              <div class="hq-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                  10000 Kleckley Dr<br>
+                  Houston, TX 77075
+                </a>
+              </div>
+
+              <div class="hq-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:+18327888504">(832) 788-8504</a>
+              </div>
+
+              <div class="hq-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>
+                  Pastor Olumide Oni<br>
+                  <span class="text-muted" style="font-size:0.82rem">Principal Regional Overseer</span>
+                </span>
+              </div>
+
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--primary btn--sm" style="margin-top:12px">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Get Directions
+              </a>
+            </div>
+
+            <!-- Service Schedule -->
+            <div class="hq-schedule">
+              <h4>Service Schedule</h4>
+
+              <div class="schedule-row">
+                <span class="schedule-day">Sunday</span>
+                <span class="schedule-time">Worship Service</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day">Tuesday</span>
+                <span class="schedule-time">Healing &amp; Deliverance · 7 PM CT</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day">Wednesday</span>
+                <span class="schedule-time">Manna Water Service</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day">Thursday</span>
+                <span class="schedule-time">Open Heaven Encounter · 6 PM CT</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day">Friday</span>
+                <span class="schedule-time">Prayer Rain</span>
+              </div>
+              <div class="schedule-row">
+                <span class="schedule-day">1st Saturday</span>
+                <span class="schedule-time">PMCH · 8 AM – 11:30 AM</span>
+              </div>
+
+              <p class="schedule-note">
+                * Service times may vary. Please call to confirm.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         YOUTH CHURCH
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="youth-church">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Youth Ministry</p>
+          <h2>Mega Region 2 Youth Church</h2>
+          <p>Raising an army of fire-branded young warriors for the end-time harvest.</p>
+        </div>
+
+        <div class="youth-card reveal">
+          <div>
+            <h3>MFM Mega Region 2 Youth Church</h3>
+            <p>Empowering the next generation through the Word, prayer, and the fire of the Holy Ghost.</p>
+
+            <div class="youth-details">
+              <div class="hq-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <a href="https://maps.google.com/?q=6910+North+Eldridge+Pkwy+Houston+TX+77041" target="_blank" rel="noopener">
+                  6910 North Eldridge Pkwy, Back Suite<br>
+                  Houston, TX 77041
+                </a>
+              </div>
+
+              <div class="hq-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:+13464145880">(346) 414-5880</a>
+              </div>
+
+              <div class="hq-detail">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:mfmmegaregion2youthchurch@gmail.com">mfmmegaregion2youthchurch@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="youth-links">
+            <a href="https://maps.google.com/?q=6910+North+Eldridge+Pkwy+Houston+TX+77041" target="_blank" rel="noopener" class="btn btn--fire btn--sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              Get Directions
+            </a>
+            <a href="https://www.mfmmegaregion2yc.org" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">
+              Youth Church Website
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2yc" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">
+              @mfmmegaregion2yc
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         REGIONAL BRANCHES
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="regional-branches">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Across the Region</p>
+          <h2>Regional Branches</h2>
+          <p>MFM Mega Region 2 oversees branches across multiple states. Find a branch near you and experience the fire of God.</p>
+        </div>
+
+        <!-- Populated branch cards — add more as branch data comes in -->
+        <div class="grid grid--3 reveal" style="margin-bottom:40px">
+
+          <!-- MFM Dallas -->
+          <div class="branch-card">
+            <span class="badge badge--purple">Texas</span>
+            <h3>MFM Dallas</h3>
+            <address>Dallas, TX</address>
+            <div class="branch-card-detail">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Sunday Worship &amp; Midweek Services
+            </div>
+            <div class="branch-card-detail">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Pastor David Popoola (ASRO)
+            </div>
+          </div>
+
+          <!-- Placeholder branch cards -->
+          <div class="branch-card" style="opacity:0.5; border-style:dashed">
+            <span class="badge badge--purple">Coming Soon</span>
+            <h3>More Branches</h3>
+            <address>Branch details will be added as information is confirmed.</address>
+            <div class="branch-card-detail">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Contact HQ for nearest branch
+            </div>
+          </div>
+
+          <div class="branch-card" style="opacity:0.5; border-style:dashed">
+            <span class="badge badge--purple">Coming Soon</span>
+            <h3>More Branches</h3>
+            <address>Branch details will be added as information is confirmed.</address>
+            <div class="branch-card-detail">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Contact HQ for nearest branch
+            </div>
+          </div>
+
+        </div>
+
+        <p class="text-center text-muted" style="font-size:0.88rem">
+          More branch locations are being added. Contact Prayer City HQ at <a href="tel:+18327888504">(832) 788-8504</a> to find a branch near you.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         CTA — Connect With Us
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section">
+      <div class="container container--narrow">
+        <div class="cta-box reveal">
+          <p class="eyebrow" style="justify-content:center">Connect</p>
+          <h2>Can't Visit In Person?</h2>
+          <p>Join us online every Tuesday and Thursday for prayer, healing, and breakthrough — no matter where you are in the world.</p>
+          <div class="btn-group btn-group--center">
+            <a href="events.html" class="btn btn--primary">View Programs</a>
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary">Watch on YouTube</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="img/logo.jpg" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <div class="footer-logo-text">
+              MFM Mega Region 2
+              <span>Mountain of Fire &amp; Miracles Ministries</span>
+            </div>
+          </a>
+          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="footer-social">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About MFM</a></li>
+            <li><a href="sermons.html">Sermons</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="branches.html">Branches</a></li>
+          </ul>
+        </div>
+
+        <!-- Programs -->
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <ul>
+            <li><a href="events.html">Healing &amp; Deliverance Hour</a></li>
+            <li><a href="events.html">Open Heaven Encounter</a></li>
+            <li><a href="events.html">Power Must Change Hands</a></li>
+            <li><a href="events.html">Sunday Worship</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                MFM USA Prayer City<br>
+                10000 Kleckley Dr<br>
+                Houston, TX 77075
+              </a>
+            </li>
+            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+        <p>General Overseer: Dr. D.K. Olukoya</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FILM GRAIN OVERLAY
+       ═══════════════════════════════════════════════════════ -->
+  <div class="grain" aria-hidden="true">
+    <svg>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile Drawer Toggle ── */
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      }
+
+      hamburger.addEventListener('click', function () {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+
+      overlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    })();
+
+
+    /* ── Sticky Nav Scroll Effect ── */
+    (function () {
+      const nav = document.getElementById('siteNav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+
+    /* ── Scroll-Triggered Reveals ── */
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ── Footer Year ── */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+    /* ── Active Nav Link ── */
+    (function () {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+
+    /* ── Netlify Identity Redirect (for CMS) ── */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
