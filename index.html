@@ -275,6 +275,179 @@
     }
     .program-spotlight-time::before { content: '🕐'; font-size: 0.78rem; }
 
+    /* ── Announcements (Special Events) ── */
+    .announcement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 12px;
+    }
+    .announcement-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      background: var(--bg-white);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+    }
+    .announcement-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-top: 3px solid var(--gold);
+      border-radius: 16px 16px 0 0;
+      pointer-events: none;
+    }
+    .announcement-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 56px rgba(20, 34, 64, 0.12);
+      border-color: var(--gold);
+    }
+    .announcement-card > img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg-sand);
+    }
+    .announcement-body {
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .announcement-body h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--navy);
+      line-height: 1.25;
+      margin: 12px 0 6px;
+    }
+    .announcement-theme {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .announcement-body > p {
+      font-size: 0.88rem;
+      color: var(--text-on-white);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .announcement-meta {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--bg-sand-border);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .announcement-meta li {
+      font-size: 0.82rem;
+      color: var(--text-on-white);
+      line-height: 1.5;
+    }
+    .announcement-meta li strong {
+      color: var(--navy);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-right: 4px;
+    }
+
+    /* ── Recurring Programs ── */
+    .recurring-header {
+      text-align: center;
+      margin: 64px 0 32px;
+    }
+    .recurring-header .eyebrow {
+      margin-bottom: 8px;
+    }
+    .recurring-header h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+      color: var(--navy);
+      font-weight: 400;
+    }
+    .recurring-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .recurring-card {
+      background: var(--bg-white);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+    }
+    .recurring-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(20, 34, 64, 0.08);
+      border-color: var(--line-white-strong);
+    }
+    .recurring-card > img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      background: var(--bg-sand);
+    }
+    .recurring-body {
+      padding: 20px 22px 22px;
+    }
+    .recurring-body h4 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin: 10px 0 6px;
+    }
+    .recurring-body > p {
+      font-size: 0.85rem;
+      color: var(--text-on-white);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .recurring-schedule {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--bg-sand-border);
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .recurring-schedule li {
+      font-size: 0.78rem;
+      color: var(--text-on-white);
+      line-height: 1.5;
+    }
+    .recurring-schedule li strong {
+      color: var(--navy);
+      font-weight: 600;
+      margin-right: 6px;
+      display: inline-block;
+      min-width: 34px;
+    }
+
+    @media (max-width: 960px) {
+      .announcement-grid { grid-template-columns: 1fr; gap: 24px; }
+      .announcement-card { grid-template-columns: 1fr; }
+      .announcement-card > img { min-height: 220px; aspect-ratio: 1 / 1; }
+      .recurring-grid { grid-template-columns: 1fr; gap: 20px; }
+      .recurring-header { margin: 48px 0 24px; }
+    }
+    @media (max-width: 768px) {
+      .announcement-card > img { min-height: 0; aspect-ratio: 4 / 3; }
+      .announcement-body { padding: 22px 22px 20px; }
+      .announcement-body h3 { font-size: 1.2rem; }
+    }
+
     /* ── Video Carousel ── */
     .video-carousel-wrap {
       position: relative;
@@ -747,48 +920,105 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         2. WEEKLY PROGRAMS (Cream) — New Spotlight Layout
+         2. LATEST ANNOUNCEMENTS (Cream)
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" id="programs">
+    <section class="section section--cream" id="announcements">
       <div class="container">
 
         <div class="section-header text-center reveal">
-          <p class="eyebrow">Weekly Programs</p>
-          <h2>Join Us in Prayer</h2>
-          <p>Connect with us every week for prayer, healing, and breakthrough across multiple time zones.</p>
+          <p class="eyebrow">Announcements</p>
+          <h2>Latest Announcements</h2>
+          <p>Upcoming events, special services, and recurring programs across Mega Region 2.</p>
         </div>
 
-        <div class="program-duo reveal-stagger">
+        <!-- Special Events (auto-expire after event date + 1 day) -->
+        <div class="announcement-grid reveal-stagger" id="specialEvents">
 
-          <div class="program-spotlight reveal">
-            <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour" class="program-spotlight-img">
-            <div class="program-spotlight-body">
-              <span class="badge badge--fire" style="margin-bottom:10px;">Every Tuesday</span>
-              <h3>Healing &amp; Deliverance Hour</h3>
-              <p>An live prayer service for weekly prayer, healing, and breakthrough. The God of fire answers by fire.</p>
-              <div class="program-spotlight-time">7:00 PM CST (USA) · Multi-timezone</div>
-              <div style="margin-top:16px;">
-                <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Join Live</a>
-              </div>
+          <article class="announcement-card reveal" data-event-date="2026-05-16">
+            <img src="img/announcements/women-conference-dallas.jpg" alt="Women Conference — Dallas, Saturday May 16">
+            <div class="announcement-body">
+              <span class="badge badge--gold">Saturday · May 16, 2026</span>
+              <h3>Women Conference — Dallas</h3>
+              <p class="announcement-theme">"A Date with my Lord + Lover"</p>
+              <p>Hosted by MFM Dallas Texas Women Foundation. A day of worship, breakthrough, and encounter with the God of fire.</p>
+              <ul class="announcement-meta">
+                <li><strong>Time:</strong> 10:00 AM – 2:00 PM</li>
+                <li><strong>Venue:</strong> 306 Greenville Ave, Richardson, TX 75081</li>
+                <li><strong>Ministering:</strong> Pastor Olumide Oni &amp; Pastor (Mrs.) Oluwatoyin Oni</li>
+                <li><strong>Host:</strong> Pastor David &amp; Pastor (Mrs.) Adenike Popoola</li>
+              </ul>
             </div>
-          </div>
+          </article>
 
-          <div class="program-spotlight reveal">
-            <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter" class="program-spotlight-img">
-            <div class="program-spotlight-body">
-              <span class="badge badge--gold" style="margin-bottom:10px;">Every Thursday</span>
-              <h3>Open Heaven Encounter</h3>
-              <p>An live prayer service connecting believers across USA, Ghana, UK, Nigeria, and Canada.</p>
-              <div class="program-spotlight-time">6:00 PM CST (USA) · Multi-timezone</div>
-              <div style="margin-top:16px;">
-                <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Join Live</a>
-              </div>
+          <article class="announcement-card reveal" data-event-date="2026-04-18">
+            <img src="img/announcements/womens-foundation-outreach-tn.jpg" alt="Women's Foundation Outreach — Tennessee, Saturday April 18">
+            <div class="announcement-body">
+              <span class="badge badge--gold">Saturday · April 18, 2026</span>
+              <h3>Women's Foundation Outreach</h3>
+              <p class="announcement-theme">Theme: "Beauty for Ashes"</p>
+              <p>MFM Solution Ground — join us in Tennessee as we pour out love, hope, and the healing power of God.</p>
+              <ul class="announcement-meta">
+                <li><strong>Time:</strong> 10:00 AM</li>
+                <li><strong>Venue:</strong> 13135 Central Pike, Mt. Juliet, TN 37122</li>
+                <li><strong>Host:</strong> Pastor Lovena Okeke — Area Overseer</li>
+              </ul>
             </div>
-          </div>
+          </article>
 
         </div>
 
-        <div class="text-center reveal" style="margin-top:36px;">
+        <!-- Recurring Programs (never expire) -->
+        <div class="recurring-header reveal">
+          <p class="eyebrow">Recurring Programs</p>
+          <h3>Every Week at MFM Mega Region 2</h3>
+        </div>
+
+        <div class="recurring-grid reveal-stagger">
+
+          <article class="recurring-card reveal">
+            <img src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City">
+            <div class="recurring-body">
+              <span class="badge badge--fire">Every Weekend</span>
+              <h4>Weekend Deliverance</h4>
+              <p>Live deliverance services at Prayer City, Houston.</p>
+              <ul class="recurring-schedule">
+                <li><strong>Fri</strong> 7:00 PM – 12:00 AM</li>
+                <li><strong>Sat</strong> 9 AM – 2 PM &amp; 8 PM – 12 AM</li>
+                <li><strong>Sun</strong> 9:00 AM – 1:00 PM</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="recurring-card reveal">
+            <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour">
+            <div class="recurring-body">
+              <span class="badge badge--fire">Every Tuesday</span>
+              <h4>Healing &amp; Deliverance Hour</h4>
+              <p>Online prayerline for weekly prayer, healing, and breakthrough.</p>
+              <ul class="recurring-schedule">
+                <li><strong>CT</strong> 7:00 PM</li>
+                <li><strong>ET</strong> 8:00 PM</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="recurring-card reveal">
+            <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter">
+            <div class="recurring-body">
+              <span class="badge badge--gold">Every Thursday</span>
+              <h4>Open Heaven Encounter</h4>
+              <p>International prayer service across USA, UK, Nigeria, Ghana &amp; Canada.</p>
+              <ul class="recurring-schedule">
+                <li><strong>CST</strong> 6:00 PM (USA)</li>
+                <li><strong>GMT</strong> 12:00 AM (UK/Ghana)</li>
+                <li><strong>WAT</strong> 1:00 AM (Nigeria)</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="text-center reveal" style="margin-top:48px;">
           <a href="events.html" class="btn btn--secondary btn--sm">View Full Schedule →</a>
         </div>
 
@@ -1432,6 +1662,49 @@
           }
         });
       });
+    })();
+
+    /* ── Auto-expire Announcement Cards ──
+       Any card with data-event-date="YYYY-MM-DD" is hidden once
+       that date + 1 day has passed. Recurring cards (no attribute)
+       are never touched. If every special event is expired, the
+       whole special-events grid is collapsed and only recurring
+       programs remain visible. */
+    (function () {
+      var cards = document.querySelectorAll('[data-event-date]');
+      if (!cards.length) return;
+
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      var visible = 0;
+      cards.forEach(function (card) {
+        var raw = card.getAttribute('data-event-date');
+        if (!raw) { visible++; return; }
+        // Parse as local date (YYYY-MM-DD)
+        var parts = raw.split('-');
+        if (parts.length !== 3) { visible++; return; }
+        var eventDay = new Date(
+          parseInt(parts[0], 10),
+          parseInt(parts[1], 10) - 1,
+          parseInt(parts[2], 10)
+        );
+        // Event is "over" the day after it happens
+        var expiresAt = new Date(eventDay);
+        expiresAt.setDate(expiresAt.getDate() + 2); // event day itself still shows; hides starting 2 days after
+
+        if (today >= expiresAt) {
+          card.style.display = 'none';
+        } else {
+          visible++;
+        }
+      });
+
+      // If nothing left, hide the whole special-events grid
+      if (visible === 0) {
+        var grid = document.getElementById('specialEvents');
+        if (grid) grid.style.display = 'none';
+      }
     })();
   </script>
 
