@@ -2085,46 +2085,64 @@
     })();
 
 
-    /* ── Nav Dropdown (Desktop) ── */
+    /* ── Dropdown Toggles — hover on desktop, click fallback ── */
     (function () {
       var dropdowns = document.querySelectorAll('.nav-dropdown');
-      dropdowns.forEach(function (dd) {
-        var toggle = dd.querySelector('.nav-dropdown-toggle');
-        var menu = dd.querySelector('.nav-dropdown-menu');
-        if (!toggle || !menu) return;
+      var closeTimer = null;
+      var isTouch = 'ontouchstart' in window;
 
-        toggle.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var isOpen = dd.classList.contains('open');
-          // Close all dropdowns first
-          dropdowns.forEach(function (d) {
+      function closeAll(except) {
+        dropdowns.forEach(function (d) {
+          if (d !== except) {
             d.classList.remove('open');
             d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-          });
-          if (!isOpen) {
+          }
+        });
+      }
+
+      dropdowns.forEach(function (dd) {
+        var toggle = dd.querySelector('.nav-dropdown-toggle');
+
+        /* Hover open (desktop / non-touch) */
+        if (!isTouch) {
+          dd.addEventListener('mouseenter', function () {
+            clearTimeout(closeTimer);
+            closeAll(dd);
             dd.classList.add('open');
             toggle.setAttribute('aria-expanded', 'true');
-          }
+          });
+          dd.addEventListener('mouseleave', function () {
+            closeTimer = setTimeout(function () {
+              dd.classList.remove('open');
+              toggle.setAttribute('aria-expanded', 'false');
+            }, 120);
+          });
+        }
+
+        /* Click toggle (touch fallback + accessibility) */
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          closeAll(dd);
+          var isOpen = dd.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', isOpen);
         });
       });
 
-      // Close dropdowns on outside click
-      document.addEventListener('click', function (e) {
-        if (!e.target.closest('.nav-dropdown')) {
-          dropdowns.forEach(function (dd) {
-            dd.classList.remove('open');
-            dd.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-          });
-        }
+      /* Close on outside click */
+      document.addEventListener('click', function () { closeAll(); });
+
+      /* Close on Escape */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAll();
       });
 
-      // Set active state for current page
-      var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      /* Highlight parent toggle when on a sub-page */
+      var currentPath = window.location.pathname.split('/').pop() || 'index.html';
       dropdowns.forEach(function (dd) {
         var links = dd.querySelectorAll('.nav-dropdown-menu a');
-        links.forEach(function (link) {
-          if (link.getAttribute('href') === currentPage) {
+        links.forEach(function (a) {
+          if (a.getAttribute('href') === currentPath) {
+            a.classList.add('active');
             dd.querySelector('.nav-dropdown-toggle').classList.add('active');
           }
         });
