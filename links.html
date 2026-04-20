@@ -10,56 +10,33 @@
   <meta property="og:image" content="img/logo.png">
   <meta property="og:type" content="website">
   <link rel="icon" href="img/logo.png">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
   <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── Royal Flame Tokens ── */
-    :root {
-      --bg-navy: #142240;
-      --bg-navy-deep: #0f1a30;
-      --bg-navy-panel: #1a2d4d;
-      --gold: #c9952c;
-      --gold-light: #d4a853;
-      --gold-dim: #8b6f33;
-      --gold-glow: rgba(201, 149, 44, 0.18);
-      --fire: #e85d26;
-      --fire-light: #ff7a3d;
-      --cream: #f0e6d0;
-      --text-on-navy: #8899b8;
-      --text-dim: #6a7a96;
-      --line: rgba(201, 149, 44, 0.15);
-      --line-strong: rgba(201, 149, 44, 0.35);
-      --font-serif: 'Fraunces', Georgia, serif;
-      --font-sans: 'Inter Tight', system-ui, sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg-navy-deep);
-      color: var(--text-on-navy);
+    /* ── Connect Page Section ── */
+    .connect-section {
+      position: relative;
       min-height: 100vh;
       min-height: 100dvh;
+      background: var(--bg-navy-deep);
+      padding: 160px 20px 80px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    /* ── Atmosphere: Light Shaft ── */
-    body::before {
+    /* Light shaft */
+    .connect-section::before {
       content: '';
-      position: fixed;
-      top: -40%;
+      position: absolute;
+      top: -20%;
       left: 50%;
       transform: translateX(-50%);
       width: 120%;
-      height: 100%;
+      height: 80%;
       background: radial-gradient(
         ellipse 50% 60% at 50% 20%,
         rgba(201, 149, 44, 0.06) 0%,
@@ -70,10 +47,10 @@
       z-index: 0;
     }
 
-    /* ── Atmosphere: Film Grain ── */
-    body::after {
+    /* Film grain */
+    .connect-section::after {
       content: '';
-      position: fixed;
+      position: absolute;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       background-repeat: repeat;
@@ -89,7 +66,6 @@
       z-index: 1;
       width: 100%;
       max-width: 480px;
-      padding: 48px 20px 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -149,33 +125,40 @@
       font-size: 0.8rem;
     }
 
-    /* ── Section Divider ── */
-    .links-section {
+    /* ── QR Code Card ── */
+    .qr-card {
       width: 100%;
-      margin-top: 28px;
-      margin-bottom: 12px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 14px;
-      animation: fadeUp 0.5s var(--ease-out) both;
+      padding: 28px 20px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      border-radius: 14px;
+      background: rgba(26, 45, 77, 0.5);
+      border: 1px solid var(--line);
+      animation: fadeUp 0.5s var(--ease-out) 0.6s both;
     }
 
-    .links-section::before,
-    .links-section::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
+    .qr-card img {
+      width: 180px;
+      height: 180px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      background: #fff;
+      padding: 8px;
     }
 
-    .links-section span {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
+    .qr-card p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .qr-card p strong {
+      color: var(--cream);
       font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      white-space: nowrap;
     }
 
     /* ── Link Card ── */
@@ -214,16 +197,10 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(201, 149, 44, 0.1);
     }
 
-    .link-card:hover::before {
-      opacity: 1;
-    }
+    .link-card:hover::before { opacity: 1; }
+    .link-card:active { transform: translateY(0); transition-duration: 0.1s; }
 
-    .link-card:active {
-      transform: translateY(0);
-      transition-duration: 0.1s;
-    }
-
-    /* Icon circle */
+    /* Icon */
     .link-icon {
       width: 44px;
       height: 44px;
@@ -236,127 +213,36 @@
       z-index: 1;
     }
 
-    .link-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
+    .link-icon svg { width: 22px; height: 22px; fill: currentColor; }
 
-    /* Platform-specific icon colors */
-    .link-card--youtube .link-icon     { background: rgba(255, 0, 0, 0.12); color: #ff4444; }
-    .link-card--facebook .link-icon    { background: rgba(66, 103, 178, 0.15); color: #6d93d4; }
-    .link-card--instagram .link-icon   { background: rgba(225, 48, 108, 0.12); color: #e1306c; }
-    .link-card--whatsapp .link-icon    { background: rgba(37, 211, 102, 0.12); color: #25d366; }
-    .link-card--website .link-icon     { background: var(--gold-glow); color: var(--gold-light); }
-    .link-card--phone .link-icon       { background: rgba(232, 93, 38, 0.12); color: var(--fire-light); }
-    .link-card--email .link-icon       { background: rgba(201, 149, 44, 0.12); color: var(--gold); }
-    .link-card--location .link-icon    { background: rgba(232, 93, 38, 0.12); color: var(--fire-light); }
+    .link-card--youtube .link-icon   { background: rgba(255, 0, 0, 0.12); color: #ff4444; }
+    .link-card--facebook .link-icon  { background: rgba(66, 103, 178, 0.15); color: #6d93d4; }
+    .link-card--instagram .link-icon { background: rgba(225, 48, 108, 0.12); color: #e1306c; }
+    .link-card--whatsapp .link-icon  { background: rgba(37, 211, 102, 0.12); color: #25d366; }
+    .link-card--website .link-icon   { background: var(--gold-glow); color: var(--gold-light); }
 
-    /* Text block */
-    .link-text {
-      flex: 1;
-      position: relative;
-      z-index: 1;
-      min-width: 0;
-    }
-
-    .link-text-name {
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--cream);
-      line-height: 1.3;
-    }
-
-    .link-text-handle {
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      margin-top: 2px;
-    }
+    /* Text */
+    .link-text { flex: 1; position: relative; z-index: 1; min-width: 0; }
+    .link-text-name { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--cream); line-height: 1.3; }
+    .link-text-handle { font-family: var(--font-sans); font-size: 0.78rem; color: var(--text-dim); margin-top: 2px; }
 
     /* Arrow */
     .link-arrow {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
+      width: 20px; height: 20px; flex-shrink: 0;
       color: var(--text-dim);
       transition: color 0.3s, transform 0.3s var(--ease-out);
-      position: relative;
-      z-index: 1;
+      position: relative; z-index: 1;
     }
+    .link-card:hover .link-arrow { color: var(--gold-light); transform: translateX(3px); }
 
-    .link-card:hover .link-arrow {
-      color: var(--gold-light);
-      transform: translateX(3px);
-    }
+    /* Stagger */
+    .link-card:nth-child(1) { animation-delay: 0.25s; }
+    .link-card:nth-child(2) { animation-delay: 0.32s; }
+    .link-card:nth-child(3) { animation-delay: 0.39s; }
+    .link-card:nth-child(4) { animation-delay: 0.46s; }
+    .link-card:nth-child(5) { animation-delay: 0.53s; }
 
-    /* ── Footer ── */
-    .links-footer {
-      margin-top: 40px;
-      text-align: center;
-      animation: fadeUp 0.5s var(--ease-out) 0.65s both;
-    }
-
-    .links-footer-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 100px;
-      background: rgba(26, 45, 77, 0.4);
-      border: 1px solid var(--line);
-      text-decoration: none;
-      transition: all 0.3s var(--ease-out);
-    }
-
-    .links-footer-badge:hover {
-      border-color: var(--line-strong);
-      background: rgba(26, 45, 77, 0.6);
-    }
-
-    .links-footer-badge img {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-    }
-
-    .links-footer-badge span {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      font-weight: 500;
-    }
-
-    .links-footer p {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      margin-top: 16px;
-      line-height: 1.5;
-    }
-
-    .links-footer a {
-      color: var(--gold-dim);
-      text-decoration: none;
-    }
-
-    .links-footer a:hover {
-      color: var(--gold-light);
-    }
-
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Stagger delays for link cards */
-    .link-card:nth-child(1)  { animation-delay: 0.25s; }
-    .link-card:nth-child(2)  { animation-delay: 0.32s; }
-    .link-card:nth-child(3)  { animation-delay: 0.39s; }
-    .link-card:nth-child(4)  { animation-delay: 0.46s; }
-    .link-card:nth-child(5)  { animation-delay: 0.53s; }
-
-    /* ── Reduced Motion ── */
+    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -365,114 +251,393 @@
       }
     }
 
-    /* ── Mobile Fine-Tuning ── */
     @media (max-width: 480px) {
-      .links-page {
-        padding: 36px 16px 48px;
-      }
-      .links-logo {
-        width: 84px;
-        height: 84px;
-      }
-      .links-title {
-        font-size: 1.35rem;
-      }
-      .link-card {
-        padding: 12px 16px;
-        gap: 14px;
-      }
-      .link-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-      }
-      .link-icon svg {
-        width: 20px;
-        height: 20px;
-      }
+      .connect-section { padding: 130px 16px 60px; }
+      .links-logo { width: 84px; height: 84px; }
+      .links-title { font-size: 1.35rem; }
+      .link-card { padding: 12px 16px; gap: 14px; }
+      .link-icon { width: 40px; height: 40px; border-radius: 10px; }
+      .link-icon svg { width: 20px; height: 20px; }
+      .qr-card img { width: 150px; height: 150px; }
     }
   </style>
 </head>
 <body>
+  <nav class="site-nav" id="siteNav">
+    <div class="nav-inner">
 
-  <main class="links-page">
-
-    <!-- Logo & Header -->
-    <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="links-logo">
-    <h1 class="links-title">MFM Mega Region 2 USA</h1>
-    <p class="links-subtitle">Mountain of Fire &amp; Miracles</p>
-    <p class="links-scripture">"But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."<br><strong>— Obadiah 1:17</strong></p>
-
-    <!-- ─── Main Socials ─── -->
-    <div class="links-group">
-
-      <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="link-card link-card--youtube" aria-label="YouTube">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48">
+        <div class="nav-logo-text">
+          MFM Mega Region 2
+          <span>USA</span>
         </div>
-        <div class="link-text">
-          <div class="link-text-name">YouTube</div>
-          <div class="link-text-handle">@mfmmegaregion2usa</div>
-        </div>
-        <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
 
-      <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener" class="link-card link-card--facebook" aria-label="Facebook">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </div>
-        <div class="link-text">
-          <div class="link-text-name">Facebook</div>
-          <div class="link-text-handle">MFM Mega Region 2 USA</div>
-        </div>
-        <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <!-- Desktop Links -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="media.html">Media</a>
+        <a href="events.html">Events</a>
+        <a href="gen218.html">Gen218</a>
+        <a href="women.html">Women</a>
+        <a href="branches.html">Branches</a>
+        <a href="links.html">Connect</a>
+      </div>
 
-      <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="link-card link-card--instagram" aria-label="Instagram">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-        </div>
-        <div class="link-text">
-          <div class="link-text-name">Instagram</div>
-          <div class="link-text-handle">@mfmmegaregion2usa</div>
-        </div>
-        <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-
-      <a href="https://whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G" target="_blank" rel="noopener" class="link-card link-card--whatsapp" aria-label="WhatsApp Channel">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        </div>
-        <div class="link-text">
-          <div class="link-text-name">WhatsApp Channel</div>
-          <div class="link-text-handle">MFM Mega Region 2</div>
-        </div>
-        <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-
-      <a href="index.html" class="link-card link-card--website" aria-label="Our Website">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-        </div>
-        <div class="link-text">
-          <div class="link-text-name">Our Website</div>
-          <div class="link-text-handle">mfm-mega-region2.netlify.app</div>
-        </div>
-        <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <!-- Hamburger (mobile) -->
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
     </div>
+  </nav>
 
-    <!-- ─── Footer ─── -->
-    <footer class="links-footer">
-      <a href="index.html" class="links-footer-badge">
-        <img src="img/logo.png" alt="">
-        <span>Visit our full website →</span>
-      </a>
-      <p>© 2026 MFM Mega Region 2 USA<br><a href="index.html">mfmmegaregion2usa.com</a></p>
-    </footer>
 
-  </main>
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <img src="img/logo.png" alt="" width="40" height="40">
+      <span>MFM Mega Region 2</span>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="media.html">Media</a>
+      <a href="events.html">Events</a>
+      <a href="gen218.html">Gen218</a>
+      <a href="women.html">Women Foundation</a>
+      <a href="branches.html">Branches</a>
+        <a href="links.html">Connect</a>
+    </nav>
+    <div class="drawer-footer">
+      <p class="drawer-scripture">
+        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
+        <cite>— Jeremiah 23:29</cite>
+      </p>
+    </div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       CONNECT — Social Links
+       ═══════════════════════════════════════════════════════ -->
+  <section class="connect-section">
+    <div class="links-page">
+
+      <!-- Logo & Header -->
+      <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="links-logo">
+      <h1 class="links-title">MFM Mega Region 2 USA</h1>
+      <p class="links-subtitle">Mountain of Fire &amp; Miracles</p>
+      <p class="links-scripture">"But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."<br><strong>— Obadiah 1:17</strong></p>
+
+      <!-- Social Links -->
+      <div class="links-group">
+
+        <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="link-card link-card--youtube">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="link-text">
+            <div class="link-text-name">YouTube</div>
+            <div class="link-text-handle">@mfmmegaregion2usa</div>
+          </div>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener" class="link-card link-card--facebook">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div class="link-text">
+            <div class="link-text-name">Facebook</div>
+            <div class="link-text-handle">MFM Mega Region 2 USA</div>
+          </div>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="link-card link-card--instagram">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </div>
+          <div class="link-text">
+            <div class="link-text-name">Instagram</div>
+            <div class="link-text-handle">@mfmmegaregion2usa</div>
+          </div>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="https://whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G" target="_blank" rel="noopener" class="link-card link-card--whatsapp">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </div>
+          <div class="link-text">
+            <div class="link-text-name">WhatsApp Channel</div>
+            <div class="link-text-handle">MFM Mega Region 2</div>
+          </div>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <a href="index.html" class="link-card link-card--website">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <div class="link-text">
+            <div class="link-text-name">Our Website</div>
+            <div class="link-text-handle">mfm-mega-region2.netlify.app</div>
+          </div>
+          <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+      </div>
+
+      <!-- QR Code -->
+      <div class="qr-card">
+        <img src="img/connect-qr.png" alt="QR Code — Scan to visit this page">
+        <p><strong>Scan to connect</strong><br>Share this QR code to direct others to all our social platforms</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="52" height="52">
+            <div class="footer-logo-text">
+              MFM Mega Region 2
+              <span>Mountain of Fire &amp; Miracles Ministries</span>
+            </div>
+          </a>
+          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="footer-social">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://facebook.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="about.html">About MFM</a></li>
+            <li><a href="media.html">Media</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="women.html">Women Foundation</a></li>
+            <li><a href="branches.html">Branches</a>
+        <a href="links.html">Connect</a></li>
+          </ul>
+        </div>
+
+        <!-- Ministries -->
+        <div class="footer-col">
+          <h4>Ministries</h4>
+          <ul>
+            <li><a href="gen218.html">Gen218 Singles</a></li>
+            <li><a href="women.html">Women Foundation</a></li>
+            <li><a href="events.html#healing-deliverance">Healing &amp; Deliverance Hour</a></li>
+            <li><a href="events.html#open-heaven">Open Heaven Encounter</a></li>
+            <li><a href="events.html#pmch">Power Must Change Hands</a></li>
+          </ul>
+        </div>
+
+        <!-- MFM Network -->
+        <div class="footer-col">
+          <h4>MFM Network</h4>
+          <ul>
+            <li><a href="branches.html#prayer-city">MFM USA Prayer City</a></li>
+            <li><a href="https://www.mountainoffire.org" target="_blank" rel="noopener">MFM International HQ</a></li>
+            <li><a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener">YouTube Channel</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
+                MFM USA Prayer City<br>
+                10000 Kleckley Dr<br>
+                Houston, TX 77075
+              </a>
+            </li>
+            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
+  </button>
+
+  <div class="grain" aria-hidden="true">
+    <svg>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+    </svg>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════ -->
+
+  <script>
+    /* ── Mobile Drawer Toggle ── */
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawerOverlay');
+
+      function openDrawer() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('drawer-open');
+      }
+
+      function closeDrawer() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+      }
+
+      hamburger.addEventListener('click', function () {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+      });
+
+      overlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+          closeDrawer();
+        }
+      });
+    })();
+
+
+    /* ── Sticky Nav Scroll Effect ── */
+    (function () {
+      const nav = document.getElementById('siteNav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+
+    /* ── Scroll-Triggered Reveals ── */
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+
+
+    /* ── Footer Year ── */
+    (function () {
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+    /* ── Active Nav Link ── */
+    (function () {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      navLinks.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    })();
+
+
+    /* ── Netlify Identity Redirect (for CMS) ── */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function (user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function () {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+    /* ── Back-to-Top Button ── */
+    (function () {
+      var btn = document.getElementById('backToTop');
+      if (!btn) return;
+      var ticking = false;
+      function update() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      update();
+    })();
+  </script>
 
 </body>
 </html>
