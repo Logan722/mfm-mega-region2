@@ -25,286 +25,387 @@
 
   <!-- Events Page Styles -->
   <style>
-    /* ── Weekly Schedule Visual Grid ── */
-    .week-grid {
+    /* ── Weekly Programs — Featured Program Cards ── */
+    .weekly-program {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .week-day-card {
-      background: var(--bg-sand);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 12px;
-      padding: 28px 24px;
-      transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .week-day-card:hover {
-      border-color: var(--line-white-strong);
-      transform: translateY(-3px);
-    }
-
-    .week-day-card--active {
-      border-color: var(--gold);
-      background: linear-gradient(135deg, rgba(201,149,44,0.06), rgba(232,93,38,0.03));
-    }
-
-    .week-day-label {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .week-day-program {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .week-day-time {
-      font-size: 0.78rem;
-      color: var(--text-dim-white);
-    }
-
-    .week-day-note {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--fire);
-      background: var(--fire-dim);
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    .week-day-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--line-white);
-      margin: 12px 0;
-    }
-
-    @media (max-width: 900px) {
-      .week-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .week-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Schedule Cards ── */
-    .schedule-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 32px;
-      transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
-    }
-
-    .schedule-card:hover {
-      border-color: var(--line-strong);
-      transform: translateY(-2px);
-    }
-
-    .schedule-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
-    .schedule-card .schedule-time { font-size: 0.85rem; color: var(--fire); font-weight: 500; margin-bottom: 12px; }
-    .schedule-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
-
-    /* ── Event Highlight Cards ── */
-    .event-highlight {
-      background: linear-gradient(135deg, rgba(201,149,44,0.06), rgba(232,93,38,0.04));
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 36px;
-      transition: border-color var(--dur) var(--ease-out);
-    }
-    .event-highlight:hover { border-color: var(--line-strong); }
-    .event-highlight h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--navy); }
-    .event-highlight p { font-size: 0.9rem; color: var(--text-on-white); line-height: 1.7; }
-
-    .event-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 16px;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-    .event-meta span { display: flex; align-items: center; gap: 6px; }
-    .event-meta svg { flex-shrink: 0; }
-
-    /* ── PMCH Spotlight ── */
-    .pmch-spotlight {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .pmch-date-block {
-      text-align: center;
-      background: var(--bg-panel);
-      border: 1px solid var(--line-strong);
-      border-radius: 12px;
-      padding: 28px 36px;
-    }
-
-    .pmch-date-block .month {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--fire);
-    }
-
-    .pmch-date-block .day {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.1;
-      margin-top: 4px;
-    }
-
-    .pmch-date-block .suffix {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
-
-    @media (max-width: 600px) {
-      .pmch-spotlight { grid-template-columns: 1fr; text-align: center; }
-      .pmch-date-block { padding: 20px; }
-    }
-
-    /* ── Upcoming Events Detail Section ── */
-    .upcoming-event-detail {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 48px;
-      align-items: start;
-      padding: 40px;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
       background: var(--bg-sand);
       border: 1px solid var(--bg-sand-border);
       border-radius: 14px;
-      margin-bottom: 36px;
-      scroll-margin-top: 100px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s;
     }
-    .upcoming-event-detail:last-child { margin-bottom: 0; }
-
-    .upcoming-event-flyer {
+    .weekly-program:last-child { margin-bottom: 0; }
+    .weekly-program:hover {
+      border-color: var(--line-white-strong);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .weekly-program-img {
       width: 100%;
-      border-radius: 10px;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
       display: block;
-      border: 1px solid var(--bg-sand-border);
     }
-
-    .upcoming-event-info {
-      padding-top: 4px;
+    .weekly-program-body {
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    .upcoming-event-badge {
-      display: inline-block;
-      font-family: var(--font-sans);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #fff;
-      background: var(--fire);
-      padding: 4px 14px;
-      border-radius: 4px;
-      margin-bottom: 16px;
-    }
-    .upcoming-event-badge--gold { background: var(--gold); }
-
-    .upcoming-event-info h3 {
+    .weekly-program-body h3 {
       font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
       font-weight: 400;
       color: var(--navy);
       line-height: 1.2;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
-    .upcoming-event-info .theme {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--gold);
-      margin-bottom: 20px;
-      line-height: 1.4;
-    }
-    .upcoming-event-meta-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .upcoming-event-meta-row {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 12px;
+    .weekly-program-body .program-desc {
       font-size: 0.92rem;
-      line-height: 1.5;
-    }
-    .upcoming-event-meta-row .label {
-      font-family: var(--font-sans);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-dim-white);
-      padding-top: 3px;
-    }
-    .upcoming-event-meta-row .value {
       color: var(--text-on-white);
+      line-height: 1.7;
+      margin-bottom: 18px;
     }
-    .upcoming-event-info .btn { margin-top: 8px; }
-
-    .upcoming-event-features {
+    .weekly-program-schedule {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 8px 20px;
       margin-bottom: 20px;
     }
-    .upcoming-event-features span {
-      font-size: 0.78rem;
-      color: var(--text-on-white);
-      background: var(--bg-white);
-      border: 1px solid var(--bg-sand-border);
-      padding: 4px 12px;
-      border-radius: 20px;
+    .weekly-program-schedule li {
+      font-size: 0.84rem;
+      color: var(--text-dim-white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+    .weekly-program-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
     }
 
     @media (max-width: 860px) {
-      .upcoming-event-detail {
+      .weekly-program {
         grid-template-columns: 1fr;
-        gap: 28px;
-        padding: 24px;
       }
-      .upcoming-event-flyer {
-        max-width: 360px;
-        margin: 0 auto;
+      .weekly-program-img {
+        min-height: 220px;
+        max-height: 320px;
       }
-    }
-    @media (max-width: 640px) {
-      .upcoming-event-meta-row {
-        grid-template-columns: 1fr;
-        gap: 2px;
+      .weekly-program-body {
+        padding: 28px 24px;
       }
     }
 
+    /* ── Monthly Programs Grid ── */
+    .monthly-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .monthly-card {
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: border-color 0.4s var(--ease-out), transform 0.4s;
+    }
+    .monthly-card:hover {
+      border-color: var(--line-white-strong);
+      transform: translateY(-3px);
+    }
+    .monthly-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .monthly-card .time-detail {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--fire);
+      margin-bottom: 12px;
+    }
+    .monthly-card p {
+      font-size: 0.88rem;
+      color: var(--text-on-white);
+      line-height: 1.7;
+    }
+    .monthly-card .location-note {
+      font-size: 0.8rem;
+      color: var(--text-dim-white);
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .monthly-card .location-note svg { flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .monthly-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Upcoming Events (Cream) — Carousel ── */
+    .section--upcoming {
+      position: relative;
+    }
+    .upcoming-carousel-wrap {
+      position: relative;
+    }
+    .upcoming-carousel {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+    }
+    .upcoming-carousel::-webkit-scrollbar { display: none; }
+
+    .upcoming-card {
+      flex: 0 0 340px;
+      scroll-snap-align: start;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-white);
+      border: 1px solid var(--bg-sand-border);
+      transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .upcoming-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-white-strong);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    }
+    .upcoming-card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: var(--bg-sand);
+      display: block;
+    }
+    .upcoming-card-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .upcoming-card-tag {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .upcoming-card-body h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .upcoming-card-theme {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .upcoming-card-meta {
+      font-size: 0.82rem;
+      color: var(--text-on-white);
+      line-height: 1.5;
+      margin: 0;
+      flex: 1;
+    }
+    .upcoming-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-top: 16px;
+      letter-spacing: 0.04em;
+    }
+    .upcoming-card-cta::after {
+      content: '→';
+    }
+
+    /* Carousel arrows */
+    .upcoming-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-80%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-white);
+      border: 1px solid var(--line-white-strong);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      padding: 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .upcoming-arrow:hover {
+      background: var(--bg-sand);
+      transform: translateY(-80%) scale(1.08);
+    }
+    .upcoming-arrow svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--navy);
+      fill: none;
+    }
+    .upcoming-arrow--left { left: -16px; }
+    .upcoming-arrow--right { right: -16px; }
+
+    /* Dots */
+    .upcoming-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .upcoming-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--line-white-strong);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .upcoming-dot.active {
+      background: var(--gold);
+      transform: scale(1.25);
+    }
+
+    /* Fallback message when all events have expired */
+    .upcoming-fallback {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .upcoming-fallback h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .upcoming-fallback p {
+      font-size: 0.92rem;
+      color: var(--text-dim-white);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .upcoming-card { flex: 0 0 280px; }
+      .upcoming-arrow { display: none; }
+    }
+
+    /* ── Connect Section (Navy) ── */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .connect-card {
+      background: var(--bg-navy-panel);
+      border: 1px solid var(--line-navy);
+      border-radius: 12px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .connect-card:hover {
+      border-color: var(--line-navy-strong);
+      transform: translateY(-3px);
+    }
+    .connect-card-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-glow);
+      border-radius: 50%;
+    }
+    .connect-card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+    }
+    .connect-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .connect-card p {
+      font-size: 0.88rem;
+      color: var(--text-on-navy);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .connect-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Final CTA Section ── */
+    .cta-banner {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cta-banner h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .cta-banner p {
+      font-size: 0.95rem;
+      color: var(--text-on-white);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
   </style>
 
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
-  <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
+  <!-- Canonical & Extended Open Graph -->
   <link rel="canonical" href="https://mfmmegaregion2usa.com/events.html">
   <meta property="og:url" content="https://mfmmegaregion2usa.com/events.html">
   <meta property="og:site_name" content="MFM Mega Region 2 USA">
@@ -350,7 +451,7 @@
               <div class="nav-dd-label">Gen218<span>Christian singles ministry</span></div>
             </a>
             <a href="women.html">
-              <div class="nav-dd-label">Women Foundation<span>Women’s ministry &amp; conferences</span></div>
+              <div class="nav-dd-label">Women Foundation<span>Women's ministry &amp; conferences</span></div>
             </a>
             <a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener">
               <div class="nav-dd-label">Youth Ministry<span>Mega Region 2 Youth Church</span></div>
@@ -399,7 +500,9 @@
        ═══════════════════════════════════════════════════════ -->
   <main>
 
-    <!-- ── HERO (Navy) — Statement Banner ── -->
+    <!-- ═══════════════════════════════════════════════════════
+         1. HERO (Navy)
+         ═══════════════════════════════════════════════════════ -->
     <section class="hero hero--short" style="min-height:60vh; min-height:60dvh;">
       <div class="hero-content" style="max-width:700px;">
         <p class="eyebrow" style="justify-content:center; animation: fadeUp 0.6s var(--ease-out) 0.1s both;">Events &amp; Programs</p>
@@ -408,223 +511,109 @@
         </h1>
         <p style="animation: fadeUp 0.7s var(--ease-out) 0.35s both;">Weekly prayer, monthly warfare, and special encounters — join us as we press into the presence of God for healing, deliverance, and breakthrough.</p>
         <div class="btn-group btn-group--center" style="margin-top:8px; animation: fadeUp 0.7s var(--ease-out) 0.5s both;">
-          <a href="#schedule" class="btn btn--fire btn--sm">View Schedule</a>
-          <a href="#healing-deliverance" class="btn btn--secondary btn--sm">Featured Programs</a>
+          <a href="#weekly-programs" class="btn btn--fire btn--sm">View Programs</a>
+          <a href="#upcoming-events" class="btn btn--secondary btn--sm">Upcoming Events</a>
         </div>
       </div>
     </section>
 
 
     <!-- ═══════════════════════════════════════════════════════
-         WEEKLY SCHEDULE GRID (White)
+         2. WEEKLY PROGRAMS (White) — Consolidated schedule
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white" id="schedule">
+    <section class="section section--white" id="weekly-programs">
       <div class="container">
 
         <div class="section-header text-center reveal">
-          <p class="eyebrow">At a Glance</p>
-          <h2>Weekly Schedule</h2>
-          <p>Every week, the fire burns across multiple days and time zones. Here's when you can join us.</p>
-        </div>
-
-        <div class="week-grid reveal-stagger">
-
-          <!-- Tuesday -->
-          <div class="week-day-card week-day-card--active reveal">
-            <div class="week-day-label">Tuesday</div>
-            <div class="week-day-program">Healing &amp; Deliverance Hour</div>
-            <div class="week-day-time">7:00 PM CST / 8:00 PM EST</div>
-            <div class="week-day-note">Live Prayer Service</div>
-          </div>
-
-          <!-- Wednesday -->
-          <div class="week-day-card reveal">
-            <div class="week-day-label">Wednesday</div>
-            <div class="week-day-program">Manna Water Service</div>
-            <div class="week-day-time">At All Branches</div>
-          </div>
-
-          <!-- Thursday -->
-          <div class="week-day-card week-day-card--active reveal">
-            <div class="week-day-label">Thursday</div>
-            <div class="week-day-program">Open Heaven Encounter</div>
-            <div class="week-day-time">6:00 PM CST (USA)</div>
-            <div class="week-day-note">Live Prayer Service</div>
-          </div>
-
-          <!-- Friday -->
-          <div class="week-day-card reveal">
-            <div class="week-day-label">Friday</div>
-            <div class="week-day-program">Weekend Deliverance</div>
-            <div class="week-day-time">7:00 PM – 12:00 AM</div>
-            <div class="week-day-note">Prayer City</div>
-          </div>
-
-          <!-- Saturday -->
-          <div class="week-day-card reveal">
-            <div class="week-day-label">Saturday</div>
-            <div class="week-day-program">Weekend Deliverance</div>
-            <div class="week-day-time">9:00 AM – 2:00 PM</div>
-            <div class="week-day-divider"></div>
-            <div class="week-day-time">8:00 PM – 12:00 AM</div>
-            <div class="week-day-note">1st Sat = PMCH</div>
-          </div>
-
-          <!-- Sunday -->
-          <div class="week-day-card reveal">
-            <div class="week-day-label">Sunday</div>
-            <div class="week-day-program">Weekend Deliverance</div>
-            <div class="week-day-time">9:00 AM – 2:00 PM</div>
-            <div class="week-day-divider"></div>
-            <div class="week-day-program" style="margin-top:4px;">Worship Service</div>
-            <div class="week-day-time">At All Branches</div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         FEATURED PROGRAMS (Cream)
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" id="featured-programs">
-      <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Featured Programs</p>
+          <p class="eyebrow">Weekly &amp; Monthly Programs</p>
           <h2>Fire Across Time Zones</h2>
-          <p>Our flagship weekly programs connect believers across continents for prayer, healing, and breakthrough.</p>
+          <p>Our flagship programs connect believers across continents for prayer, healing, deliverance, and breakthrough.</p>
         </div>
 
-        <!-- Healing & Deliverance Hour -->
-        <div class="program-card reveal" id="healing-deliverance" style="margin-bottom: var(--gutter);">
-          <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour — Weekly Prayer, Healing, Breakthrough. Every Tuesday 7 PM CT / 8 PM ET" class="program-card-img">
-          <div class="program-card-body">
-            <span class="badge badge--fire">Every Tuesday</span>
-            <h3 style="margin-top:12px;">Healing &amp; Deliverance Hour</h3>
-            <p>An live prayer service where believers gather to pray targeted, fire-filled prayers for healing, deliverance, and total breakthrough. No matter where you are, connect with us and experience the power of God.</p>
-            <ul class="program-card-schedule">
-              <li>🇺🇸 7:00 PM CST (USA)</li>
-              <li>🇳🇬 1:00 AM WAT (Nigeria)</li>
-              <li>🇬🇭 12:00 AM GMT (Ghana)</li>
-              <li>🇬🇧 1:00 AM BST (United Kingdom)</li>
-              <li>🇨🇦 8:00 PM EST (Canada)</li>
+        <!-- ── Healing & Deliverance Hour ── -->
+        <div class="weekly-program reveal" id="healing-deliverance">
+          <img class="weekly-program-img" src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour — Weekly Prayer, Healing, Breakthrough. Every Tuesday 7 PM CT / 8 PM ET">
+          <div class="weekly-program-body">
+            <span class="badge badge--fire" style="margin-bottom:14px;">Every Tuesday</span>
+            <h3>Healing &amp; Deliverance Hour</h3>
+            <p class="program-desc">A live prayer service where believers gather to pray targeted, fire-filled prayers for healing, deliverance, and total breakthrough. No matter where you are, connect with us and experience the power of God.</p>
+            <ul class="weekly-program-schedule">
+              <li>🇺🇸 7:00 PM CST</li>
+              <li>🇨🇦 8:00 PM EST</li>
+              <li>🇬🇭 12:00 AM GMT</li>
+              <li>🇬🇧 1:00 AM BST</li>
+              <li>🇳🇬 1:00 AM WAT</li>
             </ul>
-            <blockquote style="margin-top:24px; font-size:1rem; padding:12px 0 12px 20px;">
-              "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
-              <cite>— Jeremiah 23:29</cite>
-            </blockquote>
-            <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:12px;">
+            <div class="weekly-program-actions">
               <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Join on YouTube</a>
               <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Join on Facebook</a>
             </div>
           </div>
         </div>
 
-        <!-- Open Heaven Encounter -->
-        <div class="program-card reveal" id="open-heaven">
-          <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter — Every Thursday, International Prayer Service" class="program-card-img">
-          <div class="program-card-body">
-            <span class="badge badge--gold">Every Thursday</span>
-            <h3 style="margin-top:12px;">Open Heaven Encounter</h3>
-            <p>A weekly international prayer service bridging time zones and continents. Believers from the USA, Ghana, UK, Nigeria, and Canada come together for open heavens and divine encounters.</p>
-            <ul class="program-card-schedule">
-              <li>🇺🇸 6:00 PM CST (USA)</li>
-              <li>🇬🇭 12:00 AM GMT (Ghana)</li>
-              <li>🇬🇧 12:00 AM GMT (United Kingdom)</li>
-              <li>🇳🇬 1:00 AM WAT (Nigeria)</li>
-              <li>🇨🇦 7:00 PM EST (Canada)</li>
+        <!-- ── Open Heaven Encounter ── -->
+        <div class="weekly-program reveal" id="open-heaven">
+          <img class="weekly-program-img" src="img/open-heaven-encounter.png" alt="Open Heaven Encounter — Every Thursday, International Prayer Service">
+          <div class="weekly-program-body">
+            <span class="badge badge--gold" style="margin-bottom:14px;">Every Thursday</span>
+            <h3>Open Heaven Encounter</h3>
+            <p class="program-desc">A weekly international prayer service bridging time zones and continents. Believers from the USA, Ghana, UK, Nigeria, and Canada come together for open heavens and divine encounters.</p>
+            <ul class="weekly-program-schedule">
+              <li>🇺🇸 6:00 PM CST</li>
+              <li>🇨🇦 7:00 PM EST</li>
+              <li>🇬🇭 12:00 AM GMT</li>
+              <li>🇬🇧 12:00 AM GMT</li>
+              <li>🇳🇬 1:00 AM WAT</li>
             </ul>
-            <blockquote style="margin-top:24px; font-size:1rem; padding:12px 0 12px 20px;">
-              "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
-              <cite>— Obadiah 1:17</cite>
-            </blockquote>
-            <div style="margin-top:20px;">
+            <div class="weekly-program-actions">
               <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Join on YouTube</a>
             </div>
           </div>
         </div>
 
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         POWER MUST CHANGE HANDS (Navy)
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--dark" id="pmch">
-      <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Monthly Warfare</p>
-          <h2>Power Must Change Hands</h2>
-          <p>A powerful monthly prayer programme where thousands of believers worldwide engage in aggressive spiritual warfare. Whatever is holding your destiny captive — Power Must Change Hands!</p>
-        </div>
-
-        <div class="pmch-spotlight reveal">
-          <div class="pmch-date-block">
-            <span class="month">Every</span>
-            <span class="day">1st</span>
-            <span class="suffix">Saturday</span>
-          </div>
-          <div>
-            <span class="badge badge--fire" style="margin-bottom:16px;">PMCH · First Saturday Monthly</span>
-            <h3 style="margin-top:12px;">8:00 AM – 11:30 AM</h3>
-            <p style="color:var(--text-muted); font-size:0.92rem; margin-top:12px;">
-              PMCH is a flagship MFM programme held at MFM USA Prayer City on the first Saturday of every month. It is a time of intense spiritual warfare, midnight prayers, and aggressive intercession — a gathering where stubborn situations are addressed by fire.
-            </p>
-            <p style="color:var(--text-dim); font-size:0.82rem; margin-top:12px;">
-              MFM USA Prayer City · 10000 Kleckley Dr, Houston TX 77075
-            </p>
-            <blockquote style="margin-top:20px; font-size:0.95rem; padding:10px 0 10px 18px;">
-              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
-              <cite>— Psalm 144:1</cite>
-            </blockquote>
-            <div style="margin-top:20px;">
+        <!-- ── Weekend Deliverance ── -->
+        <div class="weekly-program reveal" id="deliverance">
+          <img class="weekly-program-img" src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City — Friday through Sunday">
+          <div class="weekly-program-body">
+            <span class="badge badge--fire" style="margin-bottom:14px;">Every Weekend</span>
+            <h3>Weekend Deliverance at Prayer City</h3>
+            <p class="program-desc">Three days of focused deliverance ministry every week at MFM USA Prayer City — sustained spiritual warfare, the breaking of yokes, and the demonstration of God's delivering power.</p>
+            <ul class="weekly-program-schedule">
+              <li>🔥 Fri: 7:00 PM – 12:00 AM CT</li>
+              <li>🔥 Sat: 9:00 AM – 2:00 PM CT</li>
+              <li>🔥 Sat: 8:00 PM – 12:00 AM CT</li>
+              <li>🔥 Sun: 9:00 AM – 2:00 PM CT</li>
+            </ul>
+            <p style="font-size:0.82rem; color:var(--text-dim-white); margin-top:12px;">MFM USA Prayer City · 10000 Kleckley Dr, Houston TX 77075</p>
+            <div class="weekly-program-actions" style="margin-top:16px;">
               <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Get Directions →</a>
             </div>
           </div>
         </div>
 
-      </div>
-    </section>
+        <!-- ── Monthly Programs (PMCH + Solution Hour) ── -->
+        <div class="monthly-grid reveal-stagger">
 
-
-    <!-- ═══════════════════════════════════════════════════════
-         REGULAR SERVICES (White)
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white" id="services">
-      <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Regular Services</p>
-          <h2>At All Branches</h2>
-          <p>These programmes run weekly across all MFM Mega Region 2 USA branches.</p>
-        </div>
-
-        <div class="grid grid--3 reveal-stagger">
-
-          <div class="schedule-card reveal">
-            <span class="badge badge--gold" style="margin-bottom:16px;">Weekly</span>
-            <h3>Sunday Worship Service</h3>
-            <div class="schedule-time">Every Sunday</div>
-            <p>The main weekly gathering for praise, worship, the Word of God, and prayer at all MFM branches under Mega Region 2.</p>
+          <div class="monthly-card reveal" id="pmch">
+            <span class="badge badge--fire" style="margin-bottom:16px;">1st Saturday Monthly</span>
+            <h4>Power Must Change Hands</h4>
+            <div class="time-detail">8:00 AM – 11:30 AM CT</div>
+            <p>A flagship MFM programme held at Prayer City on the first Saturday of every month. Intense spiritual warfare, midnight prayers, and aggressive intercession — a gathering where stubborn situations are addressed by fire.</p>
+            <div class="location-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              MFM USA Prayer City, Houston TX
+            </div>
           </div>
 
-          <div class="schedule-card reveal">
-            <span class="badge badge--fire" style="margin-bottom:16px;">Weekly</span>
-            <h3>Manna Water Service</h3>
-            <div class="schedule-time">Every Wednesday</div>
-            <p>A midweek service for spiritual nourishment, the Word of God, and the ministration of anointed water for healing and breakthrough.</p>
-          </div>
-
-          <div class="schedule-card reveal" id="deliverance">
-            <span class="badge badge--fire" style="margin-bottom:16px;">Multi-Day</span>
-            <h3>Weekend Deliverance</h3>
-            <div class="schedule-time">Fri 7 PM – 12 AM · Sat 9 AM – 2 PM &amp; 8 PM – 12 AM · Sun 9 AM – 2 PM</div>
-            <p>Three days of focused deliverance ministry every week at MFM USA Prayer City — sustained spiritual warfare, the breaking of yokes, and the demonstration of God's delivering power.</p>
+          <div class="monthly-card reveal" id="solution-hour">
+            <span class="badge badge--gold" style="margin-bottom:16px;">2nd Saturday Monthly</span>
+            <h4>Solution Hour</h4>
+            <div class="time-detail">8:00 AM – 10:00 AM CT</div>
+            <p>A powerful monthly programme on the second Saturday of every month. A time set apart for God to provide solutions to complex situations and answer prayers that have long been waiting.</p>
+            <div class="location-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              MFM USA Prayer City, Houston TX
+            </div>
           </div>
 
         </div>
@@ -634,234 +623,148 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         SPECIAL EVENTS & CRUSADES (Cream)
+         3. UPCOMING EVENTS (Cream) — Carousel with auto-expire
+            Uses the SAME eventData JSON format as index.html.
+            Past events are hidden automatically by JS.
          ═══════════════════════════════════════════════════════ -->
-    <!-- ═══════════════════════════════════════════════════════
-         UPCOMING EVENTS — Detailed event cards with flyers
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white" id="upcoming-events">
+    <section class="section section--cream section--upcoming" id="upcoming-events">
       <div class="container">
 
         <div class="section-header text-center reveal">
           <p class="eyebrow">Coming Up</p>
           <h2>Upcoming Events</h2>
-          <p>Special conferences, crusades, and ministry programs happening soon.</p>
+          <p>Special conferences, crusades, and ministry programs happening soon across Mega Region 2.</p>
         </div>
 
-        <!-- Night of Worship & Wonders — Dallas -->
-        <div class="upcoming-event-detail reveal" id="night-of-worship">
-          <img class="upcoming-event-flyer" src="img/announcements/night-of-worship.jpg" alt="Night of Worship and Wonders — Friday April 24 2026, MFM Dallas Texas">
-          <div class="upcoming-event-info">
-            <span class="upcoming-event-badge">This Friday</span>
-            <h3>Night of Worship &amp; Wonders</h3>
-            <p class="theme">A Special Prayer Vigil</p>
-            <div class="upcoming-event-features">
-              <span>Prophetic Worship</span>
-              <span>Prophetic Prayer</span>
-              <span>Healing Breakthrough</span>
-              <span>Divine Intervention</span>
-            </div>
-            <div class="upcoming-event-meta-grid">
-              <div class="upcoming-event-meta-row">
-                <span class="label">Date</span>
-                <span class="value">Friday, April 24, 2026</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Time</span>
-                <span class="value">10:00 PM CST</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Venue</span>
-                <span class="value">306 N Greenville Ave, Richardson, TX 75081</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Host</span>
-                <span class="value">Pastor David Popoola — ASRO, MFM Dallas Texas</span>
-              </div>
-            </div>
-          </div>
+        <!-- Carousel — populated by JS from eventData below -->
+        <div class="upcoming-carousel-wrap reveal">
+          <button class="upcoming-arrow upcoming-arrow--left" id="upCarouselLeft" aria-label="Scroll left">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="upcoming-carousel" id="upCarousel"></div>
+          <button class="upcoming-arrow upcoming-arrow--right" id="upCarouselRight" aria-label="Scroll right">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="upcoming-dots" id="upCarouselDots"></div>
         </div>
 
-                <!-- Women Conference — Dallas -->
-        <div class="upcoming-event-detail reveal" id="women-conference-dallas">
-          <img class="upcoming-event-flyer" src="img/announcements/women-conference-dallas.jpg" alt="Women Conference Dallas — A Date with my Lord and Lover, Saturday May 16 2026">
-          <div class="upcoming-event-info">
-            <span class="upcoming-event-badge upcoming-event-badge--gold">Women Foundation</span>
-            <h3>Women Conference — Dallas</h3>
-            <p class="theme">"A Date with my Lord &amp; Lover"</p>
-            <div class="upcoming-event-meta-grid">
-              <div class="upcoming-event-meta-row">
-                <span class="label">Date</span>
-                <span class="value">Saturday, May 16, 2026</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Time</span>
-                <span class="value">10:00 AM – 2:00 PM</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Venue</span>
-                <span class="value">306 Greenville Ave, Richardson, TX 75081</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Ministering</span>
-                <span class="value">Pastor Olumide Oni — PRO, Mega Region 2</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Coordinator</span>
-                <span class="value">Pastor (Mrs.) Oluwatoyin Oni — Women Foundation, Mega Region 2</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Host</span>
-                <span class="value">Pastor David Popoola &amp; Pastor (Mrs.) Adenike Popoola</span>
-              </div>
-            </div>
-            <p style="font-size: 0.88rem; color: var(--text-dim-white); font-style: italic; margin-bottom: 20px;">"God is in the midst of her; she shall not be moved: God shall help her, and that right early." — Psalm 46:5</p>
-          </div>
-        </div>
-
-        <!-- Gen218 Prayer Conference -->
-        <div class="upcoming-event-detail reveal" id="gen218-prayer-conference">
-          <img class="upcoming-event-flyer" src="img/announcements/gen218-prayer-conference.jpg" alt="Gen218 Prayer Conference 2026 — Divine Alignment, June 20 2026">
-          <div class="upcoming-event-info">
-            <span class="upcoming-event-badge">Gen218 Singles</span>
-            <h3>Gen218 Prayer Conference 2026</h3>
-            <p class="theme">"Divine Alignment"</p>
-            <div class="upcoming-event-features">
-              <span>Prayers</span>
-              <span>Teaching</span>
-              <span>Healing</span>
-              <span>Prophetic Declarations</span>
-            </div>
-            <div class="upcoming-event-meta-grid">
-              <div class="upcoming-event-meta-row">
-                <span class="label">Date</span>
-                <span class="value">Saturday, June 20, 2026</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Time</span>
-                <span class="value">12:00 PM EST</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Platform</span>
-                <span class="value">Zoom — Meeting ID: 357 230 0941 · Passcode: 1234567</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Ministering</span>
-                <span class="value">Dr. D.K. Olukoya — General Overseer, MFM Worldwide</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Organizers</span>
-                <span class="value">MFM North America Gen218 Coordinators</span>
-              </div>
-            </div>
-            <p style="font-size: 0.88rem; color: var(--text-dim-white); margin-top: 8px;">A virtual prayer program for Christian singles across North America.</p>
-          </div>
-        </div>
-
-        <!-- International Youth Convention 2026 -->
-        <div class="upcoming-event-detail reveal" id="iyc-2026">
-          <img class="upcoming-event-flyer" src="img/announcements/iyc-2026.jpg" alt="International Youth Convention 2026 — July 16 to 19, MFM USA Headquarters">
-          <div class="upcoming-event-info">
-            <span class="upcoming-event-badge">Youth Convention</span>
-            <h3>International Youth Convention 2026</h3>
-            <p class="theme">Registration is now open!</p>
-            <div class="upcoming-event-meta-grid">
-              <div class="upcoming-event-meta-row">
-                <span class="label">Dates</span>
-                <span class="value">July 16 – 19, 2026</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Venue</span>
-                <span class="value">MFM USA Headquarters — 10000 Kleckley Dr, Houston, TX 77075</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Organizers</span>
-                <span class="value">MFM Youth Ministry</span>
-              </div>
-              <div class="upcoming-event-meta-row">
-                <span class="label">Registration</span>
-                <span class="value"><a href="https://mfmym.org/iyc2026/" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: underline;">mfmym.org/iyc2026</a></span>
-              </div>
-            </div>
-            <a href="https://mfmym.org/iyc2026/" target="_blank" rel="noopener" class="btn btn--fire btn--sm" style="margin-top: 12px;">Register Now →</a>
+        <!-- Fallback shown when all events have expired -->
+        <div class="upcoming-fallback" id="upFallback" style="display:none;">
+          <h3>Stay Tuned</h3>
+          <p>New events are being planned. Follow us on social media for the latest announcements.</p>
+          <div style="margin-top:20px;">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Follow on YouTube</a>
           </div>
         </div>
 
       </div>
     </section>
 
+    <!-- Event data — SYNCED with index.html.
+         Edit here to add/update special events.
+         Past events are hidden automatically.
+         Fields: date (required, YYYY-MM-DD), endDate (optional, for multi-day),
+         title, theme, time, venue, ministering, host, image, alt, link (optional URL), anchor. -->
+    <script type="application/json" id="eventData">
+    [
+      {
+        "date": "2026-04-24",
+        "title": "Night of Worship & Wonders",
+        "theme": "A Special Prayer Vigil",
+        "time": "10:00 PM CST",
+        "venue": "306 N Greenville Ave, Richardson, TX 75081",
+        "ministering": "Pastor David Popoola — ASRO, MFM Dallas Texas",
+        "image": "img/announcements/night-of-worship.jpg",
+        "alt": "Night of Worship and Wonders — Friday April 24, 2026, MFM Dallas Texas",
+        "anchor": "night-of-worship"
+      },
+      {
+        "date": "2026-05-16",
+        "title": "Women Conference — Dallas",
+        "theme": "\"A Date with my Lord + Lover\"",
+        "time": "10:00 AM – 2:00 PM",
+        "venue": "306 Greenville Ave, Richardson, TX 75081",
+        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
+        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
+        "image": "img/announcements/women-conference-dallas.jpg",
+        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
+        "anchor": "women-conference-dallas"
+      },
+      {
+        "date": "2026-06-20",
+        "title": "Gen218 Prayer Conference 2026",
+        "theme": "\"Divine Alignment\"",
+        "time": "12:00 PM EST",
+        "venue": "Virtual — Zoom (ID: 357 230 0941 · PW: 1234567)",
+        "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
+        "host": "MFM North America Gen218 Coordinators",
+        "image": "img/announcements/gen218-prayer-conference.jpg",
+        "alt": "Gen218 Prayer Conference 2026 — June 20, Divine Alignment",
+        "anchor": "gen218-prayer-conference"
+      },
+      {
+        "date": "2026-07-16",
+        "endDate": "2026-07-19",
+        "title": "International Youth Convention 2026",
+        "theme": "Registration is now open",
+        "venue": "MFM USA Headquarters — 10000 Kleckley Dr, Houston, TX 77075",
+        "host": "MFM Youth Ministry",
+        "link": "https://mfmym.org/iyc2026/",
+        "image": "img/announcements/iyc-2026.jpg",
+        "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open",
+        "anchor": "iyc-2026"
+      }
+    ]
+    </script>
 
-    <section class="section section--cream" id="special-events">
+
+    <!-- ═══════════════════════════════════════════════════════
+         4. CONNECT & PARTICIPATE (Navy)
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="connect">
       <div class="container">
 
         <div class="section-header text-center reveal">
-          <p class="eyebrow">Special Events</p>
-          <h2>Crusades &amp; Conferences</h2>
-          <p>Special combined services, deliverance crusades, and regional conferences throughout the year.</p>
+          <p class="eyebrow">Join Us</p>
+          <h2>Connect &amp; Participate</h2>
+          <p>Whether online or in person, there is a place for you in what God is doing through this ministry.</p>
         </div>
 
-        <div class="grid grid--2 reveal-stagger">
+        <div class="connect-grid reveal-stagger">
 
-          <div class="event-highlight reveal">
-            <span class="badge badge--fire" style="margin-bottom:16px;">Periodic</span>
-            <h3>Deliverance Crusades</h3>
-            <p>Special combined deliverance services bringing together all branches for concentrated spiritual warfare, mass prayer, and powerful testimonies. The God of Elijah answers by fire.</p>
-            <div class="event-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Dates announced on social media
-              </span>
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                MFM USA Prayer City, Houston TX
-              </span>
+          <div class="connect-card reveal">
+            <div class="connect-card-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
             </div>
+            <h4>Watch Online</h4>
+            <p>Join our live prayer services on YouTube and Facebook every Tuesday and Thursday — from anywhere in the world.</p>
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">YouTube Channel</a>
           </div>
 
-          <div class="event-highlight reveal">
-            <span class="badge badge--gold" style="margin-bottom:16px;">Monthly</span>
-            <h3>Women Foundation Events</h3>
-            <p>Monthly gatherings for the women of MFM Mega Region 2. A time of fellowship, teaching, prayer, and empowerment for women building the Kingdom.</p>
-            <div class="event-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Monthly — contact for schedule
-              </span>
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                (832) 788-8504
-              </span>
+          <div class="connect-card reveal">
+            <div class="connect-card-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
+            <h4>Visit Prayer City</h4>
+            <p>Come worship with us at MFM USA Prayer City for Weekend Deliverance, PMCH, Solution Hour, and more.</p>
+            <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Get Directions</a>
           </div>
 
-          <div class="event-highlight reveal">
-            <span class="badge badge--fire" style="margin-bottom:16px;">Annual</span>
-            <h3>Regional Conferences</h3>
-            <p>Annual conferences bringing together all Mega Region 2 branches for intensive teaching, worship, spiritual warfare, and fellowship.</p>
-            <div class="event-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Dates announced annually
-              </span>
+          <div class="connect-card reveal">
+            <div class="connect-card-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
+            <h4>Find a Branch</h4>
+            <p>MFM Mega Region 2 has branches across the United States. Find a church family near you.</p>
+            <a href="branches.html" class="btn btn--secondary btn--sm">View Branches</a>
           </div>
 
-          <div class="event-highlight reveal">
-            <span class="badge badge--gold" style="margin-bottom:16px;">Special</span>
-            <h3>Youth Church Programs</h3>
-            <p>Special programmes, retreats, and events organized by the MFM Mega Region 2 Youth Church — raising an aggressive end-time army of young believers on fire for God.</p>
-            <div class="event-meta">
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                6910 N Eldridge Pkwy, Houston TX 77041
-              </span>
-              <span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-dim)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                (346) 414-5880
-              </span>
-            </div>
-          </div>
+        </div>
 
+        <div class="text-center reveal" style="margin-top:48px;">
+          <p style="color:var(--text-dim-navy); font-size:0.88rem;">
+            MFM USA Prayer City · 10000 Kleckley Dr, Houston, TX 77075 · <a href="tel:+18327888504" style="color:var(--gold);">(832) 788-8504</a>
+          </p>
         </div>
 
       </div>
@@ -869,19 +772,17 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         STAY UPDATED CTA (Navy)
+         5. CTA (White)
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--dark" id="stay-updated">
+    <section class="section section--white" id="cta">
       <div class="container">
-        <div class="event-banner reveal" style="text-align:center; flex-direction:column; gap:20px;">
-          <h3 style="font-size:clamp(1.4rem, 2.5vw, 1.8rem);">Never Miss an Event</h3>
-          <p style="color:var(--text-muted); font-size:0.92rem; max-width:560px; margin:0 auto;">
-            Follow us on social media for announcements, live broadcasts, and event updates. Join our WhatsApp group for instant notifications.
-          </p>
-          <div class="btn-group btn-group--center" style="margin-top:8px;">
-            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">YouTube</a>
-            <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Facebook</a>
-            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Instagram</a>
+        <div class="cta-banner reveal">
+          <p class="eyebrow" style="justify-content:center;">Don't Miss It</p>
+          <h2>Don't Miss What God Is Doing</h2>
+          <p>Watch recent messages from our pulpit, stay connected through our media channels, or find an MFM branch near you. The fire is spreading — be part of it.</p>
+          <div class="btn-group btn-group--center">
+            <a href="media.html" class="btn btn--fire btn--sm">Watch Messages</a>
+            <a href="branches.html" class="btn btn--secondary btn--sm">Find a Branch</a>
           </div>
         </div>
       </div>
@@ -954,29 +855,36 @@
     </div>
   </footer>
 
-  <!-- FILM GRAIN -->
-    <!-- Back to Top -->
+  <!-- Back to Top -->
   <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
     <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
   </button>
 
+  <!-- FILM GRAIN -->
   <div class="grain" aria-hidden="true">
     <svg><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)"/></svg>
   </div>
 
   <!-- SCRIPTS -->
   <script>
+    /* ── Mobile Drawer ── */
     (function(){var h=document.getElementById('navHamburger'),d=document.getElementById('drawer'),o=document.getElementById('drawerOverlay');function open(){h.classList.add('open');h.setAttribute('aria-expanded','true');d.classList.add('open');o.classList.add('open');document.body.classList.add('drawer-open')}function close(){h.classList.remove('open');h.setAttribute('aria-expanded','false');d.classList.remove('open');o.classList.remove('open');document.body.classList.remove('drawer-open')}h.addEventListener('click',function(){d.classList.contains('open')?close():open()});o.addEventListener('click',close);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open'))close()})})();
 
+    /* ── Scrolled Nav ── */
     (function(){var n=document.getElementById('siteNav');var t=false;window.addEventListener('scroll',function(){if(!t){requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>60);t=false});t=true}})})();
 
+    /* ── Scroll Reveals ── */
     (function(){var r=document.querySelectorAll('.reveal');if(!r.length)return;var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target)}})},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});r.forEach(function(el){obs.observe(el)})})();
 
+    /* ── Footer Year ── */
     (function(){var e=document.getElementById('footerYear');if(e)e.textContent=new Date().getFullYear()})();
 
+    /* ── Active Nav Link ── */
     (function(){var p=window.location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-links a, .drawer-nav a').forEach(function(l){l.classList.remove('active');if(l.getAttribute('href')===p)l.classList.add('active')})})();
 
+    /* ── Netlify Identity ── */
     if(window.netlifyIdentity){window.netlifyIdentity.on('init',function(u){if(!u){window.netlifyIdentity.on('login',function(){document.location.href='/admin/'})}})}
+
     /* ── Back-to-Top Button ── */
     (function () {
       var btn = document.getElementById('backToTop');
@@ -995,8 +903,7 @@
       });
       update();
     })();
-  
-    
+
     /* ── Dropdown Toggles — hover on desktop, click fallback ── */
     (function () {
       var dropdowns = document.querySelectorAll('.nav-dropdown');
@@ -1015,7 +922,6 @@
       dropdowns.forEach(function (dd) {
         var toggle = dd.querySelector('.nav-dropdown-toggle');
 
-        /* Hover open (desktop / non-touch) */
         if (!isTouch) {
           dd.addEventListener('mouseenter', function () {
             clearTimeout(closeTimer);
@@ -1031,7 +937,6 @@
           });
         }
 
-        /* Click toggle (touch fallback + accessibility) */
         toggle.addEventListener('click', function (e) {
           e.stopPropagation();
           closeAll(dd);
@@ -1040,15 +945,11 @@
         });
       });
 
-      /* Close on outside click */
       document.addEventListener('click', function () { closeAll(); });
-
-      /* Close on Escape */
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAll();
       });
 
-      /* Highlight parent toggle when on a sub-page */
       var currentPath = window.location.pathname.split('/').pop() || 'index.html';
       dropdowns.forEach(function (dd) {
         var links = dd.querySelectorAll('.nav-dropdown-menu a');
@@ -1058,6 +959,141 @@
             dd.querySelector('.nav-dropdown-toggle').classList.add('active');
           }
         });
+      });
+    })();
+
+
+    /* ══════════════════════════════════════════════════════════════
+       Upcoming Events Carousel — Auto-expire logic
+       Reads JSON from #eventData. Only FUTURE events are shown.
+       SYNCED with the same logic used on index.html.
+       ══════════════════════════════════════════════════════════════ */
+    (function () {
+      var section     = document.getElementById('upcoming-events');
+      var dataEl      = document.getElementById('eventData');
+      var carousel    = document.getElementById('upCarousel');
+      var dotsWrap    = document.getElementById('upCarouselDots');
+      var arrowL      = document.getElementById('upCarouselLeft');
+      var arrowR      = document.getElementById('upCarouselRight');
+      var fallback    = document.getElementById('upFallback');
+      var carouselWrap = document.querySelector('.upcoming-carousel-wrap');
+      if (!section || !dataEl || !carousel) return;
+
+      var events;
+      try { events = JSON.parse(dataEl.textContent); }
+      catch (e) { console.warn('Invalid eventData JSON', e); section.style.display='none'; return; }
+      if (!Array.isArray(events)) { section.style.display='none'; return; }
+
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      function parseYMD(s) {
+        if (!s) return null;
+        var p = s.split('-');
+        if (p.length !== 3) return null;
+        var d = new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+        d.setHours(0,0,0,0);
+        return d;
+      }
+
+      var parsed = events.map(function (ev) {
+        var start = parseYMD(ev.date);
+        if (!start) return null;
+        var end = parseYMD(ev.endDate) || start;
+        if (end < today) return null;
+        return { ev: ev, start: start, end: end };
+      }).filter(function (x) { return x; });
+
+      parsed.sort(function (a, b) { return a.start - b.start; });
+
+      if (parsed.length === 0) {
+        // Show fallback, hide carousel
+        if (carouselWrap) carouselWrap.style.display = 'none';
+        if (fallback) fallback.style.display = 'block';
+        return;
+      }
+
+      var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun',
+                        'Jul','Aug','Sep','Oct','Nov','Dec'];
+
+      function shortDate(dt) {
+        return DAYS[dt.getDay()] + ' \u00b7 ' + SHORT_MONS[dt.getMonth()] + ' ' + dt.getDate();
+      }
+      function dateRange(start, end) {
+        if (start.getTime() === end.getTime()) return shortDate(start);
+        var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
+        if (sameMonth) return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + end.getDate();
+        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + SHORT_MONS[end.getMonth()] + ' ' + end.getDate();
+      }
+      function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+      function eyebrowFor(item) {
+        var delta = Math.round((item.start - today) / 86400000);
+        var multi = item.start.getTime() !== item.end.getTime();
+        if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
+        if (delta === 1) return 'Tomorrow';
+        if (delta <= 7) return 'This Week';
+        return dateRange(item.start, item.end);
+      }
+
+      var html = '';
+      for (var i = 0; i < parsed.length; i++) {
+        var item = parsed[i];
+        var ev = item.ev;
+        var link = ev.link || '#';
+        var target = (ev.link && /^https?:/i.test(ev.link)) ? ' target="_blank" rel="noopener"' : '';
+        var metaParts = [];
+        if (ev.time) metaParts.push(ev.time);
+        if (ev.venue) metaParts.push(ev.venue);
+
+        html +=
+          '<div class="upcoming-card" id="' + esc(ev.anchor || '') + '">' +
+            '<img class="upcoming-card-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
+            '<div class="upcoming-card-body">' +
+              '<div class="upcoming-card-tag">' + esc(eyebrowFor(item)) + '</div>' +
+              '<h4>' + esc(ev.title) + '</h4>' +
+              (ev.theme ? '<div class="upcoming-card-theme">' + esc(ev.theme) + '</div>' : '') +
+              (metaParts.length ? '<p class="upcoming-card-meta">' + esc(metaParts.join(' \u00b7 ')) + '</p>' : '') +
+              (ev.link ? '<a href="' + esc(ev.link) + '"' + target + ' class="upcoming-card-cta">Learn More</a>' : '<span class="upcoming-card-cta">Details</span>') +
+            '</div>' +
+          '</div>';
+      }
+      carousel.innerHTML = html;
+
+      /* Dot indicators */
+      var cards = carousel.querySelectorAll('.upcoming-card');
+      var dotHtml = '';
+      for (var d = 0; d < cards.length; d++) {
+        dotHtml += '<button class="upcoming-dot' + (d === 0 ? ' active' : '') + '" data-idx="' + d + '" aria-label="Go to event ' + (d+1) + '"></button>';
+      }
+      dotsWrap.innerHTML = dotHtml;
+      var dots = dotsWrap.querySelectorAll('.upcoming-dot');
+
+      function updateDots() {
+        var scrollLeft = carousel.scrollLeft;
+        var cardW = cards[0].offsetWidth + 24;
+        var idx = Math.round(scrollLeft / cardW);
+        idx = Math.max(0, Math.min(idx, cards.length - 1));
+        for (var j = 0; j < dots.length; j++) {
+          dots[j].classList.toggle('active', j === idx);
+        }
+      }
+
+      carousel.addEventListener('scroll', updateDots);
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var idx = parseInt(this.getAttribute('data-idx'));
+          cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        });
+      });
+
+      arrowL.addEventListener('click', function() {
+        carousel.scrollBy({ left: -364, behavior: 'smooth' });
+      });
+      arrowR.addEventListener('click', function() {
+        carousel.scrollBy({ left: 364, behavior: 'smooth' });
       });
     })();
   </script>
