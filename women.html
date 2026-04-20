@@ -58,17 +58,16 @@
       width: 180px;
       height: 180px;
       object-fit: contain;
-      border-radius: 20px;
       position: relative;
       z-index: 2;
-      box-shadow: 0 12px 48px rgba(201,149,44,0.2);
+      filter: drop-shadow(0 4px 24px rgba(201,149,44,0.25));
     }
 
     .women-hero-logo::before {
       content: '';
       position: absolute;
       inset: -16px;
-      border-radius: 32px;
+      border-radius: 50%;
       background: radial-gradient(circle, rgba(201,149,44,0.12) 0%, rgba(232,93,38,0.05) 50%, transparent 70%);
       animation: logoPulse 5s ease-in-out infinite;
       z-index: 1;
@@ -167,7 +166,7 @@
         order: -1;
       }
       .women-hero-logo img { width: 140px; height: 140px; }
-      .women-hero-logo::before { inset: -10px; border-radius: 26px; }
+      .women-hero-logo::before { inset: -10px; border-radius: 50%; }
       .women-hero-eyebrow { justify-content: center; }
       .women-hero-eyebrow::before { display: none; }
       .women-hero-desc { margin-left: auto; margin-right: auto; }
