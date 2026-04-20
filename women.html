@@ -556,6 +556,19 @@
       .connect-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
+  <link rel="canonical" href="https://mfmmegaregion2usa.com/women.html">
+  <meta property="og:url" content="https://mfmmegaregion2usa.com/women.html">
+  <meta property="og:site_name" content="MFM Mega Region 2 USA">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://mfmmegaregion2usa.com/img/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Women Foundation — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Women Foundation — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries">
+  <meta name="twitter:description" content="MFM Women Foundation, Mega Region 2 USA. Empowerment, prayer, and deliverance for women of purpose and destiny. Led internationally by Pastor (Dr.) Mrs. Shade Olukoya and regionally by Pastor (Mrs.) Oluwatoyin Oni.">
+  <meta name="twitter:image" content="https://mfmmegaregion2usa.com/img/logo.png">
 </head>
 <body>
 
@@ -1039,6 +1052,11 @@
   <!-- ═══════════════════════════════════════════════════════
        FILM GRAIN OVERLAY
        ═══════════════════════════════════════════════════════ -->
+    <!-- Back to Top -->
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
+  </button>
+
   <div class="grain" aria-hidden="true">
     <svg>
       <filter id="noiseFilter">
@@ -1159,6 +1177,24 @@
         }
       });
     }
+    /* ── Back-to-Top Button ── */
+    (function () {
+      var btn = document.getElementById('backToTop');
+      if (!btn) return;
+      var ticking = false;
+      function update() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      update();
+    })();
   </script>
 
 </body>
