@@ -230,6 +230,8 @@
       cursor: pointer;
       font-family: var(--font-sans);
       transition: background 0.2s;
+      -webkit-user-select: none;
+      user-select: none;
     }
     .state-accordion-header:hover {
       background: rgba(201, 149, 44, 0.04);
@@ -860,14 +862,14 @@
         <div class="state-accordions reveal" id="stateAccordions">
 
           <div class="state-accordion open" data-accordion-state="Texas">
-            <button class="state-accordion-header" aria-expanded="true">
+            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="true">
               <div class="state-accordion-left">
                 <span class="state-badge state-badge--gold">TX</span>
                 <h3>Texas</h3>
                 <span class="state-accordion-count">20 branches</span>
               </div>
               <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
               <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm rehoboth">
@@ -1367,14 +1369,14 @@
           </div>
 
           <div class="state-accordion" data-accordion-state="Florida">
-            <button class="state-accordion-header" aria-expanded="false">
+            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
               <div class="state-accordion-left">
                 <span class="state-badge state-badge--fire">FL</span>
                 <h3>Florida</h3>
                 <span class="state-accordion-count">5 branches</span>
               </div>
               <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
               <div class="branch-card" data-state="Florida" data-city="tampa" data-name="mfm tampa">
@@ -1507,14 +1509,14 @@
           </div>
 
           <div class="state-accordion" data-accordion-state="Georgia">
-            <button class="state-accordion-header" aria-expanded="false">
+            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
               <div class="state-accordion-left">
                 <span class="state-badge state-badge--purple">GA</span>
                 <h3>Georgia</h3>
                 <span class="state-accordion-count">4 branches</span>
               </div>
               <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
               <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm revival center">
@@ -1622,14 +1624,14 @@
           </div>
 
           <div class="state-accordion" data-accordion-state="North Carolina">
-            <button class="state-accordion-header" aria-expanded="false">
+            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
               <div class="state-accordion-left">
                 <span class="state-badge state-badge--teal">NC</span>
                 <h3>North Carolina</h3>
                 <span class="state-accordion-count">1 branch</span>
               </div>
               <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
               <div class="branch-card" data-state="North Carolina" data-city="raleigh" data-name="mfm revival &amp; solution center">
@@ -1662,14 +1664,14 @@
           </div>
 
           <div class="state-accordion" data-accordion-state="Oklahoma">
-            <button class="state-accordion-header" aria-expanded="false">
+            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
               <div class="state-accordion-left">
                 <span class="state-badge state-badge--gold">OK</span>
                 <h3>Oklahoma</h3>
                 <span class="state-accordion-count">1 branch</span>
               </div>
               <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
               <div class="branch-card" data-state="Oklahoma" data-city="tulsa" data-name="mfm tulsa">
@@ -1702,14 +1704,14 @@
           </div>
 
           <div class="state-accordion" data-accordion-state="Tennessee">
-            <button class="state-accordion-header" aria-expanded="false">
+            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
               <div class="state-accordion-left">
                 <span class="state-badge state-badge--fire">TN</span>
                 <h3>Tennessee</h3>
                 <span class="state-accordion-count">1 branch</span>
               </div>
               <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
+            </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
               <div class="branch-card" data-state="Tennessee" data-city="antioch" data-name="mfm nashville">
@@ -2011,6 +2013,12 @@
           var isOpen = acc.classList.contains('open');
           acc.classList.toggle('open');
           header.setAttribute('aria-expanded', !isOpen);
+        });
+        header.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            header.click();
+          }
         });
       });
     })();
