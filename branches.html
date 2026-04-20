@@ -270,6 +270,216 @@
       .branches-grid { grid-template-columns: 1fr; }
       .branch-search { font-size: 16px; }
     }
+
+    /* ── Split Hero — Branches ── */
+    .branches-hero {
+      background: var(--bg-navy);
+      padding: 140px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .branches-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -20px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(201,149,44,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .branches-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 300px; height: 200px;
+      background: radial-gradient(circle at 0% 100%, rgba(232,93,38,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 40px;
+      align-items: center;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-ey-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .hero-ey-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,149,44,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-ey-badge span {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .branches-hero h1.hero-line-light {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw + 0.5rem, 2.6rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.12;
+      margin: 0 0 2px;
+    }
+    .branches-hero h1.hero-line-bold {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw + 0.5rem, 3.2rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.08;
+      margin: 0 0 16px;
+    }
+    .branches-hero h1.hero-line-bold .fire-word {
+      color: var(--fire);
+    }
+    .branches-hero h1.hero-line-bold .of-word {
+      font-weight: 300;
+      font-size: clamp(2rem, 4vw + 0.5rem, 2.6rem);
+      color: var(--cream);
+    }
+    .hero-subtitle {
+      color: var(--text-on-navy);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      max-width: 380px;
+      margin: 0 0 24px;
+    }
+    .hero-stats-row {
+      display: flex;
+      gap: 20px;
+    }
+    .hero-stat-num {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.62rem;
+      color: var(--text-dim-navy);
+      margin-top: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .hero-stat-divider {
+      width: 1px;
+      background: rgba(201,149,44,0.18);
+    }
+    .hero-pin-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-state-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      max-width: 210px;
+    }
+    .hero-state-pill {
+      padding: 4px 11px;
+      border-radius: 100px;
+      font-size: 0.62rem;
+      font-weight: 600;
+    }
+    .pill--gold { background: rgba(201,149,44,0.1); color: #d4a853; border: 1px solid rgba(201,149,44,0.15); }
+    .pill--fire { background: rgba(232,93,38,0.1); color: #ff7a3d; border: 1px solid rgba(232,93,38,0.12); }
+    .pill--purple { background: rgba(100,70,160,0.1); color: #a98fd8; border: 1px solid rgba(100,70,160,0.1); }
+    .pill--teal { background: rgba(0,150,136,0.08); color: #4db6ac; border: 1px solid rgba(0,150,136,0.1); }
+
+    /* Hero Search Bar */
+    .hero-search-bar {
+      max-width: var(--container-max);
+      margin: 28px auto 0;
+      padding: 0 var(--gutter) 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-search-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 13px 6px 13px 42px;
+      border: 1px solid rgba(201,149,44,0.2);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      box-sizing: border-box;
+      position: relative;
+      cursor: text;
+    }
+    .hero-search-inner svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim-navy);
+    }
+    .hero-search-inner input {
+      flex: 1;
+      border: none;
+      background: none;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      color: var(--cream);
+      outline: none;
+    }
+    .hero-search-inner input::placeholder { color: var(--text-dim-navy); }
+    .hero-search-btn {
+      padding: 7px 16px;
+      background: var(--gold);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--bg-navy);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .hero-search-btn:hover { background: var(--gold-light); }
+
+    /* Hero Motto Strip */
+    .hero-motto-strip {
+      background: var(--bg-navy-deep);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 11px 24px;
+      font-size: 0.68rem;
+      color: var(--text-dim-navy);
+      letter-spacing: 0.06em;
+    }
+    .hero-motto-strip .dot {
+      color: var(--gold);
+    }
+
+    @media (max-width: 768px) {
+      .branches-hero { padding-top: 110px; }
+      .hero-split-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        text-align: center;
+      }
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+      .hero-stats-row { justify-content: center; }
+      .hero-pin-col { margin: 0 auto; }
+      .hero-ey-badge { justify-content: center; }
+    }
   </style>
   <!-- Netlify Identity Widget (needed for CMS) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
@@ -385,13 +595,99 @@
 
   <main>
 
-    <!-- ── Hero ── -->
-    <section class="hero hero--short">
-      <div class="hero-content">
-        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
-        <p class="eyebrow" style="justify-content:center">Our Locations</p>
-        <h1>Find Your <span class="fire-underline">Fire</span></h1>
+    <!-- ═══════════════════════════════════════════════════════
+         HERO — Split Editorial with Location Pin
+         ═══════════════════════════════════════════════════════ -->
+    <section class="branches-hero">
+
+      <div class="hero-split-grid">
+        <!-- Left: Text -->
+        <div>
+          <div class="hero-ey-badge">
+            <div class="hero-ey-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c9952c" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span>Branch Directory</span>
+          </div>
+
+          <h1 class="hero-line-light">Discover</h1>
+          <h1 class="hero-line-bold">Where the <span class="fire-word">Fire</span> Burns</h1>
+
+          <p class="hero-subtitle">32 branches across 6 states &mdash; every one a furnace of prayer. Find the Mountain of Fire nearest to you.</p>
+
+          <div class="hero-stats-row">
+            <div>
+              <div class="hero-stat-num">32</div>
+              <div class="hero-stat-label">Branches</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div>
+              <div class="hero-stat-num">6</div>
+              <div class="hero-stat-label">States</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div>
+              <div class="hero-stat-num">1</div>
+              <div class="hero-stat-label">Mission</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Location Pin with Logo -->
+        <div class="hero-pin-col">
+          <svg width="160" height="195" viewBox="0 0 160 195" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="pinGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e85d26"/>
+                <stop offset="100%" stop-color="#c9952c"/>
+              </linearGradient>
+              <clipPath id="logoClip">
+                <circle cx="80" cy="70" r="32"/>
+              </clipPath>
+            </defs>
+            <!-- Pin shape -->
+            <path d="M80 8C45 8 18 35 18 68C18 115 80 188 80 188C80 188 142 115 142 68C142 35 115 8 80 8Z" fill="url(#pinGrad)" opacity="0.12" stroke="#c9952c" stroke-width="0.8"/>
+            <path d="M80 22C52 22 30 44 30 70C30 105 80 165 80 165C80 165 130 105 130 70C130 44 108 22 80 22Z" fill="none" stroke="#c9952c" stroke-width="0.4" opacity="0.3"/>
+            <!-- Logo circle -->
+            <circle cx="80" cy="70" r="32" fill="rgba(20,34,64,0.6)" stroke="#c9952c" stroke-width="1"/>
+            <image href="img/logo.png" x="48" y="38" width="64" height="64" clip-path="url(#logoClip)" preserveAspectRatio="xMidYMid slice"/>
+            <!-- Orbit ring -->
+            <circle cx="80" cy="70" r="46" fill="none" stroke="rgba(201,149,44,0.08)" stroke-width="0.4" stroke-dasharray="3 4"/>
+            <!-- Pulse animation -->
+            <circle cx="80" cy="70" r="52" fill="none" stroke="#e85d26" stroke-width="0.3" opacity="0.2">
+              <animate attributeName="r" values="52;62;52" dur="4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.2;0;0.2" dur="4s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+          <div class="hero-state-pills">
+            <span class="hero-state-pill pill--gold">Texas &middot; 20</span>
+            <span class="hero-state-pill pill--fire">Florida &middot; 5</span>
+            <span class="hero-state-pill pill--purple">Georgia &middot; 4</span>
+            <span class="hero-state-pill pill--teal">NC &middot; 1</span>
+            <span class="hero-state-pill pill--gold">OK &middot; 1</span>
+            <span class="hero-state-pill pill--fire">TN &middot; 1</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Hero Search Bar -->
+      <div class="hero-search-bar">
+        <div class="hero-search-inner" onclick="document.getElementById('heroSearchInput').focus()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="heroSearchInput" placeholder="Search by city, branch name, or pastor...">
+          <button class="hero-search-btn" type="button" onclick="triggerHeroSearch()">Search</button>
+        </div>
+      </div>
+
+      <!-- Fire Motto Strip -->
+      <div class="hero-motto-strip">
+        <span>Fire in the Word</span>
+        <span class="dot">&middot;</span>
+        <span>Fire on the Mountain</span>
+        <span class="dot">&middot;</span>
+        <span>Fire in the Bone</span>
+      </div>
+
     </section>
 
 
@@ -1759,6 +2055,30 @@
     })();
 
 
+
+
+    /* ── Hero Search Bridge ── */
+    function triggerHeroSearch() {
+      var heroInput = document.getElementById('heroSearchInput');
+      var branchSearch = document.getElementById('branchSearch');
+      var branchSection = document.getElementById('regional-branches');
+      if (heroInput && branchSearch && branchSection) {
+        branchSearch.value = heroInput.value;
+        branchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function() {
+          branchSearch.dispatchEvent(new Event('input'));
+          branchSearch.focus();
+        }, 600);
+      }
+    }
+    (function() {
+      var heroInput = document.getElementById('heroSearchInput');
+      if (heroInput) {
+        heroInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') { triggerHeroSearch(); }
+        });
+      }
+    })();
     /* ── Netlify Identity Redirect (for CMS) ── */
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', function (user) {
