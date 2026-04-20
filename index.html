@@ -578,6 +578,63 @@
       .prayer-form .btn { align-self: stretch; }
       .countdown-sidebar { max-width: 400px; margin: 0 auto; }
     }
+
+    /* ── Address Strip (cream divider before footer) ── */
+    .address-strip {
+      background: var(--bg-cream);
+      padding: 32px var(--gutter);
+    }
+    .address-strip-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .address-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .address-strip-left img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .address-strip-left p {
+      font-size: 0.85rem;
+      color: var(--text-on-white);
+      line-height: 1.4;
+    }
+    .address-strip-left strong {
+      color: var(--navy);
+    }
+    .address-strip-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .address-strip-right a {
+      font-size: 0.82rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .address-strip-right a:hover { color: var(--fire); }
+    .address-strip-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--line-white-strong);
+    }
+    @media (max-width: 600px) {
+      .address-strip-inner { flex-direction: column; text-align: center; }
+      .address-strip-left { flex-direction: column; gap: 8px; }
+      .address-strip-right { justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -930,6 +987,24 @@
     </section>
 
   </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       ADDRESS STRIP (cream divider before footer)
+       ═══════════════════════════════════════════════════════ -->
+  <div class="address-strip">
+    <div class="address-strip-inner">
+      <div class="address-strip-left">
+        <img src="img/logo.png" alt="" width="36" height="36">
+        <p><strong>MFM USA Prayer City</strong> · 10000 Kleckley Dr, Houston, TX 77075</p>
+      </div>
+      <div class="address-strip-right">
+        <a href="tel:+18327888504">(832) 788-8504</a>
+        <span class="address-strip-dot"></span>
+        <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">Get Directions →</a>
+      </div>
+    </div>
+  </div>
 
 
   <!-- ═══════════════════════════════════════════════════════
