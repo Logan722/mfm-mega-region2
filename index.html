@@ -337,8 +337,10 @@
     /* ── Connect Grid ── */
     .connect-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
+      max-width: 700px;
+      margin: 0 auto;
     }
     .connect-block h3 {
       font-family: var(--font-serif);
@@ -704,17 +706,31 @@
 
         <div class="section-header text-center reveal">
           <p class="eyebrow">Leadership</p>
-          <h2>Meet Our Pastors</h2>
+          <h2>Meet Our Leaders</h2>
+          <p>The men and women of God leading this ministry in prayer, fire, and the demonstration of power.</p>
         </div>
 
-        <div class="leadership-split">
+        <!-- G.O. & Mummy G.O. -->
+        <div class="grid grid--2 reveal-stagger" style="max-width:600px; margin:0 auto 56px;">
+          <div class="leader-card reveal">
+            <img src="img/photos/Daniel Olukoya 2.png" alt="Dr. D.K. Olukoya — General Overseer" class="leader-card-photo">
+            <h3>Dr. D.K. Olukoya</h3>
+            <p>General Overseer, MFM Worldwide</p>
+          </div>
+          <div class="leader-card reveal">
+            <img src="img/photos/shade olukoya.jpeg" alt="Pastor (Dr.) Mrs. Shade Olukoya — Mummy G.O." class="leader-card-photo">
+            <h3>Pastor (Dr.) Mrs. Shade Olukoya</h3>
+            <p>Mummy G.O. · MFM Worldwide</p>
+          </div>
+        </div>
 
-          <!-- Photo Column -->
+        <hr class="divider reveal" style="max-width:200px; margin:0 auto 56px; background:var(--line-white-strong);">
+
+        <!-- Regional Overseers -->
+        <div class="leadership-split">
           <div class="leadership-photo reveal">
             <img src="img/photos/couple-blue.jpg" alt="Pastor Olumide Oni and Pastor (Mrs.) Oluwatoyin Oni">
           </div>
-
-          <!-- Text Column -->
           <div class="leadership-text reveal reveal--right">
             <h3>Pastor Olumide &amp; Pastor (Mrs.) Oluwatoyin Oni</h3>
             <p class="role">Principal Regional Overseer &amp; Co-Laborer, Mega Region 2</p>
@@ -724,15 +740,10 @@
             <p>
               A prolific author of over 107 anointed books, Pastor Oni is known for dynamic teaching, administrative excellence, and a powerful personal testimony of God's deliverance.
             </p>
-            <blockquote style="margin-top:20px; border-left:3px solid var(--gold); padding-left:16px;">
-              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
-              <cite style="display:block; margin-top:6px; font-size:0.82rem; color:var(--gold);">— Psalm 144:1</cite>
-            </blockquote>
             <div style="margin-top:24px;">
               <a href="about.html" class="btn btn--primary btn--sm">Read Full Bio →</a>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -797,18 +808,7 @@
             </div>
           </div>
 
-          <!-- Service Times -->
-          <div class="connect-block reveal">
-            <h3>Service Schedule</h3>
-            <ul class="service-list">
-              <li><span class="day">Tuesday</span><span>Healing Hour · 7 PM CT</span></li>
-              <li><span class="day">Wednesday</span><span>Manna Water</span></li>
-              <li><span class="day">Thursday</span><span>Open Heaven · 6 PM CST</span></li>
-              <li><span class="day">Friday</span><span>Prayer Rain</span></li>
-              <li><span class="day">1st Saturday</span><span>PMCH · 8 AM</span></li>
-              <li><span class="day">Sunday</span><span>Worship Service</span></li>
-            </ul>
-          </div>
+
 
         </div>
 
