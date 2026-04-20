@@ -16,6 +16,175 @@
 
   <style>
         /* ═══════════════════════════════════════
+       ABOUT HERO — "DIAGONAL SPLIT"
+       ═══════════════════════════════════════ */
+    .about-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px var(--gutter) 80px;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, rgba(15, 26, 48, 0.85) 0%, rgba(15, 26, 48, 0.85) 48%, transparent 48.5%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      width: 50vw;
+      height: 60vh;
+      background: radial-gradient(ellipse at center, rgba(201, 149, 44, 0.08) 0%, rgba(232, 93, 38, 0.04) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      margin-left: max(var(--gutter), calc((100vw - var(--container-max)) / 2));
+    }
+
+    .about-hero-content .hero-emblem {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 4px 20px rgba(201,149,44,0.3));
+      animation: floatIn 1s var(--ease-out) both;
+    }
+
+    .about-hero-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.6s var(--ease-out) 0.1s both;
+    }
+
+    .about-hero-label::before {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: var(--fire);
+    }
+
+    .about-hero-title {
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s var(--ease-out) 0.2s both;
+    }
+
+    .about-hero-title h1 {
+      font-size: clamp(2.4rem, 5vw + 0.8rem, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 0;
+    }
+
+    .about-hero-motto {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s var(--ease-out) 0.35s both;
+    }
+
+    .about-hero-motto span {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    .about-hero-motto .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--fire);
+      opacity: 0.5;
+    }
+
+    .about-hero-desc {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 420px;
+      animation: fadeUp 0.7s var(--ease-out) 0.45s both;
+    }
+
+    .about-hero-cta {
+      margin-top: 32px;
+      animation: fadeUp 0.7s var(--ease-out) 0.55s both;
+    }
+
+    .about-hero-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 48%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent 10%, rgba(201,149,44,0.2) 30%, rgba(232,93,38,0.15) 70%, transparent 90%);
+      transform: skewX(-15deg);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .about-hero::before {
+        background: linear-gradient(115deg, rgba(15, 26, 48, 0.88) 0%, rgba(15, 26, 48, 0.88) 55%, transparent 55.5%);
+      }
+      .about-hero-line { left: 55%; }
+    }
+
+    @media (max-width: 768px) {
+      .about-hero {
+        align-items: flex-end;
+        padding-bottom: 60px;
+      }
+      .about-hero::before {
+        background: linear-gradient(180deg, rgba(15, 26, 48, 0.5) 0%, rgba(15, 26, 48, 0.9) 60%, rgba(15, 26, 48, 0.95) 100%);
+      }
+      .about-hero-content {
+        margin-left: 0;
+        max-width: 100%;
+        text-align: center;
+      }
+      .about-hero-content .hero-emblem { margin: 0 auto 24px; }
+      .about-hero-label { justify-content: center; }
+      .about-hero-label::before { display: none; }
+      .about-hero-motto { justify-content: center; }
+      .about-hero-desc { margin: 0 auto; }
+      .about-hero-cta { text-align: center; }
+      .about-hero-line { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .about-hero { min-height: 90vh; }
+      .about-hero-content .hero-emblem { width: 64px; height: 64px; }
+    }
+
+        /* ═══════════════════════════════════════
        CONTENT COMPONENTS
        ═══════════════════════════════════════ */
 
@@ -419,12 +588,30 @@
     <!-- ═══════════════════════════════════════════════════════
          HERO — EDITORIAL STACK
          ═══════════════════════════════════════════════════════ -->
-    <section class="hero hero--short">
-      <div class="hero-content">
-        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="100" height="100">
-        <p class="eyebrow" style="justify-content:center">About Us</p>
-        <h1>Mountain of <span class="fire-underline">Fire</span> &amp; Miracles</h1>
-        <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+    <section class="about-hero">
+      <div class="about-hero-line" aria-hidden="true"></div>
+
+      <div class="about-hero-content">
+        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="80" height="80">
+        <p class="about-hero-label">About Mega Region 2 USA</p>
+
+        <div class="about-hero-title">
+          <h1>Mountain of <span class="fire-underline">Fire</span> &amp; Miracles Ministries</h1>
+        </div>
+
+        <div class="about-hero-motto">
+          <span>Fire in the Word</span>
+          <span class="dot"></span>
+          <span>Fire on the Mountain</span>
+          <span class="dot"></span>
+          <span>Fire in the Bone</span>
+        </div>
+
+        <p class="about-hero-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+
+        <div class="about-hero-cta">
+          <a href="#leadership" class="btn btn--secondary btn--sm">Meet Our Leaders ↓</a>
+        </div>
       </div>
     </section>
 
