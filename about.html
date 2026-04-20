@@ -16,203 +16,216 @@
 
   <style>
         /* ═══════════════════════════════════════
-       ABOUT HERO — "BOTTOM TICKER"
+       ABOUT HERO — "MAGAZINE GRID"
        ═══════════════════════════════════════ */
     .about-hero {
       position: relative;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: center;
+      padding: 120px var(--gutter) 60px;
       overflow: hidden;
     }
 
-    /* Atmosphere — warm glow center */
     .about-hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 50% 50% at 50% 45%, rgba(201, 149, 44, 0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 35% 30% at 50% 45%, rgba(232, 93, 38, 0.04) 0%, transparent 55%);
+        radial-gradient(ellipse 50% 45% at 50% 50%, rgba(201,149,44,0.06) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 30% at 50% 50%, rgba(232,93,38,0.03) 0%, transparent 55%);
       pointer-events: none;
     }
 
-    /* Centered logo — floating in the atmosphere */
-    .about-hero-emblem {
-      position: absolute;
-      top: 42%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
-
-    .about-hero-emblem img {
-      width: 160px;
-      height: 160px;
-      filter: drop-shadow(0 8px 40px rgba(201,149,44,0.25));
-      animation: floatIn 1.2s var(--ease-out) both;
-    }
-
-    /* Concentric glow rings behind logo */
-    .about-hero-ring {
-      position: absolute;
-      top: 42%;
-      left: 50%;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .about-hero-ring--1 {
-      width: 260px;
-      height: 260px;
-      margin: -130px 0 0 -130px;
-      border: 1px solid rgba(201,149,44,0.1);
-      animation: ringPulse 4s ease-in-out infinite;
-    }
-    .about-hero-ring--2 {
-      width: 380px;
-      height: 380px;
-      margin: -190px 0 0 -190px;
-      border: 1px solid rgba(201,149,44,0.06);
-      animation: ringPulse 6s ease-in-out infinite 1s;
-    }
-    @keyframes ringPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.04); }
-    }
-
-    /* Bottom ticker strip */
-    .about-hero-ticker {
+    .mag-grid {
       position: relative;
       z-index: 2;
-      border-top: 1px solid rgba(201,149,44,0.12);
-      background: rgba(15, 26, 48, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 28px 0;
-      animation: fadeUp 0.7s var(--ease-out) 0.3s both;
-    }
-
-    .about-hero-ticker-inner {
+      width: 100%;
       max-width: var(--container-max);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 0;
+    }
+
+    /* ── Row 1: label left, logo right ── */
+    .mag-top-left {
       display: flex;
-      align-items: center;
-      gap: 28px;
+      align-items: flex-end;
+      padding-bottom: 24px;
+      animation: fadeUp 0.6s var(--ease-out) 0.05s both;
     }
 
-    .ticker-logo {
-      flex-shrink: 0;
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      opacity: 0.7;
-    }
-
-    .ticker-title {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .ticker-title h1 {
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 600;
-      color: var(--cream);
-      line-height: 1.2;
-      margin-bottom: 0;
-    }
-
-    .ticker-title h1 .fire-underline {
-      background-size: 100% 2px;
-    }
-
-    .ticker-title p {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      margin-top: 2px;
-      margin-bottom: 0;
-    }
-
-    .ticker-sep {
-      width: 1px;
-      height: 36px;
-      background: rgba(201,149,44,0.15);
-      flex-shrink: 0;
-    }
-
-    .ticker-motto {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-shrink: 0;
-    }
-
-    .ticker-motto span {
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      white-space: nowrap;
-    }
-
-    .ticker-motto .dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--fire);
-      opacity: 0.4;
-    }
-
-    .ticker-cta {
-      flex-shrink: 0;
-    }
-
-    /* "ABOUT" large faded text above ticker */
-    .about-hero-label {
-      position: absolute;
-      bottom: 110px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      font-family: var(--font-sans);
+    .mag-top-left .mag-label {
       font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--fire);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mag-top-left .mag-label::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: var(--fire);
+    }
+
+    .mag-top-right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-bottom: 24px;
       animation: fadeUp 0.6s var(--ease-out) 0.1s both;
     }
 
-    @media (max-width: 900px) {
-      .ticker-motto { display: none; }
-      .ticker-sep:last-of-type { display: none; }
+    .mag-top-right img {
+      width: 72px;
+      height: 72px;
+      filter: drop-shadow(0 4px 20px rgba(201,149,44,0.25));
+    }
+
+    /* ── Row 2: massive title spanning full width ── */
+    .mag-title {
+      grid-column: 1 / -1;
+      padding: 20px 0;
+      border-top: 1px solid rgba(201,149,44,0.1);
+      border-bottom: 1px solid rgba(201,149,44,0.1);
+      animation: fadeUp 0.7s var(--ease-out) 0.2s both;
+    }
+
+    .mag-title h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw + 1rem, 7rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      margin-bottom: 0;
+    }
+
+    .mag-title h1 .amp {
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold-dim);
+      margin: 0 0.05em;
+    }
+
+    .mag-title h1 .word-fire {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--fire) 80%, var(--fire-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Row 3: motto left, description right ── */
+    .mag-bottom-left {
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      animation: fadeUp 0.7s var(--ease-out) 0.35s both;
+    }
+
+    .mag-motto-item {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mag-motto-item::before {
+      content: '';
+      width: 12px;
+      height: 1px;
+      background: var(--fire);
+      opacity: 0.5;
+    }
+
+    .mag-bottom-right {
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeUp 0.7s var(--ease-out) 0.45s both;
+    }
+
+    .mag-bottom-right .mag-desc {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 400px;
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .mag-bottom-right .mag-cta {
+      margin-top: 28px;
+      text-align: right;
+    }
+
+    /* ── Scroll hint ── */
+    .mag-scroll {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-dim);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeUp 0.7s var(--ease-out) 0.6s both;
+    }
+    .mag-scroll svg {
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
     }
 
     @media (max-width: 768px) {
-      .about-hero-emblem img { width: 120px; height: 120px; }
-      .about-hero-ring--1 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
-      .about-hero-ring--2 { width: 300px; height: 300px; margin: -150px 0 0 -150px; }
-
-      .about-hero-ticker-inner {
-        flex-wrap: wrap;
-        justify-content: center;
+      .mag-grid {
+        grid-template-columns: 1fr;
         text-align: center;
-        gap: 16px;
       }
-      .ticker-logo { display: none; }
-      .ticker-sep { display: none; }
-      .ticker-title { flex: 0 0 100%; }
-      .ticker-cta { flex: 0 0 100%; text-align: center; }
-      .about-hero-label { bottom: 100px; }
+      .mag-top-left { justify-content: center; }
+      .mag-top-left .mag-label::before { display: none; }
+      .mag-top-right { justify-content: center; padding-bottom: 20px; }
+      .mag-top-right img { width: 60px; height: 60px; }
+      .mag-title { padding: 16px 0; }
+      .mag-bottom-left {
+        align-items: center;
+        padding-bottom: 20px;
+      }
+      .mag-motto-item::before { display: none; }
+      .mag-bottom-right .mag-desc {
+        text-align: center;
+        margin: 0 auto;
+      }
+      .mag-bottom-right .mag-cta { text-align: center; }
     }
 
     @media (max-width: 480px) {
-      .about-hero { min-height: 90vh; }
-      .about-hero-emblem img { width: 100px; height: 100px; }
-      .about-hero-ring--2 { display: none; }
+      .about-hero { min-height: 90vh; padding-top: 110px; }
+      .mag-title h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
     }
 
         /* ═══════════════════════════════════════
@@ -620,43 +633,44 @@
          HERO — EDITORIAL STACK
          ═══════════════════════════════════════════════════════ -->
     <section class="about-hero">
-      <!-- Floating logo in the atmosphere -->
-      <div class="about-hero-ring about-hero-ring--1" aria-hidden="true"></div>
-      <div class="about-hero-ring about-hero-ring--2" aria-hidden="true"></div>
-      <div class="about-hero-emblem">
-        <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" width="160" height="160">
-      </div>
 
-      <!-- Subtle label -->
-      <p class="about-hero-label">About Us</p>
+      <div class="mag-grid">
 
-      <!-- Bottom ticker strip -->
-      <div class="about-hero-ticker">
-        <div class="about-hero-ticker-inner">
-          <img src="img/logo.png" alt="" class="ticker-logo" width="44" height="44">
+        <!-- Row 1: Label + Logo -->
+        <div class="mag-top-left">
+          <p class="mag-label">About Mega Region 2 USA</p>
+        </div>
+        <div class="mag-top-right">
+          <img src="img/logo.png" alt="MFM Emblem" width="72" height="72">
+        </div>
 
-          <div class="ticker-title">
-            <h1>Mountain of <span class="fire-underline">Fire</span> &amp; Miracles Ministries</h1>
-            <p>Mega Region 2 USA — A do-it-yourself Gospel ministry</p>
-          </div>
+        <!-- Row 2: Full-width title -->
+        <div class="mag-title">
+          <h1>Mountain of <span class="word-fire">Fire</span> <span class="amp">&amp;</span> Miracles Ministries</h1>
+        </div>
 
-          <span class="ticker-sep"></span>
-
-          <div class="ticker-motto">
-            <span>Fire in the Word</span>
-            <span class="dot"></span>
-            <span>Fire on the Mountain</span>
-            <span class="dot"></span>
-            <span>Fire in the Bone</span>
-          </div>
-
-          <span class="ticker-sep"></span>
-
-          <div class="ticker-cta">
-            <a href="#leadership" class="btn btn--secondary btn--sm">Explore ↓</a>
+        <!-- Row 3: Motto + Description -->
+        <div class="mag-bottom-left">
+          <p class="mag-motto-item">Fire in the Word — Jeremiah 23:29</p>
+          <p class="mag-motto-item">Fire on the Mountain — Deuteronomy 4:11</p>
+          <p class="mag-motto-item">Fire in the Bone — Jeremiah 20:9</p>
+        </div>
+        <div class="mag-bottom-right">
+          <p class="mag-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <div class="mag-cta">
+            <a href="#leadership" class="btn btn--secondary btn--sm">Meet Our Leaders ↓</a>
           </div>
         </div>
+
       </div>
+
+      <div class="mag-scroll">
+        <span>Scroll</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+
+    </section>
+
     </section>
 
 
