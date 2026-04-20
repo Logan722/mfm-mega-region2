@@ -16,172 +16,203 @@
 
   <style>
         /* ═══════════════════════════════════════
-       ABOUT HERO — "DIAGONAL SPLIT"
+       ABOUT HERO — "BOTTOM TICKER"
        ═══════════════════════════════════════ */
     .about-hero {
       position: relative;
       min-height: 100vh;
       display: flex;
-      align-items: center;
-      padding: 140px var(--gutter) 80px;
+      flex-direction: column;
+      justify-content: flex-end;
       overflow: hidden;
     }
 
+    /* Atmosphere — warm glow center */
     .about-hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(115deg, rgba(15, 26, 48, 0.85) 0%, rgba(15, 26, 48, 0.85) 48%, transparent 48.5%);
-      z-index: 1;
+      background:
+        radial-gradient(ellipse 50% 50% at 50% 45%, rgba(201, 149, 44, 0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 30% at 50% 45%, rgba(232, 93, 38, 0.04) 0%, transparent 55%);
       pointer-events: none;
     }
 
-    .about-hero::after {
-      content: '';
+    /* Centered logo — floating in the atmosphere */
+    .about-hero-emblem {
       position: absolute;
-      top: 20%;
-      right: 5%;
-      width: 50vw;
-      height: 60vh;
-      background: radial-gradient(ellipse at center, rgba(201, 149, 44, 0.08) 0%, rgba(232, 93, 38, 0.04) 40%, transparent 70%);
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .about-hero-emblem img {
+      width: 160px;
+      height: 160px;
+      filter: drop-shadow(0 8px 40px rgba(201,149,44,0.25));
+      animation: floatIn 1.2s var(--ease-out) both;
+    }
+
+    /* Concentric glow rings behind logo */
+    .about-hero-ring {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      border-radius: 50%;
       pointer-events: none;
       z-index: 0;
     }
+    .about-hero-ring--1 {
+      width: 260px;
+      height: 260px;
+      margin: -130px 0 0 -130px;
+      border: 1px solid rgba(201,149,44,0.1);
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+    .about-hero-ring--2 {
+      width: 380px;
+      height: 380px;
+      margin: -190px 0 0 -190px;
+      border: 1px solid rgba(201,149,44,0.06);
+      animation: ringPulse 6s ease-in-out infinite 1s;
+    }
+    @keyframes ringPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.04); }
+    }
 
-    .about-hero-content {
+    /* Bottom ticker strip */
+    .about-hero-ticker {
       position: relative;
       z-index: 2;
-      max-width: 520px;
-      margin-left: max(var(--gutter), calc((100vw - var(--container-max)) / 2));
+      border-top: 1px solid rgba(201,149,44,0.12);
+      background: rgba(15, 26, 48, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 28px 0;
+      animation: fadeUp 0.7s var(--ease-out) 0.3s both;
     }
 
-    .about-hero-content .hero-emblem {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 24px;
-      filter: drop-shadow(0 4px 20px rgba(201,149,44,0.3));
-      animation: floatIn 1s var(--ease-out) both;
-    }
-
-    .about-hero-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 20px;
+    .about-hero-ticker-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
       display: flex;
       align-items: center;
-      gap: 12px;
-      animation: fadeUp 0.6s var(--ease-out) 0.1s both;
+      gap: 28px;
     }
 
-    .about-hero-label::before {
-      content: '';
-      width: 32px;
-      height: 2px;
-      background: var(--fire);
+    .ticker-logo {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      opacity: 0.7;
     }
 
-    .about-hero-title {
-      margin-bottom: 24px;
-      animation: fadeUp 0.7s var(--ease-out) 0.2s both;
+    .ticker-title {
+      flex: 1;
+      min-width: 0;
     }
 
-    .about-hero-title h1 {
-      font-size: clamp(2.4rem, 5vw + 0.8rem, 4rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+    .ticker-title h1 {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 600;
       color: var(--cream);
+      line-height: 1.2;
       margin-bottom: 0;
     }
 
-    .about-hero-motto {
+    .ticker-title h1 .fire-underline {
+      background-size: 100% 2px;
+    }
+
+    .ticker-title p {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+      margin-bottom: 0;
+    }
+
+    .ticker-sep {
+      width: 1px;
+      height: 36px;
+      background: rgba(201,149,44,0.15);
+      flex-shrink: 0;
+    }
+
+    .ticker-motto {
       display: flex;
       align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-      animation: fadeUp 0.7s var(--ease-out) 0.35s both;
+      gap: 14px;
+      flex-shrink: 0;
     }
 
-    .about-hero-motto span {
-      font-size: 0.62rem;
+    .ticker-motto span {
+      font-size: 0.58rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--gold-dim);
+      white-space: nowrap;
     }
 
-    .about-hero-motto .dot {
+    .ticker-motto .dot {
       width: 3px;
       height: 3px;
       border-radius: 50%;
       background: var(--fire);
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
-    .about-hero-desc {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.75;
-      max-width: 420px;
-      animation: fadeUp 0.7s var(--ease-out) 0.45s both;
+    .ticker-cta {
+      flex-shrink: 0;
     }
 
-    .about-hero-cta {
-      margin-top: 32px;
-      animation: fadeUp 0.7s var(--ease-out) 0.55s both;
-    }
-
-    .about-hero-line {
+    /* "ABOUT" large faded text above ticker */
+    .about-hero-label {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 48%;
-      width: 2px;
-      background: linear-gradient(180deg, transparent 10%, rgba(201,149,44,0.2) 30%, rgba(232,93,38,0.15) 70%, transparent 90%);
-      transform: skewX(-15deg);
+      bottom: 110px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 1;
-      pointer-events: none;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      animation: fadeUp 0.6s var(--ease-out) 0.1s both;
     }
 
     @media (max-width: 900px) {
-      .about-hero::before {
-        background: linear-gradient(115deg, rgba(15, 26, 48, 0.88) 0%, rgba(15, 26, 48, 0.88) 55%, transparent 55.5%);
-      }
-      .about-hero-line { left: 55%; }
+      .ticker-motto { display: none; }
+      .ticker-sep:last-of-type { display: none; }
     }
 
     @media (max-width: 768px) {
-      .about-hero {
-        align-items: flex-end;
-        padding-bottom: 60px;
-      }
-      .about-hero::before {
-        background: linear-gradient(180deg, rgba(15, 26, 48, 0.5) 0%, rgba(15, 26, 48, 0.9) 60%, rgba(15, 26, 48, 0.95) 100%);
-      }
-      .about-hero-content {
-        margin-left: 0;
-        max-width: 100%;
+      .about-hero-emblem img { width: 120px; height: 120px; }
+      .about-hero-ring--1 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
+      .about-hero-ring--2 { width: 300px; height: 300px; margin: -150px 0 0 -150px; }
+
+      .about-hero-ticker-inner {
+        flex-wrap: wrap;
+        justify-content: center;
         text-align: center;
+        gap: 16px;
       }
-      .about-hero-content .hero-emblem { margin: 0 auto 24px; }
-      .about-hero-label { justify-content: center; }
-      .about-hero-label::before { display: none; }
-      .about-hero-motto { justify-content: center; }
-      .about-hero-desc { margin: 0 auto; }
-      .about-hero-cta { text-align: center; }
-      .about-hero-line { display: none; }
+      .ticker-logo { display: none; }
+      .ticker-sep { display: none; }
+      .ticker-title { flex: 0 0 100%; }
+      .ticker-cta { flex: 0 0 100%; text-align: center; }
+      .about-hero-label { bottom: 100px; }
     }
 
     @media (max-width: 480px) {
       .about-hero { min-height: 90vh; }
-      .about-hero-content .hero-emblem { width: 64px; height: 64px; }
+      .about-hero-emblem img { width: 100px; height: 100px; }
+      .about-hero-ring--2 { display: none; }
     }
 
         /* ═══════════════════════════════════════
@@ -589,28 +620,41 @@
          HERO — EDITORIAL STACK
          ═══════════════════════════════════════════════════════ -->
     <section class="about-hero">
-      <div class="about-hero-line" aria-hidden="true"></div>
+      <!-- Floating logo in the atmosphere -->
+      <div class="about-hero-ring about-hero-ring--1" aria-hidden="true"></div>
+      <div class="about-hero-ring about-hero-ring--2" aria-hidden="true"></div>
+      <div class="about-hero-emblem">
+        <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" width="160" height="160">
+      </div>
 
-      <div class="about-hero-content">
-        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="80" height="80">
-        <p class="about-hero-label">About Mega Region 2 USA</p>
+      <!-- Subtle label -->
+      <p class="about-hero-label">About Us</p>
 
-        <div class="about-hero-title">
-          <h1>Mountain of <span class="fire-underline">Fire</span> &amp; Miracles Ministries</h1>
-        </div>
+      <!-- Bottom ticker strip -->
+      <div class="about-hero-ticker">
+        <div class="about-hero-ticker-inner">
+          <img src="img/logo.png" alt="" class="ticker-logo" width="44" height="44">
 
-        <div class="about-hero-motto">
-          <span>Fire in the Word</span>
-          <span class="dot"></span>
-          <span>Fire on the Mountain</span>
-          <span class="dot"></span>
-          <span>Fire in the Bone</span>
-        </div>
+          <div class="ticker-title">
+            <h1>Mountain of <span class="fire-underline">Fire</span> &amp; Miracles Ministries</h1>
+            <p>Mega Region 2 USA — A do-it-yourself Gospel ministry</p>
+          </div>
 
-        <p class="about-hero-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+          <span class="ticker-sep"></span>
 
-        <div class="about-hero-cta">
-          <a href="#leadership" class="btn btn--secondary btn--sm">Meet Our Leaders ↓</a>
+          <div class="ticker-motto">
+            <span>Fire in the Word</span>
+            <span class="dot"></span>
+            <span>Fire on the Mountain</span>
+            <span class="dot"></span>
+            <span>Fire in the Bone</span>
+          </div>
+
+          <span class="ticker-sep"></span>
+
+          <div class="ticker-cta">
+            <a href="#leadership" class="btn btn--secondary btn--sm">Explore ↓</a>
+          </div>
         </div>
       </div>
     </section>
