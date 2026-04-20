@@ -276,9 +276,10 @@
     .program-spotlight-time::before { content: '🕐'; font-size: 0.78rem; }
 
     /* ─────────────────────────────────────────────────────
-       LAYOUT F — "Poster Gallery + Weekly Rhythm"
-       Special events: cinematic navy poster wall
-       Recurring programs: clean horizontal schedule rows
+       LAYOUT M — "Featured Split + Compact Strip"
+       Announcements: one featured event hero-split, others
+       as compact strip. JS sorts by date, auto-features
+       the next upcoming event.
        ───────────────────────────────────────────────────── */
 
     /* ── Section: Announcements (Navy) ── */
@@ -289,15 +290,15 @@
     .section--announcements::before {
       content: '';
       position: absolute;
-      top: -40%;
+      top: -30%;
       left: 50%;
-      width: 1400px;
+      width: 1600px;
       height: 1000px;
-      margin-left: -700px;
+      margin-left: -800px;
       background: radial-gradient(ellipse at center top,
-        rgba(201, 149, 44, 0.14) 0%,
-        rgba(201, 149, 44, 0.05) 35%,
-        transparent 70%);
+        rgba(232, 93, 38, 0.10) 0%,
+        rgba(201, 149, 44, 0.08) 30%,
+        transparent 65%);
       pointer-events: none;
       z-index: 0;
     }
@@ -306,265 +307,305 @@
       position: absolute;
       inset: 0;
       background-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.35;
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.32;
       mix-blend-mode: overlay;
       pointer-events: none;
       z-index: 0;
     }
-    .section--announcements > .container {
-      position: relative;
-      z-index: 1;
-    }
+    .section--announcements > .container { position: relative; z-index: 1; }
 
-    /* Poster wall grid */
-    .poster-wall {
+    /* ── Featured event (split hero style) ── */
+    .featured-event {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 48px;
-      max-width: 900px;
-      margin: 0 auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 72px;
     }
-    .poster-wall--single {
-      grid-template-columns: minmax(0, 520px);
-      justify-content: center;
+    .featured-event-body {
+      max-width: 520px;
+    }
+    .featured-event-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .featured-event-eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+    .featured-event-eyebrow.is-past {
+      color: var(--fire-light);
+    }
+    .featured-event-eyebrow.is-past::before { background: var(--fire-light); }
+    .featured-event-body h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .featured-event-theme {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+    .featured-event-meta {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .featured-event-meta li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line-navy);
+      font-size: 0.9rem;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+    .featured-event-meta li:last-child { border-bottom: none; padding-bottom: 0; }
+    .featured-event-meta li .label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim-navy);
+      padding-top: 3px;
     }
 
-    /* Individual poster */
-    .event-poster {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.5s var(--ease-out);
-    }
-    .event-poster-frame {
+    /* Featured flyer frame */
+    .featured-event-frame {
       position: relative;
       aspect-ratio: 1 / 1;
+      max-width: 460px;
+      margin-left: auto;
       background: var(--bg-navy-deep);
       border: 1px solid var(--line-navy-strong);
       border-radius: 6px;
-      padding: 14px;
-      overflow: hidden;
+      padding: 16px;
       box-shadow:
-        0 0 0 1px rgba(201, 149, 44, 0.08),
-        0 24px 60px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(201, 149, 44, 0.1),
+        0 32px 80px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 rgba(201, 149, 44, 0.15);
-      transition: box-shadow 0.5s, border-color 0.5s;
     }
-    /* Corner ornaments */
-    .event-poster-frame::before,
-    .event-poster-frame::after {
+    .featured-event-frame::before,
+    .featured-event-frame::after {
       content: '';
       position: absolute;
-      width: 22px;
-      height: 22px;
+      width: 28px; height: 28px;
       border: 1.5px solid var(--gold);
-      opacity: 0.55;
-      transition: opacity 0.5s;
+      opacity: 0.5;
     }
-    .event-poster-frame::before {
-      top: 6px; left: 6px;
-      border-right: none;
-      border-bottom: none;
+    .featured-event-frame::before {
+      top: 8px; left: 8px;
+      border-right: none; border-bottom: none;
     }
-    .event-poster-frame::after {
-      bottom: 6px; right: 6px;
-      border-left: none;
-      border-top: none;
+    .featured-event-frame::after {
+      bottom: 8px; right: 8px;
+      border-left: none; border-top: none;
     }
-    .event-poster-frame img {
+    .featured-event-frame img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
       background: var(--bg-navy-deep);
-      border-radius: 2px;
+      border-radius: 3px;
     }
-    .event-poster:hover .event-poster-frame {
-      border-color: var(--gold);
-      box-shadow:
-        0 0 0 1px rgba(201, 149, 44, 0.25),
-        0 32px 80px rgba(0, 0, 0, 0.55),
-        0 0 60px rgba(201, 149, 44, 0.18),
-        inset 0 1px 0 rgba(201, 149, 44, 0.25);
-    }
-    .event-poster:hover .event-poster-frame::before,
-    .event-poster:hover .event-poster-frame::after {
-      opacity: 1;
-    }
-    .event-poster:hover { transform: translateY(-4px); }
 
-    /* Poster caption */
-    .event-poster-caption {
-      text-align: center;
-      margin-top: 24px;
+    /* ── Other events strip ── */
+    .other-events-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 28px;
     }
-    .event-poster-date {
-      display: inline-block;
+    .other-events-header .label {
       font-family: var(--font-sans);
       font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .other-events-header .rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--line-navy-strong), transparent);
+    }
+    .event-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .event-compact {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 16px;
+      background: rgba(20, 34, 64, 0.5);
+      border: 1px solid var(--line-navy);
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.4s, border-color 0.4s, transform 0.4s var(--ease-out);
+    }
+    .event-compact:hover {
+      background: rgba(26, 45, 77, 0.7);
+      border-color: var(--line-navy-strong);
+      transform: translateY(-2px);
+    }
+    .event-compact img {
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: var(--bg-navy-deep);
+      border: 1px solid var(--line-navy);
+    }
+    .event-compact-body {
+      min-width: 0;
+    }
+    .event-compact-date {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
-      padding: 6px 14px;
-      border: 1px solid var(--line-navy-strong);
-      border-radius: 100px;
-      background: rgba(201, 149, 44, 0.06);
-      margin-bottom: 14px;
+      margin-bottom: 4px;
     }
-    .event-poster-caption h3 {
+    .event-compact-body h4 {
       font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-size: 1.05rem;
       font-weight: 400;
       color: var(--cream);
-      line-height: 1.25;
-      margin-bottom: 8px;
+      line-height: 1.3;
+      margin-bottom: 4px;
     }
-    .event-poster-theme {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 0.92rem;
-      color: var(--gold-light);
-      margin-bottom: 10px;
-    }
-    .event-poster-meta-line {
-      font-size: 0.82rem;
+    .event-compact-body p {
+      font-size: 0.8rem;
       color: var(--text-on-navy);
-      line-height: 1.6;
-      max-width: 360px;
-      margin: 0 auto;
-    }
-    .event-poster-meta-line .bullet {
-      color: var(--gold);
-      margin: 0 8px;
-      opacity: 0.6;
+      line-height: 1.4;
+      margin: 0;
     }
 
-    /* Fallback when all special events have expired */
-    .poster-wall-empty {
+    /* Empty state when no events at all */
+    .events-empty {
       display: none;
       text-align: center;
       max-width: 520px;
       margin: 0 auto;
-      padding: 40px 0;
+      padding: 32px 0;
     }
-    .poster-wall-empty p {
+    .events-empty p {
       color: var(--text-on-navy);
       font-size: 0.95rem;
       line-height: 1.6;
     }
 
-    /* ── Section: Recurring (Cream) — Horizontal Rhythm Rows ── */
-    .rhythm-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    /* ── Section: Weekly (Cream) — Compact 3-col ── */
+    .weekly-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
       max-width: 920px;
       margin: 0 auto;
     }
-    .rhythm-row {
+    .weekly-card {
       display: grid;
-      grid-template-columns: 180px 1fr auto;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
       align-items: center;
-      gap: 28px;
       background: var(--bg-white);
       border: 1px solid var(--bg-sand-border);
-      border-left: 3px solid var(--gold);
       border-radius: 10px;
-      padding: 18px 24px 18px 18px;
-      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-left-color 0.4s;
+      padding: 18px;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
     }
-    .rhythm-row:hover {
-      transform: translateX(4px);
-      box-shadow: 0 12px 36px rgba(20, 34, 64, 0.08);
-      border-left-color: var(--fire);
+    .weekly-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(20, 34, 64, 0.08);
+      border-color: var(--line-white-strong);
     }
-    .rhythm-row--fire { border-left-color: var(--fire); }
-    .rhythm-row--fire:hover { border-left-color: var(--gold); }
-    .rhythm-thumb {
-      width: 100%;
-      aspect-ratio: 16 / 10;
+    .weekly-card img {
+      width: 72px;
+      height: 72px;
       object-fit: cover;
-      border-radius: 6px;
-      display: block;
+      border-radius: 8px;
       background: var(--bg-sand);
+      display: block;
     }
-    .rhythm-body {
-      min-width: 0;
-    }
-    .rhythm-day {
+    .weekly-card-body { min-width: 0; }
+    .weekly-day {
       font-family: var(--font-sans);
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 6px;
-    }
-    .rhythm-row--gold-day .rhythm-day { color: var(--gold); }
-    .rhythm-body h4 {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--navy);
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-    .rhythm-body > p {
-      font-size: 0.84rem;
-      color: var(--text-on-white);
-      line-height: 1.55;
-      margin: 0;
-    }
-    .rhythm-time {
-      text-align: right;
-      font-size: 0.82rem;
-      color: var(--text-on-white);
-      line-height: 1.5;
-      white-space: nowrap;
-    }
-    .rhythm-time strong {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--navy);
       margin-bottom: 3px;
     }
-    .rhythm-time span {
-      display: block;
+    .weekly-day--fire { color: var(--fire); }
+    .weekly-day--gold { color: var(--gold); }
+    .weekly-day--navy { color: var(--navy); opacity: 0.7; }
+    .weekly-card-body h4 {
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+    .weekly-card-body p {
       font-size: 0.78rem;
-      color: var(--text-dim-white);
+      color: var(--text-on-white);
+      line-height: 1.45;
+      margin: 0;
     }
 
     @media (max-width: 960px) {
-      .poster-wall { grid-template-columns: 1fr; gap: 56px; max-width: 480px; }
-      .poster-wall--single { max-width: 480px; }
-      .rhythm-row { grid-template-columns: 130px 1fr; }
-      .rhythm-time {
-        grid-column: 2 / 3;
-        text-align: left;
-        padding-top: 10px;
-        margin-top: 10px;
-        border-top: 1px solid var(--bg-sand-border);
-      }
-      .rhythm-time strong { display: inline; margin-right: 8px; }
-      .rhythm-time span { display: inline; }
-    }
-    @media (max-width: 540px) {
-      .rhythm-row {
+      .featured-event {
         grid-template-columns: 1fr;
-        padding: 16px 18px 18px;
-        gap: 12px;
+        gap: 36px;
+        margin-bottom: 56px;
       }
-      .rhythm-thumb { aspect-ratio: 21 / 9; }
-      .rhythm-time {
-        grid-column: 1 / 2;
-        padding-top: 10px;
-        border-top: 1px solid var(--bg-sand-border);
+      .featured-event-body { max-width: 100%; order: 2; }
+      .featured-event-frame {
+        margin: 0 auto;
+        max-width: 420px;
+        aspect-ratio: 1 / 1;
       }
-      .event-poster-caption h3 { font-size: 1.2rem; }
+      .weekly-grid { grid-template-columns: 1fr; max-width: 480px; }
+    }
+    @media (max-width: 640px) {
+      .featured-event-meta li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+      .other-events-header .rule { display: none; }
+      .event-strip { grid-template-columns: 1fr; }
     }
 
     /* ── Video Carousel ── */
@@ -1039,7 +1080,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         2a. SPECIAL EVENTS — Poster Wall (Navy)
+         2a. ANNOUNCEMENTS — Featured Split + Compact Strip (Navy)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--dark section--announcements" id="announcements">
       <div class="container">
@@ -1050,100 +1091,95 @@
           <p>Upcoming crusades, conferences, and special services across Mega Region 2.</p>
         </div>
 
-        <!-- Poster wall — each poster has data-event-date; auto-hides after date + 1 day -->
-        <div class="poster-wall reveal-stagger" id="specialEvents">
+        <!-- Featured event — populated by JS from eventData below -->
+        <div id="featuredEvent" class="reveal"></div>
 
-          <a href="events.html" class="event-poster reveal" data-event-date="2026-05-16">
-            <div class="event-poster-frame">
-              <img src="img/announcements/women-conference-dallas.jpg" alt="Women Conference — Dallas, Saturday May 16">
-            </div>
-            <div class="event-poster-caption">
-              <span class="event-poster-date">Sat · May 16, 2026</span>
-              <h3>Women Conference — Dallas</h3>
-              <p class="event-poster-theme">"A Date with my Lord + Lover"</p>
-              <p class="event-poster-meta-line">
-                10 AM – 2 PM <span class="bullet">·</span> 306 Greenville Ave, Richardson, TX
-              </p>
-            </div>
-          </a>
-
-          <a href="events.html" class="event-poster reveal" data-event-date="2026-04-18">
-            <div class="event-poster-frame">
-              <img src="img/announcements/womens-foundation-outreach-tn.jpg" alt="Women's Foundation Outreach — Tennessee, Saturday April 18">
-            </div>
-            <div class="event-poster-caption">
-              <span class="event-poster-date">Sat · April 18, 2026</span>
-              <h3>Women's Foundation Outreach</h3>
-              <p class="event-poster-theme">Theme: "Beauty for Ashes"</p>
-              <p class="event-poster-meta-line">
-                10 AM <span class="bullet">·</span> 13135 Central Pike, Mt. Juliet, TN
-              </p>
-            </div>
-          </a>
-
+        <!-- Other events strip — populated by JS -->
+        <div id="otherEventsWrap" class="reveal" style="display:none;">
+          <div class="other-events-header">
+            <span class="label">Also Happening</span>
+            <span class="rule"></span>
+          </div>
+          <div class="event-strip" id="otherEvents"></div>
         </div>
 
-        <!-- Shown only when all special events have expired -->
-        <div class="poster-wall-empty" id="specialEventsEmpty">
-          <p>No special events scheduled right now — check back soon, or scroll down for our weekly programs.</p>
+        <!-- Empty state -->
+        <div id="eventsEmpty" class="events-empty">
+          <p>No special events scheduled right now — scroll down for our weekly programs.</p>
         </div>
 
       </div>
     </section>
 
+    <!-- Event data — edit here to add/update special events.
+         Grace period: cards hide 7 days after their date. -->
+    <script type="application/json" id="eventData">
+    [
+      {
+        "date": "2026-05-16",
+        "title": "Women Conference — Dallas",
+        "theme": "\"A Date with my Lord + Lover\"",
+        "time": "10:00 AM – 2:00 PM",
+        "venue": "306 Greenville Ave, Richardson, TX 75081",
+        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
+        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
+        "image": "img/announcements/women-conference-dallas.jpg",
+        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026"
+      },
+      {
+        "date": "2026-04-18",
+        "title": "Women's Foundation Outreach",
+        "theme": "Theme: \"Beauty for Ashes\"",
+        "time": "10:00 AM",
+        "venue": "13135 Central Pike, Mt. Juliet, TN 37122",
+        "host": "Pastor Lovena Okeke — Area Overseer",
+        "image": "img/announcements/womens-foundation-outreach-tn.jpg",
+        "alt": "Women's Foundation Outreach Tennessee flyer — Saturday April 18, 2026"
+      }
+    ]
+    </script>
+
 
     <!-- ═══════════════════════════════════════════════════════
-         2b. RECURRING PROGRAMS — Weekly Rhythm (Cream)
+         2b. WEEKLY PROGRAMS — Compact 3-col Grid (Cream)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--cream" id="weekly">
       <div class="container">
 
         <div class="section-header text-center reveal">
           <p class="eyebrow">Every Week</p>
-          <h2>Weekly Rhythm</h2>
+          <h2>Weekly Programs</h2>
           <p>Regular services and prayer programs you can join wherever you are.</p>
         </div>
 
-        <div class="rhythm-stack reveal-stagger">
+        <div class="weekly-grid reveal-stagger">
 
-          <article class="rhythm-row rhythm-row--fire reveal">
-            <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour" class="rhythm-thumb">
-            <div class="rhythm-body">
-              <div class="rhythm-day">Every Tuesday</div>
+          <a href="events.html#healing-deliverance" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+            <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour">
+            <div class="weekly-card-body">
+              <div class="weekly-day weekly-day--fire">Every Tuesday</div>
               <h4>Healing &amp; Deliverance Hour</h4>
-              <p>Online prayerline for weekly prayer, healing, and breakthrough.</p>
+              <p>7:00 PM CT / 8:00 PM ET · Online</p>
             </div>
-            <div class="rhythm-time">
-              <strong>7:00 PM CT</strong>
-              <span>8:00 PM ET</span>
-            </div>
-          </article>
+          </a>
 
-          <article class="rhythm-row rhythm-row--gold-day reveal">
-            <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter" class="rhythm-thumb">
-            <div class="rhythm-body">
-              <div class="rhythm-day">Every Thursday</div>
+          <a href="events.html#open-heaven" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+            <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter">
+            <div class="weekly-card-body">
+              <div class="weekly-day weekly-day--gold">Every Thursday</div>
               <h4>Open Heaven Encounter</h4>
-              <p>International prayer service across USA, UK, Ghana, Nigeria &amp; Canada.</p>
+              <p>6:00 PM CST · Multi-timezone</p>
             </div>
-            <div class="rhythm-time">
-              <strong>6:00 PM CST</strong>
-              <span>Multi-timezone</span>
-            </div>
-          </article>
+          </a>
 
-          <article class="rhythm-row reveal">
-            <img src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City" class="rhythm-thumb">
-            <div class="rhythm-body">
-              <div class="rhythm-day">Every Weekend</div>
+          <a href="events.html#deliverance" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+            <img src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City">
+            <div class="weekly-card-body">
+              <div class="weekly-day weekly-day--navy">Every Weekend</div>
               <h4>Weekend Deliverance</h4>
-              <p>Three days of deliverance at Prayer City: Fri 7 PM–12 AM · Sat 9 AM–2 PM &amp; 8 PM–12 AM · Sun 9 AM–1 PM.</p>
+              <p>Fri–Sun · Prayer City, Houston</p>
             </div>
-            <div class="rhythm-time">
-              <strong>Prayer City</strong>
-              <span>Houston, TX</span>
-            </div>
-          </article>
+          </a>
 
         </div>
 
@@ -1793,52 +1829,110 @@
       });
     })();
 
-    /* ── Auto-expire Announcement Cards ──
-       Any card with data-event-date="YYYY-MM-DD" is hidden once
-       that date + 1 day has passed. Recurring cards (no attribute)
-       are never touched. If every special event is expired, the
-       whole poster-wall grid is collapsed and a fallback message
-       shows in its place. When only a single poster remains visible,
-       the grid switches to a centered single-column layout so the
-       lone poster doesn't sit awkwardly off to one side. */
+    /* ── Announcements: Sort, Render, Expire ──
+       Reads JSON from #eventData, sorts by date, renders the nearest
+       upcoming event as a "featured split" block and the rest as a
+       compact strip. Past events within a 7-day grace window still
+       show (so yesterday's event doesn't vanish overnight).
+       Beyond 7 days past, events drop off silently. */
     (function () {
-      var grid = document.getElementById('specialEvents');
-      if (!grid) return;
+      var dataEl = document.getElementById('eventData');
+      var featuredSlot = document.getElementById('featuredEvent');
+      var otherWrap = document.getElementById('otherEventsWrap');
+      var otherSlot = document.getElementById('otherEvents');
+      var emptyEl = document.getElementById('eventsEmpty');
+      if (!dataEl || !featuredSlot) return;
 
-      var cards = grid.querySelectorAll('[data-event-date]');
-      if (!cards.length) return;
+      var events;
+      try { events = JSON.parse(dataEl.textContent); }
+      catch (e) { console.warn('Invalid eventData JSON', e); return; }
+      if (!Array.isArray(events)) return;
 
       var today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      var visible = 0;
-      cards.forEach(function (card) {
-        var raw = card.getAttribute('data-event-date');
-        if (!raw) { visible++; return; }
-        var parts = raw.split('-');
-        if (parts.length !== 3) { visible++; return; }
-        var eventDay = new Date(
-          parseInt(parts[0], 10),
-          parseInt(parts[1], 10) - 1,
-          parseInt(parts[2], 10)
-        );
-        // Hide starting 2 days after the event (event day itself still shows)
-        var expiresAt = new Date(eventDay);
-        expiresAt.setDate(expiresAt.getDate() + 2);
+      // Build parsed list, skip expired (>7 days past)
+      var parsed = events.map(function (ev) {
+        if (!ev.date) return null;
+        var p = ev.date.split('-');
+        if (p.length !== 3) return null;
+        var dt = new Date(parseInt(p[0],10), parseInt(p[1],10) - 1, parseInt(p[2],10));
+        dt.setHours(0,0,0,0);
+        var daysFromToday = Math.round((dt - today) / 86400000);
+        // Hide if more than 7 days in the past
+        if (daysFromToday < -7) return null;
+        return { ev: ev, dt: dt, delta: daysFromToday };
+      }).filter(function (x) { return x; });
 
-        if (today >= expiresAt) {
-          card.style.display = 'none';
-        } else {
-          visible++;
-        }
+      // Sort: future first (ascending), then past (descending toward today)
+      parsed.sort(function (a, b) {
+        var aFuture = a.delta >= 0, bFuture = b.delta >= 0;
+        if (aFuture && bFuture) return a.delta - b.delta;
+        if (!aFuture && !bFuture) return b.delta - a.delta;
+        return aFuture ? -1 : 1;
       });
 
-      if (visible === 0) {
-        grid.style.display = 'none';
-        var empty = document.getElementById('specialEventsEmpty');
-        if (empty) empty.style.display = 'block';
-      } else if (visible === 1) {
-        grid.classList.add('poster-wall--single');
+      if (parsed.length === 0) {
+        if (emptyEl) emptyEl.style.display = 'block';
+        return;
+      }
+
+      // Format date like "Sat · May 16, 2026"
+      function fmt(dt) {
+        var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        var mons = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+        return days[dt.getDay()] + ' · ' + mons[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
+      }
+      function escH(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+      // ── Render featured (first in list) ──
+      var featured = parsed[0];
+      var f = featured.ev;
+      var isPast = featured.delta < 0;
+      var eyebrow = isPast
+        ? (featured.delta === 0 ? 'Happening Today' : 'Just Passed')
+        : (featured.delta === 0 ? 'Happening Today' : featured.delta === 1 ? 'Tomorrow' : 'Next Up');
+
+      var metaRows = '';
+      if (f.time)        metaRows += '<li><span class="label">When</span><span>' + fmt(featured.dt) + (f.time ? '<br>' + escH(f.time) : '') + '</span></li>';
+      if (f.venue)       metaRows += '<li><span class="label">Venue</span><span>' + escH(f.venue) + '</span></li>';
+      if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span>' + escH(f.ministering) + '</span></li>';
+      if (f.host)        metaRows += '<li><span class="label">Host</span><span>' + escH(f.host) + '</span></li>';
+
+      featuredSlot.innerHTML =
+        '<div class="featured-event">' +
+          '<div class="featured-event-body">' +
+            '<div class="featured-event-eyebrow' + (isPast ? ' is-past' : '') + '">' + escH(eyebrow) + '</div>' +
+            '<h3>' + escH(f.title) + '</h3>' +
+            (f.theme ? '<p class="featured-event-theme">' + escH(f.theme) + '</p>' : '') +
+            '<ul class="featured-event-meta">' + metaRows + '</ul>' +
+            '<a href="events.html" class="btn btn--fire btn--sm">Full Schedule →</a>' +
+          '</div>' +
+          '<div class="featured-event-frame">' +
+            '<img src="' + escH(f.image) + '" alt="' + escH(f.alt || f.title) + '">' +
+          '</div>' +
+        '</div>';
+
+      // ── Render "also happening" strip ──
+      if (parsed.length > 1) {
+        var stripHtml = '';
+        for (var i = 1; i < parsed.length; i++) {
+          var oe = parsed[i].ev;
+          var shortDate = fmt(parsed[i].dt).replace(/, \d{4}$/, ''); // drop year for compactness
+          var metaLine = (oe.time || '') + (oe.venue ? (oe.time ? ' · ' : '') + oe.venue.split(',')[0] : '');
+          stripHtml +=
+            '<a href="events.html" class="event-compact">' +
+              '<img src="' + escH(oe.image) + '" alt="' + escH(oe.alt || oe.title) + '">' +
+              '<div class="event-compact-body">' +
+                '<div class="event-compact-date">' + escH(shortDate) + '</div>' +
+                '<h4>' + escH(oe.title) + '</h4>' +
+                (metaLine ? '<p>' + escH(metaLine) + '</p>' : '') +
+              '</div>' +
+            '</a>';
+        }
+        otherSlot.innerHTML = stripHtml;
+        otherWrap.style.display = 'block';
       }
     })();
   </script>
