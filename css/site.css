@@ -904,10 +904,8 @@ body::after {
 
 /* ── Dropdown Row — Icon + Two-line Label ── */
 .nav-dropdown-menu a {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 18px;
+  display: block;
+  padding: 10px 20px;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--cream);
@@ -933,14 +931,6 @@ body::after {
   color: var(--gold);
 }
 
-.nav-dropdown-menu a:hover .nav-dd-icon {
-  background: rgba(201, 149, 44, 0.2);
-  border-color: rgba(201, 149, 44, 0.35);
-}
-
-.nav-dropdown-menu a:hover .nav-dd-icon svg {
-  stroke: var(--gold-light);
-}
 
 .nav-dropdown-menu a.active {
   background: rgba(201, 149, 44, 0.06);
@@ -950,31 +940,7 @@ body::after {
   color: var(--gold);
 }
 
-/* ── Icon Box ── */
-.nav-dd-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: rgba(201, 149, 44, 0.1);
-  border: 1px solid rgba(201, 149, 44, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s var(--ease-out),
-              border-color 0.2s var(--ease-out);
-}
 
-.nav-dd-icon svg {
-  width: 16px;
-  height: 16px;
-  stroke: var(--gold);
-  fill: none;
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke 0.2s var(--ease-out);
-}
 
 /* ── Two-line Label ── */
 .nav-dd-label {
