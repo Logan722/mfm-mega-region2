@@ -1,0 +1,10 @@
+# MFM Mega Region 2 USA — robots.txt
+User-agent: *
+Allow: /
+
+# Block CMS surfaces and uploads from crawl
+Disallow: /admin/
+Disallow: /img/uploads/
+Disallow: /_template.html
+
+Sitemap: https://mfmmegaregion2usa.com/sitemap.xml
