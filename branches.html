@@ -193,6 +193,90 @@
     }
 
 
+
+    /* ── Branch Map & Find Nearest ── */
+    .branch-map-row {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 20px;
+      margin-bottom: 32px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #e8e4da;
+      background: #ffffff;
+    }
+    .branch-map-wrap {
+      position: relative;
+      min-height: 280px;
+    }
+    .branch-map-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .find-nearest-panel {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .find-nearest-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(201,149,44,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .find-nearest-panel h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #142240;
+      margin: 0 0 8px;
+    }
+    .find-nearest-panel p {
+      font-size: 0.85rem;
+      color: #5a6270;
+      line-height: 1.5;
+      margin: 0 0 18px;
+    }
+    .nearest-result {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(201,149,44,0.06);
+      border: 1px solid rgba(201,149,44,0.15);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: #142240;
+      line-height: 1.5;
+    }
+    .nearest-result strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .nearest-result .nearest-distance {
+      font-size: 0.78rem;
+      color: #8a8f98;
+    }
+    .nearest-result a {
+      color: #c9952c;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .nearest-result a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .branch-map-row {
+        grid-template-columns: 1fr;
+      }
+      .branch-map-wrap { min-height: 220px; }
+    }
+
     /* ── State Accordions ── */
     .state-accordions {
       display: grid;
@@ -800,6 +884,33 @@
           </div>
         </div>
 
+
+        <!-- Branch Map & Find Nearest -->
+        <div class="branch-map-row reveal">
+          <div class="branch-map-wrap">
+            <iframe
+              class="branch-map-frame"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7200000!2d-89.5!3d31.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="MFM Mega Region 2 Branch Locations">
+            </iframe>
+          </div>
+          <div class="find-nearest-panel">
+            <div class="find-nearest-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9952c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+            </div>
+            <h3>Find Nearest Branch</h3>
+            <p>Use your location to discover the closest Mountain of Fire to you.</p>
+            <button class="btn btn--primary btn--sm" id="findNearestBtn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Use My Location
+            </button>
+            <div id="nearestResult" class="nearest-result" style="display:none"></div>
+          </div>
+        </div>
+
         <!-- State Accordions -->
         <div class="state-accordions reveal" id="stateAccordions">
 
@@ -814,7 +925,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm rehoboth">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm rehoboth" data-lat="29.682" data-lng="-95.527">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -839,7 +950,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm revival chapel">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm revival chapel" data-lat="29.815" data-lng="-95.654">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -864,7 +975,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 2">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 2" data-lat="29.715" data-lng="-95.506">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -889,7 +1000,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 3 — city of refuge">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 3 — city of refuge" data-lat="29.675" data-lng="-95.523">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -914,7 +1025,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 5 — new glory">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 5 — new glory" data-lat="29.693" data-lng="-95.596">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -939,7 +1050,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm 7 north houston">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm 7 north houston" data-lat="29.942" data-lng="-95.409">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -960,7 +1071,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm greater grace">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm greater grace" data-lat="29.684" data-lng="-95.57">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -985,7 +1096,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm northwest houston">
+              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm northwest houston" data-lat="29.902" data-lng="-95.562">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -1010,7 +1121,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="dallas" data-name="mfm dallas">
+              <div class="branch-card" data-state="Texas" data-city="dallas" data-name="mfm dallas" data-lat="32.912" data-lng="-96.751">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Dallas</span>
@@ -1035,7 +1146,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="richardson" data-name="mfm house of his glory">
+              <div class="branch-card" data-state="Texas" data-city="richardson" data-name="mfm house of his glory" data-lat="32.954" data-lng="-96.711">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Richardson</span>
@@ -1056,7 +1167,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington">
+              <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington" data-lat="32.736" data-lng="-97.108">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Arlington</span>
@@ -1081,7 +1192,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington — matlock">
+              <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington — matlock" data-lat="32.707" data-lng="-97.134">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Arlington</span>
@@ -1106,7 +1217,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="grand prairie" data-name="mfm grand prairie">
+              <div class="branch-card" data-state="Texas" data-city="grand prairie" data-name="mfm grand prairie" data-lat="32.747" data-lng="-97.005">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Grand Prairie</span>
@@ -1131,7 +1242,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="irving" data-name="mfm irving">
+              <div class="branch-card" data-state="Texas" data-city="irving" data-name="mfm irving" data-lat="32.814" data-lng="-96.949">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Irving</span>
@@ -1156,7 +1267,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="mansfield" data-name="mfm mansfield">
+              <div class="branch-card" data-state="Texas" data-city="mansfield" data-name="mfm mansfield" data-lat="32.563" data-lng="-97.126">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Mansfield</span>
@@ -1181,7 +1292,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="austin" data-name="mfm the lord has spoken">
+              <div class="branch-card" data-state="Texas" data-city="austin" data-name="mfm the lord has spoken" data-lat="30.354" data-lng="-97.72">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Austin</span>
@@ -1206,7 +1317,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="san antonio" data-name="mfm san antonio">
+              <div class="branch-card" data-state="Texas" data-city="san antonio" data-name="mfm san antonio" data-lat="29.472" data-lng="-98.432">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">San Antonio</span>
@@ -1231,7 +1342,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="pearland" data-name="mfm pearland — shadow of god">
+              <div class="branch-card" data-state="Texas" data-city="pearland" data-name="mfm pearland — shadow of god" data-lat="29.556" data-lng="-95.282">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Pearland</span>
@@ -1256,7 +1367,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="sugar land" data-name="mfm sugar land">
+              <div class="branch-card" data-state="Texas" data-city="sugar land" data-name="mfm sugar land" data-lat="29.594" data-lng="-95.627">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Sugar Land</span>
@@ -1281,7 +1392,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Texas" data-city="huntsville" data-name="mfm huntsville">
+              <div class="branch-card" data-state="Texas" data-city="huntsville" data-name="mfm huntsville" data-lat="30.724" data-lng="-95.551">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Huntsville</span>
@@ -1321,7 +1432,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="Florida" data-city="tampa" data-name="mfm tampa">
+              <div class="branch-card" data-state="Florida" data-city="tampa" data-name="mfm tampa" data-lat="27.97" data-lng="-82.46">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Tampa</span>
@@ -1346,7 +1457,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Florida" data-city="hollywood" data-name="mfm broward">
+              <div class="branch-card" data-state="Florida" data-city="hollywood" data-name="mfm broward" data-lat="26.011" data-lng="-80.15">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Hollywood</span>
@@ -1371,7 +1482,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Florida" data-city="miami gardens" data-name="mfm miami — mount zion">
+              <div class="branch-card" data-state="Florida" data-city="miami gardens" data-name="mfm miami — mount zion" data-lat="25.942" data-lng="-80.239">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Miami Gardens</span>
@@ -1396,7 +1507,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Florida" data-city="orlando" data-name="mfm orlando — citadel of solution">
+              <div class="branch-card" data-state="Florida" data-city="orlando" data-name="mfm orlando — citadel of solution" data-lat="28.485" data-lng="-81.374">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Orlando</span>
@@ -1421,7 +1532,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Florida" data-city="tallahassee" data-name="mfm tallahassee">
+              <div class="branch-card" data-state="Florida" data-city="tallahassee" data-name="mfm tallahassee" data-lat="30.438" data-lng="-84.281">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Tallahassee</span>
@@ -1461,7 +1572,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm revival center">
+              <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm revival center" data-lat="34.003" data-lng="-84.143">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Duluth</span>
@@ -1486,7 +1597,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Georgia" data-city="riverdale" data-name="mfm riverdale">
+              <div class="branch-card" data-state="Georgia" data-city="riverdale" data-name="mfm riverdale" data-lat="33.569" data-lng="-84.41">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Riverdale</span>
@@ -1511,7 +1622,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Georgia" data-city="marietta" data-name="mfm citadel of signs &amp; wonders">
+              <div class="branch-card" data-state="Georgia" data-city="marietta" data-name="mfm citadel of signs &amp; wonders" data-lat="33.953" data-lng="-84.55">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Marietta</span>
@@ -1536,7 +1647,7 @@
               </div>
               </div>
             </div>
-              <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm georgia oasis of grace">
+              <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm georgia oasis of grace" data-lat="34.003" data-lng="-84.143">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Duluth</span>
@@ -1576,7 +1687,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="North Carolina" data-city="raleigh" data-name="mfm revival &amp; solution center">
+              <div class="branch-card" data-state="North Carolina" data-city="raleigh" data-name="mfm revival &amp; solution center" data-lat="35.858" data-lng="-78.638">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--teal">NC</span>
                 <span class="branch-city">Raleigh</span>
@@ -1616,7 +1727,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="Oklahoma" data-city="tulsa" data-name="mfm tulsa">
+              <div class="branch-card" data-state="Oklahoma" data-city="tulsa" data-name="mfm tulsa" data-lat="36.112" data-lng="-95.956">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">OK</span>
                 <span class="branch-city">Tulsa</span>
@@ -1656,7 +1767,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="Tennessee" data-city="antioch" data-name="mfm nashville">
+              <div class="branch-card" data-state="Tennessee" data-city="antioch" data-name="mfm nashville" data-lat="36.061" data-lng="-86.669">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">TN</span>
                 <span class="branch-city">Antioch</span>
@@ -1695,7 +1806,7 @@
             </div>
             <div class="state-accordion-body">
               <div class="branches-grid">
-              <div class="branch-card" data-state="Youth Ministry" data-city="houston" data-name="mfm mega region 2 youth church">
+              <div class="branch-card" data-state="Youth Ministry" data-city="houston" data-name="mfm mega region 2 youth church" data-lat="29.827" data-lng="-95.592">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">YC</span>
                 <span class="branch-city">Houston</span>
@@ -2078,6 +2189,92 @@
     })();
 
 
+
+
+    /* ── Find Nearest Branch (Geolocation) ── */
+    (function () {
+      var btn = document.getElementById('findNearestBtn');
+      var result = document.getElementById('nearestResult');
+      if (!btn || !result) return;
+
+      function haversine(lat1, lon1, lat2, lon2) {
+        var R = 3959; // miles
+        var dLat = (lat2 - lat1) * Math.PI / 180;
+        var dLon = (lon2 - lon1) * Math.PI / 180;
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      }
+
+      btn.addEventListener('click', function () {
+        if (!navigator.geolocation) {
+          result.innerHTML = 'Geolocation is not supported by your browser.';
+          result.style.display = 'block';
+          return;
+        }
+
+        btn.textContent = 'Finding...';
+        btn.disabled = true;
+
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          var userLat = pos.coords.latitude;
+          var userLng = pos.coords.longitude;
+          var cards = document.querySelectorAll('.branch-card[data-lat]');
+          var nearest = null;
+          var nearestDist = Infinity;
+
+          cards.forEach(function (card) {
+            var lat = parseFloat(card.dataset.lat);
+            var lng = parseFloat(card.dataset.lng);
+            var dist = haversine(userLat, userLng, lat, lng);
+            if (dist < nearestDist) {
+              nearestDist = dist;
+              nearest = card;
+            }
+          });
+
+          if (nearest) {
+            var name = nearest.querySelector('h3').textContent;
+            var state = nearest.dataset.state;
+            var city = nearest.dataset.city;
+            var dist = Math.round(nearestDist);
+
+            result.innerHTML = '<strong>' + name + '</strong>' +
+              city.charAt(0).toUpperCase() + city.slice(1) + ', ' + state +
+              '<br><span class="nearest-distance">' + dist + ' miles away</span>' +
+              '<br><a href="#" id="goToNearest">Show branch &darr;</a>';
+            result.style.display = 'block';
+
+            document.getElementById('goToNearest').addEventListener('click', function (e) {
+              e.preventDefault();
+              // Open the parent accordion
+              var acc = nearest.closest('.state-accordion');
+              if (acc && !acc.classList.contains('open')) {
+                acc.classList.add('open');
+                acc.querySelector('.state-accordion-header').setAttribute('aria-expanded', 'true');
+              }
+              // Scroll to and highlight the card
+              nearest.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              nearest.style.boxShadow = '0 0 0 3px #c9952c';
+              nearest.style.borderColor = '#c9952c';
+              setTimeout(function () {
+                nearest.style.boxShadow = '';
+                nearest.style.borderColor = '';
+              }, 3000);
+            });
+          }
+
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Use My Location';
+          btn.disabled = false;
+        }, function () {
+          result.innerHTML = 'Unable to get your location. Please check your browser permissions.';
+          result.style.display = 'block';
+          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Use My Location';
+          btn.disabled = false;
+        });
+      });
+    })();
     /* ── Dropdown Toggles — hover on desktop, click fallback ── */
     (function () {
       var dropdowns = document.querySelectorAll('.nav-dropdown');
