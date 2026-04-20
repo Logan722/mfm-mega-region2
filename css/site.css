@@ -1720,6 +1720,24 @@ img[src*="logo"] {
   color: var(--white);
 }
 
+.footer-connect-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease-out);
+}
+
+.footer-connect-link:hover {
+  color: var(--gold-light);
+}
+
 /* ── Footer Bottom Bar ── */
 .footer-bottom {
   margin-top: 56px;
