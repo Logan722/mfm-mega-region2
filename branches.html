@@ -35,8 +35,7 @@
     }
     .hq-card-map { width: 100%; height: 320px; border: none; display: block; }
     .hq-card-body {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 32px; padding: 36px;
+      padding: 36px;
     }
     .hq-info h3 { font-family: var(--font-serif); color: var(--cream); font-size: 1.4rem; margin-bottom: 16px; }
     .hq-detail {
@@ -46,15 +45,7 @@
     .hq-detail svg { flex-shrink: 0; margin-top: 3px; color: var(--gold); }
     .hq-detail a { color: var(--text); }
     .hq-detail a:hover { color: var(--fire-light); }
-    .hq-schedule h4 { font-family: var(--font-serif); color: var(--cream); font-size: 1.15rem; margin-bottom: 16px; }
-    .schedule-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 0.88rem;
-    }
-    .schedule-row:last-child { border-bottom: none; }
-    .schedule-day { color: var(--cream); font-weight: 500; }
-    .schedule-time { color: var(--text-muted); }
-    .schedule-note { font-size: 0.8rem; color: var(--text-dim); margin-top: 12px; }
+
 
     /* ── Youth Church Card ── */
     .youth-card {
@@ -103,47 +94,7 @@
       box-shadow: 0 0 0 3px rgba(201, 149, 44, 0.15);
     }
     .branch-search::placeholder { color: #8a8f98; }
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-    }
-    .filter-btn {
-      padding: 7px 16px;
-      border: 1px solid #d4cfc4;
-      border-radius: 100px;
-      background: #ffffff;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #5a6270;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover { border-color: #c9952c; color: #142240; }
-    .filter-btn.active {
-      background: #142240;
-      border-color: #142240;
-      color: #f0e6d0;
-    }
-    .filter-count {
-      display: inline-block;
-      background: rgba(0,0,0,0.08);
-      border-radius: 100px;
-      padding: 1px 7px;
-      font-size: 0.75rem;
-      margin-left: 4px;
-    }
-    .filter-btn.active .filter-count {
-      background: rgba(255,255,255,0.15);
-    }
-    .branch-results {
-      text-align: center;
-      margin-bottom: 24px;
-      font-size: 0.85rem;
-      color: #8a8f98;
-    }
+
 
     /* ── Branch Cards Grid ── */
     .branches-grid {
@@ -251,6 +202,76 @@
       font-size: 0.95rem;
     }
 
+
+    /* ── State Accordions ── */
+    .state-accordions {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .state-accordion {
+      border: 1px solid #e8e4da;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      background: #ffffff;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .state-accordion:hover {
+      box-shadow: 0 4px 16px rgba(20, 34, 64, 0.06);
+    }
+    .state-accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 18px 24px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: background 0.2s;
+    }
+    .state-accordion-header:hover {
+      background: rgba(201, 149, 44, 0.04);
+    }
+    .state-accordion-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .state-accordion-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #142240;
+      margin: 0;
+    }
+    .state-accordion-count {
+      font-size: 0.8rem;
+      color: #8a8f98;
+      font-weight: 500;
+    }
+    .accordion-chevron {
+      color: #8a8f98;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    .state-accordion.open .accordion-chevron {
+      transform: rotate(180deg);
+    }
+    .state-accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .state-accordion.open .state-accordion-body {
+      max-height: 5000px;
+    }
+    .state-accordion-body .branches-grid {
+      padding: 0 24px 24px;
+    }
+    .state-accordion.hidden { display: none; }
+
     /* ── CTA Section ── */
     .cta-box {
       background: linear-gradient(135deg, rgba(201, 149, 44, 0.10), rgba(232, 93, 38, 0.06));
@@ -262,7 +283,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 768px) {
-      .hq-card-body { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+      .hq-card-body { padding: 24px; }
       .hq-card-map { height: 240px; }
       .youth-card { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
       .youth-links { align-items: flex-start; }
@@ -746,39 +767,6 @@
               </a>
             </div>
 
-            <!-- Service Schedule -->
-            <div class="hq-schedule">
-              <h4>Service Schedule</h4>
-
-              <div class="schedule-row">
-                <span class="schedule-day">Sunday</span>
-                <span class="schedule-time">Worship Service</span>
-              </div>
-              <div class="schedule-row">
-                <span class="schedule-day">Tuesday</span>
-                <span class="schedule-time">Healing &amp; Deliverance · 7 PM CT</span>
-              </div>
-              <div class="schedule-row">
-                <span class="schedule-day">Wednesday</span>
-                <span class="schedule-time">Manna Water Service</span>
-              </div>
-              <div class="schedule-row">
-                <span class="schedule-day">Thursday</span>
-                <span class="schedule-time">Open Heaven Encounter · 6 PM CT</span>
-              </div>
-              <div class="schedule-row">
-                <span class="schedule-day">Friday</span>
-                <span class="schedule-time">Prayer Rain</span>
-              </div>
-              <div class="schedule-row">
-                <span class="schedule-day">1st Saturday</span>
-                <span class="schedule-time">PMCH · 8 AM – 11:30 AM</span>
-              </div>
-
-              <p class="schedule-note">
-                * Service times may vary. Please call to confirm.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -856,35 +844,32 @@
         <div class="section-header text-center reveal">
           <p class="eyebrow">Across the Region</p>
           <h2>Regional Branches</h2>
-          <p>32 branches across 6 states — find a Mountain of Fire near you.</p>
+          <p>32 branches across 6 states &mdash; find a Mountain of Fire near you.</p>
         </div>
 
-        <!-- Search & Filter Controls -->
+        <!-- Search Bar -->
         <div class="branch-controls reveal">
           <div class="branch-search-wrap">
             <svg class="branch-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input type="text" id="branchSearch" class="branch-search" placeholder="Search by branch name, city, or pastor..." autocomplete="off">
           </div>
-          <div class="filter-bar" id="filterBar">
-              <button class="filter-btn active" data-filter="all">All States</button>
-              <button class="filter-btn" data-filter="Texas">Texas <span class="filter-count">20</span></button>
-              <button class="filter-btn" data-filter="Florida">Florida <span class="filter-count">5</span></button>
-              <button class="filter-btn" data-filter="Georgia">Georgia <span class="filter-count">4</span></button>
-              <button class="filter-btn" data-filter="North Carolina">North Carolina <span class="filter-count">1</span></button>
-              <button class="filter-btn" data-filter="Oklahoma">Oklahoma <span class="filter-count">1</span></button>
-              <button class="filter-btn" data-filter="Tennessee">Tennessee <span class="filter-count">1</span></button>
-          </div>
         </div>
 
-        <!-- Branch Count Display -->
-        <div class="branch-results reveal">
-          <span id="resultCount">32 branches</span>
-        </div>
+        <!-- State Accordions -->
+        <div class="state-accordions reveal" id="stateAccordions">
 
-        <!-- Branch Cards Grid -->
-        <div class="branches-grid reveal" id="branchesGrid">
-
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm rehoboth">
+          <div class="state-accordion open" data-accordion-state="Texas">
+            <button class="state-accordion-header" aria-expanded="true">
+              <div class="state-accordion-left">
+                <span class="state-badge state-badge--gold">TX</span>
+                <h3>Texas</h3>
+                <span class="state-accordion-count">20 branches</span>
+              </div>
+              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="state-accordion-body">
+              <div class="branches-grid">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm rehoboth">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -909,7 +894,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm revival chapel">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm revival chapel">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -934,7 +919,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 2">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 2">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -959,7 +944,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 3 — city of refuge">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 3 — city of refuge">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -984,7 +969,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 5 — new glory">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 5 — new glory">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -1009,7 +994,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm 7 north houston">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm 7 north houston">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -1030,7 +1015,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm greater grace">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm greater grace">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -1055,7 +1040,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm northwest houston">
+<div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm northwest houston">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Houston</span>
@@ -1080,7 +1065,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="dallas" data-name="mfm dallas">
+<div class="branch-card" data-state="Texas" data-city="dallas" data-name="mfm dallas">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Dallas</span>
@@ -1105,7 +1090,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="richardson" data-name="mfm house of his glory">
+<div class="branch-card" data-state="Texas" data-city="richardson" data-name="mfm house of his glory">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Richardson</span>
@@ -1126,7 +1111,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington">
+<div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Arlington</span>
@@ -1151,7 +1136,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington — matlock">
+<div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington — matlock">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Arlington</span>
@@ -1176,7 +1161,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="grand prairie" data-name="mfm grand prairie">
+<div class="branch-card" data-state="Texas" data-city="grand prairie" data-name="mfm grand prairie">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Grand Prairie</span>
@@ -1201,7 +1186,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="irving" data-name="mfm irving">
+<div class="branch-card" data-state="Texas" data-city="irving" data-name="mfm irving">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Irving</span>
@@ -1226,7 +1211,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="mansfield" data-name="mfm mansfield">
+<div class="branch-card" data-state="Texas" data-city="mansfield" data-name="mfm mansfield">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Mansfield</span>
@@ -1251,7 +1236,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="austin" data-name="mfm the lord has spoken">
+<div class="branch-card" data-state="Texas" data-city="austin" data-name="mfm the lord has spoken">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Austin</span>
@@ -1276,7 +1261,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="san antonio" data-name="mfm san antonio">
+<div class="branch-card" data-state="Texas" data-city="san antonio" data-name="mfm san antonio">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">San Antonio</span>
@@ -1301,7 +1286,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="pearland" data-name="mfm pearland — shadow of god">
+<div class="branch-card" data-state="Texas" data-city="pearland" data-name="mfm pearland — shadow of god">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Pearland</span>
@@ -1326,7 +1311,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="sugar land" data-name="mfm sugar land">
+<div class="branch-card" data-state="Texas" data-city="sugar land" data-name="mfm sugar land">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Sugar Land</span>
@@ -1351,7 +1336,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Texas" data-city="huntsville" data-name="mfm huntsville">
+<div class="branch-card" data-state="Texas" data-city="huntsville" data-name="mfm huntsville">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">TX</span>
                 <span class="branch-city">Huntsville</span>
@@ -1376,7 +1361,22 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Florida" data-city="tampa" data-name="mfm tampa">
+              </div>
+            </div>
+          </div>
+
+          <div class="state-accordion" data-accordion-state="Florida">
+            <button class="state-accordion-header" aria-expanded="false">
+              <div class="state-accordion-left">
+                <span class="state-badge state-badge--fire">FL</span>
+                <h3>Florida</h3>
+                <span class="state-accordion-count">5 branches</span>
+              </div>
+              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="state-accordion-body">
+              <div class="branches-grid">
+<div class="branch-card" data-state="Florida" data-city="tampa" data-name="mfm tampa">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Tampa</span>
@@ -1401,7 +1401,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Florida" data-city="hollywood" data-name="mfm broward">
+<div class="branch-card" data-state="Florida" data-city="hollywood" data-name="mfm broward">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Hollywood</span>
@@ -1426,7 +1426,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Florida" data-city="miami gardens" data-name="mfm miami — mount zion">
+<div class="branch-card" data-state="Florida" data-city="miami gardens" data-name="mfm miami — mount zion">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Miami Gardens</span>
@@ -1451,7 +1451,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Florida" data-city="orlando" data-name="mfm orlando — citadel of solution">
+<div class="branch-card" data-state="Florida" data-city="orlando" data-name="mfm orlando — citadel of solution">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Orlando</span>
@@ -1476,7 +1476,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Florida" data-city="tallahassee" data-name="mfm tallahassee">
+<div class="branch-card" data-state="Florida" data-city="tallahassee" data-name="mfm tallahassee">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">FL</span>
                 <span class="branch-city">Tallahassee</span>
@@ -1501,7 +1501,22 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm revival center">
+              </div>
+            </div>
+          </div>
+
+          <div class="state-accordion" data-accordion-state="Georgia">
+            <button class="state-accordion-header" aria-expanded="false">
+              <div class="state-accordion-left">
+                <span class="state-badge state-badge--purple">GA</span>
+                <h3>Georgia</h3>
+                <span class="state-accordion-count">4 branches</span>
+              </div>
+              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="state-accordion-body">
+              <div class="branches-grid">
+<div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm revival center">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Duluth</span>
@@ -1526,7 +1541,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Georgia" data-city="riverdale" data-name="mfm riverdale">
+<div class="branch-card" data-state="Georgia" data-city="riverdale" data-name="mfm riverdale">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Riverdale</span>
@@ -1551,7 +1566,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Georgia" data-city="marietta" data-name="mfm citadel of signs &amp; wonders">
+<div class="branch-card" data-state="Georgia" data-city="marietta" data-name="mfm citadel of signs &amp; wonders">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Marietta</span>
@@ -1576,7 +1591,7 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm georgia oasis of grace">
+<div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm georgia oasis of grace">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--purple">GA</span>
                 <span class="branch-city">Duluth</span>
@@ -1601,7 +1616,22 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="North Carolina" data-city="raleigh" data-name="mfm revival &amp; solution center">
+              </div>
+            </div>
+          </div>
+
+          <div class="state-accordion" data-accordion-state="North Carolina">
+            <button class="state-accordion-header" aria-expanded="false">
+              <div class="state-accordion-left">
+                <span class="state-badge state-badge--teal">NC</span>
+                <h3>North Carolina</h3>
+                <span class="state-accordion-count">1 branch</span>
+              </div>
+              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="state-accordion-body">
+              <div class="branches-grid">
+<div class="branch-card" data-state="North Carolina" data-city="raleigh" data-name="mfm revival &amp; solution center">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--teal">NC</span>
                 <span class="branch-city">Raleigh</span>
@@ -1626,7 +1656,22 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Oklahoma" data-city="tulsa" data-name="mfm tulsa">
+              </div>
+            </div>
+          </div>
+
+          <div class="state-accordion" data-accordion-state="Oklahoma">
+            <button class="state-accordion-header" aria-expanded="false">
+              <div class="state-accordion-left">
+                <span class="state-badge state-badge--gold">OK</span>
+                <h3>Oklahoma</h3>
+                <span class="state-accordion-count">1 branch</span>
+              </div>
+              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="state-accordion-body">
+              <div class="branches-grid">
+<div class="branch-card" data-state="Oklahoma" data-city="tulsa" data-name="mfm tulsa">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--gold">OK</span>
                 <span class="branch-city">Tulsa</span>
@@ -1651,7 +1696,22 @@
               </div>
               </div>
             </div>
-            <div class="branch-card" data-state="Tennessee" data-city="antioch" data-name="mfm nashville">
+              </div>
+            </div>
+          </div>
+
+          <div class="state-accordion" data-accordion-state="Tennessee">
+            <button class="state-accordion-header" aria-expanded="false">
+              <div class="state-accordion-left">
+                <span class="state-badge state-badge--fire">TN</span>
+                <h3>Tennessee</h3>
+                <span class="state-accordion-count">1 branch</span>
+              </div>
+              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="state-accordion-body">
+              <div class="branches-grid">
+<div class="branch-card" data-state="Tennessee" data-city="antioch" data-name="mfm nashville">
               <div class="branch-card-header">
                 <span class="state-badge state-badge--fire">TN</span>
                 <span class="branch-city">Antioch</span>
@@ -1676,6 +1736,10 @@
               </div>
               </div>
             </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- No Results Message -->
@@ -1937,77 +2001,86 @@
     })();
 
 
-    /* ── Branch Search & Filter ── */
+    /* ── State Accordion Toggle ── */
+    (function () {
+      var accordions = document.querySelectorAll('.state-accordion');
+      accordions.forEach(function (acc) {
+        var header = acc.querySelector('.state-accordion-header');
+        if (!header) return;
+        header.addEventListener('click', function () {
+          var isOpen = acc.classList.contains('open');
+          acc.classList.toggle('open');
+          header.setAttribute('aria-expanded', !isOpen);
+        });
+      });
+    })();
+
+
+    /* ── Branch Search (Accordion-aware) ── */
     (function () {
       var searchInput = document.getElementById('branchSearch');
-      var filterBtns = document.querySelectorAll('.filter-btn');
       var cards = document.querySelectorAll('.branch-card');
-      var resultCount = document.getElementById('resultCount');
+      var accordions = document.querySelectorAll('.state-accordion');
       var noResults = document.getElementById('noResults');
-      var grid = document.getElementById('branchesGrid');
-      var activeState = 'all';
+      var accordionWrap = document.getElementById('stateAccordions');
 
       if (!searchInput || !cards.length) return;
 
       function filterBranches() {
         var query = searchInput.value.toLowerCase().trim();
-        var visible = 0;
+        var totalVisible = 0;
 
-        cards.forEach(function (card) {
-          var stateMatch = activeState === 'all' || card.dataset.state === activeState;
-          var textMatch = true;
+        if (!query) {
+          // No search — show all cards, restore accordion state
+          cards.forEach(function (c) { c.classList.remove('hidden'); });
+          accordions.forEach(function (a) { a.classList.remove('hidden'); });
+          if (noResults) noResults.style.display = 'none';
+          if (accordionWrap) accordionWrap.style.display = '';
+          return;
+        }
 
-          if (query) {
+        // Filter cards and auto-open matching accordions
+        accordions.forEach(function (acc) {
+          var accCards = acc.querySelectorAll('.branch-card');
+          var stateVisible = 0;
+
+          accCards.forEach(function (card) {
             var cardText = card.textContent.toLowerCase();
-            var name = (card.dataset.name || '');
-            var city = (card.dataset.city || '');
-            // Check if query matches branch name, city, or full card text
-            textMatch = cardText.indexOf(query) !== -1;
-          }
+            if (cardText.indexOf(query) !== -1) {
+              card.classList.remove('hidden');
+              stateVisible++;
+              totalVisible++;
+            } else {
+              card.classList.add('hidden');
+            }
+          });
 
-          if (stateMatch && textMatch) {
-            card.classList.remove('hidden');
-            visible++;
+          if (stateVisible > 0) {
+            acc.classList.remove('hidden');
+            acc.classList.add('open');
+            acc.querySelector('.state-accordion-header').setAttribute('aria-expanded', 'true');
           } else {
-            card.classList.add('hidden');
+            acc.classList.add('hidden');
           }
         });
 
-        // Update result count
-        if (resultCount) {
-          resultCount.textContent = visible + (visible === 1 ? ' branch' : ' branches');
-        }
-
-        // Show/hide no results message
-        if (noResults && grid) {
-          if (visible === 0) {
+        if (noResults && accordionWrap) {
+          if (totalVisible === 0) {
             noResults.style.display = 'block';
-            grid.style.display = 'none';
+            accordionWrap.style.display = 'none';
           } else {
             noResults.style.display = 'none';
-            grid.style.display = '';
+            accordionWrap.style.display = '';
           }
         }
       }
 
-      // Make filterBranches available globally for the clear button
       window.filterBranches = filterBranches;
 
-      // Search input handler
       var debounceTimer;
       searchInput.addEventListener('input', function () {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(filterBranches, 150);
-      });
-
-      // State filter button handlers
-      filterBtns.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          filterBtns.forEach(function (b) { b.classList.remove('active'); });
-          btn.classList.add('active');
-          activeState = btn.dataset.filter;
-          filterBranches();
-        });
       });
     })();
 
