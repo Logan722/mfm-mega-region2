@@ -408,17 +408,14 @@
        ═══════════════════════════════════════════════════════════ */
     .announce-stage {
       position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 18px;
+      width: 100%;
+      margin: 40px 0 0;
       overflow: hidden;
-      box-shadow: 0 36px 80px rgba(0, 0, 0, 0.5);
       background: var(--bg-navy-deep);
     }
     .announce-slides {
       position: relative;
-      aspect-ratio: 16 / 9;
-      min-height: 520px;
+      min-height: 620px;
     }
     .announce-slide {
       position: absolute;
@@ -478,8 +475,8 @@
     .announce-content {
       position: absolute;
       left: 0; right: 0; bottom: 0;
-      padding: 48px 56px 56px;
-      max-width: 720px;
+      padding: 48px max(6vw, 56px) 72px;
+      max-width: min(820px, 92vw);
       z-index: 2;
     }
     .announce-content > * {
@@ -707,11 +704,49 @@
       width: 100%;
     }
 
+    /* Previous / Next arrows */
+    .announce-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(15, 26, 48, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(201, 149, 44, 0.35);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 4;
+      padding: 0;
+      transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out), opacity 0.3s;
+      opacity: 0.75;
+    }
+    .announce-arrow:hover {
+      background: rgba(15, 26, 48, 0.85);
+      border-color: var(--gold);
+      opacity: 1;
+      transform: translateY(-50%) scale(1.06);
+    }
+    .announce-arrow:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      opacity: 1;
+    }
+    .announce-arrow svg { width: 22px; height: 22px; }
+    .announce-arrow--prev { left: max(2vw, 20px); }
+    .announce-arrow--next { right: max(2vw, 20px); }
+    .announce-stage.is-single .announce-arrow { display: none; }
+
     /* Indicator dots */
     .announce-dots {
       position: absolute;
-      top: 24px;
-      right: 24px;
+      top: 28px;
+      right: max(2vw, 28px);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -745,8 +780,8 @@
 
     /* Mobile */
     @media (max-width: 860px) {
-      .announce-slides { aspect-ratio: 4 / 5; min-height: 560px; }
-      .announce-content { padding: 32px 28px 40px; max-width: 100%; }
+      .announce-slides { min-height: 580px; }
+      .announce-content { padding: 36px 24px 48px; max-width: 100%; }
       .announce-overlay {
         background:
           linear-gradient(180deg,
@@ -759,8 +794,11 @@
       .announce-dots { top: 16px; right: 16px; padding: 6px 10px; }
       .announce-dots .dot { width: 18px; height: 4px; }
       .announce-dots .dot.is-active { width: 30px; }
+      /* Arrows hidden on mobile — swipe is the primary nav */
+      .announce-arrow { display: none; }
     }
     @media (max-width: 640px) {
+      .announce-slides { min-height: 540px; }
       .announce-countdown .cd-unit { padding: 6px 10px; min-width: 48px; }
       .announce-countdown .cd-num { font-size: 1.2rem; }
       .announce-ctas { gap: 8px; }
@@ -1333,16 +1371,26 @@
           <p>Upcoming crusades, conferences, and special services across Mega Region 2.</p>
         </div>
 
-        <!-- Featured announcement — immersive full-bleed, auto-rotates through upcoming events -->
-        <div id="announceStage" class="announce-stage reveal" aria-roledescription="carousel" aria-label="Upcoming events">
-          <div id="announceSlides" class="announce-slides"></div>
-          <div class="announce-progress" aria-hidden="true">
-            <div id="announceProgressFill" class="announce-progress-fill"></div>
-          </div>
-          <div id="announceDots" class="announce-dots" role="tablist" aria-label="Event selector"></div>
-        </div>
-
       </div>
+
+      <!-- Featured announcement — full-bleed, auto-rotates through upcoming events -->
+      <div id="announceStage" class="announce-stage reveal" aria-roledescription="carousel" aria-label="Upcoming events">
+        <div id="announceSlides" class="announce-slides"></div>
+
+        <!-- Navigation arrows -->
+        <button type="button" id="announcePrev" class="announce-arrow announce-arrow--prev" aria-label="Previous event">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" id="announceNext" class="announce-arrow announce-arrow--next" aria-label="Next event">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <div class="announce-progress" aria-hidden="true">
+          <div id="announceProgressFill" class="announce-progress-fill"></div>
+        </div>
+        <div id="announceDots" class="announce-dots" role="tablist" aria-label="Event selector"></div>
+      </div>
+
     </section>
 
     <!-- Event data — edit here to add/update special events.
@@ -2118,7 +2166,7 @@
          • Dots for direct jump (resets rotation timer)
        ═══════════════════════════════════════════════════════════ */
     (function () {
-      var ROTATE_MS = 3000;
+      var ROTATE_MS = 7000;
 
       var section   = document.getElementById('announcements');
       var dataEl    = document.getElementById('eventData');
@@ -2126,6 +2174,8 @@
       var slidesEl  = document.getElementById('announceSlides');
       var dotsEl    = document.getElementById('announceDots');
       var progFill  = document.getElementById('announceProgressFill');
+      var prevBtn   = document.getElementById('announcePrev');
+      var nextBtn   = document.getElementById('announceNext');
       if (!section || !dataEl || !stage || !slidesEl || !dotsEl) return;
 
       var events;
@@ -2482,6 +2532,29 @@
         if (isNaN(go)) return;
         setActive(go);
         if (inView && !paused) startTimers();
+      });
+
+      /* ═══ Prev / Next arrow clicks — reset rotation ═══ */
+      function goPrev() {
+        if (parsed.length < 2) return;
+        var next = (currentIdx - 1 + parsed.length) % parsed.length;
+        setActive(next);
+        if (inView && !paused) startTimers();
+      }
+      function goNext() {
+        if (parsed.length < 2) return;
+        var next = (currentIdx + 1) % parsed.length;
+        setActive(next);
+        if (inView && !paused) startTimers();
+      }
+      if (prevBtn) prevBtn.addEventListener('click', goPrev);
+      if (nextBtn) nextBtn.addEventListener('click', goNext);
+
+      /* Keyboard: ← / → arrows when stage has focus */
+      stage.setAttribute('tabindex', '0');
+      stage.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goPrev(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
       });
 
       /* ═══ Add-to-calendar button clicks ═══ */
