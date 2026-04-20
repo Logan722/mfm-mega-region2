@@ -2166,7 +2166,7 @@
          • Dots for direct jump (resets rotation timer)
        ═══════════════════════════════════════════════════════════ */
     (function () {
-      var ROTATE_MS = 7000;
+      var ROTATE_MS = 5000;
 
       var section   = document.getElementById('announcements');
       var dataEl    = document.getElementById('eventData');
@@ -2512,7 +2512,12 @@
         else { renderCountdown(currentIdx); if (inView && !paused) startTimers(); }
       });
 
-      /* ═══ Pause when scrolled out of viewport ═══ */
+      /* ═══ Pause when scrolled fully out of viewport ═══
+         threshold: 0 + generous rootMargin means ANY visible sliver
+         (plus 300px buffer above and below) counts as "in view". Prevents
+         the tall full-bleed stage from being wrongly marked out-of-view
+         when the user is looking at it but the top/bottom extend beyond
+         the viewport. */
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
@@ -2520,7 +2525,7 @@
             if (!inView) { stopTimers(); }
             else if (!paused && !document.hidden) { startTimers(); }
           });
-        }, { threshold: 0.15 });
+        }, { threshold: 0, rootMargin: '300px 0px 300px 0px' });
         io.observe(stage);
       }
 
