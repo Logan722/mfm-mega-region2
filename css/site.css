@@ -812,7 +812,7 @@ body::after {
   transition: color var(--dur) var(--ease-out);
 }
 
-.nav-dropdown-toggle svg {
+.nav-dropdown-toggle svg.dd-chevron {
   transition: transform var(--dur) var(--ease-out);
 }
 
@@ -821,7 +821,7 @@ body::after {
   color: var(--cream);
 }
 
-.nav-dropdown.open .nav-dropdown-toggle svg {
+.nav-dropdown.open .nav-dropdown-toggle svg.dd-chevron {
   transform: rotate(180deg);
 }
 
@@ -829,33 +829,21 @@ body::after {
   position: absolute;
   top: calc(100% + 14px);
   left: 50%;
-  transform: translateX(-50%);
-  min-width: 180px;
+  min-width: 220px;
   background: var(--bg-navy-deep);
-  border: 1px solid var(--line-strong);
-  border-radius: 10px;
-  padding: 8px 0;
+  border: 1px solid rgba(201, 149, 44, 0.2);
+  border-top: 2px solid var(--gold);
+  border-radius: 0 0 10px 10px;
+  padding: 0;
   opacity: 0;
   visibility: hidden;
   transform: translateX(-50%) translateY(8px);
   transition: opacity var(--dur) var(--ease-out),
               visibility var(--dur) var(--ease-out),
               transform var(--dur) var(--ease-out);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   z-index: 100;
-}
-
-.nav-dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--line-strong);
+  overflow: hidden;
 }
 
 .nav-dropdown.open .nav-dropdown-menu {
@@ -865,14 +853,21 @@ body::after {
 }
 
 .nav-dropdown-menu a {
-  display: block;
-  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
   text-decoration: none;
+  border-bottom: 1px solid rgba(201, 149, 44, 0.06);
   transition: color var(--dur) var(--ease-out),
               background var(--dur) var(--ease-out);
+}
+
+.nav-dropdown-menu a:last-child {
+  border-bottom: none;
 }
 
 .nav-dropdown-menu a::after {
@@ -882,7 +877,40 @@ body::after {
 .nav-dropdown-menu a:hover,
 .nav-dropdown-menu a.active {
   color: var(--cream);
-  background: rgba(201, 149, 44, 0.08);
+  background: rgba(201, 149, 44, 0.06);
+}
+
+.nav-dd-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(201, 149, 44, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-dd-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-dd-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-dd-label span {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-weight: 400;
 }
 
 /* ── Live Badge ── */
