@@ -103,55 +103,6 @@
       }
     }
 
-    /* ── Monthly Programs Grid ── */
-    .monthly-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 56px;
-    }
-    .monthly-card {
-      background: var(--bg-sand);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 12px;
-      padding: 32px;
-      transition: border-color 0.4s var(--ease-out), transform 0.4s;
-    }
-    .monthly-card:hover {
-      border-color: var(--line-white-strong);
-      transform: translateY(-3px);
-    }
-    .monthly-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .monthly-card .time-detail {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--fire);
-      margin-bottom: 12px;
-    }
-    .monthly-card p {
-      font-size: 0.88rem;
-      color: var(--text-on-white);
-      line-height: 1.7;
-    }
-    .monthly-card .location-note {
-      font-size: 0.8rem;
-      color: var(--text-dim-white);
-      margin-top: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .monthly-card .location-note svg { flex-shrink: 0; }
-
-    @media (max-width: 640px) {
-      .monthly-grid { grid-template-columns: 1fr; }
-    }
 
     /* ── Upcoming Events (Cream) — Grid + Expandable Detail ── */
     .section--upcoming {
@@ -814,31 +765,24 @@
           </div>
         </div>
 
-        <!-- ── Monthly Programs (PMCH + Solution Hour) ── -->
-        <div class="monthly-grid reveal-stagger">
-
-          <div class="monthly-card reveal" id="pmch">
-            <span class="badge badge--fire" style="margin-bottom:16px;">1st Saturday Monthly</span>
-            <h4>Power Must Change Hands</h4>
-            <div class="time-detail">8:00 AM – 11:30 AM CT</div>
-            <p>A flagship MFM programme held at Prayer City on the first Saturday of every month. Intense spiritual warfare, midnight prayers, and aggressive intercession — a gathering where stubborn situations are addressed by fire.</p>
-            <div class="location-note">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              MFM USA Prayer City, Houston TX
+        <!-- ── Power Must Change Hands ── -->
+        <div class="weekly-program reveal" id="pmch" style="grid-template-columns:1fr; background:linear-gradient(135deg, rgba(201,149,44,0.06), rgba(232,93,38,0.03)); border-color:var(--gold-glow);">
+          <div class="weekly-program-body" style="padding:40px 48px;">
+            <span class="badge badge--fire" style="margin-bottom:14px;">1st Saturday Monthly</span>
+            <h3>Power Must Change Hands</h3>
+            <p class="program-desc">A flagship MFM programme held at Prayer City on the first Saturday of every month. Intense spiritual warfare, midnight prayers, and aggressive intercession — a gathering where stubborn situations are addressed by fire. Whatever is holding your destiny captive — Power Must Change Hands!</p>
+            <ul class="weekly-program-schedule">
+              <li>🔥 8:00 AM – 11:30 AM CT</li>
+              <li>📍 MFM USA Prayer City · 10000 Kleckley Dr, Houston TX 77075</li>
+            </ul>
+            <blockquote style="margin-top:20px; font-size:0.95rem; padding:12px 0 12px 20px; border-left:2px solid var(--bg-sand-border); color:var(--text-dim-white); font-style:italic;">
+              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
+              <cite style="display:block; font-style:normal; font-size:0.82rem; color:var(--gold-dim); margin-top:4px;">— Psalm 144:1</cite>
+            </blockquote>
+            <div class="weekly-program-actions" style="margin-top:20px;">
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Get Directions →</a>
             </div>
           </div>
-
-          <div class="monthly-card reveal" id="solution-hour">
-            <span class="badge badge--gold" style="margin-bottom:16px;">2nd Saturday Monthly</span>
-            <h4>Solution Hour</h4>
-            <div class="time-detail">8:00 AM – 10:00 AM CT</div>
-            <p>A powerful monthly programme on the second Saturday of every month. A time set apart for God to provide solutions to complex situations and answer prayers that have long been waiting.</p>
-            <div class="location-note">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              MFM USA Prayer City, Houston TX
-            </div>
-          </div>
-
         </div>
 
       </div>
