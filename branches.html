@@ -25,354 +25,87 @@
 
   <!-- Page-specific styles -->
   <style>
-    /* ── HQ Featured Card ── */
-    .hq-card {
-      background: var(--bg-2);
-      border: 1px solid var(--line-strong);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(201, 149, 44, 0.12);
+    /* ── Layout A: Map + Directory ── */
+    .dir-wrapper { display:grid; grid-template-columns:1fr 380px; border-radius:16px; overflow:hidden; border:1px solid #e8e4da; background:#fff; min-height:600px; }
+    .dir-list-col { display:flex; flex-direction:column; max-height:800px; overflow-y:auto; }
+    .dir-header { display:flex; justify-content:space-between; align-items:flex-end; padding:28px 28px 20px; border-bottom:1px solid #e8e4da; position:sticky; top:0; background:#fff; z-index:2; }
+    .dir-header h2 { font-size:1.4rem; }
+    .dir-stats { display:flex; gap:16px; }
+    .dir-stat { text-align:center; }
+    .dir-stat-n { font-family:var(--font-serif); font-size:1.4rem; font-weight:700; color:var(--gold); display:block; line-height:1; }
+    .dir-stat-l { font-size:0.65rem; color:#8a8f98; text-transform:uppercase; letter-spacing:0.06em; }
+    .dir-toolbar { padding:16px 28px 12px; position:sticky; top:90px; background:#fff; z-index:2; }
+    .dir-search-wrap { position:relative; margin-bottom:10px; }
+    .dir-search-icon { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#8a8f98; pointer-events:none; }
+    .dir-search { width:100%; padding:10px 12px 10px 36px; border:1px solid #d4cfc4; border-radius:8px; font-family:var(--font-sans); font-size:0.85rem; color:#142240; background:#faf9f6; outline:none; box-sizing:border-box; }
+    .dir-search:focus { border-color:#c9952c; background:#fff; }
+    .dir-search::placeholder { color:#8a8f98; }
+    .dir-filters { display:flex; gap:6px; flex-wrap:wrap; }
+    .dir-filter { padding:5px 12px; border:1px solid #d4cfc4; border-radius:100px; background:#fff; font-family:var(--font-sans); font-size:0.72rem; font-weight:600; color:#5a6270; cursor:pointer; transition:all 0.2s; }
+    .dir-filter:hover { border-color:#c9952c; color:#142240; }
+    .dir-filter.active { background:#142240; border-color:#142240; color:#f0e6d0; }
+    .dir-nearest-btn { display:flex; align-items:center; gap:6px; width:calc(100% - 56px); margin:0 28px 4px; padding:8px 14px; background:rgba(201,149,44,0.06); border:1px solid rgba(201,149,44,0.15); border-radius:8px; font-family:var(--font-sans); font-size:0.78rem; font-weight:600; color:#8b6f33; cursor:pointer; }
+    .dir-nearest-btn:hover { background:rgba(201,149,44,0.12); }
+    .dir-nearest-btn svg { color:#c9952c; }
+    .nearest-result { margin:8px 28px 0; padding:12px 14px; background:rgba(201,149,44,0.06); border:1px solid rgba(201,149,44,0.15); border-radius:8px; font-size:0.82rem; color:#142240; line-height:1.5; }
+    .nearest-result strong { font-family:var(--font-serif); display:block; margin-bottom:2px; }
+    .nearest-result .nearest-distance { font-size:0.75rem; color:#8a8f98; }
+    .nearest-result a { color:#c9952c; font-weight:600; text-decoration:none; }
+    .dir-rows { padding:8px 16px; }
+    .dir-row { border:1px solid #eae7e0; border-radius:10px; margin-bottom:6px; overflow:hidden; transition:border-color 0.2s; }
+    .dir-row:hover { border-color:#c9952c; }
+    .dir-row--hq { border-color:#c9952c; border-width:1.5px; background:rgba(201,149,44,0.02); }
+    .dir-row.hidden { display:none; }
+    .dir-row.highlight { border-color:#c9952c; box-shadow:0 0 0 2px rgba(201,149,44,0.2); }
+    .dir-row-main { display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; }
+    .dir-badge { flex-shrink:0; padding:3px 8px; border-radius:100px; font-size:0.65rem; font-weight:700; letter-spacing:0.04em; }
+    .dir-badge--gold { background:rgba(201,149,44,0.12); color:#8b6f33; }
+    .dir-badge--fire { background:rgba(232,93,38,0.12); color:#c04d1e; }
+    .dir-badge--purple { background:rgba(100,70,160,0.12); color:#5a3d8f; }
+    .dir-badge--teal { background:rgba(0,150,136,0.12); color:#00796b; }
+    .dir-badge--hq { background:#142240; color:#c9952c; }
+    .dir-row-info { flex:1; min-width:0; }
+    .dir-name { display:block; font-weight:600; font-size:0.88rem; color:#142240; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .dir-meta { display:block; font-size:0.72rem; color:#8a8f98; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .dir-directions { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(201,149,44,0.08); display:flex; align-items:center; justify-content:center; color:#c9952c; text-decoration:none; transition:background 0.2s; }
+    .dir-directions:hover { background:rgba(201,149,44,0.18); }
+    .dir-expand { flex-shrink:0; color:#b0ada5; transition:transform 0.3s; }
+    .dir-row.open .dir-expand { transform:rotate(180deg); }
+    .dir-row-details { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+    .dir-row.open .dir-row-details { max-height:300px; }
+    .dir-detail { padding:4px 14px 4px 48px; font-size:0.8rem; color:#5a6270; line-height:1.6; }
+    .dir-detail:last-child { padding-bottom:12px; }
+    .dir-detail strong { color:#8a8f98; font-weight:500; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; margin-right:4px; }
+    .dir-detail a { color:#5a6270; text-decoration:none; }
+    .dir-detail a:hover { color:#c9952c; }
+    .dir-note { color:#e85d26; font-style:italic; font-size:0.75rem; }
+    .dir-no-results { text-align:center; padding:32px 20px; }
+    .dir-no-results p { color:#8a8f98; font-size:0.9rem; }
+    .dir-footer-note { padding:16px 28px; font-size:0.78rem; color:#8a8f98; text-align:center; }
+    .dir-footer-note a { color:#c9952c; }
+    .dir-map-col { border-left:1px solid #e8e4da; position:relative; }
+    .dir-map-sticky { position:sticky; top:80px; height:calc(100vh - 100px); max-height:800px; }
+    .dir-map-frame { width:100%; height:100%; border:none; display:block; }
+    .cta-box { background:linear-gradient(135deg,rgba(201,149,44,0.10),rgba(232,93,38,0.06)); border:1px solid var(--line-strong); border-radius:14px; padding:48px; text-align:center; }
+    .cta-box h2 { font-size:clamp(1.4rem,2vw + 0.5rem,2rem); margin-bottom:12px; }
+    .cta-box p { color:var(--text-muted); max-width:540px; margin:0 auto 24px; }
+    @media (max-width:900px) {
+      .dir-wrapper { grid-template-columns:1fr; min-height:auto; }
+      .dir-map-col { border-left:none; border-top:1px solid #e8e4da; }
+      .dir-map-sticky { position:relative; top:0; height:300px; max-height:none; }
+      .dir-list-col { max-height:none; overflow:visible; }
     }
-    .hq-card-map { width: 100%; height: 320px; border: none; display: block; }
-    .hq-card-body {
-      padding: 36px;
+    @media (max-width:768px) {
+      .dir-search { font-size:16px; }
     }
-    .hq-info h3 { font-family: var(--font-serif); color: var(--cream); font-size: 1.4rem; margin-bottom: 16px; }
-    .hq-detail {
-      display: flex; align-items: flex-start; gap: 12px;
-      margin-bottom: 14px; font-size: 0.9rem; color: var(--text); line-height: 1.6;
-    }
-    .hq-detail svg { flex-shrink: 0; margin-top: 3px; color: var(--gold); }
-    .hq-detail a { color: var(--text); }
-    .hq-detail a:hover { color: var(--fire-light); }
-
-
-
-
-    /* ── Search & Filter Controls ── */
-    .branch-controls {
-      max-width: 800px;
-      margin: 0 auto 20px;
-    }
-    .branch-search-wrap {
-      position: relative;
-      margin-bottom: 16px;
-    }
-    .branch-search-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #8a8f98;
-      pointer-events: none;
-    }
-    .branch-search {
-      width: 100%;
-      padding: 14px 16px 14px 46px;
-      border: 1px solid #d4cfc4;
-      border-radius: 10px;
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-      color: #142240;
-      background: #ffffff;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-      box-sizing: border-box;
-    }
-    .branch-search:focus {
-      border-color: #c9952c;
-      box-shadow: 0 0 0 3px rgba(201, 149, 44, 0.15);
-    }
-    .branch-search::placeholder { color: #8a8f98; }
-
-
-    /* ── Branch Cards Grid ── */
-    .branches-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
-    }
-    .branch-card {
-      background: #ffffff;
-      border: 1px solid #e8e4da;
-      border-radius: 12px;
-      padding: 24px;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .branch-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(20, 34, 64, 0.08);
-      border-color: #c9952c;
-    }
-    .branch-card.hidden { display: none; }
-    .branch-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .state-badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 100px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .state-badge--gold { background: rgba(201, 149, 44, 0.12); color: #8b6f33; }
-    .state-badge--fire { background: rgba(232, 93, 38, 0.12); color: #c04d1e; }
-    .state-badge--purple { background: rgba(100, 70, 160, 0.12); color: #5a3d8f; }
-    .state-badge--teal { background: rgba(0, 150, 136, 0.12); color: #00796b; }
-    .branch-city {
-      font-size: 0.78rem;
-      color: #8a8f98;
-      font-weight: 500;
-    }
-    .branch-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #142240;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-    .branch-pastor {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.88rem;
-      color: #5a6270;
-      margin-bottom: 14px;
-      font-weight: 500;
-    }
-    .branch-pastor svg { color: #c9952c; flex-shrink: 0; }
-    .branch-title {
-      font-size: 0.75rem;
-      background: rgba(201, 149, 44, 0.12);
-      color: #8b6f33;
-      padding: 1px 8px;
-      border-radius: 4px;
-      margin-left: 6px;
-      font-weight: 600;
-    }
-    .branch-note {
-      font-size: 0.8rem;
-      color: #e85d26;
-      font-style: italic;
-      margin-bottom: 10px;
-      padding: 6px 10px;
-      background: rgba(232, 93, 38, 0.06);
-      border-radius: 6px;
-    }
-    .branch-details {
-      border-top: 1px solid #e8e4da;
-      padding-top: 12px;
-    }
-    .branch-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: #5a6270;
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-    .branch-detail:last-child { margin-bottom: 0; }
-    .branch-detail svg { flex-shrink: 0; margin-top: 2px; color: #8a8f98; }
-    .branch-detail a { color: #5a6270; text-decoration: none; }
-    .branch-detail a:hover { color: #c9952c; }
-    .no-results {
-      text-align: center;
-      padding: 48px 24px;
-    }
-    .no-results p {
-      color: #8a8f98;
-      margin: 16px 0;
-      font-size: 0.95rem;
+    @media (max-width:480px) {
+      .dir-header { flex-direction:column; align-items:flex-start; gap:12px; padding:20px 20px 16px; }
+      .dir-toolbar { padding:12px 20px 10px; }
+      .dir-rows { padding:8px 12px; }
+      .dir-detail { padding-left:36px; }
     }
 
-
-
-    /* ── Branch Map & Find Nearest ── */
-    .branch-map-row {
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 20px;
-      margin-bottom: 32px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid #e8e4da;
-      background: #ffffff;
-    }
-    .branch-map-wrap {
-      position: relative;
-      min-height: 280px;
-    }
-    .branch-map-frame {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-    .find-nearest-panel {
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .find-nearest-icon {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: rgba(201,149,44,0.08);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
-    }
-    .find-nearest-panel h3 {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #142240;
-      margin: 0 0 8px;
-    }
-    .find-nearest-panel p {
-      font-size: 0.85rem;
-      color: #5a6270;
-      line-height: 1.5;
-      margin: 0 0 18px;
-    }
-    .nearest-result {
-      margin-top: 16px;
-      padding: 14px 16px;
-      background: rgba(201,149,44,0.06);
-      border: 1px solid rgba(201,149,44,0.15);
-      border-radius: 10px;
-      font-size: 0.85rem;
-      color: #142240;
-      line-height: 1.5;
-    }
-    .nearest-result strong {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-    .nearest-result .nearest-distance {
-      font-size: 0.78rem;
-      color: #8a8f98;
-    }
-    .nearest-result a {
-      color: #c9952c;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .nearest-result a:hover { text-decoration: underline; }
-
-    @media (max-width: 768px) {
-      .branch-map-row {
-        grid-template-columns: 1fr;
-      }
-      .branch-map-wrap { min-height: 220px; }
-    }
-
-    /* ── State Accordions ── */
-    .state-accordions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 0 auto;
-    }
-    .state-accordion {
-      border: 1px solid #e8e4da;
-      border-radius: 12px;
-      background: #ffffff;
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-    .state-accordion.open {
-      grid-column: 1 / -1;
-    }
-    .state-accordion:hover {
-      box-shadow: 0 4px 16px rgba(20, 34, 64, 0.06);
-    }
-    .state-accordion-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 18px 24px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-family: var(--font-sans);
-      transition: background 0.2s;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-    .state-accordion-header:hover {
-      background: rgba(201, 149, 44, 0.04);
-    }
-    .state-accordion-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .state-accordion-header h3 {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #142240;
-      margin: 0;
-    }
-    .state-accordion-count {
-      font-size: 0.8rem;
-      color: #8a8f98;
-      font-weight: 500;
-    }
-    .accordion-chevron {
-      color: #8a8f98;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-    .state-accordion.open .accordion-chevron {
-      transform: rotate(180deg);
-    }
-    .state-accordion-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    .state-accordion.open .state-accordion-body {
-      max-height: 5000px;
-    }
-    .state-accordion-body .branches-grid {
-      padding: 0 24px 24px;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    }
-    .state-accordion.hidden { display: none; }
-
-    /* ── CTA Section ── */
-    .cta-box {
-      background: linear-gradient(135deg, rgba(201, 149, 44, 0.10), rgba(232, 93, 38, 0.06));
-      border: 1px solid var(--line-strong); border-radius: 14px;
-      padding: 48px; text-align: center;
-    }
-    .cta-box h2 { font-size: clamp(1.4rem, 2vw + 0.5rem, 2rem); margin-bottom: 12px; }
-    .cta-box p { color: var(--text-muted); max-width: 540px; margin: 0 auto 24px; }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .hq-card-body { padding: 24px; }
-      .hq-card-map { height: 240px; }
-      .cta-box { padding: 32px 20px; }
-      .branches-grid { grid-template-columns: 1fr; }
-      .state-accordions { grid-template-columns: repeat(2, 1fr); }
-      .branch-search { font-size: 16px; }
-    }
-
-    /* ── Split Hero — Branches ── */
+/* ── Split Hero — Branches ── */
     .branches-hero {
       background: var(--bg-navy);
       padding: 140px 0 0;
@@ -580,9 +313,6 @@
       .hero-stats-row { justify-content: center; }
       .hero-pin-col { margin: 0 auto; }
       .hero-ey-badge { justify-content: center; }
-    }
-    @media (max-width: 480px) {
-      .state-accordions { grid-template-columns: 1fr; }
     }
   </style>
   <!-- Netlify Identity Widget (needed for CMS) -->
@@ -797,1060 +527,600 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         PRAYER CITY HQ — Featured
+         BRANCH DIRECTORY — Map + Scrollable Directory
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--dark" id="prayer-city">
+    <section class="section section--cream" id="branch-directory" style="padding-top:80px;padding-bottom:80px">
       <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Headquarters</p>
-          <h2>MFM USA Prayer City</h2>
-          <p>The regional headquarters of Mountain of Fire and Miracles Ministries, Mega Region 2 USA — where the fire burns and heaven touches earth.</p>
-        </div>
-
-        <div class="hq-card reveal">
-          <!-- Embedded Google Map -->
-          <iframe
-            class="hq-card-map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.5!2d-95.2616!3d29.6249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf57fba4c1e7%3A0x7f9a15b2e0d5c4a8!2s10000%20Kleckley%20Dr%2C%20Houston%2C%20TX%2077075!5e0!3m2!1sen!2sus!4v1713400000000"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="MFM USA Prayer City — 10000 Kleckley Dr, Houston, TX 77075">
-          </iframe>
-
-          <div class="hq-card-body">
-            <!-- Location & Contact Info -->
-            <div class="hq-info">
-              <h3>Location &amp; Contact</h3>
-
-              <div class="hq-detail">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
-                  10000 Kleckley Dr<br>
-                  Houston, TX 77075
-                </a>
+        <div class="dir-wrapper">
+          <div class="dir-list-col">
+            <div class="dir-header">
+              <div>
+                <p class="eyebrow" style="margin-bottom:6px">Branch Directory</p>
+                <h2 style="margin-bottom:0">Find a Branch</h2>
               </div>
-
-              <div class="hq-detail">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+18327888504">(832) 788-8504</a>
+              <div class="dir-stats">
+                <div class="dir-stat"><span class="dir-stat-n">33</span><span class="dir-stat-l">Locations</span></div>
+                <div class="dir-stat"><span class="dir-stat-n">6</span><span class="dir-stat-l">States</span></div>
               </div>
-
-              <div class="hq-detail">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <span>
-                  Pastor Olumide Oni<br>
-                  <span class="text-muted" style="font-size:0.82rem">Principal Regional Overseer</span>
-                </span>
-              </div>
-
-              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--primary btn--sm" style="margin-top:12px">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                Get Directions
-              </a>
             </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         REGIONAL BRANCHES
-         ═══════════════════════════════════════════════════════ -->
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         REGIONAL BRANCHES — Full Directory
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" id="regional-branches">
-      <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Across the Region</p>
-          <h2>Regional Branches</h2>
-          <p>32 branches and Youth Church across 6 states &mdash; find a Mountain of Fire near you.</p>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="branch-controls reveal">
-          <div class="branch-search-wrap">
-            <svg class="branch-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" id="branchSearch" class="branch-search" placeholder="Search by branch name, city, or pastor..." autocomplete="off">
-          </div>
-        </div>
-
-
-        <!-- Branch Map & Find Nearest -->
-        <div class="branch-map-row reveal">
-          <div class="branch-map-wrap">
-            <iframe
-              class="branch-map-frame"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7200000!2d-89.5!3d31.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="MFM Mega Region 2 Branch Locations">
-            </iframe>
-          </div>
-          <div class="find-nearest-panel">
-            <div class="find-nearest-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9952c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+            <div class="dir-toolbar">
+              <div class="dir-search-wrap">
+                <svg class="dir-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="dirSearch" class="dir-search" placeholder="Search branches, cities, or pastors..." autocomplete="off">
+              </div>
+              <div class="dir-filters">
+                <button class="dir-filter active" data-filter="all">All</button>
+                <button class="dir-filter" data-filter="Texas">TX</button>
+                <button class="dir-filter" data-filter="Florida">FL</button>
+                <button class="dir-filter" data-filter="Georgia">GA</button>
+                <button class="dir-filter" data-filter="North Carolina">NC</button>
+                <button class="dir-filter" data-filter="Oklahoma">OK</button>
+                <button class="dir-filter" data-filter="Tennessee">TN</button>
+                <button class="dir-filter" data-filter="Youth Ministry">YC</button>
+              </div>
             </div>
-            <h3>Find Nearest Branch</h3>
-            <p>Use your location to discover the closest Mountain of Fire to you.</p>
-            <button class="btn btn--primary btn--sm" id="findNearestBtn" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Use My Location
+            <button class="dir-nearest-btn" id="findNearestBtn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+              Find nearest to me
             </button>
             <div id="nearestResult" class="nearest-result" style="display:none"></div>
+            <div class="dir-rows" id="dirRows">
+<div class="dir-row dir-row--hq" data-state="Texas" data-lat="29.625" data-lng="-95.262">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--hq">HQ</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM USA Prayer City</span>
+<span class="dir-meta">Houston, TX · Pastor Olumide Oni · Principal Regional Overseer</span>
+</div>
+<a href="https://maps.google.com/?q=10000+Kleckley+Dr%2C+Houston%2C+TX+77075" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 10000 Kleckley Dr, Houston, TX 77075</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18327888504">(832) 788-8504</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:pastoroluoni@yahoo.com">pastoroluoni@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.682" data-lng="-95.527">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Rehoboth</span>
+<span class="dir-meta">Houston, TX · Pastor Kola Akanni Oloko</span>
+</div>
+<a href="https://maps.google.com/?q=12142+Bissonnet+Street%2C+Houston+TX+77099" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 12142 Bissonnet Street, Houston TX 77099</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13028976148">(302) 897-6148</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmgalway1@yahoo.com">mfmgalway1@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.815" data-lng="-95.654">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Revival Chapel</span>
+<span class="dir-meta">Houston, TX · Pastor Substance Ibegbulem</span>
+</div>
+<a href="https://maps.google.com/?q=16211+Clay+Road%2C+Suite+114%2C+Houston+TX+77084" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 16211 Clay Road, Suite 114, Houston TX 77084</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18327689001">(832) 768-9001</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmrevival@yahoo.com">mfmrevival@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.715" data-lng="-95.506">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Houston 2</span>
+<span class="dir-meta">Houston, TX · Pastor David Bolaji</span>
+</div>
+<a href="https://maps.google.com/?q=5601+Bonhomme+Road%2C+Houston+TX+77036" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 5601 Bonhomme Road, Houston TX 77036</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13465621168">(346) 562-1168</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmallday@yahoo.com">mfmallday@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.675" data-lng="-95.523">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Houston 3 — City of Refuge</span>
+<span class="dir-meta">Houston, TX · Pastor Edward Adeniyi Rowland</span>
+</div>
+<a href="https://maps.google.com/?q=9102+Cook+Road%2C+Houston+TX+77099" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 9102 Cook Road, Houston TX 77099</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19728655130">(972) 865-5130</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:pastorrowland@mfmcityofrefuge.com">pastorrowland@mfmcityofrefuge.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.693" data-lng="-95.596">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Houston 5 — New Glory</span>
+<span class="dir-meta">Houston, TX · Pastor Shola Ajisafe</span>
+</div>
+<a href="https://maps.google.com/?q=12773+Beechnut+Street%2C+Suite+C100%2C+Houston+TX+77072" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 12773 Beechnut Street, Suite C100, Houston TX 77072</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13168073444">(316) 807-3444</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmnewglory@gmail.com">mfmnewglory@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.942" data-lng="-95.409">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM 7 North Houston</span>
+<span class="dir-meta">Houston, TX · Pastor Lydia Yemisi Ekibolaji</span>
+</div>
+<a href="https://maps.google.com/?q=711+Bammel+Road%2C+Houston+TX+77073" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 711 Bammel Road, Houston TX 77073</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12817015603">(281) 701-5603</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.684" data-lng="-95.57">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Greater Grace</span>
+<span class="dir-meta">Houston, TX · Pastor Oluwole Oyebode</span>
+</div>
+<a href="https://maps.google.com/?q=1431+Bellaire+Boulevard%2C+Suite+A%26B%2C+Houston+TX+77083" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 1431 Bellaire Boulevard, Suite A&amp;B, Houston TX 77083</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14016172039">(401) 617-2039</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:woleoyebode@yahoo.com">woleoyebode@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.902" data-lng="-95.562">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Northwest Houston</span>
+<span class="dir-meta">Houston, TX · Pastor Morenike Coker</span>
+</div>
+<a href="https://maps.google.com/?q=9110+Jones+Road%2C+Suite+123%2C+Houston+TX+77065" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 9110 Jones Road, Suite 123, Houston TX 77065</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18323419623">(832) 341-9623</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmnwhouston@gmail.com">mfmnwhouston@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.912" data-lng="-96.751">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Dallas</span>
+<span class="dir-meta">Dallas, TX · Pastor David Popoola · ASRO</span>
+</div>
+<a href="https://maps.google.com/?q=10610+Metric+Drive%2C+Suite+Q76-178%2C+Dallas+TX+75243" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 10610 Metric Drive, Suite Q76-178, Dallas TX 75243</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14074855626">(407) 485-5626</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:davidpopoola_25@yahoo.com">davidpopoola_25@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.954" data-lng="-96.711">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM House of His Glory</span>
+<span class="dir-meta">Richardson, TX · Pastor Ademola Oluyombo</span>
+</div>
+<a href="https://maps.google.com/?q=1251+S+Sherman+Street%2C+Richardson+TX+75126" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 1251 S Sherman Street, Richardson TX 75126</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12404878852">(240) 487-8852</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.736" data-lng="-97.108">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Arlington</span>
+<span class="dir-meta">Arlington, TX · Pastor Johnbull Mafinuyomi</span>
+</div>
+<a href="https://maps.google.com/?q=1619+W.+Division+Street%2C+Arlington+TX+76012" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 1619 W. Division Street, Arlington TX 76012</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12148548669">(214) 854-8669</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmarlingtontx@gmail.com">mfmarlingtontx@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.707" data-lng="-97.134">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Arlington — Matlock</span>
+<span class="dir-meta">Arlington, TX · Pastor Lilian Freshley Onyeforo</span>
+</div>
+<a href="https://maps.google.com/?q=800+SW+Green+Oaks+Blvd%2C+Suite+316%2C+Arlington+TX+76017" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 800 SW Green Oaks Blvd, Suite 316, Arlington TX 76017</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18177049346">(817) 704-9346</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmmatlock@gmail.com">mfmmatlock@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.747" data-lng="-97.005">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Grand Prairie</span>
+<span class="dir-meta">Grand Prairie, TX · Pastor Olubunmi Lukula</span>
+</div>
+<a href="https://maps.google.com/?q=2801+Osler+Drive%2C+#124-125%2C+Grand+Prairie+TX+75051" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 2801 Osler Drive, #124-125, Grand Prairie TX 75051</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16823137363">(682) 313-7363</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmgrandprairie@gmail.com">mfmgrandprairie@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.814" data-lng="-96.949">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Irving</span>
+<span class="dir-meta">Irving, TX · Pastor Ekene I. Chukwuka</span>
+</div>
+<a href="https://maps.google.com/?q=1148+Luke+Street%2C+Irving+TX+75061" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 1148 Luke Street, Irving TX 75061</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12142992570">(214) 299-2570</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmirvingtech@gmail.com">mfmirvingtech@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="32.563" data-lng="-97.126">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Mansfield</span>
+<span class="dir-meta">Mansfield, TX · Pastor Cecilia Chukwueke</span>
+</div>
+<a href="https://maps.google.com/?q=593+W.+Debbie+Lane%2C+#109%2C+Mansfield+TX+76063" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 593 W. Debbie Lane, #109, Mansfield TX 76063</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19567898902">(956) 789-8902</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmmansfield@gmail.com">mfmmansfield@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="30.354" data-lng="-97.72">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM The Lord Has Spoken</span>
+<span class="dir-meta">Austin, TX · Pastor Segun Obatusin</span>
+</div>
+<a href="https://maps.google.com/?q=9411+Parkfield+Drive%2C+Suite+320%2C+Austin+TX+78757" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 9411 Parkfield Drive, Suite 320, Austin TX 78757</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14434146923">(443) 414-6923</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmaustin2015@gmail.com">mfmaustin2015@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.472" data-lng="-98.432">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM San Antonio</span>
+<span class="dir-meta">San Antonio, TX · Pastor Stephen Ademola</span>
+</div>
+<a href="https://maps.google.com/?q=6027+Rittiman+Plaza%2C+San+Antonio+TX+78218" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 6027 Rittiman Plaza, San Antonio TX 78218</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12109024088">(210) 902-4088</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:cathyfavor@gmail.com">cathyfavor@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.556" data-lng="-95.282">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Pearland — Shadow of God</span>
+<span class="dir-meta">Pearland, TX · Pastor Arhire Joshua</span>
+</div>
+<a href="https://maps.google.com/?q=2809+Miller+Ranch+Road%2C+Suite+425%2C+Pearland+TX+77584" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 2809 Miller Ranch Road, Suite 425, Pearland TX 77584</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12819867004">(281) 986-7004</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmpearland@gmail.com">mfmpearland@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="29.594" data-lng="-95.627">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Sugar Land</span>
+<span class="dir-meta">Sugar Land, TX · Pastor Caroline Omotosho</span>
+</div>
+<a href="https://maps.google.com/?q=16701+Creek+Bend+Drive%2C+Suite+#550%2C+Sugar+Land+TX+77478" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 16701 Creek Bend Drive, Suite #550, Sugar Land TX 77478</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18328754149">(832) 875-4149</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:comotoso@gmail.com">comotoso@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Texas" data-lat="30.724" data-lng="-95.551">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">TX</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Huntsville</span>
+<span class="dir-meta">Huntsville, TX · Pastor Oyindamola Alabi</span>
+</div>
+<a href="https://maps.google.com/?q=701+Avenue+M%2C+Huntsville+TX+77320" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 701 Avenue M, Huntsville TX 77320</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19362946967">(936) 294-6967</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:oyinalabi2010@gmail.com">oyinalabi2010@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Florida" data-lat="27.97" data-lng="-82.46">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">FL</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Tampa</span>
+<span class="dir-meta">Tampa, FL · Pastor Kehinde Julius Olajide</span>
+</div>
+<a href="https://maps.google.com/?q=4618+North+Florida+Avenue%2C+Tampa+FL+33603" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 4618 North Florida Avenue, Tampa FL 33603</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13463029156">(346) 302-9156</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmtampaflorida@gmail.com">mfmtampaflorida@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Florida" data-lat="26.011" data-lng="-80.15">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">FL</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Broward</span>
+<span class="dir-meta">Hollywood, FL · Pastor Tope Oluwayemiwo</span>
+</div>
+<a href="https://maps.google.com/?q=6130+Hollywood+Boulevard%2C+Hollywood+FL+33024" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 6130 Hollywood Boulevard, Hollywood FL 33024</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13177280003">(317) 728-0003</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:toluwayemiwo@yahoo.com">toluwayemiwo@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Florida" data-lat="25.942" data-lng="-80.239">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">FL</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Miami — Mount Zion</span>
+<span class="dir-meta">Miami Gardens, FL · Pastor Lawrence Oyetunji</span>
+</div>
+<a href="https://maps.google.com/?q=15984+NW+27th+Avenue%2C+Miami+Gardens+FL+33054" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 15984 NW 27th Avenue, Miami Gardens FL 33054</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19549978957">(954) 997-8957</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfm_miami@yahoo.com">mfm_miami@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Florida" data-lat="28.485" data-lng="-81.374">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">FL</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Orlando — Citadel of Solution</span>
+<span class="dir-meta">Orlando, FL · Pastor Samuel Ayodele Omoigberae</span>
+</div>
+<a href="https://maps.google.com/?q=7200+Lake+Ellenor+Drive%2C+Suite+201%2C+Orlando+FL+32809" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 7200 Lake Ellenor Drive, Suite 201, Orlando FL 32809</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14074436524">(407) 443-6524</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmorlando1@yahoo.com">mfmorlando1@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Florida" data-lat="30.438" data-lng="-84.281">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">FL</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Tallahassee</span>
+<span class="dir-meta">Tallahassee, FL · Pastor Bode Adeniyi</span>
+</div>
+<a href="https://maps.google.com/?q=2700+Apalachee+Parkway%2C+Suite+D%2C+Tallahassee+FL+32301" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 2700 Apalachee Parkway, Suite D, Tallahassee FL 32301</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12254092151">(225) 409-2151</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmtallahassee@gmail.com">mfmtallahassee@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Georgia" data-lat="34.003" data-lng="-84.143">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--purple">GA</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Revival Center</span>
+<span class="dir-meta">Duluth, GA · Pastor Abel Michael</span>
+</div>
+<a href="https://maps.google.com/?q=3480+Howell+Street%2C+Duluth+GA+30096" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 3480 Howell Street, Duluth GA 30096</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14047974548">(404) 797-4548</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:abel4michael@gmail.com">abel4michael@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Georgia" data-lat="33.569" data-lng="-84.41">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--purple">GA</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Riverdale</span>
+<span class="dir-meta">Riverdale, GA · Pastor Francis Ebiboulomi Benede</span>
+</div>
+<a href="https://maps.google.com/?q=Bombay+Plaza%2C+Suite+D1%2C+6989+HWY+85%2C+Riverdale+GA+30274" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> Bombay Plaza, Suite D1, 6989 HWY 85, Riverdale GA 30274</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14044537124">(404) 453-7124</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfm2atlanta@comcast.net">mfm2atlanta@comcast.net</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Georgia" data-lat="33.953" data-lng="-84.55">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--purple">GA</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Citadel of Signs &amp; Wonders</span>
+<span class="dir-meta">Marietta, GA · Pastor Olayemi N. Olaleye</span>
+</div>
+<a href="https://maps.google.com/?q=Hunt+Street+NE%2C+Marietta+GA+30060" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> Hunt Street NE, Marietta GA 30060</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16785200142">(678) 520-0142</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfm_marietta@yahoo.com">mfm_marietta@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Georgia" data-lat="34.003" data-lng="-84.143">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--purple">GA</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Georgia Oasis of Grace</span>
+<span class="dir-meta">Duluth, GA · Pastor Ohunene Oluwatoyin Aramunde</span>
+</div>
+<a href="https://maps.google.com/?q=P.O.+Box+4142%2C+Duluth+GA+30096" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> P.O. Box 4142, Duluth GA 30096</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16788863234">(678) 886-3234</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:championcrusader@yahoo.com">championcrusader@yahoo.com</a></div><div class="dir-detail dir-note">Contact for meeting location</div>
+</div>
+</div>
+<div class="dir-row" data-state="North Carolina" data-lat="35.858" data-lng="-78.638">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--teal">NC</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Revival &amp; Solution Center</span>
+<span class="dir-meta">Raleigh, NC · Pastor Ebenezer Afolabi</span>
+</div>
+<a href="https://maps.google.com/?q=32090+Gresham+Lake+Road%2C+Suite+108%2C+Raleigh+NC+27615" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 32090 Gresham Lake Road, Suite 108, Raleigh NC 27615</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19194337395">(919) 433-7395</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmraleighnc@gmail.com">mfmraleighnc@gmail.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Oklahoma" data-lat="36.112" data-lng="-95.956">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--gold">OK</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Tulsa</span>
+<span class="dir-meta">Tulsa, OK · Pastor Jide Adigun</span>
+</div>
+<a href="https://maps.google.com/?q=1208-1210+E+58th+Street%2C+Tulsa+OK+74105" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 1208-1210 E 58th Street, Tulsa OK 74105</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14059198296">(405) 919-8296</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmoklahomacity@yahoo.com">mfmoklahomacity@yahoo.com</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Tennessee" data-lat="36.061" data-lng="-86.669">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">TN</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Nashville</span>
+<span class="dir-meta">Antioch, TN · Pastor Lovena Okeke</span>
+</div>
+<a href="https://maps.google.com/?q=2754+Anderson+Road%2C+Antioch+TN+37013" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 2754 Anderson Road, Antioch TN 37013</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16156368177">(615) 636-8177</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmnashville@co.cast.net">mfmnashville@co.cast.net</a></div>
+</div>
+</div>
+<div class="dir-row" data-state="Youth Ministry" data-lat="29.827" data-lng="-95.592">
+<div class="dir-row-main">
+<span class="dir-badge dir-badge--fire">YC</span>
+<div class="dir-row-info">
+<span class="dir-name">MFM Mega Region 2 Youth Church</span>
+<span class="dir-meta">Houston, YC · Pastor Israel Emmanuel · National Youth Coordinator</span>
+</div>
+<a href="https://maps.google.com/?q=6910+North+Eldridge+Pkwy%2C+Back+Suite%2C+Houston+TX+77041" target="_blank" rel="noopener" class="dir-directions" title="Get Directions">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+</a>
+<svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+<div class="dir-row-details">
+<div class="dir-detail"><strong>Address:</strong> 6910 North Eldridge Pkwy, Back Suite, Houston TX 77041</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13464145880">(346) 414-5880</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmmegaregion2youthchurch@gmail.com">mfmmegaregion2youthchurch@gmail.com</a></div><div class="dir-detail"><strong>Web:</strong> <a href="https://www.mfmmegaregion2yc.org" target="_blank">mfmmegaregion2yc.org</a></div>
+</div>
+</div>
+            </div>
+            <div class="dir-no-results" id="dirNoResults" style="display:none">
+              <p>No branches match your search.</p>
+            </div>
+            <p class="dir-footer-note">Can&rsquo;t find a branch? Call HQ at <a href="tel:+18327888504">(832) 788-8504</a></p>
           </div>
-        </div>
-
-        <!-- State Accordions -->
-        <div class="state-accordions reveal" id="stateAccordions">
-
-          <div class="state-accordion open" data-accordion-state="Texas">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="true">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--gold">TX</span>
-                <h3>Texas</h3>
-                <span class="state-accordion-count">20 branches</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm rehoboth" data-lat="29.682" data-lng="-95.527">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Rehoboth</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Kola Akanni Oloko
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>12142 Bissonnet Street, Houston TX 77099</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+13028976148">(302) 897-6148</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmgalway1@yahoo.com">mfmgalway1@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm revival chapel" data-lat="29.815" data-lng="-95.654">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Revival Chapel</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Substance Ibegbulem
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>16211 Clay Road, Suite 114, Houston TX 77084</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+18327689001">(832) 768-9001</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmrevival@yahoo.com">mfmrevival@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 2" data-lat="29.715" data-lng="-95.506">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Houston 2</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor David Bolaji
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>5601 Bonhomme Road, Houston TX 77036</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+13465621168">(346) 562-1168</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmallday@yahoo.com">mfmallday@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 3 — city of refuge" data-lat="29.675" data-lng="-95.523">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Houston 3 — City of Refuge</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Edward Adeniyi Rowland
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>9102 Cook Road, Houston TX 77099</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+19728655130">(972) 865-5130</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:pastorrowland@mfmcityofrefuge.com">pastorrowland@mfmcityofrefuge.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm houston 5 — new glory" data-lat="29.693" data-lng="-95.596">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Houston 5 — New Glory</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Shola Ajisafe
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>12773 Beechnut Street, Suite C100, Houston TX 77072</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+13168073444">(316) 807-3444</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmnewglory@gmail.com">mfmnewglory@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm 7 north houston" data-lat="29.942" data-lng="-95.409">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM 7 North Houston</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Lydia Yemisi Ekibolaji
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>711 Bammel Road, Houston TX 77073</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12817015603">(281) 701-5603</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm greater grace" data-lat="29.684" data-lng="-95.57">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Greater Grace</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Oluwole Oyebode
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>1431 Bellaire Boulevard, Suite A&amp;B, Houston TX 77083</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14016172039">(401) 617-2039</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:woleoyebode@yahoo.com">woleoyebode@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="houston" data-name="mfm northwest houston" data-lat="29.902" data-lng="-95.562">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Northwest Houston</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Morenike Coker
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>9110 Jones Road, Suite 123, Houston TX 77065</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+18323419623">(832) 341-9623</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmnwhouston@gmail.com">mfmnwhouston@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="dallas" data-name="mfm dallas" data-lat="32.912" data-lng="-96.751">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Dallas</span>
-              </div>
-              <h3>MFM Dallas</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor David Popoola<span class="branch-title">ASRO</span>
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>10610 Metric Drive, Suite Q76-178, Dallas TX 75243</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14074855626">(407) 485-5626</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:davidpopoola_25@yahoo.com">davidpopoola_25@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="richardson" data-name="mfm house of his glory" data-lat="32.954" data-lng="-96.711">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Richardson</span>
-              </div>
-              <h3>MFM House of His Glory</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Ademola Oluyombo
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>1251 S Sherman Street, Richardson TX 75126</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12404878852">(240) 487-8852</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington" data-lat="32.736" data-lng="-97.108">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Arlington</span>
-              </div>
-              <h3>MFM Arlington</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Johnbull Mafinuyomi
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>1619 W. Division Street, Arlington TX 76012</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12148548669">(214) 854-8669</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmarlingtontx@gmail.com">mfmarlingtontx@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="arlington" data-name="mfm arlington — matlock" data-lat="32.707" data-lng="-97.134">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Arlington</span>
-              </div>
-              <h3>MFM Arlington — Matlock</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Lilian Freshley Onyeforo
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>800 SW Green Oaks Blvd, Suite 316, Arlington TX 76017</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+18177049346">(817) 704-9346</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmmatlock@gmail.com">mfmmatlock@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="grand prairie" data-name="mfm grand prairie" data-lat="32.747" data-lng="-97.005">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Grand Prairie</span>
-              </div>
-              <h3>MFM Grand Prairie</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Olubunmi Lukula
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>2801 Osler Drive, #124-125, Grand Prairie TX 75051</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+16823137363">(682) 313-7363</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmgrandprairie@gmail.com">mfmgrandprairie@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="irving" data-name="mfm irving" data-lat="32.814" data-lng="-96.949">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Irving</span>
-              </div>
-              <h3>MFM Irving</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Ekene I. Chukwuka
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>1148 Luke Street, Irving TX 75061</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12142992570">(214) 299-2570</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmirvingtech@gmail.com">mfmirvingtech@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="mansfield" data-name="mfm mansfield" data-lat="32.563" data-lng="-97.126">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Mansfield</span>
-              </div>
-              <h3>MFM Mansfield</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Cecilia Chukwueke
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>593 W. Debbie Lane, #109, Mansfield TX 76063</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+19567898902">(956) 789-8902</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmmansfield@gmail.com">mfmmansfield@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="austin" data-name="mfm the lord has spoken" data-lat="30.354" data-lng="-97.72">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Austin</span>
-              </div>
-              <h3>MFM The Lord Has Spoken</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Segun Obatusin
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>9411 Parkfield Drive, Suite 320, Austin TX 78757</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14434146923">(443) 414-6923</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmaustin2015@gmail.com">mfmaustin2015@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="san antonio" data-name="mfm san antonio" data-lat="29.472" data-lng="-98.432">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">San Antonio</span>
-              </div>
-              <h3>MFM San Antonio</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Stephen Ademola
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>6027 Rittiman Plaza, San Antonio TX 78218</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12109024088">(210) 902-4088</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:cathyfavor@gmail.com">cathyfavor@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="pearland" data-name="mfm pearland — shadow of god" data-lat="29.556" data-lng="-95.282">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Pearland</span>
-              </div>
-              <h3>MFM Pearland — Shadow of God</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Arhire Joshua
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>2809 Miller Ranch Road, Suite 425, Pearland TX 77584</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12819867004">(281) 986-7004</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmpearland@gmail.com">mfmpearland@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="sugar land" data-name="mfm sugar land" data-lat="29.594" data-lng="-95.627">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Sugar Land</span>
-              </div>
-              <h3>MFM Sugar Land</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Caroline Omotosho
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>16701 Creek Bend Drive, Suite #550, Sugar Land TX 77478</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+18328754149">(832) 875-4149</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:comotoso@gmail.com">comotoso@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Texas" data-city="huntsville" data-name="mfm huntsville" data-lat="30.724" data-lng="-95.551">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">TX</span>
-                <span class="branch-city">Huntsville</span>
-              </div>
-              <h3>MFM Huntsville</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Oyindamola Alabi
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>701 Avenue M, Huntsville TX 77320</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+19362946967">(936) 294-6967</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:oyinalabi2010@gmail.com">oyinalabi2010@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="state-accordion" data-accordion-state="Florida">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--fire">FL</span>
-                <h3>Florida</h3>
-                <span class="state-accordion-count">5 branches</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="Florida" data-city="tampa" data-name="mfm tampa" data-lat="27.97" data-lng="-82.46">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">FL</span>
-                <span class="branch-city">Tampa</span>
-              </div>
-              <h3>MFM Tampa</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Kehinde Julius Olajide
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>4618 North Florida Avenue, Tampa FL 33603</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+13463029156">(346) 302-9156</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmtampaflorida@gmail.com">mfmtampaflorida@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Florida" data-city="hollywood" data-name="mfm broward" data-lat="26.011" data-lng="-80.15">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">FL</span>
-                <span class="branch-city">Hollywood</span>
-              </div>
-              <h3>MFM Broward</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Tope Oluwayemiwo
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>6130 Hollywood Boulevard, Hollywood FL 33024</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+13177280003">(317) 728-0003</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:toluwayemiwo@yahoo.com">toluwayemiwo@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Florida" data-city="miami gardens" data-name="mfm miami — mount zion" data-lat="25.942" data-lng="-80.239">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">FL</span>
-                <span class="branch-city">Miami Gardens</span>
-              </div>
-              <h3>MFM Miami — Mount Zion</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Lawrence Oyetunji
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>15984 NW 27th Avenue, Miami Gardens FL 33054</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+19549978957">(954) 997-8957</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfm_miami@yahoo.com">mfm_miami@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Florida" data-city="orlando" data-name="mfm orlando — citadel of solution" data-lat="28.485" data-lng="-81.374">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">FL</span>
-                <span class="branch-city">Orlando</span>
-              </div>
-              <h3>MFM Orlando — Citadel of Solution</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Samuel Ayodele Omoigberae
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>7200 Lake Ellenor Drive, Suite 201, Orlando FL 32809</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14074436524">(407) 443-6524</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmorlando1@yahoo.com">mfmorlando1@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Florida" data-city="tallahassee" data-name="mfm tallahassee" data-lat="30.438" data-lng="-84.281">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">FL</span>
-                <span class="branch-city">Tallahassee</span>
-              </div>
-              <h3>MFM Tallahassee</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Bode Adeniyi
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>2700 Apalachee Parkway, Suite D, Tallahassee FL 32301</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+12254092151">(225) 409-2151</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmtallahassee@gmail.com">mfmtallahassee@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="state-accordion" data-accordion-state="Georgia">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--purple">GA</span>
-                <h3>Georgia</h3>
-                <span class="state-accordion-count">4 branches</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm revival center" data-lat="34.003" data-lng="-84.143">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--purple">GA</span>
-                <span class="branch-city">Duluth</span>
-              </div>
-              <h3>MFM Revival Center</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Abel Michael
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>3480 Howell Street, Duluth GA 30096</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14047974548">(404) 797-4548</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:abel4michael@gmail.com">abel4michael@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Georgia" data-city="riverdale" data-name="mfm riverdale" data-lat="33.569" data-lng="-84.41">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--purple">GA</span>
-                <span class="branch-city">Riverdale</span>
-              </div>
-              <h3>MFM Riverdale</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Francis Ebiboulomi Benede
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Bombay Plaza, Suite D1, 6989 HWY 85, Riverdale GA 30274</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14044537124">(404) 453-7124</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfm2atlanta@comcast.net">mfm2atlanta@comcast.net</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Georgia" data-city="marietta" data-name="mfm citadel of signs &amp; wonders" data-lat="33.953" data-lng="-84.55">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--purple">GA</span>
-                <span class="branch-city">Marietta</span>
-              </div>
-              <h3>MFM Citadel of Signs &amp; Wonders</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Olayemi N. Olaleye
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Hunt Street NE, Marietta GA 30060</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+16785200142">(678) 520-0142</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfm_marietta@yahoo.com">mfm_marietta@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              <div class="branch-card" data-state="Georgia" data-city="duluth" data-name="mfm georgia oasis of grace" data-lat="34.003" data-lng="-84.143">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--purple">GA</span>
-                <span class="branch-city">Duluth</span>
-              </div>
-              <h3>MFM Georgia Oasis of Grace</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Ohunene Oluwatoyin Aramunde
-              </div><div class="branch-note">Contact for meeting location</div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>P.O. Box 4142, Duluth GA 30096</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+16788863234">(678) 886-3234</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:championcrusader@yahoo.com">championcrusader@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="state-accordion" data-accordion-state="North Carolina">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--teal">NC</span>
-                <h3>North Carolina</h3>
-                <span class="state-accordion-count">1 branch</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="North Carolina" data-city="raleigh" data-name="mfm revival &amp; solution center" data-lat="35.858" data-lng="-78.638">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--teal">NC</span>
-                <span class="branch-city">Raleigh</span>
-              </div>
-              <h3>MFM Revival &amp; Solution Center</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Ebenezer Afolabi
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>32090 Gresham Lake Road, Suite 108, Raleigh NC 27615</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+19194337395">(919) 433-7395</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmraleighnc@gmail.com">mfmraleighnc@gmail.com</a>
-              </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="state-accordion" data-accordion-state="Oklahoma">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--gold">OK</span>
-                <h3>Oklahoma</h3>
-                <span class="state-accordion-count">1 branch</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="Oklahoma" data-city="tulsa" data-name="mfm tulsa" data-lat="36.112" data-lng="-95.956">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--gold">OK</span>
-                <span class="branch-city">Tulsa</span>
-              </div>
-              <h3>MFM Tulsa</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Jide Adigun
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>1208-1210 E 58th Street, Tulsa OK 74105</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+14059198296">(405) 919-8296</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmoklahomacity@yahoo.com">mfmoklahomacity@yahoo.com</a>
-              </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="state-accordion" data-accordion-state="Tennessee">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--fire">TN</span>
-                <h3>Tennessee</h3>
-                <span class="state-accordion-count">1 branch</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="Tennessee" data-city="antioch" data-name="mfm nashville" data-lat="36.061" data-lng="-86.669">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">TN</span>
-                <span class="branch-city">Antioch</span>
-              </div>
-              <h3>MFM Nashville</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Lovena Okeke
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>2754 Anderson Road, Antioch TN 37013</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+16156368177">(615) 636-8177</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmnashville@co.cast.net">mfmnashville@co.cast.net</a>
-              </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          </div>
-          <div class="state-accordion" data-accordion-state="Youth Ministry">
-            <div class="state-accordion-header" role="button" tabindex="0" aria-expanded="false">
-              <div class="state-accordion-left">
-                <span class="state-badge state-badge--fire">YC</span>
-                <h3>Youth Church</h3>
-                <span class="state-accordion-count">Houston, TX</span>
-              </div>
-              <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="state-accordion-body">
-              <div class="branches-grid">
-              <div class="branch-card" data-state="Youth Ministry" data-city="houston" data-name="mfm mega region 2 youth church" data-lat="29.827" data-lng="-95.592">
-              <div class="branch-card-header">
-                <span class="state-badge state-badge--fire">YC</span>
-                <span class="branch-city">Houston</span>
-              </div>
-              <h3>MFM Mega Region 2 Youth Church</h3>
-              <div class="branch-pastor">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                Pastor Israel Emmanuel<span class="branch-title">National Youth Coordinator</span>
-              </div>
-              <div class="branch-details">
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>6910 North Eldridge Pkwy, Back Suite, Houston TX 77041</span>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href="tel:+13464145880">(346) 414-5880</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:mfmmegaregion2youthchurch@gmail.com">mfmmegaregion2youthchurch@gmail.com</a>
-              </div>
-              <div class="branch-detail">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                <a href="https://www.mfmmegaregion2yc.org" target="_blank" rel="noopener">mfmmegaregion2yc.org</a>
-              </div>
-              </div>
-            </div>
-              </div>
+          <div class="dir-map-col">
+            <div class="dir-map-sticky">
+              <iframe class="dir-map-frame" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7200000!2d-89.5!3d31.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="MFM Branch Locations"></iframe>
             </div>
           </div>
         </div>
-
-        <!-- No Results Message -->
-        <div class="no-results" id="noResults" style="display:none">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.4"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <p>No branches match your search.</p>
-          <button class="btn btn--secondary btn--sm" onclick="document.getElementById('branchSearch').value='';filterBranches()">Clear Search</button>
-        </div>
-
-        <p class="text-center text-muted" style="font-size:0.88rem; margin-top:32px">
-          Can&rsquo;t find a branch near you? Contact Prayer City HQ at <a href="tel:+18327888504">(832) 788-8504</a> for assistance.
-        </p>
-
       </div>
     </section>
 
@@ -1935,7 +1205,7 @@
         <div class="footer-col">
           <h4>MFM Network</h4>
           <ul>
-            <li><a href="branches.html#prayer-city">MFM USA Prayer City</a></li>
+            <li><a href="branches.html#branch-directory">MFM USA Prayer City</a></li>
             <li><a href="https://www.mountainoffire.org" target="_blank" rel="noopener">MFM International HQ</a></li>
             <li><a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener">YouTube Channel</a></li>
           </ul>
@@ -2099,182 +1369,30 @@
     })();
 
 
-    /* ── State Accordion Toggle ── */
-    (function () {
-      var accordions = document.querySelectorAll('.state-accordion');
-      accordions.forEach(function (acc) {
-        var header = acc.querySelector('.state-accordion-header');
-        if (!header) return;
-        header.addEventListener('click', function () {
-          var isOpen = acc.classList.contains('open');
-          acc.classList.toggle('open');
-          header.setAttribute('aria-expanded', !isOpen);
-        });
-        header.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            header.click();
-          }
-        });
-      });
-    })();
+    
 
 
-    /* ── Branch Search (Accordion-aware) ── */
-    (function () {
-      var searchInput = document.getElementById('branchSearch');
-      var cards = document.querySelectorAll('.branch-card');
-      var accordions = document.querySelectorAll('.state-accordion');
-      var noResults = document.getElementById('noResults');
-      var accordionWrap = document.getElementById('stateAccordions');
-
-      if (!searchInput || !cards.length) return;
-
-      function filterBranches() {
-        var query = searchInput.value.toLowerCase().trim();
-        var totalVisible = 0;
-
-        if (!query) {
-          // No search — show all cards, restore accordion state
-          cards.forEach(function (c) { c.classList.remove('hidden'); });
-          accordions.forEach(function (a) { a.classList.remove('hidden'); });
-          if (noResults) noResults.style.display = 'none';
-          if (accordionWrap) accordionWrap.style.display = '';
-          return;
-        }
-
-        // Filter cards and auto-open matching accordions
-        accordions.forEach(function (acc) {
-          var accCards = acc.querySelectorAll('.branch-card');
-          var stateVisible = 0;
-
-          accCards.forEach(function (card) {
-            var cardText = card.textContent.toLowerCase();
-            if (cardText.indexOf(query) !== -1) {
-              card.classList.remove('hidden');
-              stateVisible++;
-              totalVisible++;
-            } else {
-              card.classList.add('hidden');
-            }
-          });
-
-          if (stateVisible > 0) {
-            acc.classList.remove('hidden');
-            acc.classList.add('open');
-            acc.querySelector('.state-accordion-header').setAttribute('aria-expanded', 'true');
-          } else {
-            acc.classList.add('hidden');
-          }
-        });
-
-        if (noResults && accordionWrap) {
-          if (totalVisible === 0) {
-            noResults.style.display = 'block';
-            accordionWrap.style.display = 'none';
-          } else {
-            noResults.style.display = 'none';
-            accordionWrap.style.display = '';
-          }
-        }
-      }
-
-      window.filterBranches = filterBranches;
-
-      var debounceTimer;
-      searchInput.addEventListener('input', function () {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(filterBranches, 150);
-      });
-    })();
+    
 
 
 
 
-    /* ── Find Nearest Branch (Geolocation) ── */
-    (function () {
-      var btn = document.getElementById('findNearestBtn');
-      var result = document.getElementById('nearestResult');
-      if (!btn || !result) return;
+    
 
-      function haversine(lat1, lon1, lat2, lon2) {
-        var R = 3959; // miles
-        var dLat = (lat2 - lat1) * Math.PI / 180;
-        var dLon = (lon2 - lon1) * Math.PI / 180;
-        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon/2) * Math.sin(dLon/2);
-        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      }
+    /* ── Directory Row Expand ── */
+    (function(){var rows=document.querySelectorAll('.dir-row');rows.forEach(function(r){var m=r.querySelector('.dir-row-main');if(!m)return;m.addEventListener('click',function(e){if(e.target.closest('.dir-directions'))return;r.classList.toggle('open');});});})();
 
-      btn.addEventListener('click', function () {
-        if (!navigator.geolocation) {
-          result.innerHTML = 'Geolocation is not supported by your browser.';
-          result.style.display = 'block';
-          return;
-        }
+    /* ── Directory Search & Filter ── */
+    (function(){var s=document.getElementById('dirSearch'),btns=document.querySelectorAll('.dir-filter'),rows=document.querySelectorAll('.dir-row'),nr=document.getElementById('dirNoResults'),rw=document.getElementById('dirRows'),af='all';if(!s||!rows.length)return;function f(){var q=s.value.toLowerCase().trim(),v=0;rows.forEach(function(r){var sm=af==='all'||r.dataset.state===af,tm=!q||r.textContent.toLowerCase().indexOf(q)!==-1;if(sm&&tm){r.classList.remove('hidden');v++;}else{r.classList.add('hidden');}});if(nr&&rw){nr.style.display=v===0?'block':'none';rw.style.display=v===0?'none':'';}}window.filterDir=f;var t;s.addEventListener('input',function(){clearTimeout(t);t=setTimeout(f,150);});btns.forEach(function(b){b.addEventListener('click',function(){btns.forEach(function(x){x.classList.remove('active');});b.classList.add('active');af=b.dataset.filter;f();});});})();
 
-        btn.textContent = 'Finding...';
-        btn.disabled = true;
+    /* ── Find Nearest Branch ── */
+    (function(){var btn=document.getElementById('findNearestBtn'),res=document.getElementById('nearestResult');if(!btn||!res)return;function hav(a,b,c,d){var R=3959,dL=(c-a)*Math.PI/180,dN=(d-b)*Math.PI/180,x=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dN/2)*Math.sin(dN/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}btn.addEventListener('click',function(){if(!navigator.geolocation){res.innerHTML='Geolocation not supported.';res.style.display='block';return;}btn.textContent='Finding...';btn.disabled=true;navigator.geolocation.getCurrentPosition(function(p){var uL=p.coords.latitude,uG=p.coords.longitude,rows=document.querySelectorAll('.dir-row[data-lat]'),n=null,nd=Infinity;rows.forEach(function(r){var d=hav(uL,uG,parseFloat(r.dataset.lat),parseFloat(r.dataset.lng));if(d<nd){nd=d;n=r;}});if(n){var nm=n.querySelector('.dir-name').textContent,mt=n.querySelector('.dir-meta').textContent;res.innerHTML='<strong>'+nm+'</strong>'+mt+'<br><span class="nearest-distance">'+Math.round(nd)+' miles away</span><br><a href="#" id="goN">Show branch ↓</a>';res.style.display='block';document.getElementById('goN').addEventListener('click',function(e){e.preventDefault();n.classList.add('open','highlight');n.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){n.classList.remove('highlight');},3000);});}btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg> Find nearest to me';btn.disabled=false;},function(){res.innerHTML='Unable to get location.';res.style.display='block';btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg> Find nearest to me';btn.disabled=false;});});})();
 
-        navigator.geolocation.getCurrentPosition(function (pos) {
-          var userLat = pos.coords.latitude;
-          var userLng = pos.coords.longitude;
-          var cards = document.querySelectorAll('.branch-card[data-lat]');
-          var nearest = null;
-          var nearestDist = Infinity;
+    /* ── Hero Search Bridge ── */
+    function triggerHeroSearch(){var h=document.getElementById('heroSearchInput'),d=document.getElementById('dirSearch'),s=document.getElementById('branch-directory');if(h&&d&&s){d.value=h.value;s.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(function(){d.dispatchEvent(new Event('input'));d.focus();},600);}}
+    (function(){var h=document.getElementById('heroSearchInput');if(h)h.addEventListener('keydown',function(e){if(e.key==='Enter')triggerHeroSearch();});})();
 
-          cards.forEach(function (card) {
-            var lat = parseFloat(card.dataset.lat);
-            var lng = parseFloat(card.dataset.lng);
-            var dist = haversine(userLat, userLng, lat, lng);
-            if (dist < nearestDist) {
-              nearestDist = dist;
-              nearest = card;
-            }
-          });
 
-          if (nearest) {
-            var name = nearest.querySelector('h3').textContent;
-            var state = nearest.dataset.state;
-            var city = nearest.dataset.city;
-            var dist = Math.round(nearestDist);
-
-            result.innerHTML = '<strong>' + name + '</strong>' +
-              city.charAt(0).toUpperCase() + city.slice(1) + ', ' + state +
-              '<br><span class="nearest-distance">' + dist + ' miles away</span>' +
-              '<br><a href="#" id="goToNearest">Show branch &darr;</a>';
-            result.style.display = 'block';
-
-            document.getElementById('goToNearest').addEventListener('click', function (e) {
-              e.preventDefault();
-              // Open the parent accordion
-              var acc = nearest.closest('.state-accordion');
-              if (acc && !acc.classList.contains('open')) {
-                acc.classList.add('open');
-                acc.querySelector('.state-accordion-header').setAttribute('aria-expanded', 'true');
-              }
-              // Scroll to and highlight the card
-              nearest.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              nearest.style.boxShadow = '0 0 0 3px #c9952c';
-              nearest.style.borderColor = '#c9952c';
-              setTimeout(function () {
-                nearest.style.boxShadow = '';
-                nearest.style.borderColor = '';
-              }, 3000);
-            });
-          }
-
-          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Use My Location';
-          btn.disabled = false;
-        }, function () {
-          result.innerHTML = 'Unable to get your location. Please check your browser permissions.';
-          result.style.display = 'block';
-          btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Use My Location';
-          btn.disabled = false;
-        });
-      });
-    })();
     /* ── Dropdown Toggles — hover on desktop, click fallback ── */
     (function () {
       var dropdowns = document.querySelectorAll('.nav-dropdown');
@@ -2342,29 +1460,7 @@
 
 
 
-    /* ── Hero Search Bridge ── */
-    function triggerHeroSearch() {
-      var heroInput = document.getElementById('heroSearchInput');
-      var branchSearch = document.getElementById('branchSearch');
-      var branchSection = document.getElementById('regional-branches');
-      if (heroInput && branchSearch && branchSection) {
-        branchSearch.value = heroInput.value;
-        branchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(function() {
-          branchSearch.dispatchEvent(new Event('input'));
-          branchSearch.focus();
-        }, 600);
-      }
-    }
-    (function() {
-      var heroInput = document.getElementById('heroSearchInput');
-      if (heroInput) {
-        heroInput.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') { triggerHeroSearch(); }
-        });
-      }
-    })();
-    /* ── Netlify Identity Redirect (for CMS) ── */
+        /* ── Netlify Identity Redirect (for CMS) ── */
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', function (user) {
         if (!user) {
