@@ -1,0 +1,104 @@
+# ============================================================
+# Decap CMS — MFM Mega Region 2 USA
+# ------------------------------------------------------------
+# Backend: Netlify Git Gateway (auth via Netlify Identity).
+# To activate:
+#   1. In Netlify → Site settings → Identity: Enable Identity
+#   2. Identity → Registration: set to "Invite only"
+#   3. Identity → Services: Enable Git Gateway
+#   4. Invite editors via Identity → Invite users
+#   5. Editors visit /admin/ and accept the invite
+# ============================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded media is stored in the repo
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+# Friendly site URL shown in the CMS UI
+site_url: https://mfmmegaregion2usa.com
+display_url: https://mfmmegaregion2usa.com
+logo_url: https://mfmmegaregion2usa.com/img/logo.png
+
+# Editorial workflow gives editors a "draft → review → publish" pipeline.
+# Disable this if you want one-click publishing instead.
+publish_mode: editorial_workflow
+
+collections:
+
+  # ────────────────────────────────────────────────
+  # EVENTS — crusades, conferences, special programmes
+  # Stored as one Markdown file per event in /events/
+  # ────────────────────────────────────────────────
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date | date('MMM D, YYYY')}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    view_filters:
+      - label: "Featured"
+        field: featured
+        pattern: true
+      - label: "Upcoming"
+        field: date
+        pattern: "2026"
+    fields:
+      - { label: "Title",        name: "title",        widget: "string" }
+      - { label: "Date & Time",  name: "date",         widget: "datetime" }
+      - { label: "End Date",     name: "end_date",     widget: "datetime", required: false }
+      - { label: "Location",     name: "location",     widget: "string", default: "MFM USA Prayer City, Houston TX" }
+      - { label: "Short Summary", name: "summary",     widget: "text", required: false, hint: "1–2 sentences shown on the events list" }
+      - { label: "Full Description", name: "body",     widget: "markdown" }
+      - { label: "Flyer / Image", name: "image",       widget: "image", required: false, allow_multiple: false }
+      - { label: "Featured on Home Page", name: "featured", widget: "boolean", default: false }
+      - { label: "Registration / RSVP Link", name: "rsvp_url", widget: "string", required: false, pattern: ['^https?://', "Must start with http:// or https://"] }
+
+  # ────────────────────────────────────────────────
+  # ANNOUNCEMENTS — short-lived news, urgent notices
+  # ────────────────────────────────────────────────
+  - name: "announcements"
+    label: "Announcements"
+    label_singular: "Announcement"
+    folder: "announcements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date | date('MMM D, YYYY')}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title",   name: "title",   widget: "string" }
+      - { label: "Date",    name: "date",    widget: "datetime" }
+      - { label: "Active",  name: "active",  widget: "boolean", default: true, hint: "Uncheck to hide this announcement without deleting it" }
+      - { label: "Body",    name: "body",    widget: "markdown" }
+      - { label: "Link (optional)", name: "link", widget: "string", required: false }
+      - { label: "Link Label",      name: "link_label", widget: "string", required: false, default: "Learn more" }
+
+  # ────────────────────────────────────────────────
+  # BRANCHES — list of MFM Mega Region 2 churches
+  # ────────────────────────────────────────────────
+  - name: "branches"
+    label: "Branches"
+    label_singular: "Branch"
+    folder: "branches"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{name}} — {{city}}, {{state}}"
+    sortable_fields: ["name", "city", "state"]
+    fields:
+      - { label: "Branch Name", name: "name",    widget: "string" }
+      - { label: "Pastor",      name: "pastor",  widget: "string", required: false }
+      - { label: "Street",      name: "street",  widget: "string" }
+      - { label: "City",        name: "city",    widget: "string" }
+      - { label: "State",       name: "state",   widget: "string" }
+      - { label: "ZIP",         name: "zip",     widget: "string", required: false }
+      - { label: "Phone",       name: "phone",   widget: "string", required: false }
+      - { label: "Email",       name: "email",   widget: "string", required: false }
+      - { label: "Website",     name: "website", widget: "string", required: false }
+      - { label: "Sunday Service Time", name: "sunday_service", widget: "string", required: false }
+      - { label: "Notes",       name: "body",    widget: "markdown", required: false }
+      - { label: "Featured",    name: "featured", widget: "boolean", default: false }
