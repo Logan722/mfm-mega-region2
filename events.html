@@ -153,43 +153,140 @@
       .monthly-grid { grid-template-columns: 1fr; }
     }
 
-    /* ── Upcoming Events (Cream) — Full Detail Cards ── */
+    /* ── Upcoming Events (Cream) — Grid + Expandable Detail ── */
     .section--upcoming {
       position: relative;
     }
-    .event-detail-list {
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-    }
-    .event-detail {
+
+    /* Thumbnail grid */
+    .event-grid {
       display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .event-thumb {
       background: var(--bg-white);
       border: 1px solid var(--bg-sand-border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+      position: relative;
+    }
+    .event-thumb:hover {
+      border-color: var(--line-white-strong);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+      transform: translateY(-3px);
+    }
+    .event-thumb.active {
+      border-color: var(--gold);
+      box-shadow: 0 8px 28px rgba(201,149,44,0.15);
+      transform: translateY(-3px);
+    }
+    .event-thumb-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .event-thumb-body {
+      padding: 16px 18px 20px;
+    }
+    .event-thumb-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--fire);
+      padding: 3px 10px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+    .event-thumb-badge--gold { background: var(--gold); }
+    .event-thumb-body h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .event-thumb-date {
+      font-size: 0.8rem;
+      color: var(--text-dim-white);
+      margin-bottom: 10px;
+    }
+    .event-thumb-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      transition: gap 0.3s;
+    }
+    .event-thumb:hover .event-thumb-cta,
+    .event-thumb.active .event-thumb-cta { gap: 8px; }
+    .event-thumb-cta::after { content: '→'; }
+    .event-thumb.active .event-thumb-cta::after { content: '↑'; }
+
+    /* Expanded detail panel — inserted below the row */
+    .event-expand {
+      grid-column: 1 / -1;
+      background: var(--bg-white);
+      border: 1px solid var(--gold);
       border-radius: 14px;
       overflow: hidden;
+      animation: expandIn 0.4s ease-out;
       scroll-margin-top: 100px;
-      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s;
     }
-    .event-detail:hover {
-      border-color: var(--line-white-strong);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    @keyframes expandIn {
+      from { opacity: 0; max-height: 0; transform: translateY(-12px); }
+      to   { opacity: 1; max-height: 1200px; transform: translateY(0); }
     }
-    .event-detail-flyer {
+    .event-expand-inner {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 0;
+    }
+    .event-expand-flyer {
       width: 100%;
       height: 100%;
       min-height: 320px;
       object-fit: cover;
       display: block;
     }
-    .event-detail-body {
+    .event-expand-body {
       padding: 36px 40px;
       display: flex;
       flex-direction: column;
     }
-    .event-detail-eyebrow {
+    .event-expand-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-dim-white);
+      transition: background 0.3s;
+      padding: 0;
+      line-height: 1;
+    }
+    .event-expand-close:hover { background: var(--line-white); }
+    .event-expand-badge {
       display: inline-block;
       font-family: var(--font-sans);
       font-size: 0.7rem;
@@ -203,36 +300,36 @@
       margin-bottom: 16px;
       align-self: flex-start;
     }
-    .event-detail-eyebrow--gold { background: var(--gold); }
-    .event-detail-body h3 {
+    .event-expand-badge--gold { background: var(--gold); }
+    .event-expand-body h3 {
       font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
       font-weight: 400;
       color: var(--navy);
       line-height: 1.2;
       margin-bottom: 8px;
     }
-    .event-detail-theme {
+    .event-expand-theme {
       font-family: var(--font-serif);
       font-style: italic;
       font-size: 1.05rem;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       line-height: 1.4;
     }
-    .event-detail-desc {
+    .event-expand-desc {
       font-size: 0.92rem;
       color: var(--text-on-white);
       line-height: 1.7;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .event-detail-features {
+    .event-expand-features {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
-    .event-detail-features span {
+    .event-expand-features span {
       font-size: 0.78rem;
       color: var(--text-on-white);
       background: var(--bg-cream);
@@ -240,53 +337,53 @@
       padding: 4px 12px;
       border-radius: 20px;
     }
-    .event-detail-meta {
+    .event-expand-meta {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 24px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
-    .event-detail-row {
+    .event-expand-row {
       display: grid;
       grid-template-columns: 100px 1fr;
       gap: 12px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       line-height: 1.5;
     }
-    .event-detail-row .label {
+    .event-expand-row .label {
       font-family: var(--font-sans);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-dim-white);
       padding-top: 3px;
     }
-    .event-detail-row .value {
+    .event-expand-row .value {
       color: var(--text-on-white);
     }
-    .event-detail-row .value a {
+    .event-expand-row .value a {
       color: var(--gold);
       text-decoration: underline;
     }
-    .event-detail-scripture {
+    .event-expand-scripture {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-dim-white);
       border-left: 2px solid var(--bg-sand-border);
       padding-left: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       line-height: 1.6;
     }
-    .event-detail-scripture cite {
+    .event-expand-scripture cite {
       display: block;
       font-style: normal;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--gold-dim);
       margin-top: 4px;
     }
-    .event-detail-actions {
+    .event-expand-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -312,20 +409,24 @@
       margin: 0 auto;
     }
 
+    @media (max-width: 900px) {
+      .event-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 860px) {
-      .event-detail {
+      .event-expand-inner {
         grid-template-columns: 1fr;
       }
-      .event-detail-flyer {
+      .event-expand-flyer {
         min-height: 240px;
-        max-height: 360px;
+        max-height: 340px;
       }
-      .event-detail-body {
+      .event-expand-body {
         padding: 28px 24px;
       }
     }
-    @media (max-width: 640px) {
-      .event-detail-row {
+    @media (max-width: 600px) {
+      .event-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+      .event-expand-row {
         grid-template-columns: 1fr;
         gap: 2px;
       }
@@ -535,8 +636,8 @@
           <p>Special conferences, crusades, and ministry programs happening soon across Mega Region 2.</p>
         </div>
 
-        <!-- Detail cards — populated by JS from eventData below -->
-        <div class="event-detail-list" id="eventDetailList"></div>
+        <!-- Thumbnail grid + expandable detail — populated by JS from eventData -->
+        <div class="event-grid" id="eventGrid"></div>
 
         <!-- Fallback shown when all events have expired -->
         <div class="upcoming-fallback" id="upFallback" style="display:none;">
@@ -990,18 +1091,18 @@
 
 
     /* ══════════════════════════════════════════════════════════════
-       Upcoming Events — Detail Card Renderer with Auto-expire
+       Upcoming Events — Grid + Expandable Detail with Auto-expire
        Reads JSON from #eventData. Only FUTURE events are shown.
-       Renders full detail cards (flyer + metadata) instead of
-       the compact carousel used on index.html.
-       Same auto-expire logic — same JSON format.
+       Renders a compact thumbnail grid; clicking a card expands
+       a full detail panel inline below that row.
+       Same auto-expire logic — same JSON format as index.html.
        ══════════════════════════════════════════════════════════════ */
     (function () {
-      var section   = document.getElementById('upcoming-events');
-      var dataEl    = document.getElementById('eventData');
-      var list      = document.getElementById('eventDetailList');
-      var fallback  = document.getElementById('upFallback');
-      if (!section || !dataEl || !list) return;
+      var section  = document.getElementById('upcoming-events');
+      var dataEl   = document.getElementById('eventData');
+      var grid     = document.getElementById('eventGrid');
+      var fallback = document.getElementById('upFallback');
+      if (!section || !dataEl || !grid) return;
 
       var events;
       try { events = JSON.parse(dataEl.textContent); }
@@ -1031,7 +1132,7 @@
       parsed.sort(function (a, b) { return a.start - b.start; });
 
       if (parsed.length === 0) {
-        list.style.display = 'none';
+        grid.style.display = 'none';
         if (fallback) fallback.style.display = 'block';
         return;
       }
@@ -1041,93 +1142,161 @@
       function eyebrowLabel(item) {
         var delta = Math.round((item.start - today) / 86400000);
         var multi = item.start.getTime() !== item.end.getTime();
-        if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
+        if (delta <= 0) return multi ? 'Happening Now' : 'Today';
         if (delta === 1) return 'Tomorrow';
         if (delta <= 7) return 'This Week';
         return 'Upcoming';
       }
 
+      /* ── Render thumbnail cards ── */
       var html = '';
       for (var i = 0; i < parsed.length; i++) {
-        var item = parsed[i];
+        var ev = parsed[i].ev;
+        var badgeClass = ev.badgeStyle === 'gold' ? ' event-thumb-badge--gold' : '';
+
+        html +=
+          '<div class="event-thumb reveal" data-idx="' + i + '" id="' + esc(ev.anchor || '') + '">' +
+            '<img class="event-thumb-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
+            '<div class="event-thumb-body">' +
+              '<span class="event-thumb-badge' + badgeClass + '">' + esc(eyebrowLabel(parsed[i])) + '</span>' +
+              '<h4>' + esc(ev.title) + '</h4>' +
+              (ev.dateDisplay ? '<div class="event-thumb-date">' + esc(ev.dateDisplay) + '</div>' : '') +
+              '<span class="event-thumb-cta">View Details</span>' +
+            '</div>' +
+          '</div>';
+      }
+      grid.innerHTML = html;
+
+      /* ── Build detail panel HTML for a given event ── */
+      function buildDetail(item) {
         var ev = item.ev;
-        var badgeClass = ev.badgeStyle === 'gold' ? ' event-detail-eyebrow--gold' : '';
+        var badgeClass = ev.badgeStyle === 'gold' ? ' event-expand-badge--gold' : '';
+        var h = '';
 
-        html += '<div class="event-detail reveal" id="' + esc(ev.anchor || '') + '">';
-        html += '<img class="event-detail-flyer" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">';
-        html += '<div class="event-detail-body">';
+        h += '<div class="event-expand" style="position:relative;">';
+        h += '<button class="event-expand-close" aria-label="Close details">&times;</button>';
+        h += '<div class="event-expand-inner">';
+        h += '<img class="event-expand-flyer" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">';
+        h += '<div class="event-expand-body">';
 
-        /* Eyebrow badge */
-        html += '<span class="event-detail-eyebrow' + badgeClass + '">' + esc(eyebrowLabel(item)) + '</span>';
+        h += '<span class="event-expand-badge' + badgeClass + '">' + esc(eyebrowLabel(item)) + '</span>';
+        h += '<h3>' + esc(ev.title) + '</h3>';
 
-        /* Title */
-        html += '<h3>' + esc(ev.title) + '</h3>';
+        if (ev.theme) h += '<div class="event-expand-theme">' + esc(ev.theme) + '</div>';
+        if (ev.description) h += '<p class="event-expand-desc">' + esc(ev.description) + '</p>';
 
-        /* Theme */
-        if (ev.theme) {
-          html += '<div class="event-detail-theme">' + esc(ev.theme) + '</div>';
-        }
-
-        /* Description */
-        if (ev.description) {
-          html += '<p class="event-detail-desc">' + esc(ev.description) + '</p>';
-        }
-
-        /* Feature tags */
         if (ev.features && ev.features.length) {
-          html += '<div class="event-detail-features">';
+          h += '<div class="event-expand-features">';
           for (var f = 0; f < ev.features.length; f++) {
-            html += '<span>' + esc(ev.features[f]) + '</span>';
+            h += '<span>' + esc(ev.features[f]) + '</span>';
           }
-          html += '</div>';
+          h += '</div>';
         }
 
-        /* Metadata rows */
-        html += '<div class="event-detail-meta">';
-        if (ev.dateDisplay) {
-          html += '<div class="event-detail-row"><span class="label">Date</span><span class="value">' + esc(ev.dateDisplay) + '</span></div>';
-        }
-        if (ev.time) {
-          html += '<div class="event-detail-row"><span class="label">Time</span><span class="value">' + esc(ev.time) + '</span></div>';
-        }
-        if (ev.venue) {
-          html += '<div class="event-detail-row"><span class="label">Venue</span><span class="value">' + esc(ev.venue) + '</span></div>';
-        }
-        if (ev.ministering) {
-          html += '<div class="event-detail-row"><span class="label">Ministering</span><span class="value">' + esc(ev.ministering) + '</span></div>';
-        }
-        if (ev.host) {
-          html += '<div class="event-detail-row"><span class="label">Host</span><span class="value">' + esc(ev.host) + '</span></div>';
-        }
-        html += '</div>';
+        h += '<div class="event-expand-meta">';
+        if (ev.dateDisplay) h += '<div class="event-expand-row"><span class="label">Date</span><span class="value">' + esc(ev.dateDisplay) + '</span></div>';
+        if (ev.time) h += '<div class="event-expand-row"><span class="label">Time</span><span class="value">' + esc(ev.time) + '</span></div>';
+        if (ev.venue) h += '<div class="event-expand-row"><span class="label">Venue</span><span class="value">' + esc(ev.venue) + '</span></div>';
+        if (ev.ministering) h += '<div class="event-expand-row"><span class="label">Ministering</span><span class="value">' + esc(ev.ministering) + '</span></div>';
+        if (ev.host) h += '<div class="event-expand-row"><span class="label">Host</span><span class="value">' + esc(ev.host) + '</span></div>';
+        h += '</div>';
 
-        /* Scripture */
         if (ev.scripture) {
           var parts = ev.scripture.split('|');
-          html += '<div class="event-detail-scripture">';
-          html += '&ldquo;' + esc(parts[0]) + '&rdquo;';
-          if (parts[1]) {
-            html += '<cite>&mdash; ' + esc(parts[1]) + '</cite>';
-          }
-          html += '</div>';
+          h += '<div class="event-expand-scripture">';
+          h += '&ldquo;' + esc(parts[0]) + '&rdquo;';
+          if (parts[1]) h += '<cite>&mdash; ' + esc(parts[1]) + '</cite>';
+          h += '</div>';
         }
 
-        /* Action buttons */
         if (ev.link) {
-          var isExternal = /^https?:/i.test(ev.link);
-          html += '<div class="event-detail-actions">';
-          html += '<a href="' + esc(ev.link) + '"' + (isExternal ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">';
-          html += ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1 ? 'Register Now →' : 'Learn More →';
-          html += '</a></div>';
+          var isExt = /^https?:/i.test(ev.link);
+          h += '<div class="event-expand-actions">';
+          h += '<a href="' + esc(ev.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">';
+          h += (ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1) ? 'Register Now \u2192' : 'Learn More \u2192';
+          h += '</a></div>';
         }
 
-        html += '</div></div>';
+        h += '</div></div></div>';
+        return h;
       }
-      list.innerHTML = html;
 
-      /* Re-observe any .reveal elements inside the dynamically rendered cards */
-      var reveals = list.querySelectorAll('.reveal');
-      if (reveals.length && 'IntersectionObserver' in window) {
+      /* ── Click handler: expand/collapse ── */
+      var activeIdx = -1;
+      var thumbs = grid.querySelectorAll('.event-thumb');
+
+      function closeActive() {
+        var existing = grid.querySelector('.event-expand');
+        if (existing) existing.remove();
+        thumbs.forEach(function(t) { t.classList.remove('active'); });
+        activeIdx = -1;
+      }
+
+      function openDetail(idx) {
+        var thumb = thumbs[idx];
+        var item = parsed[idx];
+
+        /* Mark active */
+        thumb.classList.add('active');
+        activeIdx = idx;
+
+        /* Find the end of the current row to insert after.
+           CSS grid: count columns at current viewport width. */
+        var style = getComputedStyle(grid);
+        var cols = style.gridTemplateColumns.split(' ').length;
+        var rowEnd = Math.min(Math.ceil((idx + 1) / cols) * cols, thumbs.length) - 1;
+        var insertAfter = thumbs[rowEnd];
+
+        /* Create and insert detail panel */
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = buildDetail(item);
+        var panel = wrapper.firstChild;
+        insertAfter.after(panel);
+
+        /* Close button */
+        panel.querySelector('.event-expand-close').addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeActive();
+        });
+
+        /* Smooth scroll to panel */
+        setTimeout(function() {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+      }
+
+      thumbs.forEach(function(thumb, i) {
+        thumb.addEventListener('click', function() {
+          if (activeIdx === i) {
+            closeActive();
+            return;
+          }
+          closeActive();
+          openDetail(i);
+        });
+      });
+
+      /* Handle hash navigation — auto-open the matching event */
+      function openFromHash() {
+        var hash = window.location.hash.replace('#', '');
+        if (!hash) return;
+        for (var i = 0; i < parsed.length; i++) {
+          if (parsed[i].ev.anchor === hash) {
+            closeActive();
+            openDetail(i);
+            setTimeout(function() {
+              var el = document.getElementById(hash);
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+            return;
+          }
+        }
+      }
+      openFromHash();
+      window.addEventListener('hashchange', openFromHash);
+
+      /* Re-observe .reveal on the thumbnails */
+      if ('IntersectionObserver' in window) {
         var obs = new IntersectionObserver(function(entries) {
           entries.forEach(function(en) {
             if (en.isIntersecting) {
@@ -1136,7 +1305,7 @@
             }
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-        reveals.forEach(function(el) { obs.observe(el); });
+        thumbs.forEach(function(el) { obs.observe(el); });
       }
     })();
   </script>
