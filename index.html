@@ -139,8 +139,8 @@
     }
 
     .hero-emblem-col .hero-emblem {
-      width: 220px;
-      height: 220px;
+      width: 280px;
+      height: auto;
       position: relative;
       z-index: 2;
     }
@@ -217,7 +217,7 @@
         margin: 0 auto;
         order: -1;
       }
-      .hero-emblem-col .hero-emblem { width: 160px; height: 160px; }
+      .hero-emblem-col .hero-emblem { width: 200px; height: auto; }
       .hero-emblem-col::before { inset: -24px; }
       .hero-emblem-col::after { inset: -48px; }
       .hero--split .btn-group { justify-content: center; }
@@ -733,7 +733,7 @@
 
         <!-- Right: Logo with atmosphere -->
         <div class="hero-emblem-col">
-          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="220" height="220">
+          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="280">
         </div>
 
       </div>
@@ -1372,37 +1372,57 @@
       update();
     })();
   
-    /* ── Dropdown Toggles ── */
+    /* ── Dropdown Toggles — hover on desktop, click fallback ── */
     (function () {
       var dropdowns = document.querySelectorAll('.nav-dropdown');
+      var closeTimer = null;
+      var isTouch = 'ontouchstart' in window;
+
+      function closeAll(except) {
+        dropdowns.forEach(function (d) {
+          if (d !== except) {
+            d.classList.remove('open');
+            d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
       dropdowns.forEach(function (dd) {
         var toggle = dd.querySelector('.nav-dropdown-toggle');
+
+        /* Hover open (desktop / non-touch) */
+        if (!isTouch) {
+          dd.addEventListener('mouseenter', function () {
+            clearTimeout(closeTimer);
+            closeAll(dd);
+            dd.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+          });
+          dd.addEventListener('mouseleave', function () {
+            closeTimer = setTimeout(function () {
+              dd.classList.remove('open');
+              toggle.setAttribute('aria-expanded', 'false');
+            }, 120);
+          });
+        }
+
+        /* Click toggle (touch fallback + accessibility) */
         toggle.addEventListener('click', function (e) {
           e.stopPropagation();
-          dropdowns.forEach(function (d) {
-            if (d !== dd) {
-              d.classList.remove('open');
-              d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-            }
-          });
+          closeAll(dd);
           var isOpen = dd.classList.toggle('open');
           toggle.setAttribute('aria-expanded', isOpen);
         });
       });
-      document.addEventListener('click', function () {
-        dropdowns.forEach(function (d) {
-          d.classList.remove('open');
-          d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-        });
-      });
+
+      /* Close on outside click */
+      document.addEventListener('click', function () { closeAll(); });
+
+      /* Close on Escape */
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          dropdowns.forEach(function (d) {
-            d.classList.remove('open');
-            d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-          });
-        }
+        if (e.key === 'Escape') closeAll();
       });
+
       /* Highlight parent toggle when on a sub-page */
       var currentPath = window.location.pathname.split('/').pop() || 'index.html';
       dropdowns.forEach(function (dd) {
