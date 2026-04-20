@@ -1126,6 +1126,15 @@ body.drawer-open {
   transform: translateY(-2px);
 }
 
+/* Defensive: section--white/cream set ALL anchors to gold (specificity 0,2,0),
+   which would otherwise hide white-text solid buttons. Re-assert white. */
+.section--white a.btn--primary,
+.section--cream a.btn--primary,
+.section--white a.btn--primary:hover,
+.section--cream a.btn--primary:hover {
+  color: var(--white);
+}
+
 /* ── Secondary: Ghost/outline ──
    Defensive defaults: light cream text + gold border on dark surfaces.
    Explicit context selectors below ensure visibility regardless of
@@ -1186,6 +1195,16 @@ body.drawer-open {
 .btn--fire:hover {
   box-shadow: 0 4px 30px rgba(232, 93, 38, 0.5);
   transform: translateY(-2px);
+}
+
+/* Defensive: same fix as primary — re-assert white text on light sections
+   so the section-wide anchor rule (.section--cream a) can't tint the
+   button text gold and make it invisible against the orange gradient. */
+.section--white a.btn--fire,
+.section--cream a.btn--fire,
+.section--white a.btn--fire:hover,
+.section--cream a.btn--fire:hover {
+  color: var(--white);
 }
 
 /* ── Small variant ── */
