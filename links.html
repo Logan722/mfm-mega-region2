@@ -276,14 +276,24 @@
       </a>
 
       <!-- Desktop Links -->
-      <div class="nav-links">
+            <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-        <a href="media.html">Media</a>
-        <a href="events.html">Events</a>
-        <a href="gen218.html">Gen218</a>
-        <a href="women.html">Women</a>
-        <a href="branches.html">Branches</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 3 3-3"/></svg></button>
+          <div class="nav-dropdown-menu">
+            <a href="media.html">Media</a>
+            <a href="events.html">Events</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-expanded="false">Ministries <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 3 3-3"/></svg></button>
+          <div class="nav-dropdown-menu">
+            <a href="gen218.html">Gen218</a>
+            <a href="women.html">Women Foundation</a>
+            <a href="branches.html">Branches</a>
+          </div>
+        </div>
         <a href="links.html">Connect</a>
       </div>
 
@@ -593,6 +603,55 @@
     (function () {
       const el = document.getElementById('footerYear');
       if (el) el.textContent = new Date().getFullYear();
+    })();
+
+
+        /* ── Nav Dropdown Toggle ── */
+    (function () {
+      var dropdowns = document.querySelectorAll(".nav-dropdown");
+      dropdowns.forEach(function (dd) {
+        var toggle = dd.querySelector(".nav-dropdown-toggle");
+        toggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var isOpen = dd.classList.contains("open");
+          dropdowns.forEach(function (d) {
+            d.classList.remove("open");
+            d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
+          });
+          if (!isOpen) {
+            dd.classList.add("open");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+      document.addEventListener("click", function () {
+        dropdowns.forEach(function (d) {
+          d.classList.remove("open");
+          d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
+        });
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          dropdowns.forEach(function (d) {
+            d.classList.remove("open");
+            d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
+          });
+        }
+      });
+    })();
+
+    /* ── Dropdown Active Parent ── */
+    (function () {
+      var page = window.location.pathname.split("/").pop() || "index.html";
+      document.querySelectorAll(".nav-dropdown").forEach(function (dd) {
+        var links = dd.querySelectorAll(".nav-dropdown-menu a");
+        links.forEach(function (a) {
+          if (a.getAttribute("href") === page) {
+            a.classList.add("active");
+            dd.querySelector(".nav-dropdown-toggle").classList.add("active");
+          }
+        });
+      });
     })();
 
 
