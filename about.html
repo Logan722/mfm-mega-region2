@@ -16,16 +16,16 @@
 
   <style>
     /* ═══════════════════════════════════════
-       ABOUT HERO — "GLASS PANEL"
+       ABOUT HERO — "WIDESCREEN TITLE CARD"
        ═══════════════════════════════════════ */
     .about-hero {
       position: relative;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 140px var(--gutter) 80px;
+      padding: 120px var(--gutter) 60px;
       overflow: hidden;
     }
 
@@ -34,8 +34,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 50% 45% at 50% 40%, rgba(201, 149, 44, 0.08) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 35% at 50% 42%, rgba(232, 93, 38, 0.05) 0%, transparent 55%);
+        radial-gradient(ellipse 60% 40% at 50% 45%, rgba(201, 149, 44, 0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 50% 45%, rgba(232, 93, 38, 0.05) 0%, transparent 55%);
       pointer-events: none;
       z-index: 1;
     }
@@ -46,7 +46,7 @@
       left: 50%;
       transform: translate(-50%, -52%);
       font-family: var(--font-serif);
-      font-size: clamp(12rem, 25vw, 22rem);
+      font-size: clamp(12rem, 26vw, 24rem);
       font-weight: 900;
       letter-spacing: -0.04em;
       color: rgba(201, 149, 44, 0.035);
@@ -56,57 +56,45 @@
       z-index: 0;
     }
 
-    /* Frosted glass panel */
-    .about-hero-panel {
+    /* ── Horizontal title band ── */
+    .hero-band {
       position: relative;
       z-index: 2;
-      max-width: 600px;
       width: 100%;
-      background: rgba(20, 34, 64, 0.45);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(201, 149, 44, 0.12);
-      border-radius: 20px;
-      padding: 56px 48px 48px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+      max-width: var(--container-max);
+      display: flex;
+      align-items: center;
+      gap: 40px;
       animation: fadeUp 0.8s var(--ease-out) 0.1s both;
     }
 
-    .about-hero-panel .hero-emblem {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 24px;
+    /* Left: logo */
+    .hero-band-logo {
+      flex-shrink: 0;
+    }
+    .hero-band-logo img {
+      width: 100px;
+      height: 100px;
       filter: drop-shadow(0 4px 24px rgba(201,149,44,0.3));
     }
 
-    .about-hero-panel .panel-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 20px;
+    /* Center: typography */
+    .hero-band-center {
+      flex: 1;
+      min-width: 0;
     }
-
-    .about-hero-title {
-      margin-bottom: 20px;
-    }
-
-    .about-hero-title .thin {
-      display: block;
+    .hero-band-center .thin {
       font-family: var(--font-serif);
-      font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+      font-size: clamp(0.7rem, 1.2vw, 0.85rem);
       font-weight: 400;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
     }
-
-    .about-hero-title .big {
-      display: block;
+    .hero-band-center .big {
       font-family: var(--font-serif);
-      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-size: clamp(3.2rem, 7.5vw, 6.5rem);
       font-weight: 900;
       line-height: 0.88;
       letter-spacing: -0.03em;
@@ -116,71 +104,118 @@
       background-clip: text;
       filter: drop-shadow(0 2px 16px rgba(232,93,38,0.2));
     }
-
-    .about-hero-title .sub {
-      display: block;
+    .hero-band-center .sub {
       font-family: var(--font-serif);
-      font-size: clamp(0.65rem, 1.2vw, 0.78rem);
+      font-size: clamp(0.6rem, 1vw, 0.75rem);
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-dim);
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
-    /* Motto bar inside panel */
-    .about-hero-motto {
+    /* Right: motto column */
+    .hero-band-motto {
+      flex-shrink: 0;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding-top: 20px;
-      margin-top: 20px;
-      border-top: 1px solid rgba(201, 149, 44, 0.1);
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      border-left: 1px solid rgba(201, 149, 44, 0.12);
+      padding-left: 32px;
     }
-
-    .about-hero-motto span {
+    .hero-band-motto span {
       font-size: 0.6rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold-dim);
+      white-space: nowrap;
     }
 
-    .about-hero-motto .dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--fire);
-      opacity: 0.5;
+    /* ── Below the band ── */
+    .hero-band-label {
+      position: relative;
+      z-index: 2;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s var(--ease-out) 0s both;
     }
 
-    /* Description below panel */
-    .about-hero-desc {
+    .hero-band-desc {
       position: relative;
       z-index: 2;
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 300;
       color: var(--text-dim);
-      line-height: 1.75;
-      max-width: 520px;
-      margin: 32px auto 0;
-      animation: fadeUp 0.7s var(--ease-out) 0.5s both;
+      line-height: 1.7;
+      max-width: 500px;
+      text-align: center;
+      margin-top: 40px;
+      animation: fadeUp 0.7s var(--ease-out) 0.4s both;
+    }
+
+    .hero-band-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeUp 0.7s var(--ease-out) 0.6s both;
+    }
+    .hero-band-scroll svg {
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-band { gap: 28px; }
+      .hero-band-logo img { width: 80px; height: 80px; }
+      .hero-band-motto { padding-left: 24px; }
     }
 
     @media (max-width: 768px) {
-      .about-hero-panel { padding: 40px 28px 36px; }
+      .hero-band {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+      }
+      .hero-band-motto {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(201, 149, 44, 0.12);
+        padding-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
       .about-hero-watermark { font-size: 8rem; }
     }
 
     @media (max-width: 480px) {
-      .about-hero { min-height: 90vh; padding-top: 120px; }
-      .about-hero-panel { padding: 32px 24px 28px; border-radius: 16px; }
-      .about-hero-panel .hero-emblem { width: 72px; height: 72px; }
-      .about-hero-watermark { font-size: 5rem; }
+      .about-hero { min-height: 90vh; padding-top: 110px; }
+      .hero-band-logo img { width: 68px; height: 68px; }
+      .about-hero-watermark { font-size: 5.5rem; }
     }
 
     /* ═══════════════════════════════════════
@@ -590,28 +625,41 @@
     <section class="about-hero">
       <div class="about-hero-watermark" aria-hidden="true">FIRE</div>
 
-      <!-- Frosted glass panel -->
-      <div class="about-hero-panel">
-        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="90" height="90">
-        <p class="panel-label">About Mega Region 2 USA</p>
+      <!-- Label above the band -->
+      <p class="hero-band-label">About Mega Region 2 USA</p>
 
-        <div class="about-hero-title">
-          <span class="thin">Mountain of</span>
-          <span class="big">FIRE</span>
-          <span class="sub">&amp; Miracles Ministries</span>
+      <!-- Widescreen horizontal title band -->
+      <div class="hero-band">
+
+        <!-- Left: Logo -->
+        <div class="hero-band-logo">
+          <img src="img/logo.png" alt="MFM Emblem" width="100" height="100">
         </div>
 
-        <div class="about-hero-motto">
+        <!-- Center: Typography -->
+        <div class="hero-band-center">
+          <p class="thin">Mountain of</p>
+          <p class="big">FIRE</p>
+          <p class="sub">&amp; Miracles Ministries</p>
+        </div>
+
+        <!-- Right: Motto column -->
+        <div class="hero-band-motto">
           <span>Fire in the Word</span>
-          <span class="dot"></span>
           <span>Fire on the Mountain</span>
-          <span class="dot"></span>
           <span>Fire in the Bone</span>
         </div>
+
       </div>
 
-      <!-- Description below panel -->
-      <p class="about-hero-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+      <!-- Description below -->
+      <p class="hero-band-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
+
+      <!-- Scroll hint -->
+      <div class="hero-band-scroll">
+        <span>Discover</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
     </section>
 
 
