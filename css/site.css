@@ -852,35 +852,46 @@ body::after {
 }
 
 .nav-dropdown-toggle svg.dd-chevron {
-  transition: transform var(--dur) var(--ease-out);
+  transition: transform 0.3s var(--ease-out);
 }
 
-.nav-dropdown-toggle:hover,
-.nav-dropdown-toggle.active {
+.nav-dropdown-toggle:hover {
   color: var(--cream);
+}
+
+.nav-dropdown-toggle.active {
+  color: var(--gold);
+}
+
+.nav-dropdown.open .nav-dropdown-toggle {
+  color: var(--gold);
 }
 
 .nav-dropdown.open .nav-dropdown-toggle svg.dd-chevron {
   transform: rotate(180deg);
 }
 
+/* ── Dropdown Panel — Gold-topped cinematic ── */
 .nav-dropdown-menu {
   position: absolute;
   top: calc(100% + 14px);
   left: 50%;
-  min-width: 220px;
-  background: var(--bg-navy-deep);
-  border: 1px solid rgba(201, 149, 44, 0.2);
-  border-top: 2px solid var(--gold);
+  min-width: 260px;
+  background: #0f1a30;
+  border: 1px solid rgba(201, 149, 44, 0.18);
+  border-top: 2.5px solid var(--gold);
   border-radius: 0 0 10px 10px;
-  padding: 0;
+  padding: 6px 0;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-50%) translateY(8px);
-  transition: opacity var(--dur) var(--ease-out),
-              visibility var(--dur) var(--ease-out),
-              transform var(--dur) var(--ease-out);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: translateX(-50%) translateY(10px);
+  transition: opacity 0.25s var(--ease-out),
+              visibility 0.25s var(--ease-out),
+              transform 0.25s var(--ease-out);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(201, 149, 44, 0.06);
   z-index: 100;
   overflow: hidden;
 }
@@ -891,18 +902,19 @@ body::after {
   transform: translateX(-50%) translateY(0);
 }
 
+/* ── Dropdown Row — Icon + Two-line Label ── */
 .nav-dropdown-menu a {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 20px;
+  padding: 12px 18px;
   font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: var(--cream);
   text-decoration: none;
   border-bottom: 1px solid rgba(201, 149, 44, 0.06);
-  transition: color var(--dur) var(--ease-out),
-              background var(--dur) var(--ease-out);
+  transition: background 0.2s var(--ease-out),
+              color 0.2s var(--ease-out);
 }
 
 .nav-dropdown-menu a:last-child {
@@ -913,21 +925,44 @@ body::after {
   display: none;
 }
 
-.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:hover {
+  background: rgba(201, 149, 44, 0.08);
+}
+
+.nav-dropdown-menu a:hover .nav-dd-label {
+  color: var(--gold);
+}
+
+.nav-dropdown-menu a:hover .nav-dd-icon {
+  background: rgba(201, 149, 44, 0.2);
+  border-color: rgba(201, 149, 44, 0.35);
+}
+
+.nav-dropdown-menu a:hover .nav-dd-icon svg {
+  stroke: var(--gold-light);
+}
+
 .nav-dropdown-menu a.active {
-  color: var(--cream);
   background: rgba(201, 149, 44, 0.06);
 }
 
+.nav-dropdown-menu a.active .nav-dd-label {
+  color: var(--gold);
+}
+
+/* ── Icon Box ── */
 .nav-dd-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
   background: rgba(201, 149, 44, 0.1);
+  border: 1px solid rgba(201, 149, 44, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: background 0.2s var(--ease-out),
+              border-color 0.2s var(--ease-out);
 }
 
 .nav-dd-icon svg {
@@ -938,18 +973,22 @@ body::after {
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: stroke 0.2s var(--ease-out);
 }
 
+/* ── Two-line Label ── */
 .nav-dd-label {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  transition: color 0.2s var(--ease-out);
 }
 
 .nav-dd-label span {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-dim);
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 /* ── Live Badge ── */
