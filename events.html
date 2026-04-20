@@ -183,6 +183,123 @@
       .pmch-spotlight { grid-template-columns: 1fr; text-align: center; }
       .pmch-date-block { padding: 20px; }
     }
+
+    /* ── Upcoming Events Detail Section ── */
+    .upcoming-event-detail {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 40px;
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 14px;
+      margin-bottom: 36px;
+      scroll-margin-top: 100px;
+    }
+    .upcoming-event-detail:last-child { margin-bottom: 0; }
+
+    .upcoming-event-flyer {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid var(--bg-sand-border);
+    }
+
+    .upcoming-event-info {
+      padding-top: 4px;
+    }
+    .upcoming-event-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--fire);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .upcoming-event-badge--gold { background: var(--gold); }
+
+    .upcoming-event-info h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .upcoming-event-info .theme {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .upcoming-event-meta-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .upcoming-event-meta-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .upcoming-event-meta-row .label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim-white);
+      padding-top: 3px;
+    }
+    .upcoming-event-meta-row .value {
+      color: var(--text-on-white);
+    }
+    .upcoming-event-info .btn { margin-top: 8px; }
+
+    .upcoming-event-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .upcoming-event-features span {
+      font-size: 0.78rem;
+      color: var(--text-on-white);
+      background: var(--bg-white);
+      border: 1px solid var(--bg-sand-border);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .upcoming-event-detail {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 24px;
+      }
+      .upcoming-event-flyer {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+    }
+    @media (max-width: 640px) {
+      .upcoming-event-meta-row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+
   </style>
 
   <!-- Netlify Identity Widget -->
@@ -519,6 +636,127 @@
     <!-- ═══════════════════════════════════════════════════════
          SPECIAL EVENTS & CRUSADES (Cream)
          ═══════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════
+         UPCOMING EVENTS — Detailed event cards with flyers
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--white" id="upcoming-events">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Coming Up</p>
+          <h2>Upcoming Events</h2>
+          <p>Special conferences, crusades, and ministry programs happening soon.</p>
+        </div>
+
+        <!-- Women Conference — Dallas -->
+        <div class="upcoming-event-detail reveal" id="women-conference-dallas">
+          <img class="upcoming-event-flyer" src="img/announcements/women-conference-dallas.jpg" alt="Women Conference Dallas — A Date with my Lord and Lover, Saturday May 16 2026">
+          <div class="upcoming-event-info">
+            <span class="upcoming-event-badge upcoming-event-badge--gold">Women Foundation</span>
+            <h3>Women Conference — Dallas</h3>
+            <p class="theme">"A Date with my Lord &amp; Lover"</p>
+            <div class="upcoming-event-meta-grid">
+              <div class="upcoming-event-meta-row">
+                <span class="label">Date</span>
+                <span class="value">Saturday, May 16, 2026</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Time</span>
+                <span class="value">10:00 AM – 2:00 PM</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Venue</span>
+                <span class="value">306 Greenville Ave, Richardson, TX 75081</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Ministering</span>
+                <span class="value">Pastor Olumide Oni — PRO, Mega Region 2</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Coordinator</span>
+                <span class="value">Pastor (Mrs.) Oluwatoyin Oni — Women Foundation, Mega Region 2</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Host</span>
+                <span class="value">Pastor David Popoola &amp; Pastor (Mrs.) Adenike Popoola</span>
+              </div>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-dim-white); font-style: italic; margin-bottom: 20px;">"God is in the midst of her; she shall not be moved: God shall help her, and that right early." — Psalm 46:5</p>
+          </div>
+        </div>
+
+        <!-- Gen218 Prayer Conference -->
+        <div class="upcoming-event-detail reveal" id="gen218-prayer-conference">
+          <img class="upcoming-event-flyer" src="img/announcements/gen218-prayer-conference.jpg" alt="Gen218 Prayer Conference 2026 — Divine Alignment, June 20 2026">
+          <div class="upcoming-event-info">
+            <span class="upcoming-event-badge">Gen218 Singles</span>
+            <h3>Gen218 Prayer Conference 2026</h3>
+            <p class="theme">"Divine Alignment"</p>
+            <div class="upcoming-event-features">
+              <span>Prayers</span>
+              <span>Teaching</span>
+              <span>Healing</span>
+              <span>Prophetic Declarations</span>
+            </div>
+            <div class="upcoming-event-meta-grid">
+              <div class="upcoming-event-meta-row">
+                <span class="label">Date</span>
+                <span class="value">Saturday, June 20, 2026</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Time</span>
+                <span class="value">12:00 PM EST</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Platform</span>
+                <span class="value">Zoom — Meeting ID: 357 230 0941 · Passcode: 1234567</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Ministering</span>
+                <span class="value">Dr. D.K. Olukoya — General Overseer, MFM Worldwide</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Organizers</span>
+                <span class="value">MFM North America Gen218 Coordinators</span>
+              </div>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-dim-white); margin-top: 8px;">A virtual prayer program for Christian singles across North America.</p>
+          </div>
+        </div>
+
+        <!-- International Youth Convention 2026 -->
+        <div class="upcoming-event-detail reveal" id="iyc-2026">
+          <img class="upcoming-event-flyer" src="img/announcements/iyc-2026.jpg" alt="International Youth Convention 2026 — July 16 to 19, MFM USA Headquarters">
+          <div class="upcoming-event-info">
+            <span class="upcoming-event-badge">Youth Convention</span>
+            <h3>International Youth Convention 2026</h3>
+            <p class="theme">Registration is now open!</p>
+            <div class="upcoming-event-meta-grid">
+              <div class="upcoming-event-meta-row">
+                <span class="label">Dates</span>
+                <span class="value">July 16 – 19, 2026</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Venue</span>
+                <span class="value">MFM USA Headquarters — 10000 Kleckley Dr, Houston, TX 77075</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Organizers</span>
+                <span class="value">MFM Youth Ministry</span>
+              </div>
+              <div class="upcoming-event-meta-row">
+                <span class="label">Registration</span>
+                <span class="value"><a href="https://mfmym.org/iyc2026/" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: underline;">mfmym.org/iyc2026</a></span>
+              </div>
+            </div>
+            <a href="https://mfmym.org/iyc2026/" target="_blank" rel="noopener" class="btn btn--fire btn--sm" style="margin-top: 12px;">Register Now →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
     <section class="section section--cream" id="special-events">
       <div class="container">
 
