@@ -791,6 +791,167 @@ body::after {
   width: 100%;
 }
 
+/* ── Nav CTA Button (Give) ── */
+.nav-links a.nav-cta {
+  background: var(--gold);
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 12px rgba(201, 149, 44, 0.3);
+  transition: all var(--dur) var(--ease-out);
+}
+.nav-links a.nav-cta::after { display: none; }
+.nav-links a.nav-cta:hover {
+  background: var(--gold-light);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(201, 149, 44, 0.45);
+}
+.nav-links a.nav-cta.active { color: #fff; }
+
+/* ── Drawer CTA (Give) ── */
+.drawer-nav a.drawer-cta {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 24px;
+  background: var(--gold);
+  color: #fff;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 12px rgba(201, 149, 44, 0.3);
+  transition: all var(--dur) var(--ease-out);
+}
+.drawer-nav a.drawer-cta:hover {
+  background: var(--gold-light);
+  color: #fff;
+}
+
+/* ── Nav Dropdowns ── */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color var(--dur) var(--ease-out);
+}
+
+.nav-dropdown-toggle svg.dd-chevron {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle.active {
+  color: var(--cream);
+}
+
+.nav-dropdown.open .nav-dropdown-toggle svg.dd-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  min-width: 220px;
+  background: var(--bg-navy-deep);
+  border: 1px solid rgba(201, 149, 44, 0.2);
+  border-top: 2px solid var(--gold);
+  border-radius: 0 0 10px 10px;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(8px);
+  transition: opacity var(--dur) var(--ease-out),
+              visibility var(--dur) var(--ease-out),
+              transform var(--dur) var(--ease-out);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 149, 44, 0.06);
+  transition: color var(--dur) var(--ease-out),
+              background var(--dur) var(--ease-out);
+}
+
+.nav-dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.nav-dropdown-menu a::after {
+  display: none;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+  color: var(--cream);
+  background: rgba(201, 149, 44, 0.06);
+}
+
+.nav-dd-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(201, 149, 44, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-dd-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-dd-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-dd-label span {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
 /* ── Live Badge ── */
 .nav-live {
   display: inline-flex;
@@ -2011,3 +2172,4 @@ img[src*="logo"] {
     transform: none !important;
   }
 }
+
