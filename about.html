@@ -16,14 +16,16 @@
 
   <style>
     /* ═══════════════════════════════════════
-       ABOUT HERO — "EDITORIAL STACK"
+       ABOUT HERO — "GLASS PANEL"
        ═══════════════════════════════════════ */
     .about-hero {
       position: relative;
       min-height: 100vh;
       display: flex;
-      align-items: flex-end;
-      padding: 0 var(--gutter) 80px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px var(--gutter) 80px;
       overflow: hidden;
     }
 
@@ -32,74 +34,71 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 40% at 60% 40%, rgba(232, 93, 38, 0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(15, 26, 48, 0.95) 0%, transparent 40%);
+        radial-gradient(ellipse 50% 45% at 50% 40%, rgba(201, 149, 44, 0.08) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 50% 42%, rgba(232, 93, 38, 0.05) 0%, transparent 55%);
       pointer-events: none;
+      z-index: 1;
     }
 
     .about-hero-watermark {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -55%);
+      transform: translate(-50%, -52%);
       font-family: var(--font-serif);
-      font-size: clamp(10rem, 22vw, 20rem);
+      font-size: clamp(12rem, 25vw, 22rem);
       font-weight: 900;
       letter-spacing: -0.04em;
-      color: rgba(201, 149, 44, 0.04);
+      color: rgba(201, 149, 44, 0.035);
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
       z-index: 0;
     }
 
-    .about-hero-inner {
+    /* Frosted glass panel */
+    .about-hero-panel {
       position: relative;
       z-index: 2;
-      max-width: var(--container-max);
+      max-width: 600px;
       width: 100%;
-      margin: 0 auto;
-      padding-top: 180px;
+      background: rgba(20, 34, 64, 0.45);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(201, 149, 44, 0.12);
+      border-radius: 20px;
+      padding: 56px 48px 48px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+      animation: fadeUp 0.8s var(--ease-out) 0.1s both;
     }
 
-    .about-hero-inner .hero-emblem {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 24px;
-      filter: drop-shadow(0 4px 20px rgba(201,149,44,0.3));
-      animation: floatIn 1s var(--ease-out) both;
+    .about-hero-panel .hero-emblem {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 24px;
+      filter: drop-shadow(0 4px 24px rgba(201,149,44,0.3));
     }
 
-    .about-hero-label {
+    .about-hero-panel .panel-label {
       font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--fire);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      animation: fadeUp 0.6s var(--ease-out) 0.1s both;
-    }
-
-    .about-hero-label::before {
-      content: '';
-      width: 32px;
-      height: 2px;
-      background: var(--fire);
+      margin-bottom: 20px;
     }
 
     .about-hero-title {
-      animation: fadeUp 0.7s var(--ease-out) 0.2s both;
       margin-bottom: 20px;
     }
 
     .about-hero-title .thin {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(0.8rem, 1.5vw, 0.95rem);
       font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 6px;
     }
@@ -107,9 +106,9 @@
     .about-hero-title .big {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(4rem, 10vw, 8rem);
+      font-size: clamp(3.5rem, 8vw, 6rem);
       font-weight: 900;
-      line-height: 0.85;
+      line-height: 0.88;
       letter-spacing: -0.03em;
       background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--fire) 80%, var(--fire-light) 100%);
       -webkit-background-clip: text;
@@ -121,25 +120,28 @@
     .about-hero-title .sub {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(0.7rem, 1.3vw, 0.85rem);
+      font-size: clamp(0.65rem, 1.2vw, 0.78rem);
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-dim);
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
+    /* Motto bar inside panel */
     .about-hero-motto {
       display: flex;
       align-items: center;
-      gap: 20px;
+      justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
-      animation: fadeUp 0.7s var(--ease-out) 0.35s both;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid rgba(201, 149, 44, 0.1);
     }
 
     .about-hero-motto span {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -154,28 +156,30 @@
       opacity: 0.5;
     }
 
+    /* Description below panel */
     .about-hero-desc {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-serif);
+      font-style: italic;
       font-size: 1rem;
-      color: var(--text-muted);
+      font-weight: 300;
+      color: var(--text-dim);
       line-height: 1.75;
-      max-width: 480px;
-      animation: fadeUp 0.7s var(--ease-out) 0.45s both;
+      max-width: 520px;
+      margin: 32px auto 0;
+      animation: fadeUp 0.7s var(--ease-out) 0.5s both;
     }
 
     @media (max-width: 768px) {
-      .about-hero { align-items: center; text-align: center; padding-bottom: 60px; }
-      .about-hero-inner { padding-top: 140px; }
-      .about-hero-inner .hero-emblem { margin: 0 auto 24px; }
-      .about-hero-label { justify-content: center; }
-      .about-hero-label::before { display: none; }
-      .about-hero-motto { justify-content: center; }
-      .about-hero-desc { margin: 0 auto; }
-      .about-hero-watermark { font-size: 7rem; }
+      .about-hero-panel { padding: 40px 28px 36px; }
+      .about-hero-watermark { font-size: 8rem; }
     }
 
     @media (max-width: 480px) {
-      .about-hero { min-height: 90vh; }
-      .about-hero-inner .hero-emblem { width: 64px; height: 64px; }
+      .about-hero { min-height: 90vh; padding-top: 120px; }
+      .about-hero-panel { padding: 32px 24px 28px; border-radius: 16px; }
+      .about-hero-panel .hero-emblem { width: 72px; height: 72px; }
       .about-hero-watermark { font-size: 5rem; }
     }
 
@@ -585,9 +589,11 @@
          ═══════════════════════════════════════════════════════ -->
     <section class="about-hero">
       <div class="about-hero-watermark" aria-hidden="true">FIRE</div>
-      <div class="about-hero-inner">
-        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="80" height="80">
-        <p class="about-hero-label">About Mega Region 2 USA</p>
+
+      <!-- Frosted glass panel -->
+      <div class="about-hero-panel">
+        <img src="img/logo.png" alt="MFM Emblem" class="hero-emblem" width="90" height="90">
+        <p class="panel-label">About Mega Region 2 USA</p>
 
         <div class="about-hero-title">
           <span class="thin">Mountain of</span>
@@ -602,9 +608,10 @@
           <span class="dot"></span>
           <span>Fire in the Bone</span>
         </div>
-
-        <p class="about-hero-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
       </div>
+
+      <!-- Description below panel -->
+      <p class="about-hero-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
     </section>
 
 
