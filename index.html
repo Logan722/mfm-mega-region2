@@ -432,12 +432,12 @@
     .prayer-form-wrap h3 {
       font-family: var(--font-serif);
       font-size: 1.4rem;
-      color: var(--cream);
+      color: var(--navy);
       margin-bottom: 8px;
     }
     .prayer-form-wrap .form-subtitle {
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: var(--text-on-white);
       margin-bottom: 28px;
       line-height: 1.6;
     }
@@ -457,16 +457,16 @@
       padding: 14px 16px;
       font-family: var(--font-sans);
       font-size: 0.88rem;
-      color: var(--cream);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--line-strong);
+      color: var(--navy);
+      background: var(--bg-white);
+      border: 1px solid var(--line-white-strong);
       border-radius: 8px;
       outline: none;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
     .prayer-form input::placeholder,
     .prayer-form textarea::placeholder {
-      color: var(--text-dim);
+      color: var(--text-dim-white);
     }
     .prayer-form input:focus,
     .prayer-form textarea:focus {
@@ -480,7 +480,7 @@
     .prayer-form .btn { align-self: flex-start; }
     .prayer-form-note {
       font-size: 0.75rem;
-      color: var(--text-dim);
+      color: var(--text-dim-white);
       margin-top: 4px;
       line-height: 1.5;
     }
@@ -579,61 +579,13 @@
       .countdown-sidebar { max-width: 400px; margin: 0 auto; }
     }
 
-    /* ── Address Strip (cream divider before footer) ── */
-    .address-strip {
-      background: var(--bg-cream);
-      padding: 32px var(--gutter);
-    }
-    .address-strip-inner {
-      max-width: var(--container-max);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-    .address-strip-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .address-strip-left img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-    }
-    .address-strip-left p {
-      font-size: 0.85rem;
-      color: var(--text-on-white);
-      line-height: 1.4;
-    }
-    .address-strip-left strong {
-      color: var(--navy);
-    }
-    .address-strip-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .address-strip-right a {
-      font-size: 0.82rem;
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .address-strip-right a:hover { color: var(--fire); }
-    .address-strip-dot {
-      width: 3px;
+    /* ── Fire Line (divider before footer) ── */
+    .fire-line {
       height: 3px;
-      border-radius: 50%;
-      background: var(--line-white-strong);
+      background: linear-gradient(90deg, transparent, var(--gold), var(--fire), var(--gold), transparent);
+      position: relative;
+      z-index: var(--z-content);
     }
-    @media (max-width: 600px) {
-      .address-strip-inner { flex-direction: column; text-align: center; }
-      .address-strip-left { flex-direction: column; gap: 8px; }
-      .address-strip-right { justify-content: center; }
     }
   </style>
 </head>
@@ -928,7 +880,7 @@
     <!-- ═══════════════════════════════════════════════════════
          7. PRAYER REQUEST + NEXT SERVICE COUNTDOWN (Dark)
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--dark" id="prayer">
+    <section class="section section--cream" id="prayer">
       <div class="container">
 
         <div class="prayer-layout reveal">
@@ -989,23 +941,8 @@
   </main>
 
 
-  <!-- ═══════════════════════════════════════════════════════
-       ADDRESS STRIP (cream divider before footer)
-       ═══════════════════════════════════════════════════════ -->
-  <div class="address-strip">
-    <div class="address-strip-inner">
-      <div class="address-strip-left">
-        <img src="img/logo.png" alt="" width="36" height="36">
-        <p><strong>MFM USA Prayer City</strong> · 10000 Kleckley Dr, Houston, TX 77075</p>
-      </div>
-      <div class="address-strip-right">
-        <a href="tel:+18327888504">(832) 788-8504</a>
-        <span class="address-strip-dot"></span>
-        <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">Get Directions →</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- Fire line divider before footer -->
+  <div class="fire-line" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════════════════════
        FOOTER
