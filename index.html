@@ -476,6 +476,73 @@
       margin: 0;
       flex: 1;
     }
+    /* Countdown badge inside each card */
+    .event-card-countdown {
+      display: inline-flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 10px 0 4px;
+      padding: 3px;
+      background: rgba(201, 149, 44, 0.08);
+      border: 1px solid var(--line-navy-strong);
+      border-radius: 8px;
+      overflow: hidden;
+      align-self: flex-start;
+    }
+    .event-card-countdown .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 9px;
+      min-width: 42px;
+      border-right: 1px solid var(--line-navy);
+    }
+    .event-card-countdown .cd-unit:last-child { border-right: none; }
+    .event-card-countdown .cd-num {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+    .event-card-countdown .cd-lbl {
+      font-family: var(--font-sans);
+      font-size: 0.52rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .event-card-countdown.is-live {
+      background: rgba(232, 93, 38, 0.16);
+      border-color: rgba(232, 93, 38, 0.45);
+      padding: 8px 14px;
+      align-items: center;
+    }
+    .event-card-countdown.is-live::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--fire-light);
+      margin-right: 8px;
+      animation: livePulse 1.4s ease-in-out infinite;
+    }
+    .event-card-countdown.is-live .cd-live-text {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fire-light);
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.55; transform: scale(1.35); }
+    }
     .event-carousel-cta {
       display: inline-flex;
       align-items: center;
@@ -1970,18 +2037,85 @@
         if (ev.venue) metaParts.push(ev.venue);
 
         html +=
-          '<a href="' + esc(link) + '"' + target + ' class="event-carousel-card">' +
+          '<a href="' + esc(link) + '"' + target + ' class="event-carousel-card" data-cd-idx="' + i + '">' +
             '<img class="event-carousel-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
             '<div class="event-carousel-body">' +
               '<div class="event-carousel-tag">' + esc(eyebrowFor(item)) + '</div>' +
               '<h4>' + esc(ev.title) + '</h4>' +
               (ev.theme ? '<div class="event-carousel-theme">' + esc(ev.theme) + '</div>' : '') +
               (metaParts.length ? '<p class="event-carousel-meta">' + esc(metaParts.join(' \u00b7 ')) + '</p>' : '') +
+              '<div class="event-card-countdown-slot" data-cd-slot="' + i + '"></div>' +
               '<span class="event-carousel-cta">View Details</span>' +
             '</div>' +
           '</a>';
       }
       carousel.innerHTML = html;
+
+      /* ── Countdown logic ──
+         Derives a start moment from item.start + first time-string match (falls
+         back to 9 AM). Renders D/H/M/S for each card. If event is in progress
+         (multi-day range covering now), shows "Happening Now" badge. */
+      function parseTimeToMoment(item) {
+        var dt = new Date(item.start);
+        if (item.ev.time) {
+          var m = item.ev.time.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
+          if (m) {
+            var h = parseInt(m[1],10) % 12;
+            if (/PM/i.test(m[3])) h += 12;
+            dt.setHours(h, parseInt(m[2]||'0',10), 0, 0);
+            return dt;
+          }
+        }
+        dt.setHours(9, 0, 0, 0);
+        return dt;
+      }
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function renderCountdown(idx) {
+        var slot = carousel.querySelector('[data-cd-slot="' + idx + '"]');
+        if (!slot) return;
+        var item = parsed[idx];
+        var now = new Date();
+        var startMoment = parseTimeToMoment(item);
+        var endOfEvent = new Date(item.end);
+        endOfEvent.setHours(23, 59, 59, 999);
+
+        if (now >= startMoment && now <= endOfEvent) {
+          slot.innerHTML =
+            '<div class="event-card-countdown is-live">' +
+              '<span class="cd-live-text">Happening Now</span>' +
+            '</div>';
+          return;
+        }
+
+        var ms = startMoment - now;
+        if (ms <= 0) {
+          slot.innerHTML =
+            '<div class="event-card-countdown is-live">' +
+              '<span class="cd-live-text">Happening Now</span>' +
+            '</div>';
+          return;
+        }
+
+        var totalSec = Math.floor(ms / 1000);
+        var days  = Math.floor(totalSec / 86400);
+        var hours = Math.floor((totalSec % 86400) / 3600);
+        var mins  = Math.floor((totalSec % 3600) / 60);
+        var secs  = totalSec % 60;
+
+        slot.innerHTML =
+          '<div class="event-card-countdown" aria-label="Time until event">' +
+            '<div class="cd-unit"><span class="cd-num">' + days + '</span><span class="cd-lbl">Days</span></div>' +
+            '<div class="cd-unit"><span class="cd-num">' + pad(hours) + '</span><span class="cd-lbl">Hrs</span></div>' +
+            '<div class="cd-unit"><span class="cd-num">' + pad(mins)  + '</span><span class="cd-lbl">Min</span></div>' +
+            '<div class="cd-unit"><span class="cd-num">' + pad(secs)  + '</span><span class="cd-lbl">Sec</span></div>' +
+          '</div>';
+      }
+
+      function renderAllCountdowns() {
+        for (var k = 0; k < parsed.length; k++) renderCountdown(k);
+      }
+      renderAllCountdowns();
 
       /* Dot indicators */
       var cards = carousel.querySelectorAll('.event-carousel-card');
@@ -1992,11 +2126,15 @@
       dotsWrap.innerHTML = dotHtml;
       var dots = dotsWrap.querySelectorAll('.event-carousel-dot');
 
-      function updateDots() {
-        var scrollLeft = carousel.scrollLeft;
+      function currentIdx() {
+        if (!cards.length) return 0;
         var cardW = cards[0].offsetWidth + 24;
-        var idx = Math.round(scrollLeft / cardW);
-        idx = Math.max(0, Math.min(idx, cards.length - 1));
+        var idx = Math.round(carousel.scrollLeft / cardW);
+        return Math.max(0, Math.min(idx, cards.length - 1));
+      }
+
+      function updateDots() {
+        var idx = currentIdx();
         for (var j = 0; j < dots.length; j++) {
           dots[j].classList.toggle('active', j === idx);
         }
@@ -2008,15 +2146,65 @@
         dot.addEventListener('click', function() {
           var idx = parseInt(this.getAttribute('data-idx'));
           cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+          resetAutoRotate();
         });
       });
 
       arrowL.addEventListener('click', function() {
         carousel.scrollBy({ left: -364, behavior: 'smooth' });
+        resetAutoRotate();
       });
       arrowR.addEventListener('click', function() {
         carousel.scrollBy({ left: 364, behavior: 'smooth' });
+        resetAutoRotate();
       });
+
+      /* ── Auto-rotate: scroll to next card every 8s ──
+         Pauses on hover and when the browser tab is hidden.
+         User interactions (arrows, dots, swipe) reset the interval. */
+      var ROTATE_MS = 8000;
+      var rotateTimer = null;
+      var countdownTimer = null;
+      var paused = false;
+
+      function advanceCarousel() {
+        if (paused || cards.length < 2) return;
+        var next = (currentIdx() + 1) % cards.length;
+        cards[next].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      }
+
+      function startTimers() {
+        stopTimers();
+        if (cards.length > 1) {
+          rotateTimer = setInterval(advanceCarousel, ROTATE_MS);
+        }
+        countdownTimer = setInterval(renderAllCountdowns, 1000);
+      }
+      function stopTimers() {
+        if (rotateTimer) { clearInterval(rotateTimer); rotateTimer = null; }
+        if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+      }
+      function resetAutoRotate() {
+        /* Reset so the user gets a full viewing window after manual nav */
+        startTimers();
+      }
+
+      /* Pause on hover (desktop), pause on touchstart (mobile) */
+      carousel.addEventListener('mouseenter', function () { paused = true; });
+      carousel.addEventListener('mouseleave', function () { paused = false; });
+      carousel.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      carousel.addEventListener('touchend',   function () {
+        /* brief grace period so a swipe finishes before auto-scroll resumes */
+        setTimeout(function () { paused = false; }, 1500);
+      });
+
+      /* Pause when tab is hidden */
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { stopTimers(); }
+        else { renderAllCountdowns(); startTimers(); }
+      });
+
+      startTimers();
     })();
   </script>
 
