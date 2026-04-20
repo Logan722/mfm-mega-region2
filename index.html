@@ -28,6 +28,135 @@
 
   <!-- Page-specific styles -->
   <style>
+    /* ── Cinematic Hero ── */
+    .hero--cinematic {
+      min-height: 100vh;
+      min-height: 100dvh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-shaft {
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 140%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(
+        ellipse 50% 60% at 50% 30%,
+        rgba(201, 149, 44, 0.10) 0%,
+        rgba(232, 93, 38, 0.04) 40%,
+        transparent 70%
+      );
+      animation: breathe 8s var(--ease-in-out) infinite;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s var(--ease-out) 0.1s both;
+    }
+
+    .hero-logo-glow {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: floatIn 1s var(--ease-out) 0.15s both;
+    }
+
+    .hero-glow-pulse {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,149,44,0.20) 0%, rgba(201,149,44,0.06) 50%, transparent 70%);
+      animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+
+    .hero-logo-glow .hero-emblem {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-headline-centered {
+      font-size: clamp(2rem, 4.5vw + 0.8rem, 3.6rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 20px;
+      max-width: 640px;
+    }
+
+    .hero-identity {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll svg {
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    @media (max-width: 600px) {
+      .hero-logo-glow {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 28px;
+      }
+      .hero-logo-glow .hero-emblem {
+        width: 100px;
+        height: 100px;
+      }
+      .hero-glow-pulse { inset: -14px; }
+      .hero-identity { font-size: 0.95rem; }
+      .hero-scroll { bottom: 24px; }
+    }
+
     /* ── Identity Strip ── */
     .identity-strip {
       text-align: center;
@@ -306,26 +435,50 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       1. HERO (Navy)
+       1. HERO (Navy) — Cinematic Centered
        ═══════════════════════════════════════════════════════ -->
   <main>
 
-    <section class="hero">
-      <div class="hero-content">
-        <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="120" height="120">
-        <p class="eyebrow" style="justify-content:center">Mountain of Fire and Miracles Ministries</p>
-        <h1>Welcome to <span class="fire-underline">Mega Region 2</span></h1>
-        <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
+    <section class="hero hero--cinematic">
+      <!-- Atmospheric light shaft for hero -->
+      <div class="hero-shaft" aria-hidden="true"></div>
 
-        <blockquote class="hero-scripture" style="border:none; text-align:center; padding:0; margin:0 auto 36px; max-width:540px;">
-          "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
-          <cite>— Obadiah 1:17</cite>
-        </blockquote>
+      <div class="hero-content" style="max-width:720px;">
 
-        <div class="btn-group btn-group--center">
-          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary">Watch Live</a>
-          <a href="about.html" class="btn btn--secondary">About Us</a>
+        <!-- Scripture kicker -->
+        <p class="hero-kicker reveal">Obadiah 1:17</p>
+
+        <!-- Logo with gold glow -->
+        <div class="hero-logo-glow reveal">
+          <div class="hero-glow-pulse"></div>
+          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="140" height="140">
         </div>
+
+        <!-- Main headline -->
+        <h1 class="hero-headline-centered" style="animation: fadeUp 0.8s var(--ease-out) 0.3s both;">
+          Upon Mount Zion Shall Be <span class="fire-underline">Deliverance</span>
+        </h1>
+
+        <!-- Identity statement -->
+        <p class="hero-identity" style="animation: fadeUp 0.8s var(--ease-out) 0.5s both;">
+          A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.
+        </p>
+
+        <!-- CTAs -->
+        <div class="btn-group btn-group--center" style="animation: fadeUp 0.8s var(--ease-out) 0.7s both;">
+          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M8 5v14l11-7z"/></svg>
+            Watch Live
+          </a>
+          <a href="about.html" class="btn btn--secondary">Join Us</a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero-scroll" style="animation: fadeUp 0.8s var(--ease-out) 0.9s both;">
+          <span>Discover</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
       </div>
     </section>
 
@@ -993,4 +1146,5 @@
 
 </body>
 </html>
+
 
