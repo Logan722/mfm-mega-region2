@@ -205,16 +205,20 @@
 
     /* ── State Accordions ── */
     .state-accordions {
-      max-width: 900px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
       margin: 0 auto;
     }
     .state-accordion {
       border: 1px solid #e8e4da;
       border-radius: 12px;
-      margin-bottom: 12px;
       background: #ffffff;
       overflow: hidden;
       transition: box-shadow 0.2s;
+    }
+    .state-accordion.open {
+      grid-column: 1 / -1;
     }
     .state-accordion:hover {
       box-shadow: 0 4px 16px rgba(20, 34, 64, 0.06);
@@ -292,6 +296,7 @@
       .youth-links { align-items: flex-start; }
       .cta-box { padding: 32px 20px; }
       .branches-grid { grid-template-columns: 1fr; }
+      .state-accordions { grid-template-columns: repeat(2, 1fr); }
       .branch-search { font-size: 16px; }
     }
 
@@ -503,6 +508,9 @@
       .hero-stats-row { justify-content: center; }
       .hero-pin-col { margin: 0 auto; }
       .hero-ey-badge { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .state-accordions { grid-template-columns: 1fr; }
     }
   </style>
   <!-- Netlify Identity Widget (needed for CMS) -->
