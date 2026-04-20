@@ -28,133 +28,202 @@
 
   <!-- Page-specific styles -->
   <style>
-    /* ── Cinematic Hero ── */
-    .hero--cinematic {
+    /* ── Split Hero ── */
+    .hero--split {
       min-height: 100vh;
       min-height: 100dvh;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 60px;
+      padding: 140px var(--gutter) 80px;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .hero--split .hero-text {
+      max-width: 560px;
       position: relative;
-      overflow: hidden;
+      z-index: var(--z-content);
     }
 
-    .hero-shaft {
-      position: absolute;
-      top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80vw;
-      height: 140%;
-      pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(
-        ellipse 50% 60% at 50% 30%,
-        rgba(201, 149, 44, 0.10) 0%,
-        rgba(232, 93, 38, 0.04) 40%,
-        transparent 70%
-      );
-      animation: breathe 8s var(--ease-in-out) infinite;
-    }
-
-    .hero-kicker {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fire);
+    .hero-eyebrow-line {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       margin-bottom: 28px;
       animation: fadeUp 0.6s var(--ease-out) 0.1s both;
     }
 
-    .hero-logo-glow {
-      position: relative;
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: floatIn 1s var(--ease-out) 0.15s both;
+    .hero-eyebrow-line::before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--fire);
+      flex-shrink: 0;
     }
 
-    .hero-glow-pulse {
-      position: absolute;
-      inset: -20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,149,44,0.20) 0%, rgba(201,149,44,0.06) 50%, transparent 70%);
-      animation: glowPulse 4s ease-in-out infinite;
+    .hero-eyebrow-line span {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fire);
     }
 
-    @keyframes glowPulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.15); opacity: 1; }
+    .hero-title-stack {
+      margin-bottom: 24px;
+      animation: fadeUp 0.7s var(--ease-out) 0.25s both;
     }
 
-    .hero-logo-glow .hero-emblem {
-      width: 140px;
-      height: 140px;
-      position: relative;
-      z-index: 1;
+    .hero-title-stack .line-sm {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
     }
 
-    .hero-headline-centered {
-      font-size: clamp(2rem, 4.5vw + 0.8rem, 3.6rem);
-      font-weight: 700;
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      color: var(--cream);
-      margin-bottom: 20px;
-      max-width: 640px;
+    .hero-title-stack .line-lg {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw + 0.5rem, 4.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--gold-light) 50%, var(--fire-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-identity {
+    .hero-subtitle {
       font-family: var(--font-serif);
       font-size: 1.05rem;
       font-style: italic;
       font-weight: 300;
       color: var(--text-muted);
-      max-width: 480px;
-      margin: 0 auto 40px;
-      line-height: 1.65;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      max-width: 440px;
+      animation: fadeUp 0.7s var(--ease-out) 0.4s both;
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
+    .hero-ref {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold-dim);
+      letter-spacing: 0.06em;
+      margin-bottom: 36px;
+      animation: fadeUp 0.7s var(--ease-out) 0.5s both;
+    }
+
+    .hero--split .btn-group {
+      animation: fadeUp 0.7s var(--ease-out) 0.6s both;
+    }
+
+    /* Right column — logo with atmosphere */
+    .hero-emblem-col {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      flex-shrink: 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      color: var(--text-dim);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      justify-content: center;
+      animation: floatIn 1.2s var(--ease-out) 0.2s both;
+    }
+
+    .hero-emblem-col .hero-emblem {
+      width: 220px;
+      height: 220px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-emblem-col::before {
+      content: '';
+      position: absolute;
+      inset: -40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,149,44,0.15) 0%, rgba(232,93,38,0.06) 40%, transparent 70%);
+      animation: slowPulse 5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .hero-emblem-col::after {
+      content: '';
+      position: absolute;
+      inset: -80px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,149,44,0.08);
+      animation: slowPulse 7s ease-in-out infinite reverse;
+    }
+
+    @keyframes slowPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    /* Fire motto strip at bottom of hero area */
+    .hero-motto-strip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 20px var(--gutter);
+      border-top: 1px solid var(--line);
+      z-index: var(--z-content);
+      animation: fadeUp 0.7s var(--ease-out) 0.8s both;
+    }
+
+    .hero-motto-strip span {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
+      color: var(--gold-dim);
     }
 
-    .hero-scroll svg {
-      animation: bounceDown 2s ease-in-out infinite;
+    .hero-motto-strip .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--fire);
+      opacity: 0.5;
     }
 
-    @keyframes bounceDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
-    }
-
-    @media (max-width: 600px) {
-      .hero-logo-glow {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 28px;
+    @media (max-width: 768px) {
+      .hero--split {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 120px;
+        gap: 32px;
       }
-      .hero-logo-glow .hero-emblem {
-        width: 100px;
-        height: 100px;
+      .hero--split .hero-text { max-width: 100%; }
+      .hero-eyebrow-line { justify-content: center; }
+      .hero-eyebrow-line::before { display: none; }
+      .hero-emblem-col {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        order: -1;
       }
-      .hero-glow-pulse { inset: -14px; }
-      .hero-identity { font-size: 0.95rem; }
-      .hero-scroll { bottom: 24px; }
+      .hero-emblem-col .hero-emblem { width: 160px; height: 160px; }
+      .hero-emblem-col::before { inset: -24px; }
+      .hero-emblem-col::after { inset: -48px; }
+      .hero--split .btn-group { justify-content: center; }
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+      .hero-motto-strip { gap: 16px; flex-wrap: wrap; }
+      .hero-motto-strip span { font-size: 0.6rem; }
     }
 
     /* ── Identity Strip ── */
@@ -435,50 +504,52 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       1. HERO (Navy) — Cinematic Centered
+       1. HERO (Navy) — Split Statement
        ═══════════════════════════════════════════════════════ -->
   <main>
 
-    <section class="hero hero--cinematic">
-      <!-- Atmospheric light shaft for hero -->
-      <div class="hero-shaft" aria-hidden="true"></div>
+    <section class="hero" style="padding:0; display:block;">
+      <div class="hero--split">
 
-      <div class="hero-content" style="max-width:720px;">
+        <!-- Left: Text -->
+        <div class="hero-text">
+          <div class="hero-eyebrow-line">
+            <span>Mountain of Fire &amp; Miracles Ministries</span>
+          </div>
 
-        <!-- Scripture kicker -->
-        <p class="hero-kicker reveal">Obadiah 1:17</p>
+          <div class="hero-title-stack">
+            <span class="line-sm">Upon Mount Zion Shall Be</span>
+            <span class="line-lg">Deliverance</span>
+          </div>
 
-        <!-- Logo with gold glow -->
-        <div class="hero-logo-glow reveal">
-          <div class="hero-glow-pulse"></div>
-          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="140" height="140">
+          <p class="hero-subtitle">
+            "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
+          </p>
+          <p class="hero-ref">— Obadiah 1:17</p>
+
+          <div class="btn-group">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M8 5v14l11-7z"/></svg>
+              Watch Live
+            </a>
+            <a href="about.html" class="btn btn--secondary">About Us</a>
+          </div>
         </div>
 
-        <!-- Main headline -->
-        <h1 class="hero-headline-centered" style="animation: fadeUp 0.8s var(--ease-out) 0.3s both;">
-          Upon Mount Zion Shall Be <span class="fire-underline">Deliverance</span>
-        </h1>
-
-        <!-- Identity statement -->
-        <p class="hero-identity" style="animation: fadeUp 0.8s var(--ease-out) 0.5s both;">
-          A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.
-        </p>
-
-        <!-- CTAs -->
-        <div class="btn-group btn-group--center" style="animation: fadeUp 0.8s var(--ease-out) 0.7s both;">
-          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M8 5v14l11-7z"/></svg>
-            Watch Live
-          </a>
-          <a href="about.html" class="btn btn--secondary">Join Us</a>
+        <!-- Right: Logo with atmosphere -->
+        <div class="hero-emblem-col">
+          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="220" height="220">
         </div>
 
-        <!-- Scroll indicator -->
-        <div class="hero-scroll" style="animation: fadeUp 0.8s var(--ease-out) 0.9s both;">
-          <span>Discover</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
+      </div>
 
+      <!-- Fire motto strip -->
+      <div class="hero-motto-strip">
+        <span>Fire in the Word</span>
+        <span class="dot"></span>
+        <span>Fire on the Mountain</span>
+        <span class="dot"></span>
+        <span>Fire in the Bone</span>
       </div>
     </section>
 
