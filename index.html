@@ -398,144 +398,200 @@
     }
     .section--announcements > .container { position: relative; z-index: 1; }
 
-    /* ── Event Carousel ── */
-    .event-carousel-wrap {
+    /* ── Announcement Stage — single featured slide, auto-rotates ── */
+    .announce-stage {
       position: relative;
+      max-width: 1080px;
+      margin: 0 auto;
     }
-    .event-carousel {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 8px;
+    .announce-slides {
+      position: relative;
+      min-height: 440px;
     }
-    .event-carousel::-webkit-scrollbar { display: none; }
-
-    .event-carousel-card {
-      flex: 0 0 340px;
-      scroll-snap-align: start;
-      border-radius: 12px;
-      overflow: hidden;
-      background: rgba(20, 34, 64, 0.5);
-      border: 1px solid var(--line-navy);
-      transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
+    .announce-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), visibility 0s linear 0.7s;
+      pointer-events: none;
       text-decoration: none;
       color: inherit;
-      display: flex;
-      flex-direction: column;
-    }
-    .event-carousel-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--line-navy-strong);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    }
-    .event-carousel-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      background: var(--bg-navy-deep);
       display: block;
     }
-    .event-carousel-body {
-      padding: 20px 22px 24px;
-      flex: 1;
+    .announce-slide.is-active {
+      position: relative;   /* lets the stage take its intrinsic height */
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), visibility 0s linear 0s;
+      pointer-events: auto;
+    }
+
+    /* The featured card: split image + body */
+    .announce-card {
+      display: grid;
+      grid-template-columns: minmax(0, 440px) 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .announce-frame {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-navy-deep);
+      border: 1px solid var(--line-navy);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+    .announce-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .announce-body { min-width: 0; }
+    .announce-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .announce-tag::before {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+    .announce-body h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .announce-theme {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.02rem;
+      color: var(--gold-light);
+      margin-bottom: 22px;
+      line-height: 1.4;
+    }
+    .announce-meta {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
       display: flex;
       flex-direction: column;
+      gap: 8px;
     }
-    .event-carousel-tag {
+    .announce-meta li {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line-navy);
+      font-size: 0.88rem;
+      color: var(--text-on-navy);
+      line-height: 1.5;
+    }
+    .announce-meta li:last-child { border-bottom: none; }
+    .announce-meta .label {
       font-family: var(--font-sans);
       font-size: 0.68rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
+      color: var(--gold-dim);
     }
-    .event-carousel-body h4 {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
-    .event-carousel-theme {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 0.88rem;
-      color: var(--gold-light);
-      margin-bottom: 12px;
-      line-height: 1.4;
-    }
-    .event-carousel-meta {
+    .announce-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--fire);
+      color: #fff;
+      border-radius: 8px;
+      font-family: var(--font-sans);
       font-size: 0.82rem;
-      color: var(--text-on-navy);
-      line-height: 1.5;
-      margin: 0;
-      flex: 1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
     }
-    /* Countdown badge inside each card */
-    .event-card-countdown {
+    .announce-cta:hover {
+      background: var(--fire-light);
+      transform: translateY(-2px);
+    }
+
+    /* Live countdown badge on the featured slide */
+    .announce-countdown {
       display: inline-flex;
       align-items: stretch;
       gap: 0;
-      margin: 10px 0 4px;
-      padding: 3px;
+      margin-bottom: 22px;
+      padding: 4px;
       background: rgba(201, 149, 44, 0.08);
       border: 1px solid var(--line-navy-strong);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      align-self: flex-start;
     }
-    .event-card-countdown .cd-unit {
+    .announce-countdown .cd-unit {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 5px 9px;
-      min-width: 42px;
+      padding: 8px 14px;
+      min-width: 56px;
       border-right: 1px solid var(--line-navy);
     }
-    .event-card-countdown .cd-unit:last-child { border-right: none; }
-    .event-card-countdown .cd-num {
+    .announce-countdown .cd-unit:last-child { border-right: none; }
+    .announce-countdown .cd-num {
       font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--cream);
       line-height: 1;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       font-variant-numeric: tabular-nums;
     }
-    .event-card-countdown .cd-lbl {
+    .announce-countdown .cd-lbl {
       font-family: var(--font-sans);
-      font-size: 0.52rem;
+      font-size: 0.58rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
     }
-    .event-card-countdown.is-live {
+    .announce-countdown.is-live {
       background: rgba(232, 93, 38, 0.16);
       border-color: rgba(232, 93, 38, 0.45);
-      padding: 8px 14px;
+      padding: 10px 20px;
       align-items: center;
     }
-    .event-card-countdown.is-live::before {
+    .announce-countdown.is-live::before {
       content: '';
-      width: 7px;
-      height: 7px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--fire-light);
-      margin-right: 8px;
+      margin-right: 12px;
       animation: livePulse 1.4s ease-in-out infinite;
     }
-    .event-card-countdown.is-live .cd-live-text {
+    .announce-countdown.is-live .cd-live-text {
       font-family: var(--font-sans);
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--fire-light);
     }
@@ -543,78 +599,72 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50%      { opacity: 0.55; transform: scale(1.35); }
     }
-    .event-carousel-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin-top: 16px;
-      letter-spacing: 0.04em;
-    }
-    .event-carousel-cta::after {
-      content: '→';
-    }
 
-    /* Carousel arrows */
-    .event-carousel-arrow {
+    /* Progress bar above dots — shows auto-rotate timing */
+    .announce-progress {
+      position: relative;
+      height: 2px;
+      max-width: 280px;
+      margin: 36px auto 0;
+      background: rgba(201, 149, 44, 0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .announce-progress-fill {
       position: absolute;
-      top: 50%;
-      transform: translateY(-80%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(20, 34, 64, 0.85);
-      border: 1px solid var(--line-navy-strong);
-      color: var(--cream);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 2;
-      transition: background 0.3s, transform 0.3s;
-      padding: 0;
-    }
-    .event-carousel-arrow:hover {
-      background: rgba(26, 45, 77, 0.95);
-      transform: translateY(-80%) scale(1.08);
-    }
-    .event-carousel-arrow svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--cream);
-      fill: none;
-    }
-    .event-carousel-arrow--left { left: -16px; }
-    .event-carousel-arrow--right { right: -16px; }
-
-    /* Dots */
-    .event-carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
-    }
-    .event-carousel-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--text-dim-navy);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .event-carousel-dot.active {
+      left: 0; top: 0; bottom: 0;
+      width: 0%;
       background: var(--gold);
-      transform: scale(1.25);
+      transition: width 0.3s linear;
     }
+    .announce-stage.is-paused .announce-progress-fill { transition: none; }
 
+    /* Indicator dots */
+    .announce-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .announce-dots .dot {
+      appearance: none;
+      background: transparent;
+      border: 1px solid rgba(201, 149, 44, 0.4);
+      width: 28px;
+      height: 6px;
+      border-radius: 999px;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, width 0.4s var(--ease-out);
+    }
+    .announce-dots .dot:hover { border-color: var(--gold); }
+    .announce-dots .dot.is-active {
+      background: var(--gold);
+      border-color: var(--gold);
+      width: 44px;
+    }
+    .announce-stage.is-single .announce-dots { display: none; }
+
+    @media (max-width: 860px) {
+      .announce-card {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        text-align: center;
+      }
+      .announce-frame { max-width: 400px; margin: 0 auto; }
+      .announce-tag { justify-content: center; }
+      .announce-tag::before { display: none; }
+      .announce-meta li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        text-align: center;
+      }
+      .announce-countdown { margin-left: auto; margin-right: auto; }
+    }
     @media (max-width: 640px) {
-      .event-carousel-card { flex: 0 0 280px; }
-      .event-carousel-arrow { display: none; }
+      .announce-countdown .cd-unit { padding: 6px 10px; min-width: 46px; }
+      .announce-countdown .cd-num { font-size: 1.2rem; }
     }
 
     /* ── Section: Weekly (Cream) — Compact 3-col ── */
@@ -1183,16 +1233,10 @@
           <p>Upcoming crusades, conferences, and special services across Mega Region 2.</p>
         </div>
 
-        <!-- Event carousel — populated by JS from eventData below -->
-        <div class="event-carousel-wrap reveal">
-          <button class="event-carousel-arrow event-carousel-arrow--left" id="evCarouselLeft" aria-label="Scroll left">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div class="event-carousel" id="eventCarousel"></div>
-          <button class="event-carousel-arrow event-carousel-arrow--right" id="evCarouselRight" aria-label="Scroll right">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <div class="event-carousel-dots" id="evCarouselDots"></div>
+        <!-- Featured announcement — single slide, auto-rotates through upcoming events -->
+        <div id="announceStage" class="announce-stage reveal" aria-roledescription="carousel" aria-label="Upcoming events">
+          <div id="announceSlides" class="announce-slides"></div>
+          <div id="announceDots" class="announce-dots" role="tablist" aria-label="Event selector"></div>
         </div>
 
       </div>
@@ -1957,18 +2001,23 @@
       });
     })();
 
-    /* ── Announcements Carousel: Sort, Render, Filter Past ──
+    /* ── Announcement Stage: Single Featured Slide + Auto-Rotate + Countdown ──
        Reads JSON from #eventData. Only FUTURE events are shown.
-       Renders a horizontal scrollable carousel with dot indicators.
-       Each card links to the corresponding anchor on events.html. */
+       Renders ONE upcoming event at a time in a split (image + body) layout.
+       Auto-advances to the next event every ROTATE_MS with a fade transition.
+       A live D/H/M/S countdown ticks every second on the active slide. During
+       multi-day events in progress, the countdown is replaced with a
+       "Happening Now" badge. Pauses on hover, touch, and when the tab is
+       hidden. Dots below the slide jump directly and reset the rotation. */
     (function () {
+      var ROTATE_MS = 8000;
+
       var section   = document.getElementById('announcements');
       var dataEl    = document.getElementById('eventData');
-      var carousel  = document.getElementById('eventCarousel');
-      var dotsWrap  = document.getElementById('evCarouselDots');
-      var arrowL    = document.getElementById('evCarouselLeft');
-      var arrowR    = document.getElementById('evCarouselRight');
-      if (!section || !dataEl || !carousel) return;
+      var stage     = document.getElementById('announceStage');
+      var slidesEl  = document.getElementById('announceSlides');
+      var dotsEl    = document.getElementById('announceDots');
+      if (!section || !dataEl || !stage || !slidesEl || !dotsEl) return;
 
       var events;
       try { events = JSON.parse(dataEl.textContent); }
@@ -2003,17 +2052,22 @@
       }
 
       var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var MONS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
       var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun',
                         'Jul','Aug','Sep','Oct','Nov','Dec'];
 
-      function shortDate(dt) {
-        return DAYS[dt.getDay()] + ' \u00b7 ' + SHORT_MONS[dt.getMonth()] + ' ' + dt.getDate();
+      function longDate(dt) {
+        return DAYS[dt.getDay()] + ' · ' + MONS[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
       }
       function dateRange(start, end) {
-        if (start.getTime() === end.getTime()) return shortDate(start);
+        if (start.getTime() === end.getTime()) return longDate(start);
         var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
-        if (sameMonth) return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + end.getDate();
-        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + SHORT_MONS[end.getMonth()] + ' ' + end.getDate();
+        if (sameMonth) {
+          return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' + end.getDate() + ', ' + start.getFullYear();
+        }
+        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' +
+               SHORT_MONS[end.getMonth()] + ' ' + end.getDate() + ', ' + end.getFullYear();
       }
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
@@ -2023,39 +2077,10 @@
         if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
         if (delta === 1) return 'Tomorrow';
         if (delta <= 7) return 'This Week';
-        return dateRange(item.start, item.end);
+        return 'Next Up';
       }
 
-      var html = '';
-      for (var i = 0; i < parsed.length; i++) {
-        var item = parsed[i];
-        var ev = item.ev;
-        var link = ev.anchor ? 'events.html#' + ev.anchor : (ev.link || 'events.html');
-        var target = (ev.link && /^https?:/i.test(ev.link)) ? ' target="_blank" rel="noopener"' : '';
-        var metaParts = [];
-        if (ev.time) metaParts.push(ev.time);
-        if (ev.venue) metaParts.push(ev.venue);
-
-        html +=
-          '<a href="' + esc(link) + '"' + target + ' class="event-carousel-card" data-cd-idx="' + i + '">' +
-            '<img class="event-carousel-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
-            '<div class="event-carousel-body">' +
-              '<div class="event-carousel-tag">' + esc(eyebrowFor(item)) + '</div>' +
-              '<h4>' + esc(ev.title) + '</h4>' +
-              (ev.theme ? '<div class="event-carousel-theme">' + esc(ev.theme) + '</div>' : '') +
-              (metaParts.length ? '<p class="event-carousel-meta">' + esc(metaParts.join(' \u00b7 ')) + '</p>' : '') +
-              '<div class="event-card-countdown-slot" data-cd-slot="' + i + '"></div>' +
-              '<span class="event-carousel-cta">View Details</span>' +
-            '</div>' +
-          '</a>';
-      }
-      carousel.innerHTML = html;
-
-      /* ── Countdown logic ──
-         Derives a start moment from item.start + first time-string match (falls
-         back to 9 AM). Renders D/H/M/S for each card. If event is in progress
-         (multi-day range covering now), shows "Happening Now" badge. */
-      function parseTimeToMoment(item) {
+      function eventStartMoment(item) {
         var dt = new Date(item.start);
         if (item.ev.time) {
           var m = item.ev.time.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
@@ -2069,20 +2094,73 @@
         dt.setHours(9, 0, 0, 0);
         return dt;
       }
-      function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
+      /* ── Render all slides as absolute-positioned layers ── */
+      var slidesHtml = '';
+      var dotsHtml = '';
+      parsed.forEach(function (item, idx) {
+        var f = item.ev;
+        var destLink = f.anchor ? 'events.html#' + f.anchor : (f.link || 'events.html');
+        var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
+
+        var whenVal = dateRange(item.start, item.end);
+        if (f.time) whenVal += '<br>' + esc(f.time);
+
+        var metaRows = '';
+        metaRows += '<li><span class="label">When</span><span>' + whenVal + '</span></li>';
+        if (f.venue)       metaRows += '<li><span class="label">Venue</span><span>' + esc(f.venue) + '</span></li>';
+        if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span>' + esc(f.ministering) + '</span></li>';
+        if (f.host)        metaRows += '<li><span class="label">Host</span><span>' + esc(f.host) + '</span></li>';
+
+        var ctaLabel = f.link ? 'Register / Learn More →' : 'View Details →';
+
+        slidesHtml +=
+          '<a href="' + esc(destLink) + '"' + linkTarget + ' class="announce-slide' + (idx === 0 ? ' is-active' : '') + '" ' +
+            'data-slide="' + idx + '" role="group" aria-roledescription="slide" ' +
+            'aria-label="' + (idx+1) + ' of ' + parsed.length + '">' +
+            '<div class="announce-card">' +
+              '<div class="announce-frame">' +
+                '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || f.title) + '">' +
+              '</div>' +
+              '<div class="announce-body">' +
+                '<div class="announce-tag">' + esc(eyebrowFor(item)) + '</div>' +
+                '<div class="announce-countdown-slot" data-cd-slot="' + idx + '"></div>' +
+                '<h3>' + esc(f.title) + '</h3>' +
+                (f.theme ? '<p class="announce-theme">' + esc(f.theme) + '</p>' : '') +
+                '<ul class="announce-meta">' + metaRows + '</ul>' +
+                '<span class="announce-cta">' + ctaLabel + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</a>';
+
+        dotsHtml +=
+          '<button class="dot' + (idx === 0 ? ' is-active' : '') + '" type="button" role="tab" ' +
+            'aria-label="Show event ' + (idx+1) + ' of ' + parsed.length + '" ' +
+            'aria-selected="' + (idx === 0) + '" ' +
+            'data-go="' + idx + '"></button>';
+      });
+
+      slidesEl.innerHTML = slidesHtml;
+      dotsEl.innerHTML = dotsHtml;
+
+      if (parsed.length === 1) {
+        stage.classList.add('is-single');
+      }
+
+      /* ── Countdown rendering ── */
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
       function renderCountdown(idx) {
-        var slot = carousel.querySelector('[data-cd-slot="' + idx + '"]');
+        var slot = slidesEl.querySelector('[data-cd-slot="' + idx + '"]');
         if (!slot) return;
         var item = parsed[idx];
         var now = new Date();
-        var startMoment = parseTimeToMoment(item);
+        var startMoment = eventStartMoment(item);
         var endOfEvent = new Date(item.end);
         endOfEvent.setHours(23, 59, 59, 999);
 
         if (now >= startMoment && now <= endOfEvent) {
           slot.innerHTML =
-            '<div class="event-card-countdown is-live">' +
+            '<div class="announce-countdown is-live">' +
               '<span class="cd-live-text">Happening Now</span>' +
             '</div>';
           return;
@@ -2091,7 +2169,7 @@
         var ms = startMoment - now;
         if (ms <= 0) {
           slot.innerHTML =
-            '<div class="event-card-countdown is-live">' +
+            '<div class="announce-countdown is-live">' +
               '<span class="cd-live-text">Happening Now</span>' +
             '</div>';
           return;
@@ -2104,7 +2182,7 @@
         var secs  = totalSec % 60;
 
         slot.innerHTML =
-          '<div class="event-card-countdown" aria-label="Time until event">' +
+          '<div class="announce-countdown" aria-label="Time until event">' +
             '<div class="cd-unit"><span class="cd-num">' + days + '</span><span class="cd-lbl">Days</span></div>' +
             '<div class="cd-unit"><span class="cd-num">' + pad(hours) + '</span><span class="cd-lbl">Hrs</span></div>' +
             '<div class="cd-unit"><span class="cd-num">' + pad(mins)  + '</span><span class="cd-lbl">Min</span></div>' +
@@ -2112,99 +2190,68 @@
           '</div>';
       }
 
-      function renderAllCountdowns() {
-        for (var k = 0; k < parsed.length; k++) renderCountdown(k);
-      }
-      renderAllCountdowns();
-
-      /* Dot indicators */
-      var cards = carousel.querySelectorAll('.event-carousel-card');
-      var dotHtml = '';
-      for (var d = 0; d < cards.length; d++) {
-        dotHtml += '<button class="event-carousel-dot' + (d === 0 ? ' active' : '') + '" data-idx="' + d + '" aria-label="Go to event ' + (d+1) + '"></button>';
-      }
-      dotsWrap.innerHTML = dotHtml;
-      var dots = dotsWrap.querySelectorAll('.event-carousel-dot');
-
-      function currentIdx() {
-        if (!cards.length) return 0;
-        var cardW = cards[0].offsetWidth + 24;
-        var idx = Math.round(carousel.scrollLeft / cardW);
-        return Math.max(0, Math.min(idx, cards.length - 1));
-      }
-
-      function updateDots() {
-        var idx = currentIdx();
-        for (var j = 0; j < dots.length; j++) {
-          dots[j].classList.toggle('active', j === idx);
-        }
-      }
-
-      carousel.addEventListener('scroll', updateDots);
-
-      dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-          var idx = parseInt(this.getAttribute('data-idx'));
-          cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-          resetAutoRotate();
-        });
-      });
-
-      arrowL.addEventListener('click', function() {
-        carousel.scrollBy({ left: -364, behavior: 'smooth' });
-        resetAutoRotate();
-      });
-      arrowR.addEventListener('click', function() {
-        carousel.scrollBy({ left: 364, behavior: 'smooth' });
-        resetAutoRotate();
-      });
-
-      /* ── Auto-rotate: scroll to next card every 8s ──
-         Pauses on hover and when the browser tab is hidden.
-         User interactions (arrows, dots, swipe) reset the interval. */
-      var ROTATE_MS = 8000;
+      /* ── Rotation state ── */
+      var currentIdx = 0;
       var rotateTimer = null;
       var countdownTimer = null;
       var paused = false;
 
-      function advanceCarousel() {
-        if (paused || cards.length < 2) return;
-        var next = (currentIdx() + 1) % cards.length;
-        cards[next].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      function setActive(next) {
+        var slides = slidesEl.querySelectorAll('.announce-slide');
+        var dots   = dotsEl.querySelectorAll('.dot');
+        slides.forEach(function (s, i) { s.classList.toggle('is-active', i === next); });
+        dots.forEach(function (d, i) {
+          d.classList.toggle('is-active', i === next);
+          d.setAttribute('aria-selected', i === next ? 'true' : 'false');
+        });
+        currentIdx = next;
+        renderCountdown(currentIdx);
+      }
+
+      function advance() {
+        if (paused || parsed.length < 2) return;
+        var next = (currentIdx + 1) % parsed.length;
+        setActive(next);
       }
 
       function startTimers() {
         stopTimers();
-        if (cards.length > 1) {
-          rotateTimer = setInterval(advanceCarousel, ROTATE_MS);
-        }
-        countdownTimer = setInterval(renderAllCountdowns, 1000);
+        if (parsed.length > 1) rotateTimer = setInterval(advance, ROTATE_MS);
+        countdownTimer = setInterval(function () { renderCountdown(currentIdx); }, 1000);
       }
       function stopTimers() {
         if (rotateTimer) { clearInterval(rotateTimer); rotateTimer = null; }
         if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
       }
-      function resetAutoRotate() {
-        /* Reset so the user gets a full viewing window after manual nav */
-        startTimers();
-      }
 
-      /* Pause on hover (desktop), pause on touchstart (mobile) */
-      carousel.addEventListener('mouseenter', function () { paused = true; });
-      carousel.addEventListener('mouseleave', function () { paused = false; });
-      carousel.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-      carousel.addEventListener('touchend',   function () {
-        /* brief grace period so a swipe finishes before auto-scroll resumes */
+      renderCountdown(0);
+      startTimers();
+
+      /* Pause on hover (desktop) */
+      stage.addEventListener('mouseenter', function () { paused = true; });
+      stage.addEventListener('mouseleave', function () { paused = false; });
+
+      /* Pause on touch (mobile), resume with grace period */
+      stage.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+      stage.addEventListener('touchend', function () {
         setTimeout(function () { paused = false; }, 1500);
       });
 
-      /* Pause when tab is hidden */
+      /* Pause when tab hidden */
       document.addEventListener('visibilitychange', function () {
         if (document.hidden) { stopTimers(); }
-        else { renderAllCountdowns(); startTimers(); }
+        else { renderCountdown(currentIdx); startTimers(); }
       });
 
-      startTimers();
+      /* Dot click = jump + reset rotation */
+      dotsEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('.dot');
+        if (!btn) return;
+        var go = parseInt(btn.getAttribute('data-go'), 10);
+        if (isNaN(go)) return;
+        setActive(go);
+        startTimers();
+      });
     })();
   </script>
 
