@@ -398,60 +398,107 @@
     }
     .section--announcements > .container { position: relative; z-index: 1; }
 
-    /* ── Announcement Stage — single featured slide, auto-rotates ── */
+    /* ═══════════════════════════════════════════════════════════
+       Announcement Stage — Immersive Full-Bleed (Layout B)
+       Each slide fills the whole stage with a darkened event image
+       as background; text (countdown, title, theme, meta, CTAs) floats
+       over the bottom-left. Ken Burns zoom on active image. Progress
+       bar across the bottom. Urgency states on the countdown. Full
+       clean mobile stack.
+       ═══════════════════════════════════════════════════════════ */
     .announce-stage {
       position: relative;
-      max-width: 1080px;
+      max-width: 1200px;
       margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 36px 80px rgba(0, 0, 0, 0.5);
+      background: var(--bg-navy-deep);
     }
     .announce-slides {
       position: relative;
-      min-height: 440px;
+      aspect-ratio: 16 / 9;
+      min-height: 520px;
     }
     .announce-slide {
       position: absolute;
       inset: 0;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(10px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), visibility 0s linear 0.7s;
+      transition: opacity 0.8s var(--ease-out), visibility 0s linear 0.8s;
       pointer-events: none;
       text-decoration: none;
       color: inherit;
       display: block;
+      overflow: hidden;
     }
     .announce-slide.is-active {
-      position: relative;   /* lets the stage take its intrinsic height */
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out), visibility 0s linear 0s;
+      transition: opacity 0.8s var(--ease-out), visibility 0s linear 0s;
       pointer-events: auto;
+      z-index: 1;
     }
 
-    /* The featured card: split image + body */
-    .announce-card {
-      display: grid;
-      grid-template-columns: minmax(0, 440px) 1fr;
-      gap: 48px;
-      align-items: center;
+    /* Background image — Ken Burns slow zoom on active slide only */
+    .announce-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: scale(1.05);
+      will-change: transform;
     }
-    .announce-frame {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--bg-navy-deep);
-      border: 1px solid var(--line-navy);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    .announce-slide.is-active .announce-bg {
+      animation: kenBurns 18s ease-out forwards;
     }
-    .announce-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    @keyframes kenBurns {
+      0%   { transform: scale(1.05); }
+      100% { transform: scale(1.18); }
     }
-    .announce-body { min-width: 0; }
+
+    /* Gradient overlay for text legibility */
+    .announce-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg,
+          rgba(15, 26, 48, 0.35) 0%,
+          rgba(15, 26, 48, 0.50) 40%,
+          rgba(15, 26, 48, 0.88) 85%,
+          rgba(15, 26, 48, 0.95) 100%),
+        linear-gradient(90deg,
+          rgba(15, 26, 48, 0.72) 0%,
+          rgba(15, 26, 48, 0.30) 50%,
+          rgba(15, 26, 48, 0.10) 100%);
+    }
+
+    /* Content stack floating on top */
+    .announce-content {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 48px 56px 56px;
+      max-width: 720px;
+      z-index: 2;
+    }
+    .announce-content > * {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+    .announce-slide.is-active .announce-content > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Staggered reveal per element */
+    .announce-slide.is-active .announce-content > *:nth-child(1) { transition-delay: 0.20s; }
+    .announce-slide.is-active .announce-content > *:nth-child(2) { transition-delay: 0.30s; }
+    .announce-slide.is-active .announce-content > *:nth-child(3) { transition-delay: 0.40s; }
+    .announce-slide.is-active .announce-content > *:nth-child(4) { transition-delay: 0.50s; }
+    .announce-slide.is-active .announce-content > *:nth-child(5) { transition-delay: 0.60s; }
+    .announce-slide.is-active .announce-content > *:nth-child(6) { transition-delay: 0.70s; }
+
     .announce-tag {
       display: inline-flex;
       align-items: center;
@@ -462,88 +509,78 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 18px;
+      margin: 0 0 20px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
     .announce-tag::before {
       content: '';
       width: 28px; height: 1px;
       background: var(--gold);
     }
-    .announce-body h3 {
+
+    .announce-content h3 {
       font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 3.4vw, 2.3rem);
-      font-weight: 400;
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      font-weight: 500;
       color: var(--cream);
-      line-height: 1.15;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
+      line-height: 1.08;
+      margin: 0 0 14px;
+      letter-spacing: -0.015em;
+      text-shadow: 0 3px 20px rgba(0, 0, 0, 0.8);
     }
     .announce-theme {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: 1.02rem;
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
       color: var(--gold-light);
-      margin-bottom: 22px;
+      margin: 0 0 22px;
       line-height: 1.4;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
     }
     .announce-meta {
       list-style: none;
       padding: 0;
-      margin: 0 0 24px;
+      margin: 0 0 26px;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 18px 28px;
     }
     .announce-meta li {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 14px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--line-navy);
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       color: var(--text-on-navy);
-      line-height: 1.5;
+      line-height: 1.45;
+      max-width: 260px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     }
-    .announce-meta li:last-child { border-bottom: none; }
     .announce-meta .label {
+      display: block;
       font-family: var(--font-sans);
-      font-size: 0.68rem;
+      font-size: 0.64rem;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold-dim);
+      margin-bottom: 3px;
     }
-    .announce-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
-      background: var(--fire);
-      color: #fff;
-      border-radius: 8px;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .announce-cta:hover {
-      background: var(--fire-light);
-      transform: translateY(-2px);
+    .announce-meta .value {
+      color: var(--cream);
+      font-size: 0.88rem;
     }
 
-    /* Live countdown badge on the featured slide */
+    /* Live countdown badge */
     .announce-countdown {
       display: inline-flex;
       align-items: stretch;
       gap: 0;
-      margin-bottom: 22px;
+      margin: 0 0 22px;
       padding: 4px;
-      background: rgba(201, 149, 44, 0.08);
+      background: rgba(15, 26, 48, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       border: 1px solid var(--line-navy-strong);
       border-radius: 10px;
       overflow: hidden;
+      transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
     }
     .announce-countdown .cd-unit {
       display: flex;
@@ -551,7 +588,7 @@
       align-items: center;
       justify-content: center;
       padding: 8px 14px;
-      min-width: 56px;
+      min-width: 58px;
       border-right: 1px solid var(--line-navy);
     }
     .announce-countdown .cd-unit:last-child { border-right: none; }
@@ -572,11 +609,22 @@
       text-transform: uppercase;
       color: var(--gold);
     }
+    /* URGENCY STATE: <= 24hr to event — fire-orange glow */
+    .announce-countdown.is-urgent {
+      background: rgba(232, 93, 38, 0.18);
+      border-color: rgba(232, 93, 38, 0.5);
+      box-shadow: 0 0 24px rgba(232, 93, 38, 0.25);
+    }
+    .announce-countdown.is-urgent .cd-num { color: #ffd4b5; }
+    .announce-countdown.is-urgent .cd-lbl { color: var(--fire-light); }
+
+    /* LIVE STATE: happening now — pulsing dot */
     .announce-countdown.is-live {
-      background: rgba(232, 93, 38, 0.16);
-      border-color: rgba(232, 93, 38, 0.45);
+      background: rgba(232, 93, 38, 0.22);
+      border-color: rgba(232, 93, 38, 0.6);
       padding: 10px 20px;
       align-items: center;
+      box-shadow: 0 0 32px rgba(232, 93, 38, 0.35);
     }
     .announce-countdown.is-live::before {
       content: '';
@@ -600,39 +648,87 @@
       50%      { opacity: 0.55; transform: scale(1.35); }
     }
 
-    /* Progress bar above dots — shows auto-rotate timing */
-    .announce-progress {
-      position: relative;
-      height: 2px;
-      max-width: 280px;
-      margin: 36px auto 0;
+    /* CTA row — primary + secondary (add to calendar) */
+    .announce-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .announce-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--fire);
+      color: #fff;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .announce-cta:hover {
+      background: var(--fire-light);
+      transform: translateY(-2px);
+    }
+    .announce-cta--ghost {
+      background: transparent;
+      border: 1px solid rgba(201, 149, 44, 0.45);
+      color: var(--gold-light);
+    }
+    .announce-cta--ghost:hover {
       background: rgba(201, 149, 44, 0.15);
-      border-radius: 2px;
-      overflow: hidden;
+      border-color: var(--gold);
+      color: var(--cream);
+    }
+    .announce-cta svg { width: 15px; height: 15px; }
+
+    /* Progress bar — fills over ROTATE_MS, resets per slide */
+    .announce-progress {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      z-index: 3;
     }
     .announce-progress-fill {
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 0%;
-      background: var(--gold);
-      transition: width 0.3s linear;
+      background: linear-gradient(90deg, var(--gold), var(--fire));
+      box-shadow: 0 0 12px rgba(232, 93, 38, 0.6);
     }
-    .announce-stage.is-paused .announce-progress-fill { transition: none; }
+    .announce-progress-fill.is-running {
+      width: 100%;
+    }
 
     /* Indicator dots */
     .announce-dots {
+      position: absolute;
+      top: 24px;
+      right: 24px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 8px;
+      z-index: 3;
+      padding: 8px 14px;
+      background: rgba(15, 26, 48, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--line-navy);
+      border-radius: 999px;
     }
     .announce-dots .dot {
       appearance: none;
       background: transparent;
       border: 1px solid rgba(201, 149, 44, 0.4);
-      width: 28px;
-      height: 6px;
+      width: 22px;
+      height: 5px;
       border-radius: 999px;
       padding: 0;
       cursor: pointer;
@@ -642,32 +738,36 @@
     .announce-dots .dot.is-active {
       background: var(--gold);
       border-color: var(--gold);
-      width: 44px;
+      width: 38px;
     }
     .announce-stage.is-single .announce-dots { display: none; }
+    .announce-stage.is-single .announce-progress { display: none; }
 
+    /* Mobile */
     @media (max-width: 860px) {
-      .announce-card {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        text-align: center;
+      .announce-slides { aspect-ratio: 4 / 5; min-height: 560px; }
+      .announce-content { padding: 32px 28px 40px; max-width: 100%; }
+      .announce-overlay {
+        background:
+          linear-gradient(180deg,
+            rgba(15, 26, 48, 0.40) 0%,
+            rgba(15, 26, 48, 0.70) 55%,
+            rgba(15, 26, 48, 0.95) 100%);
       }
-      .announce-frame { max-width: 400px; margin: 0 auto; }
-      .announce-tag { justify-content: center; }
-      .announce-tag::before { display: none; }
-      .announce-meta li {
-        grid-template-columns: 1fr;
-        gap: 2px;
-        text-align: center;
-      }
-      .announce-countdown { margin-left: auto; margin-right: auto; }
+      .announce-meta { gap: 12px 20px; }
+      .announce-meta li { max-width: 160px; font-size: 0.78rem; }
+      .announce-dots { top: 16px; right: 16px; padding: 6px 10px; }
+      .announce-dots .dot { width: 18px; height: 4px; }
+      .announce-dots .dot.is-active { width: 30px; }
     }
     @media (max-width: 640px) {
-      .announce-countdown .cd-unit { padding: 6px 10px; min-width: 46px; }
+      .announce-countdown .cd-unit { padding: 6px 10px; min-width: 48px; }
       .announce-countdown .cd-num { font-size: 1.2rem; }
+      .announce-ctas { gap: 8px; }
+      .announce-cta { padding: 10px 16px; font-size: 0.78rem; }
     }
 
-    /* ── Section: Weekly (Cream) — Compact 3-col ── */
+        /* ── Section: Weekly (Cream) — Compact 3-col ── */
     .weekly-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1233,9 +1333,12 @@
           <p>Upcoming crusades, conferences, and special services across Mega Region 2.</p>
         </div>
 
-        <!-- Featured announcement — single slide, auto-rotates through upcoming events -->
+        <!-- Featured announcement — immersive full-bleed, auto-rotates through upcoming events -->
         <div id="announceStage" class="announce-stage reveal" aria-roledescription="carousel" aria-label="Upcoming events">
           <div id="announceSlides" class="announce-slides"></div>
+          <div class="announce-progress" aria-hidden="true">
+            <div id="announceProgressFill" class="announce-progress-fill"></div>
+          </div>
           <div id="announceDots" class="announce-dots" role="tablist" aria-label="Event selector"></div>
         </div>
 
@@ -2001,22 +2104,28 @@
       });
     })();
 
-    /* ── Announcement Stage: Single Featured Slide + Auto-Rotate + Countdown ──
-       Reads JSON from #eventData. Only FUTURE events are shown.
-       Renders ONE upcoming event at a time in a split (image + body) layout.
-       Auto-advances to the next event every ROTATE_MS with a fade transition.
-       A live D/H/M/S countdown ticks every second on the active slide. During
-       multi-day events in progress, the countdown is replaced with a
-       "Happening Now" badge. Pauses on hover, touch, and when the tab is
-       hidden. Dots below the slide jump directly and reset the rotation. */
+    /* ═══════════════════════════════════════════════════════════
+       Announcement Stage — Layout B + Full Feature Set
+         • Immersive full-bleed image backdrop per slide
+         • Auto-rotates every ROTATE_MS with fade transition
+         • Live D/H/M/S countdown ticking every second
+         • Urgency state when <= 24hrs to event (fire-orange glow)
+         • "Happening Now" pulse when event in progress
+         • Progress bar across bottom, resets per slide
+         • Add-to-calendar (.ics) download on each slide
+         • Swipe left/right on touch devices
+         • Pauses on hover, touch, tab hidden, and when out of viewport
+         • Dots for direct jump (resets rotation timer)
+       ═══════════════════════════════════════════════════════════ */
     (function () {
-      var ROTATE_MS = 8000;
+      var ROTATE_MS = 3000;
 
       var section   = document.getElementById('announcements');
       var dataEl    = document.getElementById('eventData');
       var stage     = document.getElementById('announceStage');
       var slidesEl  = document.getElementById('announceSlides');
       var dotsEl    = document.getElementById('announceDots');
+      var progFill  = document.getElementById('announceProgressFill');
       if (!section || !dataEl || !stage || !slidesEl || !dotsEl) return;
 
       var events;
@@ -2058,15 +2167,15 @@
                         'Jul','Aug','Sep','Oct','Nov','Dec'];
 
       function longDate(dt) {
-        return DAYS[dt.getDay()] + ' · ' + MONS[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
+        return DAYS[dt.getDay()] + ' \u00b7 ' + MONS[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
       }
       function dateRange(start, end) {
         if (start.getTime() === end.getTime()) return longDate(start);
         var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
         if (sameMonth) {
-          return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' + end.getDate() + ', ' + start.getFullYear();
+          return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + end.getDate() + ', ' + start.getFullYear();
         }
-        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' +
+        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' +
                SHORT_MONS[end.getMonth()] + ' ' + end.getDate() + ', ' + end.getFullYear();
       }
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
@@ -2094,8 +2203,97 @@
         dt.setHours(9, 0, 0, 0);
         return dt;
       }
+      function eventEndMoment(item) {
+        var dt = new Date(item.end);
+        if (item.ev.time) {
+          // Parse a range like "10:00 AM – 2:00 PM" and use the tail
+          var tail = item.ev.time.split(/[\u2013\u2014\-]/).pop();
+          var m = tail.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
+          if (m) {
+            var h = parseInt(m[1],10) % 12;
+            if (/PM/i.test(m[3])) h += 12;
+            dt.setHours(h, parseInt(m[2]||'0',10), 0, 0);
+            return dt;
+          }
+        }
+        // Default: assume 2-hour duration from start, or end-of-day for multi-day
+        if (item.start.getTime() !== item.end.getTime()) {
+          dt.setHours(23, 59, 59, 999);
+        } else {
+          var startM = eventStartMoment(item);
+          dt = new Date(startM.getTime() + 2 * 60 * 60 * 1000);
+        }
+        return dt;
+      }
 
-      /* ── Render all slides as absolute-positioned layers ── */
+      /* ═══ iCalendar (.ics) generation ═══ */
+      function icsFoldLine(s) {
+        // RFC 5545: lines SHOULD be folded at 75 octets
+        var out = '';
+        while (s.length > 73) {
+          out += s.slice(0, 73) + '\r\n ';
+          s = s.slice(73);
+        }
+        return out + s;
+      }
+      function icsEscape(s) {
+        return String(s||'').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+      }
+      function icsDate(dt) {
+        function pad(n){return n<10?'0'+n:n;}
+        return dt.getUTCFullYear() +
+               pad(dt.getUTCMonth()+1) +
+               pad(dt.getUTCDate()) + 'T' +
+               pad(dt.getUTCHours()) +
+               pad(dt.getUTCMinutes()) +
+               pad(dt.getUTCSeconds()) + 'Z';
+      }
+      function buildICS(item) {
+        var f = item.ev;
+        var start = eventStartMoment(item);
+        var end = eventEndMoment(item);
+        var now = new Date();
+        var uid = 'mfm-' + f.date + '-' + (f.title||'event').toLowerCase().replace(/[^a-z0-9]+/g,'-') + '@mfmmegaregion2usa';
+        var description = [f.theme, f.ministering ? 'Ministering: ' + f.ministering : '', f.host ? 'Host: ' + f.host : '']
+          .filter(function(x){return x;}).join('\\n');
+        var lines = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//MFM Mega Region 2 USA//Events//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          'UID:' + uid,
+          'DTSTAMP:' + icsDate(now),
+          'DTSTART:' + icsDate(start),
+          'DTEND:' + icsDate(end),
+          icsFoldLine('SUMMARY:' + icsEscape(f.title)),
+          icsFoldLine('DESCRIPTION:' + icsEscape(description)),
+          icsFoldLine('LOCATION:' + icsEscape(f.venue || '')),
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ];
+        return lines.join('\r\n');
+      }
+      function downloadICS(item) {
+        var ics = buildICS(item);
+        var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = (item.ev.title || 'event').replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').toLowerCase() + '.ics';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function(){
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 200);
+      }
+
+      /* ═══ Render all slides ═══ */
+      var calIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+      var arrowIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+
       var slidesHtml = '';
       var dotsHtml = '';
       parsed.forEach(function (item, idx) {
@@ -2104,34 +2302,35 @@
         var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
 
         var whenVal = dateRange(item.start, item.end);
-        if (f.time) whenVal += '<br>' + esc(f.time);
+        if (f.time) whenVal += ' \u2022 ' + esc(f.time);
 
+        // meta rows as a flex wrap
         var metaRows = '';
-        metaRows += '<li><span class="label">When</span><span>' + whenVal + '</span></li>';
-        if (f.venue)       metaRows += '<li><span class="label">Venue</span><span>' + esc(f.venue) + '</span></li>';
-        if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span>' + esc(f.ministering) + '</span></li>';
-        if (f.host)        metaRows += '<li><span class="label">Host</span><span>' + esc(f.host) + '</span></li>';
+        metaRows += '<li><span class="label">When</span><span class="value">' + whenVal + '</span></li>';
+        if (f.venue)       metaRows += '<li><span class="label">Venue</span><span class="value">' + esc(f.venue) + '</span></li>';
+        if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span class="value">' + esc(f.ministering) + '</span></li>';
+        if (f.host)        metaRows += '<li><span class="label">Host</span><span class="value">' + esc(f.host) + '</span></li>';
 
-        var ctaLabel = f.link ? 'Register / Learn More →' : 'View Details →';
+        var ctaLabel = f.link ? 'Register / Learn More' : 'View Details';
 
         slidesHtml +=
-          '<a href="' + esc(destLink) + '"' + linkTarget + ' class="announce-slide' + (idx === 0 ? ' is-active' : '') + '" ' +
+          '<div class="announce-slide' + (idx === 0 ? ' is-active' : '') + '" ' +
             'data-slide="' + idx + '" role="group" aria-roledescription="slide" ' +
             'aria-label="' + (idx+1) + ' of ' + parsed.length + '">' +
-            '<div class="announce-card">' +
-              '<div class="announce-frame">' +
-                '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || f.title) + '">' +
-              '</div>' +
-              '<div class="announce-body">' +
-                '<div class="announce-tag">' + esc(eyebrowFor(item)) + '</div>' +
-                '<div class="announce-countdown-slot" data-cd-slot="' + idx + '"></div>' +
-                '<h3>' + esc(f.title) + '</h3>' +
-                (f.theme ? '<p class="announce-theme">' + esc(f.theme) + '</p>' : '') +
-                '<ul class="announce-meta">' + metaRows + '</ul>' +
-                '<span class="announce-cta">' + ctaLabel + '</span>' +
+            '<div class="announce-bg" style="background-image:url(\'' + esc(f.image) + '\');" aria-hidden="true"></div>' +
+            '<div class="announce-overlay" aria-hidden="true"></div>' +
+            '<div class="announce-content">' +
+              '<div class="announce-tag">' + esc(eyebrowFor(item)) + '</div>' +
+              '<div class="announce-countdown-slot" data-cd-slot="' + idx + '"></div>' +
+              '<h3>' + esc(f.title) + '</h3>' +
+              (f.theme ? '<p class="announce-theme">' + esc(f.theme) + '</p>' : '') +
+              '<ul class="announce-meta">' + metaRows + '</ul>' +
+              '<div class="announce-ctas">' +
+                '<a href="' + esc(destLink) + '"' + linkTarget + ' class="announce-cta">' + ctaLabel + arrowIcon + '</a>' +
+                '<button type="button" class="announce-cta announce-cta--ghost" data-cal-idx="' + idx + '" aria-label="Add ' + esc(f.title) + ' to calendar">' + calIcon + 'Add to Calendar</button>' +
               '</div>' +
             '</div>' +
-          '</a>';
+          '</div>';
 
         dotsHtml +=
           '<button class="dot' + (idx === 0 ? ' is-active' : '') + '" type="button" role="tab" ' +
@@ -2147,7 +2346,7 @@
         stage.classList.add('is-single');
       }
 
-      /* ── Countdown rendering ── */
+      /* ═══ Countdown rendering with urgency state ═══ */
       function pad(n) { return n < 10 ? '0' + n : '' + n; }
       function renderCountdown(idx) {
         var slot = slidesEl.querySelector('[data-cd-slot="' + idx + '"]');
@@ -2181,8 +2380,11 @@
         var mins  = Math.floor((totalSec % 3600) / 60);
         var secs  = totalSec % 60;
 
+        // Urgency: <= 24 hours
+        var urgentClass = (totalSec <= 86400) ? ' is-urgent' : '';
+
         slot.innerHTML =
-          '<div class="announce-countdown" aria-label="Time until event">' +
+          '<div class="announce-countdown' + urgentClass + '" aria-label="Time until event">' +
             '<div class="cd-unit"><span class="cd-num">' + days + '</span><span class="cd-lbl">Days</span></div>' +
             '<div class="cd-unit"><span class="cd-num">' + pad(hours) + '</span><span class="cd-lbl">Hrs</span></div>' +
             '<div class="cd-unit"><span class="cd-num">' + pad(mins)  + '</span><span class="cd-lbl">Min</span></div>' +
@@ -2190,11 +2392,29 @@
           '</div>';
       }
 
-      /* ── Rotation state ── */
+      /* ═══ Rotation state ═══ */
       var currentIdx = 0;
       var rotateTimer = null;
       var countdownTimer = null;
       var paused = false;
+      var inView = true;
+
+      function resetProgress() {
+        if (!progFill) return;
+        progFill.classList.remove('is-running');
+        progFill.style.transition = 'none';
+        progFill.style.width = '0%';
+        // force reflow
+        void progFill.offsetWidth;
+        progFill.style.transition = 'width ' + ROTATE_MS + 'ms linear';
+        progFill.classList.add('is-running');
+      }
+      function pauseProgress() {
+        if (!progFill) return;
+        var computed = window.getComputedStyle(progFill).width;
+        progFill.style.transition = 'none';
+        progFill.style.width = computed;
+      }
 
       function setActive(next) {
         var slides = slidesEl.querySelectorAll('.announce-slide');
@@ -2206,51 +2426,107 @@
         });
         currentIdx = next;
         renderCountdown(currentIdx);
+        resetProgress();
       }
 
       function advance() {
-        if (paused || parsed.length < 2) return;
+        if (paused || !inView || parsed.length < 2) return;
         var next = (currentIdx + 1) % parsed.length;
         setActive(next);
       }
 
       function startTimers() {
         stopTimers();
-        if (parsed.length > 1) rotateTimer = setInterval(advance, ROTATE_MS);
+        if (parsed.length > 1) {
+          rotateTimer = setInterval(advance, ROTATE_MS);
+          resetProgress();
+        }
         countdownTimer = setInterval(function () { renderCountdown(currentIdx); }, 1000);
       }
       function stopTimers() {
         if (rotateTimer) { clearInterval(rotateTimer); rotateTimer = null; }
         if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+        pauseProgress();
       }
 
       renderCountdown(0);
       startTimers();
 
-      /* Pause on hover (desktop) */
-      stage.addEventListener('mouseenter', function () { paused = true; });
-      stage.addEventListener('mouseleave', function () { paused = false; });
+      /* ═══ Pause on hover (desktop) ═══ */
+      stage.addEventListener('mouseenter', function () { paused = true; pauseProgress(); });
+      stage.addEventListener('mouseleave', function () { paused = false; if (inView) { startTimers(); } });
 
-      /* Pause on touch (mobile), resume with grace period */
-      stage.addEventListener('touchstart', function () { paused = true; }, { passive: true });
-      stage.addEventListener('touchend', function () {
-        setTimeout(function () { paused = false; }, 1500);
-      });
-
-      /* Pause when tab hidden */
+      /* ═══ Pause when tab hidden ═══ */
       document.addEventListener('visibilitychange', function () {
         if (document.hidden) { stopTimers(); }
-        else { renderCountdown(currentIdx); startTimers(); }
+        else { renderCountdown(currentIdx); if (inView && !paused) startTimers(); }
       });
 
-      /* Dot click = jump + reset rotation */
+      /* ═══ Pause when scrolled out of viewport ═══ */
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            inView = entry.isIntersecting;
+            if (!inView) { stopTimers(); }
+            else if (!paused && !document.hidden) { startTimers(); }
+          });
+        }, { threshold: 0.15 });
+        io.observe(stage);
+      }
+
+      /* ═══ Dot clicks — jump + reset rotation ═══ */
       dotsEl.addEventListener('click', function (e) {
         var btn = e.target.closest('.dot');
         if (!btn) return;
         var go = parseInt(btn.getAttribute('data-go'), 10);
         if (isNaN(go)) return;
         setActive(go);
-        startTimers();
+        if (inView && !paused) startTimers();
+      });
+
+      /* ═══ Add-to-calendar button clicks ═══ */
+      slidesEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-cal-idx]');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var cidx = parseInt(btn.getAttribute('data-cal-idx'), 10);
+        if (isNaN(cidx) || !parsed[cidx]) return;
+        downloadICS(parsed[cidx]);
+      });
+
+      /* ═══ Swipe gestures (mobile) ═══ */
+      var touchStartX = null, touchStartY = null, touchStartT = 0;
+      stage.addEventListener('touchstart', function (e) {
+        paused = true;
+        pauseProgress();
+        if (e.touches && e.touches[0]) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartT = Date.now();
+        }
+      }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        var dx = 0, dy = 0;
+        if (touchStartX !== null && e.changedTouches && e.changedTouches[0]) {
+          dx = e.changedTouches[0].clientX - touchStartX;
+          dy = e.changedTouches[0].clientY - touchStartY;
+        }
+        var dt = Date.now() - touchStartT;
+        touchStartX = null;
+        var absDx = Math.abs(dx), absDy = Math.abs(dy);
+        // Horizontal swipe: >40px, faster than vertical, under 800ms
+        if (absDx > 40 && absDx > absDy && dt < 800 && parsed.length > 1) {
+          var next = dx < 0
+            ? (currentIdx + 1) % parsed.length
+            : (currentIdx - 1 + parsed.length) % parsed.length;
+          setActive(next);
+        }
+        // Grace period before auto-rotate resumes
+        setTimeout(function () {
+          paused = false;
+          if (inView && !document.hidden) startTimers();
+        }, 1500);
       });
     })();
   </script>
