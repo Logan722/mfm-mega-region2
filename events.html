@@ -153,155 +153,144 @@
       .monthly-grid { grid-template-columns: 1fr; }
     }
 
-    /* ── Upcoming Events (Cream) — Carousel ── */
+    /* ── Upcoming Events (Cream) — Full Detail Cards ── */
     .section--upcoming {
       position: relative;
     }
-    .upcoming-carousel-wrap {
-      position: relative;
-    }
-    .upcoming-carousel {
+    .event-detail-list {
       display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 8px;
+      flex-direction: column;
+      gap: 36px;
     }
-    .upcoming-carousel::-webkit-scrollbar { display: none; }
-
-    .upcoming-card {
-      flex: 0 0 340px;
-      scroll-snap-align: start;
-      border-radius: 14px;
-      overflow: hidden;
+    .event-detail {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 0;
       background: var(--bg-white);
       border: 1px solid var(--bg-sand-border);
-      transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
+      border-radius: 14px;
+      overflow: hidden;
+      scroll-margin-top: 100px;
+      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s;
     }
-    .upcoming-card:hover {
-      transform: translateY(-4px);
+    .event-detail:hover {
       border-color: var(--line-white-strong);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
     }
-    .upcoming-card-img {
+    .event-detail-flyer {
       width: 100%;
-      aspect-ratio: 1 / 1;
+      height: 100%;
+      min-height: 320px;
       object-fit: cover;
-      background: var(--bg-sand);
       display: block;
     }
-    .upcoming-card-body {
-      padding: 20px 22px 24px;
-      flex: 1;
+    .event-detail-body {
+      padding: 36px 40px;
       display: flex;
       flex-direction: column;
     }
-    .upcoming-card-tag {
+    .event-detail-eyebrow {
+      display: inline-block;
       font-family: var(--font-sans);
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 8px;
+      color: #fff;
+      background: var(--fire);
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      align-self: flex-start;
     }
-    .upcoming-card-body h4 {
+    .event-detail-eyebrow--gold { background: var(--gold); }
+    .event-detail-body h3 {
       font-family: var(--font-serif);
-      font-size: 1.2rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 400;
       color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 6px;
+      line-height: 1.2;
+      margin-bottom: 8px;
     }
-    .upcoming-card-theme {
+    .event-detail-theme {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       color: var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 20px;
       line-height: 1.4;
     }
-    .upcoming-card-meta {
-      font-size: 0.82rem;
+    .event-detail-desc {
+      font-size: 0.92rem;
       color: var(--text-on-white);
-      line-height: 1.5;
-      margin: 0;
-      flex: 1;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
-    .upcoming-card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--gold);
-      margin-top: 16px;
-      letter-spacing: 0.04em;
-    }
-    .upcoming-card-cta::after {
-      content: '→';
-    }
-
-    /* Carousel arrows */
-    .upcoming-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-80%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--bg-white);
-      border: 1px solid var(--line-white-strong);
-      color: var(--navy);
+    .event-detail-features {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 2;
-      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-      padding: 0;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    }
-    .upcoming-arrow:hover {
-      background: var(--bg-sand);
-      transform: translateY(-80%) scale(1.08);
-    }
-    .upcoming-arrow svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--navy);
-      fill: none;
-    }
-    .upcoming-arrow--left { left: -16px; }
-    .upcoming-arrow--right { right: -16px; }
-
-    /* Dots */
-    .upcoming-dots {
-      display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
       gap: 8px;
-      margin-top: 24px;
+      margin-bottom: 20px;
     }
-    .upcoming-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--line-white-strong);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
+    .event-detail-features span {
+      font-size: 0.78rem;
+      color: var(--text-on-white);
+      background: var(--bg-cream);
+      border: 1px solid var(--bg-sand-border);
+      padding: 4px 12px;
+      border-radius: 20px;
     }
-    .upcoming-dot.active {
-      background: var(--gold);
-      transform: scale(1.25);
+    .event-detail-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .event-detail-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .event-detail-row .label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim-white);
+      padding-top: 3px;
+    }
+    .event-detail-row .value {
+      color: var(--text-on-white);
+    }
+    .event-detail-row .value a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+    .event-detail-scripture {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--text-dim-white);
+      border-left: 2px solid var(--bg-sand-border);
+      padding-left: 16px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .event-detail-scripture cite {
+      display: block;
+      font-style: normal;
+      font-size: 0.82rem;
+      color: var(--gold-dim);
+      margin-top: 4px;
+    }
+    .event-detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
     }
 
     /* Fallback message when all events have expired */
@@ -323,9 +312,23 @@
       margin: 0 auto;
     }
 
+    @media (max-width: 860px) {
+      .event-detail {
+        grid-template-columns: 1fr;
+      }
+      .event-detail-flyer {
+        min-height: 240px;
+        max-height: 360px;
+      }
+      .event-detail-body {
+        padding: 28px 24px;
+      }
+    }
     @media (max-width: 640px) {
-      .upcoming-card { flex: 0 0 280px; }
-      .upcoming-arrow { display: none; }
+      .event-detail-row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
     }
 
     /* ── Connect Section (Navy) ── */
@@ -532,17 +535,8 @@
           <p>Special conferences, crusades, and ministry programs happening soon across Mega Region 2.</p>
         </div>
 
-        <!-- Carousel — populated by JS from eventData below -->
-        <div class="upcoming-carousel-wrap reveal">
-          <button class="upcoming-arrow upcoming-arrow--left" id="upCarouselLeft" aria-label="Scroll left">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div class="upcoming-carousel" id="upCarousel"></div>
-          <button class="upcoming-arrow upcoming-arrow--right" id="upCarouselRight" aria-label="Scroll right">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <div class="upcoming-dots" id="upCarouselDots"></div>
-        </div>
+        <!-- Detail cards — populated by JS from eventData below -->
+        <div class="event-detail-list" id="eventDetailList"></div>
 
         <!-- Fallback shown when all events have expired -->
         <div class="upcoming-fallback" id="upFallback" style="display:none;">
@@ -556,11 +550,13 @@
       </div>
     </section>
 
-    <!-- Event data — SYNCED with index.html.
-         Edit here to add/update special events.
+    <!-- Event data — SYNCED with index.html (same core fields).
+         Extra fields (description, features, scripture, badgeStyle, dateDisplay)
+         are used only by the events page detail renderer; the home page carousel ignores them.
          Past events are hidden automatically.
-         Fields: date (required, YYYY-MM-DD), endDate (optional, for multi-day),
-         title, theme, time, venue, ministering, host, image, alt, link (optional URL), anchor. -->
+         Fields: date (required, YYYY-MM-DD), endDate (optional), title, theme,
+         time, venue, ministering, host, image, alt, link, anchor,
+         description, features[], scripture, badgeStyle, dateDisplay. -->
     <script type="application/json" id="eventData">
     [
       {
@@ -572,19 +568,11 @@
         "ministering": "Pastor David Popoola — ASRO, MFM Dallas Texas",
         "image": "img/announcements/night-of-worship.jpg",
         "alt": "Night of Worship and Wonders — Friday April 24, 2026, MFM Dallas Texas",
-        "anchor": "night-of-worship"
-      },
-      {
-        "date": "2026-05-16",
-        "title": "Women Conference — Dallas",
-        "theme": "\"A Date with my Lord + Lover\"",
-        "time": "10:00 AM – 2:00 PM",
-        "venue": "306 Greenville Ave, Richardson, TX 75081",
-        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
-        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
-        "image": "img/announcements/women-conference-dallas.jpg",
-        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
-        "anchor": "women-conference-dallas"
+        "anchor": "night-of-worship",
+        "dateDisplay": "Friday, April 24, 2026",
+        "description": "A powerful night of prophetic worship, prophetic prayer, healing, and breakthrough. Come expecting the move of God — the God of Elijah answers by fire.",
+        "features": ["Prophetic Worship", "Prophetic Prayer", "Healing Breakthrough", "Divine Intervention"],
+        "badgeStyle": "fire"
       },
       {
         "date": "2026-05-03",
@@ -596,7 +584,26 @@
         "host": "MFM Tampa Florida Assembly Pastor",
         "image": "img/announcements/tampa-membership-class.jpg",
         "alt": "MFM Tampa Florida Foundation and Membership Class — Sundays from May 2026",
-        "anchor": "tampa-membership-class"
+        "anchor": "tampa-membership-class",
+        "dateDisplay": "Every Sunday, May – August 2026",
+        "description": "A structured membership and foundation class for new believers and those desiring a deeper understanding of the faith. Build your walk with God on solid scriptural ground.",
+        "badgeStyle": "gold"
+      },
+      {
+        "date": "2026-05-16",
+        "title": "Women Conference — Dallas",
+        "theme": "\"A Date with my Lord + Lover\"",
+        "time": "10:00 AM – 2:00 PM",
+        "venue": "306 Greenville Ave, Richardson, TX 75081",
+        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
+        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
+        "image": "img/announcements/women-conference-dallas.jpg",
+        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
+        "anchor": "women-conference-dallas",
+        "dateDisplay": "Saturday, May 16, 2026",
+        "description": "A special women's conference bringing together the women of MFM for teaching, prayer, fellowship, and empowerment.",
+        "scripture": "God is in the midst of her; she shall not be moved: God shall help her, and that right early.|Psalm 46:5",
+        "badgeStyle": "gold"
       },
       {
         "date": "2026-06-20",
@@ -608,7 +615,11 @@
         "host": "MFM North America Gen218 Coordinators",
         "image": "img/announcements/gen218-prayer-conference.jpg",
         "alt": "Gen218 Prayer Conference 2026 — June 20, Divine Alignment",
-        "anchor": "gen218-prayer-conference"
+        "anchor": "gen218-prayer-conference",
+        "dateDisplay": "Saturday, June 20, 2026",
+        "description": "A virtual prayer programme for Christian singles across North America — prayers, teaching, healing, and prophetic declarations for divine alignment in every area of life.",
+        "features": ["Prayers", "Teaching", "Healing", "Prophetic Declarations"],
+        "badgeStyle": "fire"
       },
       {
         "date": "2026-07-16",
@@ -620,7 +631,10 @@
         "link": "https://mfmym.org/iyc2026/",
         "image": "img/announcements/iyc-2026.jpg",
         "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open",
-        "anchor": "iyc-2026"
+        "anchor": "iyc-2026",
+        "dateDisplay": "July 16 – 19, 2026",
+        "description": "The International Youth Convention brings together young believers from across MFM worldwide for worship, teaching, spiritual warfare, and fellowship. Registration is now open.",
+        "badgeStyle": "fire"
       }
     ]
     </script>
@@ -976,20 +990,18 @@
 
 
     /* ══════════════════════════════════════════════════════════════
-       Upcoming Events Carousel — Auto-expire logic
+       Upcoming Events — Detail Card Renderer with Auto-expire
        Reads JSON from #eventData. Only FUTURE events are shown.
-       SYNCED with the same logic used on index.html.
+       Renders full detail cards (flyer + metadata) instead of
+       the compact carousel used on index.html.
+       Same auto-expire logic — same JSON format.
        ══════════════════════════════════════════════════════════════ */
     (function () {
-      var section     = document.getElementById('upcoming-events');
-      var dataEl      = document.getElementById('eventData');
-      var carousel    = document.getElementById('upCarousel');
-      var dotsWrap    = document.getElementById('upCarouselDots');
-      var arrowL      = document.getElementById('upCarouselLeft');
-      var arrowR      = document.getElementById('upCarouselRight');
-      var fallback    = document.getElementById('upFallback');
-      var carouselWrap = document.querySelector('.upcoming-carousel-wrap');
-      if (!section || !dataEl || !carousel) return;
+      var section   = document.getElementById('upcoming-events');
+      var dataEl    = document.getElementById('eventData');
+      var list      = document.getElementById('eventDetailList');
+      var fallback  = document.getElementById('upFallback');
+      if (!section || !dataEl || !list) return;
 
       var events;
       try { events = JSON.parse(dataEl.textContent); }
@@ -1019,94 +1031,113 @@
       parsed.sort(function (a, b) { return a.start - b.start; });
 
       if (parsed.length === 0) {
-        // Show fallback, hide carousel
-        if (carouselWrap) carouselWrap.style.display = 'none';
+        list.style.display = 'none';
         if (fallback) fallback.style.display = 'block';
         return;
       }
 
-      var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-      var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun',
-                        'Jul','Aug','Sep','Oct','Nov','Dec'];
-
-      function shortDate(dt) {
-        return DAYS[dt.getDay()] + ' \u00b7 ' + SHORT_MONS[dt.getMonth()] + ' ' + dt.getDate();
-      }
-      function dateRange(start, end) {
-        if (start.getTime() === end.getTime()) return shortDate(start);
-        var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
-        if (sameMonth) return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + end.getDate();
-        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + SHORT_MONS[end.getMonth()] + ' ' + end.getDate();
-      }
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
-      function eyebrowFor(item) {
+      function eyebrowLabel(item) {
         var delta = Math.round((item.start - today) / 86400000);
         var multi = item.start.getTime() !== item.end.getTime();
         if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
         if (delta === 1) return 'Tomorrow';
         if (delta <= 7) return 'This Week';
-        return dateRange(item.start, item.end);
+        return 'Upcoming';
       }
 
       var html = '';
       for (var i = 0; i < parsed.length; i++) {
         var item = parsed[i];
         var ev = item.ev;
-        var link = ev.link || '#';
-        var target = (ev.link && /^https?:/i.test(ev.link)) ? ' target="_blank" rel="noopener"' : '';
-        var metaParts = [];
-        if (ev.time) metaParts.push(ev.time);
-        if (ev.venue) metaParts.push(ev.venue);
+        var badgeClass = ev.badgeStyle === 'gold' ? ' event-detail-eyebrow--gold' : '';
 
-        html +=
-          '<div class="upcoming-card" id="' + esc(ev.anchor || '') + '">' +
-            '<img class="upcoming-card-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
-            '<div class="upcoming-card-body">' +
-              '<div class="upcoming-card-tag">' + esc(eyebrowFor(item)) + '</div>' +
-              '<h4>' + esc(ev.title) + '</h4>' +
-              (ev.theme ? '<div class="upcoming-card-theme">' + esc(ev.theme) + '</div>' : '') +
-              (metaParts.length ? '<p class="upcoming-card-meta">' + esc(metaParts.join(' \u00b7 ')) + '</p>' : '') +
-              (ev.link ? '<a href="' + esc(ev.link) + '"' + target + ' class="upcoming-card-cta">Learn More</a>' : '<span class="upcoming-card-cta">Details</span>') +
-            '</div>' +
-          '</div>';
-      }
-      carousel.innerHTML = html;
+        html += '<div class="event-detail reveal" id="' + esc(ev.anchor || '') + '">';
+        html += '<img class="event-detail-flyer" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">';
+        html += '<div class="event-detail-body">';
 
-      /* Dot indicators */
-      var cards = carousel.querySelectorAll('.upcoming-card');
-      var dotHtml = '';
-      for (var d = 0; d < cards.length; d++) {
-        dotHtml += '<button class="upcoming-dot' + (d === 0 ? ' active' : '') + '" data-idx="' + d + '" aria-label="Go to event ' + (d+1) + '"></button>';
-      }
-      dotsWrap.innerHTML = dotHtml;
-      var dots = dotsWrap.querySelectorAll('.upcoming-dot');
+        /* Eyebrow badge */
+        html += '<span class="event-detail-eyebrow' + badgeClass + '">' + esc(eyebrowLabel(item)) + '</span>';
 
-      function updateDots() {
-        var scrollLeft = carousel.scrollLeft;
-        var cardW = cards[0].offsetWidth + 24;
-        var idx = Math.round(scrollLeft / cardW);
-        idx = Math.max(0, Math.min(idx, cards.length - 1));
-        for (var j = 0; j < dots.length; j++) {
-          dots[j].classList.toggle('active', j === idx);
+        /* Title */
+        html += '<h3>' + esc(ev.title) + '</h3>';
+
+        /* Theme */
+        if (ev.theme) {
+          html += '<div class="event-detail-theme">' + esc(ev.theme) + '</div>';
         }
+
+        /* Description */
+        if (ev.description) {
+          html += '<p class="event-detail-desc">' + esc(ev.description) + '</p>';
+        }
+
+        /* Feature tags */
+        if (ev.features && ev.features.length) {
+          html += '<div class="event-detail-features">';
+          for (var f = 0; f < ev.features.length; f++) {
+            html += '<span>' + esc(ev.features[f]) + '</span>';
+          }
+          html += '</div>';
+        }
+
+        /* Metadata rows */
+        html += '<div class="event-detail-meta">';
+        if (ev.dateDisplay) {
+          html += '<div class="event-detail-row"><span class="label">Date</span><span class="value">' + esc(ev.dateDisplay) + '</span></div>';
+        }
+        if (ev.time) {
+          html += '<div class="event-detail-row"><span class="label">Time</span><span class="value">' + esc(ev.time) + '</span></div>';
+        }
+        if (ev.venue) {
+          html += '<div class="event-detail-row"><span class="label">Venue</span><span class="value">' + esc(ev.venue) + '</span></div>';
+        }
+        if (ev.ministering) {
+          html += '<div class="event-detail-row"><span class="label">Ministering</span><span class="value">' + esc(ev.ministering) + '</span></div>';
+        }
+        if (ev.host) {
+          html += '<div class="event-detail-row"><span class="label">Host</span><span class="value">' + esc(ev.host) + '</span></div>';
+        }
+        html += '</div>';
+
+        /* Scripture */
+        if (ev.scripture) {
+          var parts = ev.scripture.split('|');
+          html += '<div class="event-detail-scripture">';
+          html += '&ldquo;' + esc(parts[0]) + '&rdquo;';
+          if (parts[1]) {
+            html += '<cite>&mdash; ' + esc(parts[1]) + '</cite>';
+          }
+          html += '</div>';
+        }
+
+        /* Action buttons */
+        if (ev.link) {
+          var isExternal = /^https?:/i.test(ev.link);
+          html += '<div class="event-detail-actions">';
+          html += '<a href="' + esc(ev.link) + '"' + (isExternal ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">';
+          html += ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1 ? 'Register Now →' : 'Learn More →';
+          html += '</a></div>';
+        }
+
+        html += '</div></div>';
       }
+      list.innerHTML = html;
 
-      carousel.addEventListener('scroll', updateDots);
-
-      dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-          var idx = parseInt(this.getAttribute('data-idx'));
-          cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-        });
-      });
-
-      arrowL.addEventListener('click', function() {
-        carousel.scrollBy({ left: -364, behavior: 'smooth' });
-      });
-      arrowR.addEventListener('click', function() {
-        carousel.scrollBy({ left: 364, behavior: 'smooth' });
-      });
+      /* Re-observe any .reveal elements inside the dynamically rendered cards */
+      var reveals = list.querySelectorAll('.reveal');
+      if (reveals.length && 'IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(en) {
+            if (en.isIntersecting) {
+              en.target.classList.add('visible');
+              obs.unobserve(en.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function(el) { obs.observe(el); });
+      }
     })();
   </script>
 
