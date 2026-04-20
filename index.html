@@ -1103,16 +1103,13 @@
           <div class="event-strip" id="otherEvents"></div>
         </div>
 
-        <!-- Empty state -->
-        <div id="eventsEmpty" class="events-empty">
-          <p>No special events scheduled right now — scroll down for our weekly programs.</p>
-        </div>
-
       </div>
     </section>
 
     <!-- Event data — edit here to add/update special events.
-         Grace period: cards hide 7 days after their date. -->
+         Past events are hidden automatically.
+         Fields: date (required, YYYY-MM-DD), endDate (optional, for multi-day),
+         title, theme, time, venue, ministering, host, image, alt, link (optional URL). -->
     <script type="application/json" id="eventData">
     [
       {
@@ -1127,14 +1124,15 @@
         "alt": "Women Conference Dallas flyer — Saturday May 16, 2026"
       },
       {
-        "date": "2026-04-18",
-        "title": "Women's Foundation Outreach",
-        "theme": "Theme: \"Beauty for Ashes\"",
-        "time": "10:00 AM",
-        "venue": "13135 Central Pike, Mt. Juliet, TN 37122",
-        "host": "Pastor Lovena Okeke — Area Overseer",
-        "image": "img/announcements/womens-foundation-outreach-tn.jpg",
-        "alt": "Women's Foundation Outreach Tennessee flyer — Saturday April 18, 2026"
+        "date": "2026-07-16",
+        "endDate": "2026-07-19",
+        "title": "International Youth Convention 2026",
+        "theme": "Registration is now open",
+        "venue": "MFM USA Headquarters — 10000 Kleckley Dr, Houston, TX 77075",
+        "host": "MFM Youth Ministry",
+        "link": "https://mfmym.org/iyc2026/",
+        "image": "img/announcements/iyc-2026.jpg",
+        "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open"
       }
     ]
     </script>
@@ -1829,105 +1827,146 @@
       });
     })();
 
-    /* ── Announcements: Sort, Render, Expire ──
-       Reads JSON from #eventData, sorts by date, renders the nearest
-       upcoming event as a "featured split" block and the rest as a
-       compact strip. Past events within a 7-day grace window still
-       show (so yesterday's event doesn't vanish overnight).
-       Beyond 7 days past, events drop off silently. */
+    /* ── Announcements: Sort, Render, Filter Past ──
+       Reads JSON from #eventData. Only FUTURE events (or events
+       currently in progress for multi-day ranges) are shown —
+       past events are never displayed. Upcoming events are sorted
+       by how soon they happen; the nearest is featured. If no
+       upcoming events exist, the entire announcements section
+       is hidden so the home page flows straight to the weekly
+       programs. Supports optional `endDate` (multi-day events)
+       and `link` (override destination URL) per event. */
     (function () {
-      var dataEl = document.getElementById('eventData');
-      var featuredSlot = document.getElementById('featuredEvent');
+      var section   = document.getElementById('announcements');
+      var dataEl    = document.getElementById('eventData');
+      var featured  = document.getElementById('featuredEvent');
       var otherWrap = document.getElementById('otherEventsWrap');
       var otherSlot = document.getElementById('otherEvents');
-      var emptyEl = document.getElementById('eventsEmpty');
-      if (!dataEl || !featuredSlot) return;
+      if (!section || !dataEl || !featured) return;
 
       var events;
       try { events = JSON.parse(dataEl.textContent); }
-      catch (e) { console.warn('Invalid eventData JSON', e); return; }
-      if (!Array.isArray(events)) return;
+      catch (e) { console.warn('Invalid eventData JSON', e); section.style.display='none'; return; }
+      if (!Array.isArray(events)) { section.style.display='none'; return; }
 
       var today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      // Build parsed list, skip expired (>7 days past)
-      var parsed = events.map(function (ev) {
-        if (!ev.date) return null;
-        var p = ev.date.split('-');
+      function parseYMD(s) {
+        if (!s) return null;
+        var p = s.split('-');
         if (p.length !== 3) return null;
-        var dt = new Date(parseInt(p[0],10), parseInt(p[1],10) - 1, parseInt(p[2],10));
-        dt.setHours(0,0,0,0);
-        var daysFromToday = Math.round((dt - today) / 86400000);
-        // Hide if more than 7 days in the past
-        if (daysFromToday < -7) return null;
-        return { ev: ev, dt: dt, delta: daysFromToday };
+        var d = new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+        d.setHours(0,0,0,0);
+        return d;
+      }
+
+      // Build upcoming list (today or future, using endDate if present)
+      var parsed = events.map(function (ev) {
+        var start = parseYMD(ev.date);
+        if (!start) return null;
+        var end = parseYMD(ev.endDate) || start;
+        // Event is "current or upcoming" if its last day is today or later
+        if (end < today) return null;
+        return { ev: ev, start: start, end: end };
       }).filter(function (x) { return x; });
 
-      // Sort: future first (ascending), then past (descending toward today)
-      parsed.sort(function (a, b) {
-        var aFuture = a.delta >= 0, bFuture = b.delta >= 0;
-        if (aFuture && bFuture) return a.delta - b.delta;
-        if (!aFuture && !bFuture) return b.delta - a.delta;
-        return aFuture ? -1 : 1;
-      });
+      // Sort by how soon the event starts (nearest first)
+      parsed.sort(function (a, b) { return a.start - b.start; });
 
       if (parsed.length === 0) {
-        if (emptyEl) emptyEl.style.display = 'block';
+        // No upcoming events — hide the whole announcements section
+        section.style.display = 'none';
         return;
       }
 
-      // Format date like "Sat · May 16, 2026"
-      function fmt(dt) {
-        var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        var mons = ['January','February','March','April','May','June',
-                    'July','August','September','October','November','December'];
-        return days[dt.getDay()] + ' · ' + mons[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
+      var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var MONS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+      var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun',
+                        'Jul','Aug','Sep','Oct','Nov','Dec'];
+
+      function longDate(dt) {
+        return DAYS[dt.getDay()] + ' · ' + MONS[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
       }
-      function escH(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+      function shortDate(dt) {
+        return DAYS[dt.getDay()] + ' · ' + SHORT_MONS[dt.getMonth()] + ' ' + dt.getDate();
+      }
+      function dateRange(start, end, style) {
+        if (start.getTime() === end.getTime()) {
+          return style === 'short' ? shortDate(start) : longDate(start);
+        }
+        // Multi-day: "Jul 16 – 19, 2026" or "Jul 16 – Aug 2, 2026"
+        var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
+        if (sameMonth) {
+          return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' + end.getDate() +
+                 (style === 'short' ? '' : ', ' + start.getFullYear());
+        }
+        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' +
+               SHORT_MONS[end.getMonth()] + ' ' + end.getDate() +
+               (style === 'short' ? '' : ', ' + end.getFullYear());
+      }
+      function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+      function eyebrowFor(item) {
+        var delta = Math.round((item.start - today) / 86400000);
+        var multi = item.start.getTime() !== item.end.getTime();
+        if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
+        if (delta === 1) return 'Tomorrow';
+        if (delta <= 7) return 'This Week';
+        return 'Next Up';
+      }
 
       // ── Render featured (first in list) ──
-      var featured = parsed[0];
-      var f = featured.ev;
-      var isPast = featured.delta < 0;
-      var eyebrow = isPast
-        ? (featured.delta === 0 ? 'Happening Today' : 'Just Passed')
-        : (featured.delta === 0 ? 'Happening Today' : featured.delta === 1 ? 'Tomorrow' : 'Next Up');
+      var top = parsed[0];
+      var f = top.ev;
+      var destLink = f.link || 'events.html';
+      var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
+
+      var whenVal = dateRange(top.start, top.end, 'long');
+      if (f.time) whenVal += '<br>' + esc(f.time);
 
       var metaRows = '';
-      if (f.time)        metaRows += '<li><span class="label">When</span><span>' + fmt(featured.dt) + (f.time ? '<br>' + escH(f.time) : '') + '</span></li>';
-      if (f.venue)       metaRows += '<li><span class="label">Venue</span><span>' + escH(f.venue) + '</span></li>';
-      if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span>' + escH(f.ministering) + '</span></li>';
-      if (f.host)        metaRows += '<li><span class="label">Host</span><span>' + escH(f.host) + '</span></li>';
+      metaRows += '<li><span class="label">When</span><span>' + whenVal + '</span></li>';
+      if (f.venue)       metaRows += '<li><span class="label">Venue</span><span>' + esc(f.venue) + '</span></li>';
+      if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span>' + esc(f.ministering) + '</span></li>';
+      if (f.host)        metaRows += '<li><span class="label">Host</span><span>' + esc(f.host) + '</span></li>';
 
-      featuredSlot.innerHTML =
+      var ctaLabel = f.link ? 'Register / Learn More →' : 'Full Schedule →';
+
+      featured.innerHTML =
         '<div class="featured-event">' +
           '<div class="featured-event-body">' +
-            '<div class="featured-event-eyebrow' + (isPast ? ' is-past' : '') + '">' + escH(eyebrow) + '</div>' +
-            '<h3>' + escH(f.title) + '</h3>' +
-            (f.theme ? '<p class="featured-event-theme">' + escH(f.theme) + '</p>' : '') +
+            '<div class="featured-event-eyebrow">' + esc(eyebrowFor(top)) + '</div>' +
+            '<h3>' + esc(f.title) + '</h3>' +
+            (f.theme ? '<p class="featured-event-theme">' + esc(f.theme) + '</p>' : '') +
             '<ul class="featured-event-meta">' + metaRows + '</ul>' +
-            '<a href="events.html" class="btn btn--fire btn--sm">Full Schedule →</a>' +
+            '<a href="' + esc(destLink) + '"' + linkTarget + ' class="btn btn--fire btn--sm">' + ctaLabel + '</a>' +
           '</div>' +
           '<div class="featured-event-frame">' +
-            '<img src="' + escH(f.image) + '" alt="' + escH(f.alt || f.title) + '">' +
+            '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || f.title) + '">' +
           '</div>' +
         '</div>';
 
-      // ── Render "also happening" strip ──
+      // ── Render "also happening" strip (upcoming events only) ──
       if (parsed.length > 1) {
         var stripHtml = '';
         for (var i = 1; i < parsed.length; i++) {
-          var oe = parsed[i].ev;
-          var shortDate = fmt(parsed[i].dt).replace(/, \d{4}$/, ''); // drop year for compactness
-          var metaLine = (oe.time || '') + (oe.venue ? (oe.time ? ' · ' : '') + oe.venue.split(',')[0] : '');
+          var oe = parsed[i];
+          var o = oe.ev;
+          var oLink = o.link || 'events.html';
+          var oTarget = (o.link && /^https?:/i.test(o.link)) ? ' target="_blank" rel="noopener"' : '';
+          var oDateShort = dateRange(oe.start, oe.end, 'short');
+          var metaBits = [];
+          if (o.time) metaBits.push(o.time);
+          if (o.venue) metaBits.push(o.venue.split(',')[0]);
           stripHtml +=
-            '<a href="events.html" class="event-compact">' +
-              '<img src="' + escH(oe.image) + '" alt="' + escH(oe.alt || oe.title) + '">' +
+            '<a href="' + esc(oLink) + '"' + oTarget + ' class="event-compact">' +
+              '<img src="' + esc(o.image) + '" alt="' + esc(o.alt || o.title) + '">' +
               '<div class="event-compact-body">' +
-                '<div class="event-compact-date">' + escH(shortDate) + '</div>' +
-                '<h4>' + escH(oe.title) + '</h4>' +
-                (metaLine ? '<p>' + escH(metaLine) + '</p>' : '') +
+                '<div class="event-compact-date">' + esc(oDateShort) + '</div>' +
+                '<h4>' + esc(o.title) + '</h4>' +
+                (metaBits.length ? '<p>' + esc(metaBits.join(' · ')) + '</p>' : '') +
               '</div>' +
             '</a>';
         }
