@@ -129,22 +129,31 @@ Pastor Olumide Oni is a prophet, evangelist, pastor, teacher, husband and father
 ```
 repo/
 ├── index.html              Home — hero, latest sermon, weekly programs, event spotlight
-├── about.html              About — MFM mission, Mega Region 2 identity, leadership
-├── sermons.html            Sermons — YouTube RSS auto-pull
-├── events.html             Events — weekly programs, PMCH, crusades, women's events
+├── about.html              About — MFM mission, Mega Region 2 identity, leadership bios
+├── media.html              Media — YouTube RSS auto-pull, sermon/program grid
+├── events.html             Events — weekly programs, PMCH, crusades, Women Foundation
 ├── branches.html           Branches — Prayer City HQ + regional branches
+├── women.html              Women Foundation — ministry page
+├── gen218.html             Gen218 — Christian Singles ministry page
+├── _template.html          Page template (not indexed; used as starting point for new pages)
 │
 ├── css/
-│   └── site.css            Global design system
+│   └── site.css            Global design system (Royal Flame) + back-to-top
 │
 ├── img/
-│   ├── logo.jpg                      MFM Mega Region 2 USA emblem
-│   ├── healing-deliverance-hour.jpg  Healing & Deliverance Hour flyer
-│   └── open-heaven-encounter.jpg    Open Heaven Encounter flyer
+│   ├── logo.png                          MFM Mega Region 2 USA emblem (primary)
+│   ├── gen218-logo.jpg                   Gen218 ministry logo
+│   ├── women-foundation-logo.png         Women Foundation logo
+│   ├── healing-deliverance-hour.jpg      Tuesday programme flyer
+│   ├── open-heaven-encounter.jpg         Thursday programme flyer
+│   └── photos/                           Leadership / ministry photos
 │
-├── admin/                  Decap CMS (for events/announcements)
-│   ├── index.html
-│   └── config.yml
+├── admin/                  Decap CMS
+│   ├── index.html          CMS entry (Netlify Identity + Decap CMS bundle)
+│   └── config.yml          Schema: events, announcements, branches collections
+│
+├── sitemap.xml             SEO sitemap (all 7 public pages)
+├── robots.txt              Crawler directives + sitemap pointer
 │
 ├── WEBSITE-REFERENCE.md    This file
 └── README.md               Deployment & setup instructions
@@ -398,14 +407,14 @@ Work is split across separate chats for efficiency. Each chat handles a focused 
 | Chat | Scope | Status |
 |------|-------|--------|
 | **Chat 1: Planning** | Research, repo setup, reference doc, asset gathering | ✅ Complete |
-| **Chat 2: Design System** | `css/site.css` — global styles, nav, footer, mobile drawer, shared components | ⬜ TODO |
-| **Chat 3: Home Page** | `index.html` — hero, latest sermon, weekly programs, event spotlight, about teaser | ⬜ TODO |
-| **Chat 4: About Page** | `about.html` — MFM mission, Mega Region 2 identity, leadership bios (Oni, Olukoya) | ⬜ TODO |
-| **Chat 5: Sermons Page** | `sermons.html` — YouTube RSS integration, sermon grid | ⬜ TODO |
-| **Chat 6: Events Page** | `events.html` — weekly programs, PMCH, crusades, Women Foundation | ⬜ TODO |
-| **Chat 7: Branches Page** | `branches.html` — Prayer City HQ, regional branches (data TBD) | ⬜ TODO |
-| **Chat 8: Theme Overhaul** | Apply Royal Flame theme to CSS + all pages, swap logo.png, delete logo.jpg | ⬜ TODO |
-| **Chat 9: CMS & Polish** | Decap CMS setup, SEO, cross-links, final deployment | ⬜ TODO |
+| **Chat 2: Design System** | `css/site.css` — global styles, nav, footer, mobile drawer, shared components | ✅ Complete |
+| **Chat 3: Home Page** | `index.html` — hero, latest sermon, weekly programs, event spotlight, about teaser | ✅ Complete |
+| **Chat 4: About Page** | `about.html` — MFM mission, Mega Region 2 identity, leadership bios (Oni, Olukoya) | ✅ Complete |
+| **Chat 5: Media Page** | `media.html` — YouTube RSS integration, sermon/program grid (renamed from sermons.html) | ✅ Complete |
+| **Chat 6: Events Page** | `events.html` — weekly programs, PMCH, crusades, Women Foundation | ✅ Complete |
+| **Chat 7: Branches Page** | `branches.html` — Prayer City HQ, regional branches (data TBD) | ✅ Complete |
+| **Chat 8: Theme Overhaul** | Apply Royal Flame theme to CSS + all pages, swap to logo.png | ✅ Complete |
+| **Chat 9: CMS & Polish** | btn--secondary fix, back-to-top, SEO meta, sitemap, robots, Decap CMS, Pastor Oni cross-link | ✅ Complete |
 
 ### How Each Chat Should Start
 Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md` file (it's in the project files) and then using the GitHub API with a fresh PAT:
@@ -422,18 +431,42 @@ Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md
 
 ## Outstanding / TODO
 
-- [ ] **Build all 5 pages** — index, about, sermons, events, branches
-- [ ] **Global CSS** — Design system in `css/site.css`
-- [ ] **Decap CMS setup** — admin pages + config
-- [ ] **Branch list** — Need confirmed list of branches under Mega Region 2
-- [ ] **Leadership photos** — Need photos for About page
-- [ ] **Service schedule** — Confirm Sunday/midweek times for Prayer City
-- [ ] **Netlify deployment** — Initial deploy + Identity + Git Gateway
-- [ ] **Custom domain** — Purchase and configure
-- [ ] **SEO pass** — sitemap.xml, robots.txt, meta tags, Open Graph
-- [ ] **Cross-link** — Link pastor site ↔ region site where appropriate
-- [ ] **README.md** — Deployment instructions for non-technical users
+### ✅ Completed in Chat 9
+- [x] **All 7 pages built** — index, about, branches, events, media, women, gen218
+- [x] **Global CSS** — Design system in `css/site.css` (Royal Flame)
+- [x] **Decap CMS setup** — `admin/index.html` + `admin/config.yml` with three collections (events, announcements, branches)
+- [x] **SEO pass** — `sitemap.xml`, `robots.txt`, canonical URLs, expanded Open Graph + Twitter cards on every page
+- [x] **Cross-link** — Pastor Oni personal site linked from his bio in `about.html`
+- [x] **Back-to-top button** — gold-accent floating button across all pages, appears after 400px scroll
+- [x] **`.btn--secondary` visibility fix** — defensive CSS so secondary buttons render correctly on every section type
+- [x] **`_template.html` consistency** — `sermons.html` references updated to `media.html`
+
+### ⏳ Still required before launch (action items outside the codebase)
+- [ ] **Branch list data** — Confirm and add the actual list of branches under Mega Region 2 to `branches.html` (placeholders currently in place)
+- [ ] **Leadership photos** — Some photos referenced may still be placeholders; confirm all `img/photos/*.jpg` exist
+- [ ] **Service schedule** — Confirm Sunday/midweek service times for Prayer City
+- [ ] **Netlify deployment** — Initial deploy + enable Identity (Invite-only) + enable Git Gateway + invite editors for CMS
+- [ ] **Custom domain** — Purchase `mfmmegaregion2usa.com` (used as canonical in sitemap/SEO) and point at Netlify
+- [ ] **README.md** — Write deployment instructions for non-technical maintainers
+- [ ] **OG image** — Currently uses `logo.png` (square) for social cards; replace with a dedicated 1200×630 social card image for richer link previews
+- [ ] **Verify Pastor Oni site URL** — Cross-link points to `https://pastorolumideoni.com`; confirm this is the correct live URL
+
+### 📦 Files added in Chat 9
+| File | Purpose |
+|------|---------|
+| `admin/index.html` | Decap CMS entry point |
+| `admin/config.yml` | CMS schema: events, announcements, branches |
+| `sitemap.xml` | SEO sitemap (all 7 pages) |
+| `robots.txt` | Crawler directives + sitemap pointer |
+
+### 🔧 Files modified in Chat 9
+| File | Change |
+|------|--------|
+| `css/site.css` | `.btn--secondary` made defensive (explicit selectors for hero/navy/dark/footer + white/cream); back-to-top button styles appended |
+| `index.html`, `about.html`, `branches.html`, `events.html`, `media.html`, `women.html`, `gen218.html` | Back-to-top button + JS injected; canonical URL, `og:url`, `og:site_name`, Twitter card meta added; absolute OG image URLs |
+| `_template.html` | 4× `sermons.html` → `media.html`; same back-to-top + SEO pass |
+| `about.html` | Gold-bordered cross-link card to `pastorolumideoni.com` added under Pastor Oni's bio |
 
 ---
 
-Built April 2026.
+Built April 2026. Final polish pass completed Chat 9 (April 19, 2026).
