@@ -360,10 +360,9 @@
     .program-spotlight-time::before { content: '🕐'; font-size: 0.78rem; }
 
     /* ─────────────────────────────────────────────────────
-       LAYOUT M — "Featured Split + Compact Strip"
-       Announcements: one featured event hero-split, others
-       as compact strip. JS sorts by date, auto-features
-       the next upcoming event.
+       LAYOUT M — Announcements Carousel
+       Horizontal scrolling event cards with dot indicators.
+       JS sorts by date, auto-hides past events.
        ───────────────────────────────────────────────────── */
 
     /* ── Section: Announcements (Navy) ── */
@@ -399,215 +398,156 @@
     }
     .section--announcements > .container { position: relative; z-index: 1; }
 
-    /* ── Featured event (split hero style) ── */
-    .featured-event {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
-      margin-bottom: 72px;
-    }
-    .featured-event-body {
-      max-width: 520px;
-    }
-    .featured-event-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-    .featured-event-eyebrow::before {
-      content: '';
-      width: 28px; height: 1px;
-      background: var(--gold);
-    }
-    .featured-event-eyebrow.is-past {
-      color: var(--fire-light);
-    }
-    .featured-event-eyebrow.is-past::before { background: var(--fire-light); }
-    .featured-event-body h3 {
-      font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 400;
-      color: var(--cream);
-      line-height: 1.15;
-      margin-bottom: 14px;
-      letter-spacing: -0.01em;
-    }
-    .featured-event-theme {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--gold-light);
-      margin-bottom: 24px;
-      line-height: 1.4;
-    }
-    .featured-event-meta {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .featured-event-meta li {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--line-navy);
-      font-size: 0.9rem;
-      color: var(--cream);
-      line-height: 1.5;
-    }
-    .featured-event-meta li:last-child { border-bottom: none; padding-bottom: 0; }
-    .featured-event-meta li .label {
-      font-family: var(--font-sans);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim-navy);
-      padding-top: 3px;
-    }
-
-    /* Featured flyer frame */
-    .featured-event-frame {
+    /* ── Event Carousel ── */
+    .event-carousel-wrap {
       position: relative;
-      aspect-ratio: 1 / 1;
-      max-width: 460px;
-      margin-left: auto;
-      background: var(--bg-navy-deep);
-      border: 1px solid var(--line-navy-strong);
-      border-radius: 6px;
-      padding: 16px;
-      box-shadow:
-        0 0 0 1px rgba(201, 149, 44, 0.1),
-        0 32px 80px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(201, 149, 44, 0.15);
     }
-    .featured-event-frame::before,
-    .featured-event-frame::after {
-      content: '';
-      position: absolute;
-      width: 28px; height: 28px;
-      border: 1.5px solid var(--gold);
-      opacity: 0.5;
-    }
-    .featured-event-frame::before {
-      top: 8px; left: 8px;
-      border-right: none; border-bottom: none;
-    }
-    .featured-event-frame::after {
-      bottom: 8px; right: 8px;
-      border-left: none; border-top: none;
-    }
-    .featured-event-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background: var(--bg-navy-deep);
-      border-radius: 3px;
-    }
-
-    /* ── Other events strip ── */
-    .other-events-header {
+    .event-carousel {
       display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 28px;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 8px;
     }
-    .other-events-header .label {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      white-space: nowrap;
-    }
-    .other-events-header .rule {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, var(--line-navy-strong), transparent);
-    }
-    .event-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .event-compact {
-      display: grid;
-      grid-template-columns: 88px 1fr;
-      gap: 16px;
-      align-items: center;
-      padding: 16px;
+    .event-carousel::-webkit-scrollbar { display: none; }
+
+    .event-carousel-card {
+      flex: 0 0 340px;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
       background: rgba(20, 34, 64, 0.5);
       border: 1px solid var(--line-navy);
-      border-radius: 10px;
+      transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
       text-decoration: none;
       color: inherit;
-      transition: background 0.4s, border-color 0.4s, transform 0.4s var(--ease-out);
+      display: flex;
+      flex-direction: column;
     }
-    .event-compact:hover {
-      background: rgba(26, 45, 77, 0.7);
+    .event-carousel-card:hover {
+      transform: translateY(-4px);
       border-color: var(--line-navy-strong);
-      transform: translateY(-2px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
-    .event-compact img {
-      width: 88px;
-      height: 88px;
+    .event-carousel-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 6px;
       background: var(--bg-navy-deep);
-      border: 1px solid var(--line-navy);
+      display: block;
     }
-    .event-compact-body {
-      min-width: 0;
+    .event-carousel-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
-    .event-compact-date {
+    .event-carousel-tag {
       font-family: var(--font-sans);
       font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
-    .event-compact-body h4 {
+    .event-carousel-body h4 {
       font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       font-weight: 400;
       color: var(--cream);
-      line-height: 1.3;
-      margin-bottom: 4px;
+      line-height: 1.25;
+      margin-bottom: 6px;
     }
-    .event-compact-body p {
-      font-size: 0.8rem;
-      color: var(--text-on-navy);
+    .event-carousel-theme {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--gold-light);
+      margin-bottom: 12px;
       line-height: 1.4;
+    }
+    .event-carousel-meta {
+      font-size: 0.82rem;
+      color: var(--text-on-navy);
+      line-height: 1.5;
       margin: 0;
+      flex: 1;
+    }
+    .event-carousel-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-top: 16px;
+      letter-spacing: 0.04em;
+    }
+    .event-carousel-cta::after {
+      content: '→';
     }
 
-    /* Empty state when no events at all */
-    .events-empty {
-      display: none;
-      text-align: center;
-      max-width: 520px;
-      margin: 0 auto;
-      padding: 32px 0;
+    /* Carousel arrows */
+    .event-carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-80%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(20, 34, 64, 0.85);
+      border: 1px solid var(--line-navy-strong);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.3s, transform 0.3s;
+      padding: 0;
     }
-    .events-empty p {
-      color: var(--text-on-navy);
-      font-size: 0.95rem;
-      line-height: 1.6;
+    .event-carousel-arrow:hover {
+      background: rgba(26, 45, 77, 0.95);
+      transform: translateY(-80%) scale(1.08);
+    }
+    .event-carousel-arrow svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--cream);
+      fill: none;
+    }
+    .event-carousel-arrow--left { left: -16px; }
+    .event-carousel-arrow--right { right: -16px; }
+
+    /* Dots */
+    .event-carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .event-carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-dim-navy);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .event-carousel-dot.active {
+      background: var(--gold);
+      transform: scale(1.25);
+    }
+
+    @media (max-width: 640px) {
+      .event-carousel-card { flex: 0 0 280px; }
+      .event-carousel-arrow { display: none; }
     }
 
     /* ── Section: Weekly (Cream) — Compact 3-col ── */
@@ -670,26 +610,7 @@
     }
 
     @media (max-width: 960px) {
-      .featured-event {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        margin-bottom: 56px;
-      }
-      .featured-event-body { max-width: 100%; order: 2; }
-      .featured-event-frame {
-        margin: 0 auto;
-        max-width: 420px;
-        aspect-ratio: 1 / 1;
-      }
       .weekly-grid { grid-template-columns: 1fr; max-width: 480px; }
-    }
-    @media (max-width: 640px) {
-      .featured-event-meta li {
-        grid-template-columns: 1fr;
-        gap: 2px;
-      }
-      .other-events-header .rule { display: none; }
-      .event-strip { grid-template-columns: 1fr; }
     }
 
     /* ── Video Carousel ── */
@@ -1184,7 +1105,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         3. COMING UP NEXT — Announcements (Navy)
+         3. COMING UP NEXT — Announcements Carousel (Navy)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--dark section--announcements" id="announcements">
       <div class="container">
@@ -1195,16 +1116,16 @@
           <p>Upcoming crusades, conferences, and special services across Mega Region 2.</p>
         </div>
 
-        <!-- Featured event — populated by JS from eventData below -->
-        <div id="featuredEvent" class="reveal"></div>
-
-        <!-- Other events strip — populated by JS -->
-        <div id="otherEventsWrap" class="reveal" style="display:none;">
-          <div class="other-events-header">
-            <span class="label">Also Happening</span>
-            <span class="rule"></span>
-          </div>
-          <div class="event-strip" id="otherEvents"></div>
+        <!-- Event carousel — populated by JS from eventData below -->
+        <div class="event-carousel-wrap reveal">
+          <button class="event-carousel-arrow event-carousel-arrow--left" id="evCarouselLeft" aria-label="Scroll left">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="event-carousel" id="eventCarousel"></div>
+          <button class="event-carousel-arrow event-carousel-arrow--right" id="evCarouselRight" aria-label="Scroll right">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="event-carousel-dots" id="evCarouselDots"></div>
         </div>
 
       </div>
@@ -1225,7 +1146,8 @@
         "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
         "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
         "image": "img/announcements/women-conference-dallas.jpg",
-        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026"
+        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
+        "anchor": "women-conference-dallas"
       },
       {
         "date": "2026-06-20",
@@ -1236,7 +1158,8 @@
         "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
         "host": "MFM North America Gen218 Coordinators",
         "image": "img/announcements/gen218-prayer-conference.jpg",
-        "alt": "Gen218 Prayer Conference 2026 — June 20, Divine Alignment"
+        "alt": "Gen218 Prayer Conference 2026 — June 20, Divine Alignment",
+        "anchor": "gen218-prayer-conference"
       },
       {
         "date": "2026-07-16",
@@ -1247,7 +1170,8 @@
         "host": "MFM Youth Ministry",
         "link": "https://mfmym.org/iyc2026/",
         "image": "img/announcements/iyc-2026.jpg",
-        "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open"
+        "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open",
+        "anchor": "iyc-2026"
       }
     ]
     </script>
@@ -1943,22 +1867,18 @@
       });
     })();
 
-    /* ── Announcements: Sort, Render, Filter Past ──
-       Reads JSON from #eventData. Only FUTURE events (or events
-       currently in progress for multi-day ranges) are shown —
-       past events are never displayed. Upcoming events are sorted
-       by how soon they happen; the nearest is featured. If no
-       upcoming events exist, the entire announcements section
-       is hidden so the home page flows straight to the weekly
-       programs. Supports optional `endDate` (multi-day events)
-       and `link` (override destination URL) per event. */
+    /* ── Announcements Carousel: Sort, Render, Filter Past ──
+       Reads JSON from #eventData. Only FUTURE events are shown.
+       Renders a horizontal scrollable carousel with dot indicators.
+       Each card links to the corresponding anchor on events.html. */
     (function () {
       var section   = document.getElementById('announcements');
       var dataEl    = document.getElementById('eventData');
-      var featured  = document.getElementById('featuredEvent');
-      var otherWrap = document.getElementById('otherEventsWrap');
-      var otherSlot = document.getElementById('otherEvents');
-      if (!section || !dataEl || !featured) return;
+      var carousel  = document.getElementById('eventCarousel');
+      var dotsWrap  = document.getElementById('evCarouselDots');
+      var arrowL    = document.getElementById('evCarouselLeft');
+      var arrowR    = document.getElementById('evCarouselRight');
+      if (!section || !dataEl || !carousel) return;
 
       var events;
       try { events = JSON.parse(dataEl.textContent); }
@@ -1977,50 +1897,33 @@
         return d;
       }
 
-      // Build upcoming list (today or future, using endDate if present)
       var parsed = events.map(function (ev) {
         var start = parseYMD(ev.date);
         if (!start) return null;
         var end = parseYMD(ev.endDate) || start;
-        // Event is "current or upcoming" if its last day is today or later
         if (end < today) return null;
         return { ev: ev, start: start, end: end };
       }).filter(function (x) { return x; });
 
-      // Sort by how soon the event starts (nearest first)
       parsed.sort(function (a, b) { return a.start - b.start; });
 
       if (parsed.length === 0) {
-        // No upcoming events — hide the whole announcements section
         section.style.display = 'none';
         return;
       }
 
       var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-      var MONS = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
       var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun',
                         'Jul','Aug','Sep','Oct','Nov','Dec'];
 
-      function longDate(dt) {
-        return DAYS[dt.getDay()] + ' · ' + MONS[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
-      }
       function shortDate(dt) {
-        return DAYS[dt.getDay()] + ' · ' + SHORT_MONS[dt.getMonth()] + ' ' + dt.getDate();
+        return DAYS[dt.getDay()] + ' \u00b7 ' + SHORT_MONS[dt.getMonth()] + ' ' + dt.getDate();
       }
-      function dateRange(start, end, style) {
-        if (start.getTime() === end.getTime()) {
-          return style === 'short' ? shortDate(start) : longDate(start);
-        }
-        // Multi-day: "Jul 16 – 19, 2026" or "Jul 16 – Aug 2, 2026"
+      function dateRange(start, end) {
+        if (start.getTime() === end.getTime()) return shortDate(start);
         var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
-        if (sameMonth) {
-          return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' + end.getDate() +
-                 (style === 'short' ? '' : ', ' + start.getFullYear());
-        }
-        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' – ' +
-               SHORT_MONS[end.getMonth()] + ' ' + end.getDate() +
-               (style === 'short' ? '' : ', ' + end.getFullYear());
+        if (sameMonth) return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + end.getDate();
+        return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + SHORT_MONS[end.getMonth()] + ' ' + end.getDate();
       }
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
@@ -2030,65 +1933,67 @@
         if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
         if (delta === 1) return 'Tomorrow';
         if (delta <= 7) return 'This Week';
-        return 'Next Up';
+        return dateRange(item.start, item.end);
       }
 
-      // ── Render featured (first in list) ──
-      var top = parsed[0];
-      var f = top.ev;
-      var destLink = f.link || 'events.html';
-      var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
+      var html = '';
+      for (var i = 0; i < parsed.length; i++) {
+        var item = parsed[i];
+        var ev = item.ev;
+        var link = ev.anchor ? 'events.html#' + ev.anchor : (ev.link || 'events.html');
+        var target = (ev.link && /^https?:/i.test(ev.link)) ? ' target="_blank" rel="noopener"' : '';
+        var metaParts = [];
+        if (ev.time) metaParts.push(ev.time);
+        if (ev.venue) metaParts.push(ev.venue);
 
-      var whenVal = dateRange(top.start, top.end, 'long');
-      if (f.time) whenVal += '<br>' + esc(f.time);
+        html +=
+          '<a href="' + esc(link) + '"' + target + ' class="event-carousel-card">' +
+            '<img class="event-carousel-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
+            '<div class="event-carousel-body">' +
+              '<div class="event-carousel-tag">' + esc(eyebrowFor(item)) + '</div>' +
+              '<h4>' + esc(ev.title) + '</h4>' +
+              (ev.theme ? '<div class="event-carousel-theme">' + esc(ev.theme) + '</div>' : '') +
+              (metaParts.length ? '<p class="event-carousel-meta">' + esc(metaParts.join(' \u00b7 ')) + '</p>' : '') +
+              '<span class="event-carousel-cta">View Details</span>' +
+            '</div>' +
+          '</a>';
+      }
+      carousel.innerHTML = html;
 
-      var metaRows = '';
-      metaRows += '<li><span class="label">When</span><span>' + whenVal + '</span></li>';
-      if (f.venue)       metaRows += '<li><span class="label">Venue</span><span>' + esc(f.venue) + '</span></li>';
-      if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span>' + esc(f.ministering) + '</span></li>';
-      if (f.host)        metaRows += '<li><span class="label">Host</span><span>' + esc(f.host) + '</span></li>';
+      /* Dot indicators */
+      var cards = carousel.querySelectorAll('.event-carousel-card');
+      var dotHtml = '';
+      for (var d = 0; d < cards.length; d++) {
+        dotHtml += '<button class="event-carousel-dot' + (d === 0 ? ' active' : '') + '" data-idx="' + d + '" aria-label="Go to event ' + (d+1) + '"></button>';
+      }
+      dotsWrap.innerHTML = dotHtml;
+      var dots = dotsWrap.querySelectorAll('.event-carousel-dot');
 
-      var ctaLabel = f.link ? 'Register / Learn More →' : 'Full Schedule →';
-
-      featured.innerHTML =
-        '<div class="featured-event">' +
-          '<div class="featured-event-body">' +
-            '<div class="featured-event-eyebrow">' + esc(eyebrowFor(top)) + '</div>' +
-            '<h3>' + esc(f.title) + '</h3>' +
-            (f.theme ? '<p class="featured-event-theme">' + esc(f.theme) + '</p>' : '') +
-            '<ul class="featured-event-meta">' + metaRows + '</ul>' +
-            '<a href="' + esc(destLink) + '"' + linkTarget + ' class="btn btn--fire btn--sm">' + ctaLabel + '</a>' +
-          '</div>' +
-          '<div class="featured-event-frame">' +
-            '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || f.title) + '">' +
-          '</div>' +
-        '</div>';
-
-      // ── Render "also happening" strip (upcoming events only) ──
-      if (parsed.length > 1) {
-        var stripHtml = '';
-        for (var i = 1; i < parsed.length; i++) {
-          var oe = parsed[i];
-          var o = oe.ev;
-          var oLink = o.link || 'events.html';
-          var oTarget = (o.link && /^https?:/i.test(o.link)) ? ' target="_blank" rel="noopener"' : '';
-          var oDateShort = dateRange(oe.start, oe.end, 'short');
-          var metaBits = [];
-          if (o.time) metaBits.push(o.time);
-          if (o.venue) metaBits.push(o.venue.split(',')[0]);
-          stripHtml +=
-            '<a href="' + esc(oLink) + '"' + oTarget + ' class="event-compact">' +
-              '<img src="' + esc(o.image) + '" alt="' + esc(o.alt || o.title) + '">' +
-              '<div class="event-compact-body">' +
-                '<div class="event-compact-date">' + esc(oDateShort) + '</div>' +
-                '<h4>' + esc(o.title) + '</h4>' +
-                (metaBits.length ? '<p>' + esc(metaBits.join(' · ')) + '</p>' : '') +
-              '</div>' +
-            '</a>';
+      function updateDots() {
+        var scrollLeft = carousel.scrollLeft;
+        var cardW = cards[0].offsetWidth + 24;
+        var idx = Math.round(scrollLeft / cardW);
+        idx = Math.max(0, Math.min(idx, cards.length - 1));
+        for (var j = 0; j < dots.length; j++) {
+          dots[j].classList.toggle('active', j === idx);
         }
-        otherSlot.innerHTML = stripHtml;
-        otherWrap.style.display = 'block';
       }
+
+      carousel.addEventListener('scroll', updateDots);
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var idx = parseInt(this.getAttribute('data-idx'));
+          cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        });
+      });
+
+      arrowL.addEventListener('click', function() {
+        carousel.scrollBy({ left: -364, behavior: 'smooth' });
+      });
+      arrowR.addEventListener('click', function() {
+        carousel.scrollBy({ left: 364, behavior: 'smooth' });
+      });
     })();
   </script>
 
