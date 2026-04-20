@@ -25,6 +25,19 @@
 
   <!-- Netlify Identity Widget (needed for CMS) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+  <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
+  <link rel="canonical" href="https://mfmmegaregion2usa.com/_template.html">
+  <meta property="og:url" content="https://mfmmegaregion2usa.com/_template.html">
+  <meta property="og:site_name" content="MFM Mega Region 2 USA">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://mfmmegaregion2usa.com/img/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries">
+  <meta name="twitter:description" content="Mountain of Fire and Miracles Ministries, Mega Region 2 USA. A ministry devoted to the revival of apostolic signs, wonders and miracles.">
+  <meta name="twitter:image" content="https://mfmmegaregion2usa.com/img/logo.png">
 </head>
 <body>
 
@@ -47,7 +60,7 @@
       <div class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
-        <a href="sermons.html">Sermons</a>
+        <a href="media.html">Sermons</a>
         <a href="events.html">Events</a>
         <a href="branches.html">Branches</a>
         <!-- Optional: Live badge for services -->
@@ -78,7 +91,7 @@
     <nav class="drawer-nav">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
-      <a href="sermons.html">Sermons</a>
+      <a href="media.html">Sermons</a>
       <a href="events.html">Events</a>
       <a href="branches.html">Branches</a>
     </nav>
@@ -105,7 +118,7 @@
         <h1>Welcome to <span class="fire-underline">Mega Region 2</span></h1>
         <p>A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
         <div class="btn-group btn-group--center">
-          <a href="sermons.html" class="btn btn--primary">Watch Sermons</a>
+          <a href="media.html" class="btn btn--primary">Watch Sermons</a>
           <a href="about.html" class="btn btn--secondary">Our Mission</a>
         </div>
       </div>
@@ -161,7 +174,7 @@
           <h4>Explore</h4>
           <ul>
             <li><a href="about.html">About MFM</a></li>
-            <li><a href="sermons.html">Sermons</a></li>
+            <li><a href="media.html">Sermons</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="branches.html">Branches</a></li>
           </ul>
@@ -207,6 +220,11 @@
   <!-- ═══════════════════════════════════════════════════════
        FILM GRAIN OVERLAY
        ═══════════════════════════════════════════════════════ -->
+    <!-- Back to Top -->
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
+  </button>
+
   <div class="grain" aria-hidden="true">
     <svg>
       <filter id="noiseFilter">
@@ -328,6 +346,24 @@
         }
       });
     }
+    /* ── Back-to-Top Button ── */
+    (function () {
+      var btn = document.getElementById('backToTop');
+      if (!btn) return;
+      var ticking = false;
+      function update() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      update();
+    })();
   </script>
 
 </body>
