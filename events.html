@@ -511,15 +511,111 @@
         </h1>
         <p style="animation: fadeUp 0.7s var(--ease-out) 0.35s both;">Weekly prayer, monthly warfare, and special encounters — join us as we press into the presence of God for healing, deliverance, and breakthrough.</p>
         <div class="btn-group btn-group--center" style="margin-top:8px; animation: fadeUp 0.7s var(--ease-out) 0.5s both;">
-          <a href="#weekly-programs" class="btn btn--fire btn--sm">View Programs</a>
-          <a href="#upcoming-events" class="btn btn--secondary btn--sm">Upcoming Events</a>
+          <a href="#upcoming-events" class="btn btn--fire btn--sm">Upcoming Events</a>
+          <a href="#weekly-programs" class="btn btn--secondary btn--sm">View Programs</a>
         </div>
       </div>
     </section>
 
 
     <!-- ═══════════════════════════════════════════════════════
-         2. WEEKLY PROGRAMS (White) — Consolidated schedule
+         2. UPCOMING EVENTS (Cream) — Carousel with auto-expire
+            Uses the SAME eventData JSON format as index.html.
+            Past events are hidden automatically by JS.
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--cream section--upcoming" id="upcoming-events">
+      <div class="container">
+
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Coming Up</p>
+          <h2>Upcoming Events</h2>
+          <p>Special conferences, crusades, and ministry programs happening soon across Mega Region 2.</p>
+        </div>
+
+        <!-- Carousel — populated by JS from eventData below -->
+        <div class="upcoming-carousel-wrap reveal">
+          <button class="upcoming-arrow upcoming-arrow--left" id="upCarouselLeft" aria-label="Scroll left">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="upcoming-carousel" id="upCarousel"></div>
+          <button class="upcoming-arrow upcoming-arrow--right" id="upCarouselRight" aria-label="Scroll right">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="upcoming-dots" id="upCarouselDots"></div>
+        </div>
+
+        <!-- Fallback shown when all events have expired -->
+        <div class="upcoming-fallback" id="upFallback" style="display:none;">
+          <h3>Stay Tuned</h3>
+          <p>New events are being planned. Follow us on social media for the latest announcements.</p>
+          <div style="margin-top:20px;">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Follow on YouTube</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Event data — SYNCED with index.html.
+         Edit here to add/update special events.
+         Past events are hidden automatically.
+         Fields: date (required, YYYY-MM-DD), endDate (optional, for multi-day),
+         title, theme, time, venue, ministering, host, image, alt, link (optional URL), anchor. -->
+    <script type="application/json" id="eventData">
+    [
+      {
+        "date": "2026-04-24",
+        "title": "Night of Worship & Wonders",
+        "theme": "A Special Prayer Vigil",
+        "time": "10:00 PM CST",
+        "venue": "306 N Greenville Ave, Richardson, TX 75081",
+        "ministering": "Pastor David Popoola — ASRO, MFM Dallas Texas",
+        "image": "img/announcements/night-of-worship.jpg",
+        "alt": "Night of Worship and Wonders — Friday April 24, 2026, MFM Dallas Texas",
+        "anchor": "night-of-worship"
+      },
+      {
+        "date": "2026-05-16",
+        "title": "Women Conference — Dallas",
+        "theme": "\"A Date with my Lord + Lover\"",
+        "time": "10:00 AM – 2:00 PM",
+        "venue": "306 Greenville Ave, Richardson, TX 75081",
+        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
+        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
+        "image": "img/announcements/women-conference-dallas.jpg",
+        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
+        "anchor": "women-conference-dallas"
+      },
+      {
+        "date": "2026-06-20",
+        "title": "Gen218 Prayer Conference 2026",
+        "theme": "\"Divine Alignment\"",
+        "time": "12:00 PM EST",
+        "venue": "Virtual — Zoom (ID: 357 230 0941 · PW: 1234567)",
+        "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
+        "host": "MFM North America Gen218 Coordinators",
+        "image": "img/announcements/gen218-prayer-conference.jpg",
+        "alt": "Gen218 Prayer Conference 2026 — June 20, Divine Alignment",
+        "anchor": "gen218-prayer-conference"
+      },
+      {
+        "date": "2026-07-16",
+        "endDate": "2026-07-19",
+        "title": "International Youth Convention 2026",
+        "theme": "Registration is now open",
+        "venue": "MFM USA Headquarters — 10000 Kleckley Dr, Houston, TX 77075",
+        "host": "MFM Youth Ministry",
+        "link": "https://mfmym.org/iyc2026/",
+        "image": "img/announcements/iyc-2026.jpg",
+        "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open",
+        "anchor": "iyc-2026"
+      }
+    ]
+    </script>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         3. WEEKLY PROGRAMS (White) — Consolidated schedule
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="weekly-programs">
       <div class="container">
@@ -620,102 +716,6 @@
 
       </div>
     </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         3. UPCOMING EVENTS (Cream) — Carousel with auto-expire
-            Uses the SAME eventData JSON format as index.html.
-            Past events are hidden automatically by JS.
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream section--upcoming" id="upcoming-events">
-      <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Coming Up</p>
-          <h2>Upcoming Events</h2>
-          <p>Special conferences, crusades, and ministry programs happening soon across Mega Region 2.</p>
-        </div>
-
-        <!-- Carousel — populated by JS from eventData below -->
-        <div class="upcoming-carousel-wrap reveal">
-          <button class="upcoming-arrow upcoming-arrow--left" id="upCarouselLeft" aria-label="Scroll left">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div class="upcoming-carousel" id="upCarousel"></div>
-          <button class="upcoming-arrow upcoming-arrow--right" id="upCarouselRight" aria-label="Scroll right">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-          <div class="upcoming-dots" id="upCarouselDots"></div>
-        </div>
-
-        <!-- Fallback shown when all events have expired -->
-        <div class="upcoming-fallback" id="upFallback" style="display:none;">
-          <h3>Stay Tuned</h3>
-          <p>New events are being planned. Follow us on social media for the latest announcements.</p>
-          <div style="margin-top:20px;">
-            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Follow on YouTube</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Event data — SYNCED with index.html.
-         Edit here to add/update special events.
-         Past events are hidden automatically.
-         Fields: date (required, YYYY-MM-DD), endDate (optional, for multi-day),
-         title, theme, time, venue, ministering, host, image, alt, link (optional URL), anchor. -->
-    <script type="application/json" id="eventData">
-    [
-      {
-        "date": "2026-04-24",
-        "title": "Night of Worship & Wonders",
-        "theme": "A Special Prayer Vigil",
-        "time": "10:00 PM CST",
-        "venue": "306 N Greenville Ave, Richardson, TX 75081",
-        "ministering": "Pastor David Popoola — ASRO, MFM Dallas Texas",
-        "image": "img/announcements/night-of-worship.jpg",
-        "alt": "Night of Worship and Wonders — Friday April 24, 2026, MFM Dallas Texas",
-        "anchor": "night-of-worship"
-      },
-      {
-        "date": "2026-05-16",
-        "title": "Women Conference — Dallas",
-        "theme": "\"A Date with my Lord + Lover\"",
-        "time": "10:00 AM – 2:00 PM",
-        "venue": "306 Greenville Ave, Richardson, TX 75081",
-        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
-        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
-        "image": "img/announcements/women-conference-dallas.jpg",
-        "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
-        "anchor": "women-conference-dallas"
-      },
-      {
-        "date": "2026-06-20",
-        "title": "Gen218 Prayer Conference 2026",
-        "theme": "\"Divine Alignment\"",
-        "time": "12:00 PM EST",
-        "venue": "Virtual — Zoom (ID: 357 230 0941 · PW: 1234567)",
-        "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
-        "host": "MFM North America Gen218 Coordinators",
-        "image": "img/announcements/gen218-prayer-conference.jpg",
-        "alt": "Gen218 Prayer Conference 2026 — June 20, Divine Alignment",
-        "anchor": "gen218-prayer-conference"
-      },
-      {
-        "date": "2026-07-16",
-        "endDate": "2026-07-19",
-        "title": "International Youth Convention 2026",
-        "theme": "Registration is now open",
-        "venue": "MFM USA Headquarters — 10000 Kleckley Dr, Houston, TX 77075",
-        "host": "MFM Youth Ministry",
-        "link": "https://mfmym.org/iyc2026/",
-        "image": "img/announcements/iyc-2026.jpg",
-        "alt": "International Youth Convention 2026 — July 16 to 19, registration is now open",
-        "anchor": "iyc-2026"
-      }
-    ]
-    </script>
 
 
     <!-- ═══════════════════════════════════════════════════════
