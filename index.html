@@ -28,149 +28,253 @@
 
   <!-- Page-specific styles -->
   <style>
-    /* ── Hero: "The Word" — DELIVERANCE fills the viewport ── */
-    .hero-word {
+    /* ── Hero: Diagonal Split — Text left, Countdown right ── */
+    .hero-diag {
       position: relative;
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
       overflow: hidden;
-      padding: 120px var(--gutter) 0;
     }
 
-    /* Ambient atmosphere */
-    .hero-word::before {
-      content: '';
+    /* Darker right panel behind diagonal */
+    .hero-diag-bg {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 1100px;
-      height: 1100px;
-      margin: -550px 0 0 -550px;
-      background: radial-gradient(circle,
-        rgba(201, 149, 44, 0.10) 0%,
-        rgba(232, 93, 38, 0.04) 30%,
-        transparent 60%);
+      inset: 0;
+      clip-path: polygon(52% 0, 100% 0, 100% 100%, 36% 100%);
+      background: var(--bg-navy-deep);
+      z-index: 0;
+    }
+
+    /* Gold diagonal line */
+    .hero-diag-line {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-diag-line svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Atmospheric glow on right side */
+    .hero-glow-1 {
+      position: absolute;
+      top: 20%;
+      right: 8%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 149, 44, 0.10) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
-      animation: heroBreathe 18s ease-in-out infinite;
+      animation: heroGlow 16s ease-in-out infinite;
     }
-    @keyframes heroBreathe {
+    .hero-glow-2 {
+      position: absolute;
+      bottom: 20%;
+      right: 22%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 93, 38, 0.06) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+      animation: heroGlow 20s ease-in-out infinite reverse;
+    }
+    @keyframes heroGlow {
       0%, 100% { transform: scale(1); opacity: 0.6; }
-      50%      { transform: scale(1.12); opacity: 1; }
+      50%      { transform: scale(1.15) translate(8px, -6px); opacity: 1; }
     }
 
-    .hero-word-inner {
+    /* Two-column layout */
+    .hero-diag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      flex: 1;
+      min-height: 0;
       position: relative;
-      z-index: var(--z-content);
-      max-width: 1100px;
-      width: 100%;
+      z-index: 2;
+      padding-top: 80px;
     }
 
-    /* Brand line with logo */
-    .hero-brand {
+    /* ── Left: Text side ── */
+    .hero-left {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 28px;
+      padding: 40px 28px 40px max(5vw, 40px);
       animation: fadeUp 0.7s var(--ease-out) 0.1s both;
     }
-    .hero-brand img {
-      width: 44px;
-      height: auto;
-      filter: drop-shadow(0 4px 16px rgba(201, 149, 44, 0.2));
-    }
-    .hero-brand span {
+    .hero-ministry-name {
       font-family: var(--font-sans);
-      font-size: 0.70rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.20em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-
-    /* The mega word */
-    .hero-mega {
+    .hero-ministry-name::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--fire));
+      flex-shrink: 0;
+    }
+    .hero-lead-in {
       font-family: var(--font-serif);
-      font-size: clamp(4.5rem, 15vw, 13rem);
-      font-weight: 900;
-      line-height: 0.88;
-      letter-spacing: -0.04em;
-      margin-bottom: 24px;
-      background: linear-gradient(180deg,
-        var(--cream) 0%,
-        var(--gold-light) 40%,
-        var(--fire) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeUp 0.8s var(--ease-out) 0.25s both;
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-bottom: 8px;
     }
-
-    /* Scripture */
-    .hero-scripture-wrap {
-      max-width: 600px;
-      margin: 0 auto 12px;
-      animation: fadeUp 0.7s var(--ease-out) 0.45s both;
+    .hero-fire-line {
+      width: 120px;
+      height: 2px;
+      border-radius: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--fire), var(--gold), transparent);
+      margin-bottom: 12px;
     }
-    .hero-scripture-wrap p {
+    .hero-big-word {
       font-family: var(--font-serif);
-      font-size: clamp(0.92rem, 1.5vw, 1.1rem);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 6px;
+      font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.035em;
+      color: var(--cream);
+      margin-bottom: 8px;
     }
-    .hero-scripture-wrap cite {
-      font-style: normal;
+    .hero-ref {
       font-family: var(--font-sans);
-      font-size: 0.70rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
       color: var(--gold-dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
-
-    /* Mission line */
     .hero-mission-line {
       font-family: var(--font-sans);
       font-size: 0.82rem;
       font-weight: 400;
       color: var(--text-dim);
-      line-height: 1.65;
-      max-width: 520px;
-      margin: 0 auto 32px;
-      animation: fadeUp 0.7s var(--ease-out) 0.55s both;
+      line-height: 1.6;
+      max-width: 360px;
+      margin-bottom: 28px;
     }
-
-    /* CTAs */
     .hero-ctas {
       display: flex;
-      gap: 14px;
-      justify-content: center;
-      animation: fadeUp 0.7s var(--ease-out) 0.65s both;
+      gap: 12px;
     }
+
+    /* ── Right: Countdown side ── */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+      animation: fadeUp 0.8s var(--ease-out) 0.35s both;
+    }
+    .hcd-label {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--fire);
+      margin-bottom: 12px;
+    }
+    .hcd-timer {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .hcd-unit {
+      text-align: center;
+    }
+    .hcd-num {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .hcd-lbl {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+    }
+    .hcd-colon {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--gold-dim);
+      padding-bottom: 14px;
+    }
+    .hcd-divider {
+      width: 140px;
+      height: 1px;
+      background: rgba(201, 149, 44, 0.15);
+      margin: 14px auto;
+    }
+    .hcd-program {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+    .hcd-day {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+    .hcd-join {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: var(--fire);
+      color: #fff;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .hcd-join:hover {
+      background: var(--fire-light);
+      transform: translateY(-2px);
+    }
+    .hcd-join svg { width: 14px; height: 14px; }
 
     /* Fire motto strip */
     .hero-motto-strip {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 28px;
       padding: 22px var(--gutter);
       border-top: 1px solid var(--line);
-      z-index: var(--z-content);
-      animation: fadeUp 0.7s var(--ease-out) 0.85s both;
     }
     .hero-motto-strip span {
       font-family: var(--font-sans);
@@ -188,15 +292,32 @@
       opacity: 0.4;
     }
 
-    @media (max-width: 768px) {
-      .hero-word { padding: 110px 16px 0; }
-      .hero-mega { font-size: clamp(3.5rem, 18vw, 6rem); }
-      .hero-motto-strip { gap: 16px; flex-wrap: wrap; }
-      .hero-motto-strip span { font-size: 0.68rem; }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-diag-grid {
+        grid-template-columns: 1fr;
+        padding-top: 70px;
+      }
+      .hero-left {
+        text-align: center;
+        padding: 32px 24px 20px;
+        align-items: center;
+      }
+      .hero-ministry-name { justify-content: center; }
+      .hero-ministry-name::before { display: none; }
+      .hero-mission-line { max-width: 100%; }
+      .hero-ctas { justify-content: center; }
+      .hero-right { padding: 16px 24px 32px; }
+      .hero-diag-bg { display: none; }
+      .hero-diag-line { display: none; }
+      .hero-right {
+        border-top: 1px solid var(--line);
+      }
     }
     @media (max-width: 480px) {
-      .hero-mega { font-size: clamp(3rem, 20vw, 4.5rem); }
-      .hero-brand span { font-size: 0.62rem; letter-spacing: 0.16em; }
+      .hero-big-word { font-size: clamp(2.8rem, 14vw, 3.8rem); }
+      .hero-motto-strip { gap: 14px; flex-wrap: wrap; }
+      .hero-motto-strip span { font-size: 0.66rem; }
     }
 
     /* ── Leadership on Cream — color overrides so text stays readable ── */
@@ -1352,33 +1473,68 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       1. HERO (Navy) — "The Word" Centered Statement
+       1. HERO — Diagonal Split: Statement left, Countdown right
        ═══════════════════════════════════════════════════════ -->
   <main>
 
-    <section class="hero hero-word">
-      <div class="hero-word-inner">
+    <section class="hero hero-diag">
+      <!-- Diagonal background -->
+      <div class="hero-diag-bg"></div>
+      <div class="hero-diag-line">
+        <svg preserveAspectRatio="none" viewBox="0 0 1440 900">
+          <defs>
+            <linearGradient id="diagGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c9952c" stop-opacity="0"/>
+              <stop offset="25%" stop-color="#c9952c" stop-opacity="0.35"/>
+              <stop offset="50%" stop-color="#e85d26" stop-opacity="0.3"/>
+              <stop offset="75%" stop-color="#c9952c" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#c9952c" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="748" y1="0" x2="518" y2="900" stroke="url(#diagGrad)" stroke-width="2"/>
+        </svg>
+      </div>
 
-        <div class="hero-brand">
-          <img src="img/logo.png" alt="" width="44">
-          <span>Mountain of Fire &amp; Miracles Ministries</span>
+      <!-- Atmospheric glows -->
+      <div class="hero-glow-1"></div>
+      <div class="hero-glow-2"></div>
+
+      <!-- Two-column content -->
+      <div class="hero-diag-grid">
+
+        <!-- Left: Statement -->
+        <div class="hero-left">
+          <div class="hero-ministry-name">Mountain of Fire &amp; Miracles Ministries</div>
+          <p class="hero-lead-in">Upon Mount Zion Shall Be</p>
+          <div class="hero-fire-line"></div>
+          <h1 class="hero-big-word">Deliverance</h1>
+          <p class="hero-ref">Obadiah 1:17</p>
+          <p class="hero-mission-line">The revival of Apostolic signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God.</p>
+          <div class="hero-ctas">
+            <a href="about.html" class="btn btn--secondary">Who We Are</a>
+            <a href="branches.html" class="btn btn--secondary">Find a Branch</a>
+          </div>
         </div>
 
-        <h1 class="hero-mega">Deliverance</h1>
-
-        <div class="hero-scripture-wrap">
-          <p>"But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."</p>
-          <cite>— Obadiah 1:17</cite>
-        </div>
-
-        <p class="hero-mission-line">A full gospel ministry devoted to the revival of Apostolic signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.</p>
-
-        <div class="hero-ctas">
-          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M8 5v14l11-7z"/></svg>
-            Watch Live
+        <!-- Right: Countdown -->
+        <div class="hero-right">
+          <p class="hcd-label">Next Service In</p>
+          <div class="hcd-timer">
+            <div class="hcd-unit"><span class="hcd-num" id="hcdDays">--</span><span class="hcd-lbl">Days</span></div>
+            <span class="hcd-colon">:</span>
+            <div class="hcd-unit"><span class="hcd-num" id="hcdHours">--</span><span class="hcd-lbl">Hrs</span></div>
+            <span class="hcd-colon">:</span>
+            <div class="hcd-unit"><span class="hcd-num" id="hcdMins">--</span><span class="hcd-lbl">Min</span></div>
+            <span class="hcd-colon">:</span>
+            <div class="hcd-unit"><span class="hcd-num" id="hcdSecs">--</span><span class="hcd-lbl">Sec</span></div>
+          </div>
+          <div class="hcd-divider"></div>
+          <p class="hcd-program" id="hcdProgram">Loading…</p>
+          <p class="hcd-day" id="hcdDay"></p>
+          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="hcd-join">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Join Live on YouTube
           </a>
-          <a href="branches.html" class="btn btn--secondary">Find a Branch</a>
         </div>
 
       </div>
@@ -1965,6 +2121,60 @@
         }
       });
     }
+
+
+    /* ══════════════════════════════════════════════════════════
+       Hero Countdown — ticks into hcd- elements
+       ══════════════════════════════════════════════════════════ */
+    (function () {
+      var programs = [
+        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT' },
+        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST' },
+        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT' },
+        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT' },
+        { day: 0, hour: 8,  min: 0, name: 'Sunday Worship', label: 'Sunday · 8:00 AM CT' }
+      ];
+      var eP = document.getElementById('hcdProgram');
+      var eD = document.getElementById('hcdDay');
+      var eDy = document.getElementById('hcdDays');
+      var eH = document.getElementById('hcdHours');
+      var eM = document.getElementById('hcdMins');
+      var eS = document.getElementById('hcdSecs');
+      if (!eP) return;
+
+      function getNext() {
+        var now = new Date(), best = null, bd = Infinity;
+        for (var w = 0; w < 2; w++) {
+          for (var i = 0; i < programs.length; i++) {
+            var p = programs[i], t = new Date(now);
+            var da = (p.day - now.getDay() + 7) % 7 + (w * 7);
+            if (da === 0 && (now.getHours() > p.hour || (now.getHours() === p.hour && now.getMinutes() >= p.min))) da = 7;
+            t.setDate(now.getDate() + da);
+            t.setHours(p.hour, p.min, 0, 0);
+            var d = t - now;
+            if (d > 0 && d < bd) { bd = d; best = { program: p, target: t }; }
+          }
+        }
+        return best;
+      }
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function tick() {
+        var n = getNext();
+        if (!n) return;
+        eP.textContent = n.program.name;
+        eD.textContent = n.program.label;
+        var d = Math.max(0, n.target - new Date());
+        eDy.textContent = pad(Math.floor(d / 864e5));
+        eH.textContent = pad(Math.floor(d % 864e5 / 36e5));
+        eM.textContent = pad(Math.floor(d % 36e5 / 6e4));
+        eS.textContent = pad(Math.floor(d % 6e4 / 1e3));
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
 
 
     /* ══════════════════════════════════════════════════════════
