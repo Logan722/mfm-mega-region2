@@ -880,96 +880,161 @@
       .weekly-grid { grid-template-columns: 1fr; max-width: 480px; }
     }
 
-    /* ── Video Carousel ── */
-    .video-carousel-wrap {
-      position: relative;
+    /* ── Featured + Supporting Video Layout ── */
+    .vid-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
     }
-    .video-carousel {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 8px;
-    }
-    .video-carousel::-webkit-scrollbar { display: none; }
-    .video-carousel-item {
-      flex: 0 0 320px;
-      scroll-snap-align: start;
-      border-radius: 12px;
+
+    /* Featured (large) video */
+    .vid-featured {
+      border-radius: 14px;
       overflow: hidden;
       background: var(--bg-sand);
       border: 1px solid var(--bg-sand-border);
-      transition: transform 0.4s var(--ease-out);
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
       text-decoration: none;
       color: inherit;
       display: block;
     }
-    .video-carousel-item:hover { transform: translateY(-3px); }
-    .video-carousel-thumb {
+    .vid-featured:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 44px rgba(20, 34, 64, 0.10);
+    }
+    .vid-featured-thumb {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       overflow: hidden;
     }
-    .video-carousel-thumb img {
+    .vid-featured-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
     }
-    .video-carousel-thumb .play-icon {
+    .vid-featured:hover .vid-featured-thumb img { transform: scale(1.03); }
+    .vid-featured-thumb .play-overlay {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(20,34,64,0.35);
+      background: rgba(20, 34, 64, 0.25);
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .video-carousel-item:hover .play-icon { opacity: 1; }
-    .video-carousel-info {
-      padding: 16px 18px;
+    .vid-featured:hover .play-overlay { opacity: 1; }
+    .play-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(232, 93, 38, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(232, 93, 38, 0.4);
+      transition: transform 0.3s var(--ease-out);
     }
-    .video-carousel-info h4 {
+    .vid-featured:hover .play-circle { transform: scale(1.08); }
+    .play-circle svg { margin-left: 3px; }
+    .vid-featured-info {
+      padding: 18px 20px;
+    }
+    .vid-featured-info h4 {
       font-family: var(--font-serif);
-      font-size: 0.92rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--navy);
-      line-height: 1.35;
+      line-height: 1.3;
       margin-bottom: 4px;
+    }
+    .vid-featured-info p {
+      font-size: 0.80rem;
+      color: var(--text-dim-white);
+    }
+
+    /* Supporting videos (right column) */
+    .vid-supporting {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .vid-sup-card {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 10px;
+      background: var(--bg-sand);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s var(--ease-out), border-color 0.4s;
+    }
+    .vid-sup-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-white-strong);
+    }
+    .vid-sup-thumb {
+      position: relative;
+      width: 100px;
+      aspect-ratio: 16 / 9;
+      border-radius: 7px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .vid-sup-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .vid-sup-thumb .play-sm {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20, 34, 64, 0.3);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .vid-sup-card:hover .play-sm { opacity: 1; }
+    .play-sm-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(232, 93, 38, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .play-sm-circle svg { margin-left: 1px; }
+    .vid-sup-info h4 {
+      font-family: var(--font-serif);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 3px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .video-carousel-info p {
-      font-size: 0.78rem;
+    .vid-sup-info p {
+      font-size: 0.72rem;
       color: var(--text-dim-white);
     }
-    /* Carousel nav arrows */
-    .carousel-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-70%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--bg-white);
-      border: 1px solid var(--bg-sand-border);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 5;
-      transition: background 0.3s, border-color 0.3s;
+
+    @media (max-width: 768px) {
+      .vid-layout { grid-template-columns: 1fr; }
+      .vid-sup-card { grid-template-columns: 90px 1fr; gap: 12px; }
+      .vid-sup-thumb { width: 90px; }
     }
-    .carousel-arrow:hover { border-color: var(--gold); background: var(--bg-sand); }
-    .carousel-arrow--left { left: -16px; }
-    .carousel-arrow--right { right: -16px; }
-    .carousel-arrow svg { width: 16px; height: 16px; stroke: var(--navy); }
 
     /* ── Scripture Interstitial ── */
     .scripture-band {
@@ -1174,8 +1239,6 @@
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .program-duo { grid-template-columns: 1fr; }
-      .video-carousel-item { flex: 0 0 280px; }
-      .carousel-arrow { display: none; }
       .leader-row { grid-template-columns: repeat(2, 1fr); gap: 28px; }
       .leader-portrait img { width: 110px; height: 110px; }
       .arm-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -1496,7 +1559,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         5. RECENT MESSAGES — Video Carousel (White)
+         5. FIRE FROM THE ALTAR — Featured + Supporting (White)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="videos">
       <div class="container">
@@ -1507,20 +1570,17 @@
           <p>Sermons, teachings, and prayer sessions from across Mega Region 2.</p>
         </div>
 
-        <div class="video-carousel-wrap reveal">
-          <button class="carousel-arrow carousel-arrow--left" id="carouselLeft" aria-label="Scroll left">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div class="video-carousel" id="videoCarousel">
-            <!-- Populated by JS from YouTube RSS -->
-            <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading videos…</p></div></div>
-            <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
-            <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
-            <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
+        <div class="vid-layout reveal" id="vidLayout">
+          <!-- Featured video (left) -->
+          <div id="vidFeatured">
+            <a class="vid-featured skeleton" style="display:block;aspect-ratio:16/9;border-radius:14px;background:var(--bg-sand);"></a>
           </div>
-          <button class="carousel-arrow carousel-arrow--right" id="carouselRight" aria-label="Scroll right">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
+          <!-- Supporting videos (right) -->
+          <div class="vid-supporting" id="vidSupporting">
+            <div class="vid-sup-card"><div class="vid-sup-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="vid-sup-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
+            <div class="vid-sup-card"><div class="vid-sup-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="vid-sup-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
+            <div class="vid-sup-card"><div class="vid-sup-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="vid-sup-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
+          </div>
         </div>
 
         <div class="text-center reveal" style="margin-top:36px;">
@@ -1971,7 +2031,7 @@
 
 
     /* ══════════════════════════════════════════════════════════
-       YouTube RSS → Video Carousel (swipeable, 4+ videos)
+       YouTube RSS → Featured + Supporting Video Layout
        ══════════════════════════════════════════════════════════ */
     (function () {
       var CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
@@ -1980,11 +2040,13 @@
         'https://api.allorigins.win/raw?url=' + encodeURIComponent(RSS_URL),
         'https://corsproxy.io/?' + encodeURIComponent(RSS_URL)
       ];
-      var carousel = document.getElementById('videoCarousel');
-      if (!carousel) return;
+      var featuredEl = document.getElementById('vidFeatured');
+      var supportingEl = document.getElementById('vidSupporting');
+      if (!featuredEl || !supportingEl) return;
 
       if (window.location.protocol === 'file:') {
-        carousel.innerHTML = '<div class="panel text-center" style="flex:0 0 100%;"><p style="color:var(--text-dim-white);">Video carousel loads when hosted on a live server.</p></div>';
+        featuredEl.innerHTML = '<div class="text-center" style="padding:40px;"><p style="color:var(--text-dim-white);">Videos load when hosted on a live server.</p></div>';
+        supportingEl.innerHTML = '';
         return;
       }
 
@@ -1998,7 +2060,7 @@
             var doc = new DOMParser().parseFromString(xml, 'application/xml');
             var entries = doc.querySelectorAll('entry');
             if (!entries.length) { showFallback(); return; }
-            renderCarousel(entries);
+            renderLayout(entries);
           })
           .catch(function () { fetchWithFallback(urls, index + 1); });
       }
@@ -2009,35 +2071,57 @@
         return null;
       }
 
-      function renderCarousel(entries) {
-        var html = '';
+      function renderLayout(entries) {
+        // Featured video (first entry)
+        var v0 = getVideoId(entries[0]);
+        if (!v0) return;
+        var t0 = entries[0].querySelector('title') ? entries[0].querySelector('title').textContent : 'Video';
+        var p0 = entries[0].querySelector('published') ? entries[0].querySelector('published').textContent : '';
+        var d0 = p0 ? formatDate(p0) : '';
+        var thumb0 = 'https://img.youtube.com/vi/' + v0 + '/maxresdefault.jpg';
+
+        featuredEl.innerHTML =
+          '<a href="https://www.youtube.com/watch?v=' + v0 + '" target="_blank" rel="noopener" class="vid-featured">' +
+            '<div class="vid-featured-thumb">' +
+              '<img src="' + thumb0 + '" alt="' + esc(t0) + '">' +
+              '<div class="play-overlay"><div class="play-circle"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>' +
+            '</div>' +
+            '<div class="vid-featured-info">' +
+              '<h4>' + escH(t0) + '</h4>' +
+              (d0 ? '<p>' + d0 + '</p>' : '') +
+            '</div>' +
+          '</a>';
+
+        // Supporting videos (next 3)
+        var supHtml = '';
         var count = 0;
-        for (var i = 0; i < entries.length && count < 8; i++) {
+        for (var i = 1; i < entries.length && count < 3; i++) {
           var vid = getVideoId(entries[i]);
           if (!vid) continue;
           var title = entries[i].querySelector('title') ? entries[i].querySelector('title').textContent : 'Video';
           var pub = entries[i].querySelector('published') ? entries[i].querySelector('published').textContent : '';
           var date = pub ? formatDate(pub) : '';
           var thumb = 'https://img.youtube.com/vi/' + vid + '/mqdefault.jpg';
-          html +=
-            '<a href="https://www.youtube.com/watch?v=' + vid + '" target="_blank" rel="noopener" class="video-carousel-item">' +
-              '<div class="video-carousel-thumb">' +
+          supHtml +=
+            '<a href="https://www.youtube.com/watch?v=' + vid + '" target="_blank" rel="noopener" class="vid-sup-card">' +
+              '<div class="vid-sup-thumb">' +
                 '<img src="' + thumb + '" alt="' + esc(title) + '" loading="lazy">' +
-                '<div class="play-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="var(--white)"><path d="M8 5v14l11-7z"/></svg></div>' +
+                '<div class="play-sm"><div class="play-sm-circle"><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>' +
               '</div>' +
-              '<div class="video-carousel-info">' +
+              '<div class="vid-sup-info">' +
                 '<h4>' + escH(title) + '</h4>' +
                 (date ? '<p>' + date + '</p>' : '') +
               '</div>' +
             '</a>';
           count++;
         }
-        if (html) carousel.innerHTML = html;
+        if (supHtml) supportingEl.innerHTML = supHtml;
       }
 
       function showFallback() {
-        carousel.innerHTML =
-          '<div class="panel text-center" style="flex:0 0 100%;"><p style="color:var(--text-dim-white);">Visit our <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" style="color:var(--fire-light);">YouTube channel</a> for all videos.</p></div>';
+        featuredEl.innerHTML =
+          '<div class="text-center" style="padding:40px;"><p style="color:var(--text-dim-white);">Visit our <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" style="color:var(--fire-light);">YouTube channel</a> for all videos.</p></div>';
+        supportingEl.innerHTML = '';
       }
 
       function formatDate(s) {
@@ -2045,12 +2129,6 @@
       }
       function escH(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
       function esc(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-      // Carousel arrow navigation
-      var left = document.getElementById('carouselLeft');
-      var right = document.getElementById('carouselRight');
-      if (left) left.addEventListener('click', function () { carousel.scrollBy({left: -340, behavior: 'smooth'}); });
-      if (right) right.addEventListener('click', function () { carousel.scrollBy({left: 340, behavior: 'smooth'}); });
     })();
     /* ── Back-to-Top Button ── */
     (function () {
