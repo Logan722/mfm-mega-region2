@@ -43,8 +43,15 @@
       position: absolute;
       inset: 0;
       clip-path: polygon(52% 0, 100% 0, 100% 100%, 36% 100%);
-      background: var(--bg-navy-deep);
+      background: #0a1220;
       z-index: 0;
+    }
+    /* Subtle warm tint overlay on right panel */
+    .hero-diag-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(201, 149, 44, 0.04) 0%, rgba(232, 93, 38, 0.02) 100%);
     }
 
     /* Gold diagonal line */
@@ -107,7 +114,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 40px 28px 40px max(5vw, 40px);
+      padding: 40px 28px 40px max(7vw, 56px);
       animation: fadeUp 0.7s var(--ease-out) 0.1s both;
     }
     .hero-ministry-name {
@@ -1485,13 +1492,13 @@
           <defs>
             <linearGradient id="diagGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#c9952c" stop-opacity="0"/>
-              <stop offset="25%" stop-color="#c9952c" stop-opacity="0.35"/>
-              <stop offset="50%" stop-color="#e85d26" stop-opacity="0.3"/>
-              <stop offset="75%" stop-color="#c9952c" stop-opacity="0.35"/>
+              <stop offset="20%" stop-color="#c9952c" stop-opacity="0.5"/>
+              <stop offset="50%" stop-color="#e85d26" stop-opacity="0.45"/>
+              <stop offset="80%" stop-color="#c9952c" stop-opacity="0.5"/>
               <stop offset="100%" stop-color="#c9952c" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <line x1="748" y1="0" x2="518" y2="900" stroke="url(#diagGrad)" stroke-width="2"/>
+          <line x1="748" y1="0" x2="518" y2="900" stroke="url(#diagGrad)" stroke-width="3"/>
         </svg>
       </div>
 
@@ -1548,6 +1555,9 @@
         <span>Fire in the Bone</span>
       </div>
     </section>
+
+    <!-- Fire line divider — hero to announcements transition -->
+    <div class="fire-line" aria-hidden="true"></div>
 
 
     <!-- ═══════════════════════════════════════════════════════
