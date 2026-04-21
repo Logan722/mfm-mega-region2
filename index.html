@@ -42,7 +42,7 @@
     .hero-diag-bg {
       position: absolute;
       inset: 0;
-      clip-path: polygon(52% 0, 100% 0, 100% 100%, 36% 100%);
+      clip-path: polygon(62% 0, 100% 0, 100% 100%, 46% 100%);
       background: #0a1220;
       z-index: 0;
     }
@@ -394,22 +394,30 @@
        JS sorts by date, auto-hides past events.
        ───────────────────────────────────────────────────── */
 
-    /* ── Section: Announcements (Navy) ── */
+    /* ── Section: Announcements (Cream → Navy gradient) ── */
     .section--announcements {
       position: relative;
       overflow: hidden;
+      background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-navy) 35%);
+    }
+    /* Header text overrides for cream background at top */
+    .section--announcements .section-header h2 {
+      color: var(--navy);
+    }
+    .section--announcements .section-header p {
+      color: var(--text-on-white);
     }
     .section--announcements::before {
       content: '';
       position: absolute;
-      top: -30%;
+      top: 10%;
       left: 50%;
       width: 1600px;
       height: 1000px;
       margin-left: -800px;
       background: radial-gradient(ellipse at center top,
-        rgba(232, 93, 38, 0.10) 0%,
-        rgba(201, 149, 44, 0.08) 30%,
+        rgba(232, 93, 38, 0.06) 0%,
+        rgba(201, 149, 44, 0.04) 30%,
         transparent 65%);
       pointer-events: none;
       z-index: 0;
@@ -420,7 +428,7 @@
       inset: 0;
       background-image:
         url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.32;
+      opacity: 0.18;
       mix-blend-mode: overlay;
       pointer-events: none;
       z-index: 0;
@@ -1498,7 +1506,7 @@
               <stop offset="100%" stop-color="#c9952c" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <line x1="748" y1="0" x2="518" y2="900" stroke="url(#diagGrad)" stroke-width="3"/>
+          <line x1="893" y1="0" x2="662" y2="900" stroke="url(#diagGrad)" stroke-width="3"/>
         </svg>
       </div>
 
@@ -1563,7 +1571,7 @@
     <!-- ═══════════════════════════════════════════════════════
          3. COMING UP NEXT — Announcements Carousel (Navy)
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--dark section--announcements" id="announcements">
+    <section class="section section--announcements" id="announcements">
       <div class="container">
 
         <div class="section-header text-center reveal">
