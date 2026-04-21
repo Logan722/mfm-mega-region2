@@ -28,148 +28,223 @@
 
   <!-- Page-specific styles -->
   <style>
-    /* ── Split Hero ── */
-    .hero--split {
+    /* ═══════════════════════════════════════════════════════════
+       HOME PAGE — Reconstructed Design
+       Cinematic, immersive, editorial-quality layout
+       Inspired by Elevation Church / Hillsong / Life.Church
+       Adapted to MFM Royal Flame design system
+       ═══════════════════════════════════════════════════════════ */
+
+    /* ──────────────────────────────────────
+       HERO — Full-viewport cinematic split
+       ────────────────────────────────────── */
+    .hero-home {
+      position: relative;
       min-height: 100vh;
       min-height: 100dvh;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 60px;
-      padding: 140px var(--gutter) 80px;
-      max-width: var(--container-max);
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .hero--split .hero-text {
-      max-width: 560px;
-      position: relative;
-      z-index: var(--z-content);
-    }
-
-    .hero-eyebrow-line {
       display: flex;
       align-items: center;
+      overflow: hidden;
+    }
+
+    /* Ambient glow layers */
+    .hero-home::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle,
+        rgba(201, 149, 44, 0.12) 0%,
+        rgba(232, 93, 38, 0.06) 35%,
+        transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: heroGlowDrift 20s ease-in-out infinite alternate;
+    }
+    .hero-home::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -5%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle,
+        rgba(201, 149, 44, 0.08) 0%,
+        rgba(20, 34, 64, 0.4) 40%,
+        transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: heroGlowDrift 25s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes heroGlowDrift {
+      0%   { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(20px, -15px) scale(1.08); }
+      100% { transform: translate(-10px, 10px) scale(0.95); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: var(--z-content);
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      align-items: center;
+      gap: 72px;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 160px var(--gutter) 100px;
+      width: 100%;
+    }
+
+    /* ── Left column: Text stack ── */
+    .hero-text {
+      max-width: 620px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
       gap: 14px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       animation: fadeUp 0.6s var(--ease-out) 0.1s both;
     }
-
-    .hero-eyebrow-line::before {
+    .hero-eyebrow::before {
       content: '';
-      width: 40px;
+      width: 44px;
       height: 2px;
-      background: var(--fire);
+      background: linear-gradient(90deg, var(--fire), var(--gold));
       flex-shrink: 0;
     }
-
-    .hero-eyebrow-line span {
+    .hero-eyebrow span {
       font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--fire);
     }
 
-    .hero-title-stack {
-      margin-bottom: 24px;
+    .hero-headline {
+      margin-bottom: 28px;
       animation: fadeUp 0.7s var(--ease-out) 0.25s both;
     }
-
-    .hero-title-stack .line-sm {
+    .hero-headline .line-sm {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
       font-weight: 400;
       color: var(--text-muted);
-      letter-spacing: 0.02em;
-      margin-bottom: 4px;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
     }
-
-    .hero-title-stack .line-lg {
+    .hero-headline .line-lg {
       display: block;
       font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 5.5vw + 0.5rem, 4.5rem);
+      font-size: clamp(3.2rem, 6.5vw + 0.5rem, 5.5rem);
       font-weight: 800;
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--cream) 0%, var(--gold-light) 50%, var(--fire-light) 100%);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      background: linear-gradient(135deg,
+        var(--cream) 0%,
+        var(--gold-light) 40%,
+        var(--fire-light) 80%,
+        var(--gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .hero-subtitle {
+    .hero-scripture {
       font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
       font-style: italic;
       font-weight: 300;
       color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 12px;
-      max-width: 440px;
+      line-height: 1.75;
+      margin-bottom: 10px;
+      max-width: 480px;
       animation: fadeUp 0.7s var(--ease-out) 0.4s both;
     }
 
     .hero-ref {
-      font-size: 0.78rem;
-      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
       color: var(--gold-dim);
-      letter-spacing: 0.06em;
-      margin-bottom: 36px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
       animation: fadeUp 0.7s var(--ease-out) 0.5s both;
     }
 
-    .hero--split .btn-group {
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
       animation: fadeUp 0.7s var(--ease-out) 0.6s both;
     }
 
-    /* Right column — logo with atmosphere */
-    .hero-emblem-col {
+    /* ── Right column: Emblem ── */
+    .hero-emblem-wrap {
       position: relative;
-      width: 280px;
-      height: 280px;
-      flex-shrink: 0;
+      width: 340px;
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: floatIn 1.2s var(--ease-out) 0.2s both;
+      flex-shrink: 0;
+      animation: floatIn 1.2s var(--ease-out) 0.3s both;
     }
 
-    .hero-emblem-col .hero-emblem {
-      width: 280px;
+    .hero-emblem-wrap img {
+      width: 300px;
       height: auto;
       position: relative;
       z-index: 2;
+      filter: drop-shadow(0 8px 40px rgba(201, 149, 44, 0.18));
     }
 
-    .hero-emblem-col::before {
+    /* Concentric ring effect */
+    .hero-emblem-wrap::before {
       content: '';
       position: absolute;
-      inset: -40px;
+      width: 380px;
+      height: 380px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,149,44,0.15) 0%, rgba(232,93,38,0.06) 40%, transparent 70%);
-      animation: slowPulse 5s ease-in-out infinite;
+      background: radial-gradient(circle,
+        rgba(201, 149, 44, 0.12) 0%,
+        rgba(232, 93, 38, 0.05) 50%,
+        transparent 70%);
+      animation: emblemPulse 6s ease-in-out infinite;
       z-index: 1;
     }
-
-    .hero-emblem-col::after {
+    .hero-emblem-wrap::after {
       content: '';
       position: absolute;
-      inset: -80px;
+      width: 440px;
+      height: 440px;
       border-radius: 50%;
-      border: 1px solid rgba(201,149,44,0.08);
-      animation: slowPulse 7s ease-in-out infinite reverse;
+      border: 1px solid rgba(201, 149, 44, 0.06);
+      animation: emblemPulse 8s ease-in-out infinite reverse;
+      z-index: 0;
+    }
+    .hero-ring-outer {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 149, 44, 0.03);
+      animation: emblemPulse 10s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
     }
 
-    @keyframes slowPulse {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.06); }
+    @keyframes emblemPulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.05); }
     }
 
-    /* Fire motto strip at bottom of hero area */
+    /* Fire motto strip at bottom of hero */
     .hero-motto-strip {
       position: absolute;
       bottom: 0;
@@ -178,194 +253,152 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      padding: 20px var(--gutter);
+      gap: 28px;
+      padding: 22px var(--gutter);
       border-top: 1px solid var(--line);
       z-index: var(--z-content);
-      animation: fadeUp 0.7s var(--ease-out) 0.8s both;
+      animation: fadeUp 0.7s var(--ease-out) 0.9s both;
     }
-
     .hero-motto-strip span {
-      font-size: 0.78rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold-dim);
     }
-
     .hero-motto-strip .dot {
-      width: 3px;
-      height: 3px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: var(--fire);
-      opacity: 0.5;
+      opacity: 0.45;
     }
 
-    @media (max-width: 768px) {
-      .hero--split {
+    /* Hero responsive */
+    @media (max-width: 900px) {
+      .hero-inner {
         grid-template-columns: 1fr;
         text-align: center;
-        padding-top: 120px;
-        gap: 32px;
+        padding-top: 130px;
+        gap: 36px;
       }
-      .hero--split .hero-text { max-width: 100%; }
-      .hero-eyebrow-line { justify-content: center; }
-      .hero-eyebrow-line::before { display: none; }
-      .hero-emblem-col {
-        width: 200px;
-        height: 200px;
+      .hero-text { max-width: 100%; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-eyebrow::before { display: none; }
+      .hero-scripture { margin-left: auto; margin-right: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-emblem-wrap {
+        width: 220px;
         margin: 0 auto;
         order: -1;
       }
-      .hero-emblem-col .hero-emblem { width: 200px; height: auto; }
-      .hero-emblem-col::before { inset: -24px; }
-      .hero-emblem-col::after { inset: -48px; }
-      .hero--split .btn-group { justify-content: center; }
-      .hero-subtitle { margin-left: auto; margin-right: auto; }
+      .hero-emblem-wrap img { width: 220px; }
+      .hero-emblem-wrap::before { width: 280px; height: 280px; }
+      .hero-emblem-wrap::after { width: 320px; height: 320px; }
+      .hero-ring-outer { width: 370px; height: 370px; }
       .hero-motto-strip { gap: 16px; flex-wrap: wrap; }
-      .hero-motto-strip span { font-size: 0.78rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-headline .line-lg { font-size: clamp(2.6rem, 12vw, 3.4rem); }
+      .hero-emblem-wrap { width: 180px; }
+      .hero-emblem-wrap img { width: 180px; }
+      .hero-emblem-wrap::before { width: 230px; height: 230px; }
+      .hero-emblem-wrap::after { width: 270px; height: 270px; }
+      .hero-ring-outer { width: 310px; height: 310px; }
     }
 
-    /* ── Identity Strip — Mission Banner (White) ── */
-    .section--identity-strip {
-      padding: 88px 0;
+
+    /* ──────────────────────────────────────
+       IDENTITY STRIP — Mission Banner
+       ────────────────────────────────────── */
+    .section--identity {
+      padding: 96px 0;
+      position: relative;
     }
-    .identity-strip-content {
+    .section--identity::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 5%, var(--gold) 30%, var(--fire) 50%, var(--gold) 70%, transparent 95%);
+      opacity: 0.5;
+    }
+    .identity-content {
       max-width: 880px;
       margin: 0 auto;
       text-align: center;
       padding: 0 var(--gutter);
     }
-    .identity-eyebrow {
+    .identity-label {
       font-family: var(--font-sans);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.30em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 16px;
     }
-    .identity-eyebrow::before,
-    .identity-eyebrow::after {
+    .identity-label::before,
+    .identity-label::after {
       content: '';
-      width: 36px;
+      width: 40px;
       height: 1px;
       background: var(--gold);
-      opacity: 0.45;
+      opacity: 0.4;
     }
-    .identity-statement {
+    .identity-quote {
       font-family: var(--font-serif);
       font-weight: 300;
       font-style: italic;
-      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
-      line-height: 1.55;
+      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      line-height: 1.6;
       color: var(--navy);
-      margin: 0 auto 28px;
+      margin: 0 auto 32px;
       max-width: 820px;
     }
-    .identity-statement strong {
-      font-weight: 500;
+    .identity-quote strong {
+      font-weight: 600;
       font-style: normal;
       color: var(--fire);
     }
     .identity-refs {
       font-family: var(--font-sans);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold-dim);
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
     .identity-refs .sep {
-      width: 3px;
-      height: 3px;
+      width: 4px;
+      height: 4px;
       background: var(--fire);
       border-radius: 50%;
-      opacity: 0.6;
+      opacity: 0.5;
     }
+
     @media (max-width: 640px) {
-      .section--identity-strip { padding: 64px 0; }
-      .identity-eyebrow { gap: 10px; }
-      .identity-eyebrow::before,
-      .identity-eyebrow::after { width: 24px; }
-      .identity-refs { font-size: 0.66rem; letter-spacing: 0.18em; gap: 8px; }
+      .section--identity { padding: 72px 0; }
+      .identity-label { gap: 10px; }
+      .identity-label::before,
+      .identity-label::after { width: 24px; }
+      .identity-refs { font-size: 0.62rem; gap: 10px; }
     }
 
-    /* ── Leadership on Cream — color overrides so text stays readable ── */
-    #leadership.section--cream .leader-portrait h4 {
-      color: var(--navy);
-    }
-    #leadership.section--cream .leader-portrait .role {
-      color: var(--text-on-white);
-    }
-    #leadership.section--cream .leader-portrait img {
-      box-shadow: 0 10px 32px rgba(20, 34, 64, 0.14);
-      border-color: rgba(201, 149, 44, 0.35);
-    }
 
-    /* ── Program Spotlights ── */
-    .program-duo {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gutter);
-    }
-    .program-spotlight {
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--bg-white);
-      border: 1px solid var(--bg-sand-border);
-      transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
-    }
-    .program-spotlight:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
-    }
-    .program-spotlight-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
-      display: block;
-      background: var(--bg-sand);
-    }
-    .program-spotlight-body {
-      padding: 28px;
-    }
-    .program-spotlight-body h3 {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-    .program-spotlight-body p {
-      font-size: 0.88rem;
-      color: var(--text-on-white);
-      line-height: 1.65;
-      margin-bottom: 14px;
-    }
-    .program-spotlight-time {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--text-dim-white);
-      margin-bottom: 6px;
-    }
-    .program-spotlight-time::before { content: '🕐'; font-size: 0.78rem; }
-
-    /* ─────────────────────────────────────────────────────
-       LAYOUT M — Announcements Carousel
-       Horizontal scrolling event cards with dot indicators.
-       JS sorts by date, auto-hides past events.
-       ───────────────────────────────────────────────────── */
-
-    /* ── Section: Announcements (Navy) ── */
+    /* ──────────────────────────────────────
+       ANNOUNCEMENTS — Immersive Full-Bleed
+       ────────────────────────────────────── */
     .section--announcements {
       position: relative;
       overflow: hidden;
@@ -391,21 +424,14 @@
       inset: 0;
       background-image:
         url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-      opacity: 0.32;
+      opacity: 0.28;
       mix-blend-mode: overlay;
       pointer-events: none;
       z-index: 0;
     }
     .section--announcements > .container { position: relative; z-index: 1; }
 
-    /* ═══════════════════════════════════════════════════════════
-       Announcement Stage — Immersive Full-Bleed (Layout B)
-       Each slide fills the whole stage with a darkened event image
-       as background; text (countdown, title, theme, meta, CTAs) floats
-       over the bottom-left. Ken Burns zoom on active image. Progress
-       bar across the bottom. Urgency states on the countdown. Full
-       clean mobile stack.
-       ═══════════════════════════════════════════════════════════ */
+    /* Announcement Stage — Full-Bleed Carousel */
     .announce-stage {
       position: relative;
       width: 100%;
@@ -415,14 +441,14 @@
     }
     .announce-slides {
       position: relative;
-      min-height: 620px;
+      min-height: 640px;
     }
     .announce-slide {
       position: absolute;
       inset: 0;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.8s var(--ease-out), visibility 0s linear 0.8s;
+      transition: opacity 0.9s var(--ease-out), visibility 0s linear 0.9s;
       pointer-events: none;
       text-decoration: none;
       color: inherit;
@@ -432,136 +458,146 @@
     .announce-slide.is-active {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.8s var(--ease-out), visibility 0s linear 0s;
+      transition: opacity 0.9s var(--ease-out), visibility 0s linear 0s;
       pointer-events: auto;
       z-index: 1;
     }
 
-    /* Background image — Ken Burns slow zoom on active slide only */
+    /* Background image — Ken Burns slow zoom */
     .announce-bg {
       position: absolute;
       inset: 0;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transform: scale(1.05);
+      transform: scale(1.04);
       will-change: transform;
     }
     .announce-slide.is-active .announce-bg {
       animation: kenBurns 18s ease-out forwards;
     }
     @keyframes kenBurns {
-      0%   { transform: scale(1.05); }
-      100% { transform: scale(1.18); }
+      0%   { transform: scale(1.04); }
+      100% { transform: scale(1.16); }
     }
 
-    /* Gradient overlay for text legibility */
+    /* Gradient overlay for text legibility — deeper cinematic */
     .announce-overlay {
       position: absolute;
       inset: 0;
       background:
         linear-gradient(180deg,
-          rgba(15, 26, 48, 0.35) 0%,
-          rgba(15, 26, 48, 0.50) 40%,
-          rgba(15, 26, 48, 0.88) 85%,
+          rgba(15, 26, 48, 0.30) 0%,
+          rgba(15, 26, 48, 0.45) 35%,
+          rgba(15, 26, 48, 0.85) 80%,
           rgba(15, 26, 48, 0.95) 100%),
         linear-gradient(90deg,
-          rgba(15, 26, 48, 0.72) 0%,
-          rgba(15, 26, 48, 0.30) 50%,
-          rgba(15, 26, 48, 0.10) 100%);
+          rgba(15, 26, 48, 0.70) 0%,
+          rgba(15, 26, 48, 0.25) 50%,
+          rgba(15, 26, 48, 0.08) 100%);
+    }
+
+    /* Vignette overlay — cinematic edges */
+    .announce-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 120px 40px rgba(15, 26, 48, 0.5);
+      pointer-events: none;
+      z-index: 1;
     }
 
     /* Content stack floating on top */
     .announce-content {
       position: absolute;
       left: 0; right: 0; bottom: 0;
-      padding: 48px max(6vw, 56px) 72px;
-      max-width: min(820px, 92vw);
+      padding: 48px max(6vw, 56px) 76px;
+      max-width: min(860px, 92vw);
       z-index: 2;
     }
     .announce-content > * {
       opacity: 0;
-      transform: translateY(14px);
+      transform: translateY(16px);
       transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
     }
     .announce-slide.is-active .announce-content > * {
       opacity: 1;
       transform: translateY(0);
     }
-    /* Staggered reveal per element */
-    .announce-slide.is-active .announce-content > *:nth-child(1) { transition-delay: 0.20s; }
-    .announce-slide.is-active .announce-content > *:nth-child(2) { transition-delay: 0.30s; }
-    .announce-slide.is-active .announce-content > *:nth-child(3) { transition-delay: 0.40s; }
-    .announce-slide.is-active .announce-content > *:nth-child(4) { transition-delay: 0.50s; }
-    .announce-slide.is-active .announce-content > *:nth-child(5) { transition-delay: 0.60s; }
-    .announce-slide.is-active .announce-content > *:nth-child(6) { transition-delay: 0.70s; }
+    .announce-slide.is-active .announce-content > *:nth-child(1) { transition-delay: 0.15s; }
+    .announce-slide.is-active .announce-content > *:nth-child(2) { transition-delay: 0.25s; }
+    .announce-slide.is-active .announce-content > *:nth-child(3) { transition-delay: 0.35s; }
+    .announce-slide.is-active .announce-content > *:nth-child(4) { transition-delay: 0.45s; }
+    .announce-slide.is-active .announce-content > *:nth-child(5) { transition-delay: 0.55s; }
+    .announce-slide.is-active .announce-content > *:nth-child(6) { transition-delay: 0.65s; }
 
     .announce-tag {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold);
-      margin: 0 0 20px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      margin: 0 0 22px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
     }
     .announce-tag::before {
       content: '';
-      width: 28px; height: 1px;
-      background: var(--gold);
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--fire));
     }
 
     .announce-content h3 {
       font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      font-weight: 500;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 600;
       color: var(--cream);
-      line-height: 1.08;
+      line-height: 1.06;
       margin: 0 0 14px;
-      letter-spacing: -0.015em;
-      text-shadow: 0 3px 20px rgba(0, 0, 0, 0.8);
+      letter-spacing: -0.02em;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
     }
     .announce-theme {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      font-size: clamp(0.95rem, 1.5vw, 1.12rem);
       color: var(--gold-light);
-      margin: 0 0 22px;
-      line-height: 1.4;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+      margin: 0 0 24px;
+      line-height: 1.45;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
     }
     .announce-meta {
       list-style: none;
       padding: 0;
-      margin: 0 0 26px;
+      margin: 0 0 28px;
       display: flex;
       flex-wrap: wrap;
-      gap: 18px 28px;
+      gap: 16px 32px;
     }
     .announce-meta li {
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       color: var(--text-on-navy);
       line-height: 1.45;
-      max-width: 260px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+      max-width: 280px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
     .announce-meta .label {
       display: block;
       font-family: var(--font-sans);
-      font-size: 0.64rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
+      font-size: 0.60rem;
+      font-weight: 700;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
       color: var(--gold-dim);
       margin-bottom: 3px;
     }
     .announce-meta .value {
       color: var(--cream);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
     }
 
     /* Live countdown badge */
@@ -571,10 +607,10 @@
       gap: 0;
       margin: 0 0 22px;
       padding: 4px;
-      background: rgba(15, 26, 48, 0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border: 1px solid var(--line-navy-strong);
+      background: rgba(15, 26, 48, 0.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--line-strong);
       border-radius: 10px;
       overflow: hidden;
       transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
@@ -585,13 +621,13 @@
       align-items: center;
       justify-content: center;
       padding: 8px 14px;
-      min-width: 58px;
-      border-right: 1px solid var(--line-navy);
+      min-width: 56px;
+      border-right: 1px solid var(--line);
     }
     .announce-countdown .cd-unit:last-child { border-right: none; }
     .announce-countdown .cd-num {
       font-family: var(--font-serif);
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: var(--cream);
       line-height: 1;
@@ -600,28 +636,28 @@
     }
     .announce-countdown .cd-lbl {
       font-family: var(--font-sans);
-      font-size: 0.58rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
     }
-    /* URGENCY STATE: <= 24hr to event — fire-orange glow */
+    /* Urgency ≤ 24hr */
     .announce-countdown.is-urgent {
       background: rgba(232, 93, 38, 0.18);
       border-color: rgba(232, 93, 38, 0.5);
-      box-shadow: 0 0 24px rgba(232, 93, 38, 0.25);
+      box-shadow: 0 0 28px rgba(232, 93, 38, 0.25);
     }
     .announce-countdown.is-urgent .cd-num { color: #ffd4b5; }
     .announce-countdown.is-urgent .cd-lbl { color: var(--fire-light); }
 
-    /* LIVE STATE: happening now — pulsing dot */
+    /* LIVE state */
     .announce-countdown.is-live {
       background: rgba(232, 93, 38, 0.22);
       border-color: rgba(232, 93, 38, 0.6);
       padding: 10px 20px;
       align-items: center;
-      box-shadow: 0 0 32px rgba(232, 93, 38, 0.35);
+      box-shadow: 0 0 36px rgba(232, 93, 38, 0.35);
     }
     .announce-countdown.is-live::before {
       content: '';
@@ -634,18 +670,18 @@
     }
     .announce-countdown.is-live .cd-live-text {
       font-family: var(--font-sans);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--fire-light);
     }
     @keyframes livePulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.55; transform: scale(1.35); }
+      50%      { opacity: 0.5; transform: scale(1.4); }
     }
 
-    /* CTA row — primary + secondary (add to calendar) */
+    /* CTA buttons */
     .announce-ctas {
       display: flex;
       flex-wrap: wrap;
@@ -656,41 +692,43 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 22px;
+      padding: 13px 24px;
       background: var(--fire);
       color: #fff;
       border-radius: 8px;
       font-family: var(--font-sans);
-      font-size: 0.82rem;
+      font-size: 0.80rem;
       font-weight: 600;
       letter-spacing: 0.04em;
       text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
       border: none;
       cursor: pointer;
     }
     .announce-cta:hover {
       background: var(--fire-light);
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 93, 38, 0.35);
     }
     .announce-cta--ghost {
       background: transparent;
-      border: 1px solid rgba(201, 149, 44, 0.45);
+      border: 1px solid rgba(201, 149, 44, 0.4);
       color: var(--gold-light);
     }
     .announce-cta--ghost:hover {
-      background: rgba(201, 149, 44, 0.15);
+      background: rgba(201, 149, 44, 0.12);
       border-color: var(--gold);
       color: var(--cream);
+      box-shadow: none;
     }
     .announce-cta svg { width: 15px; height: 15px; }
 
-    /* Progress bar — fills over ROTATE_MS, resets per slide */
+    /* Progress bar */
     .announce-progress {
       position: absolute;
       left: 0; right: 0; bottom: 0;
       height: 3px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
       z-index: 3;
     }
     .announce-progress-fill {
@@ -698,13 +736,11 @@
       left: 0; top: 0; bottom: 0;
       width: 0%;
       background: linear-gradient(90deg, var(--gold), var(--fire));
-      box-shadow: 0 0 12px rgba(232, 93, 38, 0.6);
+      box-shadow: 0 0 14px rgba(232, 93, 38, 0.5);
     }
-    .announce-progress-fill.is-running {
-      width: 100%;
-    }
+    .announce-progress-fill.is-running { width: 100%; }
 
-    /* Previous / Next arrows */
+    /* Arrows */
     .announce-arrow {
       position: absolute;
       top: 50%;
@@ -712,10 +748,10 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: rgba(15, 26, 48, 0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(201, 149, 44, 0.35);
+      background: rgba(15, 26, 48, 0.50);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(201, 149, 44, 0.3);
       color: var(--cream);
       display: flex;
       align-items: center;
@@ -723,8 +759,8 @@
       cursor: pointer;
       z-index: 4;
       padding: 0;
-      transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out), opacity 0.3s;
-      opacity: 0.75;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s, opacity 0.3s;
+      opacity: 0.7;
     }
     .announce-arrow:hover {
       background: rgba(15, 26, 48, 0.85);
@@ -742,7 +778,7 @@
     .announce-arrow--next { right: max(2vw, 20px); }
     .announce-stage.is-single .announce-arrow { display: none; }
 
-    /* Indicator dots */
+    /* Dots */
     .announce-dots {
       position: absolute;
       top: 28px;
@@ -752,16 +788,16 @@
       gap: 8px;
       z-index: 3;
       padding: 8px 14px;
-      background: rgba(15, 26, 48, 0.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid var(--line-navy);
+      background: rgba(15, 26, 48, 0.50);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
       border-radius: 999px;
     }
     .announce-dots .dot {
       appearance: none;
       background: transparent;
-      border: 1px solid rgba(201, 149, 44, 0.4);
+      border: 1px solid rgba(201, 149, 44, 0.35);
       width: 22px;
       height: 5px;
       border-radius: 999px;
@@ -778,15 +814,15 @@
     .announce-stage.is-single .announce-dots { display: none; }
     .announce-stage.is-single .announce-progress { display: none; }
 
-    /* Mobile */
+    /* Mobile announce */
     @media (max-width: 860px) {
       .announce-slides { min-height: 580px; }
-      .announce-content { padding: 36px 24px 48px; max-width: 100%; }
+      .announce-content { padding: 36px 24px 52px; max-width: 100%; }
       .announce-overlay {
         background:
           linear-gradient(180deg,
-            rgba(15, 26, 48, 0.40) 0%,
-            rgba(15, 26, 48, 0.70) 55%,
+            rgba(15, 26, 48, 0.35) 0%,
+            rgba(15, 26, 48, 0.65) 50%,
             rgba(15, 26, 48, 0.95) 100%);
       }
       .announce-meta { gap: 12px 20px; }
@@ -794,7 +830,6 @@
       .announce-dots { top: 16px; right: 16px; padding: 6px 10px; }
       .announce-dots .dot { width: 18px; height: 4px; }
       .announce-dots .dot.is-active { width: 30px; }
-      /* Arrows hidden on mobile — swipe is the primary nav */
       .announce-arrow { display: none; }
     }
     @media (max-width: 640px) {
@@ -805,73 +840,75 @@
       .announce-cta { padding: 10px 16px; font-size: 0.78rem; }
     }
 
-        /* ── Section: Weekly (Cream) — Compact 3-col ── */
-    .weekly-grid {
+
+    /* ──────────────────────────────────────
+       LEADERSHIP — Leader portraits on cream
+       ────────────────────────────────────── */
+    #leadership.section--cream .leader-portrait h4 {
+      color: var(--navy);
+    }
+    #leadership.section--cream .leader-portrait .role {
+      color: var(--text-on-white);
+    }
+    #leadership.section--cream .leader-portrait img {
+      box-shadow: 0 10px 36px rgba(20, 34, 64, 0.14);
+      border-color: rgba(201, 149, 44, 0.3);
+    }
+    .leader-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 920px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 940px;
       margin: 0 auto;
     }
-    .weekly-card {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 16px;
-      align-items: center;
-      background: var(--bg-white);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 10px;
-      padding: 18px;
-      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+    .leader-portrait {
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s var(--ease-out);
     }
-    .weekly-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(20, 34, 64, 0.08);
-      border-color: var(--line-white-strong);
-    }
-    .weekly-card img {
-      width: 72px;
-      height: 72px;
+    .leader-portrait:hover { transform: translateY(-4px); }
+    .leader-portrait img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
       object-fit: cover;
-      border-radius: 8px;
-      background: var(--bg-sand);
-      display: block;
+      margin: 0 auto 18px;
+      border: 2.5px solid rgba(201, 149, 44, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
     }
-    .weekly-card-body { min-width: 0; }
-    .weekly-day {
-      font-family: var(--font-sans);
-      font-size: 0.64rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-bottom: 3px;
+    .leader-portrait:hover img {
+      transform: scale(1.06);
+      border-color: var(--gold);
+      box-shadow: 0 12px 48px rgba(201, 149, 44, 0.2);
     }
-    .weekly-day--fire { color: var(--fire); }
-    .weekly-day--gold { color: var(--gold); }
-    .weekly-day--navy { color: var(--navy); opacity: 0.7; }
-    .weekly-card-body h4 {
+    .leader-portrait h4 {
       font-family: var(--font-serif);
-      font-size: 0.98rem;
-      font-weight: 500;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 3px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 5px;
     }
-    .weekly-card-body p {
+    .leader-portrait .role {
       font-size: 0.78rem;
-      color: var(--text-on-white);
-      line-height: 1.45;
-      margin: 0;
+      color: var(--text-dim);
+      line-height: 1.4;
     }
 
-    @media (max-width: 960px) {
-      .weekly-grid { grid-template-columns: 1fr; max-width: 480px; }
+    @media (max-width: 768px) {
+      .leader-row { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .leader-portrait img { width: 120px; height: 120px; }
+    }
+    @media (max-width: 480px) {
+      .leader-portrait img { width: 110px; height: 110px; }
     }
 
-    /* ── Video Carousel ── */
-    .video-carousel-wrap {
-      position: relative;
-    }
+
+    /* ──────────────────────────────────────
+       VIDEO CAROUSEL — Recent Messages
+       ────────────────────────────────────── */
+    .video-carousel-wrap { position: relative; }
     .video-carousel {
       display: flex;
       gap: 20px;
@@ -885,16 +922,19 @@
     .video-carousel-item {
       flex: 0 0 320px;
       scroll-snap-align: start;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       background: var(--bg-sand);
       border: 1px solid var(--bg-sand-border);
-      transition: transform 0.4s var(--ease-out);
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
       text-decoration: none;
       color: inherit;
       display: block;
     }
-    .video-carousel-item:hover { transform: translateY(-3px); }
+    .video-carousel-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(20, 34, 64, 0.10);
+    }
     .video-carousel-thumb {
       position: relative;
       width: 100%;
@@ -905,6 +945,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .video-carousel-item:hover .video-carousel-thumb img {
+      transform: scale(1.04);
     }
     .video-carousel-thumb .play-icon {
       position: absolute;
@@ -912,13 +956,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(20,34,64,0.35);
+      background: rgba(20, 34, 64, 0.30);
       opacity: 0;
       transition: opacity 0.3s;
     }
     .video-carousel-item:hover .play-icon { opacity: 1; }
+    .play-icon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(232, 93, 38, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(232, 93, 38, 0.4);
+      transition: transform 0.3s var(--ease-out);
+    }
+    .video-carousel-item:hover .play-icon-circle { transform: scale(1.1); }
     .video-carousel-info {
-      padding: 16px 18px;
+      padding: 16px 20px;
     }
     .video-carousel-info h4 {
       font-family: var(--font-serif);
@@ -936,33 +992,43 @@
       font-size: 0.78rem;
       color: var(--text-dim-white);
     }
-    /* Carousel nav arrows */
     .carousel-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-70%);
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: var(--bg-white);
       border: 1px solid var(--bg-sand-border);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 5;
-      transition: background 0.3s, border-color 0.3s;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
     }
-    .carousel-arrow:hover { border-color: var(--gold); background: var(--bg-sand); }
+    .carousel-arrow:hover {
+      border-color: var(--gold);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+    }
     .carousel-arrow--left { left: -16px; }
     .carousel-arrow--right { right: -16px; }
     .carousel-arrow svg { width: 16px; height: 16px; stroke: var(--navy); }
 
-    /* ── Scripture Interstitial ── */
+    @media (max-width: 768px) {
+      .video-carousel-item { flex: 0 0 280px; }
+      .carousel-arrow { display: none; }
+    }
+
+
+    /* ──────────────────────────────────────
+       SCRIPTURE INTERSTITIAL
+       ────────────────────────────────────── */
     .scripture-band {
       background: var(--bg-navy);
-      padding: 56px 24px;
+      padding: 64px 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -971,69 +1037,185 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, rgba(201,149,44,0.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(201, 149, 44, 0.06) 0%, transparent 70%);
       pointer-events: none;
     }
     .scripture-band blockquote {
-      position: relative; z-index: 1; max-width: 680px; margin: 0 auto;
-      font-family: var(--font-serif); font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-      font-weight: 400; font-style: italic; line-height: 1.7; color: var(--cream);
-      border: none; padding: 0;
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      font-family: var(--font-serif);
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--cream);
+      border: none;
+      padding: 0;
     }
     .scripture-band cite {
-      display: block; margin-top: 14px; font-style: normal;
-      font-family: var(--font-sans); font-size: 0.78rem; color: var(--gold);
-      letter-spacing: 0.05em;
+      display: block;
+      margin-top: 16px;
+      font-style: normal;
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.06em;
     }
 
-    /* ── Leader Portrait Row ── */
-    .leader-row {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 36px; max-width: 900px; margin: 0 auto;
-    }
-    .leader-portrait { text-align: center; text-decoration: none; color: inherit; }
-    .leader-portrait img {
-      width: 140px; height: 140px; border-radius: 50%; object-fit: cover;
-      margin: 0 auto 16px; border: 2px solid rgba(201,149,44,0.2);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-      transition: transform 0.4s var(--ease-out), border-color 0.4s;
-    }
-    .leader-portrait:hover img { transform: scale(1.05); border-color: var(--gold); }
-    .leader-portrait h4 { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
-    .leader-portrait .role { font-size: 0.78rem; color: var(--text-dim); line-height: 1.4; }
 
-    /* ── Ministry Arm Cards ── */
-    .arm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+    /* ──────────────────────────────────────
+       WEEKLY PROGRAMS — 3-col grid (navy)
+       ────────────────────────────────────── */
+    .weekly-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .weekly-card {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 16px;
+      align-items: center;
+      background: rgba(26, 45, 77, 0.6);
+      border: 1px solid rgba(201, 149, 44, 0.12);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.4s var(--ease-out), border-color 0.4s, background 0.4s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .weekly-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201, 149, 44, 0.35);
+      background: rgba(26, 45, 77, 0.85);
+    }
+    .weekly-card img {
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .weekly-card-body { min-width: 0; }
+    .weekly-day {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .weekly-day--fire { color: var(--fire-light); }
+    .weekly-day--gold { color: var(--gold-light); }
+    .weekly-day--navy { color: var(--gold-dim); }
+    .weekly-card-body h4 {
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .weekly-card-body p {
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    @media (max-width: 960px) {
+      .weekly-grid { grid-template-columns: 1fr; max-width: 460px; }
+    }
+
+
+    /* ──────────────────────────────────────
+       MINISTRY ARM CARDS — Get Involved
+       ────────────────────────────────────── */
+    .arm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gutter);
+    }
     .arm-card {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      text-decoration: none; background: var(--bg-white); border: 1px solid var(--bg-sand-border);
-      border-radius: 14px; padding: 40px 24px 32px;
-      transition: transform 0.4s var(--ease-out), border-color 0.4s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      background: var(--bg-white);
+      border: 1px solid var(--bg-sand-border);
+      border-radius: 16px;
+      padding: 44px 28px 36px;
+      transition: transform 0.4s var(--ease-out), border-color 0.4s, box-shadow 0.4s;
     }
-    .arm-card:hover { transform: translateY(-4px); border-color: var(--gold); }
-    .arm-card img { width: 72px; height: 72px; object-fit: contain; border-radius: 12px; margin-bottom: 20px; }
-    .arm-card h3 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
-    .arm-card p { font-size: 0.85rem; color: var(--text-on-white); line-height: 1.6; margin-bottom: 14px; }
-    .arm-card .card-link { font-size: 0.78rem; font-weight: 600; color: var(--gold); letter-spacing: 0.03em; text-transform: uppercase; margin-top: auto; }
+    .arm-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: 0 16px 48px rgba(20, 34, 64, 0.08);
+    }
+    .arm-card img {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      border-radius: 14px;
+      margin-bottom: 22px;
+    }
+    .arm-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .arm-card p {
+      font-size: 0.85rem;
+      color: var(--text-on-white);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .arm-card .card-link {
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: auto;
+      transition: color 0.3s;
+    }
+    .arm-card:hover .card-link { color: var(--fire); }
 
-    /* ── Prayer Request + Countdown ── */
+    @media (max-width: 768px) {
+      .arm-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+
+    /* ──────────────────────────────────────
+       PRAYER REQUEST + COUNTDOWN
+       ────────────────────────────────────── */
     .prayer-layout {
       display: grid;
       grid-template-columns: 1fr 340px;
-      gap: 48px;
+      gap: 52px;
       align-items: start;
     }
     .prayer-form-wrap h3 {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
+      font-size: 1.45rem;
+      font-weight: 600;
       color: var(--navy);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .prayer-form-wrap .form-subtitle {
       font-size: 0.92rem;
       color: var(--text-on-white);
-      margin-bottom: 28px;
-      line-height: 1.6;
+      margin-bottom: 32px;
+      line-height: 1.65;
     }
     .prayer-form {
       display: flex;
@@ -1048,13 +1230,13 @@
     .prayer-form input,
     .prayer-form textarea {
       width: 100%;
-      padding: 14px 16px;
+      padding: 14px 18px;
       font-family: var(--font-sans);
       font-size: 0.88rem;
       color: var(--navy);
       background: var(--bg-white);
       border: 1px solid var(--line-white-strong);
-      border-radius: 8px;
+      border-radius: 10px;
       outline: none;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
@@ -1068,28 +1250,44 @@
       box-shadow: 0 0 0 3px var(--gold-glow);
     }
     .prayer-form textarea {
-      min-height: 120px;
+      min-height: 130px;
       resize: vertical;
     }
     .prayer-form .btn { align-self: flex-start; }
     .prayer-form-note {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--text-dim-white);
       margin-top: 4px;
       line-height: 1.5;
     }
+
     /* Countdown sidebar */
     .countdown-sidebar {
-      background: var(--bg-navy-panel);
+      background: var(--bg-navy);
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 32px 28px;
+      border-radius: 16px;
+      padding: 36px 28px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    .countdown-sidebar::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      margin-left: -150px;
+      background: radial-gradient(circle, rgba(201, 149, 44, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .countdown-sidebar > * { position: relative; z-index: 1; }
     .countdown-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--fire);
       margin-bottom: 8px;
@@ -1102,15 +1300,15 @@
       margin-bottom: 4px;
     }
     .countdown-day {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-dim);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
     .countdown-timer {
       display: flex;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
     .countdown-unit {
       display: flex;
@@ -1125,9 +1323,11 @@
       color: var(--cream);
       line-height: 1;
       margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
     }
     .countdown-unit .lbl {
-      font-size: 0.78rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1145,44 +1345,40 @@
       font-style: italic;
       font-size: 0.82rem;
       color: var(--text-dim);
-      line-height: 1.5;
-      margin-top: 20px;
-      padding-top: 20px;
+      line-height: 1.55;
+      margin-top: 24px;
+      padding-top: 24px;
       border-top: 1px solid var(--line);
     }
     .countdown-scripture cite {
       display: block;
       font-style: normal;
       font-family: var(--font-sans);
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       color: var(--gold-dim);
       margin-top: 6px;
     }
 
-    /* ── Responsive ── */
     @media (max-width: 768px) {
-      .program-duo { grid-template-columns: 1fr; }
-      .video-carousel-item { flex: 0 0 280px; }
-      .carousel-arrow { display: none; }
-      .leader-row { grid-template-columns: repeat(2, 1fr); gap: 28px; }
-      .leader-portrait img { width: 110px; height: 110px; }
-      .arm-grid { grid-template-columns: 1fr; gap: 16px; }
-      .prayer-layout { grid-template-columns: 1fr; gap: 32px; }
+      .prayer-layout { grid-template-columns: 1fr; gap: 36px; }
       .prayer-form .form-row { grid-template-columns: 1fr; }
       .prayer-form .btn { align-self: stretch; }
       .countdown-sidebar { max-width: 400px; margin: 0 auto; }
     }
 
-    /* ── Fire Line (divider before footer) ── */
+
+    /* ──────────────────────────────────────
+       FIRE LINE — Divider before footer
+       ────────────────────────────────────── */
     .fire-line {
       height: 3px;
       background: linear-gradient(90deg, transparent, var(--gold), var(--fire), var(--gold), transparent);
       position: relative;
       z-index: var(--z-content);
     }
-    }
   </style>
-  <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
+
+  <!-- Canonical & Extended Open Graph -->
   <link rel="canonical" href="https://mfmmegaregion2usa.com/">
   <meta property="og:url" content="https://mfmmegaregion2usa.com/">
   <meta property="og:site_name" content="MFM Mega Region 2 USA">
@@ -1203,8 +1399,6 @@
        ═══════════════════════════════════════════════════════ -->
   <nav class="site-nav" id="siteNav">
     <div class="nav-inner">
-
-      <!-- Logo -->
       <a href="index.html" class="nav-logo">
         <img src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48">
         <div class="nav-logo-text">
@@ -1213,8 +1407,7 @@
         </div>
       </a>
 
-      <!-- Desktop Links -->
-                              <div class="nav-links">
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <div class="nav-dropdown">
@@ -1235,7 +1428,7 @@
               <div class="nav-dd-label">Gen218<span>Christian singles ministry</span></div>
             </a>
             <a href="women.html">
-              <div class="nav-dd-label">Women Foundation<span>Women’s ministry &amp; conferences</span></div>
+              <div class="nav-dd-label">Women Foundation<span>Women's ministry &amp; conferences</span></div>
             </a>
             <a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener">
               <div class="nav-dd-label">Youth Ministry<span>Mega Region 2 Youth Church</span></div>
@@ -1248,13 +1441,11 @@
         <a href="give.html" class="nav-cta">Give</a>
       </div>
 
-      <!-- Hamburger (mobile) -->
       <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
       </button>
-
     </div>
   </nav>
 
@@ -1277,7 +1468,7 @@
       <a href="gen218.html">Gen218</a>
       <a href="women.html">Women Foundation</a>
       <a href="branches.html">Branches</a>
-        <a href="give.html" class="drawer-cta">Give</a>
+      <a href="give.html" class="drawer-cta">Give</a>
     </nav>
     <div class="drawer-footer">
       <p class="drawer-scripture">
@@ -1289,30 +1480,30 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-       1. HERO (Navy) — Split Statement
+       1. HERO (Navy) — Cinematic Split Statement
        ═══════════════════════════════════════════════════════ -->
   <main>
 
-    <section class="hero" style="padding:0; display:block;">
-      <div class="hero--split">
+    <section class="hero hero-home">
+      <div class="hero-inner">
 
         <!-- Left: Text -->
         <div class="hero-text">
-          <div class="hero-eyebrow-line">
+          <div class="hero-eyebrow">
             <span>Mountain of Fire &amp; Miracles Ministries</span>
           </div>
 
-          <div class="hero-title-stack">
+          <div class="hero-headline">
             <span class="line-sm">Upon Mount Zion Shall Be</span>
             <span class="line-lg">Deliverance</span>
           </div>
 
-          <p class="hero-subtitle">
+          <p class="hero-scripture">
             "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
           </p>
           <p class="hero-ref">— Obadiah 1:17</p>
 
-          <div class="btn-group">
+          <div class="hero-ctas">
             <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px;"><path d="M8 5v14l11-7z"/></svg>
               Watch Live
@@ -1322,8 +1513,9 @@
         </div>
 
         <!-- Right: Logo with atmosphere -->
-        <div class="hero-emblem-col">
-          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" class="hero-emblem" width="280">
+        <div class="hero-emblem-wrap">
+          <div class="hero-ring-outer"></div>
+          <img src="img/logo.png" alt="MFM Mega Region 2 USA Emblem" width="300">
         </div>
 
       </div>
@@ -1342,10 +1534,10 @@
     <!-- ═══════════════════════════════════════════════════════
          2. IDENTITY STRIP — Mission Banner (White)
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white section--identity-strip" id="mission">
-      <div class="identity-strip-content reveal">
-        <p class="identity-eyebrow">Our Mission</p>
-        <p class="identity-statement">
+    <section class="section section--white section--identity" id="mission">
+      <div class="identity-content reveal">
+        <p class="identity-label">Our Mission</p>
+        <p class="identity-quote">
           A full gospel ministry devoted to the revival of Apostolic signs, Holy Ghost fireworks, and the <strong>unlimited demonstration of the power of God</strong> to deliver to the uttermost.
         </p>
         <span class="identity-refs">
@@ -1364,60 +1556,52 @@
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--dark section--announcements" id="announcements">
       <div class="container">
-
         <div class="section-header text-center reveal">
           <p class="eyebrow">Announcements</p>
           <h2>Coming Up Next</h2>
           <p>Upcoming crusades, conferences, and special services across Mega Region 2.</p>
         </div>
-
       </div>
 
-      <!-- Featured announcement — full-bleed, auto-rotates through upcoming events -->
       <div id="announceStage" class="announce-stage reveal" aria-roledescription="carousel" aria-label="Upcoming events">
         <div id="announceSlides" class="announce-slides"></div>
 
-        <!-- Navigation arrows -->
-        <button type="button" id="announcePrev" class="announce-arrow announce-arrow--prev" aria-label="Previous event">
+        <button class="announce-arrow announce-arrow--prev" id="announcePrev" aria-label="Previous event">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <button type="button" id="announceNext" class="announce-arrow announce-arrow--next" aria-label="Next event">
+        <button class="announce-arrow announce-arrow--next" id="announceNext" aria-label="Next event">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
 
-        <div class="announce-progress" aria-hidden="true">
-          <div id="announceProgressFill" class="announce-progress-fill"></div>
-        </div>
-        <div id="announceDots" class="announce-dots" role="tablist" aria-label="Event selector"></div>
-      </div>
+        <div class="announce-dots" id="announceDots" role="tablist" aria-label="Event navigation"></div>
 
+        <div class="announce-progress">
+          <div class="announce-progress-fill" id="announceProgressFill"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Event data — edit here to add/update special events.
-         Past events are hidden automatically.
-         Fields: date (required, YYYY-MM-DD), endDate (optional, for multi-day),
-         title, theme, time, venue, ministering, host, image, alt, link (optional URL). -->
+    <!-- Event data (JSON) — sorted and auto-expired by JS -->
     <script type="application/json" id="eventData">
     [
       {
-        "date": "2026-04-24",
-        "title": "Night of Worship & Wonders",
-        "theme": "A Special Prayer Vigil",
-        "time": "10:00 PM CST",
-        "venue": "306 N Greenville Ave, Richardson, TX 75081",
-        "ministering": "Pastor David Popoola — ASRO, MFM Dallas Texas",
+        "date": "2026-04-25",
+        "title": "Night of Worship & Encounter",
+        "theme": "An evening of praise, worship, and prophetic encounter",
+        "time": "6:00 PM CST",
+        "venue": "MFM USA Prayer City — 10000 Kleckley Dr, Houston TX 77075",
+        "host": "MFM Mega Region 2 USA",
         "image": "img/announcements/night-of-worship.jpg",
-        "alt": "Night of Worship and Wonders — Friday April 24, 2026, MFM Dallas Texas",
+        "alt": "Night of Worship & Encounter flyer — April 25, 2026",
         "anchor": "night-of-worship"
       },
       {
         "date": "2026-05-16",
-        "title": "Women Conference — Dallas",
-        "theme": "\"A Date with my Lord + Lover\"",
-        "time": "10:00 AM – 2:00 PM",
-        "venue": "306 Greenville Ave, Richardson, TX 75081",
-        "ministering": "Pastor Olumide Oni & Pastor (Mrs.) Oluwatoyin Oni",
-        "host": "Pastor David & Pastor (Mrs.) Adenike Popoola",
+        "title": "Women Foundation Conference — Dallas",
+        "theme": "Empowered to Reign — Walking in divine authority",
+        "time": "10:00 AM – 2:00 PM CST",
+        "venue": "MFM Dallas Texas",
+        "host": "Women Foundation, Mega Region 2",
         "image": "img/announcements/women-conference-dallas.jpg",
         "alt": "Women Conference Dallas flyer — Saturday May 16, 2026",
         "anchor": "women-conference-dallas"
@@ -1494,7 +1678,7 @@
             <p class="role">Women Foundation<br>Mega Region 2 USA</p>
           </a>
         </div>
-        <div class="text-center reveal" style="margin-top:48px;">
+        <div class="text-center reveal" style="margin-top:52px;">
           <a href="about.html" class="btn btn--secondary btn--sm">Read Full Bios →</a>
         </div>
       </div>
@@ -1506,7 +1690,6 @@
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="videos">
       <div class="container">
-
         <div class="section-header text-center reveal">
           <p class="eyebrow">From the Pulpit</p>
           <h2>Recent Messages</h2>
@@ -1518,7 +1701,6 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
           <div class="video-carousel" id="videoCarousel">
-            <!-- Populated by JS from YouTube RSS -->
             <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading videos…</p></div></div>
             <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
             <div class="video-carousel-item" style="background:var(--bg-sand);"><div class="video-carousel-thumb skeleton" style="aspect-ratio:16/9;"></div><div class="video-carousel-info"><p style="color:var(--text-dim-white);">Loading…</p></div></div>
@@ -1529,16 +1711,15 @@
           </button>
         </div>
 
-        <div class="text-center reveal" style="margin-top:36px;">
+        <div class="text-center reveal" style="margin-top:40px;">
           <a href="media.html" class="btn btn--secondary btn--sm">View All Media →</a>
         </div>
-
       </div>
     </section>
 
 
     <!-- ═══════════════════════════════════════════════════════
-         4. SCRIPTURE BAND
+         SCRIPTURE BAND
          ═══════════════════════════════════════════════════════ -->
     <div class="scripture-band">
       <blockquote class="reveal">
@@ -1549,11 +1730,10 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         6. WEEKLY PROGRAMS — Compact 3-col Grid (Navy)
+         6. WEEKLY PROGRAMS — 3-col Grid (Navy)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--dark" id="weekly">
       <div class="container">
-
         <div class="section-header text-center reveal">
           <p class="eyebrow">Every Week</p>
           <h2>Weekly Programs</h2>
@@ -1561,8 +1741,7 @@
         </div>
 
         <div class="weekly-grid reveal-stagger">
-
-          <a href="events.html#healing-deliverance" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+          <a href="events.html#healing-deliverance" class="weekly-card reveal">
             <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour">
             <div class="weekly-card-body">
               <div class="weekly-day weekly-day--fire">Every Tuesday</div>
@@ -1571,7 +1750,7 @@
             </div>
           </a>
 
-          <a href="events.html#open-heaven" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+          <a href="events.html#open-heaven" class="weekly-card reveal">
             <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter">
             <div class="weekly-card-body">
               <div class="weekly-day weekly-day--gold">Every Thursday</div>
@@ -1580,7 +1759,7 @@
             </div>
           </a>
 
-          <a href="events.html#deliverance" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+          <a href="events.html#deliverance" class="weekly-card reveal">
             <img src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City">
             <div class="weekly-card-body">
               <div class="weekly-day weekly-day--navy">Every Weekend</div>
@@ -1588,13 +1767,11 @@
               <p>Fri–Sun · Prayer City, Houston</p>
             </div>
           </a>
-
         </div>
 
-        <div class="text-center reveal" style="margin-top:48px;">
+        <div class="text-center reveal" style="margin-top:52px;">
           <a href="events.html" class="btn btn--secondary btn--sm">View Full Schedule →</a>
         </div>
-
       </div>
     </section>
 
@@ -1638,7 +1815,6 @@
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="prayer">
       <div class="container">
-
         <div class="prayer-layout reveal">
 
           <!-- Prayer Request Form -->
@@ -1690,7 +1866,6 @@
           </div>
 
         </div>
-
       </div>
     </section>
 
@@ -1740,12 +1915,12 @@
             <li><a href="about.html">About</a></li>
             <li><a href="media.html">Media</a></li>
             <li><a href="events.html">Events</a></li>
-            <li><a href="branches.html">Branches</a>
-        <a href="links.html">Connect</a></li>
+            <li><a href="branches.html">Branches</a></li>
+            <li><a href="links.html">Connect</a></li>
           </ul>
         </div>
 
-        <!-- Programs -->
+        <!-- Ministries -->
         <div class="footer-col">
           <h4>Ministries</h4>
           <ul>
@@ -1782,33 +1957,22 @@
   </footer>
 
 
-  <!-- ═══════════════════════════════════════════════════════
-       FILM GRAIN OVERLAY
-       ═══════════════════════════════════════════════════════ -->
-    <!-- Back to Top -->
-  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
-
-  <div class="grain" aria-hidden="true">
-    <svg>
-      <filter id="noiseFilter">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-      </filter>
-      <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
-    </svg>
-  </div>
 
 
   <!-- ═══════════════════════════════════════════════════════
        SCRIPTS
        ═══════════════════════════════════════════════════════ -->
   <script>
-    /* ── Mobile Drawer Toggle ── */
+    /* ── Mobile Drawer ── */
     (function () {
-      const hamburger = document.getElementById('navHamburger');
-      const drawer = document.getElementById('drawer');
-      const overlay = document.getElementById('drawerOverlay');
+      var hamburger = document.getElementById('navHamburger');
+      var drawer = document.getElementById('drawer');
+      var overlay = document.getElementById('drawerOverlay');
+      if (!hamburger || !drawer || !overlay) return;
 
       function openDrawer() {
         hamburger.classList.add('open');
@@ -1817,7 +1981,6 @@
         overlay.classList.add('open');
         document.body.classList.add('drawer-open');
       }
-
       function closeDrawer() {
         hamburger.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
@@ -1829,22 +1992,17 @@
       hamburger.addEventListener('click', function () {
         drawer.classList.contains('open') ? closeDrawer() : openDrawer();
       });
-
       overlay.addEventListener('click', closeDrawer);
-
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && drawer.classList.contains('open')) {
-          closeDrawer();
-        }
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
       });
     })();
 
 
     /* ── Sticky Nav Scroll Effect ── */
     (function () {
-      const nav = document.getElementById('siteNav');
-      let ticking = false;
-
+      var nav = document.getElementById('siteNav');
+      var ticking = false;
       window.addEventListener('scroll', function () {
         if (!ticking) {
           requestAnimationFrame(function () {
@@ -1859,48 +2017,39 @@
 
     /* ── Scroll-Triggered Reveals ── */
     (function () {
-      const reveals = document.querySelectorAll('.reveal');
+      var reveals = document.querySelectorAll('.reveal');
       if (!reveals.length) return;
-
-      const observer = new IntersectionObserver(function (entries) {
+      var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
-      });
-
-      reveals.forEach(function (el) {
-        observer.observe(el);
-      });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function (el) { observer.observe(el); });
     })();
 
 
     /* ── Footer Year ── */
     (function () {
-      const el = document.getElementById('footerYear');
+      var el = document.getElementById('footerYear');
       if (el) el.textContent = new Date().getFullYear();
     })();
 
 
-        /* ── Active Nav Link ── */
+    /* ── Active Nav Link ── */
     (function () {
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      const navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
+      var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      var navLinks = document.querySelectorAll('.nav-links a, .drawer-nav a');
       navLinks.forEach(function (link) {
         link.classList.remove('active');
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-        }
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
       });
     })();
 
 
-    /* ── Netlify Identity Redirect (for CMS) ── */
+    /* ── Netlify Identity Redirect ── */
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', function (user) {
         if (!user) {
@@ -1936,15 +2085,12 @@
         var now = new Date();
         var best = null;
         var bestDiff = Infinity;
-
         for (var w = 0; w < 2; w++) {
           for (var i = 0; i < programs.length; i++) {
             var p = programs[i];
             var target = new Date(now);
             var daysAhead = (p.day - now.getDay() + 7) % 7 + (w * 7);
             if (daysAhead === 0 && (now.getHours() > p.hour || (now.getHours() === p.hour && now.getMinutes() >= p.min))) {
-              daysAhead = 7 * (w === 0 ? 1 : 1);
-              if (w > 0) continue;
               daysAhead = 7;
             }
             target.setDate(now.getDate() + daysAhead);
@@ -1964,18 +2110,14 @@
       function tick() {
         var next = getNext();
         if (!next) return;
-
         elProg.textContent = next.program.name;
         elDay.textContent = next.program.label;
-
         var diff = next.target - new Date();
-        if (diff <= 0) { diff = 0; }
-
+        if (diff <= 0) diff = 0;
         var d = Math.floor(diff / 86400000);
         var h = Math.floor((diff % 86400000) / 3600000);
         var m = Math.floor((diff % 3600000) / 60000);
         var s = Math.floor((diff % 60000) / 1000);
-
         elDays.textContent = pad(d);
         elHours.textContent = pad(h);
         elMins.textContent = pad(m);
@@ -1988,7 +2130,7 @@
 
 
     /* ══════════════════════════════════════════════════════════
-       YouTube RSS → Video Carousel (swipeable, 4+ videos)
+       YouTube RSS → Video Carousel
        ══════════════════════════════════════════════════════════ */
     (function () {
       var CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
@@ -2040,7 +2182,7 @@
             '<a href="https://www.youtube.com/watch?v=' + vid + '" target="_blank" rel="noopener" class="video-carousel-item">' +
               '<div class="video-carousel-thumb">' +
                 '<img src="' + thumb + '" alt="' + esc(title) + '" loading="lazy">' +
-                '<div class="play-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="var(--white)"><path d="M8 5v14l11-7z"/></svg></div>' +
+                '<div class="play-icon"><div class="play-icon-circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div></div>' +
               '</div>' +
               '<div class="video-carousel-info">' +
                 '<h4>' + escH(title) + '</h4>' +
@@ -2063,12 +2205,13 @@
       function escH(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
       function esc(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-      // Carousel arrow navigation
       var left = document.getElementById('carouselLeft');
       var right = document.getElementById('carouselRight');
       if (left) left.addEventListener('click', function () { carousel.scrollBy({left: -340, behavior: 'smooth'}); });
       if (right) right.addEventListener('click', function () { carousel.scrollBy({left: 340, behavior: 'smooth'}); });
     })();
+
+
     /* ── Back-to-Top Button ── */
     (function () {
       var btn = document.getElementById('backToTop');
@@ -2087,8 +2230,9 @@
       });
       update();
     })();
-  
-    /* ── Dropdown Toggles — hover on desktop, click fallback ── */
+
+
+    /* ── Dropdown Toggles ── */
     (function () {
       var dropdowns = document.querySelectorAll('.nav-dropdown');
       var closeTimer = null;
@@ -2105,8 +2249,6 @@
 
       dropdowns.forEach(function (dd) {
         var toggle = dd.querySelector('.nav-dropdown-toggle');
-
-        /* Hover open (desktop / non-touch) */
         if (!isTouch) {
           dd.addEventListener('mouseenter', function () {
             clearTimeout(closeTimer);
@@ -2121,8 +2263,6 @@
             }, 120);
           });
         }
-
-        /* Click toggle (touch fallback + accessibility) */
         toggle.addEventListener('click', function (e) {
           e.stopPropagation();
           closeAll(dd);
@@ -2131,15 +2271,11 @@
         });
       });
 
-      /* Close on outside click */
       document.addEventListener('click', function () { closeAll(); });
-
-      /* Close on Escape */
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeAll();
       });
 
-      /* Highlight parent toggle when on a sub-page */
       var currentPath = window.location.pathname.split('/').pop() || 'index.html';
       dropdowns.forEach(function (dd) {
         var links = dd.querySelectorAll('.nav-dropdown-menu a');
@@ -2152,18 +2288,9 @@
       });
     })();
 
+
     /* ═══════════════════════════════════════════════════════════
-       Announcement Stage — Layout B + Full Feature Set
-         • Immersive full-bleed image backdrop per slide
-         • Auto-rotates every ROTATE_MS with fade transition
-         • Live D/H/M/S countdown ticking every second
-         • Urgency state when <= 24hrs to event (fire-orange glow)
-         • "Happening Now" pulse when event in progress
-         • Progress bar across bottom, resets per slide
-         • Add-to-calendar (.ics) download on each slide
-         • Swipe left/right on touch devices
-         • Pauses on hover, touch, tab hidden, and when out of viewport
-         • Dots for direct jump (resets rotation timer)
+       Announcement Stage — Full Feature Set
        ═══════════════════════════════════════════════════════════ */
     (function () {
       var ROTATE_MS = 5000;
@@ -2176,51 +2303,33 @@
       var progFill  = document.getElementById('announceProgressFill');
       var prevBtn   = document.getElementById('announcePrev');
       var nextBtn   = document.getElementById('announceNext');
-      if (!section || !dataEl || !stage || !slidesEl || !dotsEl) return;
 
-      var events;
-      try { events = JSON.parse(dataEl.textContent); }
-      catch (e) { console.warn('Invalid eventData JSON', e); section.style.display='none'; return; }
-      if (!Array.isArray(events)) { section.style.display='none'; return; }
+      if (!dataEl || !stage || !slidesEl || !dotsEl) return;
+
+      var raw;
+      try { raw = JSON.parse(dataEl.textContent); } catch(e) { return; }
 
       var today = new Date();
-      today.setHours(0, 0, 0, 0);
+      today.setHours(0,0,0,0);
 
-      function parseYMD(s) {
-        if (!s) return null;
-        var p = s.split('-');
-        if (p.length !== 3) return null;
-        var d = new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
-        d.setHours(0,0,0,0);
-        return d;
-      }
-
-      var parsed = events.map(function (ev) {
-        var start = parseYMD(ev.date);
-        if (!start) return null;
-        var end = parseYMD(ev.endDate) || start;
-        if (end < today) return null;
+      var parsed = raw.map(function (ev) {
+        var start = new Date(ev.date + 'T00:00:00');
+        var end = ev.endDate ? new Date(ev.endDate + 'T00:00:00') : new Date(start);
         return { ev: ev, start: start, end: end };
-      }).filter(function (x) { return x; });
+      }).filter(function (item) {
+        return item.end >= today;
+      }).sort(function (a, b) { return a.start - b.start; });
 
-      parsed.sort(function (a, b) { return a.start - b.start; });
-
-      if (parsed.length === 0) {
+      if (!parsed.length) {
         section.style.display = 'none';
         return;
       }
 
-      var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-      var MONS = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
-      var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun',
-                        'Jul','Aug','Sep','Oct','Nov','Dec'];
-
-      function longDate(dt) {
-        return DAYS[dt.getDay()] + ' \u00b7 ' + MONS[dt.getMonth()] + ' ' + dt.getDate() + ', ' + dt.getFullYear();
-      }
+      var SHORT_MONS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       function dateRange(start, end) {
-        if (start.getTime() === end.getTime()) return longDate(start);
+        if (start.getTime() === end.getTime()) {
+          return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ', ' + start.getFullYear();
+        }
         var sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
         if (sameMonth) {
           return SHORT_MONS[start.getMonth()] + ' ' + start.getDate() + ' \u2013 ' + end.getDate() + ', ' + start.getFullYear();
@@ -2256,7 +2365,6 @@
       function eventEndMoment(item) {
         var dt = new Date(item.end);
         if (item.ev.time) {
-          // Parse a range like "10:00 AM – 2:00 PM" and use the tail
           var tail = item.ev.time.split(/[\u2013\u2014\-]/).pop();
           var m = tail.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/i);
           if (m) {
@@ -2266,7 +2374,6 @@
             return dt;
           }
         }
-        // Default: assume 2-hour duration from start, or end-of-day for multi-day
         if (item.start.getTime() !== item.end.getTime()) {
           dt.setHours(23, 59, 59, 999);
         } else {
@@ -2276,14 +2383,10 @@
         return dt;
       }
 
-      /* ═══ iCalendar (.ics) generation ═══ */
+      /* iCalendar (.ics) generation */
       function icsFoldLine(s) {
-        // RFC 5545: lines SHOULD be folded at 75 octets
         var out = '';
-        while (s.length > 73) {
-          out += s.slice(0, 73) + '\r\n ';
-          s = s.slice(73);
-        }
+        while (s.length > 73) { out += s.slice(0, 73) + '\r\n '; s = s.slice(73); }
         return out + s;
       }
       function icsEscape(s) {
@@ -2291,12 +2394,8 @@
       }
       function icsDate(dt) {
         function pad(n){return n<10?'0'+n:n;}
-        return dt.getUTCFullYear() +
-               pad(dt.getUTCMonth()+1) +
-               pad(dt.getUTCDate()) + 'T' +
-               pad(dt.getUTCHours()) +
-               pad(dt.getUTCMinutes()) +
-               pad(dt.getUTCSeconds()) + 'Z';
+        return dt.getUTCFullYear() + pad(dt.getUTCMonth()+1) + pad(dt.getUTCDate()) + 'T' +
+               pad(dt.getUTCHours()) + pad(dt.getUTCMinutes()) + pad(dt.getUTCSeconds()) + 'Z';
       }
       function buildICS(item) {
         var f = item.ev;
@@ -2307,21 +2406,14 @@
         var description = [f.theme, f.ministering ? 'Ministering: ' + f.ministering : '', f.host ? 'Host: ' + f.host : '']
           .filter(function(x){return x;}).join('\\n');
         var lines = [
-          'BEGIN:VCALENDAR',
-          'VERSION:2.0',
-          'PRODID:-//MFM Mega Region 2 USA//Events//EN',
-          'CALSCALE:GREGORIAN',
-          'METHOD:PUBLISH',
-          'BEGIN:VEVENT',
-          'UID:' + uid,
-          'DTSTAMP:' + icsDate(now),
-          'DTSTART:' + icsDate(start),
-          'DTEND:' + icsDate(end),
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MFM Mega Region 2 USA//Events//EN',
+          'CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+          'UID:' + uid, 'DTSTAMP:' + icsDate(now),
+          'DTSTART:' + icsDate(start), 'DTEND:' + icsDate(end),
           icsFoldLine('SUMMARY:' + icsEscape(f.title)),
           icsFoldLine('DESCRIPTION:' + icsEscape(description)),
           icsFoldLine('LOCATION:' + icsEscape(f.venue || '')),
-          'END:VEVENT',
-          'END:VCALENDAR'
+          'END:VEVENT','END:VCALENDAR'
         ];
         return lines.join('\r\n');
       }
@@ -2334,13 +2426,10 @@
         a.download = (item.ev.title || 'event').replace(/[^\w\s-]/g,'').replace(/\s+/g,'-').toLowerCase() + '.ics';
         document.body.appendChild(a);
         a.click();
-        setTimeout(function(){
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }, 200);
+        setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 200);
       }
 
-      /* ═══ Render all slides ═══ */
+      /* Render slides */
       var calIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
       var arrowIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 
@@ -2354,7 +2443,6 @@
         var whenVal = dateRange(item.start, item.end);
         if (f.time) whenVal += ' \u2022 ' + esc(f.time);
 
-        // meta rows as a flex wrap
         var metaRows = '';
         metaRows += '<li><span class="label">When</span><span class="value">' + whenVal + '</span></li>';
         if (f.venue)       metaRows += '<li><span class="label">Venue</span><span class="value">' + esc(f.venue) + '</span></li>';
@@ -2385,18 +2473,14 @@
         dotsHtml +=
           '<button class="dot' + (idx === 0 ? ' is-active' : '') + '" type="button" role="tab" ' +
             'aria-label="Show event ' + (idx+1) + ' of ' + parsed.length + '" ' +
-            'aria-selected="' + (idx === 0) + '" ' +
-            'data-go="' + idx + '"></button>';
+            'aria-selected="' + (idx === 0) + '" data-go="' + idx + '"></button>';
       });
 
       slidesEl.innerHTML = slidesHtml;
       dotsEl.innerHTML = dotsHtml;
+      if (parsed.length === 1) stage.classList.add('is-single');
 
-      if (parsed.length === 1) {
-        stage.classList.add('is-single');
-      }
-
-      /* ═══ Countdown rendering with urgency state ═══ */
+      /* Countdown rendering */
       function pad(n) { return n < 10 ? '0' + n : '' + n; }
       function renderCountdown(idx) {
         var slot = slidesEl.querySelector('[data-cd-slot="' + idx + '"]');
@@ -2408,19 +2492,13 @@
         endOfEvent.setHours(23, 59, 59, 999);
 
         if (now >= startMoment && now <= endOfEvent) {
-          slot.innerHTML =
-            '<div class="announce-countdown is-live">' +
-              '<span class="cd-live-text">Happening Now</span>' +
-            '</div>';
+          slot.innerHTML = '<div class="announce-countdown is-live"><span class="cd-live-text">Happening Now</span></div>';
           return;
         }
 
         var ms = startMoment - now;
         if (ms <= 0) {
-          slot.innerHTML =
-            '<div class="announce-countdown is-live">' +
-              '<span class="cd-live-text">Happening Now</span>' +
-            '</div>';
+          slot.innerHTML = '<div class="announce-countdown is-live"><span class="cd-live-text">Happening Now</span></div>';
           return;
         }
 
@@ -2429,8 +2507,6 @@
         var hours = Math.floor((totalSec % 86400) / 3600);
         var mins  = Math.floor((totalSec % 3600) / 60);
         var secs  = totalSec % 60;
-
-        // Urgency: <= 24 hours
         var urgentClass = (totalSec <= 86400) ? ' is-urgent' : '';
 
         slot.innerHTML =
@@ -2442,7 +2518,7 @@
           '</div>';
       }
 
-      /* ═══ Rotation state ═══ */
+      /* Rotation state */
       var currentIdx = 0;
       var rotateTimer = null;
       var countdownTimer = null;
@@ -2454,7 +2530,6 @@
         progFill.classList.remove('is-running');
         progFill.style.transition = 'none';
         progFill.style.width = '0%';
-        // force reflow
         void progFill.offsetWidth;
         progFill.style.transition = 'width ' + ROTATE_MS + 'ms linear';
         progFill.classList.add('is-running');
@@ -2481,16 +2556,12 @@
 
       function advance() {
         if (paused || !inView || parsed.length < 2) return;
-        var next = (currentIdx + 1) % parsed.length;
-        setActive(next);
+        setActive((currentIdx + 1) % parsed.length);
       }
 
       function startTimers() {
         stopTimers();
-        if (parsed.length > 1) {
-          rotateTimer = setInterval(advance, ROTATE_MS);
-          resetProgress();
-        }
+        if (parsed.length > 1) { rotateTimer = setInterval(advance, ROTATE_MS); resetProgress(); }
         countdownTimer = setInterval(function () { renderCountdown(currentIdx); }, 1000);
       }
       function stopTimers() {
@@ -2502,34 +2573,29 @@
       renderCountdown(0);
       startTimers();
 
-      /* ═══ Pause on hover (desktop) ═══ */
+      /* Pause on hover */
       stage.addEventListener('mouseenter', function () { paused = true; pauseProgress(); });
-      stage.addEventListener('mouseleave', function () { paused = false; if (inView) { startTimers(); } });
+      stage.addEventListener('mouseleave', function () { paused = false; if (inView) startTimers(); });
 
-      /* ═══ Pause when tab hidden ═══ */
+      /* Pause when tab hidden */
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) { stopTimers(); }
+        if (document.hidden) stopTimers();
         else { renderCountdown(currentIdx); if (inView && !paused) startTimers(); }
       });
 
-      /* ═══ Pause when scrolled fully out of viewport ═══
-         threshold: 0 + generous rootMargin means ANY visible sliver
-         (plus 300px buffer above and below) counts as "in view". Prevents
-         the tall full-bleed stage from being wrongly marked out-of-view
-         when the user is looking at it but the top/bottom extend beyond
-         the viewport. */
+      /* Pause when scrolled out of viewport */
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             inView = entry.isIntersecting;
-            if (!inView) { stopTimers(); }
-            else if (!paused && !document.hidden) { startTimers(); }
+            if (!inView) stopTimers();
+            else if (!paused && !document.hidden) startTimers();
           });
         }, { threshold: 0, rootMargin: '300px 0px 300px 0px' });
         io.observe(stage);
       }
 
-      /* ═══ Dot clicks — jump + reset rotation ═══ */
+      /* Dot clicks */
       dotsEl.addEventListener('click', function (e) {
         var btn = e.target.closest('.dot');
         if (!btn) return;
@@ -2539,30 +2605,27 @@
         if (inView && !paused) startTimers();
       });
 
-      /* ═══ Prev / Next arrow clicks — reset rotation ═══ */
+      /* Prev / Next arrows */
       function goPrev() {
         if (parsed.length < 2) return;
-        var next = (currentIdx - 1 + parsed.length) % parsed.length;
-        setActive(next);
+        setActive((currentIdx - 1 + parsed.length) % parsed.length);
         if (inView && !paused) startTimers();
       }
       function goNext() {
         if (parsed.length < 2) return;
-        var next = (currentIdx + 1) % parsed.length;
-        setActive(next);
+        setActive((currentIdx + 1) % parsed.length);
         if (inView && !paused) startTimers();
       }
       if (prevBtn) prevBtn.addEventListener('click', goPrev);
       if (nextBtn) nextBtn.addEventListener('click', goNext);
 
-      /* Keyboard: ← / → arrows when stage has focus */
       stage.setAttribute('tabindex', '0');
       stage.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowLeft')  { e.preventDefault(); goPrev(); }
         if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
       });
 
-      /* ═══ Add-to-calendar button clicks ═══ */
+      /* Add-to-calendar clicks */
       slidesEl.addEventListener('click', function (e) {
         var btn = e.target.closest('[data-cal-idx]');
         if (!btn) return;
@@ -2573,7 +2636,7 @@
         downloadICS(parsed[cidx]);
       });
 
-      /* ═══ Swipe gestures (mobile) ═══ */
+      /* Swipe gestures */
       var touchStartX = null, touchStartY = null, touchStartT = 0;
       stage.addEventListener('touchstart', function (e) {
         paused = true;
@@ -2593,14 +2656,12 @@
         var dt = Date.now() - touchStartT;
         touchStartX = null;
         var absDx = Math.abs(dx), absDy = Math.abs(dy);
-        // Horizontal swipe: >40px, faster than vertical, under 800ms
         if (absDx > 40 && absDx > absDy && dt < 800 && parsed.length > 1) {
           var next = dx < 0
             ? (currentIdx + 1) % parsed.length
             : (currentIdx - 1 + parsed.length) % parsed.length;
           setActive(next);
         }
-        // Grace period before auto-rotate resumes
         setTimeout(function () {
           paused = false;
           if (inView && !document.hidden) startTimers();
@@ -2611,5 +2672,3 @@
 
 </body>
 </html>
-
-
