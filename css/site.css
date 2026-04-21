@@ -682,18 +682,24 @@ body::after {
   right: 0;
   z-index: var(--z-nav);
   padding: 16px 0;
+  background: rgba(20, 34, 64, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(201, 149, 44, 0.08);
   transition: background var(--dur) var(--ease-out),
               padding var(--dur) var(--ease-out),
-              box-shadow var(--dur) var(--ease-out);
+              box-shadow var(--dur) var(--ease-out),
+              border-color var(--dur) var(--ease-out);
 }
 
 /* Scrolled state — added via JS */
 .site-nav.scrolled {
   background: rgba(20, 34, 64, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 10px 0;
   box-shadow: 0 1px 0 var(--line);
+  border-bottom-color: rgba(201, 149, 44, 0.12);
 }
 
 .nav-inner {
