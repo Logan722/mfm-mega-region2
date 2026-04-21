@@ -2090,6 +2090,21 @@ img[src*="logo"] {
   .program-card-body {
     padding: 24px;
   }
+
+  /* iOS zoom prevention — inputs < 16px trigger auto-zoom on focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="search"],
+  input[type="url"],
+  input[type="number"],
+  select,
+  textarea,
+  .form-input,
+  .form-textarea,
+  .form-select {
+    font-size: 16px;
+  }
 }
 
 /* ── Reduced Motion ── */
@@ -2185,6 +2200,39 @@ img[src*="logo"] {
     bottom: 18px;
     width: 44px;
     height: 44px;
+  }
+}
+
+
+/* ============================================================
+   17. SAFE AREA & MOBILE POLISH
+   ============================================================ */
+
+/* Safe-area for notched phones (iPhone X+) */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .site-footer {
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
+  .back-to-top {
+    bottom: calc(18px + env(safe-area-inset-bottom));
+  }
+  .drawer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Ensure no horizontal overflow on any page */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Touch action optimization for cards */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover,
+  .branch-card:hover,
+  .schedule-card:hover,
+  .panel:hover {
+    transform: none;
   }
 }
 
