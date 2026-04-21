@@ -817,67 +817,166 @@
       .announce-cta { padding: 10px 16px; font-size: 0.78rem; }
     }
 
-        /* ── Section: Weekly (Cream) — Compact 3-col ── */
-    .weekly-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 920px;
-      margin: 0 auto;
+        /* ── Program Spotlight — Tabbed single-program view ── */
+    .prog-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 36px;
     }
-    .weekly-card {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 16px;
+    .prog-tab {
+      appearance: none;
+      background: transparent;
+      border: 1px solid rgba(201, 149, 44, 0.2);
+      border-radius: 999px;
+      padding: 8px 22px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+    }
+    .prog-tab:hover {
+      border-color: rgba(201, 149, 44, 0.4);
+      color: var(--cream);
+    }
+    .prog-tab.is-active {
+      background: rgba(201, 149, 44, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* Spotlight content */
+    .prog-spotlight {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
       align-items: center;
-      background: var(--bg-white);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 10px;
-      padding: 18px;
-      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: spotlightIn 0.5s var(--ease-out) both;
     }
-    .weekly-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(20, 34, 64, 0.08);
-      border-color: var(--line-white-strong);
+    .prog-spotlight.is-active {
+      display: grid;
     }
-    .weekly-card img {
-      width: 72px;
-      height: 72px;
-      object-fit: cover;
-      border-radius: 8px;
-      background: var(--bg-sand);
+    @keyframes spotlightIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .prog-flyer {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+    .prog-flyer img {
+      width: 100%;
+      height: auto;
       display: block;
     }
-    .weekly-card-body { min-width: 0; }
-    .weekly-day {
+
+    .prog-details { max-width: 400px; }
+    .prog-day {
       font-family: var(--font-sans);
-      font-size: 0.64rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      margin-bottom: 3px;
+      margin-bottom: 10px;
     }
-    .weekly-day--fire { color: var(--fire); }
-    .weekly-day--gold { color: var(--gold); }
-    .weekly-day--navy { color: var(--navy); opacity: 0.7; }
-    .weekly-card-body h4 {
+    .prog-day--fire { color: var(--fire-light); }
+    .prog-day--gold { color: var(--gold-light); }
+    .prog-day--dim { color: var(--gold); }
+
+    .prog-details h3 {
       font-family: var(--font-serif);
-      font-size: 0.98rem;
-      font-weight: 500;
-      color: var(--navy);
-      line-height: 1.25;
-      margin-bottom: 3px;
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 8px;
     }
-    .weekly-card-body p {
-      font-size: 0.78rem;
-      color: var(--text-on-white);
-      line-height: 1.45;
-      margin: 0;
+    .prog-time {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .prog-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.65;
+      margin-bottom: 24px;
     }
 
-    @media (max-width: 960px) {
-      .weekly-grid { grid-template-columns: 1fr; max-width: 480px; }
+    /* Countdown inside spotlight */
+    .prog-countdown {
+      display: inline-flex;
+      align-items: stretch;
+      gap: 0;
+      padding: 4px;
+      background: rgba(15, 26, 48, 0.5);
+      border: 1px solid rgba(201, 149, 44, 0.2);
+      border-radius: 10px;
+      margin-bottom: 24px;
+    }
+    .prog-cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      min-width: 54px;
+      border-right: 1px solid rgba(201, 149, 44, 0.1);
+    }
+    .prog-cd-unit:last-child { border-right: none; }
+    .prog-cd-num {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 3px;
+      font-variant-numeric: tabular-nums;
+    }
+    .prog-cd-lbl {
+      font-family: var(--font-sans);
+      font-size: 0.56rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .prog-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .prog-cta:hover { color: var(--fire-light); }
+    .prog-cta svg { width: 14px; height: 14px; stroke: currentColor; }
+
+    @media (max-width: 768px) {
+      .prog-spotlight {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+      .prog-flyer { max-width: 320px; margin: 0 auto; }
+      .prog-details { max-width: 100%; }
+      .prog-countdown { margin-left: auto; margin-right: auto; }
+      .prog-tabs { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 480px) {
+      .prog-cd-unit { padding: 6px 10px; min-width: 46px; }
+      .prog-cd-num { font-size: 1.1rem; }
     }
 
     /* ── Featured + Supporting Video Layout ── */
@@ -1592,7 +1691,7 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         6. WEEKLY PROGRAMS — Compact 3-col Grid (Navy)
+         6. WEEKLY PROGRAMS — Program Spotlight with Tabs (Navy)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--dark" id="weekly">
       <div class="container">
@@ -1603,35 +1702,69 @@
           <p>Regular services and prayer programs you can join wherever you are.</p>
         </div>
 
-        <div class="weekly-grid reveal-stagger">
+        <!-- Tabs -->
+        <div class="prog-tabs reveal" id="progTabs">
+          <button class="prog-tab is-active" data-prog="0">Tuesday</button>
+          <button class="prog-tab" data-prog="1">Thursday</button>
+          <button class="prog-tab" data-prog="2">Weekend</button>
+        </div>
 
-          <a href="events.html#healing-deliverance" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+        <!-- Spotlight panels -->
+        <div class="prog-spotlight is-active reveal" data-panel="0">
+          <div class="prog-flyer">
             <img src="img/healing-deliverance-hour.jpg" alt="Healing and Deliverance Hour">
-            <div class="weekly-card-body">
-              <div class="weekly-day weekly-day--fire">Every Tuesday</div>
-              <h4>Healing &amp; Deliverance Hour</h4>
-              <p>7:00 PM CT / 8:00 PM ET · Online</p>
+          </div>
+          <div class="prog-details">
+            <div class="prog-day prog-day--fire">Every Tuesday</div>
+            <h3>Healing &amp; Deliverance Hour</h3>
+            <p class="prog-time">7:00 PM CT / 8:00 PM ET · Online Prayerline</p>
+            <p class="prog-desc">Weekly prayer, healing, and breakthrough. Join the online prayerline where prayer warriors intercede and the power of God is released for healing and deliverance.</p>
+            <div class="prog-countdown" data-prog-cd="0"></div>
+            <div>
+              <a href="events.html#healing-deliverance" class="prog-cta">
+                Learn More
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </div>
-          </a>
+          </div>
+        </div>
 
-          <a href="events.html#open-heaven" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="prog-spotlight" data-panel="1">
+          <div class="prog-flyer">
             <img src="img/open-heaven-encounter.png" alt="Open Heaven Encounter">
-            <div class="weekly-card-body">
-              <div class="weekly-day weekly-day--gold">Every Thursday</div>
-              <h4>Open Heaven Encounter</h4>
-              <p>6:00 PM CST · Multi-timezone</p>
+          </div>
+          <div class="prog-details">
+            <div class="prog-day prog-day--gold">Every Thursday</div>
+            <h3>Open Heaven Encounter</h3>
+            <p class="prog-time">6:00 PM CST · Multi-timezone International</p>
+            <p class="prog-desc">An international prayer service connecting believers across five time zones — USA, Ghana, UK, Nigeria, and Canada — in corporate intercession and prophetic encounter.</p>
+            <div class="prog-countdown" data-prog-cd="1"></div>
+            <div>
+              <a href="events.html#open-heaven" class="prog-cta">
+                Learn More
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </div>
-          </a>
+          </div>
+        </div>
 
-          <a href="events.html#deliverance" class="weekly-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="prog-spotlight" data-panel="2">
+          <div class="prog-flyer">
             <img src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City">
-            <div class="weekly-card-body">
-              <div class="weekly-day weekly-day--navy">Every Weekend</div>
-              <h4>Weekend Deliverance</h4>
-              <p>Fri–Sun · Prayer City, Houston</p>
+          </div>
+          <div class="prog-details">
+            <div class="prog-day prog-day--dim">Every Weekend</div>
+            <h3>Weekend Deliverance</h3>
+            <p class="prog-time">Friday – Sunday · In Person</p>
+            <p class="prog-desc">Intensive deliverance services at MFM USA Prayer City in Houston. Come in person for powerful sessions of prayer, warfare, and total deliverance from every bondage.</p>
+            <div class="prog-countdown" data-prog-cd="2"></div>
+            <div>
+              <a href="events.html#deliverance" class="prog-cta">
+                Learn More
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </div>
-          </a>
-
+          </div>
         </div>
 
         <div class="text-center reveal" style="margin-top:48px;">
@@ -2130,6 +2263,78 @@
       function escH(s) { var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
       function esc(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     })();
+    /* ══════════════════════════════════════════════════════════
+       Program Spotlight — Tab switching + Countdown
+       ══════════════════════════════════════════════════════════ */
+    (function () {
+      var tabsEl = document.getElementById('progTabs');
+      if (!tabsEl) return;
+      var tabs = tabsEl.querySelectorAll('.prog-tab');
+      var panels = document.querySelectorAll('.prog-spotlight');
+
+      // Program schedule for countdowns
+      var progSchedule = [
+        { day: 2, hour: 19, min: 0 },  // Tuesday 7 PM
+        { day: 4, hour: 18, min: 0 },  // Thursday 6 PM
+        { day: 5, hour: 19, min: 0 }   // Friday 7 PM
+      ];
+
+      // Tab click handler
+      tabsEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('.prog-tab');
+        if (!btn) return;
+        var idx = btn.getAttribute('data-prog');
+
+        tabs.forEach(function (t) { t.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+
+        panels.forEach(function (p) {
+          p.classList.remove('is-active');
+          if (p.getAttribute('data-panel') === idx) {
+            p.classList.add('is-active');
+          }
+        });
+      });
+
+      // Countdown rendering
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function getNextOccurrence(sched) {
+        var now = new Date();
+        var target = new Date(now);
+        var daysAhead = (sched.day - now.getDay() + 7) % 7;
+        if (daysAhead === 0 && (now.getHours() > sched.hour || (now.getHours() === sched.hour && now.getMinutes() >= sched.min))) {
+          daysAhead = 7;
+        }
+        target.setDate(now.getDate() + daysAhead);
+        target.setHours(sched.hour, sched.min, 0, 0);
+        return target;
+      }
+
+      function renderProgCountdowns() {
+        progSchedule.forEach(function (sched, idx) {
+          var slot = document.querySelector('[data-prog-cd="' + idx + '"]');
+          if (!slot) return;
+          var target = getNextOccurrence(sched);
+          var diff = Math.max(0, target - new Date());
+          var d = Math.floor(diff / 86400000);
+          var h = Math.floor((diff % 86400000) / 3600000);
+          var m = Math.floor((diff % 3600000) / 60000);
+          var s = Math.floor((diff % 60000) / 1000);
+
+          slot.innerHTML =
+            '<div class="prog-cd-unit"><span class="prog-cd-num">' + pad(d) + '</span><span class="prog-cd-lbl">Days</span></div>' +
+            '<div class="prog-cd-unit"><span class="prog-cd-num">' + pad(h) + '</span><span class="prog-cd-lbl">Hrs</span></div>' +
+            '<div class="prog-cd-unit"><span class="prog-cd-num">' + pad(m) + '</span><span class="prog-cd-lbl">Min</span></div>' +
+            '<div class="prog-cd-unit"><span class="prog-cd-num">' + pad(s) + '</span><span class="prog-cd-lbl">Sec</span></div>';
+        });
+      }
+
+      renderProgCountdowns();
+      setInterval(renderProgCountdowns, 1000);
+    })();
+
+
     /* ── Back-to-Top Button ── */
     (function () {
       var btn = document.getElementById('backToTop');
