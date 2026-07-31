@@ -1538,9 +1538,9 @@
           <div class="hcd-divider"></div>
           <p class="hcd-program" id="hcdProgram">Loading…</p>
           <p class="hcd-day" id="hcdDay"></p>
-          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="hcd-join">
+          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="hcd-join" id="hcdJoin">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            Join Live on YouTube
+            <span class="cta-label">Join Live on YouTube</span>
           </a>
         </div>
 
@@ -1959,9 +1959,9 @@
               <div class="countdown-unit"><span class="num" id="cdSecs">--</span><span class="lbl">Secs</span></div>
             </div>
 
-            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm" style="width:100%;">
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm" style="width:100%;" id="cdJoin">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;"><path d="M8 5v14l11-7z"/></svg>
-              Join Live on YouTube
+              <span class="cta-label">Join Live on YouTube</span>
             </a>
 
             <p class="countdown-scripture">
@@ -2198,11 +2198,11 @@
        ══════════════════════════════════════════════════════════ */
     (function () {
       var programs = [
-        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT' },
-        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST' },
-        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT' },
-        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT' },
-        { day: 0, hour: 8,  min: 0, name: 'Sunday Worship', label: 'Sunday · 8:00 AM CT' }
+        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT', online: true },
+        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST', online: true },
+        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT', online: false },
+        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT', online: false },
+        { day: 0, hour: 8,  min: 0, name: 'Sunday Worship', label: 'Sunday · 8:00 AM CT', online: true }
       ];
       var eP = document.getElementById('hcdProgram');
       var eD = document.getElementById('hcdDay');
@@ -2235,6 +2235,12 @@
         if (!n) return;
         eP.textContent = n.program.name;
         eD.textContent = n.program.label;
+        (function (el, prog) {
+          if (!el) return;
+          var p = el.querySelector('svg path'), lb = el.querySelector('.cta-label');
+          if (prog.online === false) { el.setAttribute('href', 'https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075'); if (p) p.setAttribute('d', 'M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z'); if (lb) lb.textContent = 'Get Directions'; }
+          else { el.setAttribute('href', 'https://youtube.com/@mfmmegaregion2usa'); if (p) p.setAttribute('d', 'M8 5v14l11-7z'); if (lb) lb.textContent = 'Join Live on YouTube'; }
+        })(document.getElementById('hcdJoin'), n.program);
         var d = Math.max(0, n.target - new Date());
         eDy.textContent = pad(Math.floor(d / 864e5));
         eH.textContent = pad(Math.floor(d % 864e5 / 36e5));
@@ -2252,11 +2258,11 @@
        ══════════════════════════════════════════════════════════ */
     (function () {
       var programs = [
-        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT' },
-        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST' },
-        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT' },
-        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT' },
-        { day: 0, hour: 8,  min: 0, name: 'Sunday Worship', label: 'Sunday · 8:00 AM CT' }
+        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT', online: true },
+        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST', online: true },
+        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT', online: false },
+        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT', online: false },
+        { day: 0, hour: 8,  min: 0, name: 'Sunday Worship', label: 'Sunday · 8:00 AM CT', online: true }
       ];
 
       var elProg = document.getElementById('cdProgram');
@@ -2302,6 +2308,12 @@
 
         elProg.textContent = next.program.name;
         elDay.textContent = next.program.label;
+        (function (el, prog) {
+          if (!el) return;
+          var p = el.querySelector('svg path'), lb = el.querySelector('.cta-label');
+          if (prog.online === false) { el.setAttribute('href', 'https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075'); if (p) p.setAttribute('d', 'M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z'); if (lb) lb.textContent = 'Get Directions'; }
+          else { el.setAttribute('href', 'https://youtube.com/@mfmmegaregion2usa'); if (p) p.setAttribute('d', 'M8 5v14l11-7z'); if (lb) lb.textContent = 'Join Live on YouTube'; }
+        })(document.getElementById('cdJoin'), next.program);
 
         var diff = next.target - new Date();
         if (diff <= 0) { diff = 0; }
