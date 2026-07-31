@@ -347,7 +347,7 @@ collections:
 | **Deploy** | Auto-deploy on push to main |
 | **Forms** | Netlify Forms (contact / prayer requests) |
 | **CMS** | Decap CMS (events & announcements) |
-| **Domain** | TBD — recommended: `mfmmegaregion2usa.com` or similar |
+| **Domain** | TBD — recommended: `mfmmegaregion2usa.org` or similar |
 | **SSL** | Auto-provisioned by Netlify |
 | **Cost** | $0 hosting + optional domain (~$12/yr) |
 
@@ -446,7 +446,7 @@ Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md
 - [ ] **Leadership photos** — Some photos referenced may still be placeholders; confirm all `img/photos/*.jpg` exist
 - [ ] **Service schedule** — Confirm Sunday/midweek service times for Prayer City
 - [ ] **Netlify deployment** — Initial deploy + enable Identity (Invite-only) + enable Git Gateway + invite editors for CMS
-- [ ] **Custom domain** — Purchase `mfmmegaregion2usa.com` (used as canonical in sitemap/SEO) and point at Netlify
+- [ ] **Custom domain** — Purchase `mfmmegaregion2usa.org` (used as canonical in sitemap/SEO) and point at Netlify
 - [ ] **README.md** — Write deployment instructions for non-technical maintainers
 - [ ] **OG image** — Currently uses `logo.png` (square) for social cards; replace with a dedicated 1200×630 social card image for richer link previews
 - [ ] **Verify Pastor Oni site URL** — Cross-link points to `https://pastorolumideoni.com`; confirm this is the correct live URL

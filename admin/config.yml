@@ -19,9 +19,9 @@ media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
 # Friendly site URL shown in the CMS UI
-site_url: https://mfmmegaregion2usa.com
-display_url: https://mfmmegaregion2usa.com
-logo_url: https://mfmmegaregion2usa.com/img/logo.png
+site_url: https://mfmmegaregion2usa.org
+display_url: https://mfmmegaregion2usa.org
+logo_url: https://mfmmegaregion2usa.org/img/logo.png
 
 # Editorial workflow gives editors a "draft → review → publish" pipeline.
 # Disable this if you want one-click publishing instead.

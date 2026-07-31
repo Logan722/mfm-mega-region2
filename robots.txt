@@ -7,4 +7,4 @@ Disallow: /admin/
 Disallow: /img/uploads/
 Disallow: /_template.html
 
-Sitemap: https://mfmmegaregion2usa.com/sitemap.xml
+Sitemap: https://mfmmegaregion2usa.org/sitemap.xml
