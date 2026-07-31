@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- PAGE TITLE -->
-  <title>MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries</title>
+  <title>Mountain of Fire and Miracles Ministries — Mega Region 2 USA</title>
 
   <!-- SEO Meta -->
   <meta name="description" content="Mountain of Fire and Miracles Ministries, Mega Region 2 USA. A ministry devoted to the revival of apostolic signs, wonders and miracles. Join us for prayer, healing, and breakthrough.">
   <meta name="theme-color" content="#142240">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries">
+  <meta property="og:title" content="Mountain of Fire and Miracles Ministries — Mega Region 2 USA">
   <meta property="og:description" content="A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.">
   <meta property="og:type" content="website">
 
@@ -1382,9 +1382,9 @@
   <meta property="og:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries">
+  <meta property="og:image:alt" content="Mountain of Fire and Miracles Ministries — Mega Region 2 USA">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MFM Mega Region 2 USA — Mountain of Fire and Miracles Ministries">
+  <meta name="twitter:title" content="Mountain of Fire and Miracles Ministries — Mega Region 2 USA">
   <meta name="twitter:description" content="Mountain of Fire and Miracles Ministries, Mega Region 2 USA. A ministry devoted to the revival of apostolic signs, wonders and miracles. Join us for prayer, healing, and breakthrough.">
   <meta name="twitter:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
 </head>
@@ -1859,10 +1859,10 @@
             <img src="img/announcements/weekend-deliverance.jpg" alt="Weekend Deliverance at Prayer City">
           </div>
           <div class="prog-details">
-            <div class="prog-day prog-day--dim">Every Weekend</div>
+            <div class="prog-day prog-day--dim">Most Weekends</div>
             <h3>Weekend Deliverance</h3>
             <p class="prog-time">Friday – Sunday · In Person</p>
-            <p class="prog-desc">Intensive deliverance services at MFM USA Prayer City in Houston. Come in person for powerful sessions of prayer, warfare, and total deliverance from every bondage.</p>
+            <p class="prog-desc">Intensive deliverance services at MFM USA Prayer City in Houston. Come in person for powerful sessions of prayer, warfare, and total deliverance from every bondage. Held every weekend except the first weekend of the month, when Power Must Change Hands takes place.</p>
             <div class="prog-countdown" data-prog-cd="2"></div>
             <div>
               <a href="events.html#deliverance" class="prog-cta">
@@ -2198,12 +2198,7 @@
        Hero Countdown — ticks into hcd- elements
        ══════════════════════════════════════════════════════════ */
     (function () {
-      var programs = [
-        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT', online: true },
-        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST', online: true },
-        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT', online: false },
-        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT', online: false }
-      ];
+      // Weekly schedule is computed in getNext() — PMCH (1st Saturday) replaces Weekend Deliverance that weekend.
       var eP = document.getElementById('hcdProgram');
       var eD = document.getElementById('hcdDay');
       var eDy = document.getElementById('hcdDays');
@@ -2213,16 +2208,28 @@
       if (!eP) return;
 
       function getNext() {
-        var now = new Date(), best = null, bd = Infinity;
-        for (var w = 0; w < 2; w++) {
-          for (var i = 0; i < programs.length; i++) {
-            var p = programs[i], t = new Date(now);
-            var da = (p.day - now.getDay() + 7) % 7 + (w * 7);
-            if (da === 0 && (now.getHours() > p.hour || (now.getHours() === p.hour && now.getMinutes() >= p.min))) da = 7;
-            t.setDate(now.getDate() + da);
-            t.setHours(p.hour, p.min, 0, 0);
-            var d = t - now;
-            if (d > 0 && d < bd) { bd = d; best = { program: p, target: t }; }
+        var now = new Date();
+        function firstSat(y, m) { var f = new Date(y, m, 1); return 1 + ((6 - f.getDay() + 7) % 7); }
+        var best = null, bd = Infinity;
+        for (var i = 0; i < 14; i++) {
+          var dt = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+          var y = dt.getFullYear(), m = dt.getMonth(), date = dt.getDate(), dow = dt.getDay();
+          var svc = null;
+          if (dow === 2) svc = { name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT', h: 19, mi: 0, online: true };
+          else if (dow === 4) svc = { name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST', h: 18, mi: 0, online: true };
+          else if (dow === 6) {
+            svc = (date === firstSat(y, m))
+              ? { name: 'Power Must Change Hands', label: '1st Saturday · 8:00 AM CT', h: 8, mi: 0, online: false }
+              : { name: 'Weekend Deliverance', label: 'Saturday · 8:00 AM CT', h: 8, mi: 0, online: false };
+          } else if (dow === 5) {
+            var sat = new Date(y, m, date + 1);
+            if (sat.getDate() !== firstSat(sat.getFullYear(), sat.getMonth()))
+              svc = { name: 'Weekend Deliverance', label: 'Friday · 7:00 PM CT', h: 19, mi: 0, online: false };
+          }
+          if (svc) {
+            var t = new Date(y, m, date, svc.h, svc.mi, 0, 0);
+            var diff = t - now;
+            if (diff > 0 && diff < bd) { bd = diff; best = { program: { name: svc.name, label: svc.label, online: svc.online }, target: t }; }
           }
         }
         return best;
@@ -2257,12 +2264,7 @@
        Next Service Countdown Timer
        ══════════════════════════════════════════════════════════ */
     (function () {
-      var programs = [
-        { day: 2, hour: 19, min: 0, name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT', online: true },
-        { day: 4, hour: 18, min: 0, name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST', online: true },
-        { day: 5, hour: 19, min: 0, name: 'Weekly Deliverance', label: 'Friday · 7:00 PM CT', online: false },
-        { day: 6, hour: 8,  min: 0, name: 'Weekly Deliverance', label: 'Saturday · 8:00 AM CT', online: false }
-      ];
+      // Weekly schedule is computed in getNext() — PMCH (1st Saturday) replaces Weekend Deliverance that weekend.
 
       var elProg = document.getElementById('cdProgram');
       var elDay = document.getElementById('cdDay');
@@ -2274,26 +2276,27 @@
 
       function getNext() {
         var now = new Date();
-        var best = null;
-        var bestDiff = Infinity;
-
-        for (var w = 0; w < 2; w++) {
-          for (var i = 0; i < programs.length; i++) {
-            var p = programs[i];
-            var target = new Date(now);
-            var daysAhead = (p.day - now.getDay() + 7) % 7 + (w * 7);
-            if (daysAhead === 0 && (now.getHours() > p.hour || (now.getHours() === p.hour && now.getMinutes() >= p.min))) {
-              daysAhead = 7 * (w === 0 ? 1 : 1);
-              if (w > 0) continue;
-              daysAhead = 7;
-            }
-            target.setDate(now.getDate() + daysAhead);
-            target.setHours(p.hour, p.min, 0, 0);
-            var diff = target - now;
-            if (diff > 0 && diff < bestDiff) {
-              bestDiff = diff;
-              best = { program: p, target: target, diff: diff };
-            }
+        function firstSat(y, m) { var f = new Date(y, m, 1); return 1 + ((6 - f.getDay() + 7) % 7); }
+        var best = null, bd = Infinity;
+        for (var i = 0; i < 14; i++) {
+          var dt = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+          var y = dt.getFullYear(), m = dt.getMonth(), date = dt.getDate(), dow = dt.getDay();
+          var svc = null;
+          if (dow === 2) svc = { name: 'Healing & Deliverance Hour', label: 'Tuesday · 7:00 PM CT', h: 19, mi: 0, online: true };
+          else if (dow === 4) svc = { name: 'Open Heaven Encounter', label: 'Thursday · 6:00 PM CST', h: 18, mi: 0, online: true };
+          else if (dow === 6) {
+            svc = (date === firstSat(y, m))
+              ? { name: 'Power Must Change Hands', label: '1st Saturday · 8:00 AM CT', h: 8, mi: 0, online: false }
+              : { name: 'Weekend Deliverance', label: 'Saturday · 8:00 AM CT', h: 8, mi: 0, online: false };
+          } else if (dow === 5) {
+            var sat = new Date(y, m, date + 1);
+            if (sat.getDate() !== firstSat(sat.getFullYear(), sat.getMonth()))
+              svc = { name: 'Weekend Deliverance', label: 'Friday · 7:00 PM CT', h: 19, mi: 0, online: false };
+          }
+          if (svc) {
+            var t = new Date(y, m, date, svc.h, svc.mi, 0, 0);
+            var diff = t - now;
+            if (diff > 0 && diff < bd) { bd = diff; best = { program: { name: svc.name, label: svc.label, online: svc.online }, target: t }; }
           }
         }
         return best;
