@@ -341,7 +341,8 @@
       .hero-ministry-name { justify-content: center; }
       .hero-ministry-name::before { display: none; }
       .hero-mission-line { max-width: 100%; }
-      .hero-ctas { justify-content: center; }
+      .hero-diag { min-height: auto; }
+      .hero-ctas { justify-content: center; flex-wrap: wrap; }
       .hero-right { padding: 16px 24px 32px; }
       .hero-diag-bg { display: none; }
       .hero-diag-line { display: none; }
@@ -351,6 +352,8 @@
     }
     @media (max-width: 480px) {
       .hero-big-word { font-size: clamp(2.8rem, 14vw, 3.8rem); }
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas .btn { width: 100%; white-space: nowrap; }
       .hero-motto-strip { gap: 14px; flex-wrap: wrap; }
       .hero-motto-strip span { font-size: 0.66rem; }
     }
@@ -1964,6 +1967,69 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
+         PLAN YOUR VISIT (Navy) — service times + map
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--dark" id="visit">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Plan Your Visit</p>
+          <h2>Come Worship With Us</h2>
+          <p>You are welcome at MFM USA Prayer City in Houston. Here is when we gather and how to find us.</p>
+        </div>
+        <div class="visit-grid reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:stretch;">
+          <div style="background:var(--bg-navy-panel); border:1px solid var(--line-navy); border-radius:14px; padding:32px 30px;">
+            <h3 style="color:var(--cream); margin-bottom:18px;">Service Times</h3>
+            <ul style="list-style:none; padding:0; margin:0 0 24px; display:flex; flex-direction:column; gap:12px;">
+              <li style="display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line-navy); padding-bottom:12px;"><span style="color:var(--cream);">Healing &amp; Deliverance Hour</span><span style="color:var(--text-on-navy);">Tue · 7:00 PM · Online</span></li>
+              <li style="display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line-navy); padding-bottom:12px;"><span style="color:var(--cream);">Open Heaven Encounter</span><span style="color:var(--text-on-navy);">Thu · 6:00 PM · Online</span></li>
+              <li style="display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line-navy); padding-bottom:12px;"><span style="color:var(--cream);">Weekend Deliverance</span><span style="color:var(--text-on-navy);">Fri–Sun · In Person</span></li>
+              <li style="display:flex; justify-content:space-between; gap:16px;"><span style="color:var(--cream);">Power Must Change Hands</span><span style="color:var(--text-on-navy);">1st Sat · 8:00 AM</span></li>
+            </ul>
+            <p style="color:var(--cream); font-weight:600; margin-bottom:4px;">MFM USA Prayer City</p>
+            <p style="color:var(--text-on-navy); margin-bottom:2px;">10000 Kleckley Dr, Houston, TX 77075</p>
+            <p style="margin-bottom:20px;"><a href="tel:+18327888504" style="color:var(--fire);">(832) 788-8504</a></p>
+            <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Get Directions</a>
+          </div>
+          <div style="border-radius:14px; overflow:hidden; border:1px solid var(--line-navy); min-height:340px;">
+            <iframe title="Map to MFM USA Prayer City" src="https://www.google.com/maps?q=10000+Kleckley+Dr,+Houston,+TX+77075&output=embed" width="100%" height="100%" style="border:0; min-height:340px; display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         TESTIMONIES (Cream) — share your testimony
+         ═══════════════════════════════════════════════════════ -->
+    <section class="section section--cream" id="testimonies">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Testimonies</p>
+          <h2>Testimonies of Fire</h2>
+          <p>The God who answers by fire is still moving. Has He touched your life? Share your testimony and encourage someone today.</p>
+        </div>
+        <div class="reveal" style="max-width:640px; margin:0 auto;">
+          <form class="prayer-form" id="testimonyForm" data-ajax data-success="#testimonySuccess" name="testimonies" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="testimonies">
+            <p style="display:none;"><input name="bot-field"></p>
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Your Name" required>
+              <input type="text" name="location" placeholder="City / Branch (optional)">
+            </div>
+            <textarea name="testimony" placeholder="Share what God has done…" required></textarea>
+            <button type="submit" class="btn btn--fire">Share Your Testimony</button>
+          </form>
+          <div class="form-success" id="testimonySuccess" role="status" style="display:none; background:var(--bg-sand); border:1px solid var(--bg-sand-border); border-left:4px solid var(--gold); border-radius:12px; padding:30px 26px;">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3 style="margin-bottom:8px;">Praise God — thank you for sharing!</h3>
+            <p style="color:var(--text-on-white); line-height:1.7; margin:0;">Your testimony has been received and may be shared to encourage others. To God be all the glory.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
          8. PRAYER REQUEST + NEXT SERVICE COUNTDOWN (White)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="prayer">
@@ -1976,7 +2042,7 @@
             <h3>Let Us Stand With You in Prayer</h3>
             <p class="form-subtitle">Whatever you are facing — sickness, bondage, delay, or spiritual attack — submit your prayer request and our prayer warriors will stand with you before the throne of God.</p>
 
-            <form class="prayer-form" name="prayer-requests" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <form class="prayer-form" id="prayerForm" data-ajax data-success="#prayerSuccess" name="prayer-requests" method="POST" data-netlify="true" netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="prayer-requests">
               <p style="display:none;"><input name="bot-field"></p>
               <div class="form-row">
@@ -1990,6 +2056,11 @@
               </button>
               <p class="prayer-form-note">Your request is confidential and will be prayed over by our prayer team.</p>
             </form>
+            <div class="form-success" id="prayerSuccess" role="status" style="display:none; background:var(--bg-sand); border:1px solid var(--bg-sand-border); border-left:4px solid var(--gold); border-radius:12px; padding:30px 26px;">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <h3 style="margin-bottom:8px;">Your prayer request has been received</h3>
+              <p style="color:var(--text-on-white); line-height:1.7; margin:0;">Our prayer warriors are standing with you before the throne of God. Be encouraged — the God who answers by fire is with you.</p>
+            </div>
           </div>
 
           <!-- Countdown Sidebar -->
@@ -2024,6 +2095,21 @@
       </div>
     </section>
 
+    <!-- AJAX handler: prayer + testimony forms show an inline confirmation -->
+    <script>
+      (function () {
+        document.querySelectorAll('form[data-ajax]').forEach(function (form) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var ok = document.querySelector(form.getAttribute('data-success'));
+            var body = new URLSearchParams(new FormData(form)).toString();
+            fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
+              .then(function () { form.style.display = 'none'; if (ok) { ok.style.display = 'block'; ok.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } })
+              .catch(function () { form.submit(); });
+          });
+        });
+      })();
+    </script>
 
   </main>
 
