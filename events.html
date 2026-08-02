@@ -1183,6 +1183,27 @@
 
       parsed.sort(function (a, b) { return a.start - b.start; });
 
+      /* SEO: inject Event structured data for the upcoming events */
+      try {
+        var ld = parsed.map(function (it) {
+          var ev = it.ev;
+          var o = { "@context": "https://schema.org", "@type": "Event", "name": ev.title, "startDate": ev.date,
+                    "eventStatus": "https://schema.org/EventScheduled",
+                    "organizer": { "@type": "Organization", "name": "MFM Mega Region 2 USA", "url": "https://mfmmegaregion2usa.org/" } };
+          if (ev.endDate) o.endDate = ev.endDate;
+          if (ev.description) o.description = ev.description;
+          if (ev.image) o.image = "https://mfmmegaregion2usa.org/" + ev.image;
+          o.eventAttendanceMode = /virtual|zoom|online/i.test(ev.venue || "")
+            ? "https://schema.org/OnlineEventAttendanceMode" : "https://schema.org/OfflineEventAttendanceMode";
+          if (ev.venue) o.location = { "@type": "Place", "name": ev.venue };
+          return o;
+        });
+        var ldScript = document.createElement('script');
+        ldScript.type = 'application/ld+json';
+        ldScript.textContent = JSON.stringify(ld);
+        document.head.appendChild(ldScript);
+      } catch (e) {}
+
       if (parsed.length === 0) {
         grid.style.display = 'none';
         if (fallback) fallback.style.display = 'block';
