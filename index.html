@@ -1729,6 +1729,17 @@
         "image": "img/announcements/florida-deliverance-crusade.jpg",
         "alt": "The Great Florida Deliverance Crusade — Sunday September 27, 2026, MFM Tampa Florida",
         "anchor": "florida-deliverance-crusade"
+      },
+      {
+        "date": "2026-10-10",
+        "title": "Gen218 Regional Prayer Conference",
+        "theme": "\"And God said…\" (Genesis 2:18)",
+        "time": "10:00 AM CST",
+        "venue": "MFM Prayer City — 10000 Kleckley Dr, Houston, TX 77075",
+        "host": "Gen218, Mega Region 2 USA",
+        "image": "img/announcements/gen218-regional-conference.jpg",
+        "alt": "Gen218 Regional Prayer Conference — Saturday October 10, 2026, MFM Prayer City",
+        "anchor": "gen218-regional-conference"
       }
     ]
     </script>
@@ -2680,12 +2691,15 @@
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
       function eyebrowFor(item) {
-        var delta = Math.round((item.start - today) / 86400000);
-        var multi = item.start.getTime() !== item.end.getTime();
-        if (delta <= 0) return multi ? 'Happening Now' : 'Happening Today';
-        if (delta === 1) return 'Tomorrow';
-        if (delta <= 7) return 'This Week';
-        return 'Next Up';
+        var startDelta = Math.round((item.start - today) / 86400000);
+        var isMulti = item.end.getTime() !== item.start.getTime();
+        if (startDelta > 0) {
+          if (startDelta === 1) return 'Tomorrow';
+          if (startDelta <= 7) return 'This Week';
+          return 'Next Up';
+        }
+        if (startDelta === 0) return isMulti ? 'Starts Today' : 'Happening Today';
+        return 'Ongoing';
       }
 
       function eventStartMoment(item) {

@@ -780,6 +780,21 @@
         "dateDisplay": "Sunday, September 27, 2026",
         "description": "A great deliverance crusade hosted by MFM Tampa, Florida — a mighty gathering of fire, deliverance, and the demonstration of the power of God. Venue to be announced.",
         "badgeStyle": "fire"
+      },
+      {
+        "date": "2026-10-10",
+        "title": "Gen218 Regional Prayer Conference",
+        "theme": "\"And God said…\" (Genesis 2:18)",
+        "time": "10:00 AM CST",
+        "venue": "MFM Prayer City — 10000 Kleckley Dr, Houston, TX 77075",
+        "host": "Gen218, Mega Region 2 USA",
+        "image": "img/announcements/gen218-regional-conference.jpg",
+        "alt": "Gen218 Regional Prayer Conference — Saturday October 10, 2026, MFM Prayer City",
+        "anchor": "gen218-regional-conference",
+        "dateDisplay": "Saturday, October 10, 2026",
+        "description": "A regional prayer conference for singles under Gen218 — a time for powerful prayers, deliverance, and sound teaching on meeting your spouse and marital settlement. Come expectant, leave transformed.",
+        "features": ["Powerful Prayers", "Deliverance", "Sound Teaching", "Marital Settlement"],
+        "badgeStyle": "fire"
       }
     ]
     </script>
@@ -1177,12 +1192,15 @@
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
       function eyebrowLabel(item) {
-        var delta = Math.round((item.start - today) / 86400000);
-        var multi = item.start.getTime() !== item.end.getTime();
-        if (delta <= 0) return multi ? 'Happening Now' : 'Today';
-        if (delta === 1) return 'Tomorrow';
-        if (delta <= 7) return 'This Week';
-        return 'Upcoming';
+        var startDelta = Math.round((item.start - today) / 86400000);
+        var isMulti = item.end.getTime() !== item.start.getTime();
+        if (startDelta > 0) {
+          if (startDelta === 1) return 'Tomorrow';
+          if (startDelta <= 7) return 'This Week';
+          return 'Upcoming';
+        }
+        if (startDelta === 0) return isMulti ? 'Starts Today' : 'Today';
+        return 'Ongoing';
       }
 
       /* ── Render thumbnail cards ── */
@@ -1193,7 +1211,7 @@
 
         html +=
           '<div class="event-thumb reveal" data-idx="' + i + '" id="' + esc(ev.anchor || '') + '">' +
-            '<img class="event-thumb-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">' +
+            '<img class="event-thumb-img" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '" loading="lazy" decoding="async">' +
             '<div class="event-thumb-body">' +
               '<span class="event-thumb-badge' + badgeClass + '">' + esc(eyebrowLabel(parsed[i])) + '</span>' +
               '<h4>' + esc(ev.title) + '</h4>' +
@@ -1203,6 +1221,10 @@
           '</div>';
       }
       grid.innerHTML = html;
+      /* Reveal injected cards immediately so they can never get stuck invisible */
+      requestAnimationFrame(function () {
+        grid.querySelectorAll('.event-thumb').forEach(function (t) { t.classList.add('visible'); });
+      });
 
       /* ── Build detail panel HTML for a given event ── */
       function buildDetail(item) {
@@ -1213,7 +1235,7 @@
         h += '<div class="event-expand" style="position:relative;">';
         h += '<button class="event-expand-close" aria-label="Close details">&times;</button>';
         h += '<div class="event-expand-inner">';
-        h += '<img class="event-expand-flyer" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '">';
+        h += '<img class="event-expand-flyer" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '" loading="lazy" decoding="async">';
         h += '<div class="event-expand-body">';
 
         h += '<span class="event-expand-badge' + badgeClass + '">' + esc(eyebrowLabel(item)) + '</span>';
