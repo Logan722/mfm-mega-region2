@@ -77,12 +77,21 @@
     .dir-expand { flex-shrink:0; color:#b0ada5; transition:transform 0.3s; }
     .dir-row.open .dir-expand { transform:rotate(180deg); }
     .dir-row-details { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
-    .dir-row.open .dir-row-details { max-height:300px; }
+    .dir-row.open .dir-row-details { max-height:480px; }
     .dir-detail { padding:4px 14px 4px 48px; font-size:0.8rem; color:#5a6270; line-height:1.6; }
     .dir-detail:last-child { padding-bottom:12px; }
     .dir-detail strong { color:#8a8f98; font-weight:500; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; margin-right:4px; }
     .dir-detail a { color:#5a6270; text-decoration:none; }
     .dir-detail a:hover { color:#c9952c; }
+    .dir-social { display:flex; flex-wrap:wrap; align-items:center; gap:7px; padding:4px 14px 12px 48px; }
+    .dir-social .dsl { font-size:0.72rem; font-weight:500; text-transform:uppercase; letter-spacing:0.04em; color:#8a8f98; margin-right:2px; }
+    .dir-social a { width:30px; height:30px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:rgba(20,34,64,0.06); color:#142240; text-decoration:none; transition:background 0.2s, color 0.2s, transform 0.2s; }
+    .dir-social a:hover { transform:translateY(-1px); color:#fff; }
+    .dir-social a svg { width:15px; height:15px; }
+    .dir-social a[data-net="website"]:hover { background:#c9952c; }
+    .dir-social a[data-net="facebook"]:hover { background:#1877F2; }
+    .dir-social a[data-net="instagram"]:hover { background:#d6249f; }
+    .dir-social a[data-net="youtube"]:hover { background:#FF0000; }
     .dir-note { color:#e85d26; font-style:italic; font-size:0.75rem; }
     .dir-no-results { text-align:center; padding:32px 20px; }
     .dir-no-results p { color:#8a8f98; font-size:0.9rem; }
@@ -108,6 +117,7 @@
       .dir-toolbar { padding:12px 20px 10px; }
       .dir-rows { padding:8px 12px; }
       .dir-detail { padding-left:36px; }
+      .dir-social { padding-left:36px; }
     }
 
 /* ── Split Hero — Branches ── */
@@ -584,7 +594,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 10000 Kleckley Dr, Houston, TX 77075</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18327888504">(832) 788-8504</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:pastoroluoni@yahoo.com">pastoroluoni@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 10000 Kleckley Dr, Houston, TX 77075</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.facebook.com/MFMAmericaPrayerCity/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM USA Prayer City on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.youtube.com/@mfmprayercityhouston4331" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM USA Prayer City on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.682" data-lng="-95.527">
@@ -600,7 +610,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 12142 Bissonnet Street, Houston TX 77099</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13028976148">(302) 897-6148</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmgalway1@yahoo.ie">mfmgalway1@yahoo.ie</a></div>
+<div class="dir-detail"><strong>Address:</strong> 12142 Bissonnet Street, Houston TX 77099</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.facebook.com/p/MFM-Rehoboth-Center-100087112329897/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Rehoboth on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmrc/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Rehoboth on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@MFMRehobothCenter" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Rehoboth on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.815" data-lng="-95.654">
@@ -616,7 +626,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 16211 Clay Road, Suite 114, Houston TX 77084</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18327689001">(832) 768-9001</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmrevival@yahoo.com">mfmrevival@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 16211 Clay Road, Suite 114, Houston TX 77084</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmhouston.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Revival Chapel on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfmrevivalchapel/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Revival Chapel on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmrevivalchapel/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Revival Chapel on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@mfmrevivalchapelhouston" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Revival Chapel on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.715" data-lng="-95.506">
@@ -632,7 +642,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 5601 Bonhomme Road, Houston TX 77036</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13465621168">(346) 562-1168</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmallday@yahoo.com">mfmallday@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 5601 Bonhomme Road, Houston TX 77036</div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.675" data-lng="-95.523">
@@ -648,7 +658,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 9102 Cook Road, Houston TX 77099</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19728655130">(972) 865-5130</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:pastorrowland@mfmcityofrefuge.com">pastorrowland@mfmcityofrefuge.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 9102 Cook Road, Houston TX 77099</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmcityofrefuge.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Houston 3 — City of Refuge on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/MFM-City-of-Refuge-113727897019833/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Houston 3 — City of Refuge on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfm_city_of_refuge/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Houston 3 — City of Refuge on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@MfmCityofRefugeSolutionCenter" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Houston 3 — City of Refuge on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.693" data-lng="-95.596">
@@ -664,7 +674,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 12773 Beechnut Street, Suite C100, Houston TX 77072</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13168073444">(316) 807-3444</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmnewglory@gmail.com">mfmnewglory@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 12773 Beechnut Street, Suite C100, Houston TX 77072</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.facebook.com/mfm.newglory/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Houston 5 — New Glory on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.942" data-lng="-95.409">
@@ -680,7 +690,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 711 Bammel Road, Houston TX 77073</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12817015603">(281) 701-5603</a></div>
+<div class="dir-detail"><strong>Address:</strong> 711 Bammel Road, Houston TX 77073</div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.684" data-lng="-95.57">
@@ -696,7 +706,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 1431 Bellaire Boulevard, Suite A&amp;B, Houston TX 77083</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14016172039">(401) 617-2039</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:woleoyebode@yahoo.com">woleoyebode@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 1431 Bellaire Boulevard, Suite A&amp;B, Houston TX 77083</div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.902" data-lng="-95.562">
@@ -712,7 +722,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 9110 Jones Road, Suite 123, Houston TX 77065</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18323419623">(832) 341-9623</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmnwhouston@gmail.com">mfmnwhouston@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 9110 Jones Road, Suite 123, Houston TX 77065</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmnorthwesthouston.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Northwest Houston on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/share/1YyG6LvKrD/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Northwest Houston on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmnorthwesthouston/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Northwest Houston on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.912" data-lng="-96.751">
@@ -728,7 +738,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 10610 Metric Drive, Suite Q76-178, Dallas TX 75243</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14074855626">(407) 485-5626</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:davidpopoola_25@yahoo.com">davidpopoola_25@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 10610 Metric Drive, Suite Q76-178, Dallas TX 75243</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmdallastexas.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Dallas on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfmdfw" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Dallas on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmdallastexas" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Dallas on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/c/MFMDallasTexas" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Dallas on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.954" data-lng="-96.711">
@@ -744,7 +754,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 1251 S Sherman Street, Richardson TX 75126</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12404878852">(240) 487-8852</a></div>
+<div class="dir-detail"><strong>Address:</strong> 1251 S Sherman Street, Richardson TX 75126</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmdallas.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM House of His Glory on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/MFMDallas" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM House of His Glory on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.736" data-lng="-97.108">
@@ -760,7 +770,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 1619 W. Division Street, Arlington TX 76012</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12148548669">(214) 854-8669</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmarlingtontx@gmail.com">mfmarlingtontx@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 1619 W. Division Street, Arlington TX 76012</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmarlingtontx.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Arlington on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfmarlingtontx" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Arlington on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.youtube.com/@mfmarlington5483" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Arlington on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.707" data-lng="-97.134">
@@ -776,7 +786,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 800 SW Green Oaks Blvd, Suite 316, Arlington TX 76017</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18177049346">(817) 704-9346</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmmatlock@gmail.com">mfmmatlock@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 800 SW Green Oaks Blvd, Suite 316, Arlington TX 76017</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmarlington.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Arlington — Matlock on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.747" data-lng="-97.005">
@@ -792,7 +802,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 2801 Osler Drive, #124-125, Grand Prairie TX 75051</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16823137363">(682) 313-7363</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmgrandprairie@gmail.com">mfmgrandprairie@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 2801 Osler Drive, #124-125, Grand Prairie TX 75051</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmgrandprairie.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Grand Prairie on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfmgrandprairietexas" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Grand Prairie on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfm_grandprairie" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Grand Prairie on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.814" data-lng="-96.949">
@@ -808,7 +818,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 1148 Luke Street, Irving TX 75061</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12142992570">(214) 299-2570</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmirvingtech@gmail.com">mfmirvingtech@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 1148 Luke Street, Irving TX 75061</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.facebook.com/mfmirvingtexas" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Irving on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.youtube.com/@mfmirvingtexas1153" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Irving on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="32.563" data-lng="-97.126">
@@ -824,7 +834,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 593 W. Debbie Lane, #109, Mansfield TX 76063</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19567898902">(956) 789-8902</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmmansfield@gmail.com">mfmmansfield@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 593 W. Debbie Lane, #109, Mansfield TX 76063</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmmansfield.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Mansfield on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="30.354" data-lng="-97.72">
@@ -840,7 +850,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 9411 Parkfield Drive, Suite 320, Austin TX 78757</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14434146923">(443) 414-6923</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmaustin2015@gmail.com">mfmaustin2015@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 9411 Parkfield Drive, Suite 320, Austin TX 78757</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmaustin.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM The Lord Has Spoken on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/share/16ZSMzrwfD/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM The Lord Has Spoken on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.youtube.com/@MFMAustin" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM The Lord Has Spoken on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.472" data-lng="-98.432">
@@ -856,7 +866,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 6027 Rittiman Plaza, San Antonio TX 78218</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12109024088">(210) 902-4088</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:cathyfavor@gmail.com">cathyfavor@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 6027 Rittiman Plaza, San Antonio TX 78218</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.instagram.com/mfmsat/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM San Antonio on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.556" data-lng="-95.282">
@@ -872,7 +882,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 2809 Miller Ranch Road, Suite 425, Pearland TX 77584</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12819867004">(281) 986-7004</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmpearland@gmail.com">mfmpearland@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 2809 Miller Ranch Road, Suite 425, Pearland TX 77584</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmpearland.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Pearland — Shadow of God on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="29.594" data-lng="-95.627">
@@ -888,7 +898,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 16701 Creek Bend Drive, Suite #550, Sugar Land TX 77478</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+18328754149">(832) 875-4149</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:comotoso@gmail.com">comotoso@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 16701 Creek Bend Drive, Suite #550, Sugar Land TX 77478</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.facebook.com/p/MFM-Sugarland-61566635738559/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Sugar Land on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Texas" data-lat="30.724" data-lng="-95.551">
@@ -904,7 +914,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 701 Avenue M, Huntsville TX 77320</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19362946967">(936) 294-6967</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:oyinalabi2010@gmail.com">oyinalabi2010@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 701 Avenue M, Huntsville TX 77320</div>
 </div>
 </div>
 <div class="dir-row" data-state="Florida" data-lat="27.97" data-lng="-82.46">
@@ -920,7 +930,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 4618 North Florida Avenue, Tampa FL 33603</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13463029156">(346) 302-9156</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmtampaflorida@gmail.com">mfmtampaflorida@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 4618 North Florida Avenue, Tampa FL 33603</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmtampaflorida.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Tampa on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfmtampaflorida/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Tampa on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmtampaflorida/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Tampa on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/channel/UCktRiusABonf9JPSlLgFoWA" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Tampa on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Florida" data-lat="26.011" data-lng="-80.15">
@@ -936,7 +946,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 6130 Hollywood Boulevard, Hollywood FL 33024</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13177280003">(317) 728-0003</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:toluwayemiwo@yahoo.com">toluwayemiwo@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 6130 Hollywood Boulevard, Hollywood FL 33024</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmbroward.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Broward on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/p/MFM-Broward-Florida-USA-100067185901592/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Broward on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.youtube.com/@mfmbrowardcountyflorida11" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Broward on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Florida" data-lat="25.942" data-lng="-80.239">
@@ -952,7 +962,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 15984 NW 27th Avenue, Miami Gardens FL 33054</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19549978957">(954) 997-8957</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfm_miami@yahoo.com">mfm_miami@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 15984 NW 27th Avenue, Miami Gardens FL 33054</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmmiami.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Miami — Mount Zion on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/Mountain-of-Fire-and-Miracle-Ministries-Miami-Branch-103095158208929/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Miami — Mount Zion on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Florida" data-lat="28.485" data-lng="-81.374">
@@ -968,7 +978,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 7200 Lake Ellenor Drive, Suite 201, Orlando FL 32809</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14074436524">(407) 443-6524</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmorlando1@yahoo.com">mfmorlando1@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 7200 Lake Ellenor Drive, Suite 201, Orlando FL 32809</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmorlando1.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Orlando — Citadel of Solution on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Florida" data-lat="30.438" data-lng="-84.281">
@@ -984,7 +994,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 2700 Apalachee Parkway, Suite D, Tallahassee FL 32301</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+12254092151">(225) 409-2151</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmtallahassee@gmail.com">mfmtallahassee@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 2700 Apalachee Parkway, Suite D, Tallahassee FL 32301</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmtallahassee.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Tallahassee on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Georgia" data-lat="34.003" data-lng="-84.143">
@@ -1000,7 +1010,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 3480 Howell Street, Duluth GA 30096</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14047974548">(404) 797-4548</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:abel4michael@gmail.com">abel4michael@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 3480 Howell Street, Duluth GA 30096</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmrevivalcenter.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Revival Center on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfm.revival" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Revival Center on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmrevivalcenteratl" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Revival Center on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/c/MFMRevivalCenterAtlanta" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Revival Center on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Georgia" data-lat="33.569" data-lng="-84.41">
@@ -1016,7 +1026,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> Bombay Plaza, Suite D1, 6989 HWY 85, Riverdale GA 30274</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14044537124">(404) 453-7124</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfm2atlanta@comcast.net">mfm2atlanta@comcast.net</a></div>
+<div class="dir-detail"><strong>Address:</strong> Bombay Plaza, Suite D1, 6989 HWY 85, Riverdale GA 30274</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmatlanta.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Riverdale on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/MFMRiverdaleATL" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Riverdale on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfm_riverdale" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Riverdale on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@mfmriverdale1511" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Riverdale on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Georgia" data-lat="33.953" data-lng="-84.55">
@@ -1032,7 +1042,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> Hunt Street NE, Marietta GA 30060</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16785200142">(678) 520-0142</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfm_marietta@yahoo.com">mfm_marietta@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> Hunt Street NE, Marietta GA 30060</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmgamarietta.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Citadel of Signs & Wonders on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Georgia" data-lat="34.003" data-lng="-84.143">
@@ -1048,7 +1058,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> P.O. Box 4142, Duluth GA 30096</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16788863234">(678) 886-3234</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:championcrusader@yahoo.com">championcrusader@yahoo.com</a></div><div class="dir-detail dir-note">Contact for meeting location</div>
+<div class="dir-detail"><strong>Address:</strong> P.O. Box 4142, Duluth GA 30096</div>
 </div>
 </div>
 <div class="dir-row" data-state="North Carolina" data-lat="35.858" data-lng="-78.638">
@@ -1064,7 +1074,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 32090 Gresham Lake Road, Suite 108, Raleigh NC 27615</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+19194337395">(919) 433-7395</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmraleighnc@gmail.com">mfmraleighnc@gmail.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 32090 Gresham Lake Road, Suite 108, Raleigh NC 27615</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mfmnc.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Revival & Solution Center on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/MFMRaleighNC" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Revival & Solution Center on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a><a href="https://www.instagram.com/mfmraleighnc" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Revival & Solution Center on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@mfmraleighnc" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Revival & Solution Center on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Oklahoma" data-lat="36.112" data-lng="-95.956">
@@ -1080,7 +1090,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 1208-1210 E 58th Street, Tulsa OK 74105</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+14059198296">(405) 919-8296</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmoklahomacity@yahoo.com">mfmoklahomacity@yahoo.com</a></div>
+<div class="dir-detail"><strong>Address:</strong> 1208-1210 E 58th Street, Tulsa OK 74105</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://mountainoffiretulsa.wordpress.com/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Tulsa on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.facebook.com/mfm.tulsa.9/" target="_blank" rel="noopener" data-net="facebook" title="Facebook" aria-label="MFM Tulsa on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8.2h2.76l.41-3.2h-3.17V7.55c0-.93.26-1.56 1.59-1.56h1.69V3.13c-.29-.04-1.3-.13-2.47-.13-2.44 0-4.11 1.49-4.11 4.23v2.36H7.42v3.2h2.77V21z"/></svg></a></div>
 </div>
 </div>
 <div class="dir-row" data-state="Tennessee" data-lat="36.061" data-lng="-86.669">
@@ -1096,7 +1106,7 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 2754 Anderson Road, Antioch TN 37013</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+16156368177">(615) 636-8177</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmnashville@co.cast.net">mfmnashville@co.cast.net</a></div>
+<div class="dir-detail"><strong>Address:</strong> 2754 Anderson Road, Antioch TN 37013</div>
 </div>
 </div>
 <div class="dir-row" data-state="Youth Ministry" data-lat="29.827" data-lng="-95.592">
@@ -1112,14 +1122,14 @@
 <svg class="dir-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
 </div>
 <div class="dir-row-details">
-<div class="dir-detail"><strong>Address:</strong> 6910 North Eldridge Pkwy, Back Suite, Houston TX 77041</div><div class="dir-detail"><strong>Phone:</strong> <a href="tel:+13464145880">(346) 414-5880</a></div><div class="dir-detail"><strong>Email:</strong> <a href="mailto:mfmmegaregion2youthchurch@gmail.com">mfmmegaregion2youthchurch@gmail.com</a></div><div class="dir-detail"><strong>Web:</strong> <a href="https://www.mfmmegaregion2yc.org" target="_blank">mfmmegaregion2yc.org</a></div>
+<div class="dir-detail"><strong>Address:</strong> 6910 North Eldridge Pkwy, Back Suite, Houston TX 77041</div><div class="dir-social"><span class="dsl">Connect:</span><a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener" data-net="website" title="Website" aria-label="MFM Mega Region 2 Youth Church on Website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z"/></svg></a><a href="https://www.instagram.com/mfmmegaregion2yc/" target="_blank" rel="noopener" data-net="instagram" title="Instagram" aria-label="MFM Mega Region 2 Youth Church on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.youtube.com/@mfmmegaregion2yc" target="_blank" rel="noopener" data-net="youtube" title="YouTube" aria-label="MFM Mega Region 2 Youth Church on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 3.9 12 3.9 12 3.9s-7.5 0-9.4.5A3 3 0 0 0 .5 6.5 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5M9.6 15.6V8.4l6.2 3.6z"/></svg></a></div>
 </div>
 </div>
             </div>
             <div class="dir-no-results" id="dirNoResults" style="display:none">
               <p>No branches match your search.</p>
             </div>
-            <p class="dir-footer-note">Can&rsquo;t find a branch? Call HQ at <a href="tel:+18327888504">(832) 788-8504</a></p>
+            <p class="dir-footer-note">Can&rsquo;t find a branch? Call the regional office at <a href="tel:+18327888504">(832) 788-8504</a> or <a href="index.html#visit">send us a message</a>.</p>
           </div>
           <div class="dir-map-col">
             <div class="dir-map-sticky">
@@ -1143,6 +1153,7 @@
           <div class="btn-group btn-group--center">
             <a href="events.html" class="btn btn--primary">View Programs</a>
             <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--secondary">Watch on YouTube</a>
+            <a href="index.html#visit" class="btn btn--secondary">Reach Out to Us</a>
           </div>
         </div>
       </div>
