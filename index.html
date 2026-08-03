@@ -1270,6 +1270,7 @@
       gap: 16px;
     }
     .prayer-form input,
+    .prayer-form select,
     .prayer-form textarea {
       width: 100%;
       padding: 14px 16px;
@@ -1287,6 +1288,7 @@
       color: var(--text-dim-white);
     }
     .prayer-form input:focus,
+    .prayer-form select:focus,
     .prayer-form textarea:focus {
       border-color: var(--gold);
       box-shadow: 0 0 0 3px var(--gold-glow);
@@ -2001,36 +2003,8 @@
     <!-- ═══════════════════════════════════════════════════════
          TESTIMONIES (Cream) — share your testimony
          ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" id="testimonies">
-      <div class="container">
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Testimonies</p>
-          <h2>Testimonies of Fire</h2>
-          <p>The God who answers by fire is still moving. Has He touched your life? Share your testimony and encourage someone today.</p>
-        </div>
-        <div class="reveal" style="max-width:640px; margin:0 auto;">
-          <form class="prayer-form" id="testimonyForm" data-ajax data-success="#testimonySuccess" name="testimonies" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="testimonies">
-            <p style="display:none;"><input name="bot-field"></p>
-            <div class="form-row">
-              <input type="text" name="name" placeholder="Your Name" required>
-              <input type="text" name="location" placeholder="City / Branch (optional)">
-            </div>
-            <textarea name="testimony" placeholder="Share what God has done…" required></textarea>
-            <button type="submit" class="btn btn--fire">Share Your Testimony</button>
-          </form>
-          <div class="form-success" id="testimonySuccess" role="status" style="display:none; background:var(--bg-sand); border:1px solid var(--bg-sand-border); border-left:4px solid var(--gold); border-radius:12px; padding:30px 26px;">
-            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <h3 style="margin-bottom:8px;">Praise God — thank you for sharing!</h3>
-            <p style="color:var(--text-on-white); line-height:1.7; margin:0;">Your testimony has been received and may be shared to encourage others. To God be all the glory.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
     <!-- ═══════════════════════════════════════════════════════
-         8. PRAYER REQUEST + NEXT SERVICE COUNTDOWN (White)
+         REACH OUT TO US — combined prayer / testimony / message
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--white" id="prayer">
       <div class="container">
@@ -2039,27 +2013,33 @@
 
           <!-- Prayer Request Form -->
           <div class="prayer-form-wrap">
-            <h3>Let Us Stand With You in Prayer</h3>
-            <p class="form-subtitle">Whatever you are facing — sickness, bondage, delay, or spiritual attack — submit your prayer request and our prayer warriors will stand with you before the throne of God.</p>
+            <h3>Reach Out to Us</h3>
+            <p class="form-subtitle">Whether you need prayer, want to share a testimony, or simply want to connect — we would love to hear from you.</p>
 
-            <form class="prayer-form" id="prayerForm" data-ajax data-success="#prayerSuccess" name="prayer-requests" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="prayer-requests">
+            <form class="prayer-form" id="reachForm" data-ajax data-success="#reachSuccess" name="reach-out" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="reach-out">
               <p style="display:none;"><input name="bot-field"></p>
+              <select name="type" required aria-label="What is this about?">
+                <option value="" disabled selected>What is this about?</option>
+                <option value="Prayer Request">Prayer Request</option>
+                <option value="Testimony">Testimony</option>
+                <option value="General Message">General Message</option>
+              </select>
               <div class="form-row">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Email Address" required>
               </div>
-              <textarea name="prayer-request" placeholder="Share your prayer request here…" required></textarea>
+              <textarea name="message" placeholder="Share your prayer request, testimony, or message here…" required></textarea>
               <button type="submit" class="btn btn--fire">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                Submit Prayer Request
+                Send
               </button>
-              <p class="prayer-form-note">Your request is confidential and will be prayed over by our prayer team.</p>
+              <p class="prayer-form-note">Your message is confidential and will be received by our ministry team.</p>
             </form>
-            <div class="form-success" id="prayerSuccess" role="status" style="display:none; background:var(--bg-sand); border:1px solid var(--bg-sand-border); border-left:4px solid var(--gold); border-radius:12px; padding:30px 26px;">
+            <div class="form-success" id="reachSuccess" role="status" style="display:none; background:var(--bg-sand); border:1px solid var(--bg-sand-border); border-left:4px solid var(--gold); border-radius:12px; padding:30px 26px;">
               <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              <h3 style="margin-bottom:8px;">Your prayer request has been received</h3>
-              <p style="color:var(--text-on-white); line-height:1.7; margin:0;">Our prayer warriors are standing with you before the throne of God. Be encouraged — the God who answers by fire is with you.</p>
+              <h3 style="margin-bottom:8px;">Thank you for reaching out</h3>
+              <p style="color:var(--text-on-white); line-height:1.7; margin:0;">Your message has been received. Our ministry team will stand with you — be encouraged, the God who answers by fire is with you.</p>
             </div>
           </div>
 

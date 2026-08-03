@@ -1248,16 +1248,22 @@
       });
 
       /* ── Build detail panel HTML for a given event ── */
+      function calUrl(ev) {
+        function ymd(s) { return (s || '').replace(/-/g, ''); }
+        var start = ymd(ev.date);
+        var base = ev.endDate || ev.date;
+        var d = new Date(base + 'T00:00:00'); d.setDate(d.getDate() + 1);
+        var end = '' + d.getFullYear() + ('0' + (d.getMonth() + 1)).slice(-2) + ('0' + d.getDate()).slice(-2);
+        var details = (ev.description || '') + (ev.time ? '\n\nTime: ' + ev.time : '');
+        return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(ev.title) + '&dates=' + start + '/' + end + '&details=' + encodeURIComponent(details) + '&location=' + encodeURIComponent(ev.venue || '');
+      }
       function buildDetail(item) {
         var ev = item.ev;
         var badgeClass = ev.badgeStyle === 'gold' ? ' event-expand-badge--gold' : '';
         var h = '';
 
-        h += '<div class="event-expand" style="position:relative;">';
-        h += '<button class="event-expand-close" aria-label="Close details">&times;</button>';
-        h += '<div class="event-expand-inner">';
-        h += '<img class="event-expand-flyer" src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '" loading="lazy" decoding="async">';
-        h += '<div class="event-expand-body">';
+        h += '<div class="event-modal-flyer"><img src="' + esc(ev.image) + '" alt="' + esc(ev.alt || ev.title) + '"></div>';
+        h += '<div class="event-modal-body">';
 
         h += '<span class="event-expand-badge' + badgeClass + '">' + esc(eyebrowLabel(item)) + '</span>';
         h += '<h3>' + esc(ev.title) + '</h3>';
@@ -1289,15 +1295,14 @@
           h += '</div>';
         }
 
+        h += '<div class="event-expand-actions">';
+        h += '<a href="' + esc(calUrl(ev)) + '" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">+ Add to Calendar</a>';
         if (ev.link) {
           var isExt = /^https?:/i.test(ev.link);
-          h += '<div class="event-expand-actions">';
-          h += '<a href="' + esc(ev.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">';
-          h += (ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1) ? 'Register Now \u2192' : 'Learn More \u2192';
-          h += '</a></div>';
+          h += '<a href="' + esc(ev.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">' + ((ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1) ? 'Register Now \u2192' : 'Learn More \u2192') + '</a>';
         }
-
-        h += '</div></div></div>';
+        h += '</div>';
+        h += '</div>';
         return h;
       }
 
@@ -1305,56 +1310,41 @@
       var activeIdx = -1;
       var thumbs = grid.querySelectorAll('.event-thumb');
 
+      var mStyle = document.createElement('style');
+      mStyle.textContent = '.event-modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:24px}.event-modal.open{display:flex}.event-modal-backdrop{position:absolute;inset:0;background:rgba(10,17,30,.72)}.event-modal-card{position:relative;z-index:1;background:var(--bg-white);border-radius:16px;max-width:860px;width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.4)}.event-modal-close{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.92);color:var(--navy);font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.18)}.event-modal-inner{display:grid;grid-template-columns:300px 1fr;overflow:auto}.event-modal-flyer{background:var(--bg-sand)}.event-modal-flyer img{width:100%;height:100%;max-height:90vh;object-fit:cover;display:block}.event-modal-body{padding:34px;overflow:auto}@media(max-width:700px){.event-modal{padding:0}.event-modal-card{max-width:100%;height:100%;max-height:100%;border-radius:0}.event-modal-inner{grid-template-columns:1fr}.event-modal-flyer img{max-height:44vh}.event-modal-body{padding:24px 22px}}';
+      document.head.appendChild(mStyle);
+
+      var modal = document.createElement('div');
+      modal.className = 'event-modal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-hidden', 'true');
+      modal.innerHTML = '<div class="event-modal-backdrop" data-close></div><div class="event-modal-card"><button class="event-modal-close" aria-label="Close" data-close>&times;</button><div class="event-modal-inner" id="eventModalInner"></div></div>';
+      document.body.appendChild(modal);
+      var modalInner = modal.querySelector('#eventModalInner');
+
       function closeActive() {
-        var existing = grid.querySelector('.event-expand');
-        if (existing) existing.remove();
-        thumbs.forEach(function(t) { t.classList.remove('active'); });
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
         activeIdx = -1;
       }
-
       function openDetail(idx) {
-        var thumb = thumbs[idx];
         var item = parsed[idx];
-
-        /* Mark active */
-        thumb.classList.add('active');
+        if (!item) return;
         activeIdx = idx;
-
-        /* Find the end of the current row to insert after.
-           CSS grid: count columns at current viewport width. */
-        var style = getComputedStyle(grid);
-        var cols = style.gridTemplateColumns.split(' ').length;
-        var rowEnd = Math.min(Math.ceil((idx + 1) / cols) * cols, thumbs.length) - 1;
-        var insertAfter = thumbs[rowEnd];
-
-        /* Create and insert detail panel */
-        var wrapper = document.createElement('div');
-        wrapper.innerHTML = buildDetail(item);
-        var panel = wrapper.firstChild;
-        insertAfter.after(panel);
-
-        /* Close button */
-        panel.querySelector('.event-expand-close').addEventListener('click', function(e) {
-          e.stopPropagation();
-          closeActive();
-        });
-
-        /* Smooth scroll to panel */
-        setTimeout(function() {
-          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 50);
+        modalInner.innerHTML = buildDetail(item);
+        modalInner.scrollTop = 0;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
       }
 
-      thumbs.forEach(function(thumb, i) {
-        thumb.addEventListener('click', function() {
-          if (activeIdx === i) {
-            closeActive();
-            return;
-          }
-          closeActive();
-          openDetail(i);
-        });
+      thumbs.forEach(function (thumb, i) {
+        thumb.addEventListener('click', function () { openDetail(i); });
       });
+      modal.addEventListener('click', function (e) { if (e.target.hasAttribute('data-close')) closeActive(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeActive(); });
 
       /* Handle hash navigation — auto-open the matching event */
       function openFromHash() {
