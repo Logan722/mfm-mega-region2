@@ -26,6 +26,9 @@
   <script src="js/site.js" defer></script>
 
   <!-- Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap">
   <link rel="stylesheet" href="css/site.css">
 
   <!-- Page-specific styles -->
@@ -98,22 +101,17 @@
     .dir-footer-note { padding:16px 28px; font-size:0.78rem; color:#8a8f98; text-align:center; }
     .dir-footer-note a { color:#c9952c; }
     .dir-map-col { border-left:1px solid #e8e4da; position:relative; }
-    .dir-map-sticky { position:sticky; top:80px; height:calc(100vh - 100px); max-height:800px; }
-    .dir-map-frame { width:100%; height:100%; border:none; display:block; }
-    #branchMap { position:relative; background:#eef1f5; background-image:radial-gradient(#dfe4ea 1px, transparent 1px); background-size:16px 16px; }
-    .map-load-btn { position:absolute; inset:0; margin:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:none; background:transparent; color:#142240; font-family:var(--font-sans); font-weight:600; font-size:0.92rem; cursor:pointer; padding:20px; text-align:center; }
-    .map-load-btn svg { color:#c9952c; }
-    .map-load-btn span { border-bottom:2px solid #c9952c; padding-bottom:2px; }
-    .map-load-btn em { font-weight:400; font-style:normal; font-size:0.72rem; color:#8a8f98; }
-    .map-load-btn:hover span { color:#c9952c; }
-    #branchMap .leaflet-container { position:absolute; inset:0; width:100%; height:100%; font-family:var(--font-sans); }
+    .dir-map-sticky { position:sticky; top:80px; padding:20px; }
+    .dir-map-fig { margin:0; }
+    .dir-map-img { width:100%; height:auto; display:block; border-radius:10px; }
+    .dir-map-cap { margin-top:10px; text-align:center; font-family:var(--font-sans); font-size:0.8rem; font-weight:600; color:#8a6f33; letter-spacing:0.02em; }
     .cta-box { background:linear-gradient(135deg,rgba(201,149,44,0.10),rgba(232,93,38,0.06)); border:1px solid var(--line-strong); border-radius:14px; padding:48px; text-align:center; }
     .cta-box h2 { font-size:clamp(1.4rem,2vw + 0.5rem,2rem); margin-bottom:12px; }
     .cta-box p { color:var(--text-muted); max-width:540px; margin:0 auto 24px; }
     @media (max-width:900px) {
       .dir-wrapper { grid-template-columns:minmax(0,1fr); min-height:auto; }
       .dir-map-col { border-left:none; border-top:1px solid #e8e4da; }
-      .dir-map-sticky { position:relative; top:0; height:300px; max-height:none; }
+      .dir-map-sticky { position:relative; top:0; }
       .dir-list-col { max-height:none; overflow:visible; }
     }
     @media (max-width:768px) {
@@ -1139,13 +1137,10 @@
           </div>
           <div class="dir-map-col">
             <div class="dir-map-sticky">
-              <div id="branchMap" class="dir-map-frame" data-loaded="false">
-                <button type="button" id="showMapBtn" class="map-load-btn" aria-label="Show map of all branches">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/></svg>
-                  <span>Show map of all branches</span>
-                  <em>Loads on demand — keeps the page fast</em>
-                </button>
-              </div>
+              <figure class="dir-map-fig">
+                <img class="dir-map-img" src="img/branch-map.png" width="1800" height="1120" loading="lazy" alt="Map of the United States showing MFM Mega Region 2 branches across Texas, Oklahoma, Tennessee, Georgia, North Carolina and Florida">
+                <figcaption class="dir-map-cap">34 branches across 6 states</figcaption>
+              </figure>
             </div>
           </div>
         </div>
@@ -1501,46 +1496,5 @@
     }
   </script>
 
-  <script>
-  (function () {
-    var btn = document.getElementById('showMapBtn');
-    var box = document.getElementById('branchMap');
-    if (!btn || !box) return;
-    function loadCSS(href){ return new Promise(function(res){ var l=document.createElement('link'); l.rel='stylesheet'; l.href=href; l.onload=res; l.onerror=res; document.head.appendChild(l); }); }
-    function loadJS(src){ return new Promise(function(res,rej){ var s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
-    btn.addEventListener('click', function () {
-      if (box.dataset.loaded === 'true') return;
-      box.dataset.loaded = 'true';
-      var lbl = btn.querySelector('span'); if (lbl) lbl.textContent = 'Loading map\u2026';
-      Promise.all([
-        loadCSS('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'),
-        loadJS('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js')
-      ]).then(function () {
-        if (typeof L === 'undefined') throw new Error('leaflet');
-        btn.remove();
-        var el = document.createElement('div'); el.style.position='absolute'; el.style.inset='0'; box.appendChild(el);
-        var map = L.map(el, { scrollWheelZoom:false }).setView([37.8,-96], 4);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);
-        var pts=[];
-        document.querySelectorAll('.dir-row[data-lat]').forEach(function (r) {
-          var lat=parseFloat(r.getAttribute('data-lat')), lng=parseFloat(r.getAttribute('data-lng'));
-          if (isNaN(lat) || isNaN(lng)) return;
-          var nmEl=r.querySelector('.dir-name'), mtEl=r.querySelector('.dir-meta'), dirEl=r.querySelector('.dir-directions');
-          var nm=nmEl?nmEl.textContent:'MFM Branch', mt=mtEl?mtEl.textContent:'', dir=dirEl?dirEl.getAttribute('href'):null;
-          var mk=L.circleMarker([lat,lng], { radius:7, color:'#142240', weight:2, fillColor:'#c9952c', fillOpacity:0.95 }).addTo(map);
-          var html='<strong>'+nm+'</strong>'+(mt?'<br><span style="color:#5a6270;font-size:12px">'+mt+'</span>':'');
-          if (dir) html+='<br><a href="'+dir+'" target="_blank" rel="noopener" style="color:#c9952c;font-weight:600">Get Directions &rarr;</a>';
-          mk.bindPopup(html);
-          pts.push(mk);
-        });
-        if (pts.length) { map.fitBounds(L.featureGroup(pts).getBounds().pad(0.15)); }
-        setTimeout(function(){ map.invalidateSize(); }, 250);
-      }).catch(function () {
-        box.dataset.loaded='false';
-        box.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:#5a6270;font-family:var(--font-sans)">Map could not load right now \u2014 use the <strong>&nbsp;Get Directions&nbsp;</strong> link on any branch above.</div>';
-      });
-    });
-  })();
-  </script>
 </body>
 </html>
