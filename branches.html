@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- PAGE TITLE -->
-  <title>Branches — MFM Mega Region 2 USA</title>
+  <title>Find an MFM Branch Near You — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries</title>
 
   <!-- SEO Meta -->
   <meta name="description" content="Find MFM Mega Region 2 branches near you. Visit Prayer City HQ in Houston, TX or connect with regional branches across the USA.">
@@ -31,8 +31,8 @@
   <!-- Page-specific styles -->
   <style>
     /* ── Layout A: Map + Directory ── */
-    .dir-wrapper { display:grid; grid-template-columns:1fr 380px; border-radius:16px; overflow:hidden; border:1px solid #e8e4da; background:#fff; min-height:600px; }
-    .dir-list-col { display:flex; flex-direction:column; max-height:800px; overflow-y:auto; }
+    .dir-wrapper { display:grid; grid-template-columns:minmax(0,1fr) 380px; border-radius:16px; overflow:hidden; border:1px solid #e8e4da; background:#fff; min-height:600px; }
+    .dir-list-col { display:flex; flex-direction:column; max-height:800px; overflow-y:auto; min-width:0; }
     .dir-header { display:flex; justify-content:space-between; align-items:flex-end; padding:28px 28px 20px; border-bottom:1px solid #e8e4da; position:sticky; top:0; background:#fff; z-index:2; }
     .dir-header h2 { font-size:1.4rem; }
     .dir-stats { display:flex; gap:16px; }
@@ -100,11 +100,18 @@
     .dir-map-col { border-left:1px solid #e8e4da; position:relative; }
     .dir-map-sticky { position:sticky; top:80px; height:calc(100vh - 100px); max-height:800px; }
     .dir-map-frame { width:100%; height:100%; border:none; display:block; }
+    #branchMap { position:relative; background:#eef1f5; background-image:radial-gradient(#dfe4ea 1px, transparent 1px); background-size:16px 16px; }
+    .map-load-btn { position:absolute; inset:0; margin:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:none; background:transparent; color:#142240; font-family:var(--font-sans); font-weight:600; font-size:0.92rem; cursor:pointer; padding:20px; text-align:center; }
+    .map-load-btn svg { color:#c9952c; }
+    .map-load-btn span { border-bottom:2px solid #c9952c; padding-bottom:2px; }
+    .map-load-btn em { font-weight:400; font-style:normal; font-size:0.72rem; color:#8a8f98; }
+    .map-load-btn:hover span { color:#c9952c; }
+    #branchMap .leaflet-container { position:absolute; inset:0; width:100%; height:100%; font-family:var(--font-sans); }
     .cta-box { background:linear-gradient(135deg,rgba(201,149,44,0.10),rgba(232,93,38,0.06)); border:1px solid var(--line-strong); border-radius:14px; padding:48px; text-align:center; }
     .cta-box h2 { font-size:clamp(1.4rem,2vw + 0.5rem,2rem); margin-bottom:12px; }
     .cta-box p { color:var(--text-muted); max-width:540px; margin:0 auto 24px; }
     @media (max-width:900px) {
-      .dir-wrapper { grid-template-columns:1fr; min-height:auto; }
+      .dir-wrapper { grid-template-columns:minmax(0,1fr); min-height:auto; }
       .dir-map-col { border-left:none; border-top:1px solid #e8e4da; }
       .dir-map-sticky { position:relative; top:0; height:300px; max-height:none; }
       .dir-list-col { max-height:none; overflow:visible; }
@@ -332,7 +339,6 @@
     }
   </style>
   <!-- Netlify Identity Widget (needed for CMS) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
   <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
   <link rel="canonical" href="https://mfmmegaregion2usa.org/branches.html">
   <meta property="og:url" content="https://mfmmegaregion2usa.org/branches.html">
@@ -1133,7 +1139,13 @@
           </div>
           <div class="dir-map-col">
             <div class="dir-map-sticky">
-              <iframe class="dir-map-frame" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7200000!2d-89.5!3d31.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="MFM Branch Locations"></iframe>
+              <div id="branchMap" class="dir-map-frame" data-loaded="false">
+                <button type="button" id="showMapBtn" class="map-load-btn" aria-label="Show map of all branches">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/></svg>
+                  <span>Show map of all branches</span>
+                  <em>Loads on demand — keeps the page fast</em>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1489,5 +1501,46 @@
     }
   </script>
 
+  <script>
+  (function () {
+    var btn = document.getElementById('showMapBtn');
+    var box = document.getElementById('branchMap');
+    if (!btn || !box) return;
+    function loadCSS(href){ return new Promise(function(res){ var l=document.createElement('link'); l.rel='stylesheet'; l.href=href; l.onload=res; l.onerror=res; document.head.appendChild(l); }); }
+    function loadJS(src){ return new Promise(function(res,rej){ var s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+    btn.addEventListener('click', function () {
+      if (box.dataset.loaded === 'true') return;
+      box.dataset.loaded = 'true';
+      var lbl = btn.querySelector('span'); if (lbl) lbl.textContent = 'Loading map\u2026';
+      Promise.all([
+        loadCSS('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'),
+        loadJS('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js')
+      ]).then(function () {
+        if (typeof L === 'undefined') throw new Error('leaflet');
+        btn.remove();
+        var el = document.createElement('div'); el.style.position='absolute'; el.style.inset='0'; box.appendChild(el);
+        var map = L.map(el, { scrollWheelZoom:false }).setView([37.8,-96], 4);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);
+        var pts=[];
+        document.querySelectorAll('.dir-row[data-lat]').forEach(function (r) {
+          var lat=parseFloat(r.getAttribute('data-lat')), lng=parseFloat(r.getAttribute('data-lng'));
+          if (isNaN(lat) || isNaN(lng)) return;
+          var nmEl=r.querySelector('.dir-name'), mtEl=r.querySelector('.dir-meta'), dirEl=r.querySelector('.dir-directions');
+          var nm=nmEl?nmEl.textContent:'MFM Branch', mt=mtEl?mtEl.textContent:'', dir=dirEl?dirEl.getAttribute('href'):null;
+          var mk=L.circleMarker([lat,lng], { radius:7, color:'#142240', weight:2, fillColor:'#c9952c', fillOpacity:0.95 }).addTo(map);
+          var html='<strong>'+nm+'</strong>'+(mt?'<br><span style="color:#5a6270;font-size:12px">'+mt+'</span>':'');
+          if (dir) html+='<br><a href="'+dir+'" target="_blank" rel="noopener" style="color:#c9952c;font-weight:600">Get Directions &rarr;</a>';
+          mk.bindPopup(html);
+          pts.push(mk);
+        });
+        if (pts.length) { map.fitBounds(L.featureGroup(pts).getBounds().pad(0.15)); }
+        setTimeout(function(){ map.invalidateSize(); }, 250);
+      }).catch(function () {
+        box.dataset.loaded='false';
+        box.innerHTML='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:#5a6270;font-family:var(--font-sans)">Map could not load right now \u2014 use the <strong>&nbsp;Get Directions&nbsp;</strong> link on any branch above.</div>';
+      });
+    });
+  })();
+  </script>
 </body>
 </html>

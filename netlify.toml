@@ -1,0 +1,7 @@
+# Netlify configuration — MFM Mega Region 2 USA
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
