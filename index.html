@@ -3171,6 +3171,10 @@
     })();
   </script>
 
+  <script>
+  /* branch prefill: /index.html?branch=NAME#visit fills the Reach Out form */
+  (function(){try{var b=new URLSearchParams(location.search).get('branch');if(!b)return;var t=document.querySelector('#reachForm textarea[name="message"]');if(t&&!t.value){t.value='Regarding '+b+': ';}var s=document.querySelector('#reachForm select[name="type"]');if(s){for(var i=0;i<s.options.length;i++){if(/general/i.test(s.options[i].textContent)){s.selectedIndex=i;break;}}}}catch(e){}})();
+  </script>
 </body>
 </html>
 

@@ -34,8 +34,8 @@
   <!-- Page-specific styles -->
   <style>
     /* ── Layout A: Map + Directory ── */
-    .dir-wrapper { display:grid; grid-template-columns:minmax(0,1fr) 380px; border-radius:16px; overflow:hidden; border:1px solid #e8e4da; background:#fff; min-height:600px; }
-    .dir-list-col { display:flex; flex-direction:column; max-height:800px; overflow-y:auto; min-width:0; }
+    .dir-wrapper { display:grid; grid-template-columns:minmax(0,1fr); border-radius:16px; overflow:hidden; border:1px solid #e8e4da; background:#fff; min-height:600px; }
+    .dir-list-col { display:flex; flex-direction:column; min-width:0; }
     .dir-header { display:flex; justify-content:space-between; align-items:flex-end; padding:28px 28px 20px; border-bottom:1px solid #e8e4da; position:sticky; top:0; background:#fff; z-index:2; }
     .dir-header h2 { font-size:1.4rem; }
     .dir-stats { display:flex; gap:16px; }
@@ -105,6 +105,39 @@
     .dir-map-fig { margin:0; }
     .dir-map-img { width:100%; height:auto; display:block; border-radius:10px; }
     .dir-map-cap { margin-top:10px; text-align:center; font-family:var(--font-sans); font-size:0.8rem; font-weight:600; color:#8a6f33; letter-spacing:0.02em; }
+    /* ── Branch detail modal ── */
+    .branch-modal { position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; padding:20px; background:rgba(15,26,48,0.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+    .branch-modal.open { display:flex; }
+    body.bm-lock { overflow:hidden; }
+    .bm-card { width:100%; max-width:560px; background:#fff; border-radius:20px; box-shadow:0 40px 100px rgba(0,0,0,0.45); max-height:90vh; overflow-y:auto; animation:bmIn .25s ease; }
+    @keyframes bmIn { from{ transform:translateY(16px) scale(.98); opacity:0 } to{ transform:none; opacity:1 } }
+    .bm-head { background:#142240; color:#f0e6d0; padding:28px 30px; position:relative; background-image:radial-gradient(120% 120% at 100% 0%, rgba(201,149,44,.25), transparent 60%); border-radius:20px 20px 0 0; }
+    .bm-badge { display:inline-block; padding:4px 11px; border-radius:100px; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:#c9952c; color:#142240; }
+    .bm-name { font-family:var(--font-serif); font-size:1.7rem; color:#fff; margin:12px 0 0; line-height:1.15; font-weight:600; }
+    .bm-meta { color:#aab6cf; font-size:0.95rem; margin-top:6px; }
+    .bm-close { position:absolute; top:20px; right:22px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.14); border:none; color:#fff; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .bm-close:hover { background:rgba(255,255,255,.26); }
+    .bm-body { padding:24px 30px 30px; }
+    .bm-detail { display:flex; gap:14px; padding:12px 0; border-bottom:1px solid #eef0f4; }
+    .bm-k { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:#8a8f98; width:88px; flex:none; font-weight:600; padding-top:2px; }
+    .bm-v { color:#142240; font-size:0.95rem; line-height:1.5; }
+    .bm-cta { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+    .bm-btn { flex:1; min-width:150px; text-align:center; padding:13px; border-radius:11px; font-weight:600; font-size:0.9rem; text-decoration:none; font-family:var(--font-sans); transition:background .2s; }
+    .bm-btn--primary { background:#c9952c; color:#142240; }
+    .bm-btn--primary:hover { background:#b9861f; }
+    .bm-btn--ghost { border:1px solid #d4cfc4; color:#142240; }
+    .bm-btn--ghost:hover { background:#f5f3ee; }
+    .bm-soc { margin-top:22px; }
+    .bm-soc-lbl { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:#8a8f98; font-weight:600; margin-bottom:10px; }
+    .bm-soc-row { display:flex; gap:10px; flex-wrap:wrap; }
+    .bm-soc-row a { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none; transition:transform .2s; }
+    .bm-soc-row a:hover { transform:translateY(-2px); }
+    .bm-soc-row a svg { width:20px; height:20px; }
+    .bm-soc-row a[data-net="website"]{ background:#c9952c; }
+    .bm-soc-row a[data-net="facebook"]{ background:#1877F2; }
+    .bm-soc-row a[data-net="instagram"]{ background:radial-gradient(circle at 30% 107%,#fdf497,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+    .bm-soc-row a[data-net="youtube"]{ background:#FF0000; }
+    @media (max-width:480px){ .bm-name{ font-size:1.4rem; } .bm-body{ padding:20px; } .bm-head{ padding:24px 20px; } }
     .cta-box { background:linear-gradient(135deg,rgba(201,149,44,0.10),rgba(232,93,38,0.06)); border:1px solid var(--line-strong); border-radius:14px; padding:48px; text-align:center; }
     .cta-box h2 { font-size:clamp(1.4rem,2vw + 0.5rem,2rem); margin-bottom:12px; }
     .cta-box p { color:var(--text-muted); max-width:540px; margin:0 auto 24px; }
@@ -1135,14 +1168,6 @@
             </div>
             <p class="dir-footer-note">Can&rsquo;t find a branch? Call the regional office at <a href="tel:+18327888504">(832) 788-8504</a> or <a href="index.html#visit">send us a message</a>.</p>
           </div>
-          <div class="dir-map-col">
-            <div class="dir-map-sticky">
-              <figure class="dir-map-fig">
-                <img class="dir-map-img" src="img/branch-map.png" width="1800" height="1120" loading="lazy" alt="Map of the United States showing MFM Mega Region 2 branches across Texas, Oklahoma, Tennessee, Georgia, North Carolina and Florida">
-                <figcaption class="dir-map-cap">34 branches across 6 states</figcaption>
-              </figure>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -1404,13 +1429,13 @@
     
 
     /* ── Directory Row Expand ── */
-    (function(){var rows=document.querySelectorAll('.dir-row');rows.forEach(function(r){var m=r.querySelector('.dir-row-main');if(!m)return;m.addEventListener('click',function(e){if(e.target.closest('.dir-directions'))return;r.classList.toggle('open');});});})();
+    (function(){var rows=document.querySelectorAll('.dir-row');if(!rows.length)return;var ov=document.createElement('div');ov.className='branch-modal';ov.setAttribute('aria-hidden','true');ov.innerHTML='<div class="bm-card" role="dialog" aria-modal="true" aria-labelledby="bmName"><div class="bm-head"><button class="bm-close" type="button" aria-label="Close">✕</button><span class="bm-badge" id="bmBadge"></span><h3 class="bm-name" id="bmName"></h3><div class="bm-meta" id="bmCity"></div></div><div class="bm-body"><div class="bm-detail" id="bmPastorRow"><span class="bm-k">Pastor</span><span class="bm-v" id="bmPastor"></span></div><div class="bm-detail"><span class="bm-k">Address</span><span class="bm-v" id="bmAddr"></span></div><div class="bm-detail"><span class="bm-k">Visit</span><span class="bm-v">Weekly worship &amp; midweek prayer — reach out for current service times.</span></div><div class="bm-cta"><a class="bm-btn bm-btn--primary" id="bmDir" target="_blank" rel="noopener">Get Directions</a><a class="bm-btn bm-btn--ghost" id="bmMsg">Message the office</a></div><div class="bm-soc" id="bmSocWrap"><div class="bm-soc-lbl">Connect with this branch</div><div class="bm-soc-row" id="bmSoc"></div></div></div></div>';document.body.appendChild(ov);function T(el){return el?el.textContent.trim():'';}function openBranch(r){var name=T(r.querySelector('.dir-name'));var badge=T(r.querySelector('.dir-badge'));var meta=T(r.querySelector('.dir-meta'));var parts=meta.split('·').map(function(s){return s.trim();});var city=parts.shift()||'';var pastor=parts.join(' · ');var ad=r.querySelector('.dir-row-details .dir-detail');var addr=ad?ad.textContent.replace(/^\s*Address:\s*/i,'').trim():'';var dir=r.querySelector('.dir-directions');var soc=r.querySelector('.dir-social');ov.querySelector('#bmBadge').textContent=(badge==='HQ')?'Headquarters':(r.dataset.state||badge);ov.querySelector('#bmName').textContent=name;ov.querySelector('#bmCity').textContent=city;var pr=ov.querySelector('#bmPastorRow');if(pastor){ov.querySelector('#bmPastor').textContent=pastor;pr.style.display='';}else{pr.style.display='none';}ov.querySelector('#bmAddr').textContent=addr;var d=ov.querySelector('#bmDir');if(dir){d.href=dir.getAttribute('href');d.style.display='';}else{d.style.display='none';}ov.querySelector('#bmMsg').href='index.html?branch='+encodeURIComponent(name)+'#visit';var sr=ov.querySelector('#bmSoc'),sw=ov.querySelector('#bmSocWrap');sr.innerHTML='';var any=false;if(soc){var ls=soc.querySelectorAll('a');ls.forEach(function(a){sr.appendChild(a.cloneNode(true));any=true;});}sw.style.display=any?'':'none';ov.classList.add('open');ov.setAttribute('aria-hidden','false');document.body.classList.add('bm-lock');}function close(){ov.classList.remove('open');ov.setAttribute('aria-hidden','true');document.body.classList.remove('bm-lock');}window.MFMopenBranch=openBranch;rows.forEach(function(r){var m=r.querySelector('.dir-row-main');if(!m)return;m.addEventListener('click',function(e){if(e.target.closest('.dir-directions'))return;openBranch(r);});});ov.addEventListener('click',function(e){if(e.target===ov)close();});ov.querySelector('.bm-close').addEventListener('click',close);document.addEventListener('keydown',function(e){if((e.key==='Escape'||e.keyCode===27)&&ov.classList.contains('open'))close();});})();
 
     /* ── Directory Search & Filter ── */
     (function(){var s=document.getElementById('dirSearch'),btns=document.querySelectorAll('.dir-filter'),rows=document.querySelectorAll('.dir-row'),nr=document.getElementById('dirNoResults'),rw=document.getElementById('dirRows'),af='all';if(!s||!rows.length)return;function f(){var q=s.value.toLowerCase().trim(),v=0;rows.forEach(function(r){var sm=af==='all'||r.dataset.state===af,tm=!q||r.textContent.toLowerCase().indexOf(q)!==-1;if(sm&&tm){r.classList.remove('hidden');v++;}else{r.classList.add('hidden');}});if(nr&&rw){nr.style.display=v===0?'block':'none';rw.style.display=v===0?'none':'';}}window.filterDir=f;var t;s.addEventListener('input',function(){clearTimeout(t);t=setTimeout(f,150);});btns.forEach(function(b){b.addEventListener('click',function(){btns.forEach(function(x){x.classList.remove('active');});b.classList.add('active');af=b.dataset.filter;f();});});})();
 
     /* ── Find Nearest Branch ── */
-    (function(){var btn=document.getElementById('findNearestBtn'),res=document.getElementById('nearestResult');if(!btn||!res)return;function hav(a,b,c,d){var R=3959,dL=(c-a)*Math.PI/180,dN=(d-b)*Math.PI/180,x=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dN/2)*Math.sin(dN/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}btn.addEventListener('click',function(){if(!navigator.geolocation){res.innerHTML='Geolocation not supported.';res.style.display='block';return;}btn.textContent='Finding...';btn.disabled=true;navigator.geolocation.getCurrentPosition(function(p){var uL=p.coords.latitude,uG=p.coords.longitude,rows=document.querySelectorAll('.dir-row[data-lat]'),n=null,nd=Infinity;rows.forEach(function(r){var d=hav(uL,uG,parseFloat(r.dataset.lat),parseFloat(r.dataset.lng));if(d<nd){nd=d;n=r;}});if(n){var nm=n.querySelector('.dir-name').textContent,mt=n.querySelector('.dir-meta').textContent;res.innerHTML='<strong>'+nm+'</strong>'+mt+'<br><span class="nearest-distance">'+Math.round(nd)+' miles away</span><br><a href="#" id="goN">Show branch ↓</a>';res.style.display='block';document.getElementById('goN').addEventListener('click',function(e){e.preventDefault();n.classList.add('open','highlight');n.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){n.classList.remove('highlight');},3000);});}btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg> Find nearest to me';btn.disabled=false;},function(){res.innerHTML='Unable to get location.';res.style.display='block';btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg> Find nearest to me';btn.disabled=false;});});})();
+    (function(){var btn=document.getElementById('findNearestBtn'),res=document.getElementById('nearestResult');if(!btn||!res)return;function hav(a,b,c,d){var R=3959,dL=(c-a)*Math.PI/180,dN=(d-b)*Math.PI/180,x=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dN/2)*Math.sin(dN/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}btn.addEventListener('click',function(){if(!navigator.geolocation){res.innerHTML='Geolocation not supported.';res.style.display='block';return;}btn.textContent='Finding...';btn.disabled=true;navigator.geolocation.getCurrentPosition(function(p){var uL=p.coords.latitude,uG=p.coords.longitude,rows=document.querySelectorAll('.dir-row[data-lat]'),n=null,nd=Infinity;rows.forEach(function(r){var d=hav(uL,uG,parseFloat(r.dataset.lat),parseFloat(r.dataset.lng));if(d<nd){nd=d;n=r;}});if(n){var nm=n.querySelector('.dir-name').textContent,mt=n.querySelector('.dir-meta').textContent;res.innerHTML='<strong>'+nm+'</strong>'+mt+'<br><span class="nearest-distance">'+Math.round(nd)+' miles away</span><br><a href="#" id="goN">Show branch ↓</a>';res.style.display='block';document.getElementById('goN').addEventListener('click',function(e){e.preventDefault();n.classList.add('highlight');n.scrollIntoView({behavior:'smooth',block:'center'});if(window.MFMopenBranch){window.MFMopenBranch(n);}setTimeout(function(){n.classList.remove('highlight');},3000);});}btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg> Find nearest to me';btn.disabled=false;},function(){res.innerHTML='Unable to get location.';res.style.display='block';btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg> Find nearest to me';btn.disabled=false;});});})();
 
     /* ── Hero Search Bridge ── */
     function triggerHeroSearch(){var h=document.getElementById('heroSearchInput'),d=document.getElementById('dirSearch'),s=document.getElementById('branch-directory');if(h&&d&&s){d.value=h.value;s.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(function(){d.dispatchEvent(new Event('input'));d.focus();},600);}}
