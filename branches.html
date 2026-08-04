@@ -500,11 +500,11 @@
           <h1 class="hero-line-light">Discover</h1>
           <h1 class="hero-line-bold">Where the <span class="fire-word">Fire</span> Burns</h1>
 
-          <p class="hero-subtitle">32 branches across 6 states &mdash; every one a furnace of prayer. Find the Mountain of Fire nearest to you.</p>
+          <p class="hero-subtitle">33 branches across 6 states &mdash; every one a furnace of prayer. Find the Mountain of Fire nearest to you.</p>
 
           <div class="hero-stats-row">
             <div>
-              <div class="hero-stat-num">32</div>
+              <div class="hero-stat-num">33</div>
               <div class="hero-stat-label">Branches</div>
             </div>
             <div class="hero-stat-divider"></div>
@@ -547,7 +547,7 @@
             </circle>
           </svg>
           <div class="hero-state-pills">
-            <span class="hero-state-pill pill--gold">Texas &middot; 20</span>
+            <span class="hero-state-pill pill--gold">Texas &middot; 21</span>
             <span class="hero-state-pill pill--fire">Florida &middot; 5</span>
             <span class="hero-state-pill pill--purple">Georgia &middot; 4</span>
             <span class="hero-state-pill pill--teal">NC &middot; 1</span>
@@ -1521,5 +1521,25 @@
     }
   </script>
 
+  <script>
+  /* Auto-count branch stats from the directory so numbers never drift */
+  (function(){
+    var rows=document.querySelectorAll('.dir-row'); if(!rows.length) return;
+    var counts={}; rows.forEach(function(r){var s=r.getAttribute('data-state')||'?'; counts[s]=(counts[s]||0)+1;});
+    var YOUTH='Youth Ministry';
+    var states=Object.keys(counts).filter(function(s){return s!==YOUTH;});
+    var branches=states.reduce(function(a,s){return a+counts[s];},0);
+    var nStates=states.length;
+    var sub=document.querySelector('.hero-subtitle');
+    if(sub){ sub.innerHTML=sub.innerHTML.replace(/\b\d+\s+branches\s+across\s+\d+\s+states/i, branches+' branches across '+nStates+' states'); }
+    var hn=document.querySelectorAll('.hero-stat-num'); if(hn[0])hn[0].textContent=branches; if(hn[1])hn[1].textContent=nStates;
+    var dn=document.querySelectorAll('.dir-stat-n'); if(dn[0])dn[0].textContent=branches; if(dn[1])dn[1].textContent=nStates;
+    var map={'Texas':'Texas','Florida':'Florida','Georgia':'Georgia','NC':'North Carolina','OK':'Oklahoma','TN':'Tennessee'};
+    document.querySelectorAll('.hero-state-pill').forEach(function(pill){
+      var label=pill.textContent.split('\u00b7')[0].trim(); var st=map[label];
+      if(st&&counts[st]!=null){ pill.textContent=label+' \u00b7 '+counts[st]; }
+    });
+  })();
+  </script>
 </body>
 </html>
