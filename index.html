@@ -578,7 +578,17 @@
     .announce-tag::before {
       content: '';
       width: 28px; height: 1px;
-      background: var(--gold);
+      background: currentColor;
+    }
+    /* Status-specific colours — one consistent colour per status */
+    .announce-tag.is-now      { color: #ff6a45; }   /* Happening Now — live */
+    .announce-tag.is-ongoing  { color: #37c489; }   /* Ongoing — in session */
+    .announce-tag.is-week     { color: var(--gold); } /* This Week — imminent */
+    .announce-tag.is-upcoming { color: #82abe0; }   /* Upcoming — further out */
+    .announce-tag.is-now::before {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      animation: livePulse 1.4s ease-in-out infinite;
     }
 
     .announce-content h3 {
@@ -2801,16 +2811,19 @@
       }
       function esc(s) { var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
-      function eyebrowFor(item) {
+      function statusFor(item) {
         var startDelta = Math.round((item.start - today) / 86400000);
+        var endDelta   = Math.round((item.end   - today) / 86400000);
         var isMulti = item.end.getTime() !== item.start.getTime();
-        if (startDelta > 0) {
-          if (startDelta === 1) return 'Tomorrow';
-          if (startDelta <= 7) return 'This Week';
-          return 'Next Up';
+        // Live window: already started (or starts today) and not yet ended.
+        // Precedence guarantees an in-progress program never also reads "This Week".
+        if (startDelta <= 0 && endDelta >= 0) {
+          return isMulti ? { label: 'Ongoing', key: 'ongoing' }
+                         : { label: 'Happening Now', key: 'now' };
         }
-        if (startDelta === 0) return isMulti ? 'Starts Today' : 'Happening Today';
-        return 'Ongoing';
+        // Not yet started
+        if (startDelta > 7) return { label: 'Upcoming', key: 'upcoming' };
+        return { label: 'This Week', key: 'week' };
       }
 
       function eventStartMoment(item) {
@@ -2922,6 +2935,7 @@
       var dotsHtml = '';
       parsed.forEach(function (item, idx) {
         var f = item.ev;
+        var status = statusFor(item);
         var destLink = f.anchor ? 'events.html#' + f.anchor : (f.link || 'events.html');
         var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
 
@@ -2944,7 +2958,7 @@
             '<div class="announce-bg" style="background-image:url(\'' + esc(f.image) + '\');" aria-hidden="true"></div>' +
             '<div class="announce-overlay" aria-hidden="true"></div>' +
             '<div class="announce-content">' +
-              '<div class="announce-tag">' + esc(eyebrowFor(item)) + '</div>' +
+              '<div class="announce-tag is-' + status.key + '">' + esc(status.label) + '</div>' +
               '<div class="announce-countdown-slot" data-cd-slot="' + idx + '"></div>' +
               '<h3>' + esc(f.title) + '</h3>' +
               (f.theme ? '<p class="announce-theme">' + esc(f.theme) + '</p>' : '') +
@@ -2981,20 +2995,16 @@
         var endOfEvent = new Date(item.end);
         endOfEvent.setHours(23, 59, 59, 999);
 
+        // Live / in-progress: the status chip already says "Happening Now" or
+        // "Ongoing", so show no duplicate countdown pill here.
         if (now >= startMoment && now <= endOfEvent) {
-          slot.innerHTML =
-            '<div class="announce-countdown is-live">' +
-              '<span class="cd-live-text">Happening Now</span>' +
-            '</div>';
+          slot.innerHTML = '';
           return;
         }
 
         var ms = startMoment - now;
         if (ms <= 0) {
-          slot.innerHTML =
-            '<div class="announce-countdown is-live">' +
-              '<span class="cd-live-text">Happening Now</span>' +
-            '</div>';
+          slot.innerHTML = '';
           return;
         }
 
