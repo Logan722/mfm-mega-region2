@@ -148,12 +148,13 @@
           <p>Worship with us live on YouTube — wherever you are. When we are streaming, the service appears below.</p>
         </div>
         <div class="reveal" style="max-width:900px; margin:0 auto;">
-          <div style="position:relative; padding-bottom:56.25%; height:0; border-radius:14px; overflow:hidden; border:1px solid var(--line-navy); background:#000;">
-            <iframe src="https://www.youtube.com/embed/live_stream?channel=UCr3gSJPBQDjN8CEbj86Pyug" title="MFM Mega Region 2 USA live stream" style="position:absolute; inset:0; width:100%; height:100%; border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <div id="livePlayer" style="position:relative; padding-bottom:56.25%; height:0; border-radius:14px; overflow:hidden; border:1px solid var(--line-navy); background:#000;">
+            <div id="livePlayerMsg" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; color:var(--text-on-navy); font-size:0.95rem;">Loading the latest service&hellip;</div>
           </div>
-          <p style="text-align:center; color:var(--text-on-navy); margin-top:16px; font-size:0.9rem;">Not live at the moment? Catch up on past services any time on our channel.</p>
-          <div class="text-center" style="margin-top:20px;">
-            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Subscribe on YouTube</a>
+          <p style="text-align:center; color:var(--text-on-navy); margin-top:16px; font-size:0.9rem;">When we go live, the service plays above. Otherwise you're watching our most recent service — tap below to open our live page on YouTube any time.</p>
+          <div class="text-center" style="margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <a href="https://www.youtube.com/@mfmmegaregion2usa/live" target="_blank" rel="noopener" class="btn btn--fire btn--sm">&#9654;&nbsp; Watch Live on YouTube</a>
+            <a href="https://youtube.com/@mfmmegaregion2usa?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Subscribe on YouTube</a>
           </div>
         </div>
       </div>
@@ -466,5 +467,68 @@
     })();
   </script>
 
+  <!-- Watch Live: load the channel's latest video (the live stream when we're on air) via YouTube RSS -->
+  <script>
+  (function () {
+    var CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
+    var RSS_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+    var PROXY_URLS = [
+      'https://api.allorigins.win/raw?url=' + encodeURIComponent(RSS_URL),
+      'https://corsproxy.io/?' + encodeURIComponent(RSS_URL)
+    ];
+    var player = document.getElementById('livePlayer');
+    var msg = document.getElementById('livePlayerMsg');
+    if (!player) return;
+
+    if (window.location.protocol === 'file:') { showFallback('Live video loads when the site is hosted online.'); return; }
+
+    fetchWithFallback(PROXY_URLS, 0);
+
+    function fetchWithFallback(urls, index) {
+      if (index >= urls.length) { showFallback(); return; }
+      var controller = new AbortController();
+      var to = setTimeout(function () { controller.abort(); }, 6000);
+      fetch(urls[index], { signal: controller.signal })
+        .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.text(); })
+        .then(function (xml) {
+          clearTimeout(to);
+          var doc = new DOMParser().parseFromString(xml, 'application/xml');
+          var entry = doc.querySelector('entry');
+          var id = entry ? getVideoId(entry) : null;
+          if (!id) { showFallback(); return; }
+          embed(id);
+        })
+        .catch(function () { clearTimeout(to); fetchWithFallback(urls, index + 1); });
+    }
+
+    function getVideoId(entry) {
+      var idEl = entry.querySelector('id');
+      if (idEl) { var p = idEl.textContent.split(':'); return p[p.length - 1]; }
+      var link = entry.querySelector('link');
+      if (link) { var m = (link.getAttribute('href') || '').match(/[?&]v=([^&]+)/); if (m) return m[1]; }
+      return null;
+    }
+
+    function embed(id) {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?rel=0';
+      iframe.title = 'MFM Mega Region 2 USA — latest service';
+      iframe.setAttribute('style', 'position:absolute; inset:0; width:100%; height:100%; border:0;');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.loading = 'lazy';
+      if (msg && msg.parentNode) { msg.parentNode.removeChild(msg); }
+      player.appendChild(iframe);
+    }
+
+    function showFallback(text) {
+      if (!msg) return;
+      msg.innerHTML = '<div style="max-width:440px;">' +
+        '<p style="margin:0 0 12px;">' + (text || 'We’re not streaming on the site right now.') + '</p>' +
+        '<a href="https://www.youtube.com/@mfmmegaregion2usa/live" target="_blank" rel="noopener" style="color:var(--fire); font-weight:600;">Open our live page on YouTube →</a>' +
+        '</div>';
+    }
+  })();
+  </script>
 </body>
 </html>
