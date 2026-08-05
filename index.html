@@ -2063,8 +2063,10 @@
                 <option value="" disabled selected>What is this about?</option>
                 <option value="Prayer Request">Prayer Request</option>
                 <option value="Testimony">Testimony</option>
+                <option value="Giving / Support the Ministry">Giving / Support the Ministry</option>
                 <option value="General Message">General Message</option>
               </select>
+              <p id="giveHint" style="display:none; margin:-4px 0 0; font-size:0.85rem; color:var(--text-on-white);">Want to give right now? <a href="give.html" style="color:var(--fire); font-weight:600; text-decoration:none;">Visit our Giving page &rarr;</a></p>
               <div class="form-row">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="tel" name="phone" placeholder="Phone Number" required>
@@ -2129,6 +2131,14 @@
               .catch(function () { form.submit(); });
           });
         });
+
+        var typeSel = document.querySelector('#reachForm select[name="type"]');
+        var giveHint = document.getElementById('giveHint');
+        if (typeSel && giveHint) {
+          typeSel.addEventListener('change', function () {
+            giveHint.style.display = /Giving/i.test(typeSel.value) ? 'block' : 'none';
+          });
+        }
       })();
     </script>
 
