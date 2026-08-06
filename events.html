@@ -1123,7 +1123,7 @@
       var toast=document.createElement('div'); toast.className='evt-toast'; document.body.appendChild(toast); var toastT;
       function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){ toast.classList.remove('show'); },2200); }
 
-      function eventUrl(ev){ return location.origin+location.pathname+(ev.anchor?'#'+ev.anchor:''); }
+      function eventUrl(ev){ return ev.anchor ? (location.origin+'/share/'+ev.anchor+'.html') : (location.origin+location.pathname); }
       function shareEvent(idx){
         var ev=parsed[idx].ev, url=eventUrl(ev), text=ev.title+(ev.dateDisplay?' — '+ev.dateDisplay:'');
         if(navigator.share){ navigator.share({title:ev.title, text:text, url:url}).catch(function(){}); }
