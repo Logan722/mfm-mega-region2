@@ -163,8 +163,9 @@
     .evt-modal-bd{ position:absolute; inset:0; background:rgba(10,17,30,.72); }
     .evt-sheet{ position:relative; z-index:1; background:var(--bg-white); border-radius:18px; width:100%; max-width:560px; max-height:88vh; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.4); }
     .evt-sheet-head{ position:relative; flex:none; padding:22px 22px 14px; border-bottom:1px solid #f0eee9; }
-    .evt-x{ position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; border:none; background:#f1efe9; color:var(--navy); font-size:1.4rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-    .evt-sheet-head h3{ font-family:var(--font-serif); font-weight:600; font-size:1.4rem; color:var(--navy); line-height:1.15; padding-right:34px; }
+    .evt-x{ position:absolute; top:10px; right:10px; z-index:6; width:44px; height:44px; border-radius:50%; border:none; background:#f1efe9; color:var(--navy); font-size:1.6rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; -webkit-tap-highlight-color:transparent; transition:background .15s; }
+    .evt-x:active{ background:#ddd8cc; }
+    .evt-sheet-head h3{ font-family:var(--font-serif); font-weight:600; font-size:1.4rem; color:var(--navy); line-height:1.15; padding-right:48px; }
     .evt-sheet-body{ flex:1; overflow:auto; padding:16px 22px 20px; -webkit-overflow-scrolling:touch; }
     .evt-theme{ font-family:var(--font-serif); font-style:italic; color:var(--gold); font-size:1rem; margin-bottom:12px; line-height:1.4; }
     .evt-fulldesc{ font-size:.96rem; color:var(--text-on-white); line-height:1.65; margin-bottom:16px; }
@@ -1125,9 +1126,16 @@
 
       function eventUrl(ev){ return ev.anchor ? (location.origin+'/share/'+ev.anchor+'.html') : (location.origin+location.pathname); }
       function shareEvent(idx){
-        var ev=parsed[idx].ev, url=eventUrl(ev), text=ev.title+(ev.dateDisplay?' — '+ev.dateDisplay:'');
-        if(navigator.share){ navigator.share({title:ev.title, text:text, url:url}).catch(function(){}); }
-        else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(function(){ showToast('Link copied ✓'); }).catch(function(){ showToast(url); }); }
+        var item=parsed[idx], ev=item.ev, url=eventUrl(ev);
+        var msg='🔥 You’re invited — '+ev.title+'\n'
+              +'🗓 '+whenStr(item)+'\n'
+              +(ev.venue?'📍 '+ev.venue+'\n':'')
+              +(ev.ministering?'Ministering: '+ev.ministering+'\n':(ev.host?'Host: '+ev.host+'\n':''))
+              +'\nFor more information, click the link below.\n'
+              +'Please share with friends and family! 🙏\n'
+              +url;
+        if(navigator.share){ navigator.share({title:ev.title, text:msg}).catch(function(){}); }
+        else if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(msg).then(function(){ showToast('Message copied ✓'); }).catch(function(){ showToast('Copy failed'); }); }
         else { showToast(url); }
       }
 
@@ -1155,7 +1163,7 @@
 
       function openDetail(idx){ var item=parsed[idx]; if(!item) return; item._idx=idx; fillSheet(item); modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
       function closeDetail(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); if(!light.classList.contains('open')) document.body.style.overflow=''; }
-      modal.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) closeDetail(); });
+      modal.addEventListener('click',function(e){ if(e.target.closest('[data-close]')) closeDetail(); });
       mFoot.addEventListener('click',function(e){ var sh=e.target.closest('[data-share]'); if(sh){ e.preventDefault(); shareEvent(parseInt(sh.getAttribute('data-share'),10)); } });
 
       grid.addEventListener('click', function(e){
