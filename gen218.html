@@ -15,6 +15,7 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="MFM Region 2">
+  <link rel="stylesheet" href="css/events-cards.css">
   <script src="js/site.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -447,6 +448,19 @@
     </section>
 
 
+    <!-- ── UPCOMING PROGRAMS (Gen218) ── -->
+    <section class="section section--white" id="programs">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Gen218 Singles</p>
+          <h2>Upcoming Programs</h2>
+          <p>Conferences, hangouts, and gatherings for the Gen218 singles family in Mega Region 2. Tap any program for full details, tickets, and to add it to your calendar.</p>
+        </div>
+        <div class="dept-events" data-dept-events="gen218"></div>
+      </div>
+    </section>
+
+
     <!-- ── VIDEOS ── -->
     <section class="section section--cream" id="videos">
       <div class="container">
@@ -566,6 +580,8 @@
 
   <div class="grain" aria-hidden="true"><svg><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)"/></svg></div>
 
+  <script src="js/events-data.js"></script>
+  <script src="js/dept-events.js"></script>
   <script>
     (function(){var h=document.getElementById('navHamburger'),d=document.getElementById('drawer'),o=document.getElementById('drawerOverlay');function open(){h.classList.add('open');h.setAttribute('aria-expanded','true');d.classList.add('open');o.classList.add('open');document.body.classList.add('drawer-open');}function close(){h.classList.remove('open');h.setAttribute('aria-expanded','false');d.classList.remove('open');o.classList.remove('open');document.body.classList.remove('drawer-open');}h.addEventListener('click',function(){d.classList.contains('open')?close():open();});o.addEventListener('click',close);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open'))close();});})();
     (function(){var n=document.getElementById('siteNav');var t=false;window.addEventListener('scroll',function(){if(!t){requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>60);t=false;});t=true;}});})();
