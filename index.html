@@ -2799,6 +2799,30 @@
         return d;
       }
 
+      /* Weekend Deliverance — inject the NEXT upcoming session as a rolling countdown slide.
+         Auto-advances to the following weekend after each one passes; no upkeep needed. */
+      (function () {
+        var WD = ['2026-08-07','2026-08-14','2026-08-21','2026-08-28','2026-10-09','2026-10-16','2026-10-23'];
+        for (var i = 0; i < WD.length; i++) {
+          var s = parseYMD(WD[i]);
+          var e = parseYMD(WD[i]); e.setDate(e.getDate() + 2); /* Fri → Sun */
+          if (e >= today) {
+            var end = e.getFullYear() + '-' + ('0' + (e.getMonth() + 1)).slice(-2) + '-' + ('0' + e.getDate()).slice(-2);
+            events.push({
+              date: WD[i], endDate: end,
+              title: 'Weekend Deliverance',
+              theme: 'Three days of deliverance at Prayer City',
+              time: 'Fri 7 PM · Sat 9 AM & 8 PM · Sun 9 AM CT',
+              venue: 'MFM USA Prayer City — 10000 Kleckley Dr, Houston, TX 77075',
+              image: 'img/announcements/weekend-deliverance.jpg',
+              alt: 'Weekend Deliverance at Prayer City',
+              anchor: 'deliverance'
+            });
+            break;
+          }
+        }
+      })();
+
       var parsed = events.map(function (ev) {
         var start = parseYMD(ev.date);
         if (!start) return null;
