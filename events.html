@@ -779,6 +779,7 @@
         "image": "img/announcements/nc-deliverance-crusade.jpg",
         "alt": "The Great North Carolina Deliverance Crusade — Thursday September 17, 2026, ministering Dr. D.K. Olukoya",
         "anchor": "nc-deliverance-crusade",
+        "link": "https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
         "dateDisplay": "Thursday, September 17, 2026",
         "description": "A great deliverance crusade at The Alliance Convention Center in Burlington, North Carolina with the General Overseer, Dr. D.K. Olukoya — a night of fire, deliverance, and the demonstration of the power of God. For more information call (919) 592-8927.",
         "badgeStyle": "fire"
@@ -810,6 +811,7 @@
         "image": "img/announcements/florida-deliverance-crusade.jpg",
         "alt": "The Great Florida Deliverance Crusade & Church Property Dedication — Sunday September 20, 2026, Yuengling Center, USF, Tampa",
         "anchor": "florida-deliverance-crusade",
+        "link": "https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
         "dateDisplay": "Sunday, September 20, 2026",
         "description": "A great deliverance crusade and church property dedication hosted by MFM Tampa, Florida at the Yuengling Center, University of South Florida — a mighty gathering of fire, deliverance, healing, and breakthrough. RSVP / prayer line: (813) 593-1638 or (346) 302-9156. Nearby hotels are listed on the flyer.",
         "badgeStyle": "fire"
@@ -1361,7 +1363,7 @@
         h += '<a href="' + esc(calUrl(ev)) + '" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">+ Add to Calendar</a>';
         if (ev.link) {
           var isExt = /^https?:/i.test(ev.link);
-          h += '<a href="' + esc(ev.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">' + ((ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1) ? 'Register Now \u2192' : 'Learn More \u2192') + '</a>';
+          h += '<a href="' + esc(ev.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="btn btn--fire btn--sm">' + (/(eventbrite|tickets)/i.test(ev.link) ? 'Get Tickets \u2192' : (ev.link.indexOf('register') > -1 || ev.link.indexOf('iyc') > -1) ? 'Register Now \u2192' : 'Learn More \u2192') + '</a>';
         }
         h += '</div>';
         h += '</div>';

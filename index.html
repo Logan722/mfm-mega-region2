@@ -1766,7 +1766,8 @@
         "host": "Pastor Ebenezer Afolabi (MFM Burlington NC) · Pastor Olumide Oni (PRO, Mega Region 2)",
         "image": "img/announcements/nc-deliverance-crusade.jpg",
         "alt": "The Great North Carolina Deliverance Crusade — Thursday September 17, 2026, Dr. D.K. Olukoya",
-        "anchor": "nc-deliverance-crusade"
+        "anchor": "nc-deliverance-crusade",
+        "link": "https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile"
       },
       {
         "date": "2026-10-10",
@@ -1790,7 +1791,8 @@
         "host": "Pastor Kehinde Olajide (ASRO, MFM Florida) · Pastor Olumide Oni (PRO, Mega Region 2)",
         "image": "img/announcements/florida-deliverance-crusade.jpg",
         "alt": "The Great Florida Deliverance Crusade & Church Property Dedication — Sunday September 20, 2026, Yuengling Center, USF, Tampa",
-        "anchor": "florida-deliverance-crusade"
+        "anchor": "florida-deliverance-crusade",
+        "link": "https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile"
       },
       {
         "date": "2026-10-10",
@@ -2985,7 +2987,7 @@
       parsed.forEach(function (item, idx) {
         var f = item.ev;
         var status = statusFor(item);
-        var destLink = f.anchor ? 'events.html#' + f.anchor : (f.link || 'events.html');
+        var destLink = (f.link && /^https?:/i.test(f.link)) ? f.link : (f.anchor ? 'events.html#' + f.anchor : 'events.html');
         var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
 
         var whenVal = dateRange(item.start, item.end);
@@ -2998,7 +3000,7 @@
         if (f.ministering) metaRows += '<li><span class="label">Ministering</span><span class="value">' + esc(f.ministering) + '</span></li>';
         if (f.host)        metaRows += '<li><span class="label">Host</span><span class="value">' + esc(f.host) + '</span></li>';
 
-        var ctaLabel = f.link ? 'Register / Learn More' : 'View Details';
+        var ctaLabel = f.link ? (/(eventbrite|tickets)/i.test(f.link) ? 'Get Tickets' : 'Register') : 'View Details';
 
         slidesHtml +=
           '<div class="announce-slide' + (idx === 0 ? ' is-active' : '') + '" ' +
