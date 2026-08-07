@@ -283,5 +283,42 @@ window.MFM_EVENTS = [
     "dateDisplay": "November 19, 2026",
     "description": "A great deliverance crusade in Nashville, Tennessee with the General Overseer, Dr. D.K. Olukoya — a night of fire, deliverance, and the demonstration of the power of God. Venue to be announced.",
     "badgeStyle": "fire"
+  },
+  {
+    "date": "2026-08-09",
+    "title": "Back to School Prayers — Rehoboth Center",
+    "theme": "Covering our children with prayer, preparing them for purpose",
+    "time": "8:00 AM prompt",
+    "venue": "MFM Rehoboth Center — 12342 Bissonnet Street, Houston, TX 77099",
+    "ministering": "Pastor Lekan Ademakin & other anointed ministers of God",
+    "image": "img/announcements/back-to-school-rehoboth.jpg",
+    "alt": "Back to School Prayers — MFM Rehoboth Center, Houston — Sunday August 9, 2026",
+    "anchor": "back-to-school-rehoboth",
+    "dateDisplay": "Sunday, August 9, 2026",
+    "description": "A special back-to-school prayer gathering at MFM Rehoboth Center — covering our students, teachers, parents, and schools with prayer for divine protection, wisdom, academic excellence, and a bright future as a new school season begins. Come with a bottle of oil.",
+    "features": [
+      "Divine Protection",
+      "Wisdom & Excellence",
+      "Covering for Students & Teachers",
+      "A Bright Future"
+    ],
+    "scripture": "Commit thy works unto the LORD, and thy thoughts shall be established.|Proverbs 16:3",
+    "badgeStyle": "gold"
+  },
+  {
+    "date": "2026-08-22",
+    "title": "Zonal Women's Conference 2026 — \"Prevailing Women\"",
+    "theme": "Prevailing Women",
+    "time": "10:00 AM – 5:00 PM EST",
+    "venue": "MFM Revival Center — 3480 Howell St NW, Duluth, GA 30096",
+    "ministering": "Anointed Ministers of God",
+    "image": "img/announcements/zonal-womens-conference.jpg",
+    "alt": "Zonal Women's Conference 2026 — Prevailing Women, Atlanta Zone, August 22, 2026",
+    "anchor": "zonal-womens-conference",
+    "ministry": "women",
+    "dateDisplay": "Saturday, August 22, 2026",
+    "description": "The Women Foundation, Mega Region 2 — Atlanta Zone presents the 2026 Zonal Women's Conference, \"Prevailing Women.\" A gathering of women for prayer, worship, the Word, and empowerment. Come and be empowered to prevail.",
+    "scripture": "She openeth her mouth with wisdom; and in her tongue is the law of kindness.|Proverbs 31:26",
+    "badgeStyle": "gold"
   }
 ];

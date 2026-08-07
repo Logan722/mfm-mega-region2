@@ -337,11 +337,11 @@
     @media (max-width: 900px) {
       .hero-diag-grid {
         grid-template-columns: 1fr;
-        padding-top: 70px;
+        padding-top: 24px;
       }
       .hero-left {
         text-align: center;
-        padding: 32px 24px 20px;
+        padding: 14px 24px 20px;
         align-items: center;
       }
       .hero-ministry-name { justify-content: center; }
@@ -527,14 +527,11 @@
       inset: 0;
       background:
         linear-gradient(180deg,
-          rgba(15, 26, 48, 0.35) 0%,
-          rgba(15, 26, 48, 0.50) 40%,
-          rgba(15, 26, 48, 0.88) 85%,
-          rgba(15, 26, 48, 0.95) 100%),
-        linear-gradient(90deg,
-          rgba(15, 26, 48, 0.72) 0%,
-          rgba(15, 26, 48, 0.30) 50%,
-          rgba(15, 26, 48, 0.10) 100%);
+          rgba(15, 26, 48, 0.98) 0%,
+          rgba(15, 26, 48, 0.95) 15%,
+          rgba(15, 26, 48, 0.90) 45%,
+          rgba(15, 26, 48, 0.95) 80%,
+          rgba(15, 26, 48, 0.99) 100%);
     }
 
     /* Content stack floating on top */
@@ -823,7 +820,7 @@
       position: absolute;
       top: 28px;
       right: max(2vw, 28px);
-      display: flex;
+      display: none;
       align-items: center;
       gap: 8px;
       z-index: 3;
@@ -861,9 +858,11 @@
       .announce-overlay {
         background:
           linear-gradient(180deg,
-            rgba(15, 26, 48, 0.40) 0%,
-            rgba(15, 26, 48, 0.70) 55%,
-            rgba(15, 26, 48, 0.95) 100%);
+            rgba(15, 26, 48, 0.98) 0%,
+            rgba(15, 26, 48, 0.95) 15%,
+            rgba(15, 26, 48, 0.90) 45%,
+            rgba(15, 26, 48, 0.95) 80%,
+            rgba(15, 26, 48, 0.99) 100%);
       }
       .announce-meta { gap: 12px 20px; }
       .announce-meta li { max-width: 160px; font-size: 0.78rem; }
@@ -2817,7 +2816,7 @@
         var linkTarget = (f.link && /^https?:/i.test(f.link)) ? ' target="_blank" rel="noopener"' : '';
 
         var whenVal = dateRange(item.start, item.end);
-        if (f.time) whenVal += ' \u2022 ' + esc(f.time);
+        if (f.time && /\d/.test(f.time) && /(am|pm|:)/i.test(f.time)) whenVal += ' \u2022 ' + esc(f.time);
 
         // meta rows as a flex wrap
         var metaRows = '';
