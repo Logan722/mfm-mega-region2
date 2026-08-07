@@ -199,20 +199,24 @@ window.MFM_EVENTS = [
     "badgeStyle": "gold"
   },
   {
-    "date": "2026-09-17",
-    "title": "The Great North Carolina Deliverance Crusade",
+    "date": "2026-09-16",
+    "title": "The Great North Carolina Deliverance Crusade & Church Property Dedication",
     "theme": "A Great Deliverance Crusade",
-    "time": "5:00 PM",
     "venue": "The Alliance Convention Center — 1214 Turrentine Street, Burlington, NC 27215",
     "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
     "host": "Pastor Ebenezer Afolabi (Area Overseer, MFM Burlington NC) · Pastor Olumide Oni (PRO, Mega Region 2)",
     "image": "img/announcements/nc-deliverance-crusade.jpg",
-    "alt": "The Great North Carolina Deliverance Crusade — Thursday September 17, 2026, ministering Dr. D.K. Olukoya",
+    "alt": "The Great North Carolina Deliverance Crusade & Church Property Dedication — Burlington, NC, September 16–17, 2026",
     "anchor": "nc-deliverance-crusade",
     "link": "https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
-    "dateDisplay": "Thursday, September 17, 2026",
-    "description": "A great deliverance crusade at The Alliance Convention Center in Burlington, North Carolina with the General Overseer, Dr. D.K. Olukoya — a night of fire, deliverance, and the demonstration of the power of God. For more information call (919) 592-8927.",
-    "badgeStyle": "fire"
+    "dateDisplay": "September 16 – 17, 2026",
+    "description": "This programme comes in two parts. Church Property Dedication — Wednesday, September 16 at 5:00 PM, 511 James Street, Burlington, NC 27217. The Great North Carolina Deliverance Crusade — Thursday, September 17 at 5:00 PM, The Alliance Convention Center, 1214 Turrentine Street, Burlington, NC 27215. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
+    "badgeStyle": "fire",
+    "endDate": "2026-09-17",
+    "features": [
+      "Church Property Dedication — Wed, Sep 16 · 5:00 PM",
+      "Deliverance Crusade — Thu, Sep 17 · 5:00 PM"
+    ]
   },
   {
     "date": "2026-10-10",
@@ -233,20 +237,24 @@ window.MFM_EVENTS = [
     "ministry": "women"
   },
   {
-    "date": "2026-09-20",
+    "date": "2026-09-19",
     "title": "The Great Florida Deliverance Crusade & Church Property Dedication",
     "theme": "Expect. Receive. Testify — power, deliverance, healing & breakthrough",
-    "time": "4:00 PM prompt",
     "venue": "Yuengling Center (USF) — 12499 USF Bull Run Drive, Tampa, FL 33620",
     "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
     "host": "Pastor Kehinde Olajide (ASRO, MFM Florida) · Pastor Olumide Oni (PRO, Mega Region 2)",
     "image": "img/announcements/florida-deliverance-crusade.jpg",
-    "alt": "The Great Florida Deliverance Crusade & Church Property Dedication — Sunday September 20, 2026, Yuengling Center, USF, Tampa",
+    "alt": "The Great Florida Deliverance Crusade & Church Property Dedication — Tampa, FL, September 19–20, 2026",
     "anchor": "florida-deliverance-crusade",
     "link": "https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
-    "dateDisplay": "Sunday, September 20, 2026",
-    "description": "A great deliverance crusade and church property dedication hosted by MFM Tampa, Florida at the Yuengling Center, University of South Florida — a mighty gathering of fire, deliverance, healing, and breakthrough. RSVP / prayer line: (813) 593-1638 or (346) 302-9156. Nearby hotels are listed on the flyer.",
-    "badgeStyle": "fire"
+    "dateDisplay": "September 19 – 20, 2026",
+    "description": "This programme comes in two parts. Church Property Dedication — Saturday, September 19 at 5:00 PM, MFM Tampa, 4618 North Florida Avenue, Tampa, FL 33603. The Great Florida Deliverance Crusade — Sunday, September 20 at 4:00 PM, Yuengling Center (USF), 12499 USF Bull Run Drive, Tampa, FL 33620. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
+    "badgeStyle": "fire",
+    "endDate": "2026-09-20",
+    "features": [
+      "Church Property Dedication — Sat, Sep 19 · 5:00 PM",
+      "Deliverance Crusade — Sun, Sep 20 · 4:00 PM"
+    ]
   },
   {
     "date": "2026-10-10",

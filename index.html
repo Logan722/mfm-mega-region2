@@ -475,7 +475,7 @@
     .announce-stage {
       position: relative;
       width: 100%;
-      margin: 40px 0 0;
+      margin: 0;
       overflow: hidden;
       background: var(--bg-navy-deep);
     }
@@ -527,9 +527,10 @@
       inset: 0;
       background:
         linear-gradient(180deg,
-          rgba(15, 26, 48, 0.98) 0%,
-          rgba(15, 26, 48, 0.95) 15%,
-          rgba(15, 26, 48, 0.90) 45%,
+          rgba(15, 26, 48, 1) 0%,
+          rgba(15, 26, 48, 1) 12%,
+          rgba(15, 26, 48, 0.96) 22%,
+          rgba(15, 26, 48, 0.90) 48%,
           rgba(15, 26, 48, 0.95) 80%,
           rgba(15, 26, 48, 0.99) 100%);
     }
@@ -818,9 +819,10 @@
     /* Indicator dots */
     .announce-dots {
       position: absolute;
-      top: 28px;
-      right: max(2vw, 28px);
-      display: none;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
       align-items: center;
       gap: 8px;
       z-index: 3;
@@ -858,15 +860,16 @@
       .announce-overlay {
         background:
           linear-gradient(180deg,
-            rgba(15, 26, 48, 0.98) 0%,
-            rgba(15, 26, 48, 0.95) 15%,
-            rgba(15, 26, 48, 0.90) 45%,
+            rgba(15, 26, 48, 1) 0%,
+            rgba(15, 26, 48, 1) 12%,
+            rgba(15, 26, 48, 0.96) 22%,
+            rgba(15, 26, 48, 0.90) 48%,
             rgba(15, 26, 48, 0.95) 80%,
             rgba(15, 26, 48, 0.99) 100%);
       }
       .announce-meta { gap: 12px 20px; }
       .announce-meta li { max-width: 160px; font-size: 0.78rem; }
-      .announce-dots { top: 16px; right: 16px; padding: 6px 10px; }
+      .announce-dots { bottom: 14px; left: 50%; right: auto; transform: translateX(-50%); padding: 6px 10px; }
       .announce-dots .dot { width: 18px; height: 4px; }
       .announce-dots .dot.is-active { width: 30px; }
       /* Arrows hidden on mobile — swipe is the primary nav */
