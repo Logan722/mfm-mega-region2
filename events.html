@@ -182,6 +182,21 @@
     .evt-flyertile b{ display:block; font-size:.92rem; color:var(--navy); }
     .evt-flyertile span{ font-size:.82rem; color:var(--text-dim-white); }
     .evt-flyertile .go{ margin-left:auto; color:var(--gold); font-weight:700; font-size:.9rem; flex:none; }
+    /* promo video */
+    .evt-btn.watch{ flex:1; background:var(--navy); color:#fff; }
+    .evt-btn.watch:hover{ filter:brightness(1.12); }
+    .evt-btn.watch svg{ width:15px; height:15px; }
+    .evt-vribbon{ position:absolute; top:5px; left:5px; display:flex; align-items:center; gap:3px; font-size:10px; font-weight:800; letter-spacing:.02em; color:#fff; background:linear-gradient(135deg,#e85d26,#d64a1c); padding:2px 7px 2px 5px; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.25); }
+    .evt-vribbon svg{ width:11px; height:11px; }
+    .evt-video{ position:relative; width:100%; aspect-ratio:16/9; margin:2px 0 18px; border-radius:14px; overflow:hidden; background:#000; border:1px solid var(--bg-sand-border); }
+    .evt-video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .evt-vplay{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; background:#000; cursor:pointer; display:block; }
+    .evt-vplay img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .evt-vscrim{ position:absolute; inset:0; background:radial-gradient(circle at 50% 45%, rgba(0,0,0,.15), rgba(0,0,0,.55)); }
+    .evt-vbtn{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:66px; height:66px; border-radius:50%; background:rgba(232,93,38,.95); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 26px rgba(0,0,0,.4); transition:transform .18s ease, background .18s ease; }
+    .evt-vbtn svg{ width:30px; height:30px; color:#fff; margin-left:3px; }
+    .evt-vplay:hover .evt-vbtn{ transform:translate(-50%,-50%) scale(1.08); background:#e85d26; }
+    .evt-vcap{ position:absolute; left:0; right:0; bottom:0; text-align:center; font-family:var(--font-sans); font-size:.82rem; font-weight:700; letter-spacing:.03em; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6)); padding:22px 10px 10px; }
     .evt-sheet-foot{ flex:none; display:flex; gap:9px; padding:14px 18px; border-top:1px solid #eee; background:#fff; box-shadow:0 -6px 18px rgba(20,34,64,.06); }
 
     /* flyer lightbox */
@@ -862,8 +877,25 @@
         tix:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4z"/></svg>',
         cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
         share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>',
-        stack:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>'
+        stack:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
+        play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'
       };
+
+      /* ── promo video (YouTube) helpers ── */
+      function ytId(u){ if(!u) return ''; var m=(''+u).match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/); return m?m[1]:(/^[A-Za-z0-9_-]{11}$/.test(u)?u:''); }
+      function videoBlockHTML(id,title){
+        return '<div class="evt-video" data-vid="'+id+'">'+
+          '<button type="button" class="evt-vplay" aria-label="Play promo video: '+attr(title)+'">'+
+            '<img src="https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg\'">'+
+            '<span class="evt-vscrim"></span>'+
+            '<span class="evt-vbtn">'+IC.play+'</span>'+
+            '<span class="evt-vcap">Watch promo</span>'+
+          '</button></div>';
+      }
+      function playInline(wrap){
+        if(!wrap) return; var id=wrap.getAttribute('data-vid'); if(!id) return;
+        wrap.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Promo video" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+      }
 
       function ticketLabel(link){ return /(eventbrite|tickets)/i.test(link)?'Get Tickets':((link.indexOf('register')>-1||link.indexOf('iyc')>-1)?'Register':'Learn More'); }
       function calUrl(ev){ function ymd(x){ return (x||'').replace(/-/g,''); } var start=ymd(ev.date); var base=ev.endDate||ev.date; var d=new Date(base+'T00:00:00'); d.setDate(d.getDate()+1); var end=''+d.getFullYear()+('0'+(d.getMonth()+1)).slice(-2)+('0'+d.getDate()).slice(-2); var details=(ev.description||'')+(ev.time?'\n\nTime: '+ev.time:''); return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(ev.title)+'&dates='+start+'/'+end+'&details='+encodeURIComponent(details)+'&location='+encodeURIComponent(ev.venue||''); }
@@ -880,17 +912,18 @@
       var html='';
       for(var i=0;i<parsed.length;i++){
         var it=parsed[i], ev=it.ev, st=status(it); var gl=galleryOf(ev).length;
+        var vid=ev.video?ytId(ev.video):'';
         var facts='<div class="evt-fact date">'+IC.date+esc(whenStr(it))+'</div>';
         if(ev.venue) facts+='<div class="evt-fact">'+IC.pin+esc(ev.venue)+'</div>';
         if(ev.ministering) facts+='<div class="evt-fact">'+IC.person+'Ministering: '+esc(ev.ministering)+'</div>';
         html+='<div class="evt-card reveal" data-idx="'+i+'" id="'+esc(ev.anchor||'')+'">'+
           '<div class="evt-head">'+
-            '<div class="evt-thumb" data-flyer="'+i+'" data-stop title="'+(gl>1?'View gallery':'View flyer')+'"><img src="'+attr(ev.image)+'" alt="'+attr(ev.alt||ev.title)+'" loading="lazy">'+(gl>1?'<span class="evt-gbadge">'+IC.stack+gl+'</span>':'')+'<span class="vf">'+(gl>1?'Gallery · '+gl:'View flyer')+'</span></div>'+
+            '<div class="evt-thumb" data-flyer="'+i+'" data-stop title="'+(gl>1?'View gallery':'View flyer')+'"><img src="'+attr(ev.image)+'" alt="'+attr(ev.alt||ev.title)+'" loading="lazy">'+(gl>1?'<span class="evt-gbadge">'+IC.stack+gl+'</span>':'')+(vid?'<span class="evt-vribbon">'+IC.play+'Promo</span>':'')+'<span class="vf">'+(gl>1?'Gallery · '+gl:'View flyer')+'</span></div>'+
             '<div class="evt-htext"><span class="evt-chip '+st.key+'">'+esc(st.label)+'</span><h4>'+esc(ev.title)+'</h4></div>'+
           '</div>'+
           '<div class="evt-facts">'+facts+'</div>'+
           (ev.description?'<div class="evt-desc">'+esc(ev.description)+'</div>':'')+
-          '<div class="evt-acts">'+actionsHTML(i,ev)+'</div>'+
+          '<div class="evt-acts">'+(vid?'<button type="button" class="evt-btn watch" data-watch="'+i+'" data-stop aria-label="Watch promo video for '+attr(ev.title)+'">'+IC.play+'Watch promo</button>':'')+actionsHTML(i,ev)+'</div>'+
         '</div>';
       }
       grid.innerHTML=html;
@@ -956,6 +989,8 @@
         mHead.innerHTML='<span class="evt-chip '+st.key+'">'+esc(st.label)+'</span><h3>'+esc(ev.title)+'</h3>';
         var b='';
         if(ev.theme) b+='<div class="evt-theme">'+esc(ev.theme)+'</div>';
+        var _vid=ev.video?ytId(ev.video):'';
+        if(_vid) b+=videoBlockHTML(_vid, ev.title);
         if(ev.description) b+='<div class="evt-fulldesc">'+esc(ev.description)+'</div>';
         if(ev.features && ev.features.length){ b+='<div class="evt-feats">'; for(var f=0;f<ev.features.length;f++) b+='<span>'+esc(ev.features[f])+'</span>'; b+='</div>'; }
         b+='<div class="evt-meta">';
@@ -971,6 +1006,8 @@
         mFoot.innerHTML=actionsHTML(item._idx, ev);
         var tile=mBody.querySelector('[data-flyer2]');
         if(tile) tile.addEventListener('click',function(){ openGallery(galleryOf(ev), ev.alt||ev.title, 0); });
+        var vwrap=mBody.querySelector('.evt-video');
+        if(vwrap){ var vp=vwrap.querySelector('.evt-vplay'); if(vp) vp.addEventListener('click',function(){ playInline(vwrap); }); }
         mBody.scrollTop=0;
       }
 
@@ -982,6 +1019,8 @@
       grid.addEventListener('click', function(e){
         var sh=e.target.closest('[data-share]');
         if(sh){ e.preventDefault(); e.stopPropagation(); shareEvent(parseInt(sh.getAttribute('data-share'),10)); return; }
+        var wt=e.target.closest('[data-watch]');
+        if(wt){ e.preventDefault(); e.stopPropagation(); openDetail(parseInt(wt.getAttribute('data-watch'),10)); playInline(mBody.querySelector('.evt-video')); return; }
         var fl=e.target.closest('[data-flyer]');
         if(fl){ e.preventDefault(); e.stopPropagation(); var fi=parseInt(fl.getAttribute('data-flyer'),10); var fe=parsed[fi].ev; openGallery(galleryOf(fe), fe.alt||fe.title, 0); return; }
         if(e.target.closest('[data-stop]')) return;

@@ -1655,6 +1655,57 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
+         3b. FEATURED EVENT PROMO — NC Crusade (White)
+         Time-sensitive: auto-hides after the event (Sep 18, 2026).
+         ═══════════════════════════════════════════════════════ -->
+    <style>
+      .promo-spot .promo-vid{ position:relative; max-width:880px; margin:0 auto; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#000; box-shadow:0 24px 60px rgba(20,34,64,.22); border:1px solid var(--bg-sand-border); }
+      .promo-spot .promo-vid iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+      .promo-play{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; background:#000; cursor:pointer; display:block; }
+      .promo-play img{ width:100%; height:100%; object-fit:cover; display:block; }
+      .promo-scrim{ position:absolute; inset:0; background:radial-gradient(circle at 50% 42%, rgba(0,0,0,.12), rgba(0,0,0,.55)); }
+      .promo-btn{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:84px; height:84px; border-radius:50%; background:rgba(232,93,38,.95); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 34px rgba(0,0,0,.45); transition:transform .18s ease, background .18s ease; }
+      .promo-btn svg{ width:38px; height:38px; color:#fff; margin-left:4px; }
+      .promo-play:hover .promo-btn{ transform:translate(-50%,-50%) scale(1.08); background:#e85d26; }
+      .promo-cap{ position:absolute; left:0; right:0; bottom:0; text-align:center; font-family:var(--font-sans); font-size:.9rem; font-weight:700; letter-spacing:.03em; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6)); padding:30px 12px 14px; }
+      .promo-actions{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:30px; }
+    </style>
+    <section class="section section--white promo-spot" id="nc-crusade-spotlight" aria-labelledby="ncSpotTitle">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">Don't Miss This</p>
+          <h2 id="ncSpotTitle">The Great North Carolina Deliverance Crusade</h2>
+          <p>With Dr. D.K. Olukoya, General Overseer &middot; September 16&ndash;17, 2026 &middot; Burlington, NC</p>
+        </div>
+        <div class="promo-vid reveal" data-vid="OuY6DPpbhv4">
+          <button type="button" class="promo-play" aria-label="Play the North Carolina Deliverance Crusade promo video">
+            <img src="https://i.ytimg.com/vi/OuY6DPpbhv4/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/OuY6DPpbhv4/hqdefault.jpg'">
+            <span class="promo-scrim"></span>
+            <span class="promo-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="promo-cap">Watch the promo</span>
+          </button>
+        </div>
+        <div class="promo-actions reveal">
+          <a href="https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile" target="_blank" rel="noopener" class="btn btn--primary">Get Tickets</a>
+          <a href="events.html#nc-deliverance-crusade" class="btn btn--secondary">Event Details</a>
+        </div>
+      </div>
+    </section>
+    <script>
+      (function(){
+        var sec=document.getElementById('nc-crusade-spotlight'); if(!sec) return;
+        // Auto-hide the day after the event ends (Sep 17, 2026).
+        if(new Date() > new Date('2026-09-18T06:00:00Z')){ sec.style.display='none'; return; }
+        var wrap=sec.querySelector('.promo-vid'), btn=sec.querySelector('.promo-play');
+        if(btn){ btn.addEventListener('click',function(){
+          var id=wrap.getAttribute('data-vid'); if(!id) return;
+          wrap.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="North Carolina Deliverance Crusade promo" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        }); }
+      })();
+    </script>
+
+
+    <!-- ═══════════════════════════════════════════════════════
          4. MEET OUR LEADERS (Cream)
          ═══════════════════════════════════════════════════════ -->
     <section class="section section--cream" id="leadership">

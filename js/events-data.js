@@ -208,6 +208,7 @@ window.MFM_EVENTS = [
     "image": "img/announcements/nc-deliverance-crusade.jpg",
     "alt": "The Great North Carolina Deliverance Crusade & Church Property Dedication — Burlington, NC, September 16–17, 2026",
     "anchor": "nc-deliverance-crusade",
+    "video": "https://youtu.be/OuY6DPpbhv4",
     "link": "https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
     "dateDisplay": "September 16 – 17, 2026",
     "description": "This programme comes in two parts. Church Property Dedication — Wednesday, September 16 at 5:00 PM, 511 James Street, Burlington, NC 27217. The Great North Carolina Deliverance Crusade — Thursday, September 17 at 5:00 PM, The Alliance Convention Center, 1214 Turrentine Street, Burlington, NC 27215. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
