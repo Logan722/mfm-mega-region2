@@ -342,6 +342,7 @@
             </a>
           </div>
         </div>
+        <a href="links.html">Connect</a>
         <a href="give.html" class="nav-cta">Give</a>
       </div>
       <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
@@ -365,6 +366,7 @@
       <a href="gen218.html">Gen218</a>
       <a href="women.html">Women Foundation</a>
       <a href="branches.html">Branches</a>
+        <a href="links.html">Connect</a>
         <a href="give.html" class="drawer-cta">Give</a>
     </nav>
     <div class="drawer-footer">
@@ -457,12 +459,12 @@
             <span class="badge badge--fire" style="margin-bottom:14px;">Every Tuesday</span>
             <h3>Healing &amp; Deliverance Hour</h3>
             <p class="program-desc">A live prayer service where believers gather to pray targeted, fire-filled prayers for healing, deliverance, and total breakthrough. No matter where you are, connect with us and experience the power of God.</p>
-            <ul class="weekly-program-schedule">
-              <li>🇺🇸 7:00 PM CST</li>
-              <li>🇨🇦 8:00 PM EST</li>
-              <li>🇬🇭 12:00 AM GMT</li>
-              <li>🇬🇧 1:00 AM BST</li>
-              <li>🇳🇬 1:00 AM WAT</li>
+            <ul class="weekly-program-schedule" data-ct-base="19">
+              <li>🇺🇸 7:00 PM CT</li>
+              <li>🇨🇦 8:00 PM ET</li>
+              <li>🇬🇭 12:00 AM Ghana</li>
+              <li>🇬🇧 1:00 AM UK</li>
+              <li>🇳🇬 1:00 AM Nigeria</li>
             </ul>
             <div class="weekly-program-actions">
               <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--fire btn--sm">Join on YouTube</a>
@@ -478,12 +480,12 @@
             <span class="badge badge--gold" style="margin-bottom:14px;">Every Thursday</span>
             <h3>Open Heaven Encounter</h3>
             <p class="program-desc">A weekly international prayer service bridging time zones and continents. Believers from the USA, Ghana, UK, Nigeria, and Canada come together for open heavens and divine encounters.</p>
-            <ul class="weekly-program-schedule">
-              <li>🇺🇸 6:00 PM CST</li>
-              <li>🇨🇦 7:00 PM EST</li>
-              <li>🇬🇭 12:00 AM GMT</li>
-              <li>🇬🇧 12:00 AM GMT</li>
-              <li>🇳🇬 1:00 AM WAT</li>
+            <ul class="weekly-program-schedule" data-ct-base="18">
+              <li>🇺🇸 6:00 PM CT</li>
+              <li>🇨🇦 7:00 PM ET</li>
+              <li>🇬🇭 11:00 PM Ghana</li>
+              <li>🇬🇧 12:00 AM UK</li>
+              <li>🇳🇬 12:00 AM Nigeria</li>
             </ul>
             <div class="weekly-program-actions">
               <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Join on YouTube</a>
@@ -577,7 +579,7 @@
               <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <h4>Visit Prayer City</h4>
-            <p>Come worship with us at MFM USA Prayer City for Weekend Deliverance, PMCH, Solution Hour, and more.</p>
+            <p>Come worship with us at MFM USA Prayer City for Weekend Deliverance, PMCH, and more.</p>
             <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="btn btn--secondary btn--sm">Get Directions</a>
           </div>
 
@@ -994,6 +996,36 @@
 
       if('IntersectionObserver' in window){ var obs=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('visible'); obs.unobserve(x.target); } }); },{threshold:.12,rootMargin:'0px 0px -40px 0px'}); grid.querySelectorAll('.evt-card').forEach(function(el){ obs.observe(el); }); }
     })();
+  </script>
+
+  <script>
+  /* Daylight-saving-aware international times for the weekly programs.
+     Base time is Central (America/Chicago); everything else is computed from live IANA zones,
+     so summer/winter conversions change automatically. Falls back to the static <li> list if Intl is unavailable. */
+  (function(){
+    var uls = document.querySelectorAll('.weekly-program-schedule[data-ct-base]');
+    if(!uls.length || !window.Intl || !Intl.DateTimeFormat) return;
+    function utcFor(y,mo,d,h,tz){
+      var g = Date.UTC(y,mo,d,h,0), o={};
+      new Intl.DateTimeFormat('en-US',{timeZone:tz,hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})
+        .formatToParts(new Date(g)).forEach(function(p){ o[p.type]=p.value; });
+      var asUTC = Date.UTC(+o.year, +o.month-1, +o.day, (+o.hour)%24, +o.minute);
+      return g - (asUTC - g);
+    }
+    var ROWS = [['🇺🇸','America/Chicago','CT'],['🇨🇦','America/Toronto','ET'],['🇬🇭','Africa/Accra','Ghana'],['🇬🇧','Europe/London','UK'],['🇳🇬','Africa/Lagos','Nigeria']];
+    var cp={};
+    new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).forEach(function(p){ cp[p.type]=p.value; });
+    uls.forEach(function(ul){
+      var base = parseInt(ul.getAttribute('data-ct-base'),10); if(isNaN(base)) return;
+      var inst = utcFor(+cp.year, +cp.month-1, +cp.day, base, 'America/Chicago');
+      try {
+        ul.innerHTML = ROWS.map(function(r){
+          var tm = new Intl.DateTimeFormat('en-US',{timeZone:r[1],hour:'numeric',minute:'2-digit',hour12:true}).format(new Date(inst));
+          return '<li>'+r[0]+' '+tm+' '+r[2]+'</li>';
+        }).join('');
+      } catch(e){}
+    });
+  })();
   </script>
 
 </body>
