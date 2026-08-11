@@ -103,6 +103,41 @@ exports.handler = async (event) => {
     }
   }
 
+  // Convenience: youtube-latest — fetch latest video from a YouTube channel RSS.
+  if (payload.action === 'youtube-latest' || path === '/youtube-latest') {
+    const channelId = payload.channelId || 'UCr3gSJPBQDjN8CEbj86Pyug';
+    try {
+      const rss = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+      const xml = await rss.text();
+      const entryMatch = xml.match(/<entry>([\s\S]*?)<\/entry>/);
+      if (!entryMatch) {
+        return respond(200, { ok: false, error: 'no_entries' });
+      }
+      const entry = entryMatch[1];
+      const videoIdMatch = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
+      const titleMatch = entry.match(/<title>([\s\S]*?)<\/title>/);
+      const publishedMatch = entry.match(/<published>([^<]+)<\/published>/);
+      const authorMatch = entry.match(/<author>[\s\S]*?<name>([^<]+)<\/name>/);
+      const videoId = videoIdMatch ? videoIdMatch[1] : '';
+      const rawTitle = titleMatch ? titleMatch[1].trim() : '';
+      const title = rawTitle.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+      return respond(200, {
+        ok: true,
+        latest: {
+          videoId,
+          title,
+          publishedAt: publishedMatch ? publishedMatch[1] : '',
+          author: authorMatch ? authorMatch[1] : '',
+          videoUrl: `https://www.youtube.com/watch?v=${videoId}`,
+          shortUrl: `https://youtu.be/${videoId}`,
+          thumbnailUrl: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+        },
+      });
+    } catch (e) {
+      return respond(502, { ok: false, error: 'youtube_unreachable', detail: String(e.message || e) });
+    }
+  }
+
   // Path validation
   if (typeof path !== 'string' || !path.startsWith('/')) {
     return respond(400, {
