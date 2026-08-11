@@ -26,7 +26,7 @@
 August is a training month. The 70-Day Prayer & Fasting programme our General Overseer commissioned — Prayer Battle 7 — has already begun, and the season it is preparing us for is bigger than any of us. Two Deliverance Crusades under one anointing. Regional gatherings for the women and for Gen218. In every one of them, the Lord is calling us to be prayer eagles.
 
 **{{PASTOR_WORD_PARAGRAPH_2}}** →
-Do not treat this newsletter as an update. Treat it as a call to a fight already assigned to you. Print the prayer points. Pray them at midnight. Come with a friend to the Zonal Women's Conference. Book your travel now for North Carolina and Florida. The fire in the bone (Jeremiah 20:9) cannot be shut in.
+This month, print the prayer points below. Pray them at midnight. Come with a friend to the Zonal Women's Conference in Duluth on Saturday. Book your travel now for North Carolina and Florida. The fire in the bone (Jeremiah 20:9) cannot be shut in.
 
 ---
 
@@ -109,6 +109,13 @@ Under the coordination of Pastor (Mrs.) Oluwatoyin Oni, the Women Foundation is 
 Nothing to fill — the template's footer is already loaded with the CAN-SPAM address, socials, and Brevo's `{unsubscribe}` / `{mirror}` merge tags.
 
 ---
+
+
+
+## Voice guardrails (do NOT break)
+- No self-referential newsletter framing. Never say "this newsletter," "read this," "treat this as," etc. The pastor is talking to the church, not narrating the format.
+- No "do not treat X as Y" constructions.
+- Pastor speaks TO believers, not ABOUT the newsletter.
 
 ## WhatsApp / IG companion (once the email is finished)
 
