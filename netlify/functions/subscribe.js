@@ -181,6 +181,9 @@ function buildWelcomeEmail(to, firstName) {
       <p style="margin:0 0 8px;font-family:Georgia,serif;font-style:italic;font-size:15px;line-height:1.55;color:#8b6f33;">"But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."</p>
       <p style="margin:0;font-size:13px;color:#8a8f98;">&mdash; Obadiah 1:17</p>
     </div>
+    <div style="background:#f8f6f1;border:1px solid #e8e4da;border-radius:6px;padding:14px 18px;margin:0 0 24px;">
+      <p style="margin:0;font-size:13px;line-height:1.6;color:#5a6270;"><strong style="color:#142240;">One quick favor:</strong> add <strong style="color:#142240;">newsletter@mfmmegaregion2usa.org</strong> to your contacts, and drag this email to your Primary tab. That way future issues land in your inbox instead of Promotions or Spam.</p>
+    </div>
     <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9952c;">Three things you can do next</p>
     <p style="margin:0 0 10px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">1.</strong> <a href="https://www.mfmmegaregion2usa.org/branches.html" style="color:#c9952c;text-decoration:underline;">Find the branch nearest you</a>.</p>
     <p style="margin:0 0 10px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">2.</strong> Watch this week's live prayer &mdash; <a href="https://youtube.com/@mfmmegaregion2usa" style="color:#c9952c;text-decoration:underline;">Healing &amp; Deliverance Hour, Tuesdays 7 PM CT / 8 PM ET</a>.</p>
@@ -215,7 +218,7 @@ Here's what to expect:
 holiness; and the house of Jacob shall possess their possessions."
 — Obadiah 1:17
 
-Three things you can do next:
+One quick favor: add newsletter@mfmmegaregion2usa.org to your contacts,\nand drag this email to Primary so future issues land in your inbox.\n\nThree things you can do next:
 1. Find the branch nearest you: https://www.mfmmegaregion2usa.org/branches.html
 2. Watch Healing & Deliverance Hour, Tuesdays 7 PM CT / 8 PM ET:
    https://youtube.com/@mfmmegaregion2usa
