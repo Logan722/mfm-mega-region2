@@ -161,7 +161,8 @@ function buildWelcomeEmail(to, firstName) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f1a30;"><tr><td align="center">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;">
   <tr><td style="background:#c9952c;height:4px;line-height:4px;font-size:0;">&nbsp;</td></tr>
-  <tr><td style="background:#142240;padding:40px 40px 32px;text-align:center;">
+  <tr><td style="background:#142240;padding:36px 40px 24px;text-align:center;">
+    <img src="https://www.mfmmegaregion2usa.org/img/logo.png" alt="MFM Mega Region 2 USA" width="88" height="88" style="display:block;margin:0 auto 14px;width:88px;height:88px;" />
     <div style="font-family:Georgia,serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#c9952c;">MFM Mega Region 2 &middot; USA</div>
   </td></tr>
   <tr><td style="background:#142240;padding:0 40px 44px;text-align:center;">
