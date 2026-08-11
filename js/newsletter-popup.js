@@ -125,7 +125,7 @@
     '<h2 id="mfm-pop-title" class="mfm-pop-title">The Fire, once a month.</h2>',
     '<p class="mfm-pop-lede">Prayer points, sermons, and the next crusade near you.</p>',
     '<form class="mfm-pop-form" novalidate>',
-    '<input class="mfm-pop-input" name="FIRSTNAME" type="text" placeholder="First name" autocomplete="given-name" required />',
+    '<input class="mfm-pop-input" name="FIRSTNAME" type="text" placeholder="Name" autocomplete="name" required />',
     '<input class="mfm-pop-input" name="EMAIL" type="email" placeholder="Email address" autocomplete="email" required />',
     '<input class="mfm-pop-hp" type="text" name="hp_website" tabindex="-1" autocomplete="off" />',
     '<button type="submit" class="mfm-pop-btn">Subscribe</button>',
