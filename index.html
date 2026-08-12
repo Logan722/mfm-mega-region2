@@ -1655,52 +1655,83 @@
 
 
     <!-- ═══════════════════════════════════════════════════════
-         3b. FEATURED EVENT PROMO — NC Crusade (White)
-         Time-sensitive: auto-hides after the event (Sep 18, 2026).
+         3b. FEATURED EVENT PROMO — September Deliverance Crusades (White)
+         Time-sensitive: auto-hides the day after the later event (Sep 21, 2026).
          ═══════════════════════════════════════════════════════ -->
     <style>
-      .promo-spot .promo-vid{ position:relative; max-width:880px; margin:0 auto; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#000; box-shadow:0 24px 60px rgba(20,34,64,.22); border:1px solid var(--bg-sand-border); }
-      .promo-spot .promo-vid iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+      .promo-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px; max-width:1040px; margin:0 auto; }
+      @media (max-width:800px){ .promo-grid{ grid-template-columns:1fr; gap:40px; } }
+      .promo-card{ text-align:center; }
+      .promo-vid{ position:relative; width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#000; box-shadow:0 20px 50px rgba(20,34,64,.20); border:1px solid var(--bg-sand-border); }
+      .promo-vid iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
       .promo-play{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; background:#000; cursor:pointer; display:block; }
       .promo-play img{ width:100%; height:100%; object-fit:cover; display:block; }
       .promo-scrim{ position:absolute; inset:0; background:radial-gradient(circle at 50% 42%, rgba(0,0,0,.12), rgba(0,0,0,.55)); }
-      .promo-btn{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:84px; height:84px; border-radius:50%; background:rgba(232,93,38,.95); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 34px rgba(0,0,0,.45); transition:transform .18s ease, background .18s ease; }
-      .promo-btn svg{ width:38px; height:38px; color:#fff; margin-left:4px; }
+      .promo-btn{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:72px; height:72px; border-radius:50%; background:rgba(232,93,38,.95); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 34px rgba(0,0,0,.45); transition:transform .18s ease, background .18s ease; }
+      .promo-btn svg{ width:32px; height:32px; color:#fff; margin-left:4px; }
       .promo-play:hover .promo-btn{ transform:translate(-50%,-50%) scale(1.08); background:#e85d26; }
-      .promo-cap{ position:absolute; left:0; right:0; bottom:0; text-align:center; font-family:var(--font-sans); font-size:.9rem; font-weight:700; letter-spacing:.03em; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6)); padding:30px 12px 14px; }
-      .promo-actions{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:30px; }
+      .promo-cap{ position:absolute; left:0; right:0; bottom:0; text-align:center; font-family:var(--font-sans); font-size:.85rem; font-weight:700; letter-spacing:.03em; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6)); padding:26px 12px 12px; }
+      .promo-ctitle{ margin:20px 0 4px; }
+      .promo-cmeta{ color:#5b6473; font-size:.95rem; margin:0; }
+      .promo-actions{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px; }
     </style>
-    <section class="section section--white promo-spot" id="nc-crusade-spotlight" aria-labelledby="ncSpotTitle">
+    <section class="section section--white" id="september-crusades-spotlight" aria-labelledby="sepCrusadeTitle">
       <div class="container">
         <div class="section-header text-center reveal">
-          <p class="eyebrow">Don't Miss This</p>
-          <h2 id="ncSpotTitle">The Great North Carolina Deliverance Crusade</h2>
-          <p>With Dr. D.K. Olukoya, General Overseer &middot; September 16&ndash;17, 2026 &middot; Burlington, NC</p>
+          <p class="eyebrow">Don't Miss</p>
+          <h2 id="sepCrusadeTitle">September Deliverance Crusades</h2>
+          <p>Two great crusades with Dr. D.K. Olukoya, General Overseer &mdash; North Carolina &amp; Florida, days apart.</p>
         </div>
-        <div class="promo-vid reveal" data-vid="OuY6DPpbhv4">
-          <button type="button" class="promo-play" aria-label="Play the North Carolina Deliverance Crusade promo video">
-            <img src="https://i.ytimg.com/vi/OuY6DPpbhv4/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/OuY6DPpbhv4/hqdefault.jpg'">
-            <span class="promo-scrim"></span>
-            <span class="promo-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-            <span class="promo-cap">Watch the promo</span>
-          </button>
-        </div>
-        <div class="promo-actions reveal">
-          <a href="https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile" target="_blank" rel="noopener" class="btn btn--primary">Get Tickets</a>
-          <a href="events.html#nc-deliverance-crusade" class="btn btn--secondary">Event Details</a>
+        <div class="promo-grid">
+          <!-- North Carolina -->
+          <div class="promo-card reveal">
+            <div class="promo-vid" data-vid="OuY6DPpbhv4">
+              <button type="button" class="promo-play" aria-label="Play the North Carolina Deliverance Crusade promo video">
+                <img src="https://i.ytimg.com/vi/OuY6DPpbhv4/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/OuY6DPpbhv4/hqdefault.jpg'">
+                <span class="promo-scrim"></span>
+                <span class="promo-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                <span class="promo-cap">Watch the promo</span>
+              </button>
+            </div>
+            <h3 class="promo-ctitle">North Carolina</h3>
+            <p class="promo-cmeta">September 16&ndash;17 &middot; Burlington, NC</p>
+            <div class="promo-actions">
+              <a href="https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Get Tickets</a>
+              <a href="events.html#nc-deliverance-crusade" class="btn btn--secondary btn--sm">Details</a>
+            </div>
+          </div>
+          <!-- Florida -->
+          <div class="promo-card reveal">
+            <div class="promo-vid" data-vid="ZbDw9eUwOKs">
+              <button type="button" class="promo-play" aria-label="Play the Florida Deliverance Crusade promo video">
+                <img src="https://i.ytimg.com/vi/ZbDw9eUwOKs/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ZbDw9eUwOKs/hqdefault.jpg'">
+                <span class="promo-scrim"></span>
+                <span class="promo-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                <span class="promo-cap">Watch the promo</span>
+              </button>
+            </div>
+            <h3 class="promo-ctitle">Florida</h3>
+            <p class="promo-cmeta">September 19&ndash;20 &middot; Tampa, FL</p>
+            <div class="promo-actions">
+              <a href="https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile" target="_blank" rel="noopener" class="btn btn--primary btn--sm">Get Tickets</a>
+              <a href="events.html#florida-deliverance-crusade" class="btn btn--secondary btn--sm">Details</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <script>
       (function(){
-        var sec=document.getElementById('nc-crusade-spotlight'); if(!sec) return;
-        // Auto-hide the day after the event ends (Sep 17, 2026).
-        if(new Date() > new Date('2026-09-18T06:00:00Z')){ sec.style.display='none'; return; }
-        var wrap=sec.querySelector('.promo-vid'), btn=sec.querySelector('.promo-play');
-        if(btn){ btn.addEventListener('click',function(){
-          var id=wrap.getAttribute('data-vid'); if(!id) return;
-          wrap.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="North Carolina Deliverance Crusade promo" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-        }); }
+        var sec=document.getElementById('september-crusades-spotlight'); if(!sec) return;
+        // Auto-hide the day after the later crusade ends (Florida, Sep 20, 2026).
+        if(new Date() > new Date('2026-09-21T06:00:00Z')){ sec.style.display='none'; return; }
+        sec.querySelectorAll('.promo-vid').forEach(function(wrap){
+          var btn=wrap.querySelector('.promo-play'); if(!btn) return;
+          btn.addEventListener('click',function(){
+            var id=wrap.getAttribute('data-vid'); if(!id) return;
+            wrap.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Deliverance Crusade promo" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          });
+        });
       })();
     </script>
 
@@ -2038,8 +2069,8 @@
           <a href="index.html" class="footer-logo">
             <img loading="lazy" src="img/logo.png" alt="MFM Mega Region 2 USA" width="52" height="52">
             <div class="footer-logo-text">
-              MFM Mega Region 2
-              <span>Mountain of Fire &amp; Miracles Ministries</span>
+              Mountain of Fire &amp; Miracles Ministries
+              <span>Mega Region 2 &middot; USA</span>
             </div>
           </a>
           <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
@@ -2057,28 +2088,35 @@
           <a href="links.html" class="footer-connect-link">Connect With Us &rarr;</a>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Explore -->
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h4>Explore</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="media.html">Media</a></li>
             <li><a href="events.html">Events</a></li>
-            <li><a href="branches.html">Branches</a>
-        <a href="links.html">Connect</a></li>
+            <li><a href="branches.html">Branches</a></li>
           </ul>
         </div>
 
-        <!-- Programs -->
+        <!-- Ministries -->
         <div class="footer-col">
           <h4>Ministries</h4>
           <ul>
-            <li><a href="gen218.html">Gen218 Singles</a></li>
             <li><a href="women.html">Women Foundation</a></li>
-            <li><a href="events.html">Healing &amp; Deliverance Hour</a></li>
-            <li><a href="events.html">Open Heaven Encounter</a></li>
-            <li><a href="events.html">Power Must Change Hands</a></li>
+            <li><a href="gen218.html">Gen218 Singles</a></li>
+            <li><a href="https://www.mfmmegaregion2yc.org" target="_blank" rel="noopener">Youth Church</a></li>
+          </ul>
+        </div>
+
+        <!-- MFM Networks -->
+        <div class="footer-col">
+          <h4>MFM Networks</h4>
+          <ul>
+            <li><a href="https://www.mountainoffire.org" target="_blank" rel="noopener">MFM Worldwide</a></li>
+            <li><a href="https://mfmamerica.org" target="_blank" rel="noopener">MFM USA Prayer City</a></li>
+            <li><a href="https://mfmym.org" target="_blank" rel="noopener">MFM Youth Ministry</a></li>
           </ul>
         </div>
 
@@ -2102,6 +2140,7 @@
       <!-- Bottom Bar -->
       <div class="footer-bottom">
         <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
+        <p>General Overseer: Dr. D.K. Olukoya</p>
       </div>
     </div>
   </footer>
