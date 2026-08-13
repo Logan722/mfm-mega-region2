@@ -2261,6 +2261,15 @@ html, body {
 .social-hub.open .social-fab { background: var(--gold); color: var(--bg-navy); }
 .social-hub.open .fab-open { opacity: 0; transform: rotate(90deg); }
 .social-hub.open .fab-close { opacity: 1; transform: rotate(0); }
+/* Keep the floating hub out of the way: hide it while the drawer is open,
+   and while the footer is in view (so it stops covering content). */
+body.drawer-open .social-hub,
+.social-hub.hub-hidden { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+/* Faint-button fix: a secondary (outline) button sitting on a DARK card inside
+   a white/cream section would otherwise inherit dark text on a dark background.
+   Force legible cream text on known dark cards. */
+.countdown-sidebar .btn--secondary { color: var(--cream); border-color: var(--line-strong); }
+.countdown-sidebar .btn--secondary:hover { color: var(--gold-light); border-color: var(--gold); background: var(--gold-glow); }
 /* gentle attention ring while collapsed */
 .social-fab::after { content: ''; position: absolute; inset: -2px; border-radius: 50%; pointer-events: none; box-shadow: 0 0 0 0 rgba(201,149,44,0.5); animation: socialPulse 2.8s infinite; }
 .social-hub.open .social-fab::after { animation: none; }

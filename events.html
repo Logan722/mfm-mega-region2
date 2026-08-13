@@ -143,7 +143,8 @@
     .evt-fact.date{ color:var(--fire); font-weight:700; }
     .evt-fact.date svg{ color:var(--fire); }
     .evt-desc{ font-size:.92rem; color:var(--text-on-white); line-height:1.55; margin:11px 0 15px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-    .evt-acts{ display:flex; gap:9px; }
+    .evt-acts{ display:flex; flex-wrap:wrap; gap:9px; }
+    .evt-btn.tix, .evt-btn.cal, .evt-btn.watch{ min-width:110px; }
     .evt-btn{ text-align:center; font-family:var(--font-sans); font-weight:700; font-size:.9rem; padding:11px 8px; border-radius:10px; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:7px; cursor:pointer; border:none; }
     .evt-btn svg{ width:16px; height:16px; }
     .evt-btn.tix{ flex:1; background:linear-gradient(135deg,#e85d26,#d64a1c); color:#fff; box-shadow:0 6px 16px rgba(232,93,38,.26); }

@@ -74,6 +74,34 @@
     var dp = document.createElement('a'); dp.href = PRAYER; dp.target = '_blank'; dp.rel = 'noopener'; dp.textContent = 'Prayer Points'; drawer.appendChild(dp);
   }
 
+  /* ── Fix: always close the mobile drawer when a drawer link is tapped ──
+     Without this, tapping a link that opens in a new tab (e.g. Prayer Points)
+     or points to the current page leaves the drawer + overlay open and the page
+     scroll-locked (body.drawer-open) — which reads as a "frozen" menu/page. */
+  function forceCloseDrawer() {
+    var dr = document.getElementById('drawer');
+    var ov = document.getElementById('drawerOverlay');
+    var ham = document.getElementById('navHamburger');
+    if (dr) dr.classList.remove('open');
+    if (ov) ov.classList.remove('open');
+    if (ham) { ham.classList.remove('open'); ham.setAttribute('aria-expanded', 'false'); }
+    document.body.classList.remove('drawer-open');
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('#drawer a, .drawer-nav a')) forceCloseDrawer();
+  });
+  /* Defensive: never leave the page scroll-locked after a back/forward restore */
+  window.addEventListener('pageshow', forceCloseDrawer);
+
+  /* ── Hide the floating hub while the footer is in view so it stops
+     covering footer content ── */
+  var footEl = document.querySelector('.site-footer');
+  if (footEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (ents) {
+      hub.classList.toggle('hub-hidden', ents[0].isIntersecting);
+    }, { rootMargin: '0px 0px -40px 0px' }).observe(footEl);
+  }
+
   /* "We're Live" banner during online service windows (Central Time) */
   try {
     var ct = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
