@@ -1032,8 +1032,9 @@
         if(ev.description) b+='<div class="evt-fulldesc">'+esc(ev.description)+'</div>';
         if(ev.features && ev.features.length){ b+='<div class="evt-feats">'; for(var f=0;f<ev.features.length;f++) b+='<span>'+esc(ev.features[f])+'</span>'; b+='</div>'; }
         b+='<div class="evt-meta">';
-        b+='<div class="evt-mrow"><span class="k">When</span><span class="v">'+esc(whenStr(item))+'</span></div>';
-        if(ev.venue) b+='<div class="evt-mrow"><span class="k">Venue</span><span class="v">'+esc(ev.venue)+'</span></div>';
+        var _hasSched = ev.schedule && ev.schedule.length;
+        if(!_hasSched) b+='<div class="evt-mrow"><span class="k">When</span><span class="v">'+esc(whenStr(item))+'</span></div>';
+        if(ev.venue && !_hasSched) b+='<div class="evt-mrow"><span class="k">Venue</span><span class="v">'+esc(ev.venue)+'</span></div>';
         if(ev.ministering) b+='<div class="evt-mrow"><span class="k">Ministering</span><span class="v">'+esc(ev.ministering)+'</span></div>';
         if(ev.host) b+='<div class="evt-mrow"><span class="k">Host</span><span class="v">'+esc(ev.host)+'</span></div>';
         b+='</div>';

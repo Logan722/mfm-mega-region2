@@ -211,7 +211,7 @@ window.MFM_EVENTS = [
     "video": "https://youtu.be/OuY6DPpbhv4",
     "link": "https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
     "dateDisplay": "September 16 – 17, 2026",
-    "description": "This programme comes in two parts. Church Property Dedication — Wednesday, September 16 at 5:00 PM, 511 James Street, Burlington, NC 27217. The Great North Carolina Deliverance Crusade — Thursday, September 17 at 5:00 PM, The Alliance Convention Center, 1214 Turrentine Street, Burlington, NC 27215. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
+    "description": "Come with expectation — a season of power, deliverance, healing, and breakthrough for you and your household. All are welcome; bring your family and friends.",
     "badgeStyle": "fire",
     "endDate": "2026-09-17",
     "schedule": [
@@ -250,7 +250,7 @@ window.MFM_EVENTS = [
     "video": "https://www.youtube.com/watch?v=ZbDw9eUwOKs",
     "link": "https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
     "dateDisplay": "September 19 – 20, 2026",
-    "description": "This programme comes in two parts. Church Property Dedication — Saturday, September 19 at 5:00 PM, MFM Tampa, 4618 North Florida Avenue, Tampa, FL 33603. The Great Florida Deliverance Crusade — Sunday, September 20 at 4:00 PM, Yuengling Center (USF), 12499 USF Bull Run Drive, Tampa, FL 33620. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
+    "description": "Come with expectation — the tangible power of God for deliverance, healing, and breakthrough over your life and household. All are welcome; bring your family and friends.",
     "badgeStyle": "fire",
     "endDate": "2026-09-20",
     "schedule": [
