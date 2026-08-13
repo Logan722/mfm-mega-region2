@@ -214,9 +214,9 @@ window.MFM_EVENTS = [
     "description": "This programme comes in two parts. Church Property Dedication — Wednesday, September 16 at 5:00 PM, 511 James Street, Burlington, NC 27217. The Great North Carolina Deliverance Crusade — Thursday, September 17 at 5:00 PM, The Alliance Convention Center, 1214 Turrentine Street, Burlington, NC 27215. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
     "badgeStyle": "fire",
     "endDate": "2026-09-17",
-    "features": [
-      "Church Property Dedication — Wed, Sep 16 · 5:00 PM",
-      "Deliverance Crusade — Thu, Sep 17 · 5:00 PM"
+    "schedule": [
+      { "label": "Church Property Dedication", "shortDate": "Sep 16", "when": "Wednesday, Sep 16 · 5:00 PM", "venue": "MFM Burlington", "address": "511 James Street, Burlington, NC 27217" },
+      { "label": "The Deliverance Crusade", "shortDate": "Sep 17", "when": "Thursday, Sep 17 · 5:00 PM", "venue": "The Alliance Convention Center", "address": "1214 Turrentine Street, Burlington, NC 27215" }
     ]
   },
   {
@@ -253,9 +253,9 @@ window.MFM_EVENTS = [
     "description": "This programme comes in two parts. Church Property Dedication — Saturday, September 19 at 5:00 PM, MFM Tampa, 4618 North Florida Avenue, Tampa, FL 33603. The Great Florida Deliverance Crusade — Sunday, September 20 at 4:00 PM, Yuengling Center (USF), 12499 USF Bull Run Drive, Tampa, FL 33620. Ministering: Dr. D.K. Olukoya, General Overseer, MFM Worldwide. Expect power, deliverance, healing, and breakthrough.",
     "badgeStyle": "fire",
     "endDate": "2026-09-20",
-    "features": [
-      "Church Property Dedication — Sat, Sep 19 · 5:00 PM",
-      "Deliverance Crusade — Sun, Sep 20 · 4:00 PM"
+    "schedule": [
+      { "label": "Church Property Dedication", "shortDate": "Sep 19", "when": "Saturday, Sep 19 · 5:00 PM", "venue": "MFM Tampa", "address": "4618 North Florida Avenue, Tampa, FL 33603" },
+      { "label": "The Deliverance Crusade", "shortDate": "Sep 20", "when": "Sunday, Sep 20 · 4:00 PM", "venue": "Yuengling Center (USF)", "address": "12499 USF Bull Run Drive, Tampa, FL 33620" }
     ]
   },
   {

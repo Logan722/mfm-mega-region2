@@ -171,6 +171,14 @@
     .evt-fulldesc{ font-size:.96rem; color:var(--text-on-white); line-height:1.65; margin-bottom:16px; }
     .evt-feats{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
     .evt-feats span{ font-size:.78rem; color:var(--text-on-white); background:var(--bg-sand); border:1px solid var(--bg-sand-border); padding:4px 12px; border-radius:20px; }
+    /* Two-part schedule callout (dedication + crusade, two venues) */
+    .evt-schedule{ margin:4px 0 18px; border:1px solid var(--bg-sand-border); border-left:4px solid var(--gold); background:var(--bg-sand); border-radius:12px; padding:14px 16px; display:flex; flex-direction:column; gap:14px; }
+    .evt-sitem{ display:flex; flex-direction:column; gap:4px; }
+    .evt-spart{ font-size:.96rem; color:var(--navy); }
+    .evt-spart strong{ color:#e85d26; }
+    .evt-svenue{ display:flex; align-items:flex-start; gap:7px; font-size:.9rem; color:var(--text-on-white); line-height:1.5; }
+    .evt-svenue svg{ width:15px; height:15px; flex:none; margin-top:3px; color:var(--gold); }
+    .evt-svenue strong{ color:var(--navy); }
     .evt-meta{ border-top:1px solid #eee; }
     .evt-mrow{ display:flex; gap:12px; padding:10px 0; border-bottom:1px solid #f0f0f0; }
     .evt-mrow .k{ font-family:var(--font-sans); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim-white); font-weight:700; width:96px; flex:none; padding-top:2px; }
@@ -935,7 +943,8 @@
         var it=parsed[i], ev=it.ev, st=status(it); var gl=galleryOf(ev).length;
         var vid=ev.video?ytId(ev.video):'';
         var facts='<div class="evt-fact date">'+IC.date+esc(whenStr(it))+'</div>';
-        if(ev.venue) facts+='<div class="evt-fact">'+IC.pin+esc(ev.venue)+'</div>';
+        if(ev.schedule && ev.schedule.length){ var vf=ev.schedule.map(function(s){ return '<strong>'+esc(s.shortDate)+'</strong> '+esc(s.venue); }).join(' &middot; '); facts+='<div class="evt-fact">'+IC.pin+'<span>'+vf+'</span></div>'; }
+        else if(ev.venue) facts+='<div class="evt-fact">'+IC.pin+esc(ev.venue)+'</div>';
         if(ev.ministering) facts+='<div class="evt-fact">'+IC.person+'Ministering: '+esc(ev.ministering)+'</div>';
         html+='<div class="evt-card reveal" data-idx="'+i+'" id="'+esc(ev.anchor||'')+'">'+
           '<div class="evt-head">'+
@@ -1012,6 +1021,14 @@
         if(ev.theme) b+='<div class="evt-theme">'+esc(ev.theme)+'</div>';
         var _vid=ev.video?ytId(ev.video):'';
         if(_vid) b+=videoBlockHTML(_vid, ev.title);
+        if(ev.schedule && ev.schedule.length){
+          b+='<div class="evt-schedule">';
+          for(var si=0; si<ev.schedule.length; si++){ var sc=ev.schedule[si];
+            b+='<div class="evt-sitem"><div class="evt-spart"><strong>'+esc(sc.label)+'</strong> &middot; '+esc(sc.when)+'</div>'+
+               '<div class="evt-svenue">'+IC.pin+'<span><strong>'+esc(sc.venue)+'</strong> — '+esc(sc.address)+'</span></div></div>';
+          }
+          b+='</div>';
+        }
         if(ev.description) b+='<div class="evt-fulldesc">'+esc(ev.description)+'</div>';
         if(ev.features && ev.features.length){ b+='<div class="evt-feats">'; for(var f=0;f<ev.features.length;f++) b+='<span>'+esc(ev.features[f])+'</span>'; b+='</div>'; }
         b+='<div class="evt-meta">';
