@@ -74,7 +74,10 @@ exports.handler = async (event) => {
   }
 
   const email = String(payload.EMAIL || payload.email || '').trim().toLowerCase();
-  const firstName = String(payload.FIRSTNAME || payload.firstName || '').trim();
+  const firstNameRaw = String(payload.FIRSTNAME || payload.firstName || '').trim();
+  // Auto-split: keep only the first word so FIRSTNAME is always a first name,
+  // even when the popup form asks for "Name" and the user types their full name.
+  const firstName = firstNameRaw.split(/\s+/)[0] || '';
   const country = String(payload.COUNTRY || payload.country || '').trim();
   const source = String(payload.source || 'website').trim().slice(0, 40);
 
