@@ -330,5 +330,33 @@ window.MFM_EVENTS = [
     "description": "The Women Foundation, Mega Region 2 — Atlanta Zone presents the 2026 Zonal Women's Conference, \"Prevailing Women.\" A gathering of women for prayer, worship, the Word, and empowerment. Come and be empowered to prevail.",
     "scripture": "She openeth her mouth with wisdom; and in her tongue is the law of kindness.|Proverbs 31:26",
     "badgeStyle": "gold"
+  },
+  {
+    "date": "2026-12-11",
+    "title": "Couples Night",
+    "theme": "For married & intending couples",
+    "time": "7:00 PM",
+    "venue": "Marriott Houston Energy Corridor — 16011 Katy Freeway, Houston, TX 77094",
+    "host": "MFM Mega Region 2 USA",
+    "image": "img/announcements/couples-night.jpg",
+    "alt": "Couples Night — MFM Mega Region 2, Friday December 11, 2026, Marriott Houston Energy Corridor, Houston TX",
+    "anchor": "couples-night",
+    "dateDisplay": "Friday, December 11, 2026",
+    "description": "An evening set apart for couples — a time to be strengthened, refreshed, and blessed together in the presence of God. Come expecting.",
+    "badgeStyle": "gold"
+  },
+  {
+    "date": "2026-12-12",
+    "title": "Thanksgiving Service",
+    "theme": "Come Expecting",
+    "time": "10:00 AM",
+    "venue": "MFM Banquet Hall, Prayer City — 10000 Kleckley Dr, Houston, TX 77075",
+    "host": "MFM Mega Region 2 USA",
+    "image": "img/announcements/thanksgiving-service.jpg",
+    "alt": "Thanksgiving Service — MFM Mega Region 2, Saturday December 12, 2026, MFM Banquet Hall Prayer City, Houston TX",
+    "anchor": "thanksgiving-service",
+    "dateDisplay": "Saturday, December 12, 2026",
+    "description": "A gathering to give God thanks and praise for His faithfulness, His power, and all He has done. He is faithful, He is able, and He will do it again.",
+    "badgeStyle": "fire"
   }
 ];
