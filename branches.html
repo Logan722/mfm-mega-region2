@@ -76,6 +76,20 @@
     .nearest-result strong { font-family:var(--font-serif); display:block; margin-bottom:2px; }
     .nearest-result .nearest-distance { font-size:0.75rem; color:#8a8f98; }
     .nearest-result a { color:#c9952c; font-weight:600; text-decoration:none; }
+    .dir-zip { display:flex; gap:8px; margin:0 28px 4px; }
+    .dir-zip-input { flex:1; min-width:0; padding:9px 12px; border:1px solid #d4cfc4; border-radius:8px; font-family:var(--font-sans); font-size:0.82rem; color:#142240; background:#faf9f6; outline:none; box-sizing:border-box; }
+    .dir-zip-input:focus { border-color:#c9952c; background:#fff; }
+    .dir-zip-input::placeholder { color:#8a8f98; }
+    .dir-zip-btn { flex:none; padding:9px 16px; background:#142240; color:#f0e6d0; border:none; border-radius:8px; font-family:var(--font-sans); font-size:0.78rem; font-weight:600; cursor:pointer; }
+    .dir-zip-btn:hover { background:#1d3157; }
+    .dir-zip-btn:disabled { opacity:0.6; cursor:default; }
+    .zip-hit { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 0; border-top:1px solid rgba(201,149,44,0.15); cursor:pointer; }
+    .zip-hit:first-of-type { border-top:none; }
+    .zip-hit:hover strong { color:#c9952c; }
+    .zip-hit-d { flex:none; font-size:0.75rem; font-weight:700; color:#8b6f33; white-space:nowrap; }
+    .bmap-pop-link { display:inline-block; margin-top:10px; margin-left:8px; font-size:0.75rem; font-weight:600; color:#c9952c; text-decoration:none; }
+    .bmap-pop-link:hover { text-decoration:underline; }
+    @media (max-width:480px) { .dir-zip { margin-left:20px; margin-right:20px; } .dir-zip-input { font-size:16px; } }
     .dir-rows { padding:8px 16px; }
     .dir-row { border:1px solid #eae7e0; border-radius:10px; margin-bottom:6px; overflow:hidden; transition:border-color 0.2s; }
     .dir-row:hover { border-color:#c9952c; }
@@ -639,6 +653,10 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
               Find nearest to me
             </button>
+            <form class="dir-zip" id="dirZipForm" autocomplete="off">
+              <input type="text" id="dirZipInput" class="dir-zip-input" placeholder="Or enter a ZIP or city…" autocomplete="postal-code" aria-label="Search branches by ZIP code or city">
+              <button type="submit" class="dir-zip-btn">Search</button>
+            </form>
             <div id="nearestResult" class="nearest-result" style="display:none"></div>
             <div class="dir-rows" id="dirRows">
 <div class="dir-row dir-row--hq" data-state="Texas" data-lat="29.625" data-lng="-95.262">
@@ -1577,6 +1595,11 @@
     var ov = document.querySelector('.branch-modal');
     if(ov){
       var cta = ov.querySelector('.bm-cta');
+      var fullLink=document.createElement('a');
+      fullLink.className='bm-btn bm-btn--primary'; fullLink.id='bmFull';
+      fullLink.style.display='block'; fullLink.style.marginBottom='10px'; fullLink.style.width='100%'; fullLink.style.boxSizing='border-box';
+      fullLink.textContent='View full branch page →';
+      if(cta && cta.parentNode){ cta.parentNode.insertBefore(fullLink, cta); }
       var svcRow = null;
       Array.prototype.slice.call(ov.querySelectorAll('.bm-detail')).forEach(function(d){
         var k=d.querySelector('.bm-k'); if(k && /visit/i.test(k.textContent)) svcRow=d;
@@ -1606,6 +1629,7 @@
           if(ph){ var a=ph.querySelector('a'); pv.innerHTML=''; if(a){ pv.appendChild(a.cloneNode(true)); } else { pv.textContent=ph.textContent.replace(/^\s*Phone:\s*/i,'').trim(); } pr.style.display=''; }
           else { pr.style.display='none'; }
         }
+        var fl=document.getElementById('bmFull'); if(fl){ if(r.id){ fl.href='/branches/'+r.id+'.html'; fl.style.display='block'; } else { fl.style.display='none'; } }
         if(r.id && history.replaceState){ try{ history.replaceState(null,'','#'+r.id); }catch(e){} }
       };
 
@@ -1650,7 +1674,7 @@
         var meta=(r.querySelector('.dir-meta')||{}).textContent||'';
         var mk=L.marker([lat,lng],{icon:icon(isHQ),title:name,riseOnHover:true}).addTo(map);
         var pop=document.createElement('div');
-        pop.innerHTML='<div class="bmap-pop-name"></div><div class="bmap-pop-meta"></div><button class="bmap-pop-btn" type="button">View details</button>';
+        pop.innerHTML='<div class="bmap-pop-name"></div><div class="bmap-pop-meta"></div><button class="bmap-pop-btn" type="button">View details</button>'+(r.id?' <a class="bmap-pop-link" href="/branches/'+r.id+'.html">Full page →</a>':'');
         pop.querySelector('.bmap-pop-name').textContent=name;
         pop.querySelector('.bmap-pop-meta').textContent=meta;
         pop.querySelector('.bmap-pop-btn').addEventListener('click',function(){ map.closePopup(); if(window.MFMopenBranch) window.MFMopenBranch(r); });
@@ -1660,6 +1684,42 @@
       });
       if(pts.length){ map.fitBounds(pts,{padding:[34,34]}); }
       window.MFMflyToBranch=function(r){ if(r && r._mapMarker){ map.setView(r._mapMarker.getLatLng(),11,{animate:true}); r._mapMarker.openPopup(); } };
+    })();
+
+    /* ZIP / city distance search (geocode via OpenStreetMap Nominatim, rank by distance) */
+    (function(){
+      var form=document.getElementById('dirZipForm'); if(!form) return;
+      var input=document.getElementById('dirZipInput');
+      var res=document.getElementById('nearestResult');
+      function hav(a,b,c,d){var R=3959,dL=(c-a)*Math.PI/180,dN=(d-b)*Math.PI/180,x=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(a*Math.PI/180)*Math.cos(c*Math.PI/180)*Math.sin(dN/2)*Math.sin(dN/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+      function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        var q=(input.value||'').trim(); if(!q) return;
+        var btn=form.querySelector('button'); var lbl=btn.textContent; btn.textContent='…'; btn.disabled=true;
+        var done=function(){ btn.textContent=lbl; btn.disabled=false; };
+        res.style.display='block'; res.innerHTML='<span class="nearest-distance">Searching for “'+esc(q)+'”…</span>';
+        var isZip=/^\d{5}$/.test(q);
+        var url='https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=us&limit=1&'+(isZip?'postalcode='+encodeURIComponent(q):'q='+encodeURIComponent(q));
+        fetch(url,{headers:{'Accept':'application/json'}}).then(function(r){return r.json();}).then(function(j){
+          if(!j||!j.length){ res.innerHTML='Couldn’t find “'+esc(q)+'”. Try a 5-digit ZIP, or use “Find nearest to me”.'; done(); return; }
+          var uLat=parseFloat(j[0].lat), uLng=parseFloat(j[0].lon);
+          var list=Array.prototype.slice.call(document.querySelectorAll('.dir-row[data-lat]')).map(function(r){
+            return {r:r, d:hav(uLat,uLng,parseFloat(r.dataset.lat),parseFloat(r.dataset.lng))};
+          }).sort(function(a,b){return a.d-b.d;}).slice(0,5);
+          var html='<div style="font-weight:600;margin-bottom:8px">Nearest branches to '+esc(q)+':</div>';
+          list.forEach(function(o){
+            var nm=(o.r.querySelector('.dir-name')||{}).textContent||'';
+            var mt=(o.r.querySelector('.dir-meta')||{}).textContent||'';
+            html+='<div class="zip-hit" data-id="'+esc(o.r.id)+'"><div><strong>'+esc(nm)+'</strong><br><span class="nearest-distance">'+esc(mt)+'</span></div><div class="zip-hit-d">'+Math.round(o.d)+' mi</div></div>';
+          });
+          res.innerHTML=html;
+          Array.prototype.slice.call(res.querySelectorAll('.zip-hit')).forEach(function(el){
+            el.addEventListener('click',function(){ var r=document.getElementById(el.getAttribute('data-id')); if(r){ r.scrollIntoView({behavior:'smooth',block:'center'}); if(window.MFMflyToBranch) window.MFMflyToBranch(r); if(window.MFMopenBranch) window.MFMopenBranch(r); } });
+          });
+          done();
+        }).catch(function(){ res.innerHTML='Search is unavailable right now. Try “Find nearest to me”, the map, or the search box above.'; done(); });
+      });
     })();
   })();
   </script>
