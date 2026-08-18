@@ -114,6 +114,12 @@ img {
   display: block;
 }
 
+/* <picture> wrappers (WebP + fallback) are layout-neutral so the <img> keeps
+   its original box context inside flex/grid parents. */
+picture {
+  display: contents;
+}
+
 a {
   color: var(--gold-light);
   text-decoration: none;
