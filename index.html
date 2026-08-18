@@ -1574,6 +1574,7 @@
             <a href="about.html" class="btn btn--secondary">Who We Are</a>
             <a href="branches.html" class="btn btn--secondary">Find a Branch</a>
           </div>
+          <a href="#new-here" class="hero-newhere" style="display:inline-block; margin-top:16px; color:var(--gold,#c9952c); font-weight:600; font-size:0.9rem; text-decoration:none;">New here? Start your visit &rarr;</a>
         </div>
 
         <!-- Right: Countdown -->
@@ -1922,6 +1923,60 @@
             <p>A vibrant community of young believers growing in faith and worship.</p>
             <span class="card-link">Visit Website →</span>
           </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         NEW HERE? — First-visit newcomer path (White)
+         ═══════════════════════════════════════════════════════ -->
+    <style>
+      .nh-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(238px,1fr)); gap:20px; }
+      .nh-card { display:flex; flex-direction:column; background:#fff; border:1px solid #e8e4da; border-radius:16px; padding:28px 26px; text-decoration:none; transition:border-color .2s, transform .2s, box-shadow .2s; }
+      a.nh-card:hover { border-color:#c9952c; transform:translateY(-3px); box-shadow:0 16px 40px rgba(20,34,64,0.08); }
+      .nh-ic { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,rgba(201,149,44,0.14),rgba(232,93,38,0.10)); color:#c9952c; margin-bottom:16px; flex:none; }
+      .nh-ic svg { width:23px; height:23px; }
+      .nh-card h3 { font-family:var(--font-serif,'Fraunces',Georgia,serif); font-size:1.12rem; margin:0 0 8px; color:#142240; }
+      .nh-card p { color:#5a6270; font-size:0.9rem; line-height:1.6; margin:0 0 14px; }
+      .nh-card .card-link { margin-top:auto; color:#c9952c; font-weight:600; font-size:0.85rem; }
+      .nh-cta { text-align:center; margin-top:30px; }
+      @media (max-width:560px) { .nh-grid { grid-template-columns:1fr; } }
+    </style>
+    <section class="section section--white" id="new-here">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <p class="eyebrow">New Here?</p>
+          <h2>Your First Visit</h2>
+          <p>Never been to MFM before? You are welcome exactly as you are. Here is how to take your first step &mdash; near you, or online from anywhere in the world.</p>
+        </div>
+        <div class="nh-grid reveal-stagger">
+          <a class="nh-card reveal" href="branches.html" aria-label="Find an MFM branch near you">
+            <div class="nh-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h3>Find a Church Near You</h3>
+            <p>Branches across six states. Search by ZIP, city, or your location to find the Mountain of Fire nearest you.</p>
+            <span class="card-link">Find a branch &rarr;</span>
+          </a>
+          <div class="nh-card reveal">
+            <div class="nh-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+            <h3>What to Expect</h3>
+            <p>Heartfelt worship, the undiluted Word, and fervent prayer for healing and deliverance. Come as you are &mdash; no dress code, no pressure.</p>
+          </div>
+          <a class="nh-card reveal" href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Watch MFM services live on YouTube">
+            <div class="nh-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <h3>Worship Online First</h3>
+            <p>Can&rsquo;t make it in person yet? Join our live services from anywhere in the world, every week on YouTube.</p>
+            <span class="card-link">Watch live &rarr;</span>
+          </a>
+          <a class="nh-card reveal" href="#prayer" aria-label="Tell us you are coming">
+            <div class="nh-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Tell Us You&rsquo;re Coming</h3>
+            <p>Planning to visit? Let us know and our team will be glad to welcome you personally when you arrive.</p>
+            <span class="card-link">Reach out &rarr;</span>
+          </a>
+        </div>
+        <div class="nh-cta">
+          <a href="#visit" class="btn btn--primary">See Service Times &amp; Directions</a>
         </div>
       </div>
     </section>
