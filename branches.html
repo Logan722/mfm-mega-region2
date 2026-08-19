@@ -416,6 +416,7 @@
   <meta name="twitter:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- ═══════════════════════════════════════════════════════
        NAVIGATION
@@ -514,7 +515,7 @@
        PAGE CONTENT
        ═══════════════════════════════════════════════════════ -->
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ═══════════════════════════════════════════════════════
          HERO — Split Editorial with Location Pin
@@ -1592,6 +1593,20 @@
     var rows = Array.prototype.slice.call(document.querySelectorAll('.dir-row'));
     rows.forEach(function(r){ if(!r.id){ var nm=r.querySelector('.dir-name'); if(nm) r.id = slugify(nm.textContent); } });
 
+    /* Make each directory row keyboard-operable (opens the branch dialog on Enter/Space).
+       Target .dir-row-info — it holds only the name/meta text, so no interactive nesting. */
+    rows.forEach(function(r){
+      var info=r.querySelector('.dir-row-info'); if(!info) return;
+      var nm=r.querySelector('.dir-name'); var name=nm?nm.textContent.trim():'this branch';
+      info.setAttribute('role','button');
+      info.setAttribute('tabindex','0');
+      info.setAttribute('aria-label','View details for '+name);
+      info.style.cursor='pointer';
+      info.addEventListener('keydown', function(e){
+        if(e.key==='Enter' || e.key===' ' || e.key==='Spacebar'){ e.preventDefault(); if(window.MFMopenBranch) window.MFMopenBranch(r); }
+      });
+    });
+
     /* Enhance the existing branch modal: relabel Visit->Services, add Phone row + Copy-link button */
     var ov = document.querySelector('.branch-modal');
     if(ov){
@@ -1616,9 +1631,11 @@
       shareBtn.type='button'; shareBtn.className='bm-btn bm-btn--ghost'; shareBtn.id='bmShare'; shareBtn.textContent='Copy link';
       if(cta) cta.appendChild(shareBtn);
 
-      var currentRow=null, orig=window.MFMopenBranch;
+      var currentRow=null, lastFocused=null, orig=window.MFMopenBranch;
+      function bmFocusables(){ return Array.prototype.slice.call(ov.querySelectorAll('.bm-card a[href], .bm-card button:not([disabled]), .bm-card [tabindex]:not([tabindex="-1"])')).filter(function(el){ return el.offsetParent!==null; }); }
       window.MFMopenBranch=function(r){
         currentRow=r;
+        lastFocused=document.activeElement;
         if(typeof orig==='function') orig(r);
         var sv=r.querySelector('.dir-row-details .dir-detail[data-kind="services"]');
         var svV=document.getElementById('bmSvcV');
@@ -1632,7 +1649,22 @@
         }
         var fl=document.getElementById('bmFull'); if(fl){ if(r.id){ fl.href='/branches/'+r.id+'.html'; fl.style.display='block'; } else { fl.style.display='none'; } }
         if(r.id && history.replaceState){ try{ history.replaceState(null,'','#'+r.id); }catch(e){} }
+        var closeBtn=ov.querySelector('.bm-close'); if(closeBtn){ setTimeout(function(){ try{ closeBtn.focus(); }catch(e){} }, 30); }
       };
+      /* Keep keyboard focus inside the dialog while it is open */
+      ov.addEventListener('keydown', function(e){
+        if(e.key!=='Tab' || !ov.classList.contains('open')) return;
+        var f=bmFocusables(); if(!f.length) return;
+        var first=f[0], last=f[f.length-1];
+        if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+      });
+      /* Return focus to the trigger element when the dialog closes (hooks existing close paths) */
+      new MutationObserver(function(){
+        if(!ov.classList.contains('open') && lastFocused && typeof lastFocused.focus==='function'){
+          try{ lastFocused.focus(); }catch(e){} lastFocused=null;
+        }
+      }).observe(ov, {attributes:true, attributeFilter:['class']});
 
       shareBtn.addEventListener('click',function(){
         if(!currentRow||!currentRow.id) return;

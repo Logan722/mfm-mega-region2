@@ -120,6 +120,59 @@ picture {
   display: contents;
 }
 
+/* ── Accessibility ──────────────────────────────────────────── */
+/* Skip-to-content link: hidden until keyboard-focused, then visible top-left */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 4000;
+  padding: 10px 16px;
+  background: #142240;
+  color: #f0e6d0;
+  font-family: var(--font-sans, 'Inter Tight', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--gold, #c9952c);
+  border-radius: 8px;
+  transform: translateY(-150%);
+  transition: transform 0.18s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--gold, #c9952c);
+  outline-offset: 2px;
+}
+
+/* Visible keyboard focus for interactive elements (mouse clicks unaffected) */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--gold, #c9952c);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* Programmatic focus target (skip link / modal restore) shouldn't show a ring */
+main:focus,
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Screen-reader-only utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 a {
   color: var(--gold-light);
   text-decoration: none;
