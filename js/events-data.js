@@ -358,5 +358,20 @@ window.MFM_EVENTS = [
     "dateDisplay": "Saturday, December 12, 2026",
     "description": "A gathering to give God thanks and praise for His faithfulness, His power, and all He has done. He is faithful, He is able, and He will do it again.",
     "badgeStyle": "fire"
+  },
+  {
+    "date": "2026-08-29",
+    "title": "Women Foundation Florida — August Meeting",
+    "theme": "You Are Welcome",
+    "time": "6:00 PM",
+    "venue": "Online via Zoom",
+    "host": "MFM Women Foundation Florida",
+    "image": "img/announcements/women-foundation-fl-august.jpg",
+    "alt": "MFM Women Foundation Florida — August Meeting, Saturday August 29, 2026, 6:00 PM on Zoom",
+    "anchor": "women-foundation-fl-august",
+    "dateDisplay": "Saturday, August 29, 2026",
+    "description": "The MFM Women Foundation Florida invites all women across the Florida zones — Broward, Jacksonville, Miami, Orlando, Tallahassee and Tampa — to the August meeting on Zoom. Come and be blessed.",
+    "ministry": "women",
+    "badgeStyle": "gold"
   }
 ];
