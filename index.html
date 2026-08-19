@@ -2968,6 +2968,7 @@
         slidesHtml +=
           '<div class="announce-slide' + (idx === 0 ? ' is-active' : '') + '" ' +
             'data-slide="' + idx + '" role="group" aria-roledescription="slide" ' +
+            'aria-hidden="' + (idx === 0 ? 'false' : 'true') + '" ' +
             'aria-label="' + (idx+1) + ' of ' + parsed.length + '">' +
             '<div class="announce-bg" style="background-image:url(\'' + esc(f.image) + '\');" aria-hidden="true"></div>' +
             '<div class="announce-overlay" aria-hidden="true"></div>' +
@@ -3046,9 +3047,11 @@
       var countdownTimer = null;
       var paused = false;
       var inView = true;
+      var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      if (reduceMotion && progFill && progFill.parentElement) { progFill.parentElement.style.display = 'none'; }
 
       function resetProgress() {
-        if (!progFill) return;
+        if (!progFill || reduceMotion) return;
         progFill.classList.remove('is-running');
         progFill.style.transition = 'none';
         progFill.style.width = '0%';
@@ -3067,7 +3070,7 @@
       function setActive(next) {
         var slides = slidesEl.querySelectorAll('.announce-slide');
         var dots   = dotsEl.querySelectorAll('.dot');
-        slides.forEach(function (s, i) { s.classList.toggle('is-active', i === next); });
+        slides.forEach(function (s, i) { var on = (i === next); s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); });
         dots.forEach(function (d, i) {
           d.classList.toggle('is-active', i === next);
           d.setAttribute('aria-selected', i === next ? 'true' : 'false');
@@ -3085,7 +3088,7 @@
 
       function startTimers() {
         stopTimers();
-        if (parsed.length > 1) {
+        if (parsed.length > 1 && !reduceMotion) {
           rotateTimer = setInterval(advance, ROTATE_MS);
           resetProgress();
         }
@@ -3103,6 +3106,10 @@
       /* ═══ Pause on hover (desktop) ═══ */
       stage.addEventListener('mouseenter', function () { paused = true; pauseProgress(); });
       stage.addEventListener('mouseleave', function () { paused = false; if (inView) { startTimers(); } });
+
+      /* ═══ Pause on keyboard focus (WCAG 2.2.2) ═══ */
+      stage.addEventListener('focusin', function () { paused = true; pauseProgress(); });
+      stage.addEventListener('focusout', function (e) { if (!stage.contains(e.relatedTarget)) { paused = false; if (inView) { startTimers(); } } });
 
       /* ═══ Pause when tab hidden ═══ */
       document.addEventListener('visibilitychange', function () {
