@@ -370,7 +370,7 @@ window.MFM_EVENTS = [
     "alt": "MFM Women Foundation Florida — August Meeting, Saturday August 29, 2026, 6:00 PM on Zoom",
     "anchor": "women-foundation-fl-august",
     "dateDisplay": "Saturday, August 29, 2026",
-    "description": "The MFM Women Foundation Florida invites all women across the Florida zones — Broward, Jacksonville, Miami, Orlando, Tallahassee and Tampa — to the August meeting on Zoom. Come and be blessed.",
+    "description": "The MFM Women Foundation Florida invites all women across the Florida zones — Broward, Jacksonville, Miami, Orlando, Tallahassee and Tampa — to the August meeting on Zoom. Come and be blessed. The Zoom link is shared on request — please contact your zone's Women Foundation leader to join.",
     "ministry": "women",
     "badgeStyle": "gold"
   }
