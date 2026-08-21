@@ -127,7 +127,7 @@ window.MFM_EVENTS = [
     "title": "Command the Month — El Roi",
     "theme": "\"El Roi — The God That Sees\"",
     "time": "10:00 PM CST nightly",
-    "venue": "Virtual — Zoom (ID: 829 1659 0228 · Passcode: 316140)",
+    "venue": "Online via Zoom",
     "ministering": "Pastor (Dr.) Segun Obatusin — MFM Austin, Texas",
     "image": "img/announcements/command-the-month-austin.jpg",
     "alt": "Command the Month, El Roi — MFM Austin Texas, August 1 to 3, 2026, 10 PM CST",
