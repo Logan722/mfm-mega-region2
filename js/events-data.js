@@ -89,7 +89,7 @@ window.MFM_EVENTS = [
     "title": "Gen218 Prayer Conference 2026",
     "theme": "\"Divine Alignment\"",
     "time": "12:00 PM EST",
-    "venue": "Virtual — Zoom (ID: 357 230 0941 · PW: 1234567)",
+    "venue": "Online via Zoom",
     "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
     "host": "MFM North America Gen218 Coordinators",
     "image": "img/announcements/gen218-prayer-conference.jpg",
