@@ -43,6 +43,7 @@
   #rf{
     --rf-navy:#142240; --rf-ink:#0d1830; --rf-navy-soft:#1c2e54;
     --rf-gold:#c9952c; --rf-gold-bright:#e2b656; --rf-fire:#e85d26;
+    --rf-gold-ink:#8f6212; --rf-fire-ink:#b3471b;
     --rf-cream:#f8f6f1; --rf-sand:#efe8da; --rf-white:#ffffff;
     --rf-text:#3b4453; --rf-text-soft:#616a79; --rf-head:#15233f;
     --rf-on-navy:#eaeef7; --rf-on-navy-dim:#9fb1d1; --rf-line:#e7e0d2;
@@ -60,7 +61,7 @@
   #rf h1,#rf h2,#rf h3{ font-family:var(--rf-serif); color:var(--rf-head); font-weight:700; line-height:1.08; margin:0; text-wrap:balance; letter-spacing:-.01em; }
   #rf p{ margin:0; }
   #rf .rf-wrap{ max-width:var(--rf-container); margin:0 auto; padding-inline:var(--rf-gutter); }
-  #rf .rf-eyebrow{ font-family:var(--rf-sans); font-weight:600; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--rf-gold); display:inline-flex; align-items:center; gap:.6em; }
+  #rf .rf-eyebrow{ font-family:var(--rf-sans); font-weight:600; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--rf-gold-ink); display:inline-flex; align-items:center; gap:.6em; }
   #rf .rf-eyebrow::before{ content:""; width:26px; height:2px; background:linear-gradient(90deg,var(--rf-fire),var(--rf-gold)); display:inline-block; }
   #rf .rf-btn{ display:inline-flex; align-items:center; gap:.55em; font-family:var(--rf-sans); font-weight:600; font-size:.98rem; padding:15px 28px; border-radius:100px; border:1.5px solid transparent; cursor:pointer; transition:transform .18s ease, box-shadow .2s ease, background .2s ease, color .2s ease; }
   #rf .rf-btn svg{ width:17px; height:17px; }
@@ -111,13 +112,13 @@
   #rf .rf-welcome{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(34px,5vw,72px); align-items:center; }
   #rf .rf-welcome blockquote{ margin:22px 0 0; font-family:var(--rf-serif); font-style:italic; font-weight:500; font-size:clamp(1.3rem,2.2vw,1.75rem); line-height:1.4; color:var(--rf-head); }
   #rf .rf-welcome .who{ margin-top:16px; font-size:.95rem; color:var(--rf-text-soft); }
-  #rf .rf-link{ margin-top:26px; display:inline-flex; align-items:center; gap:.5em; color:var(--rf-fire); font-weight:600; }
+  #rf .rf-link{ margin-top:26px; display:inline-flex; align-items:center; gap:.5em; color:var(--rf-fire-ink); font-weight:600; }
   #rf .rf-link svg{ width:16px; height:16px; transition:transform .2s; }
   #rf .rf-link:hover svg{ transform:translateX(4px); }
   #rf .rf-pastors{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
   #rf .rf-pastor img{ border-radius:var(--rf-r-lg); box-shadow:var(--rf-shadow); width:100%; aspect-ratio:4/5; object-fit:cover; object-position:50% 22%; }
   #rf .rf-pastor b{ display:block; font-family:var(--rf-serif); font-size:1.02rem; color:var(--rf-head); margin-top:14px; line-height:1.2; }
-  #rf .rf-pastor span{ font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--rf-gold); font-weight:600; }
+  #rf .rf-pastor span{ font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--rf-gold-ink); font-weight:600; }
   @media(max-width:840px){ #rf .rf-welcome{ grid-template-columns:1fr; } #rf .rf-welcome-media{ order:-1; } }
 
   /* EXPERIENCE */
@@ -189,6 +190,78 @@
   #rf .rf-reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
   #rf .rf-reveal.in{ opacity:1; transform:none; }
   @media(prefers-reduced-motion:reduce){ #rf .rf-reveal{ opacity:1; transform:none; transition:none; } #rf .rf-card img,#rf .rf-mcard .ph img{ transition:none; } }
+
+  /* ── Restored feature sections (re-skinned into Royal Flame) ── */
+  /* dark section variant + centered header + small/fire button variants */
+  #rf .rf-sec.navy{ position:relative; background:var(--rf-navy); color:var(--rf-on-navy); }
+  #rf .rf-sec.navy h2{ color:#fff; }
+  #rf .rf-sec.navy .rf-sub{ color:var(--rf-on-navy-dim); }
+  #rf .rf-sec.navy .rf-eyebrow{ color:var(--rf-gold-bright); }
+  #rf .rf-head-center{ max-width:60ch; margin:0 auto clamp(38px,5vw,54px); text-align:center; }
+  #rf .rf-head-center h2{ font-size:clamp(2rem,4vw,3.15rem); margin-top:14px; }
+  #rf .rf-head-center .rf-sub{ margin:16px auto 0; }
+  #rf .rf-btn.sm{ padding:11px 20px; font-size:.9rem; }
+  #rf .rf-btn.fire{ background:var(--rf-fire); color:#fff; align-self:flex-start; }
+  #rf .rf-btn.fire:hover{ transform:translateY(-2px); background:var(--rf-fire-ink); }
+
+  /* WATCH / PROMO */
+  #rf .rf-promo-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px; max-width:1040px; margin:0 auto; }
+  #rf .rf-promo-card{ text-align:center; }
+  #rf .rf-promo-vid{ position:relative; width:100%; aspect-ratio:16/9; border-radius:var(--rf-r); overflow:hidden; background:#000; box-shadow:var(--rf-shadow); border:1px solid rgba(255,255,255,.1); }
+  #rf .rf-promo-vid iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  #rf .rf-promo-play{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; background:#000; cursor:pointer; display:block; }
+  #rf .rf-promo-play img{ width:100%; height:100%; object-fit:cover; }
+  #rf .rf-promo-scrim{ position:absolute; inset:0; background:radial-gradient(circle at 50% 42%,rgba(0,0,0,.12),rgba(0,0,0,.55)); }
+  #rf .rf-promo-pbtn{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:72px; height:72px; border-radius:50%; background:rgba(232,93,38,.95); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 34px rgba(0,0,0,.45); transition:transform .18s ease, background .18s ease; }
+  #rf .rf-promo-pbtn svg{ width:32px; height:32px; color:#fff; margin-left:4px; }
+  #rf .rf-promo-play:hover .rf-promo-pbtn{ transform:translate(-50%,-50%) scale(1.08); background:var(--rf-fire); }
+  #rf .rf-promo-cap{ position:absolute; left:0; right:0; bottom:0; text-align:center; font-family:var(--rf-sans); font-size:.85rem; font-weight:700; letter-spacing:.03em; color:#fff; background:linear-gradient(transparent,rgba(0,0,0,.6)); padding:26px 12px 12px; }
+  #rf .rf-promo-ctitle{ color:#fff; margin:20px 0 4px; font-size:1.4rem; }
+  #rf .rf-promo-cmeta{ color:var(--rf-on-navy-dim); font-size:.95rem; margin:0; }
+  #rf .rf-promo-actions{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:16px; }
+  @media(max-width:800px){ #rf .rf-promo-grid{ grid-template-columns:1fr; gap:40px; } }
+
+  /* PLAN YOUR VISIT */
+  #rf .rf-visit-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; align-items:stretch; }
+  #rf .rf-visit-card{ background:var(--rf-navy-soft); border:1px solid rgba(255,255,255,.1); border-radius:var(--rf-r); padding:32px 30px; }
+  #rf .rf-visit-card h3{ color:#fff; margin-bottom:18px; font-size:1.4rem; }
+  #rf .rf-visit-times{ list-style:none; padding:0; margin:0 0 24px; display:flex; flex-direction:column; gap:12px; }
+  #rf .rf-visit-times li{ display:flex; justify-content:space-between; gap:16px; border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:12px; }
+  #rf .rf-visit-times li:last-child{ border-bottom:0; padding-bottom:0; }
+  #rf .rf-visit-times .n{ color:#fff; }
+  #rf .rf-visit-times .t{ color:var(--rf-on-navy-dim); text-align:right; }
+  #rf .rf-visit-addr b{ display:block; color:#fff; font-family:var(--rf-serif); font-size:1.05rem; margin-bottom:4px; }
+  #rf .rf-visit-addr p{ color:var(--rf-on-navy-dim); margin-bottom:2px; }
+  #rf .rf-visit-addr a.tel{ color:var(--rf-gold-bright); }
+  #rf .rf-visit-addr .rf-btn{ margin-top:18px; }
+  #rf .rf-map{ border-radius:var(--rf-r); overflow:hidden; border:1px solid rgba(255,255,255,.1); min-height:340px; }
+  #rf .rf-map iframe{ width:100%; height:100%; border:0; min-height:340px; display:block; }
+
+  /* REACH OUT / PRAYER */
+  #rf .rf-prayer-layout{ display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(30px,4vw,56px); align-items:start; }
+  #rf .rf-form-wrap h3{ font-size:1.7rem; }
+  #rf .rf-form-sub{ color:var(--rf-text-soft); margin:10px 0 24px; }
+  #rf .rf-form{ display:flex; flex-direction:column; gap:14px; }
+  #rf .rf-form select,#rf .rf-form input,#rf .rf-form textarea{ width:100%; font-family:var(--rf-sans); font-size:1rem; padding:14px 16px; border:1.5px solid var(--rf-line); border-radius:12px; background:var(--rf-white); color:var(--rf-head); transition:border-color .2s; }
+  #rf .rf-form select:focus,#rf .rf-form input:focus,#rf .rf-form textarea:focus{ outline:none; border-color:var(--rf-gold); }
+  #rf .rf-form textarea{ min-height:130px; resize:vertical; }
+  #rf .rf-form-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  #rf .rf-give-hint{ margin:-4px 0 0; font-size:.85rem; color:var(--rf-text-soft); }
+  #rf .rf-give-hint a{ color:var(--rf-fire-ink); font-weight:600; }
+  #rf .rf-form .rf-btn.fire svg{ margin-right:2px; }
+  #rf .rf-form-note{ font-size:.85rem; color:var(--rf-text-soft); }
+  #rf .rf-form-success{ background:var(--rf-sand); border:1px solid var(--rf-line); border-left:4px solid var(--rf-gold); border-radius:var(--rf-r); padding:30px 26px; }
+  #rf .rf-form-success h3{ margin-bottom:8px; }
+  #rf .rf-form-success p{ color:var(--rf-text-soft); line-height:1.7; margin:0; }
+  #rf .rf-side{ background:var(--rf-navy); border-radius:var(--rf-r); padding:32px 30px; color:var(--rf-on-navy); }
+  #rf .rf-side .lab{ font-family:var(--rf-sans); font-weight:600; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--rf-gold-bright); }
+  #rf .rf-side .desc{ color:var(--rf-on-navy-dim); font-size:1rem; line-height:1.6; margin:12px 0 20px; }
+  #rf .rf-side .rf-btn{ width:100%; justify-content:center; }
+  #rf .rf-side .rf-btn+.rf-btn{ margin-top:10px; }
+  #rf .rf-side blockquote{ margin:22px 0 0; padding-top:20px; border-top:1px solid rgba(255,255,255,.12); font-family:var(--rf-serif); font-style:italic; color:var(--rf-on-navy); font-size:1rem; line-height:1.6; }
+  #rf .rf-side blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:.85rem; color:var(--rf-gold-bright); }
+  @media(max-width:820px){ #rf .rf-prayer-layout{ grid-template-columns:1fr; } }
+  @media(max-width:520px){ #rf .rf-form-row{ grid-template-columns:1fr; } }
   </style>
 
 <link rel="canonical" href="https://mfmmegaregion2usa.org/">
@@ -300,14 +373,14 @@
 
     <!-- HERO -->
     <header class="rf-hero">
-      <div class="rf-hero-img"><picture><source type="image/webp" srcset="img/photos/hero.webp"><img src="img/photos/hero.jpg" alt="A worshipper lifts his hands during an MFM Mega Region 2 service" width="1900" height="1900" fetchpriority="high"></picture></div>
+      <div class="rf-hero-img"><picture><source type="image/webp" srcset="img/photos/hero.webp"><img loading="eager" decoding="async" fetchpriority="high" src="img/photos/hero.jpg" alt="A worshipper lifts his hands during an MFM Mega Region 2 service" width="1900" height="1900" fetchpriority="high"></picture></div>
       <div class="rf-hero-in">
         <p class="rf-eyebrow">Mega Region 2 &middot; United States</p>
         <h1>Come and encounter the <em>fire</em> of God.</h1>
         <p class="rf-lede">Mountain of Fire &amp; Miracles Ministries &mdash; a family of prayer, power, and deliverance with branches across the USA. New here? Start by finding a church near you.</p>
         <div class="rf-hero-cta">
           <a class="rf-btn p" href="branches.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Find a Church Near You</a>
-          <a class="rf-btn g" href="media.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor" stroke="none"/></svg>Watch a Service</a>
+          <a class="rf-btn g" href="watch.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor" stroke="none"/></svg>Watch a Service</a>
         </div>
       </div>
     </header>
@@ -315,9 +388,9 @@
     <!-- QUICK ACTIONS -->
     <section class="rf-quick" aria-label="Quick actions">
       <div class="rf-quick-grid">
-        <a class="rf-q" href="about.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span><span class="qt">I'm New</span><span class="qs">Start here</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="rf-q" href="#visit"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span><span class="qt">I'm New</span><span class="qs">Plan your visit</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
         <a class="rf-q" href="branches.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><span class="qt">Find a Church</span><span class="qs">Branches near you</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
-        <a class="rf-q" href="media.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></span><span><span class="qt">Watch Live</span><span class="qs">Services &amp; messages</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="rf-q" href="watch.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></span><span><span class="qt">Watch Live</span><span class="qs">Live &amp; replays</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
         <a class="rf-q" href="give.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a4.4 4.4 0 0 0-7.6-3 4.4 4.4 0 0 0-7.6 3c0 4.6 7.6 9.4 7.6 9.4s7.6-4.8 7.6-9.4Z"/></svg></span><span><span class="qt">Give</span><span class="qs">Partner with us</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
@@ -335,8 +408,8 @@
         </div>
         <div class="rf-welcome-media rf-reveal">
           <div class="rf-pastors">
-            <figure class="rf-pastor"><picture><source type="image/webp" srcset="img/photos/oni.webp"><img src="img/photos/oni.jpg" alt="Pastor Olumide Oni ministering the word" width="1300" height="867"></picture><b>Pastor Olumide Oni</b><span>Regional Pastor</span></figure>
-            <figure class="rf-pastor"><picture><source type="image/webp" srcset="img/photos/toyin.webp"><img src="img/photos/toyin.jpg" alt="Pastor Mrs. Oluwatoyin Oni ministering" width="1200" height="800"></picture><b>Pastor (Mrs.) Oluwatoyin Oni</b><span>Regional Pastor</span></figure>
+            <figure class="rf-pastor"><picture><source type="image/webp" srcset="img/photos/pastor-oni-gold.webp"><img src="img/photos/pastor-oni-gold.jpg" alt="Pastor Olumide Oni" width="640" height="800" loading="lazy" decoding="async"></picture><b>Pastor Olumide Oni</b><span>Principal Regional Overseer</span></figure>
+            <figure class="rf-pastor"><picture><source type="image/webp" srcset="img/photos/mrs-oni-burgundy.webp"><img src="img/photos/mrs-oni-burgundy.jpg" alt="Pastor (Mrs.) Oluwatoyin Oni" width="640" height="800" loading="lazy" decoding="async"></picture><b>Pastor (Mrs.) Oluwatoyin Oni</b><span>President, Women Foundation</span></figure>
           </div>
         </div>
       </div>
@@ -351,11 +424,11 @@
           <p class="rf-sub">From spirit-lifting praise to nights of deliverance and the ministry of the word &mdash; this is what a gathering on the mountain feels like.</p>
         </div>
         <div class="rf-exp-grid">
-          <figure class="rf-card big rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship.webp"><img src="img/photos/worship.jpg" alt="Congregation worshipping with hands raised" width="1500" height="1000"></picture><figcaption>Worship &amp; praise</figcaption></figure>
-          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/choir.webp"><img src="img/photos/choir.jpg" alt="The Mega Region 2 choir ministering in song" width="1300" height="866"></picture><figcaption>The choir</figcaption></figure>
-          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/band.webp"><img src="img/photos/band.jpg" alt="Live worship band playing" width="1200" height="800"></picture><figcaption>Live worship</figcaption></figure>
-          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship-bw.webp"><img src="img/photos/worship-bw.jpg" alt="Hands raised in prayer and deliverance" width="1200" height="800"></picture><figcaption>Prayer &amp; deliverance</figcaption></figure>
-          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/word.webp"><img src="img/photos/word.jpg" alt="A worshipper taking notes during the message" width="1100" height="1100"></picture><figcaption>The word</figcaption></figure>
+          <figure class="rf-card big rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship.webp"><img loading="lazy" decoding="async" src="img/photos/worship.jpg" alt="Congregation worshipping with hands raised" width="1500" height="1000"></picture><figcaption>Worship</figcaption></figure>
+          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/choir.webp"><img loading="lazy" decoding="async" src="img/photos/choir.jpg" alt="The Mega Region 2 choir ministering in song" width="1300" height="866"></picture><figcaption>The Choir</figcaption></figure>
+          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/band.webp"><img loading="lazy" decoding="async" src="img/photos/band.jpg" alt="Live worship band playing" width="1200" height="800"></picture><figcaption>The Band</figcaption></figure>
+          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship-bw.webp"><img loading="lazy" decoding="async" src="img/photos/worship-bw.jpg" alt="Hands raised in prayer and deliverance" width="1200" height="800"></picture><figcaption>Prayer &amp; Deliverance</figcaption></figure>
+          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/word.webp"><img loading="lazy" decoding="async" src="img/photos/word.jpg" alt="A worshipper taking notes during the message" width="1100" height="1100"></picture><figcaption>The Word</figcaption></figure>
         </div>
       </div>
     </section>
@@ -369,19 +442,64 @@
         </div>
         <div class="rf-min-grid">
           <article class="rf-mcard rf-reveal">
-            <div class="ph"><picture><source type="image/webp" srcset="img/photos/women.webp"><img src="img/photos/women.jpg" alt="Women of the MFM Women Foundation" width="1150" height="1150"></picture></div>
+            <div class="ph"><picture><source type="image/webp" srcset="img/photos/women.webp"><img loading="lazy" decoding="async" src="img/photos/women.jpg" alt="Women of the MFM Women Foundation" width="1150" height="1150"></picture></div>
             <div class="body"><h3>Women Foundation</h3><p>A sisterhood of prevailing women &mdash; conferences, prayer, and fellowship across every zone.</p><a class="rf-link" href="women.html">Explore <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
           </article>
           <article class="rf-mcard rf-reveal">
-            <div class="ph"><picture><source type="image/webp" srcset="img/photos/community.webp"><img src="img/photos/community.jpg" alt="Members greeting one another in fellowship" width="1300" height="920"></picture></div>
+            <div class="ph"><picture><source type="image/webp" srcset="img/photos/community.webp"><img loading="lazy" decoding="async" src="img/photos/community.jpg" alt="Members greeting one another in fellowship" width="1300" height="920"></picture></div>
             <div class="body"><h3>Gen218 Singles</h3><p>Christian singles growing together in purpose, purity, and preparation for God's best.</p><a class="rf-link" href="gen218.html">Explore <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
           </article>
           <article class="rf-mcard rf-reveal">
-            <div class="ph"><picture><source type="image/webp" srcset="img/photos/choir.webp"><img src="img/photos/choir.jpg" alt="The youth and worship team" width="1300" height="866"></picture></div>
+            <div class="ph"><picture><source type="image/webp" srcset="img/photos/choir.webp"><img loading="lazy" decoding="async" src="img/photos/choir.jpg" alt="The youth and worship team" width="1300" height="866"></picture></div>
             <div class="body"><h3>Youth Church</h3><p>The next generation raised in the fire &mdash; worship, discipleship, and community for young people.</p><a class="rf-link" href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener">Visit <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
           </article>
         </div>
         <div class="rf-min-more"><a class="rf-btn d" href="ministries.html">Explore all ministries</a></div>
+      </div>
+    </section>
+
+    <!-- WATCH / SEPTEMBER CRUSADES PROMO (auto-hides after 2026-09-21) -->
+    <section class="rf-sec navy" id="september-crusades-spotlight" aria-labelledby="sepCrusadeTitle">
+      <div class="rf-wrap">
+        <div class="rf-head-center rf-reveal">
+          <p class="rf-eyebrow">Don't miss</p>
+          <h2 id="sepCrusadeTitle">September Deliverance Crusades</h2>
+          <p class="rf-sub">Two great crusades with Dr. D.K. Olukoya, General Overseer &mdash; North Carolina &amp; Florida, days apart.</p>
+        </div>
+        <div class="rf-promo-grid">
+          <div class="rf-promo-card rf-reveal">
+            <div class="rf-promo-vid" data-vid="OuY6DPpbhv4">
+              <button type="button" class="rf-promo-play" aria-label="Play the North Carolina Deliverance Crusade promo video">
+                <img src="https://i.ytimg.com/vi/OuY6DPpbhv4/maxresdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/OuY6DPpbhv4/hqdefault.jpg'">
+                <span class="rf-promo-scrim"></span>
+                <span class="rf-promo-pbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                <span class="rf-promo-cap">Watch the promo</span>
+              </button>
+            </div>
+            <h3 class="rf-promo-ctitle">North Carolina</h3>
+            <p class="rf-promo-cmeta">September 16&ndash;17 &middot; Burlington, NC</p>
+            <div class="rf-promo-actions">
+              <a href="https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile" target="_blank" rel="noopener" class="rf-btn p sm">Get Tickets</a>
+              <a href="events.html#nc-deliverance-crusade" class="rf-btn g sm">Details</a>
+            </div>
+          </div>
+          <div class="rf-promo-card rf-reveal">
+            <div class="rf-promo-vid" data-vid="ZbDw9eUwOKs">
+              <button type="button" class="rf-promo-play" aria-label="Play the Florida Deliverance Crusade promo video">
+                <img src="https://i.ytimg.com/vi/ZbDw9eUwOKs/maxresdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/ZbDw9eUwOKs/hqdefault.jpg'">
+                <span class="rf-promo-scrim"></span>
+                <span class="rf-promo-pbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                <span class="rf-promo-cap">Watch the promo</span>
+              </button>
+            </div>
+            <h3 class="rf-promo-ctitle">Florida</h3>
+            <p class="rf-promo-cmeta">September 19&ndash;20 &middot; Tampa, FL</p>
+            <div class="rf-promo-actions">
+              <a href="https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile" target="_blank" rel="noopener" class="rf-btn p sm">Get Tickets</a>
+              <a href="events.html#florida-deliverance-crusade" class="rf-btn g sm">Details</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -413,15 +531,93 @@
           <a class="rf-btn p" href="branches.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Plan Your Visit</a>
         </div>
         <div class="rf-house-media rf-reveal">
-          <picture><source type="image/webp" srcset="img/photos/building.webp"><img class="big" src="img/photos/building.jpg" alt="The MFM Mega Region 2 church building with the fire-and-mountain emblem" width="1500" height="843"></picture>
-          <picture><source type="image/webp" srcset="img/photos/campus.webp"><img class="wide" src="img/photos/campus.jpg" alt="The MFM campus on a gathering day" width="1500" height="1125"></picture>
+          <picture><source type="image/webp" srcset="img/photos/building.webp"><img loading="lazy" decoding="async" class="big" src="img/photos/building.jpg" alt="The MFM Mega Region 2 church building with the fire-and-mountain emblem" width="1500" height="843"></picture>
+          <picture><source type="image/webp" srcset="img/photos/campus.webp"><img loading="lazy" decoding="async" class="wide" src="img/photos/campus.jpg" alt="The MFM campus on a gathering day" width="1500" height="1125"></picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAN YOUR VISIT -->
+    <section class="rf-sec navy" id="visit">
+      <div class="rf-wrap">
+        <div class="rf-head-center rf-reveal">
+          <p class="rf-eyebrow">Plan your visit</p>
+          <h2>Come worship with us</h2>
+          <p class="rf-sub">You are welcome at MFM USA Prayer City in Houston. Here is when we gather and how to find us.</p>
+        </div>
+        <div class="rf-visit-grid rf-reveal">
+          <div class="rf-visit-card">
+            <h3>Service Times</h3>
+            <ul class="rf-visit-times">
+              <li><span class="n">Healing &amp; Deliverance Hour</span><span class="t">Tue &middot; 7:00 PM &middot; Online</span></li>
+              <li><span class="n">Open Heaven Encounter</span><span class="t">Thu &middot; 6:00 PM &middot; Online</span></li>
+              <li><span class="n">Weekend Deliverance</span><span class="t">Fri&ndash;Sun &middot; In Person</span></li>
+              <li><span class="n">Power Must Change Hands</span><span class="t">1st Sat &middot; 8:00 AM</span></li>
+            </ul>
+            <div class="rf-visit-addr">
+              <b>MFM USA Prayer City</b>
+              <p>10000 Kleckley Dr, Houston, TX 77075</p>
+              <p><a class="tel" href="tel:+18327888504">(832) 788-8504</a></p>
+              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener" class="rf-btn p sm">Get Directions</a>
+            </div>
+          </div>
+          <div class="rf-map">
+            <iframe title="Map to MFM USA Prayer City" src="https://www.google.com/maps?q=10000+Kleckley+Dr,+Houston,+TX+77075&output=embed" width="100%" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REACH OUT / PRAYER -->
+    <section class="rf-sec white" id="prayer">
+      <div class="rf-wrap">
+        <div class="rf-prayer-layout rf-reveal">
+          <div class="rf-form-wrap">
+            <h3>Reach Out to Us</h3>
+            <p class="rf-form-sub">Whether you need prayer, want to share a testimony, or simply want to connect &mdash; we would love to hear from you.</p>
+            <form class="rf-form" id="reachForm" data-ajax data-success="#reachSuccess" name="reach-out" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="reach-out">
+              <p style="display:none;"><input name="bot-field"></p>
+              <select name="type" required aria-label="What is this about?">
+                <option value="" disabled selected>What is this about?</option>
+                <option value="Prayer Request">Prayer Request</option>
+                <option value="Testimony">Testimony</option>
+                <option value="Giving / Support the Ministry">Giving / Support the Ministry</option>
+                <option value="General Message">General Message</option>
+              </select>
+              <p id="giveHint" class="rf-give-hint" style="display:none;">Want to give right now? <a href="give.html">Visit our Giving page &rarr;</a></p>
+              <div class="rf-form-row">
+                <input type="text" name="name" placeholder="Your Name" aria-label="Your name" autocomplete="name" required>
+                <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number" autocomplete="tel" required>
+              </div>
+              <input type="email" name="email" placeholder="Email Address (optional)" aria-label="Email address (optional)" autocomplete="email">
+              <textarea name="message" placeholder="Share your prayer request, testimony, or message here…" aria-label="Your prayer request, testimony, or message" required></textarea>
+              <button type="submit" class="rf-btn fire">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send
+              </button>
+              <p class="rf-form-note">Your message is confidential and will be received by our ministry team.</p>
+            </form>
+            <div class="rf-form-success" id="reachSuccess" role="status" style="display:none;">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--rf-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <h3>Thank you for reaching out</h3>
+              <p>Your message has been received. Our ministry team will stand with you &mdash; be encouraged, the God who answers by fire is with you.</p>
+            </div>
+          </div>
+          <aside class="rf-side">
+            <p class="lab">Join Us Live</p>
+            <p class="desc">Weekly prayer, healing &amp; deliverance &mdash; join us online and in person.</p>
+            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" class="rf-btn p sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Watch Live on YouTube</a>
+            <a href="events.html" class="rf-btn g sm">View All Programs</a>
+            <blockquote>"Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."<cite>&mdash; Psalm 144:1</cite></blockquote>
+          </aside>
         </div>
       </div>
     </section>
 
     <!-- INVITATION -->
     <section class="rf-invite">
-      <div class="rf-invite-img"><picture><source type="image/webp" srcset="img/photos/fullhouse.webp"><img src="img/photos/fullhouse.jpg" alt="A full sanctuary of worshippers at MFM Mega Region 2" width="1600" height="1384"></picture></div>
+      <div class="rf-invite-img"><picture><source type="image/webp" srcset="img/photos/fullhouse.webp"><img loading="lazy" decoding="async" src="img/photos/fullhouse.jpg" alt="A full sanctuary of worshippers at MFM Mega Region 2" width="1600" height="1384"></picture></div>
       <div class="rf-wrap">
         <p class="rf-eyebrow">Plan your first visit</p>
         <h2>There's a seat with your name on it.</h2>
@@ -569,6 +765,53 @@
       }
       var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:.14 });
       els.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+  <script>
+    /* ═══ September crusades promo: click-to-play + auto-hide ═══ */
+    (function(){
+      var sec=document.getElementById('september-crusades-spotlight'); if(!sec) return;
+      /* Auto-hide the day after the later crusade ends (Florida, Sep 20, 2026). */
+      if(new Date() > new Date('2026-09-21T06:00:00Z')){ sec.style.display='none'; return; }
+      sec.querySelectorAll('.rf-promo-vid').forEach(function(wrap){
+        var btn=wrap.querySelector('.rf-promo-play'); if(!btn) return;
+        btn.addEventListener('click',function(){
+          var id=wrap.getAttribute('data-vid'); if(!id) return;
+          wrap.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Deliverance Crusade promo" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        });
+      });
+    })();
+  </script>
+  <script>
+    /* ═══ Reach-out form: AJAX submit + inline success + giving hint ═══ */
+    (function () {
+      document.querySelectorAll('#rf form[data-ajax]').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var ok = document.querySelector(form.getAttribute('data-success'));
+          var body = new URLSearchParams(new FormData(form)).toString();
+          fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
+            .then(function () { form.style.display = 'none'; if (ok) { ok.style.display = 'block'; ok.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } })
+            .catch(function () { form.submit(); });
+        });
+      });
+      var typeSel = document.querySelector('#reachForm select[name="type"]');
+      var giveHint = document.getElementById('giveHint');
+      if (typeSel && giveHint) {
+        typeSel.addEventListener('change', function () {
+          giveHint.style.display = /Giving/i.test(typeSel.value) ? 'block' : 'none';
+        });
+      }
+      /* Deep-link from branch pages: ?branch=Name prefills the message + sets General Message */
+      try {
+        var b = new URLSearchParams(location.search).get('branch');
+        if (b) {
+          var t = document.querySelector('#reachForm textarea[name="message"]');
+          if (t && !t.value) { t.value = 'Regarding ' + b + ': '; }
+          var s = document.querySelector('#reachForm select[name="type"]');
+          if (s) { for (var i = 0; i < s.options.length; i++) { if (/general/i.test(s.options[i].textContent)) { s.selectedIndex = i; break; } } }
+        }
+      } catch (e) {}
     })();
   </script>
 
