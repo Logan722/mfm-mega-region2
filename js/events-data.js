@@ -1,6 +1,22 @@
 /*! MFM Mega Region 2 — canonical events data. Single source of truth for events.html, index.html, and the department pages (gen218.html, women.html). Tag departmental events with "ministry": "women" | "gen218". Region-wide events have no ministry. Keep anchors unique. */
 window.MFM_EVENTS = [
   {
+    "date": "2026-08-23",
+    "title": "Third Quarter Deliverance Service",
+    "theme": "\"Breaking the Spirit of Spoiler\"",
+    "time": "8:00 AM",
+    "venue": "Bombay Plaza — 6989 GA-85 Ste D1, Riverdale, GA 30274",
+    "ministering": "Anointed Men & Women of God",
+    "host": "Pastor Francis Benede",
+    "image": "img/announcements/third-quarter-deliverance.jpg",
+    "alt": "MFM Third Quarter Deliverance Service — Breaking the Spirit of Spoiler, Sunday August 23, 2026, 8 AM, Riverdale, Georgia",
+    "anchor": "third-quarter-deliverance",
+    "dateDisplay": "Sunday, August 23, 2026",
+    "description": "MFM's Third Quarter Deliverance Service under the theme \"Breaking the Spirit of Spoiler\" (Isaiah 54:15–17). Come and experience the power that breaks limitations and destroys every spoiler — and bring your instrument of trade.",
+    "scripture": "No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn.|Isaiah 54:17",
+    "badgeStyle": "fire"
+  },
+  {
     "date": "2026-08-03",
     "endDate": "2026-10-11",
     "title": "70-Day Prayer & Fasting 2026 — \"Prayer Battle 7\"",
@@ -89,7 +105,7 @@ window.MFM_EVENTS = [
     "title": "Gen218 Prayer Conference 2026",
     "theme": "\"Divine Alignment\"",
     "time": "12:00 PM EST",
-    "venue": "Virtual — Zoom (ID: 357 230 0941 · PW: 1234567)",
+    "venue": "Online via Zoom",
     "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
     "host": "MFM North America Gen218 Coordinators",
     "image": "img/announcements/gen218-prayer-conference.jpg",
