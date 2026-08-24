@@ -271,6 +271,77 @@
   #rf .rf-side blockquote cite{ display:block; margin-top:8px; font-style:normal; font-size:.85rem; color:var(--rf-gold-bright); }
   @media(max-width:820px){ #rf .rf-prayer-layout{ grid-template-columns:1fr; } }
   @media(max-width:520px){ #rf .rf-form-row{ grid-template-columns:1fr; } }
+
+  /* ══ HERO: NEXT-GATHERING CHIP (folds the hero into "What's Happening Now") ══ */
+  #rf .rf-next{ margin-top:30px; display:inline-flex; align-items:center; gap:18px; max-width:100%; background:rgba(13,24,48,.55); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(226,182,86,.4); border-radius:16px; padding:14px 20px; }
+  #rf .rf-next .lab{ font-family:var(--rf-sans); font-weight:700; font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--rf-gold-bright); white-space:nowrap; }
+  #rf .rf-next .mid{ min-width:0; }
+  #rf .rf-next .t{ font-family:var(--rf-serif); font-weight:600; font-size:1.02rem; color:#fff; line-height:1.15; }
+  #rf .rf-next .m{ font-size:.82rem; color:var(--rf-on-navy-dim); margin-top:2px; }
+  #rf .rf-next .go{ margin-left:auto; display:inline-flex; align-items:center; gap:.4em; color:var(--rf-gold-bright); font-weight:600; font-size:.85rem; white-space:nowrap; }
+  #rf .rf-next .go svg{ width:15px; height:15px; }
+  @media(max-width:560px){ #rf .rf-next{ flex-wrap:wrap; gap:8px 16px; } #rf .rf-next .go{ margin-left:0; } }
+
+  /* ══ SPOTLIGHT CAROUSEL — "What's Happening Now" (from MFM_EVENTS) ══ */
+  #rf .rf-spot-top{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:34px; }
+  #rf .rf-spot-count{ font-family:var(--rf-sans); font-weight:600; font-size:.8rem; letter-spacing:.06em; color:var(--rf-text-soft); }
+  #rf .rf-spot-count b{ color:var(--rf-fire-ink); }
+  #rf .rf-spot{ position:relative; }
+  #rf .rf-spot-stage{ position:relative; background:var(--rf-white); border:1px solid var(--rf-line); border-radius:var(--rf-r-lg); overflow:hidden; box-shadow:var(--rf-shadow); }
+  #rf .rf-slide{ display:none; }
+  #rf .rf-slide.on{ display:grid; grid-template-columns:.82fr 1.18fr; }
+  #rf .rf-slide-flyer{ position:relative; background:linear-gradient(135deg,var(--rf-navy),var(--rf-ink)); min-height:100%; aspect-ratio:4/5; }
+  #rf .rf-slide-flyer img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  #rf .rf-slide-chip{ position:absolute; top:16px; left:16px; z-index:2; font-family:var(--rf-sans); font-weight:700; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; padding:7px 13px; border-radius:100px; color:#fff; background:rgba(13,24,48,.78); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+  #rf .rf-slide-chip.soon,#rf .rf-slide-chip.live{ background:var(--rf-fire); }
+  #rf .rf-slide-chip.up{ background:var(--rf-gold-ink); }
+  #rf .rf-slide-body{ padding:clamp(26px,3.4vw,48px); display:flex; flex-direction:column; }
+  #rf .rf-slide-kicker{ font-family:var(--rf-sans); font-weight:600; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--rf-gold-ink); }
+  #rf .rf-slide-body h3{ font-size:clamp(1.5rem,2.6vw,2.3rem); line-height:1.1; margin:12px 0 0; }
+  #rf .rf-slide-theme{ font-family:var(--rf-serif); font-style:italic; color:var(--rf-fire-ink); font-size:1.05rem; margin:10px 0 0; }
+  #rf .rf-slide-meta{ display:flex; flex-wrap:wrap; gap:8px 22px; margin:18px 0 0; }
+  #rf .rf-slide-meta span{ display:inline-flex; align-items:center; gap:.5em; font-size:.9rem; color:var(--rf-text); }
+  #rf .rf-slide-meta svg{ width:16px; height:16px; color:var(--rf-gold-ink); flex:none; }
+  #rf .rf-slide-desc{ color:var(--rf-text-soft); font-size:.98rem; margin:18px 0 0; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  #rf .rf-slide-acts{ display:flex; flex-wrap:wrap; gap:12px; margin-top:auto; padding-top:26px; }
+  #rf .rf-spot-nav{ position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; border:0; cursor:pointer; background:rgba(13,24,48,.86); color:#fff; display:flex; align-items:center; justify-content:center; z-index:4; transition:background .18s ease, transform .18s ease; }
+  #rf .rf-spot-nav:hover{ background:var(--rf-fire); }
+  #rf .rf-spot-nav svg{ width:20px; height:20px; }
+  #rf .rf-spot-nav.prev{ left:-14px; }
+  #rf .rf-spot-nav.next{ right:-14px; }
+  #rf .rf-spot-foot{ display:flex; align-items:center; justify-content:center; gap:10px; margin-top:22px; }
+  #rf .rf-spot-dot{ width:9px; height:9px; border-radius:50%; border:0; padding:0; cursor:pointer; background:var(--rf-line); transition:background .2s, transform .2s; }
+  #rf .rf-spot-dot.on{ background:var(--rf-fire); transform:scale(1.25); }
+  @media(max-width:820px){ #rf .rf-slide.on{ grid-template-columns:1fr; } #rf .rf-slide-flyer{ aspect-ratio:16/10; } #rf .rf-spot-nav.prev{ left:8px; } #rf .rf-spot-nav.next{ right:8px; } }
+
+  /* ══ LIFE ACROSS THE REGION — 5-tile mosaic ══ */
+  #rf .rf-mosaic{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:200px; gap:16px; margin-top:46px; }
+  #rf .rf-tile{ position:relative; border-radius:var(--rf-r); overflow:hidden; }
+  #rf .rf-tile img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+  #rf .rf-tile:hover img{ transform:scale(1.05); }
+  #rf .rf-tile::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 42%,rgba(10,17,34,.86)); }
+  #rf .rf-tile figcaption{ position:absolute; left:20px; bottom:16px; z-index:2; font-family:var(--rf-serif); font-weight:600; font-size:1.2rem; color:#fff; }
+  #rf .rf-tile.t-worship{ grid-column:span 2; grid-row:span 2; }
+  #rf .rf-tile.t-worship figcaption{ font-size:1.7rem; }
+  #rf .rf-tile.t-word{ grid-column:span 2; }
+  @media(max-width:820px){ #rf .rf-mosaic{ grid-template-columns:repeat(2,1fr); grid-auto-rows:170px; } #rf .rf-tile.t-worship{ grid-column:span 2; } #rf .rf-tile.t-word{ grid-column:span 2; } }
+  @media(max-width:520px){ #rf .rf-mosaic{ grid-template-columns:1fr; } #rf .rf-tile,#rf .rf-tile.t-worship,#rf .rf-tile.t-word{ grid-column:auto; grid-row:auto; } }
+
+  /* ══ WATCH & GROW — latest message ══ */
+  #rf .rf-grow{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(30px,5vw,64px); align-items:center; }
+  #rf .rf-grow-media{ position:relative; border-radius:var(--rf-r-lg); overflow:hidden; box-shadow:var(--rf-shadow); aspect-ratio:16/9; background:var(--rf-ink); display:block; }
+  #rf .rf-grow-media img{ width:100%; height:100%; object-fit:cover; }
+  #rf .rf-grow-media .rf-promo-pbtn{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:64px; height:64px; border-radius:50%; background:rgba(232,93,38,.95); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 34px rgba(0,0,0,.45); }
+  #rf .rf-grow-media .rf-promo-pbtn svg{ width:28px; height:28px; color:#fff; margin-left:3px; }
+  #rf .rf-grow-media:hover .rf-promo-pbtn{ background:var(--rf-fire); }
+  @media(max-width:820px){ #rf .rf-grow{ grid-template-columns:1fr; } #rf .rf-grow-media{ order:-1; } }
+
+  /* ══ WHERE THE FIRE BURNS — branches teaser ══ */
+  #rf .rf-burns{ display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(30px,5vw,64px); align-items:center; }
+  #rf .rf-burns-map{ position:relative; border-radius:var(--rf-r-lg); overflow:hidden; box-shadow:var(--rf-shadow); border:1px solid rgba(255,255,255,.1); }
+  #rf .rf-burns-map img{ width:100%; display:block; }
+  #rf .rf-burns-badge{ position:absolute; left:18px; bottom:18px; background:rgba(13,24,48,.85); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); color:#fff; font-family:var(--rf-sans); font-weight:600; font-size:.85rem; padding:9px 15px; border-radius:100px; border:1px solid rgba(226,182,86,.4); }
+  @media(max-width:820px){ #rf .rf-burns{ grid-template-columns:1fr; } }
   </style>
 
 <link rel="canonical" href="https://mfmmegaregion2usa.org/">
@@ -314,6 +385,12 @@
             <a href="events.html">
               <div class="nav-dd-label">Events<span>Weekly programs &amp; special services</span></div>
             </a>
+            <a href="watch.html">
+              <div class="nav-dd-label">Watch Live<span>Join our services online</span></div>
+            </a>
+            <a href="https://www.mountainoffire.org/resources/prayer-points" target="_blank" rel="noopener">
+              <div class="nav-dd-label">Prayer Points<span>Daily prayer points from MFM</span></div>
+            </a>
           </div>
         </div>
         <div class="nav-dropdown">
@@ -335,7 +412,7 @@
           </div>
         </div>
         <a href="links.html">Connect</a>
-        <a href="give.html" class="nav-cta">Give</a>
+        <a href="#prayer" class="nav-cta js-request-prayer">Request Prayer</a>
       </div>
 
       <!-- Hamburger (mobile) -->
@@ -366,9 +443,10 @@
       <a href="events.html">Events</a>
       <a href="gen218.html">Gen218</a>
       <a href="women.html">Women Foundation</a>
+      <a href="watch.html">Watch Live</a>
       <a href="branches.html">Branches</a>
         <a href="links.html">Connect</a>
-        <a href="give.html" class="drawer-cta">Give</a>
+        <a href="#prayer" class="drawer-cta js-request-prayer">Request Prayer</a>
     </nav>
     <div class="drawer-footer">
       <p class="drawer-scripture">
@@ -391,21 +469,26 @@
           <a class="rf-btn p" href="branches.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Find a Church Near You</a>
           <a class="rf-btn g" href="watch.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor" stroke="none"/></svg>Watch a Service</a>
         </div>
+        <a class="rf-next" id="rf-next-gathering" href="#rf-spotlight" hidden>
+          <span class="lab">Next gathering</span>
+          <span class="mid"><span class="t"></span><span class="m"></span></span>
+          <span class="go">See details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
       </div>
     </header>
 
     <!-- QUICK ACTIONS -->
     <section class="rf-quick" aria-label="Quick actions">
       <div class="rf-quick-grid">
-        <a class="rf-q" href="#visit"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span><span class="qt">I'm New</span><span class="qs">Plan your visit</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="rf-q" href="#new-here"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span><span><span class="qt">New Here</span><span class="qs">Plan your first visit</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
         <a class="rf-q" href="branches.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><span class="qt">Find a Church</span><span class="qs">Branches near you</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
-        <a class="rf-q" href="watch.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></span><span><span class="qt">Watch Live</span><span class="qs">Live &amp; replays</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
-        <a class="rf-q" href="give.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a4.4 4.4 0 0 0-7.6-3 4.4 4.4 0 0 0-7.6 3c0 4.6 7.6 9.4 7.6 9.4s7.6-4.8 7.6-9.4Z"/></svg></span><span><span class="qt">Give</span><span class="qs">Partner with us</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="rf-q" href="watch.html"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"/></svg></span><span><span class="qt">Watch</span><span class="qs">Live &amp; latest messages</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="rf-q js-request-prayer" href="#prayer"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.5 3 3 4.5 3 7a3 3 0 0 1-6 0c0-2.5 1.5-4 3-7Z"/><path d="M7 14c-1 1.5-2 3-2 4.5A3.2 3.2 0 0 0 8 21M17 14c1 1.5 2 3 2 4.5A3.2 3.2 0 0 1 16 21"/></svg></span><span><span class="qt">Request Prayer</span><span class="qs">Confidential prayer support</span></span><span class="arr" aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
 
-    <!-- WELCOME / PASTORS -->
-    <section class="rf-sec cream">
+    <!-- WELCOME / PASTORS (newcomer moment) -->
+    <section class="rf-sec cream" id="new-here">
       <div class="rf-wrap rf-welcome">
         <div class="rf-reveal">
           <p class="rf-eyebrow">Welcome home</p>
@@ -424,19 +507,44 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- WHAT'S HAPPENING NOW — spotlight carousel (rendered from MFM_EVENTS) -->
+    <section class="rf-sec cream" id="rf-spotlight" aria-labelledby="rf-spot-title">
+      <div class="rf-wrap">
+        <div class="rf-spot-top rf-reveal">
+          <div class="rf-lead"><p class="rf-eyebrow">What's happening now</p><h2 id="rf-spot-title">Gather with expectation.</h2></div>
+          <a class="rf-btn d" href="events.html">Explore all events</a>
+        </div>
+        <div class="rf-spot rf-reveal" aria-roledescription="carousel" aria-label="Upcoming gatherings">
+          <p class="rf-spot-count" aria-live="polite"><b class="cur">01</b> / <span class="tot">–</span> &middot; Featured gathering</p>
+          <div class="rf-spot-frame" style="position:relative">
+            <div class="rf-spot-stage" id="rf-spot-stage">
+              <div class="rf-ev-empty" style="padding:60px;text-align:center;color:var(--rf-text-soft)">Loading gatherings&hellip;</div>
+            </div>
+            <button type="button" class="rf-spot-nav prev" aria-label="Previous gathering" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button type="button" class="rf-spot-nav next" aria-label="Next gathering" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="rf-spot-foot" id="rf-spot-dots"></div>
+        </div>
+        <noscript><p class="rf-sub" style="margin-top:24px;text-align:center">See all upcoming crusades, conferences &amp; services on the <a href="events.html" style="color:var(--rf-fire-ink);font-weight:600">events page</a>.</p></noscript>
+      </div>
+    </section>
+
+    <!-- LIFE ACROSS THE REGION — 5-tile mosaic -->
     <section class="rf-sec rf-exp">
       <div class="rf-wrap">
         <div class="rf-lead rf-reveal">
-          <p class="rf-eyebrow">This is Mega Region 2</p>
-          <h2>Fervent worship. Fire-filled prayer.</h2>
-          <p class="rf-sub">From spirit-lifting praise to nights of deliverance and the ministry of the word &mdash; this is what a gathering on the mountain feels like.</p>
+          <p class="rf-eyebrow">Life across the region</p>
+          <h2>Worship. Prayer. The Word.</h2>
+          <p class="rf-sub">Real ministry photography carries the story &mdash; worship, our choir and live band, the youth church, prayer and deliverance, and the ministry of the word.</p>
         </div>
-        <div class="rf-exp-grid">
-          <figure class="rf-card big rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship.webp"><img loading="lazy" decoding="async" src="img/photos/worship.jpg" alt="Congregation in worship with hands raised" width="1500" height="1000"></picture><figcaption>Worship</figcaption></figure>
-          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship-bw.webp"><img loading="lazy" decoding="async" src="img/photos/worship-bw.jpg" alt="Hands raised in prayer and deliverance" width="1200" height="800"></picture><figcaption>Prayer &amp; Deliverance</figcaption></figure>
-          <figure class="rf-card rf-reveal"><picture><source type="image/webp" srcset="img/photos/word.webp"><img loading="lazy" decoding="async" src="img/photos/word.jpg" alt="A worshipper taking notes during the message" width="1100" height="1100"></picture><figcaption>The Word</figcaption></figure>
+        <div class="rf-mosaic">
+          <figure class="rf-tile t-worship rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship.webp"><img loading="lazy" decoding="async" src="img/photos/worship.jpg" alt="Congregation in worship with hands raised" width="1500" height="1000"></picture><figcaption>Worship</figcaption></figure>
+          <figure class="rf-tile rf-reveal"><picture><source type="image/webp" srcset="img/photos/choir.webp"><img loading="lazy" decoding="async" src="img/photos/choir.jpg" alt="The Mega Region 2 choir and musicians ministering" width="1300" height="866"></picture><figcaption>Choir &amp; Live Worship</figcaption></figure>
+          <figure class="rf-tile rf-reveal"><img loading="lazy" decoding="async" src="https://mfmmegaregion2yc.org/img/hero-youth.jpg" alt="Youth and young adults worshipping at MFM Mega Region 2" onerror="this.onerror=null;this.src='img/photos/choir.jpg'"><figcaption>Youth Church</figcaption></figure>
+          <figure class="rf-tile rf-reveal"><picture><source type="image/webp" srcset="img/photos/worship-bw.webp"><img loading="lazy" decoding="async" src="img/photos/worship-bw.jpg" alt="Hands raised in prayer and deliverance" width="1200" height="800"></picture><figcaption>Prayer &amp; Deliverance</figcaption></figure>
+          <figure class="rf-tile rf-reveal"><picture><source type="image/webp" srcset="img/photos/word.webp"><img loading="lazy" decoding="async" src="img/photos/word.jpg" alt="A worshipper taking notes during the message" width="1100" height="1100"></picture><figcaption>The Word</figcaption></figure>
         </div>
+        <p class="rf-form-note" style="margin-top:16px;color:var(--rf-on-navy-dim);font-size:.78rem">Note: the Youth Church tile currently loads from the youth site — to be swapped for an approved local image before launch.</p>
       </div>
     </section>
 
@@ -510,35 +618,38 @@
       </div>
     </section>
 
-    <!-- EVENTS -->
+    <!-- WATCH & GROW — latest message (YouTube RSS + fallback) -->
     <section class="rf-sec cream">
-      <div class="rf-wrap">
-        <div class="rf-ev-head rf-reveal">
-          <div class="rf-lead"><p class="rf-eyebrow">Mark your calendar</p><h2>What's coming up</h2></div>
-          <a class="rf-btn d" href="events.html">See all events</a>
+      <div class="rf-wrap rf-grow">
+        <div class="rf-reveal">
+          <p class="rf-eyebrow">Watch &amp; grow</p>
+          <h2>The Word, ready when you are.</h2>
+          <p class="rf-sub">Catch the most recent message from Mega Region 2 &mdash; and explore our full library of sermons, worship and teachings.</p>
+          <div class="rf-hero-cta" style="margin-top:28px">
+            <a class="rf-btn d" id="rf-grow-watch" href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M8 5v14l11-7z"/></svg>Watch latest message</a>
+            <a class="rf-btn ghost" href="media.html">Browse the library</a>
+          </div>
         </div>
-        <div class="rf-ev-grid rf-reveal" id="rf-ev-list">
-          <div class="rf-ev-empty">Loading upcoming events&hellip;</div>
-        </div>
-        <noscript>
-          <p class="rf-sub" style="margin-top:34px;text-align:center">See our upcoming crusades, conferences &amp; services on the <a href="events.html" style="color:var(--rf-fire-ink);font-weight:600">events page</a>.</p>
-        </noscript>
+        <a class="rf-grow-media rf-reveal" id="rf-grow-media" href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Watch the latest message on YouTube">
+          <img id="rf-grow-thumb" src="img/og-image.jpg" alt="Latest message from MFM Mega Region 2" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='img/og-image.png'">
+          <span class="rf-promo-pbtn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        </a>
       </div>
     </section>
 
-    <!-- COME AND SEE / HOUSE -->
+    <!-- WHERE THE FIRE BURNS — branches teaser -->
     <section class="rf-sec white">
-      <div class="rf-wrap rf-house">
+      <div class="rf-wrap rf-burns">
         <div class="rf-reveal">
-          <p class="rf-eyebrow">Come and see</p>
-          <h2>Our house on the mountain.</h2>
-          <p class="rf-sub">More than a building &mdash; a place where the fire falls, the word goes forth, and family gathers from across the region. Come and worship with us in person. The doors are open, and there is room for you.</p>
-          <a class="rf-btn p" href="branches.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Plan Your Visit</a>
+          <p class="rf-eyebrow">Where the fire burns</p>
+          <h2>Find an MFM church near you.</h2>
+          <p class="rf-sub">Search the complete verified directory, review service information, and open a dedicated page for every branch &mdash; with a live map, nearest-church search, and directions.</p>
+          <a class="rf-btn p" href="branches.html" style="margin-top:28px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Search locations</a>
         </div>
-        <div class="rf-house-media rf-reveal">
-          <picture><source type="image/webp" srcset="img/photos/building.webp"><img loading="lazy" decoding="async" class="big" src="img/photos/building.jpg" alt="The MFM Mega Region 2 church building with the fire-and-mountain emblem" width="1500" height="843"></picture>
-          <picture><source type="image/webp" srcset="img/photos/campus.webp"><img loading="lazy" decoding="async" class="wide" src="img/photos/campus.jpg" alt="The MFM campus on a gathering day" width="1500" height="1125"></picture>
-        </div>
+        <a class="rf-burns-map rf-reveal" href="branches.html" aria-label="Open the branch directory and map">
+          <picture><source type="image/webp" srcset="img/branch-map.webp"><img src="img/branch-map.png" alt="Map of MFM Mega Region 2 locations across the United States" width="1200" height="800" loading="lazy" decoding="async"></picture>
+          <span class="rf-burns-badge">6 states &middot; 33 branches + Youth Church</span>
+        </a>
       </div>
     </section>
 
@@ -587,10 +698,9 @@
                 <option value="" disabled selected>What is this about?</option>
                 <option value="Prayer Request">Prayer Request</option>
                 <option value="Testimony">Testimony</option>
-                <option value="Giving / Support the Ministry">Giving / Support the Ministry</option>
+                <option value="Pastoral Support">Pastoral Support</option>
                 <option value="General Message">General Message</option>
               </select>
-              <p id="giveHint" class="rf-give-hint" style="display:none;">Want to give right now? <a href="give.html">Visit our Giving page &rarr;</a></p>
               <div class="rf-form-row">
                 <input type="text" name="name" placeholder="Your Name" aria-label="Your name" autocomplete="name" required>
                 <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number" autocomplete="tel" required>
@@ -629,7 +739,7 @@
         <p>Find your nearest MFM branch across Texas, Florida, Georgia, the Carolinas, Tennessee and beyond &mdash; with service times, directions, and a warm welcome waiting.</p>
         <div class="rf-hero-cta">
           <a class="rf-btn p" href="branches.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Find a Church Near You</a>
-          <a class="rf-btn g" href="give.html">Give Online</a>
+          <a class="rf-btn g js-request-prayer" href="#prayer">Request Prayer</a>
         </div>
       </div>
     </section>
@@ -725,50 +835,82 @@
 
   <script src="js/events-data.js"></script>
   <script>
-    /* ═══ Upcoming events → homepage flyer cards (flyer + status + tickets/register + details) ═══ */
+    /* ═══ "What's Happening Now" spotlight carousel + hero next-gathering chip (from MFM_EVENTS) ═══ */
     (function(){
-      var listEl = document.getElementById('rf-ev-list');
-      if (!listEl || !window.MFM_EVENTS) return;
-      var now = new Date();
+      var stage = document.getElementById('rf-spot-stage');
+      if (!stage || !window.MFM_EVENTS) return;
+      var spot = document.querySelector('.rf-spot');
+      var dotsWrap = document.getElementById('rf-spot-dots');
+      var prevBtn = spot ? spot.querySelector('.rf-spot-nav.prev') : null;
+      var nextBtn = spot ? spot.querySelector('.rf-spot-nav.next') : null;
+      var curEl = spot ? spot.querySelector('.rf-spot-count .cur') : null;
+      var totEl = spot ? spot.querySelector('.rf-spot-count .tot') : null;
+      var now = new Date(), DAY = 864e5;
       function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
-      function attr(s){ return esc(s); }
-      function ticketLabel(link){ return /(eventbrite|tickets)/i.test(link) ? 'Get Tickets' : ((/register/i.test(link) || /iyc/i.test(link)) ? 'Register' : 'Learn More'); }
-      var DAY = 864e5;
       function statusOf(x){
-        if (x.start > now){ var days = Math.ceil((x.start - now)/DAY); if (days <= 14) return {k:'soon', t: days<=1?'Starts soon':('In '+days+' days')}; return {k:'up', t:'Upcoming'}; }
+        if (x.start > now){ var d = Math.ceil((x.start - now)/DAY); if (d <= 1) return {k:'soon', t:'Starts soon'}; if (d <= 14) return {k:'soon', t:'In '+d+' days'}; return {k:'up', t:'Upcoming'}; }
         return {k:'live', t:'Happening now'};
       }
+      function tkLabel(e){ if (e.label) return e.label; var l = e.link || ''; return /(eventbrite|tickets)/i.test(l) ? 'Get Tickets' : (/register|iyc/i.test(l) ? 'Register' : 'Learn More'); }
       var items = window.MFM_EVENTS.map(function(e){
-        var start = new Date((e.date||'') + 'T00:00:00');
-        var end = e.endDate ? new Date(e.endDate + 'T23:59:59') : new Date((e.date||'') + 'T23:59:59');
-        return { e:e, start:start, end:end };
+        var s = new Date((e.date||'') + 'T00:00:00');
+        var en = e.endDate ? new Date(e.endDate + 'T23:59:59') : new Date((e.date||'') + 'T23:59:59');
+        return { e:e, start:s, end:en };
       }).filter(function(x){ return !isNaN(x.start) && x.end >= now; });
       var todayMid = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      items.sort(function(a,b){
-        var af = a.start >= todayMid ? 0 : 1, bf = b.start >= todayMid ? 0 : 1; /* not-yet-started first */
-        if (af !== bf) return af - bf;
-        return a.start - b.start;
-      });
-      items = items.slice(0,3);
-      if (!items.length){ listEl.innerHTML = '<div class="rf-ev-empty">New events are being planned — check the <a href="events.html" style="color:var(--rf-fire-ink);font-weight:600">events page</a> soon.</div>'; return; }
-      var ticket = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V7Z"/><path d="M13 5v14"/></svg>';
-      var arrow = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-      listEl.innerHTML = items.map(function(x){
-        var e = x.e;
-        var when = e.dateDisplay ? e.dateDisplay : x.start.toDateString();
-        var st = statusOf(x);
-        var href = e.anchor ? ('events.html#' + e.anchor) : 'events.html';
-        var flyer = e.image
-          ? '<a class="rf-ev-flyer" href="' + attr(href) + '"><img src="' + attr(e.image) + '" alt="' + attr(e.alt || e.title) + '" loading="lazy" decoding="async"><span class="rf-ev-chip ' + st.k + '">' + esc(st.t) + '</span></a>'
-          : '<a class="rf-ev-flyer noimg" href="' + attr(href) + '"><span class="rf-ev-chip ' + st.k + '">' + esc(st.t) + '</span></a>';
-        var facts = '<p class="rf-ev-when">' + esc(when) + '</p>' + (e.venue ? '<p class="rf-ev-where">' + esc(e.venue) + '</p>' : '');
-        var acts = '';
-        if (e.link){ var ext = /^https?:/i.test(e.link); acts += '<a class="rf-btn p sm" href="' + attr(e.link) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + ticket + esc(ticketLabel(e.link)) + '</a>'; }
-        acts += '<a class="rf-btn ' + (e.link ? 'ghost' : 'p') + ' sm" href="' + attr(href) + '">Details' + (e.link ? '' : arrow) + '</a>';
-        return '<article class="rf-ev-card">' + flyer +
-          '<div class="rf-ev-body"><h3>' + esc(e.title) + '</h3>' + facts +
-          '<div class="rf-ev-acts">' + acts + '</div></div></article>';
+      items.sort(function(a,b){ var af = a.start >= todayMid ? 0 : 1, bf = b.start >= todayMid ? 0 : 1; if (af !== bf) return af - bf; return a.start - b.start; });
+      items = items.slice(0,6);
+      if (!items.length){ stage.innerHTML = '<div class="rf-ev-empty" style="padding:60px;text-align:center;color:var(--rf-text-soft)">New gatherings are being planned — see the <a href="events.html" style="color:var(--rf-fire-ink);font-weight:600">events page</a>.</div>'; return; }
+      var pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+      var cal = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>';
+      var clk = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+      stage.innerHTML = items.map(function(x,i){
+        var e = x.e, st = statusOf(x), href = e.anchor ? ('events.html#' + e.anchor) : 'events.html';
+        var when = e.dateDisplay || x.start.toDateString();
+        var meta = '<span>' + cal + esc(when) + '</span>' + (e.time ? '<span>' + clk + esc(e.time) + '</span>' : '') + (e.venue ? '<span>' + pin + esc(e.venue) + '</span>' : '');
+        var acts = '<a class="rf-btn d sm" href="' + esc(href) + '">Event Details</a>';
+        if (e.link){ var ext = /^https?:/i.test(e.link); acts += '<a class="rf-btn p sm" href="' + esc(e.link) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + esc(tkLabel(e)) + '</a>'; }
+        if (e.video){ acts += '<a class="rf-btn ghost sm" href="' + esc(href) + '">Watch Promo</a>'; }
+        var flyer = e.image ? '<img src="' + esc(e.image) + '" alt="' + esc(e.alt || e.title) + '" loading="lazy" decoding="async">' : '';
+        return '<div class="rf-slide' + (i===0 ? ' on' : '') + '" role="group" aria-roledescription="slide" aria-label="' + (i+1) + ' of ' + items.length + '">' +
+          '<a class="rf-slide-flyer" href="' + esc(href) + '">' + flyer + '<span class="rf-slide-chip ' + st.k + '">' + esc(st.t) + '</span></a>' +
+          '<div class="rf-slide-body"><p class="rf-slide-kicker">' + esc(st.t) + '</p>' +
+          '<h3>' + esc(e.title) + '</h3>' +
+          (e.theme ? '<p class="rf-slide-theme">' + esc(e.theme) + '</p>' : '') +
+          '<div class="rf-slide-meta">' + meta + '</div>' +
+          (e.description ? '<p class="rf-slide-desc">' + esc(e.description) + '</p>' : '') +
+          '<div class="rf-slide-acts">' + acts + '</div></div></div>';
       }).join('');
+      var slides = stage.querySelectorAll('.rf-slide');
+      if (dotsWrap){ dotsWrap.innerHTML = items.map(function(_,i){ return '<button type="button" class="rf-spot-dot' + (i===0?' on':'') + '" aria-label="Go to gathering ' + (i+1) + '"></button>'; }).join(''); }
+      var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll('.rf-spot-dot')) : [];
+      var idx = 0, n = items.length, multi = n > 1;
+      if (totEl) totEl.textContent = ('0'+n).slice(-2);
+      function pad(k){ return ('0'+(k+1)).slice(-2); }
+      function show(k){ idx = (k+n)%n; for (var i=0;i<slides.length;i++) slides[i].classList.toggle('on', i===idx); for (var j=0;j<dots.length;j++) dots[j].classList.toggle('on', j===idx); if (curEl) curEl.textContent = pad(idx); }
+      dots.forEach(function(d,i){ d.addEventListener('click', function(){ show(i); rest(); }); });
+      if (prevBtn){ prevBtn.hidden = !multi; prevBtn.addEventListener('click', function(){ show(idx-1); rest(); }); }
+      if (nextBtn){ nextBtn.hidden = !multi; nextBtn.addEventListener('click', function(){ show(idx+1); rest(); }); }
+      /* hero next-gathering chip = nearest item */
+      (function(){
+        var chip = document.getElementById('rf-next-gathering'); if (!chip) return;
+        var e = items[0].e, short = e.shortDate || e.dateDisplay || items[0].start.toDateString();
+        var mode = /zoom|online/i.test(e.venue||'') ? 'Online' : ((e.venue||'').split('—')[0].split(',').slice(-2).join(',').trim());
+        chip.querySelector('.t').textContent = e.title;
+        chip.querySelector('.m').textContent = short + (mode ? (' · ' + mode) : '');
+        chip.setAttribute('href', e.anchor ? ('events.html#' + e.anchor) : '#rf-spotlight');
+        chip.hidden = false;
+      })();
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var timer = null;
+      function play(){ if (reduce || !multi) return; stop(); timer = setInterval(function(){ show(idx+1); }, 7500); }
+      function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+      function rest(){ stop(); play(); }
+      if (spot){ spot.addEventListener('mouseenter', stop); spot.addEventListener('mouseleave', play); spot.addEventListener('focusin', stop); spot.addEventListener('focusout', play); }
+      var sx = null;
+      stage.addEventListener('touchstart', function(ev){ sx = ev.touches[0].clientX; }, {passive:true});
+      stage.addEventListener('touchend', function(ev){ if (sx===null) return; var dx = ev.changedTouches[0].clientX - sx; if (Math.abs(dx) > 44){ show(idx + (dx<0?1:-1)); rest(); } sx = null; }, {passive:true});
+      play();
     })();
   </script>
   <script>
@@ -806,7 +948,7 @@
     })();
   </script>
   <script>
-    /* ═══ Reach-out form: AJAX submit + inline success + giving hint ═══ */
+    /* ═══ Reach-out form: AJAX submit + inline success + Request-Prayer preselect ═══ */
     (function () {
       document.querySelectorAll('#rf form[data-ajax]').forEach(function (form) {
         form.addEventListener('submit', function (e) {
@@ -818,23 +960,43 @@
             .catch(function () { form.submit(); });
         });
       });
-      var typeSel = document.querySelector('#reachForm select[name="type"]');
-      var giveHint = document.getElementById('giveHint');
-      if (typeSel && giveHint) {
-        typeSel.addEventListener('change', function () {
-          giveHint.style.display = /Giving/i.test(typeSel.value) ? 'block' : 'none';
+      function selectType(rx){ var s = document.querySelector('#reachForm select[name="type"]'); if (!s) return; for (var i=0;i<s.options.length;i++){ if (rx.test(s.options[i].textContent)){ s.selectedIndex = i; break; } } }
+      /* Any "Request Prayer" entry point → open the form with Prayer Request preselected */
+      document.querySelectorAll('.js-request-prayer').forEach(function (a) {
+        a.addEventListener('click', function () {
+          selectType(/prayer request/i);
+          var f = document.getElementById('prayer'); if (f) setTimeout(function(){ f.scrollIntoView({ behavior:'smooth', block:'start' }); }, 0);
         });
-      }
+      });
       /* Deep-link from branch pages: ?branch=Name prefills the message + sets General Message */
       try {
         var b = new URLSearchParams(location.search).get('branch');
         if (b) {
           var t = document.querySelector('#reachForm textarea[name="message"]');
           if (t && !t.value) { t.value = 'Regarding ' + b + ': '; }
-          var s = document.querySelector('#reachForm select[name="type"]');
-          if (s) { for (var i = 0; i < s.options.length; i++) { if (/general/i.test(s.options[i].textContent)) { s.selectedIndex = i; break; } } }
+          selectType(/general/i);
         }
       } catch (e) {}
+    })();
+  </script>
+  <script>
+    /* ═══ Watch & Grow: best-effort latest YouTube upload (graceful fallback) ═══ */
+    (function () {
+      var thumb = document.getElementById('rf-grow-thumb');
+      var media = document.getElementById('rf-grow-media');
+      var watch = document.getElementById('rf-grow-watch');
+      if (!thumb) return;
+      var CHANNEL = 'UCr3gSJPBQDjN8CEbj86Pyug'; /* MFM Mega Region 2 (region channel) */
+      var feed = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL;
+      fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feed))
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+        .then(function (d) {
+          if (!d || !d.items || !d.items.length) return;
+          var v = d.items[0];
+          var id = (v.link.match(/[?&]v=([^&]+)/) || [])[1] || (v.guid || '').split(':').pop();
+          if (id){ thumb.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; thumb.alt = v.title || thumb.alt; var url = 'https://www.youtube.com/watch?v=' + id; if (media) media.href = url; if (watch) watch.href = url; }
+        })
+        .catch(function () { /* keep fallback thumbnail + channel links */ });
     })();
   </script>
 
