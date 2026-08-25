@@ -679,3 +679,8 @@ img{height:auto}
 .leader-socials a{background:var(--gold)!important;color:var(--navy)!important;width:38px!important;height:38px!important;display:grid;place-items:center}
 .leader-socials a svg{width:18px;height:18px}
 .leader-socials a:hover,.leader-socials a:focus-visible{background:var(--fire-dark)!important;color:#fff!important}
+
+/* ── Buttons: restore the rounded, normal-case treatment (Dawn feedback: "not what they used to be, weird and off") ── */
+.button,.button.light,.share-control{border-radius:6px!important;text-transform:none!important;letter-spacing:.015em!important;font-weight:600!important;font-size:13px!important}
+.button{padding:14px 30px!important}
+.share-control{padding:13px 24px!important}
