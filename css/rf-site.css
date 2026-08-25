@@ -661,3 +661,21 @@ body.drawer-open {
 .social-hub-links a b{background:var(--gold)!important;color:var(--navy)!important}
 .social-hub-links a b svg{width:20px;height:20px}
 .social-hub>button svg{width:22px;height:22px}
+
+/* ================= Mobile scan remediation (Aug 25) ================= */
+/* prevent iOS input-zoom */
+.prayer-form input,.prayer-form select,.prayer-form textarea,.media-filters input,.media-filters select,.location-search input{font-size:16px!important}
+/* anchor targets clear the fixed header */
+[id]{scroll-margin-top:96px}
+/* 44px touch targets for primary controls */
+.site-nav .nav-links>a,.nav-dropdown-toggle,.drawer-nav a{min-height:44px;display:inline-flex;align-items:center}
+.nav-dropdown-menu a{min-height:44px}
+/* keep media from causing layout shift */
+img{height:auto}
+/* honour device safe areas */
+.site-footer{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+.social-hub{right:max(22px,env(safe-area-inset-right));bottom:max(24px,env(safe-area-inset-bottom))}
+/* ===== leader social icons -> gold theme (match the home build) ===== */
+.leader-socials a{background:var(--gold)!important;color:var(--navy)!important;width:38px!important;height:38px!important;display:grid;place-items:center}
+.leader-socials a svg{width:18px;height:18px}
+.leader-socials a:hover,.leader-socials a:focus-visible{background:var(--fire-dark)!important;color:#fff!important}
