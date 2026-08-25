@@ -399,6 +399,7 @@
       .hero-ey-badge { justify-content: center; }
       .hero-search-inner input { font-size: 16px; }
     }
+  .nav-dropdown-toggle svg.dd-chevron{width:9px;height:9px}
   </style>
   <!-- Netlify Identity Widget (needed for CMS) -->
   <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
@@ -428,47 +429,34 @@
       <!-- Logo -->
       <a href="index.html" class="nav-logo">
         <picture><source type="image/webp" srcset="img/logo.webp"><img decoding="async" loading="lazy" src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48"></picture>
-        <div class="nav-logo-text">
-          MFM Mega Region 2
-          <span>USA</span>
-        </div>
+        <div class="nav-logo-text">Mega Region 2 USA<span>Mountain of Fire and Miracles Ministries</span></div>
       </a>
 
       <!-- Desktop Links -->
-                              <div class="nav-links">
+      <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-expanded="false">Media &amp; Events <svg class="dd-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 3 3-3"/></svg></button>
           <div class="nav-dropdown-menu">
-            <a href="media.html">
-              <div class="nav-dd-label">Media<span>Sermons, worship &amp; teachings</span></div>
-            </a>
-            <a href="events.html">
-              <div class="nav-dd-label">Events<span>Weekly programs &amp; special services</span></div>
-            </a>
+            <a href="media.html"><div class="nav-dd-label">Media<span>Sermons, worship &amp; teachings</span></div></a>
+            <a href="events.html"><div class="nav-dd-label">Events<span>Weekly programs &amp; special services</span></div></a>
+            <a href="watch.html"><div class="nav-dd-label">Watch Live<span>Join our services online</span></div></a>
+            <a href="https://www.mountainoffire.org/resources/prayer-points" target="_blank" rel="noopener"><div class="nav-dd-label">Prayer Points<span>Daily prayer points from MFM</span></div></a>
           </div>
         </div>
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-expanded="false">Ministries <svg class="dd-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 3 3-3"/></svg></button>
           <div class="nav-dropdown-menu">
             <a href="ministries.html"><div class="nav-dd-label">All Ministries<span>Overview of our ministry arms</span></div></a>
-            <a href="gen218.html">
-              <div class="nav-dd-label">Gen218<span>Christian singles ministry</span></div>
-            </a>
-            <a href="women.html">
-              <div class="nav-dd-label">Women Foundation<span>Women’s ministry &amp; conferences</span></div>
-            </a>
-            <a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener">
-              <div class="nav-dd-label">Youth Ministry<span>Mega Region 2 Youth Church</span></div>
-            </a>
-            <a href="branches.html">
-              <div class="nav-dd-label">Branches<span>Find a church near you</span></div>
-            </a>
+            <a href="gen218.html"><div class="nav-dd-label">Gen218<span>Christian singles ministry</span></div></a>
+            <a href="women.html"><div class="nav-dd-label">Women Foundation<span>Women’s ministry &amp; conferences</span></div></a>
+            <a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener"><div class="nav-dd-label">Youth Ministry<span>Mega Region 2 Youth Church</span></div></a>
+            <a href="branches.html"><div class="nav-dd-label">Branches<span>Find a church near you</span></div></a>
           </div>
         </div>
         <a href="links.html">Connect</a>
-        <a href="give.html" class="nav-cta">Give</a>
+        <a href="index.html#prayer" class="nav-cta">Request Prayer</a>
       </div>
 
       <!-- Hamburger (mobile) -->
@@ -499,14 +487,15 @@
       <a href="events.html">Events</a>
       <a href="gen218.html">Gen218</a>
       <a href="women.html">Women Foundation</a>
+      <a href="watch.html">Watch Live</a>
       <a href="branches.html" class="active">Branches</a>
-        <a href="links.html">Connect</a>
-        <a href="give.html" class="drawer-cta">Give</a>
+      <a href="links.html">Connect</a>
+      <a href="index.html#prayer" class="drawer-cta">Request Prayer</a>
     </nav>
     <div class="drawer-footer">
       <p class="drawer-scripture">
         "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
-        <cite>— Jeremiah 23:29</cite>
+        <cite>&mdash; Jeremiah 23:29</cite>
       </p>
     </div>
   </aside>
