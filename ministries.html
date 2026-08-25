@@ -267,5 +267,6 @@
     (function(){var dds=document.querySelectorAll('.nav-dropdown'),ct=null,touch='ontouchstart' in window;function ca(x){dds.forEach(function(d){if(d!==x){d.classList.remove('open');d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false');}});}dds.forEach(function(dd){var tg=dd.querySelector('.nav-dropdown-toggle');if(!touch){dd.addEventListener('mouseenter',function(){clearTimeout(ct);ca(dd);dd.classList.add('open');tg.setAttribute('aria-expanded','true');});dd.addEventListener('mouseleave',function(){ct=setTimeout(function(){dd.classList.remove('open');tg.setAttribute('aria-expanded','false');},120);});}tg.addEventListener('click',function(e){e.stopPropagation();ca(dd);var o=dd.classList.toggle('open');tg.setAttribute('aria-expanded',o);});});document.addEventListener('click',function(){ca();});document.addEventListener('keydown',function(e){if(e.key==='Escape')ca();});})();
   </script>
 
+  <script src="/js/newsletter-popup.js" defer></script>
 </body>
 </html>
