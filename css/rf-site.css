@@ -643,3 +643,21 @@ body.drawer-open {
 .event-countdown .cd-live{display:inline-flex;align-items:center;gap:.5em;color:#f0c760;font-weight:800;font-size:14px}
 .video-poster .vp-play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;background:#fff;color:var(--fire-dark);display:grid;place-items:center}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ===== header + spotlight + social refinements ===== */
+.nav-dropdown-toggle svg.dd-chevron{width:9px!important;height:9px!important}
+.nav-logo-text{font-size:15px}
+.nav-logo-text span{font-size:8px;letter-spacing:.06em;text-transform:none;color:#aebad0;max-width:220px}
+/* spotlight: remove box; flyer sits on section; longer 3:5 flyer with gold corners */
+.event-spotlight{background:transparent!important;border:0!important;box-shadow:none!important;align-items:start!important}
+.event-spotlight-flyer{padding:0!important;background:transparent!important;position:relative!important}
+.event-spotlight-flyer img{width:100%!important;height:auto!important;aspect-ratio:467/763!important;object-fit:cover!important;background:var(--deep)!important;border:0!important;box-shadow:0 12px 34px rgba(0,0,0,.4)!important}
+.event-spotlight-flyer::before,.event-spotlight-flyer::after{content:""!important;position:absolute;width:46px;height:46px;border:3px solid var(--gold);z-index:4;pointer-events:none}
+.event-spotlight-flyer::before{top:0;left:0;border-right:0;border-bottom:0}
+.event-spotlight-flyer::after{bottom:0;right:0;border-left:0;border-top:0}
+.event-spotlight-copy{padding:0 0 0 clamp(28px,3vw,52px)!important}
+.event-spotlight-flyer>span{left:14px!important;top:14px!important}
+/* social hub icons -> theme gold circles, navy glyph */
+.social-hub-links a b{background:var(--gold)!important;color:var(--navy)!important}
+.social-hub-links a b svg{width:20px;height:20px}
+.social-hub>button svg{width:22px;height:22px}
