@@ -684,3 +684,7 @@ img{height:auto}
 .button,.button.light,.share-control{border-radius:6px!important;text-transform:none!important;letter-spacing:.015em!important;font-weight:600!important;font-size:13px!important}
 .button{padding:14px 30px!important}
 .share-control{padding:13px 24px!important}
+
+/* ── Dropdown fix: leftover mockup CSS forced .nav-dropdown-menu{display:none}; restore display for the button-toggle nav (open on click via JS, plus hover/focus fallback) ── */
+.nav-dropdown.open>.nav-dropdown-menu,.nav-dropdown:hover>.nav-dropdown-menu,.nav-dropdown:focus-within>.nav-dropdown-menu{display:block!important;opacity:1!important;visibility:visible!important;transform:translateX(-50%) translateY(0)!important;pointer-events:auto!important}
+.nav-dropdown:hover>.nav-dropdown-toggle svg.dd-chevron,.nav-dropdown:focus-within>.nav-dropdown-toggle svg.dd-chevron{transform:rotate(180deg)}
