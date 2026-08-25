@@ -1,618 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries</title>
-  <meta name="description" content="About MFM Mega Region 2 USA. Our mission, identity, leadership, and the fire that burns across North America.">
-  <meta name="theme-color" content="#142240">
-  <meta property="og:title" content="About — MFM Mega Region 2 USA">
-  <meta property="og:description" content="Mountain of Fire and Miracles Ministries, Mega Region 2 USA. A ministry devoted to the revival of apostolic signs, wonders and miracles.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="/img/favicon-32.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="MFM Region 2">
-  <script src="js/site.js" defer></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap">
-  <link rel="stylesheet" href="css/site.css">
-
-  <style>
-        /* ═══════════════════════════════════════
-       ABOUT HERO — "MAGAZINE GRID"
-       ═══════════════════════════════════════ */
-    .about-hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px var(--gutter) 60px;
-      overflow: hidden;
-    }
-
-    .about-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 50% 45% at 50% 50%, rgba(201,149,44,0.06) 0%, transparent 65%),
-        radial-gradient(ellipse 35% 30% at 50% 50%, rgba(232,93,38,0.03) 0%, transparent 55%);
-      pointer-events: none;
-    }
-
-    .mag-grid {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: var(--container-max);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      gap: 0;
-    }
-
-    /* ── Row 1: label left, logo right ── */
-    .mag-top-left {
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 24px;
-      animation: fadeUp 0.6s var(--ease-out) 0.05s both;
-    }
-
-    .mag-top-left .mag-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--fire);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .mag-top-left .mag-label::before {
-      content: '';
-      width: 28px;
-      height: 2px;
-      background: var(--fire);
-    }
-
-    .mag-top-right {
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      padding-bottom: 24px;
-      animation: fadeUp 0.6s var(--ease-out) 0.1s both;
-    }
-
-    .mag-top-right img {
-      width: 72px;
-      height: 72px;
-      filter: drop-shadow(0 4px 20px rgba(201,149,44,0.25));
-    }
-
-    /* ── Row 2: massive title spanning full width ── */
-    .mag-title {
-      grid-column: 1 / -1;
-      padding: 20px 0;
-      border-top: 1px solid rgba(201,149,44,0.1);
-      border-bottom: 1px solid rgba(201,149,44,0.1);
-      animation: fadeUp 0.7s var(--ease-out) 0.2s both;
-    }
-
-    .mag-title h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(3rem, 7vw + 1rem, 7rem);
-      font-weight: 900;
-      line-height: 0.92;
-      letter-spacing: -0.03em;
-      color: var(--cream);
-      margin-bottom: 0;
-    }
-
-    .mag-title h1 .amp {
-      font-weight: 300;
-      font-style: italic;
-      color: var(--gold-dim);
-      margin: 0 0.05em;
-    }
-
-    .mag-title h1 .word-fire {
-      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, var(--fire) 80%, var(--fire-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* ── Row 3: motto left, description right ── */
-    .mag-bottom-left {
-      padding-top: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      animation: fadeUp 0.7s var(--ease-out) 0.35s both;
-    }
-
-    .mag-motto-item {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold-dim);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .mag-motto-item::before {
-      content: '';
-      width: 12px;
-      height: 1px;
-      background: var(--fire);
-      opacity: 0.5;
-    }
-
-    .mag-bottom-right {
-      padding-top: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      animation: fadeUp 0.7s var(--ease-out) 0.45s both;
-    }
-
-    .mag-bottom-right .mag-desc {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 400px;
-      margin-left: auto;
-      text-align: right;
-    }
-
-    .mag-bottom-right .mag-cta {
-      margin-top: 28px;
-      text-align: right;
-    }
-
-    /* ── Scroll hint ── */
-    .mag-scroll {
-      position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      color: var(--text-dim);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      animation: fadeUp 0.7s var(--ease-out) 0.6s both;
-    }
-    .mag-scroll svg {
-      animation: bounceDown 2s ease-in-out infinite;
-    }
-    @keyframes bounceDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
-    }
-
-    @media (max-width: 768px) {
-      .mag-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .mag-top-left { justify-content: center; }
-      .mag-top-left .mag-label::before { display: none; }
-      .mag-top-right { justify-content: center; padding-bottom: 20px; }
-      .mag-top-right img { width: 60px; height: 60px; }
-      .mag-title { padding: 16px 0; }
-      .mag-bottom-left {
-        align-items: center;
-        padding-bottom: 20px;
-      }
-      .mag-motto-item::before { display: none; }
-      .mag-bottom-right .mag-desc {
-        text-align: center;
-        margin: 0 auto;
-      }
-      .mag-bottom-right .mag-cta { text-align: center; }
-    }
-
-    @media (max-width: 480px) {
-      .about-hero { min-height: 90vh; padding-top: 110px; }
-      .mag-title h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
-    }
-
-        /* ═══════════════════════════════════════
-       CONTENT COMPONENTS
-       ═══════════════════════════════════════ */
-
-    /* ── Side-by-side Identity ── */
-    .identity-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-
-    .identity-block {
-      position: relative;
-      padding: 40px 32px;
-      background: var(--bg-sand);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .identity-block::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--fire), var(--gold));
-    }
-
-    .identity-block .tag {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 14px;
-    }
-
-    .identity-block h3 {
-      font-size: 1.35rem;
-      color: var(--navy);
-      margin-bottom: 14px;
-      line-height: 1.3;
-    }
-
-    .identity-block p {
-      color: var(--text-on-white);
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-
-    .identity-block blockquote {
-      margin-top: 18px;
-      padding: 14px 0 0 18px;
-      border-left: 2px solid var(--gold);
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--text-on-white);
-      line-height: 1.6;
-    }
-
-    .identity-block blockquote cite {
-      display: block;
-      margin-top: 6px;
-      font-style: normal;
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      color: var(--gold);
-    }
-
-    /* ── Scripture Trio ── */
-    .scripture-trio {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      max-width: 600px;
-      margin: 48px auto 0;
-    }
-
-    .scripture-trio-item {
-      flex: 1;
-      text-align: center;
-      padding: 20px 16px;
-      position: relative;
-    }
-
-    .scripture-trio-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 20%;
-      height: 60%;
-      width: 1px;
-      background: var(--bg-sand-border);
-    }
-
-    .scripture-trio-item .fire-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 4px;
-    }
-
-    .scripture-trio-item .ref {
-      font-size: 0.82rem;
-      color: var(--text-dim-white);
-      font-family: var(--font-serif);
-    }
-
-    /* ── Objectives ── */
-    .obj-grid {
-      counter-reset: obj;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 56px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .obj-item {
-      counter-increment: obj;
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--bg-sand-border);
-    }
-
-    .obj-item::before {
-      content: counter(obj, decimal-leading-zero);
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--fire);
-      flex-shrink: 0;
-      min-width: 30px;
-    }
-
-    .obj-item p { margin: 0; color: var(--text-on-white); font-size: 0.92rem; line-height: 1.7; }
-
-    /* ── Statement Band ── */
-    .statement-band {
-      background: var(--bg-navy);
-      padding: 72px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .statement-band::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(201,149,44,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .statement-band blockquote {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: 0 auto;
-      font-family: var(--font-serif);
-      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.7;
-      color: var(--cream);
-      border: none;
-      padding: 0;
-    }
-
-    .statement-band cite {
-      display: block;
-      margin-top: 16px;
-      font-style: normal;
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Region Info ── */
-    .region-text {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .region-text p {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--text-on-white);
-      margin-bottom: 14px;
-    }
-
-    .region-text strong { color: var(--navy); }
-    .region-text em { color: var(--navy); font-style: italic; }
-
-    .hq-card {
-      background: var(--bg-sand);
-      border: 1px solid var(--bg-sand-border);
-      border-radius: 14px;
-      padding: 32px;
-      text-align: center;
-      max-width: 460px;
-      margin: 40px auto 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hq-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--fire), var(--gold));
-    }
-
-    .hq-card .hq-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--fire);
-      margin-bottom: 10px;
-    }
-
-    .hq-card h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 6px; }
-    .hq-card p { color: var(--text-on-white); font-size: 0.9rem; line-height: 1.6; margin-bottom: 4px; }
-    .hq-card a { color: var(--fire); font-size: 0.9rem; font-weight: 500; }
-
-    /* ── GO Pair ── */
-    .go-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .go-profile { text-align: center; }
-
-    .go-photo {
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 20px;
-      border: 3px solid rgba(201,149,44,0.25);
-      box-shadow: 0 12px 48px rgba(0,0,0,0.3);
-      transition: transform 0.5s var(--ease-out);
-    }
-
-    .go-profile:hover .go-photo { transform: scale(1.03); }
-    .go-profile h3 { font-size: 1.15rem; color: var(--cream); margin-bottom: 4px; }
-    .go-profile .role { font-size: 0.82rem; color: var(--fire-light); font-weight: 500; margin-bottom: 14px; }
-    .go-profile p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; max-width: 280px; margin: 0 auto; }
-
-    /* ── Leader Editorial ── */
-    .leader-editorial {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 52px;
-      align-items: start;
-    }
-
-    .leader-editorial--reverse {
-      grid-template-columns: 1fr 280px;
-    }
-
-    .leader-img {
-      position: relative;
-    }
-
-    .leader-img img {
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      border-radius: 14px;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
-    }
-
-    .leader-img::after {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: 18px;
-      border: 1px solid rgba(201,149,44,0.12);
-      pointer-events: none;
-    }
-
-    .leader-bio { padding-top: 8px; }
-    .leader-bio .eyebrow { margin-bottom: 10px; }
-
-    .leader-bio h3 {
-      font-size: clamp(1.5rem, 2.8vw, 2rem);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .section--dark .leader-bio h3 { color: var(--cream); }
-    .section--dark .leader-bio p { color: var(--text-muted); }
-    .section--cream .leader-bio h3 { color: var(--navy); }
-    .section--cream .leader-bio p { color: var(--text-on-white); }
-
-    .leader-bio .role {
-      font-size: 0.85rem;
-      color: var(--fire);
-      font-weight: 500;
-      margin-bottom: 20px;
-    }
-
-    .leader-bio p { font-size: 0.95rem; line-height: 1.85; margin-bottom: 10px; }
-
-    .book-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      padding: 10px 18px;
-      background: rgba(201,149,44,0.08);
-      border: 1px solid rgba(201,149,44,0.2);
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-weight: 500;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .identity-split { grid-template-columns: 1fr; }
-      .obj-grid { grid-template-columns: 1fr; gap: 0; }
-      .go-pair { gap: 40px; }
-      .leader-editorial,
-      .leader-editorial--reverse { grid-template-columns: 220px 1fr; gap: 36px; }
-    }
-
-    @media (max-width: 600px) {
-      .leader-editorial,
-      .leader-editorial--reverse { grid-template-columns: 1fr; text-align: center; }
-      .leader-bio .eyebrow { justify-content: center; }
-      .leader-img { max-width: 260px; margin: 0 auto; }
-      .leader-img::after { display: none; }
-      .go-pair { grid-template-columns: 1fr; gap: 48px; }
-      .scripture-trio { flex-direction: column; gap: 0; }
-      .scripture-trio-item::after { display: none; }
-    }
-  </style>
-  <!-- Canonical & Extended Open Graph (added in Chat 9 SEO pass) -->
-  <link rel="canonical" href="https://mfmmegaregion2usa.org/about.html">
-  <meta property="og:url" content="https://mfmmegaregion2usa.org/about.html">
-  <meta property="og:site_name" content="MFM Mega Region 2 USA">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="About — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries">
-  <meta name="twitter:description" content="About MFM Mega Region 2 USA. Our mission, identity, leadership, and the fire that burns across North America.">
-  <meta name="twitter:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
-  <script defer data-domain="mfmmegaregion2usa.org" src="https://plausible.io/js/script.js"></script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-
-  <!-- NAV -->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · MFM Mega Region 2 USA</title>
+<meta name="description" content="About Mountain of Fire and Miracles Ministries, Mega Region 2 USA — our identity, scriptural mandate, core values of prayer, deliverance and the Word, and our global and regional leadership.">
+<meta name="theme-color" content="#142240">
+<meta property="og:title" content="About · MFM Mega Region 2 USA"><meta property="og:type" content="website"><meta property="og:url" content="https://mfmmegaregion2usa.org/about"><meta property="og:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
+<link rel="canonical" href="https://mfmmegaregion2usa.org/about">
+<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/img/favicon-32.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/rf-site.css">
+<script defer data-domain="mfmmegaregion2usa.org" src="https://plausible.io/js/script.js"></script>
+</head><body>
+<a class="skip-link" href="#content">Skip to content</a>
   <nav class="site-nav" id="siteNav">
     <div class="nav-inner">
+
+      <!-- Logo -->
       <a href="index.html" class="nav-logo">
         <picture><source type="image/webp" srcset="img/logo.webp"><img decoding="async" loading="lazy" src="img/logo.png" alt="MFM Mega Region 2 USA" width="48" height="48"></picture>
-        <div class="nav-logo-text">MFM Mega Region 2<span>USA</span></div>
+        <div class="nav-logo-text">Mega Region 2 USA<span>Mountain of Fire and Miracles Ministries</span></div>
       </a>
+
+      <!-- Desktop Links -->
                               <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="about.html" class="active">About</a>
         <div class="nav-dropdown">
           <button class="nav-dropdown-toggle" aria-expanded="false">Media &amp; Events <svg class="dd-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 3 3-3"/></svg></button>
           <div class="nav-dropdown-menu">
@@ -621,6 +32,12 @@
             </a>
             <a href="events.html">
               <div class="nav-dd-label">Events<span>Weekly programs &amp; special services</span></div>
+            </a>
+            <a href="watch.html">
+              <div class="nav-dd-label">Watch Live<span>Join our services online</span></div>
+            </a>
+            <a href="https://www.mountainoffire.org/resources/prayer-points" target="_blank" rel="noopener">
+              <div class="nav-dd-label">Prayer Points<span>Daily prayer points from MFM</span></div>
             </a>
           </div>
         </div>
@@ -643,31 +60,41 @@
           </div>
         </div>
         <a href="links.html">Connect</a>
-        <a href="give.html" class="nav-cta">Give</a>
+        <a href="#prayer" class="nav-cta js-request-prayer">Request Prayer</a>
       </div>
+
+      <!-- Hamburger (mobile) -->
       <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
     </div>
   </nav>
 
-  <!-- DRAWER -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE DRAWER
+       ═══════════════════════════════════════════════════════ -->
   <div class="drawer-overlay" id="drawerOverlay"></div>
+
   <aside class="drawer" id="drawer">
     <div class="drawer-header">
       <picture><source type="image/webp" srcset="img/logo.webp"><img decoding="async" loading="lazy" src="img/logo.png" alt="" width="40" height="40"></picture>
       <span>MFM Mega Region 2</span>
     </div>
     <nav class="drawer-nav">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="about.html" class="active">About</a>
       <a href="media.html">Media</a>
       <a href="events.html">Events</a>
       <a href="gen218.html">Gen218</a>
       <a href="women.html">Women Foundation</a>
+      <a href="watch.html">Watch Live</a>
       <a href="branches.html">Branches</a>
         <a href="links.html">Connect</a>
-        <a href="give.html" class="drawer-cta">Give</a>
+        <a href="#prayer" class="drawer-cta js-request-prayer">Request Prayer</a>
     </nav>
     <div class="drawer-footer">
       <p class="drawer-scripture">
@@ -676,435 +103,71 @@
       </p>
     </div>
   </aside>
+<main id="content">
+<section class="page-hero"><img src="img/photos/worship-bw.webp" alt="" width="1600" height="900" fetchPriority="high"/><div class="page-hero-shade"></div><div class="wrap page-hero-content"><p class="eyebrow light">About MFM Mega Region 2 USA</p><h1>The fire that changes lives.</h1><p>A full-gospel ministry committed to holiness, prayer, evangelism, deliverance and the revival of apostolic signs and wonders.</p></div></section><section class="section wrap prose-split"><div><p class="eyebrow">Who we are</p><h2>Rooted in the mandate of MFM Worldwide.</h2></div><div><p>MFM Mega Region 2 USA is a regional family of Mountain of Fire and Miracles Ministries churches serving communities across six states.</p><p>We exist to propagate the gospel of Jesus Christ, prepare believers for spiritual warfare, strengthen families, plant churches and demonstrate the power of God to deliver to the uttermost.</p></div></section><section class="scripture-band"><div class="wrap"><span>Obadiah 1:17</span><blockquote>“Upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions.”</blockquote></div></section><section class="section cream"><div class="wrap values-grid"><article><b>01</b><h3>Prayer</h3><p>Fervent, effectual prayer rooted in Scripture and dependence on the Holy Spirit.</p></article><article><b>02</b><h3>Deliverance</h3><p>Freedom through the power and authority of Jesus Christ.</p></article><article><b>03</b><h3>The Word</h3><p>Sound biblical teaching that equips believers for victorious Christian living.</p></article></div></section><section class="section leadership-section"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Servants of the Most High</p><h2>Global leadership.</h2></div><p>Authoritative titles, approved photographs, original biographies and verified profile links are presented together.</p></div><div class="global-leader-grid"><article><img src="img/photos/Daniel Olukoya 2.webp" alt="Dr. D.K. Olukoya, General Overseer · MFM Worldwide" loading="lazy" style="object-position:50% 20%"/><div><h3>Dr. D.K. Olukoya</h3><p class="leader-role">General Overseer · MFM Worldwide</p><p>Founder and General Overseer of Mountain of Fire and Miracles Ministries worldwide. A man of prayer, a scholar and a vessel through whom the Lord has raised an end-time army across the nations.</p><div class="leader-socials"><a href="https://youtube.com/@DANIELOLUKOYA1" target="_blank" rel="noreferrer" aria-label="Dr. D.K. Olukoya YT"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a><a href="https://instagram.com/official_dkolukoya" target="_blank" rel="noreferrer" aria-label="Dr. D.K. Olukoya IG"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 4 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a><a href="https://facebook.com/DR.OLUKOYA" target="_blank" rel="noreferrer" aria-label="Dr. D.K. Olukoya FB"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-1.9.9-1.9 1.9V12h3.3l-.6 3.5h-2.7v8.4A12 12 0 0 0 24 12z"/></svg></a></div></div></article><article><img src="img/photos/shade olukoya.webp" alt="Pastor (Dr.) Mrs. Shade Olukoya, Mummy G.O. · International President, MFM Women Foundation" loading="lazy" style="object-position:50% 18%"/><div><h3>Pastor (Dr.) Mrs. Shade Olukoya</h3><p class="leader-role">Mummy G.O. · International President, MFM Women Foundation</p><p>A woman of faith and a dedicated servant of God who stands beside the General Overseer in the ministry’s global mandate of prayer and deliverance. She leads the MFM Women Foundation across regions and nations worldwide.</p><div class="leader-socials"><a href="https://www.facebook.com/FolashadeElizabethOlukoya" target="_blank" rel="noreferrer" aria-label="Pastor (Dr.) Mrs. Shade Olukoya FB"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-1.9.9-1.9 1.9V12h3.3l-.6 3.5h-2.7v8.4A12 12 0 0 0 24 12z"/></svg></a><a href="https://instagram.com/shade.olukoya" target="_blank" rel="noreferrer" aria-label="Pastor (Dr.) Mrs. Shade Olukoya IG"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 4 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a></div></div></article></div></div></section><section class="section regional-leadership"><div class="wrap"><div class="section-head"><div><p class="eyebrow light">Regional leadership</p><h2>Serving the region with prayer and fire.</h2></div><p>The fuller original profiles are restored instead of reducing the regional leaders to names and titles.</p></div><div class="regional-leader-list"><article class="regional-leader"><div class="regional-leader-image"><img src="img/photos/pastor-oni-gold.webp" alt="Pastor Olumide Oni" loading="lazy" style="object-position:50% 34%"/></div><div class="regional-leader-copy"><p class="eyebrow light">Principal Regional Overseer</p><h3>Pastor Olumide Oni</h3><p class="leader-role">Mega Region 2 USA &amp; MFM North America Headquarters</p><p>Pastor Olumide Oni is a prophet, evangelist, pastor, teacher, husband and father—a man through whom the fire of God burns brightly across nations.</p><p>His ministry journey within MFM has taken him through multiple assignments of increasing responsibility: from Kubwa to MFM Lugbe Region in Abuja, then to MFM Wuye/Utako, the International Headquarters Annex in Abuja, and now to MFM North America Headquarters at Prayer City in Houston, Texas, where he serves as Principal Regional Overseer of Mega Region 2.</p><p>Known for dynamic teaching, administrative excellence and a powerful personal testimony of God’s deliverance, Pastor Oni leads Mega Region 2 as a vibrant centre of prayer and spiritual warfare, with weekly programmes connecting believers across multiple continents.</p><span class="leader-badge">Author of 107+ anointed books</span><div class="leader-socials"><a href="https://youtube.com/@pastorolumideoni" target="_blank" rel="noreferrer" aria-label="Pastor Olumide Oni YT"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a><a href="https://instagram.com/oniolumide_" target="_blank" rel="noreferrer" aria-label="Pastor Olumide Oni IG"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 4 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a><a href="https://facebook.com/PastorOlumideOni" target="_blank" rel="noreferrer" aria-label="Pastor Olumide Oni FB"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-1.9.9-1.9 1.9V12h3.3l-.6 3.5h-2.7v8.4A12 12 0 0 0 24 12z"/></svg></a><a href="https://pastorolumideoni.netlify.app/" target="_blank" rel="noreferrer" aria-label="Pastor Olumide Oni WEB"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg></a></div></div></article><article class="regional-leader reverse"><div class="regional-leader-image"><img src="img/photos/mrs-oni-burgundy.webp" alt="Pastor (Mrs.) Oluwatoyin Oni" loading="lazy" style="object-position:50% 20%"/></div><div class="regional-leader-copy"><p class="eyebrow light">Partner in Ministry</p><h3>Pastor (Mrs.) Oluwatoyin Oni</h3><p class="leader-role">President, MFM Women Foundation · Mega Region 2 USA</p><p>Pastor (Mrs.) Oluwatoyin Oni stands alongside Pastor Olumide Oni as a devoted partner in ministry, faith and family. Together they serve Mega Region 2 with dedication, love and the fire of the Holy Ghost.</p><p>A woman of prayer and purpose, she plays a vital role in the spiritual life and growth of the region, exemplifying the call of Proverbs 31—strength, dignity and wisdom in the house of God. As President of the MFM Women Foundation, she leads with compassion, equipping women for their God-ordained destiny.</p><div class="leader-socials"><a href="https://www.facebook.com/oluwatoyin.oni.58" target="_blank" rel="noreferrer" aria-label="Pastor (Mrs.) Oluwatoyin Oni FB"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-1.9.9-1.9 1.9V12h3.3l-.6 3.5h-2.7v8.4A12 12 0 0 0 24 12z"/></svg></a><a href="https://instagram.com/oluwatoyin.oni.58" target="_blank" rel="noreferrer" aria-label="Pastor (Mrs.) Oluwatoyin Oni IG"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 4 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></a><a href="https://www.youtube.com/@oluwatoyinonireal" target="_blank" rel="noreferrer" aria-label="Pastor (Mrs.) Oluwatoyin Oni YT"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a></div></div></article></div></div></section><section class="section wrap"><div class="section-head"><div><p class="eyebrow">Take the next step</p><h2>Come and encounter the fire of God.</h2></div><p>Find a Mega Region 2 church near you, or explore our weekly programmes and special events.</p></div><div class="hero-actions"><a class="button" href="branches.html">Find a Church <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a><a class="button light" href="events.html">Explore Programs <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div></section>
+</main>
+<footer class="site-footer"><div class="footer-grid wrap"><div class="footer-identity"><img src="https://mfmmegaregion2usa.org/img/logo.webp" alt="" width="64" height="64"/><div><strong>MFM Mega Region 2 USA</strong><p>Prayer · Deliverance · The Word</p></div><blockquote>“But upon mount Zion shall be deliverance, and there shall be holiness.” <span>Obadiah 1:17</span></blockquote></div><div><b>Explore</b><a href="about.html">About</a><a href="branches.html">Find a Church</a><a href="events.html">Programs</a><a href="events.html">Events</a></div><div><b>Ministries</b><a href="women.html">Women Foundation</a><a href="gen218.html">Gen218 Singles</a><a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noreferrer">Youth Church</a><a href="watch.html">Watch</a></div><div><b>Connect</b><a href="#new-here">New Here?</a><a href="#prayer">Prayer Request</a><a href="#prayer">Reach Out to Us</a><a href="links.html">Contact &amp; Social</a><a href="privacy.html">Privacy</a></div></div><div class="footer-bottom wrap"><span>© 2026 MFM Mega Region 2 USA</span><span>Prayer · Deliverance · The Word</span></div></footer>
+<div class="social-hub-links"><a class="youtube" href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noreferrer" aria-label="YouTube"><span>YouTube</span><b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></b></a><a class="instagram" href="https://www.instagram.com/mfmmegaregion2usa" target="_blank" rel="noreferrer" aria-label="Instagram"><span>Instagram</span><b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.9.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 4 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></b></a><a class="facebook" href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noreferrer" aria-label="Facebook"><span>Facebook</span><b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-1.9.9-1.9 1.9V12h3.3l-.6 3.5h-2.7v8.4A12 12 0 0 0 24 12z"/></svg></b></a><a class="whatsapp" href="https://whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G" target="_blank" rel="noreferrer" aria-label="WhatsApp Channel"><span>WhatsApp Channel</span><b><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 2 .8 2.7.9 3.7.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 0A12 12 0 0 0 1.6 17.9L0 24l6.3-1.6A12 12 0 1 0 12 0zm0 22a10 10 0 0 1-5.1-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A10 10 0 1 1 12 22z"/></svg></b></a></div><button type="button" aria-label="Open ministry social links" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="m8.2 10.8 7.5-4.4M8.2 13.2l7.5 4.4"></path></svg></button></div>
+<script src="js/events-data.js"></script>
+<script>
+(function(){
+ var ham=document.getElementById('navHamburger'),dr=document.getElementById('drawer'),ov=document.getElementById('drawerOverlay'),nav=document.getElementById('siteNav');
+ function op(){ham.classList.add('open');ham.setAttribute('aria-expanded','true');dr.classList.add('open');if(ov)ov.classList.add('open');document.body.classList.add('drawer-open');}
+ function cl(){ham.classList.remove('open');ham.setAttribute('aria-expanded','false');dr.classList.remove('open');if(ov)ov.classList.remove('open');document.body.classList.remove('drawer-open');}
+ if(ham&&dr)ham.addEventListener('click',function(){dr.classList.contains('open')?cl():op();});
+ if(ov)ov.addEventListener('click',cl);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr&&dr.classList.contains('open'))cl();});
+ if(nav)window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
+ document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySelector('.nav-dropdown-toggle');if(!t)return;if(!('ontouchstart' in window)){dd.addEventListener('mouseenter',function(){dd.classList.add('open');});dd.addEventListener('mouseleave',function(){dd.classList.remove('open');});}t.addEventListener('click',function(e){e.stopPropagation();dd.classList.toggle('open');});});
+ if(dr)dr.querySelectorAll('.drawer-nav a').forEach(function(a){a.addEventListener('click',cl);});
+ var hub=document.querySelector('.social-hub');if(hub){var hb=hub.querySelector('button');if(hb)hb.addEventListener('click',function(){hub.classList.toggle('open');});}
+ // reach-out form (real Netlify AJAX) + request-prayer preselect + branch prefill
+ var form=document.getElementById('reachForm');
+ function selType(rx){var s=form&&form.querySelector('select[name=type]');if(!s)return;for(var i=0;i<s.options.length;i++)if(rx.test(s.options[i].textContent)){s.selectedIndex=i;break;}}
+ if(form)form.addEventListener('submit',function(e){e.preventDefault();var ok=document.querySelector('#reachSuccess');var body=new URLSearchParams(new FormData(form)).toString();fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(){form.style.display='none';if(ok){ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'nearest'});}}).catch(function(){form.submit();});});
+ document.querySelectorAll('.js-request-prayer').forEach(function(a){a.addEventListener('click',function(){selType(/prayer request/i);var f=document.getElementById('prayer');if(f)setTimeout(function(){f.scrollIntoView({behavior:'smooth'});},0);});});
+ try{var b=new URLSearchParams(location.search).get('branch');if(b){var t=form&&form.querySelector('textarea[name=message]');if(t&&!t.value)t.value='Regarding '+b+': ';selType(/general/i);}}catch(e){}
+ // promo click-to-load
+ document.querySelectorAll('.video-frame[data-vid] .video-poster').forEach(function(btn){btn.addEventListener('click',function(){var w=btn.closest('.video-frame');var id=w.getAttribute('data-vid');w.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Video" loading="lazy" frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share" allowfullscreen></iframe>';});});
+ // watch & grow: latest YouTube via RSS (fallback stays)
+ (function(){var th=document.getElementById('rf-latest-thumb');if(!th)return;var feed='https://www.youtube.com/feeds/videos.xml?channel_id=UCr3gSJPBQDjN8CEbj86Pyug';fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feed)).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(d){if(!d.items||!d.items.length)return;var v=d.items[0];var id=(v.link.match(/[?&]v=([^&]+)/)||[])[1]||(v.guid||'').split(':').pop();if(id){th.src='https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg';var a=th.closest('.media-image')&&th.closest('.media-image').querySelector('a');var url='https://www.youtube.com/watch?v='+id;if(a)a.href=url;}}).catch(function(){});})();
+ // spotlight from MFM_EVENTS + per-slide countdown
+ var art=document.querySelector('.spotlight-shell .event-spotlight');if(!art||!window.MFM_EVENTS)return;
+ var shell=document.querySelector('.spotlight-shell'),dots=shell.querySelector('.sp-dots'),prevB=shell.querySelector('.sp-prev'),nextB=shell.querySelector('.sp-next');
+ var now=new Date(),DAY=864e5;
+ function esc(s){return String(s==null?'':s).replace(/[&<>\"]/g,function(x){return{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[x];});}
+ function stat(x){if(x.s>now){var d=Math.ceil((x.s-now)/DAY);if(d<=1)return{k:'soon',t:'Starts soon'};if(d<=14)return{k:'soon',t:'In '+d+' days'};return{k:'up',t:'Upcoming'};}return{k:'live',t:'Happening now'};}
+ function sms(e,sd){var d=new Date(sd.getTime());var m=(e.time||'').match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);if(m){var h=(+m[1]%12)+(/pm/i.test(m[3])?12:0);d.setHours(h,+m[2],0,0);}else d.setHours(9,0,0,0);return d.getTime();}
+ var items=window.MFM_EVENTS.map(function(e){var s=new Date((e.date||'')+'T00:00:00'),en=e.endDate?new Date(e.endDate+'T23:59:59'):new Date((e.date||'')+'T23:59:59');return{e:e,s:s,en:en};}).filter(function(x){return !isNaN(x.s)&&x.en>=now;});
+ var tm0=new Date(now.getFullYear(),now.getMonth(),now.getDate());items.sort(function(a,b){var af=a.s>=tm0?0:1,bf=b.s>=tm0?0:1;if(af!==bf)return af-bf;return a.s-b.s;});items=items.slice(0,6);
+ if(!items.length){art.innerHTML='<div class="rf-ev-empty" style="grid-column:1/-1;padding:60px;text-align:center;color:#9dacc1">See the <a href="events.html" style="color:#f0c760">events page</a>.</div>';return;}
+ var A='<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m13 6 6 6-6 6\"/></svg>',CAL='<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 3v4m10-4v4M3 10h18\"/></svg>',CLK='<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/></svg>',PIN='<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/></svg>',EXT='<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M14 4h6v6M20 4l-9 9\"/><path d=\"M18 13v6H5V6h6\"/></svg>';
+ var i0=0,N=items.length;dots.innerHTML=items.map(function(_,i){return '<button type="button" class="'+(i===0?'active':'')+'" aria-label="Slide '+(i+1)+'"></button>';}).join('');
+ function pad(n){return('0'+n).slice(-2);}function u(n,l){return '<span class=\"cd-u\"><b>'+pad(n)+'</b>'+l+'</span>';}
+ function cd(){var el=art.querySelector('.event-countdown');if(!el)return;var d=(+el.getAttribute('data-ts'))-Date.now();if(d<=0){el.innerHTML='<span class=\"cd-live\">Happening now</span>';return;}var s=Math.floor(d/1000);el.innerHTML='<span class=\"cd-lab\">Begins in</span>'+u(Math.floor(s/86400),'days')+u(Math.floor(s%86400/3600),'hrs')+u(Math.floor(s%3600/60),'min')+u(s%60,'sec');}
+ function render(){var x=items[i0],e=x.e,st=stat(x),href='events.html'+(e.anchor?'#'+e.anchor:''),when=e.dateDisplay||x.s.toDateString();
+  var acts='<a class="button" href="'+href+'">Event Details '+A+'</a>'+(e.link?'<a class="button" href="'+esc(e.link)+'" target="_blank" rel="noreferrer">Get Tickets '+EXT+'</a>':'')+(e.video?'<a class="button light" href="https://www.youtube.com/watch?v='+esc(e.video)+'" target="_blank" rel="noreferrer">Watch Promo '+EXT+'</a>':'');
+  art.innerHTML='<div class="event-spotlight-flyer">'+(e.image?'<img src="'+esc(e.image)+'" alt="'+esc(e.title)+'">':'')+'<span>'+esc(st.t)+'</span></div><div class="event-spotlight-copy"><p class="eyebrow light">'+pad(i0+1)+' / '+pad(N)+' · Featured gathering</p><h3>'+esc(e.title)+'</h3>'+(e.theme?'<p class="event-spotlight-theme">'+esc(e.theme)+'</p>':'')+'<div class="event-countdown" data-ts="'+sms(e,x.s)+'"></div><div class="event-spotlight-meta"><span>'+CAL+esc(when)+'</span>'+(e.time?'<span>'+CLK+esc(e.time)+'</span>':'')+(e.venue?'<span>'+PIN+esc(e.venue)+'</span>':'')+'</div>'+(e.description?'<p>'+esc(e.description)+'</p>':'')+'<div class="event-spotlight-actions">'+acts+'</div></div>';
+  for(var i=0;i<dots.children.length;i++)dots.children[i].className=i===i0?'active':'';cd();}
+ var red=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches,t=null;
+ function go(k){if(red){i0=(k+N)%N;render();return;}art.style.opacity='0';setTimeout(function(){i0=(k+N)%N;render();art.style.opacity='1';},400);}
+ if(prevB)prevB.onclick=function(){go(i0-1);rs();};if(nextB)nextB.onclick=function(){go(i0+1);rs();};for(var i=0;i<dots.children.length;i++){(function(j){dots.children[j].onclick=function(){go(j);rs();};})(i);}
+ function pl(){if(red||N<2)return;st();t=setInterval(function(){go(i0+1);},7500);}function st(){if(t){clearInterval(t);t=null;}}function rs(){st();pl();}
+ shell.addEventListener('mouseenter',st);shell.addEventListener('mouseleave',pl);setInterval(cd,1000);render();pl();
+ if('serviceWorker' in navigator)window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});
+})();
+</script>
 
-  <main id="main" tabindex="-1">
-
-    <!-- ═══════════════════════════════════════════════════════
-         HERO — EDITORIAL STACK
-         ═══════════════════════════════════════════════════════ -->
-    <section class="about-hero">
-
-      <div class="mag-grid">
-
-        <!-- Row 1: Label + Logo -->
-        <div class="mag-top-left">
-          <p class="mag-label">About Mega Region 2 USA</p>
-        </div>
-        <div class="mag-top-right">
-          <picture><source type="image/webp" srcset="img/logo.webp"><img decoding="async" loading="lazy" src="img/logo.png" alt="MFM Emblem" width="72" height="72"></picture>
-        </div>
-
-        <!-- Row 2: Full-width title -->
-        <div class="mag-title">
-          <h1>Mountain of <span class="word-fire">Fire</span> <span class="amp">&amp;</span> Miracles Ministries</h1>
-        </div>
-
-        <!-- Row 3: Motto + Description -->
-        <div class="mag-bottom-left">
-          <p class="mag-motto-item">Fire in the Word — Jeremiah 23:29</p>
-          <p class="mag-motto-item">Fire on the Mountain — Deuteronomy 4:11</p>
-          <p class="mag-motto-item">Fire in the Bone — Jeremiah 20:9</p>
-        </div>
-        <div class="mag-bottom-right">
-          <p class="mag-desc">A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
-          <div class="mag-cta">
-            <a href="#leadership" class="btn btn--secondary btn--sm">Meet Our Leaders ↓</a>
-          </div>
-        </div>
-
-      </div>
-
-
-    </section>
-
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         MISSION & REGION (White) — Full-width editorial
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--white">
-      <div class="container">
-
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Our Identity</p>
-          <h2>Who We Are</h2>
-        </div>
-
-        <!-- Full-width mission statement -->
-        <div class="reveal" style="max-width:760px; margin:0 auto 48px; text-align:center;">
-          <p style="font-family:var(--font-serif); font-size:clamp(1.1rem, 2vw, 1.35rem); font-style:italic; font-weight:300; color:var(--text-on-white); line-height:1.8;">
-            A full gospel ministry devoted to the Revival of Apostolic Signs, Holy Ghost fireworks, and the unlimited demonstration of the power of God to deliver to the uttermost.
-          </p>
-        </div>
-
-        <!-- Two-card split -->
-        <div class="identity-split reveal-stagger" style="margin-bottom:48px;">
-          <div class="identity-block reveal">
-            <p class="tag">Mega Region 2 USA</p>
-            <h3>Our Region in North America</h3>
-            <p>Headquartered at <a href="https://mfmamerica.org/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom:1px solid var(--gold);"><strong>MFM USA Prayer City</strong></a> in Houston, Texas. The region operates weekly prayer programs connecting believers across the USA, Ghana, UK, Nigeria, and Canada.</p>
-            <div style="margin-top:16px; padding:16px; background:rgba(201,149,44,0.06); border-radius:8px; text-align:center;">
-              <p style="font-size:0.82rem; font-weight:600; color:var(--navy); margin-bottom:2px;">10000 Kleckley Dr, Houston TX 77075</p>
-              <a href="tel:+18327888504" style="font-size:0.82rem; color:var(--fire);">(832) 788-8504</a>
-            </div>
-          </div>
-          <div class="identity-block reveal">
-            <p class="tag">Our Battle Cry</p>
-            <h3>Trained for Spiritual War</h3>
-            <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
-            <blockquote>
-              "Blessed be the Lord my strength, which teacheth my hands to war, and my fingers to fight."
-              <cite>— Psalm 144:1</cite>
-            </blockquote>
-          </div>
-        </div>
-
-        <!-- Scripture Trio -->
-        <div class="scripture-trio reveal">
-          <div class="scripture-trio-item">
-            <p class="fire-label">Fire in the Word</p>
-            <p class="ref">Jeremiah 23:29</p>
-          </div>
-          <div class="scripture-trio-item">
-            <p class="fire-label">Fire on the Mountain</p>
-            <p class="ref">Deuteronomy 4:11</p>
-          </div>
-          <div class="scripture-trio-item">
-            <p class="fire-label">Fire in the Bone</p>
-            <p class="ref">Jeremiah 20:9</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         STATEMENT BAND
-         ═══════════════════════════════════════════════════════ -->
-    <div class="statement-band">
-      <blockquote class="reveal">
-        "But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."
-        <cite>— Obadiah 1:17</cite>
-      </blockquote>
-    </div>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         11 MISSION OBJECTIVES (Cream)
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream">
-      <div class="container">
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Mission Objectives</p>
-          <h2>The Mandate of MFM</h2>
-          <p>Eleven pillars that define the purpose and direction of Mountain of Fire and Miracles Ministries worldwide.</p>
-        </div>
-
-        <div class="obj-grid reveal">
-          <div class="obj-item"><p>To propagate the gospel of our Lord Jesus Christ all over the world</p></div>
-          <div class="obj-item"><p>To promote the revival of Apostolic signs, wonders and miracles</p></div>
-          <div class="obj-item"><p>To bring together children of God who are lost in dead churches</p></div>
-          <div class="obj-item"><p>To train believers in the art and science of spiritual warfare</p></div>
-          <div class="obj-item"><p>To train believers to receive Holy Ghost baptism and fire</p></div>
-          <div class="obj-item"><p>To turn the joy of our enemies to sorrow — Deliverance ministry</p></div>
-          <div class="obj-item"><p>To build an aggressive end-time army for the Lord</p></div>
-          <div class="obj-item"><p>To deliver those who have become slaves to pastors, prophets and apostles</p></div>
-          <div class="obj-item"><p>To build up heavenly-bound and aggressive Christians</p></div>
-          <div class="obj-item"><p>To build up prayer eagles</p></div>
-          <div class="obj-item"><p>To purify the Pentecostal dirtiness of this age</p></div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         LEADERSHIP — G.O. & MUMMY G.O. (Dark)
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--dark">
-      <div class="container">
-        <div class="section-header text-center reveal">
-          <p class="eyebrow">Leadership</p>
-          <h2>Servants of the Most High</h2>
-          <p>The men and women of God leading this ministry in prayer, fire, and the demonstration of power.</p>
-        </div>
-
-        <div class="go-pair reveal-stagger" style="margin-bottom:80px;">
-          <div class="go-profile reveal">
-            <picture><source type="image/webp" srcset="img/photos/Daniel Olukoya 2.webp"><img width="720" height="682" decoding="async" loading="lazy" src="img/photos/Daniel Olukoya 2.png" alt="Dr. D.K. Olukoya — General Overseer, MFM Worldwide" class="go-photo"></picture>
-            <h3>Dr. D.K. Olukoya</h3>
-            <p class="role">General Overseer, MFM Worldwide</p>
-            <p>Founder and General Overseer of Mountain of Fire and Miracles Ministries worldwide. A man of prayer, a scholar, and a vessel through whom the Lord has raised an end-time army across the nations.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;"><a href="https://youtube.com/@DANIELOLUKOYA1" target="_blank" rel="noopener" aria-label="Dr. Olukoya YouTube" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://instagram.com/official_dkolukoya" target="_blank" rel="noopener" aria-label="Dr. Olukoya Instagram" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a><a href="https://facebook.com/DR.OLUKOYA" target="_blank" rel="noopener" aria-label="Dr. Olukoya Facebook" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></div>
-          </div>
-          <div class="go-profile reveal">
-            <picture><source type="image/webp" srcset="img/photos/shade olukoya.webp"><img width="504" height="549" decoding="async" loading="lazy" src="img/photos/shade olukoya.jpeg" alt="Pastor (Dr.) Mrs. Shade Olukoya — Mummy G.O." class="go-photo"></picture>
-            <h3>Pastor (Dr.) Mrs. Shade Olukoya</h3>
-            <p class="role">Mummy G.O., MFM Worldwide</p>
-            <p>A woman of faith and a dedicated servant of God who stands beside the General Overseer in the ministry's global mandate of prayer and deliverance. International President of the MFM Women Foundation.</p>
-            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;"><a href="https://www.facebook.com/FolashadeElizabethOlukoya" target="_blank" rel="noopener" aria-label="Mummy G.O. Facebook" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a><a href="https://instagram.com/shade.olukoya" target="_blank" rel="noopener" aria-label="Mummy G.O. Instagram" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a></div>
-          </div>
-        </div>
-
-        <hr class="divider divider--fire reveal" style="max-width:200px; margin:0 auto 80px;">
-
-        <!-- Pastor Oni -->
-        <div class="leader-editorial reveal" style="margin-bottom:80px;">
-          <div class="leader-img">
-            <picture><source type="image/webp" srcset="img/photos/pastor-oni-gold.webp"><img width="739" height="1600" decoding="async" loading="lazy" src="img/photos/pastor-oni-gold.jpg" alt="Pastor Olumide Oni — Principal Regional Overseer, Mega Region 2 USA"></picture>
-          </div>
-          <div class="leader-bio">
-            <p class="eyebrow">Principal Regional Overseer</p>
-            <h3>Pastor Olumide Oni</h3>
-            <p class="role">Mega Region 2 USA &amp; MFM North America HQ</p>
-            <p>Pastor Olumide Oni is a prophet, evangelist, pastor, teacher, husband and father — a man through whom the fire of God burns brightly across nations.</p>
-            <p>His ministry journey within MFM has taken him through multiple assignments of increasing responsibility: from Kubwa to MFM Lugbe Region in Abuja, then to MFM Wuye/Utako (the International Headquarters Annex in Abuja), and now to MFM North America Headquarters at Prayer City, Houston, Texas — where he serves as the Principal Regional Overseer of Mega Region 2.</p>
-            <p>Known for dynamic teaching, administrative excellence, and a powerful personal testimony of God's deliverance, Pastor Oni leads Mega Region 2 as a vibrant centre of prayer and spiritual warfare, with weekly programmes connecting believers across multiple continents.</p>
-            <div class="book-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              Author of 107+ anointed books
-            </div>
-            <div class="oni-crosslink reveal" style="margin-top:14px; font-size:0.92rem;">
-              <a href="https://pastorolumideoni.netlify.app/" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,149,44,0.4); padding-bottom:1px; transition:all 0.25s;" onmouseover="this.style.color='var(--gold-light)';this.style.borderBottomColor='var(--gold-light)'" onmouseout="this.style.color='var(--gold)';this.style.borderBottomColor='rgba(201,149,44,0.4)'">
-                Visit Pastor Oni's personal site →
-              </a>
-            </div>
-            <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;"><a href="https://youtube.com/@pastorolumideoni" target="_blank" rel="noopener" aria-label="Pastor Oni YouTube" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://instagram.com/oniolumide_" target="_blank" rel="noopener" aria-label="Pastor Oni Instagram" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a><a href="https://facebook.com/PastorOlumideOni" target="_blank" rel="noopener" aria-label="Pastor Oni Facebook" style="width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid rgba(201,149,44,0.2); color:var(--text-dim); transition:all 0.3s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-light)'" onmouseout="this.style.borderColor='rgba(201,149,44,0.2)';this.style.color='var(--text-dim)'"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></div>
-          </div>
-        </div>
-
-        <!-- Mrs. Oni -->
-        <div class="leader-editorial leader-editorial--reverse reveal">
-          <div class="leader-bio">
-            <p class="eyebrow">Partner in Ministry</p>
-            <h3>Pastor (Mrs.) Oluwatoyin Oni</h3>
-            <p class="role">President, Women Foundation · Mega Region 2 USA</p>
-            <p>Pastor (Mrs.) Oluwatoyin Oni stands alongside Pastor Olumide Oni as a devoted partner in ministry, faith, and family. Together they serve the congregation of Mega Region 2 with dedication, love, and the fire of the Holy Ghost.</p>
-            <p>A woman of prayer and purpose, she plays a vital role in the spiritual life and growth of the region, exemplifying the call of Proverbs 31 — strength, dignity, and wisdom in the house of God. As President of the MFM Women Foundation, she leads with compassion, equipping women for their God-ordained destiny.</p>
-            <div class="leader-social" style="display:flex; gap:12px; margin-top:20px;">
-              <a href="https://www.facebook.com/oluwatoyin.oni.58" target="_blank" rel="noopener" aria-label="Facebook" style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(201,149,44,0.2); display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all 0.3s ease;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              </a>
-              <a href="https://instagram.com/oluwatoyin.oni.58" target="_blank" rel="noopener" aria-label="Instagram" style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(201,149,44,0.2); display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all 0.3s ease;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-              </a>
-              <a href="https://www.youtube.com/@oluwatoyinonireal" target="_blank" rel="noopener" aria-label="YouTube" style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(201,149,44,0.2); display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all 0.3s ease;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              </a>
-            </div>
-          </div>
-          <div class="leader-img">
-            <picture><source type="image/webp" srcset="img/photos/mrs-oni-burgundy.webp"><img width="853" height="1280" decoding="async" loading="lazy" src="img/photos/mrs-oni-burgundy.jpg" alt="Pastor (Mrs.) Oluwatoyin Oni"></picture>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════
-         CTA (Cream)
-         ═══════════════════════════════════════════════════════ -->
-    <section class="section section--cream" style="padding-bottom:var(--section-y);">
-      <div class="container" style="text-align:center;">
-        <div class="reveal">
-          <p class="eyebrow" style="justify-content:center;">Join the Fire</p>
-          <h2 style="margin-bottom:14px;">Be Part of What God Is Doing</h2>
-          <p style="color:var(--text-on-white); max-width:500px; margin:0 auto 28px; font-size:1.02rem;">
-            Connect with MFM Mega Region 2 through our weekly programmes, visit Prayer City, or find a branch near you.
-          </p>
-          <div class="btn-group btn-group--center">
-            <a href="events.html" class="btn btn--primary">View Programs</a>
-            <a href="branches.html" class="btn btn--secondary">Find a Branch</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-
-        <!-- Brand Column -->
-        <div class="footer-brand">
-          <a href="index.html" class="footer-logo">
-            <picture><source type="image/webp" srcset="img/logo.webp"><img decoding="async" loading="lazy" src="img/logo.png" alt="MFM Mega Region 2 USA" width="52" height="52"></picture>
-            <div class="footer-logo-text">
-              Mountain of Fire &amp; Miracles Ministries
-              <span>Mega Region 2 &middot; USA</span>
-            </div>
-          </a>
-          <p>A do-it-yourself Gospel ministry where your hands are trained to wage war and your fingers to do battle.</p>
-          <div class="footer-social">
-            <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-            </a>
-          </div>
-          <a href="links.html" class="footer-connect-link">Connect With Us &rarr;</a>
-        </div>
-
-        <!-- Explore -->
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="media.html">Media</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="branches.html">Branches</a></li>
-          </ul>
-        </div>
-
-        <!-- Ministries -->
-        <div class="footer-col">
-          <h4>Ministries</h4>
-          <ul>
-            <li><a href="women.html">Women Foundation</a></li>
-            <li><a href="gen218.html">Gen218 Singles</a></li>
-            <li><a href="https://www.mfmmegaregion2yc.org" target="_blank" rel="noopener">Youth Church</a></li>
-          </ul>
-        </div>
-
-        <!-- MFM Networks -->
-        <div class="footer-col">
-          <h4>MFM Networks</h4>
-          <ul>
-            <li><a href="https://www.mountainoffire.org" target="_blank" rel="noopener">MFM Worldwide</a></li>
-            <li><a href="https://mfmamerica.org" target="_blank" rel="noopener">MFM USA Prayer City</a></li>
-            <li><a href="https://mfmym.org" target="_blank" rel="noopener">MFM Youth Ministry</a></li>
-          </ul>
-        </div>
-
-        <!-- Contact -->
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li>
-              <a href="https://maps.google.com/?q=10000+Kleckley+Dr+Houston+TX+77075" target="_blank" rel="noopener">
-                MFM USA Prayer City<br>
-                10000 Kleckley Dr<br>
-                Houston, TX 77075
-              </a>
-            </li>
-            <li><a href="tel:+18327888504">(832) 788-8504</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Bottom Bar -->
-      <div class="footer-bottom">
-        <p>&copy; <span id="footerYear">2026</span> MFM Mega Region 2 USA. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-    <!-- Back to Top -->
-  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
-  </button>
-
-  <div class="grain" aria-hidden="true"><svg><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noiseFilter)"/></svg></div>
-
-  <script>
-    (function(){var h=document.getElementById('navHamburger'),d=document.getElementById('drawer'),o=document.getElementById('drawerOverlay');function op(){h.classList.add('open');h.setAttribute('aria-expanded','true');d.classList.add('open');o.classList.add('open');document.body.classList.add('drawer-open')}function cl(){h.classList.remove('open');h.setAttribute('aria-expanded','false');d.classList.remove('open');o.classList.remove('open');document.body.classList.remove('drawer-open')}h.addEventListener('click',function(){d.classList.contains('open')?cl():op()});o.addEventListener('click',cl);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.classList.contains('open'))cl()})})();
-    (function(){var n=document.getElementById('siteNav');var t=false;window.addEventListener('scroll',function(){if(!t){requestAnimationFrame(function(){n.classList.toggle('scrolled',window.scrollY>60);t=false});t=true}})})();
-    (function(){var r=document.querySelectorAll('.reveal');if(!r.length)return;var obs=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target)}})},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});r.forEach(function(el){obs.observe(el)})})();
-    (function(){var e=document.getElementById('footerYear');if(e)e.textContent=new Date().getFullYear()})();
-    (function(){var p=window.location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.nav-links a, .drawer-nav a').forEach(function(l){l.classList.remove('active');if(l.getAttribute('href')===p)l.classList.add('active')})})();
-    if(window.netlifyIdentity){window.netlifyIdentity.on('init',function(u){if(!u){window.netlifyIdentity.on('login',function(){document.location.href='/admin/'})}})}
-    /* ── Back-to-Top Button ── */
-    (function () {
-      var btn = document.getElementById('backToTop');
-      if (!btn) return;
-      var ticking = false;
-      function update() {
-        if (window.scrollY > 400) btn.classList.add('visible');
-        else btn.classList.remove('visible');
-        ticking = false;
-      }
-      window.addEventListener('scroll', function () {
-        if (!ticking) { requestAnimationFrame(update); ticking = true; }
-      }, { passive: true });
-      btn.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      update();
-    })();
-  
-    
-    /* ── Dropdown Toggles — hover on desktop, click fallback ── */
-    (function () {
-      var dropdowns = document.querySelectorAll('.nav-dropdown');
-      var closeTimer = null;
-      var isTouch = 'ontouchstart' in window;
-
-      function closeAll(except) {
-        dropdowns.forEach(function (d) {
-          if (d !== except) {
-            d.classList.remove('open');
-            d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      dropdowns.forEach(function (dd) {
-        var toggle = dd.querySelector('.nav-dropdown-toggle');
-
-        /* Hover open (desktop / non-touch) */
-        if (!isTouch) {
-          dd.addEventListener('mouseenter', function () {
-            clearTimeout(closeTimer);
-            closeAll(dd);
-            dd.classList.add('open');
-            toggle.setAttribute('aria-expanded', 'true');
-          });
-          dd.addEventListener('mouseleave', function () {
-            closeTimer = setTimeout(function () {
-              dd.classList.remove('open');
-              toggle.setAttribute('aria-expanded', 'false');
-            }, 120);
-          });
-        }
-
-        /* Click toggle (touch fallback + accessibility) */
-        toggle.addEventListener('click', function (e) {
-          e.stopPropagation();
-          closeAll(dd);
-          var isOpen = dd.classList.toggle('open');
-          toggle.setAttribute('aria-expanded', isOpen);
-        });
-      });
-
-      /* Close on outside click */
-      document.addEventListener('click', function () { closeAll(); });
-
-      /* Close on Escape */
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeAll();
-      });
-
-      /* Highlight parent toggle when on a sub-page */
-      var currentPath = window.location.pathname.split('/').pop() || 'index.html';
-      dropdowns.forEach(function (dd) {
-        var links = dd.querySelectorAll('.nav-dropdown-menu a');
-        links.forEach(function (a) {
-          if (a.getAttribute('href') === currentPath) {
-            a.classList.add('active');
-            dd.querySelector('.nav-dropdown-toggle').classList.add('active');
-          }
-        });
-      });
-    })();
-  </script>
-</body>
-</html>
+<script>
+(function(){var ham=document.getElementById('navHamburger'),dr=document.getElementById('drawer'),ov=document.getElementById('drawerOverlay'),nav=document.getElementById('siteNav');
+function op(){ham.classList.add('open');ham.setAttribute('aria-expanded','true');dr.classList.add('open');if(ov)ov.classList.add('open');document.body.classList.add('drawer-open');}
+function cl(){ham.classList.remove('open');ham.setAttribute('aria-expanded','false');dr.classList.remove('open');if(ov)ov.classList.remove('open');document.body.classList.remove('drawer-open');}
+if(ham&&dr)ham.addEventListener('click',function(){dr.classList.contains('open')?cl():op();});if(ov)ov.addEventListener('click',cl);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr&&dr.classList.contains('open'))cl();});
+if(nav)window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
+document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySelector('.nav-dropdown-toggle');if(!t)return;if(!('ontouchstart' in window)){dd.addEventListener('mouseenter',function(){dd.classList.add('open');});dd.addEventListener('mouseleave',function(){dd.classList.remove('open');});}t.addEventListener('click',function(e){e.stopPropagation();dd.classList.toggle('open');});});
+if(dr)dr.querySelectorAll('.drawer-nav a').forEach(function(a){a.addEventListener('click',cl);});
+var hub=document.querySelector('.social-hub');if(hub){var hb=hub.querySelector('button');if(hb)hb.addEventListener('click',function(){hub.classList.toggle('open');});}
+if('serviceWorker' in navigator)window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});
+})();
+</script>
+</body></html>
