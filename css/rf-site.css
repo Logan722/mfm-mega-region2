@@ -712,3 +712,13 @@ img{height:auto}
 .site-footer .footer-bottom span:last-child{text-align:right}
 @media(max-width:900px){.site-footer .footer-grid{grid-template-columns:1fr 1fr;gap:30px;padding:52px 22px}.site-footer .footer-identity{grid-column:1/-1}}
 @media(max-width:560px){.site-footer .footer-grid{grid-template-columns:1fr}.site-footer .footer-bottom{flex-direction:column;text-align:center}.site-footer .footer-bottom span:last-child{text-align:center}}
+
+/* ── Nav dropdown consistency: match the readable site.css dropdown on rf-site.css pages (Home/About/Branches) ── */
+.nav-dropdown-menu{position:absolute!important;top:calc(100% + 14px)!important;left:50%!important;right:auto!important;min-width:260px!important;width:max-content!important;max-width:320px!important;background:#0f1a30!important;border:1px solid rgba(201,149,44,.18)!important;border-top:2.5px solid #c9952c!important;border-radius:0 0 10px 10px!important;padding:6px 0!important;transform:translateX(-50%) translateY(10px)!important;box-shadow:0 8px 24px rgba(0,0,0,.35),0 24px 60px rgba(0,0,0,.45)!important;display:block!important;grid-template-columns:none!important;gap:0!important}
+.nav-dropdown.open>.nav-dropdown-menu,.nav-dropdown:hover>.nav-dropdown-menu,.nav-dropdown:focus-within>.nav-dropdown-menu{opacity:1!important;visibility:visible!important;transform:translateX(-50%) translateY(0)!important;pointer-events:auto!important}
+.nav-dropdown-menu a{display:block!important;padding:10px 20px!important;font-size:.85rem!important;font-weight:600!important;color:#f0e6d0!important;border:0!important;border-bottom:1px solid rgba(201,149,44,.06)!important;background:transparent!important}
+.nav-dropdown-menu a:last-child{border-bottom:0!important}
+.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus-visible{background:rgba(201,149,44,.08)!important;color:#f8f6f1!important}
+.nav-dropdown-menu a .nav-dd-label,.nav-dropdown-menu a>b{display:flex!important;flex-direction:column!important;gap:2px!important;color:#f0e6d0!important;font-family:'Inter Tight',sans-serif!important;font-size:.9rem!important;font-weight:600!important;text-transform:none!important;letter-spacing:0!important}
+.nav-dropdown-menu a .nav-dd-label span,.nav-dropdown-menu a small{display:block!important;font-size:.75rem!important;color:#6a7a96!important;font-weight:400!important;text-transform:none!important;letter-spacing:.01em!important;margin:0!important}
+.nav-dropdown-menu a:hover .nav-dd-label,.nav-dropdown-menu a:hover>b{color:#c9952c!important}
