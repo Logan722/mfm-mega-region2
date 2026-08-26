@@ -250,7 +250,7 @@
   <!-- ═══════════════════════════════════════════════════════
        NAVIGATION
        ═══════════════════════════════════════════════════════ -->
-  <nav class="site-nav" id="siteNav">
+  <nav class="site-nav" id="siteNav" data-mfm-header>
     <div class="nav-inner">
 
       <!-- Logo -->
@@ -297,11 +297,7 @@
       </div>
 
       <!-- Hamburger (mobile) -->
-      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <button class="mfm-menu-toggle" type="button" aria-expanded="false" aria-controls="mfm-mobile-menu" aria-label="Open menu" data-mfm-menu-toggle><span class="mfm-menu-icon" aria-hidden="true"><i></i><i></i><i></i></span></button>
 
     </div>
   </nav>
@@ -310,31 +306,31 @@
   <!-- ═══════════════════════════════════════════════════════
        MOBILE DRAWER
        ═══════════════════════════════════════════════════════ -->
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-
-  <aside class="drawer" id="drawer">
-    <div class="drawer-header">
-      <picture><source type="image/webp" srcset="img/logo.webp"><img decoding="async" loading="lazy" src="img/logo.png" alt="" width="40" height="40"></picture>
-      <span>MFM Mega Region 2</span>
-    </div>
-    <nav class="drawer-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="media.html">Media</a>
-      <a href="events.html">Events</a>
-      <a href="gen218.html">Gen218</a>
-      <a href="women.html">Women Foundation</a>
-      <a href="branches.html">Branches</a>
-      <a href="links.html">Connect</a>
-        <a href="index.html#prayer" class="drawer-cta">Request Prayer</a>
-    </nav>
-    <div class="drawer-footer">
-      <p class="drawer-scripture">
-        "Is not my word like as a fire? saith the Lord; and like a hammer that breaketh the rock in pieces?"
-        <cite>— Jeremiah 23:29</cite>
-      </p>
-    </div>
-  </aside>
+  <nav class="mfm-mobile-drawer" id="mfm-mobile-menu" aria-label="Mobile primary" data-mfm-mobile-menu hidden>
+<div class="mfm-drawer-heading" aria-hidden="true"><span>Explore Mega Region 2</span><small>Prayer &middot; Deliverance &middot; The Word</small></div>
+<div class="mfm-mobile-links">
+<a class="mfm-mobile-link" href="index.html" data-mfm-menu-link><span><strong>Home</strong><small>Return to the regional welcome</small></span><span class="mfm-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="mfm-mobile-link" href="about.html" data-mfm-menu-link><span><strong>About</strong><small>Our faith, story and leadership</small></span><span class="mfm-arrow" aria-hidden="true">&rarr;</span></a>
+<a class="mfm-mobile-link mfm-mobile-link--location" href="branches.html" data-mfm-menu-link><span><span class="mfm-pin" aria-hidden="true">&#9678;</span><strong>Find a Church</strong></span><span class="mfm-arrow" aria-hidden="true">&rarr;</span></a>
+<div class="mfm-menu-group"><button class="mfm-group-toggle" type="button" aria-expanded="true" aria-controls="mfm-gather-menu" data-mfm-group-toggle><span>Gather &amp; Watch</span><span class="mfm-group-mark" aria-hidden="true">&minus;</span></button>
+<div class="mfm-submenu" id="mfm-gather-menu" data-mfm-submenu>
+<a href="events.html" data-mfm-menu-link><span><strong>Events</strong><small>Regional gatherings and programmes</small></span><span aria-hidden="true">&rarr;</span></a>
+<a href="watch.html" data-mfm-menu-link><span><strong>Watch Live</strong><small>Join the next service online</small></span><span aria-hidden="true">&rarr;</span></a>
+<a href="media.html" data-mfm-menu-link><span><strong>Media Library</strong><small>Messages, worship and teachings</small></span><span aria-hidden="true">&rarr;</span></a>
+<a href="https://www.mountainoffire.org/resources/prayer-points" target="_blank" rel="noopener" data-mfm-menu-link><span><strong>Prayer Points</strong><small>Official MFM prayer resources</small></span><span aria-hidden="true">&#8599;</span></a>
+</div></div>
+<div class="mfm-menu-group"><button class="mfm-group-toggle" type="button" aria-expanded="false" aria-controls="mfm-ministries-menu" data-mfm-group-toggle><span>Ministries</span><span class="mfm-group-mark" aria-hidden="true">+</span></button>
+<div class="mfm-submenu" id="mfm-ministries-menu" data-mfm-submenu hidden>
+<a href="ministries.html" data-mfm-menu-link><span><strong>All Ministries</strong><small>Find your place in the regional family</small></span><span aria-hidden="true">&rarr;</span></a>
+<a href="women.html" data-mfm-menu-link><span><strong>Women Foundation</strong><small>Prayer, service and transformation</small></span><span aria-hidden="true">&rarr;</span></a>
+<a href="gen218.html" data-mfm-menu-link><span><strong>Gen218 Singles</strong><small>Purpose, purity and preparation</small></span><span aria-hidden="true">&rarr;</span></a>
+<a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener" data-mfm-menu-link><span><strong>Youth Ministry</strong><small>Mega Region 2 Youth Church</small></span><span aria-hidden="true">&#8599;</span></a>
+</div></div>
+<a class="mfm-mobile-link" href="links.html" data-mfm-menu-link><span><strong>Connect</strong><small>Contact and official social channels</small></span><span class="mfm-arrow" aria-hidden="true">&rarr;</span></a>
+</div>
+<a class="mfm-prayer-action" href="index.html#prayer" data-mfm-menu-link><span class="mfm-prayer-icon" aria-hidden="true">&hearts;</span><span><strong>Request Prayer</strong><small>Confidential prayer support</small></span><span aria-hidden="true">&rarr;</span></a>
+<div class="mfm-drawer-footer"><span>MFM Mega Region 2 USA</span><small>Official regional website</small></div>
+</nav>
 
 
   <!-- ═══════════════════════════════════════════════════════
@@ -645,5 +641,6 @@
     })();
   </script>
   <script src="/js/newsletter-popup.js" defer></script>
+  <script src="/js/mobile-nav.js" defer></script>
 </body>
 </html>
