@@ -688,3 +688,9 @@ img{height:auto}
 /* ── Dropdown fix: leftover mockup CSS forced .nav-dropdown-menu{display:none}; restore display for the button-toggle nav (open on click via JS, plus hover/focus fallback) ── */
 .nav-dropdown.open>.nav-dropdown-menu,.nav-dropdown:hover>.nav-dropdown-menu,.nav-dropdown:focus-within>.nav-dropdown-menu{display:block!important;opacity:1!important;visibility:visible!important;transform:translateX(-50%) translateY(0)!important;pointer-events:auto!important}
 .nav-dropdown:hover>.nav-dropdown-toggle svg.dd-chevron,.nav-dropdown:focus-within>.nav-dropdown-toggle svg.dd-chevron{transform:rotate(180deg)}
+
+
+/* Shared chrome: solid navy nav + hamburger reset (unify with previous-build nav) */
+.site-nav{background:#142240!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.site-nav.scrolled{background:#142240!important}
+.nav-hamburger{background:none!important;border:none!important;-webkit-appearance:none;appearance:none}
