@@ -470,3 +470,20 @@ Every new chat in this project should begin by reading the `WEBSITE-REFERENCE.md
 ---
 
 Built April 2026. Final polish pass completed Chat 9 (April 19, 2026).
+
+
+---
+
+## DESIGN-GUIDE PRECEDENCE — added 2026-08-25 (per Dawn)
+
+**The ChatGPT full-site mockup is the AUTHORITATIVE DESIGN GUIDE for the look and page structure of EVERY page** — not a reference-only artifact. Source: `MFM_Mega_Region_2_Full_Mockup_Source.zip` (`app/site.tsx` + `app/globals.css`, the "Royal Flame" mockup). Build each page's visual to **match the mockup**, then layer Dawn's in-conversation modifications on top. Do NOT revert to the older "mockup is visual-reference-only / preserve every production visual" reading — that is what caused Home/About to be re-skinned to the mockup while Branches kept its old production look, which Dawn flagged as wrong.
+
+**Dawn's modifications layered on top of the mockup (as of 2026-08-25):**
+1. Nav name beside logo: keep **"Mega Region 2 USA / Mountain of Fire and Miracles Ministries"** (not the old "MFM Mega Region 2 / USA").
+2. Nav bar + dropdown style: use the previous-build (`site.css`) treatment — **solid navy bar, clean hamburger, readable cream/gold dropdown** labels with hover + active states (NOT the low-contrast dark-on-navy version).
+3. **"Give" is replaced by "Request Prayer"** across the nav on every page; Request Prayer scrolls to the Home reach-out form (`index.html#prayer`).
+4. **Branches / Find a Church: use the EXACT mockup "Locations" look** — photo hero, state-filter sidebar, branch-card grid, static `branch-map.webp` map with decorative pins + selected-branch panel.
+5. About leadership social icons: lighter **"thin gold ring, fills on hover"** style.
+6. Newsletter popup: **site-wide on every page** (2.5s delay, 14-day dismiss, never after subscribe).
+
+**OPEN CONFLICT to resolve before shipping Branches:** the older continuity rules mark the **Leaflet branch finder** (interactive map, ZIP distance, geolocation "find nearest") as a must-preserve feature ("parity failure" if lost). The exact-mockup Branches look uses a **static image map** and drops the live finder. Dawn chose exact-mockup on 2026-08-25 — confirm this intentional override before deploying. (Branch cards will keep a working Google-Maps "Get Directions" link.)
