@@ -110,7 +110,7 @@
 <input type="hidden" name="form-name" value="reach-out"><p style="display:none"><input name="bot-field"></p>
 <label>Full name<input name="name" required placeholder="Your name" autocomplete="name"></label>
 <label>Email address<input type="email" name="email" placeholder="you@example.com" autocomplete="email"></label>
-<label>Message type<select name="type" required><option>Prayer Request</option><option>Testimony</option><option>Pastoral Support</option><option selected>General Message</option></select></label>
+<label>Message type<select name="type" required><option>Prayer Request</option><option>Testimony</option><option>Ministry Support</option><option selected>General Message</option></select></label>
 <label>Your message<textarea name="message" required rows="4" placeholder="How can the ministry assist you?"></textarea></label>
 <label class="check"><input type="checkbox" required><span>I understand my message is received by the ministry team.</span></label>
 <button class="button" type="submit">Send message <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
@@ -169,5 +169,5 @@
 </script>
   <script src="/js/newsletter-popup.js" defer></script>
   <script src="/js/mobile-nav.js" defer></script>
-  <script>/* subject-aware preselect */(function(){var p=new URLSearchParams(location.search),sub=p.get('subject');var form=document.getElementById('reachForm');if(!form)return;function selType(rx){var s=form.querySelector('select[name=type]');if(!s)return;for(var i=0;i<s.options.length;i++)if(rx.test(s.options[i].textContent)){s.selectedIndex=i;break;}}var map={prayer:[/prayer request/i,'How can we pray with you?'],testimony:[/testimony/i,'Share what God has done'],pastoral:[/pastoral/i,'Request pastoral support'],general:[/general/i,'How can we help?']};if(sub&&map[sub]){selType(map[sub][0]);var sec=document.getElementById('reach-out');var hd=sec&&sec.querySelector('h2');if(hd)hd.textContent=map[sub][1];}})();</script>
+  <script>/* subject-aware preselect */(function(){var p=new URLSearchParams(location.search),sub=p.get('subject');var form=document.getElementById('reachForm');if(!form)return;function selType(rx){var s=form.querySelector('select[name=type]');if(!s)return;for(var i=0;i<s.options.length;i++)if(rx.test(s.options[i].textContent)){s.selectedIndex=i;break;}}var map={prayer:[/prayer request/i,'How can we pray with you?'],testimony:[/testimony/i,'Share what God has done'],pastoral:[/ministry support/i,'Request ministry support'],general:[/general/i,'How can we help?']};if(sub&&map[sub]){selType(map[sub][0]);var sec=document.getElementById('reach-out');var hd=sec&&sec.querySelector('h2');if(hd)hd.textContent=map[sub][1];}})();</script>
 </body></html>
