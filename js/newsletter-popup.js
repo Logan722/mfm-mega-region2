@@ -27,6 +27,19 @@
   };
 
   // ---------- Guardrails ----------
+  
+  // mfm-dialog-guard (§10): never open over another dialog, drawer, or while using the contact form
+  function blockedByDialog(){
+    try{
+      var m=document.querySelector('.event-modal-backdrop, .branch-modal, [aria-modal="true"]');
+      if(m && getComputedStyle(m).display!=='none' && !m.hidden) return true;
+      var dr=document.querySelector('.mfm-mobile-drawer'); if(dr && !dr.hidden) return true;
+      if(document.body.classList.contains('mfm-menu-open')||document.body.classList.contains('drawer-open')) return true;
+      var ae=document.activeElement; if(ae && ae.closest && ae.closest('#reach-out, #reachForm')) return true;
+    }catch(e){}
+    return false;
+  }
+
   function shouldShow() {
     try {
       if (localStorage.getItem(CONFIG.subscribedFlag) === '1') return false;
@@ -145,6 +158,7 @@
   // ---------- Runtime ----------
   function init() {
     if (!shouldShow()) return;
+    if (blockedByDialog()) { setTimeout(init, 4000); return; }
 
     // Inject CSS
     var style = document.createElement('style');
