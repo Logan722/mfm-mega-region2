@@ -203,5 +203,25 @@ select(0,false);
 })();
 </script>
   <script src="/js/mobile-nav.js" defer></script>
+  <script>
+/* §12: link branch cards to internal detail pages + branch-aware contact */
+(function(){
+function slugify(n){return n.replace(/&amp;/g,'and').replace(/&/g,'and').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+[].forEach.call(document.querySelectorAll('.branch-card'),function(c){
+  var h=c.querySelector('h3');if(!h)return;var name=h.textContent.trim();var slug=slugify(name);
+  var box=c.querySelector('div')||c;
+  var a=document.createElement('div');a.className='bc-actions';
+  a.innerHTML='<a class="bc-detail" href="/branches/'+slug+'.html">View branch details</a>'+
+    '<a class="bc-contact" href="/index.html?subject=general&branch='+encodeURIComponent(name)+'#reach-out">Contact this branch</a>';
+  box.appendChild(a);
+});
+})();
+</script>
+<style>
+.branch-card .bc-actions{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,149,44,.14)}
+.branch-card .bc-actions a{font:600 12px/1 'Inter Tight',sans-serif;text-decoration:none;color:#8f6212;display:inline-flex;align-items:center;gap:5px}
+.branch-card .bc-actions a.bc-detail{color:#b3471b}
+.branch-card .bc-actions a:hover{text-decoration:underline}
+</style>
 </body>
 </html>
