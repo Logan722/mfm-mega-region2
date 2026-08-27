@@ -487,3 +487,15 @@ Built April 2026. Final polish pass completed Chat 9 (April 19, 2026).
 6. Newsletter popup: **site-wide on every page** (2.5s delay, 14-day dismiss, never after subscribe).
 
 **OPEN CONFLICT to resolve before shipping Branches:** the older continuity rules mark the **Leaflet branch finder** (interactive map, ZIP distance, geolocation "find nearest") as a must-preserve feature ("parity failure" if lost). The exact-mockup Branches look uses a **static image map** and drops the live finder. Dawn chose exact-mockup on 2026-08-25 — confirm this intentional override before deploying. (Branch cards will keep a working Google-Maps "Get Directions" link.)
+
+
+---
+
+## STANDING RULE — no past programmes anywhere (per Dawn, 2026-08-26)
+
+**Completed/past events must never appear anywhere on the public site** — not the home spotlight/slideshow, not the Events page, not the Women/Gen218 department feeds, not any card grid. Show **only** events that are *happening now* or *upcoming*.
+
+- Past events are **hidden entirely** (`display:none`), not merely sorted to the bottom or badged "Recent".
+- Compute status client-side from the shared `MFM_EVENTS` dates (start / endDate), timezone `America/Chicago`; an event is past when its end (or start, if no end) is before now.
+- This is a data-driven filter over the shared source — never hand-remove events from the data file, and never hard-code event cards.
+- The home spotlight already filters `endDate >= now`; keep it that way. The Events page and department feeds apply the same filter.
