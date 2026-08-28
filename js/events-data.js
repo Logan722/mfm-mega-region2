@@ -315,7 +315,7 @@ window.MFM_EVENTS = [
     "title": "Back to School Prayers — Rehoboth Center",
     "theme": "Covering our children with prayer, preparing them for purpose",
     "time": "8:00 AM prompt",
-    "venue": "MFM Rehoboth Center — 12342 Bissonnet Street, Houston, TX 77099",
+    "venue": "MFM Rehoboth Center — 12142 Bissonnet Street, Houston, TX 77099",
     "ministering": "Pastor Lekan Ademakin & other anointed ministers of God",
     "image": "img/announcements/back-to-school-rehoboth.jpg",
     "alt": "Back to School Prayers — MFM Rehoboth Center, Houston — Sunday August 9, 2026",
