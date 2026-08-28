@@ -1002,7 +1002,7 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 .connect-tile.facebook>b{background:#1877F2!important}
 .connect-tile.instagram>b{background:#E1306C!important}
 .connect-tile>b svg{width:24px;height:24px}
-.leader-socials a{background:transparent!important;border:1px solid rgba(201,149,44,.4)!important;color:#c6b58a!important;width:40px!important;height:40px!important;border-radius:50%!important;display:grid!important;place-items:center!important;transition:.25s}
+.leader-socials a{background:transparent!important;border:1px solid rgba(201,149,44,.4)!important;color:#c6b58a!important;width:44px!important;height:44px!important;border-radius:50%!important;display:grid!important;place-items:center!important;transition:.25s}
 .leader-socials a svg{width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important}
 .leader-socials a:hover,.leader-socials a:focus-visible{background:transparent!important;border-color:#f0c760!important;color:#f0c760!important}
 .spotlight-stage{position:relative}
