@@ -994,3 +994,21 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
     transition-duration: .01ms !important;
   }
 }
+
+
+/* ===== Icons + spotlight arrows (Dawn approved) ===== */
+.connect-tile.youtube>b{background:#FF0000!important}
+.connect-tile.whatsapp>b{background:#25D366!important}
+.connect-tile.facebook>b{background:#1877F2!important}
+.connect-tile.instagram>b{background:#E1306C!important}
+.connect-tile>b svg{width:24px;height:24px}
+.leader-socials a{background:transparent!important;border:1px solid rgba(201,149,44,.4)!important;color:#c6b58a!important;width:40px!important;height:40px!important;border-radius:50%!important;display:grid!important;place-items:center!important;transition:.25s}
+.leader-socials a svg{width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important}
+.leader-socials a:hover,.leader-socials a:focus-visible{background:transparent!important;border-color:#f0c760!important;color:#f0c760!important}
+.spotlight-stage{position:relative}
+.spotlight-controls{display:flex!important;align-items:center;justify-content:center!important;margin-top:16px}
+.spotlight-shell .sp-prev,.spotlight-shell .sp-next{position:absolute;top:50%;transform:translateY(-50%);z-index:6;width:46px;height:46px;border-radius:50%;border:1px solid #ffffff40;background:#0d1b35cc;color:#fff;font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.spotlight-shell .sp-prev{left:14px}
+.spotlight-shell .sp-next{right:14px}
+.spotlight-shell .sp-prev:hover,.spotlight-shell .sp-next:hover{background:#f0c760;color:#142240;border-color:#f0c760}
+@media(max-width:700px){.spotlight-shell .sp-prev{left:6px}.spotlight-shell .sp-next{right:6px}}
