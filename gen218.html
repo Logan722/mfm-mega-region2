@@ -121,12 +121,9 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySe
 document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('.nav-dropdown'))document.querySelectorAll('.nav-dropdown.open').forEach(function(d){d.classList.remove('open')});});
 
 </script>
-  <script>
-/* Department feed: show only current/upcoming events (§11) */
-(function(){var EV={"third-quarter-deliverance":{"date":"2026-08-23","end":""},"prayer-battle-7":{"date":"2026-08-03","end":"2026-10-11"},"night-of-worship":{"date":"2026-04-24","end":""},"tampa-membership-class":{"date":"2026-05-03","end":"2026-08-31"},"women-conference-dallas":{"date":"2026-05-16","end":""},"gen218-prayer-conference":{"date":"2026-06-20","end":""},"iyc-2026":{"date":"2026-07-16","end":"2026-07-19"},"command-the-month-austin":{"date":"2026-08-01","end":"2026-08-03"},"back-to-school-tampa":{"date":"2026-08-07","end":"2026-08-09"},"back-to-school-nw-houston":{"date":"2026-08-07","end":"2026-08-09"},"spiritual-refresh-tampa":{"date":"2026-08-01","end":"2026-08-31"},"nc-deliverance-crusade":{"date":"2026-09-16","end":"2026-09-17"},"womens-retreat":{"date":"2026-10-10","end":""},"florida-deliverance-crusade":{"date":"2026-09-19","end":"2026-09-20"},"gen218-regional-conference":{"date":"2026-10-10","end":""},"nashville-deliverance-crusade":{"date":"2026-11-19","end":""},"back-to-school-rehoboth":{"date":"2026-08-09","end":""},"zonal-womens-conference":{"date":"2026-08-22","end":""},"couples-night":{"date":"2026-12-11","end":""},"thanksgiving-service":{"date":"2026-12-12","end":""},"women-foundation-fl-august":{"date":"2026-08-29","end":""}};var now=new Date();
-[].forEach.call(document.querySelectorAll('.event-card'),function(c){var link=c.querySelector('a[href*="events.html#"]');var a=link?link.getAttribute('href').split('#')[1]:c.id;var d=EV[a];if(!d)return;var e=new Date((d.end||d.date)+'T23:59:59');if(e<now)c.style.display='none';});
-[].forEach.call(document.querySelectorAll('.events-grid'),function(g){var vis=[].filter.call(g.querySelectorAll('.event-card'),function(c){return c.style.display!=='none';});if(!vis.length){var sec=g.closest('section');if(sec)sec.style.display='none';}});
-})();
+  <script src="/js/events-data.js"></script>
+<script>/* Department feed: current/upcoming only, from shared MFM_EVENTS (§9.5) */
+(function(){var EV={};(window.MFM_EVENTS||[]).forEach(function(e){if(e&&e.anchor)EV[e.anchor]={date:e.date,end:e.endDate||""};});var now=new Date();[].forEach.call(document.querySelectorAll(".event-card"),function(c){var link=c.querySelector('a[href*="#"]');var a=link?link.getAttribute("href").split("#").pop():c.id;var d=EV[a];if(!d)return;var e=new Date((d.end||d.date)+"T23:59:59");if(isNaN(e))return;if(e<now)c.style.display="none";});[].forEach.call(document.querySelectorAll(".events-grid"),function(g){var vis=[].filter.call(g.querySelectorAll(".event-card"),function(c){return c.style.display!=="none";});if(!vis.length){var sec=g.closest("section");if(sec)sec.style.display="none";}});})();
 </script>
 </body>
 </html>
