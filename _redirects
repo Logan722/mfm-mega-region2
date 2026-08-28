@@ -1,0 +1,6 @@
+/connect        /links.html                        301
+/prayer         /?subject=prayer#reach-out         301
+/reach-out      /?subject=general#reach-out        301
+/new-here       /#new-here                         301
+/give           /                                  301!
+/give.html      /                                  301!
