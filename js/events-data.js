@@ -298,16 +298,16 @@ window.MFM_EVENTS = [
   {
     "date": "2026-11-19",
     "title": "The Great Nashville Tennessee Deliverance Crusade",
-    "theme": "A Great Deliverance Crusade",
+    "theme": "Dry Bones Shall Live Again",
     "time": "5:00 PM",
-    "venue": "Nashville, Tennessee (venue to be announced)",
+    "venue": "The Forum — 705 Rivergate Pkwy, Goodlettsville, TN 37072",
     "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
     "host": "Pastor Lovena Okeke (Host)",
     "image": "img/announcements/nashville-deliverance-crusade.jpg",
     "alt": "The Great Nashville Tennessee Deliverance Crusade — November 19, 2026, ministering Dr. D.K. Olukoya",
     "anchor": "nashville-deliverance-crusade",
     "dateDisplay": "November 19, 2026",
-    "description": "A great deliverance crusade in Nashville, Tennessee with the General Overseer, Dr. D.K. Olukoya — a night of fire, deliverance, and the demonstration of the power of God. Venue to be announced.",
+    "description": "A great deliverance crusade in Nashville, Tennessee with the General Overseer, Dr. D.K. Olukoya — a night of fire, deliverance and breakthrough. Theme: Dry Bones Shall Live Again (Ezekiel 37:4). Venue: The Forum, Goodlettsville, TN.",
     "badgeStyle": "fire"
   },
   {
@@ -391,3 +391,4 @@ window.MFM_EVENTS = [
     "badgeStyle": "gold"
   }
 ];
+
