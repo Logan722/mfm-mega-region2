@@ -389,6 +389,20 @@ window.MFM_EVENTS = [
     "description": "The MFM Women Foundation Florida invites all women across the Florida zones — Broward, Jacksonville, Miami, Orlando, Tallahassee and Tampa — to the August meeting on Zoom. Come and be blessed. The Zoom link is shared on request — please contact your zone's Women Foundation leader to join.",
     "ministry": "women",
     "badgeStyle": "gold"
+  },
+  {
+    "date": "2026-08-30",
+    "title": "Family Deliverance Service",
+    "theme": "This Problem Must Stop!",
+    "time": "9:00 AM ET",
+    "venue": "MFM Revival Center, Duluth Branch \u2014 3480 Howell St NW, Duluth, GA 30096",
+    "ministering": "Dr. D.K. Olukoya \u2014 General Overseer, MFM Worldwide; Pastor Olumide Oni",
+    "host": "Pastor Abel Michael (Host, ARO)",
+    "image": "img/announcements/duluth-family-deliverance.jpg",
+    "alt": "Family Deliverance Service \u2014 MFM Revival Center Duluth Branch, Sunday August 30, 2026",
+    "anchor": "duluth-family-deliverance",
+    "dateDisplay": "August 30, 2026",
+    "description": "A special Sunday set apart for families, healing and freedom. Come with a faith material and a bottle of oil. For this purpose the Son of God was manifested, that he might destroy the works of the devil (1 John 3:8).",
+    "badgeStyle": "fire"
   }
 ];
-
