@@ -404,5 +404,20 @@ window.MFM_EVENTS = [
     "dateDisplay": "August 30, 2026",
     "description": "A special Sunday set apart for families, healing and freedom. Come with a faith material and a bottle of oil. For this purpose the Son of God was manifested, that he might destroy the works of the devil (1 John 3:8).",
     "badgeStyle": "fire"
+  },
+  {
+    "date": "2026-11-21",
+    "title": "The Great Dallas Deliverance Crusade",
+    "theme": "“Anticipate” — power, deliverance, healing & breakthrough",
+    "time": "4:00 PM CST",
+    "venue": "Southfork Ranch — 3700 Hogge Dr, Parker, TX 75002",
+    "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
+    "host": "MFM Dallas Texas",
+    "image": "img/announcements/dallas-deliverance-crusade.jpg",
+    "alt": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya — Saturday November 21, 2026, 4 PM CST, Southfork Ranch, Parker, TX",
+    "anchor": "dallas-deliverance-crusade",
+    "dateDisplay": "Saturday, November 21, 2026",
+    "description": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya, General Overseer of MFM Worldwide, hosted by MFM Dallas Texas. Come with expectation — a season of power, deliverance, healing and breakthrough for you and your household. All are welcome; bring your family and friends.",
+    "badgeStyle": "fire"
   }
 ];
