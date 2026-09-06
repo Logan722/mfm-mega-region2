@@ -371,6 +371,7 @@ window.MFM_EVENTS = [
     "image": "img/announcements/thanksgiving-service.jpg",
     "alt": "Thanksgiving Service — MFM Mega Region 2, Saturday December 12, 2026, MFM Banquet Hall Prayer City, Houston TX",
     "anchor": "thanksgiving-service",
+    "link": "https://www.eventbrite.com/e/thanksgiving-service-2026-mfm-mega-region-2-usa-tickets-1999884820333",
     "dateDisplay": "Saturday, December 12, 2026",
     "description": "A gathering to give God thanks and praise for His faithfulness, His power, and all He has done. He is faithful, He is able, and He will do it again.",
     "badgeStyle": "fire"
@@ -416,6 +417,7 @@ window.MFM_EVENTS = [
     "image": "img/announcements/dallas-deliverance-crusade.jpg",
     "alt": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya — Saturday November 21, 2026, 4 PM CST, Southfork Ranch, Parker, TX",
     "anchor": "dallas-deliverance-crusade",
+    "link": "https://www.eventbrite.com/e/the-great-dallas-deliverance-crusade-with-dr-dk-olukoya-tickets-1999884755138",
     "dateDisplay": "Saturday, November 21, 2026",
     "description": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya, General Overseer of MFM Worldwide, hosted by MFM Dallas Texas. Come with expectation — a season of power, deliverance, healing and breakthrough for you and your household. All are welcome; bring your family and friends.",
     "badgeStyle": "fire"

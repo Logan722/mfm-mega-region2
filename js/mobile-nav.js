@@ -122,6 +122,22 @@
 /* Desktop dropdown aria-expanded sync (§8) */
 (function(){document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySelector('.nav-dropdown-toggle');if(!t)return;t.setAttribute('aria-expanded',dd.classList.contains('open')?'true':'false');try{new MutationObserver(function(){t.setAttribute('aria-expanded',dd.classList.contains('open')?'true':'false');}).observe(dd,{attributes:true,attributeFilter:['class']});}catch(e){}});})();
 
+/* Unify the Media & Events dropdown on every page (single source) */
+(function(){try{
+ var items=[['/media','Media','Sermons, worship & teachings',false],
+  ['/events','Events','Weekly programs & special services',false],
+  ['/watch','Watch Live','Join our services online',false],
+  ['https://www.mountainoffire.org/resources/prayer-points','Prayer Points','Daily prayer points from MFM',true]];
+ var dds=document.querySelectorAll('.nav-dropdown');
+ for(var k=0;k<dds.length;k++){var dd=dds[k],t=dd.querySelector('.nav-dropdown-toggle');
+  if(!t||!/media/i.test(t.textContent))continue;
+  var menu=dd.querySelector('.nav-dropdown-menu');if(!menu)continue;
+  var html='';for(var j=0;j<items.length;j++){var it=items[j];
+   html+='<a href="'+it[0]+'"'+(it[3]?' target="_blank" rel="noopener"':'')+'>'
+    +'<div class="nav-dd-label">'+it[1]+'<span>'+it[2]+'</span></div></a>';}
+  menu.innerHTML=html;}
+}catch(e){}})();
+
 /* Floating social hub — previous-build design (self-injecting) */
 (function(){
  if(document.querySelector('.social-hub'))return;
