@@ -284,6 +284,7 @@ window.MFM_EVENTS = [
     "image": "img/announcements/gen218-regional-conference.jpg",
     "alt": "Gen218 Regional Prayer Conference — Saturday October 10, 2026, MFM Prayer City",
     "anchor": "gen218-regional-conference",
+    "link": "https://www.eventbrite.com/e/gen218-regional-prayer-conference-2026-mfm-mega-region-2-tickets-1996929263182",
     "dateDisplay": "Saturday, October 10, 2026",
     "description": "A regional prayer conference for singles under Gen218 — a time for powerful prayers, deliverance, and sound teaching on meeting your spouse and marital settlement. Come expectant, leave transformed.",
     "features": [
