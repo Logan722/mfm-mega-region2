@@ -80,6 +80,19 @@ body.idle{cursor:none}
 .flyer-mini{height:clamp(100px,15vh,182px);border-radius:12px;border:1.5px solid rgba(242,183,60,.85);
   box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 40px rgba(255,90,31,.18);margin-top:1.6em;display:block;
   animation:floaty 7.5s ease-in-out infinite}
+.content.ev{grid-template-columns:1fr;justify-items:center;text-align:center;align-content:center;
+  gap:.9vh;padding:3vh 6vw 8vh}
+.content.ev .eyebrow{justify-content:center}
+.content.ev .title{font-size:clamp(2.3rem,5vw,4.6rem);margin:.04em 0 .02em;line-height:.98}
+.content.ev .sub{font-size:clamp(1.15rem,2.3vw,1.95rem)}
+.content.ev .theme{max-width:40ch;margin:.2em auto 0}
+.content.ev .rule{margin:.55em auto}
+.content.ev .meta{align-items:center;gap:.35em}
+.content.ev .meta .row{justify-content:center;font-size:clamp(.95rem,1.5vw,1.3rem)}
+.content.ev .countdown{margin-top:.9vh;font-size:clamp(.95rem,1.7vw,1.45rem)}
+.content.ev .qrwrap{margin-top:1vh;padding:1em 1em .8em}
+.content.ev .qrwrap .qr{width:clamp(180px,18vw,250px);height:clamp(180px,18vw,250px)}
+.flyer-mini.corner{position:absolute;left:3vw;bottom:4.5vh;height:clamp(78px,11vh,140px);margin-top:0;z-index:5}
 .socials{display:flex;gap:.7em;justify-content:center;margin-top:1.6em}
 .socials a{width:2.5em;height:2.5em;display:grid;place-items:center;border-radius:50%;
   background:linear-gradient(135deg,var(--gold),var(--fire));color:#1a1030;font-size:1.25rem;
@@ -192,7 +205,7 @@ function toSlide(e){
   const cat = ov.cat || e.cat || (/(crusade)/i.test(e.title||'')?'Deliverance Crusade':(e.ministry==='women'?'Women Foundation':(e.ministry==='gen218'?'Gen218 Singles':'Special Gathering')));
   const short = ov.short || e.short || shortName(e);
   const flyer = e.flyer || (e.image ? (e.image.startsWith('http')?e.image:'/'+e.image) : '');
-  return { cat, short, theme:(e.theme||'').replace(/^"|"$/g,''),
+  return { cat, short, theme:(e.theme||'').replace(/"/g,''),
     date:e.date, dateDisplay:e.dateDisplay||'', time:e.time||'', venue:e.venue||'',
     reg, regLabel:e.regLabel||(/eventbrite/.test(reg)?'Register on Eventbrite':'Details at mfmmegaregion2usa.org'),
     flyer };
@@ -254,9 +267,8 @@ EV.forEach((e,i)=>{
   el.innerHTML=`
     <div class="bg" style="background-image:url('${e.flyer}')"></div>
     <div class="scrim"></div><div class="vig"></div>
-    <div class="content">
-      <div class="left">
-        <div class="eyebrow"><img class="logo" src="${EMBLEM}">Mega Region 2 · ${e.cat}</div>
+    <div class="content ev">
+      <div class="eyebrow"><img class="logo" src="${EMBLEM}">Mega Region 2 · ${e.cat}</div>
         <div class="title">${e.short}</div>
         ${/crusade/i.test(e.cat)?'<div class="sub">Deliverance Crusade</div>':''}
         ${e.theme?`<div class="theme">&ldquo;${e.theme}&rdquo;</div>`:''}
@@ -266,16 +278,13 @@ EV.forEach((e,i)=>{
           <div class="row"><span class="ic">◎</span><span class="venue">${e.venue}</span></div>
         </div>
         ${cd?`<div class="countdown">✦ ${cd}</div>`:''}
-        <img class="flyer-mini" src="${e.flyer}" alt="${e.short}">
-      </div>
-      <div class="right">
         <div class="qrwrap no-advance">
           <div class="lab">Scan to Register</div>
           <div class="qr" data-reg="${e.reg}"></div>
           <a class="reg" href="${e.reg}" target="_blank" rel="noopener">${e.regLabel}</a>
         </div>
-      </div>
-    </div>`;
+    </div>
+    <img class="flyer-mini corner" src="${e.flyer}" alt="${e.short}">`;
   stage.appendChild(el); slides.push(el);
 });
 
