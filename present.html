@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{
   --navy:#0c1330; --navy2:#170f38; --plum:#2a1150;
@@ -66,18 +67,28 @@ body.idle{cursor:none}
   box-shadow:0 0 40px rgba(242,183,60,.55);animation:pulse 2.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 34px rgba(242,183,60,.45);transform:translateY(0)}
   50%{box-shadow:0 0 58px rgba(255,90,31,.7);transform:translateY(-2px)}}
-.right{position:relative;height:100%;display:flex;align-items:center;justify-content:flex-end;gap:1.4vw}
-.qrwrap{display:flex;flex-direction:column;align-items:center;gap:.6em;
-  background:linear-gradient(180deg,#fff,#f3eee2);border-radius:20px;padding:1.05em 1.05em .85em;
-  box-shadow:0 0 0 3px rgba(242,183,60,.85),0 20px 60px rgba(0,0,0,.55),0 0 70px rgba(242,183,60,.35);
+.right{position:relative;height:100%;display:flex;align-items:center;justify-content:center;gap:1.4vw}
+.qrwrap{display:flex;flex-direction:column;align-items:center;gap:.7em;
+  background:linear-gradient(180deg,#fff,#f3eee2);border-radius:24px;padding:1.4em 1.4em 1.1em;
+  box-shadow:0 0 0 4px rgba(242,183,60,.9),0 26px 70px rgba(0,0,0,.6),0 0 90px rgba(242,183,60,.42);
   animation:floaty 6.5s ease-in-out infinite}
-.qrwrap .lab{font-weight:800;letter-spacing:.16em;color:#171029;font-size:.82rem;text-transform:uppercase}
-.qrwrap .qr{width:clamp(140px,12vw,210px);height:clamp(140px,12vw,210px)}
+.qrwrap .lab{font-weight:800;letter-spacing:.18em;color:#171029;
+  font-size:clamp(.95rem,1.5vw,1.35rem);text-transform:uppercase}
+.qrwrap .qr{width:clamp(240px,26vw,400px);height:clamp(240px,26vw,400px)}
 .qrwrap .qr img,.qrwrap .qr canvas{width:100%!important;height:100%!important}
-.qrwrap .reg{font-weight:700;color:#7a4a12;font-size:.8rem}
-.flyer{height:clamp(320px,74vh,780px);border-radius:16px;border:2px solid rgba(242,183,60,.9);
-  box-shadow:0 26px 70px rgba(0,0,0,.6),0 0 60px rgba(255,90,31,.28);
+.qrwrap .reg{font-weight:700;color:#7a4a12;font-size:clamp(.9rem,1.2vw,1.15rem)}
+.flyer-mini{height:clamp(100px,15vh,182px);border-radius:12px;border:1.5px solid rgba(242,183,60,.85);
+  box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 40px rgba(255,90,31,.18);margin-top:1.6em;display:block;
   animation:floaty 7.5s ease-in-out infinite}
+.socials{display:flex;gap:.7em;justify-content:center;margin-top:1.6em}
+.socials a{width:2.5em;height:2.5em;display:grid;place-items:center;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--fire));color:#1a1030;font-size:1.25rem;
+  text-decoration:none;box-shadow:0 0 26px rgba(242,183,60,.42);transition:transform .2s}
+.socials a:hover{transform:translateY(-4px)}
+.weburl{display:inline-block;margin-top:1em;font-weight:800;letter-spacing:.03em;color:var(--gold2);
+  font-family:'Inter Tight',sans-serif;text-decoration:none;
+  font-size:clamp(1.15rem,2.1vw,1.7rem);text-shadow:0 0 24px rgba(242,183,60,.4)}
+.weburl:hover{color:#fff}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 /* intro / title card */
@@ -117,10 +128,10 @@ body.idle #bar{opacity:0;pointer-events:none}
   transition:opacity .4s}
 body.idle .hint{opacity:0}
 @media (max-width:820px){
-  .content{grid-template-columns:1fr;gap:1.2vh;padding:4vh 6vw 12vh;align-content:center}
+  .content{grid-template-columns:1fr;gap:1.4vh;padding:4vh 6vw 12vh;align-content:center}
   .right{justify-content:center;order:-1;height:auto;margin-bottom:1vh}
-  .flyer{height:34vh}
-  .qrwrap{position:absolute;right:-2vw;bottom:-2vh;transform:scale(.8)}
+  .qrwrap .qr{width:clamp(180px,52vw,260px);height:clamp(180px,52vw,260px)}
+  .flyer-mini{height:12vh}
   .title{font-size:clamp(2.6rem,13vw,4rem)}
 }
 </style>
@@ -223,8 +234,14 @@ const slides=[];
       <img class="emblem" src="${EMBLEM}" alt="MFM">
       <div class="k">Mountain of Fire &amp; Miracles Ministries</div>
       <h1>What's Happening<br>Across Mega Region 2</h1>
-      <div class="cities">${cities}</div>
       <div class="scr">&ldquo;Come and possess your possessions.&rdquo; — Obadiah 1:17</div>
+      <div class="socials no-advance">
+        <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+      <a class="weburl no-advance" href="https://mfmmegaregion2usa.org" target="_blank" rel="noopener">mfmmegaregion2usa.org</a>
     </div></div>`;
   stage.appendChild(el); slides.push(el);
 })();
@@ -249,6 +266,7 @@ EV.forEach((e,i)=>{
           <div class="row"><span class="ic">◎</span><span class="venue">${e.venue}</span></div>
         </div>
         ${cd?`<div class="countdown">✦ ${cd}</div>`:''}
+        <img class="flyer-mini" src="${e.flyer}" alt="${e.short}">
       </div>
       <div class="right">
         <div class="qrwrap no-advance">
@@ -256,7 +274,6 @@ EV.forEach((e,i)=>{
           <div class="qr" data-reg="${e.reg}"></div>
           <a class="reg" href="${e.reg}" target="_blank" rel="noopener">${e.regLabel}</a>
         </div>
-        <img class="flyer" src="${e.flyer}" alt="${e.short}">
       </div>
     </div>`;
   stage.appendChild(el); slides.push(el);
