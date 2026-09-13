@@ -38,9 +38,22 @@ body.idle{cursor:none}
 .content{position:absolute;inset:0;z-index:4;display:grid;
   grid-template-columns:1.15fr .85fr;gap:2vw;align-items:center;
   padding:5.2vh 5vw 12vh;}
-.left{max-width:60ch}
-.eyebrow{display:flex;align-items:center;gap:.7em;margin-bottom:.4em}
-.eyebrow .logo{width:clamp(48px,4.6vw,74px);height:auto;filter:drop-shadow(0 0 12px rgba(242,183,60,.55))}
+.content.ev{grid-template-columns:1.12fr .88fr;grid-template-rows:auto 1fr;
+  gap:2.2vh 2vw;align-items:start;padding:4.5vh 5vw 7vh}
+.left{max-width:none;grid-column:1;grid-row:2;align-self:center}
+/* logo pinned top-left corner on event slides */
+.brandmark{position:absolute;top:44px;left:56px;width:clamp(64px,5.4vw,104px);height:auto;z-index:10;
+  filter:drop-shadow(0 0 14px rgba(242,183,60,.6))}
+/* one-line centered title header: City | Deliverance Crusade */
+.titleline{grid-column:1 / -1;grid-row:1;align-self:center;
+  display:flex;align-items:center;justify-content:center;gap:.5em;white-space:nowrap;text-align:center;
+  font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1;
+  font-size:clamp(2rem,4.4vw,4.1rem);letter-spacing:-.01em;filter:drop-shadow(0 6px 26px rgba(255,90,31,.3))}
+.titleline .city{background:linear-gradient(96deg,#ffe9b0,var(--gold) 42%,var(--fire) 92%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.titleline .divider{width:4px;height:1.02em;border-radius:3px;flex:none;
+  background:linear-gradient(180deg,var(--gold),var(--fire));box-shadow:0 0 18px rgba(255,90,31,.6)}
+.titleline .dc{color:#fff}
 .title{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:.94;
   font-size:clamp(3.2rem,8.4vw,8.6rem);margin:.12em 0 .06em;letter-spacing:-.01em;
   background:linear-gradient(96deg,#ffe9b0,var(--gold) 40%,var(--fire) 88%);
@@ -65,7 +78,7 @@ body.idle{cursor:none}
   box-shadow:0 0 40px rgba(242,183,60,.55);animation:pulse 2.6s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 34px rgba(242,183,60,.45);transform:translateY(0)}
   50%{box-shadow:0 0 58px rgba(255,90,31,.7);transform:translateY(-2px)}}
-.right{position:relative;height:100%;display:flex;align-items:center;justify-content:center;gap:1.4vw}
+.right{position:relative;grid-column:2;grid-row:2;align-self:center;height:100%;display:flex;align-items:center;justify-content:center;gap:1.4vw}
 .qrwrap{display:flex;flex-direction:column;align-items:center;gap:.7em;
   background:linear-gradient(180deg,#fff,#f3eee2);border-radius:24px;padding:1.4em 1.4em 1.1em;
   box-shadow:0 0 0 4px rgba(242,183,60,.9),0 26px 70px rgba(0,0,0,.6),0 0 90px rgba(242,183,60,.42);
@@ -166,6 +179,13 @@ body.idle #bar{opacity:0;pointer-events:none}
 body.idle .hint{opacity:0}
 @media (max-width:820px){
   .content{grid-template-columns:1fr;gap:1.4vh;padding:4vh 6vw 12vh;align-content:center}
+  .content.ev{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:2vh;
+    padding:3vh 6vw 12vh;justify-items:center;text-align:center}
+  .content.ev .titleline{grid-column:1;grid-row:1;white-space:normal;flex-wrap:wrap;
+    justify-content:center;font-size:clamp(1.5rem,7vw,2.4rem)}
+  .content.ev .right{grid-column:1;grid-row:2;order:0;height:auto;margin:0}
+  .content.ev .left{grid-column:1;grid-row:3;align-self:auto}
+  .brandmark{width:56px;top:18px;left:18px}
   .right{justify-content:center;order:-1;height:auto;margin-bottom:1vh}
   .qrwrap .qr{width:clamp(180px,52vw,260px);height:clamp(180px,52vw,260px)}
   .flyer-mini{height:12vh}
@@ -295,12 +315,10 @@ EV.forEach((e,i)=>{
   el.innerHTML=`
     <div class="bg" style="background-image:url('${e.flyer}')"></div>
     <div class="scrim"></div><div class="vig"></div>
-    <div class="content">
+    <img class="brandmark" src="${EMBLEM}" alt="MFM">
+    <div class="content ev">
+      <div class="titleline"><span class="city">${e.short}</span>${/crusade/i.test(e.cat)?'<span class="divider"></span><span class="dc">Deliverance Crusade</span>':''}</div>
       <div class="left">
-        <div class="eyebrow"><img class="logo" src="${EMBLEM}" alt="MFM"></div>
-        <div class="title">${e.short}</div>
-        <div class="rule"></div>
-        ${/crusade/i.test(e.cat)?'<div class="sub">Deliverance Crusade</div>':''}
         ${e.theme?`<div class="theme">&ldquo;${e.theme}&rdquo;</div>`:''}
         <div class="meta">
           <div class="row"><span class="ic"><i class="fa-solid fa-calendar-days"></i></span><span class="date">${e.dateDisplay||fmtDate(e.date)}${timeTxt}</span></div>
