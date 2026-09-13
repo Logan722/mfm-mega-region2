@@ -1036,3 +1036,7 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
   .event-card-actions{gap:8px}
   .event-card-actions a,.event-card-actions button{font-size:15px!important;min-height:48px;padding:12px 14px!important;flex:1 1 100%;justify-content:center;display:inline-flex;align-items:center;gap:6px}
 }
+
+/* Hero background video (muted autoplay loop; poster + fallback img protect LCP & reduced-motion) */
+.home-hero>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+@media (prefers-reduced-motion:reduce){.home-hero>video{display:none}}
