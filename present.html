@@ -62,8 +62,9 @@ body.idle{cursor:none}
 .sub{font-family:'Fraunces',Georgia,serif;font-weight:600;font-style:normal;
   font-size:clamp(1.3rem,2.9vw,2.5rem);color:#fff;opacity:.96;line-height:1.05}
 .theme{font-family:'Fraunces',Georgia,serif;font-style:italic;color:#f3ead9;
-  font-size:clamp(.9rem,1.7vw,1.4rem);margin-top:.5em;opacity:.98;max-width:none;line-height:1.3;
+  font-size:clamp(1.35rem,2vw,2rem);margin-top:.5em;opacity:.98;max-width:none;line-height:1.3;
   text-align:center;white-space:nowrap}
+.theme .theme-in{display:inline-block}
 .theme .theme-lbl{font-style:normal;font-weight:700;color:var(--gold2);margin-right:.42em}
 .meta .mins{color:#fff}
 .meta .mins b{color:var(--gold2);font-weight:700}
@@ -377,7 +378,7 @@ EV.forEach((e,i)=>{
     <div class="content ev">
       <div class="titleline"><span class="city">${e.short}</span>${/crusade/i.test(e.cat)?'<span class="divider"></span><span class="dc">Deliverance Crusade</span>':''}</div>
       <div class="left">
-        ${e.theme?`<div class="theme"><span class="theme-lbl">Theme:</span>${e.theme}</div>`:''}
+        ${e.theme?`<div class="theme"><span class="theme-in"><span class="theme-lbl">Theme:</span>${e.theme}</span></div>`:''}
         <div class="meta">
           <div class="row"><span class="ic"><i class="fa-solid fa-calendar-days"></i></span><span class="date">${e.dateDisplay||fmtDate(e.date)}${timeTxt}</span></div>
           <div class="row"><span class="ic"><i class="fa-solid fa-location-dot"></i></span><span class="venue">${venueFmt(e.venue)}</span></div>
@@ -516,6 +517,22 @@ document.addEventListener('fullscreenchange', function(){ setTimeout(alignCountd
 setTimeout(alignCountdowns,450);
 setTimeout(alignCountdowns,1100);
 if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){setTimeout(alignCountdowns,60);});}
+/* auto-fit each theme individually: readable size, one line, shrink only if too long */
+function fitThemes(){
+  var maxPx=Math.max(20,Math.min(34,Math.round(window.innerWidth*0.02))), minPx=14;
+  slides.forEach(function(sl){
+    var t=sl.querySelector('.theme'), inr=sl.querySelector('.theme-in'), left=sl.querySelector('.left');
+    if(!t||!inr||!left) return;
+    var avail=left.clientWidth-6, size=maxPx, g=0;
+    t.style.fontSize=size+'px';
+    while(inr.getBoundingClientRect().width>avail && size>minPx && g<90){ size-=1; t.style.fontSize=size+'px'; g++; }
+  });
+}
+window.addEventListener('resize', fitThemes);
+window.addEventListener('load', function(){ setTimeout(fitThemes,200); });
+document.addEventListener('fullscreenchange', function(){ setTimeout(fitThemes,120); });
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){setTimeout(fitThemes,60);});}
+setTimeout(fitThemes,420);
 </script>
 </body>
 </html>
