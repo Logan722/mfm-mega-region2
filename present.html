@@ -39,10 +39,8 @@ body.idle{cursor:none}
   grid-template-columns:1.15fr .85fr;gap:2vw;align-items:center;
   padding:5.2vh 5vw 12vh;}
 .left{max-width:60ch}
-.eyebrow{display:flex;align-items:center;gap:.7em;font-weight:700;letter-spacing:.26em;
-  text-transform:uppercase;font-size:clamp(.72rem,1.35vw,1.15rem);color:var(--gold2);
-  text-shadow:0 0 22px rgba(242,183,60,.45)}
-.eyebrow .logo{width:1.9em;height:1.9em;filter:drop-shadow(0 0 10px rgba(242,183,60,.5))}
+.eyebrow{display:flex;align-items:center;gap:.7em;margin-bottom:.4em}
+.eyebrow .logo{width:clamp(48px,4.6vw,74px);height:auto;filter:drop-shadow(0 0 12px rgba(242,183,60,.55))}
 .title{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:.94;
   font-size:clamp(3.2rem,8.4vw,8.6rem);margin:.12em 0 .06em;letter-spacing:-.01em;
   background:linear-gradient(96deg,#ffe9b0,var(--gold) 40%,var(--fire) 88%);
@@ -52,14 +50,14 @@ body.idle{cursor:none}
   font-size:clamp(1.3rem,2.9vw,2.5rem);color:#fff;opacity:.96;line-height:1.05}
 .theme{font-family:'Fraunces',Georgia,serif;font-style:italic;color:var(--gold2);
   font-size:clamp(1.05rem,2.05vw,1.7rem);margin-top:.5em;opacity:.95;max-width:26ch}
-.rule{height:5px;width:132px;border-radius:4px;margin:1.15em 0 1.1em;
+.rule{height:5px;width:200px;border-radius:4px;margin:.5em 0 .62em;
   background:linear-gradient(90deg,var(--gold),var(--fire));box-shadow:0 0 26px rgba(255,90,31,.7)}
-.meta{display:flex;flex-direction:column;gap:.55em}
-.meta .row{display:flex;align-items:center;gap:.62em;font-size:clamp(1rem,1.8vw,1.5rem)}
-.meta .ic{width:1.5em;height:1.5em;flex:none;display:grid;place-items:center;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--fire));color:#1a1030;font-weight:800;font-size:.8em}
+.meta{display:flex;flex-direction:column;gap:.78em;margin-top:.35em}
+.meta .row{display:flex;align-items:center;gap:.78em;font-size:clamp(1.2rem,2.15vw,1.8rem)}
+.meta .ic{width:1.78em;height:1.78em;flex:none;display:grid;place-items:center;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--fire));color:#1a1030;font-weight:800;font-size:.84em}
 .meta .date{font-weight:700;color:#fff}
-.meta .venue{color:var(--dim);font-size:clamp(.9rem,1.55vw,1.25rem)}
+.meta .venue{color:#e7dcf2;font-size:clamp(1.02rem,1.75vw,1.44rem);line-height:1.35}
 .countdown{display:inline-flex;align-items:center;gap:.55em;margin-top:1.5em;
   padding:.62em 1.25em;border-radius:999px;font-weight:800;letter-spacing:.06em;
   font-size:clamp(1rem,2vw,1.7rem);color:#1a1030;
@@ -74,7 +72,7 @@ body.idle{cursor:none}
   animation:floaty 6.5s ease-in-out infinite}
 .qrwrap .lab{font-weight:800;letter-spacing:.18em;color:#171029;
   font-size:clamp(.95rem,1.5vw,1.35rem);text-transform:uppercase}
-.qrwrap .qr{width:clamp(240px,26vw,400px);height:clamp(240px,26vw,400px)}
+.qrwrap .qr{width:clamp(300px,33vw,520px);height:clamp(300px,33vw,520px)}
 .qrwrap .qr img,.qrwrap .qr canvas{width:100%!important;height:100%!important}
 .qrwrap .reg{font-weight:700;color:#7a4a12;font-size:clamp(.9rem,1.2vw,1.15rem)}
 .flyer-mini{height:clamp(100px,15vh,182px);border-radius:12px;border:1.5px solid rgba(242,183,60,.85);
@@ -106,6 +104,45 @@ body.idle{cursor:none}
 .intro .scr{color:var(--dim);margin-top:1.4em;font-style:italic;font-family:'Fraunces',serif;
   font-size:clamp(.95rem,1.5vw,1.25rem)}
 
+/* connect (links) slide */
+.slide.conn{background:radial-gradient(130% 120% at 76% 34%,#16223f 0%,#0c1330 55%,#0a0f22 100%)}
+.connect{position:absolute;inset:0;z-index:4;display:grid;grid-template-columns:1.02fr .98fr;
+  gap:3vw;align-items:center;padding:6vh 6vw}
+.connect .cl{max-width:60ch}
+.connect .brand{display:flex;align-items:center;gap:1em;margin-bottom:2em}
+.connect .brand img{width:clamp(64px,6.2vw,96px);filter:drop-shadow(0 0 12px rgba(242,183,60,.5))}
+.connect .brand .wm b{display:block;font-weight:800;letter-spacing:.05em;color:var(--gold);
+  font-size:clamp(1rem,1.7vw,1.55rem);line-height:1.1;text-transform:uppercase}
+.connect .brand .wm span{display:block;color:var(--dim);letter-spacing:.24em;font-weight:600;
+  font-size:clamp(.7rem,1vw,.98rem);text-transform:uppercase;margin-top:.4em}
+.connect h2{font-family:'Fraunces',serif;font-weight:600;line-height:.98;color:#fff;
+  font-size:clamp(3rem,6.6vw,6.6rem);margin-bottom:.28em}
+.connect h2 em{font-style:normal;color:var(--fire)}
+.connect .lead{color:var(--dim);font-size:clamp(1.08rem,1.9vw,1.6rem);line-height:1.4;
+  max-width:26ch;margin-bottom:2em}
+.connect .grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3em 2.4em;max-width:32ch}
+.connect .grid a{display:flex;align-items:center;gap:.72em;text-decoration:none;color:#fff;
+  font-weight:700;font-size:clamp(1.1rem,1.8vw,1.55rem);transition:transform .2s}
+.connect .grid a:hover{transform:translateY(-3px)}
+.connect .chip{width:2.4em;height:2.4em;border-radius:.66em;display:grid;place-items:center;
+  color:#fff;font-size:1em;flex:none;box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.connect .yt{background:#ff0000}.connect .fb{background:#1877f2}
+.connect .ig{background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)}
+.connect .wa{background:#25d366}
+.connect .cr{display:flex;flex-direction:column;align-items:center;gap:1.05em}
+.connect .sc{font-weight:800;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;
+  font-size:clamp(1.1rem,1.9vw,1.7rem);text-shadow:0 0 24px rgba(242,183,60,.4)}
+.connect .qrcard2{background:linear-gradient(180deg,#fff,#f3eee2);border-radius:22px;padding:1.4em;
+  box-shadow:0 0 0 4px rgba(242,183,60,.9),0 26px 70px rgba(0,0,0,.6),0 0 90px rgba(242,183,60,.42);
+  animation:floaty 6.5s ease-in-out infinite}
+.connect .qrcard2 .qr{width:clamp(320px,34vw,520px);height:clamp(320px,34vw,520px)}
+.connect .qr img,.connect .qr canvas{width:100%!important;height:100%!important}
+.connect .cap{color:var(--dim);font-style:italic;font-family:'Fraunces',serif;text-align:center;
+  font-size:clamp(1rem,1.6vw,1.35rem);max-width:30ch}
+.connect .lurl{font-family:'Fraunces',serif;font-weight:600;color:var(--gold);letter-spacing:.01em;
+  font-size:clamp(1.4rem,2.6vw,2.4rem);text-decoration:none;text-shadow:0 0 26px rgba(242,183,60,.4)}
+.connect .lurl:hover{color:#fff}
+
 /* controls */
 #bar{position:fixed;left:50%;bottom:2.4vh;transform:translateX(-50%);z-index:20;
   display:flex;align-items:center;gap:.35rem;padding:.4rem .5rem;border-radius:999px;
@@ -133,6 +170,10 @@ body.idle .hint{opacity:0}
   .qrwrap .qr{width:clamp(180px,52vw,260px);height:clamp(180px,52vw,260px)}
   .flyer-mini{height:12vh}
   .title{font-size:clamp(2.6rem,13vw,4rem)}
+  .connect{grid-template-columns:1fr;gap:2vh;padding:4vh 6vw 12vh;align-content:center}
+  .connect .cr{order:-1}
+  .connect .qrcard2 .qr{width:clamp(200px,58vw,320px);height:clamp(200px,58vw,320px)}
+  .connect .grid{max-width:none}
 }
 </style>
 </head>
@@ -256,14 +297,14 @@ EV.forEach((e,i)=>{
     <div class="scrim"></div><div class="vig"></div>
     <div class="content">
       <div class="left">
-        <div class="eyebrow"><img class="logo" src="${EMBLEM}">Mega Region 2 · ${e.cat}</div>
+        <div class="eyebrow"><img class="logo" src="${EMBLEM}" alt="MFM"></div>
         <div class="title">${e.short}</div>
+        <div class="rule"></div>
         ${/crusade/i.test(e.cat)?'<div class="sub">Deliverance Crusade</div>':''}
         ${e.theme?`<div class="theme">&ldquo;${e.theme}&rdquo;</div>`:''}
-        <div class="rule"></div>
         <div class="meta">
-          <div class="row"><span class="ic">▦</span><span class="date">${e.dateDisplay||fmtDate(e.date)}${timeTxt}</span></div>
-          <div class="row"><span class="ic">◎</span><span class="venue">${e.venue}</span></div>
+          <div class="row"><span class="ic"><i class="fa-solid fa-calendar-days"></i></span><span class="date">${e.dateDisplay||fmtDate(e.date)}${timeTxt}</span></div>
+          <div class="row"><span class="ic"><i class="fa-solid fa-location-dot"></i></span><span class="venue">${e.venue}</span></div>
         </div>
         ${cd?`<div class="countdown">✦ ${cd}</div>`:''}
         <img class="flyer-mini" src="${e.flyer}" alt="${e.short}">
@@ -279,9 +320,39 @@ EV.forEach((e,i)=>{
   stage.appendChild(el); slides.push(el);
 });
 
+/* connect / links slide (final) */
+(function(){
+  const el=document.createElement('section'); el.className='slide conn';
+  el.innerHTML=`
+    <div class="vig"></div>
+    <div class="connect">
+      <div class="cl">
+        <div class="brand">
+          <img src="${EMBLEM}" alt="MFM">
+          <div class="wm"><b>Mountain of Fire &amp;<br>Miracles Ministries</b><span>Mega Region 2 · USA</span></div>
+        </div>
+        <h2>Connect<br>With <em>Us</em></h2>
+        <div class="lead">Follow the fire across every platform — prayer, deliverance, and breakthrough, wherever you are.</div>
+        <div class="grid no-advance">
+          <a href="https://youtube.com/@mfmmegaregion2usa" target="_blank" rel="noopener"><span class="chip yt"><i class="fa-brands fa-youtube"></i></span>YouTube</a>
+          <a href="https://www.facebook.com/profile.php?id=61556716678081" target="_blank" rel="noopener"><span class="chip fb"><i class="fa-brands fa-facebook-f"></i></span>Facebook</a>
+          <a href="https://instagram.com/mfmmegaregion2usa" target="_blank" rel="noopener"><span class="chip ig"><i class="fa-brands fa-instagram"></i></span>Instagram</a>
+          <a href="https://whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G" target="_blank" rel="noopener"><span class="chip wa"><i class="fa-brands fa-whatsapp"></i></span>WhatsApp Channel</a>
+        </div>
+      </div>
+      <div class="cr no-advance">
+        <div class="sc">Scan to Connect</div>
+        <div class="qrcard2"><div class="qr" data-reg="https://mfmmegaregion2usa.org/links"></div></div>
+        <div class="cap">One scan opens every link — services, sermons, prayer &amp; giving.</div>
+        <a class="lurl" href="https://mfmmegaregion2usa.org/links" target="_blank" rel="noopener">mfmmegaregion2usa.org/links</a>
+      </div>
+    </div>`;
+  stage.appendChild(el); slides.push(el);
+})();
+
 /* build QRs */
 document.querySelectorAll('.qr').forEach(q=>{
-  try{ new QRCode(q,{text:q.dataset.reg,width:220,height:220,
+  try{ new QRCode(q,{text:q.dataset.reg,width:460,height:460,
     colorDark:'#0c1330',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M}); }catch(e){}
 });
 
@@ -348,6 +419,10 @@ function loop(){ cx.clearRect(0,0,W,H);
     cx.shadowBlur=10;cx.shadowColor='rgba('+p.c+',.9)';cx.fill();cx.shadowBlur=0;});
   requestAnimationFrame(loop); }
 addEventListener('resize',rs); rs(); loop();
+
+/* roll the countdowns over automatically just after midnight on always-on screens */
+let _day=new Date().getDate();
+setInterval(()=>{ const d=new Date().getDate(); if(d!==_day){ _day=d; location.reload(); } }, 60000);
 
 show(0);
 </script>
