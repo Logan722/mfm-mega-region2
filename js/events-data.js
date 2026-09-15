@@ -422,5 +422,20 @@ window.MFM_EVENTS = [
     "dateDisplay": "Saturday, November 21, 2026",
     "description": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya, General Overseer of MFM Worldwide, hosted by MFM Dallas Texas. Come with expectation — a season of power, deliverance, healing and breakthrough for you and your household. All are welcome; bring your family and friends.",
     "badgeStyle": "fire"
+  },
+  {
+    "date": "2026-09-18",
+    "title": "Night of Deliverance, Healing & Breakthrough",
+    "theme": "A Midnight Vigil set apart for your testimony",
+    "time": "11:00 PM – 2:00 AM ET",
+    "venue": "MFM Revival Center, Duluth — 3480 Howell St NW, Duluth, GA 30096",
+    "ministering": "Pastor Olumide Oni · Pastor Tope Oluwayemiwo · Dr. D.K. Olukoya",
+    "host": "Pastor Abel Michael (Asst. Regional Overseer)",
+    "image": "img/announcements/duluth-midnight-vigil.jpg",
+    "alt": "Night of Deliverance, Healing & Breakthrough — Midnight Vigil, Friday September 18, 2026, MFM Revival Center Duluth, GA",
+    "anchor": "duluth-midnight-vigil",
+    "dateDisplay": "Friday, September 18, 2026",
+    "description": "A midnight vigil set apart for your testimony — a night of deliverance, healing and breakthrough. Chains will break, yokes will be destroyed, testimonies will be released and destiny will be restored. Come fasting; come expecting.",
+    "badgeStyle": "fire"
   }
 ];
