@@ -199,6 +199,10 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('evtMeta').innerHTML='<span>'+esc(e.dateDisplay||e.date||'')+'</span><span>'+esc(e.time||'')+'</span><span>'+esc(e.venue||'')+'</span>';
     document.getElementById('evtDesc').textContent=e.description||'';
     document.getElementById('evtHost').textContent=[e.ministering,e.host].filter(Boolean).join(' · ');
+    (function(){var host=document.getElementById('evtHost');var mp=(host&&host.closest('.event-modal-minister'))||host;var sch=document.getElementById('evtSchedule');
+     if(!sch){sch=document.createElement('div');sch.id='evtSchedule';sch.className='event-modal-sessions';sch.style.cssText='display:grid;gap:2px;margin:16px 0';if(mp&&mp.parentNode)mp.parentNode.insertBefore(sch,mp.nextSibling);}
+     if(e.schedule&&e.schedule.length){sch.innerHTML='<b style="display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;margin-bottom:6px">Schedule</b>'+e.schedule.map(function(s){return '<div style="display:grid;gap:2px;padding:9px 0;border-top:1px solid rgba(201,149,44,.22)"><b style="font-family:Fraunces,Georgia,serif;font-size:1rem">'+esc(s.label||'')+'</b>'+(s.when||s.shortDate?'<span style="font-size:.85rem;color:#8899b8">'+esc(s.when||s.shortDate)+'</span>':'')+((s.venue||s.address)?'<span style="font-size:.85rem;color:#8899b8">'+esc([s.venue,s.address].filter(Boolean).join(" — "))+'</span>':'')+'</div>';}).join('');sch.hidden=false;}else{sch.innerHTML='';sch.hidden=true;}
+    })();
     var vw=document.getElementById('evtVideoWrap'),vf=document.getElementById('evtVideo'); if(e.video){vf.src='https://www.youtube-nocookie.com/embed/'+ytid(e.video);vw.hidden=false;}else{vf.src='';vw.hidden=true;}
     var tk=document.getElementById('evtTickets'); var end=new Date((e.endDate||e.date)+'T23:59:59'); var past=!isNaN(end)&&end<new Date(); if(e.link&&!past){tk.href=e.link;tk.hidden=false;}else{tk.hidden=true;}
     document.getElementById('evtCal').href=gcal(e);
