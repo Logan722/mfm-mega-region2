@@ -829,7 +829,7 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
   .mfm-brand-logo { width: 2.75rem; height: 2.75rem; }
   .mfm-brand-copy strong { font-size: .875rem; }
   .mfm-brand-copy small { display: none; }
-  .mfm-desktop-nav, .mfm-desktop-prayer { display: none; }
+  .mfm-desktop-nav, .mfm-desktop-prayer, .nav-links { display: none; }
 
   .mfm-menu-toggle {
     width: 2.75rem;
