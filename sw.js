@@ -1,5 +1,5 @@
-/* Minimal service worker — network-first with cache fallback (keeps content fresh, works offline). */
-var CACHE = 'mfm-v1';
+/* Service worker — network-first, cache only good same-origin GETs (versioned). */
+var CACHE = 'mfm-v2';
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
@@ -8,14 +8,20 @@ self.addEventListener('activate', function (e) {
   self.clients.claim();
 });
 self.addEventListener('fetch', function (e) {
-  if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
+  var req = e.request;
+  if (req.method !== 'GET') return;
+  var url = new URL(req.url);
+  if (url.origin !== location.origin) return;
+  if (url.search) return; // don't cache query-string requests (avoids unbounded cache)
   e.respondWith(
-    fetch(e.request).then(function (res) {
-      var copy = res.clone();
-      caches.open(CACHE).then(function (c) { c.put(e.request, copy); }).catch(function () {});
+    fetch(req).then(function (res) {
+      if (res && res.ok && res.type === 'basic') {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); }).catch(function () {});
+      }
       return res;
     }).catch(function () {
-      return caches.match(e.request).then(function (r) { return r || caches.match('/'); });
+      return caches.match(req).then(function (r) { return r || caches.match('/'); });
     })
   );
 });
