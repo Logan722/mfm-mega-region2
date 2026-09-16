@@ -1040,3 +1040,11 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 /* Hero background video (muted autoplay loop; poster + fallback img protect LCP & reduced-motion) */
 .home-hero>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
 @media (prefers-reduced-motion:reduce){.home-hero>video{display:none}}
+
+/* ---- Batch B (v5): responsive grid balance + touch targets ---- */
+/* B-07: a lone event/programme card should not sit alone in a multi-column grid */
+.events-grid.ev-single{grid-template-columns:minmax(0,480px);justify-content:center;}
+/* B-08: exactly four message cards balance as 2x2 on tablet/desktop (no 3+1 orphan). Scoped to count so multi-item media grids are untouched. */
+@media (min-width:53.13rem){.message-grid:has(> :nth-child(4):last-child){grid-template-columns:repeat(2,minmax(0,1fr));}}
+/* B-11: keep spotlight carousel arrows a comfortable tap size */
+.sp-prev,.sp-next{min-width:44px;min-height:44px;}
