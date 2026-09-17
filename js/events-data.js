@@ -214,25 +214,7 @@ window.MFM_EVENTS = [
     ],
     "badgeStyle": "gold"
   },
-  {
-    "date": "2026-09-16",
-    "title": "The Great North Carolina Deliverance Crusade & Church Property Dedication",
-    "theme": "A Great Deliverance Crusade",
-    "venue": "The Alliance Convention Center — 1214 Turrentine Street, Burlington, NC 27215",
-    "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
-    "host": "Pastor Ebenezer Afolabi (Area Overseer, MFM Burlington NC) · Pastor Olumide Oni (PRO, Mega Region 2)",
-    "image": "img/announcements/nc-deliverance-crusade.jpg",
-    "alt": "The Great North Carolina Deliverance Crusade & Church Property Dedication — Burlington, NC, September 16–17, 2026",
-    "anchor": "nc-deliverance-crusade",
-    "video": "https://youtu.be/OuY6DPpbhv4",
-    "link": "https://www.eventbrite.com/e/the-great-north-carolina-deliverance-crusade-with-dr-dk-olukoya-tickets-1996920415719?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
-    "dateDisplay": "September 16 – 17, 2026",
-    "description": "Come with expectation — a season of power, deliverance, healing, and breakthrough for you and your household. All are welcome; bring your family and friends.",
-    "badgeStyle": "fire",
-    "endDate": "2026-09-17",
-    "schedule": [
-      { "label": "Church Property Dedication", "shortDate": "Sep 16", "when": "Wednesday, Sep 16 · 5:00 PM", "venue": "MFM Burlington", "address": "511 James Street, Burlington, NC 27217" },
-      { "label": "The Deliverance Crusade", "shortDate": "Sep 17", "when": "Thursday, Sep 17 · 5:00 PM", "venue": "The Alliance Convention Center", "address": "1214 Turrentine Street, Burlington, NC 27215" }
+  { "label": "The Deliverance Crusade", "shortDate": "Sep 17", "when": "Thursday, Sep 17 · 5:00 PM", "venue": "The Alliance Convention Center", "address": "1214 Turrentine Street, Burlington, NC 27215" }
     ]
   },
   {
