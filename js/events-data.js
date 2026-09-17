@@ -214,9 +214,7 @@ window.MFM_EVENTS = [
     ],
     "badgeStyle": "gold"
   },
-  { "label": "The Deliverance Crusade", "shortDate": "Sep 17", "when": "Thursday, Sep 17 · 5:00 PM", "venue": "The Alliance Convention Center", "address": "1214 Turrentine Street, Burlington, NC 27215" }
-    ]
-  },
+  
   {
     "date": "2026-10-10",
     "title": "Women's Retreat — Rekindling the Altar",
