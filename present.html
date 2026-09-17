@@ -215,6 +215,17 @@ body.idle .hint{opacity:0}
 @keyframes ifFloat{0%,100%{transform:translateY(0) rotate(var(--rot))}50%{transform:translateY(-12px) rotate(var(--rot))}}
 @media (max-width:820px){.if-flier{--w:66px!important}}
 @media (max-width:560px){.intro-fliers{display:none}}
+
+/* Burlington weekly services slide (temporary) */
+.svc{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2.2vh;width:min(1080px,88vw)}
+.svc-list{display:flex;flex-direction:column;gap:1.4vh;width:100%;margin-top:1vh}
+.svc-row{display:flex;justify-content:space-between;align-items:baseline;gap:2em;padding-bottom:1.4vh;border-bottom:1px solid rgba(242,183,60,.22)}
+.svc-row:last-child{border-bottom:none;padding-bottom:0}
+.svc-name{font-family:'Fraunces',Georgia,serif;font-weight:600;color:#fff;font-size:clamp(1.35rem,2.7vw,2.3rem);line-height:1.12;text-align:left}
+.svc-when{font-family:'Inter Tight',sans-serif;font-weight:600;color:var(--gold2);font-size:clamp(1rem,1.9vw,1.55rem);white-space:nowrap;text-align:right}
+.svc-addr{margin-top:1.2vh;font-family:'Inter Tight',sans-serif;color:#e7dcf2;font-size:clamp(1rem,1.6vw,1.4rem);letter-spacing:.02em}
+.svc-addr b{color:var(--gold2);font-weight:700}
+@media(max-width:820px){.svc-row{flex-direction:column;align-items:center;gap:.25em;text-align:center}.svc-name,.svc-when{text-align:center;white-space:normal}}
 </style>
 </head>
 <body>
@@ -363,6 +374,29 @@ function introFliers(){
       </div>
       <a class="weburl no-advance" href="https://mfmmegaregion2usa.org" target="_blank" rel="noopener">mfmmegaregion2usa.org</a>
     </div></div>`;
+  stage.appendChild(el); slides.push(el);
+})();
+
+/* Burlington weekly services slide (TEMPORARY — remove when told) */
+(function(){
+  const el=document.createElement('section'); el.className='slide';
+  el.innerHTML=`
+    <div class="bg" style="background-image:url('/img/announcements/nc-deliverance-crusade.jpg')"></div>
+    <div class="scrim"></div><div class="vig"></div>
+    <img class="brandmark" src="${EMBLEM}" alt="MFM">
+    <div class="content solo">
+      <div class="svc">
+        <div class="titleline"><span class="city">Burlington, NC</span><span class="divider"></span><span class="dc">Weekly Services</span></div>
+        <div class="svc-list">
+          <div class="svc-row"><span class="svc-name">Sunday Worship Service</span><span class="svc-when">Every Sunday &middot; 9:30 AM &ndash; 12:00 PM</span></div>
+          <div class="svc-row"><span class="svc-name">Manna Water</span><span class="svc-when">Wednesdays &middot; 7:00 &ndash; 8:30 PM</span></div>
+          <div class="svc-row"><span class="svc-name">Vigil</span><span class="svc-when">3rd Friday &middot; 11:00 PM &ndash; 1:00 AM</span></div>
+          <div class="svc-row"><span class="svc-name">Command the Month</span><span class="svc-when">Last day of the month &middot; 11:30 PM &ndash; 12:30 AM</span></div>
+          <div class="svc-row"><span class="svc-name">PMCH</span><span class="svc-when">1st Saturday &middot; 9:00 AM &ndash; 12 noon</span></div>
+        </div>
+        <div class="svc-addr"><b>Address</b> &middot; 511 James Street, Burlington, NC 27217</div>
+      </div>
+    </div>`;
   stage.appendChild(el); slides.push(el);
 })();
 
