@@ -417,5 +417,21 @@ window.MFM_EVENTS = [
     "dateDisplay": "Friday, September 18, 2026",
     "description": "A midnight vigil set apart for your testimony — a night of deliverance, healing and breakthrough. Chains will break, yokes will be destroyed, testimonies will be released and destiny will be restored. Come fasting; come expecting.",
     "badgeStyle": "fire"
+  },
+  {
+    "date": "2026-09-18",
+    "endDate": "2026-09-20",
+    "title": "Weekend Deliverance",
+    "theme": "Breaking Bonds · Restoring Lives · Releasing Destinies",
+    "time": "Fri 8:00 PM · Sat 8:00 AM · Sun 8:00 AM",
+    "venue": "Rehoboth Centre — 12142 Bissonnet St, Houston, TX 77099",
+    "ministering": "Anointed Men of God",
+    "host": "MFM Rehoboth Centre",
+    "image": "img/announcements/weekend-deliverance-rehoboth.jpg",
+    "alt": "Weekend Deliverance — September 18–20, 2026, Rehoboth Centre, Houston, TX",
+    "anchor": "weekend-deliverance-rehoboth",
+    "dateDisplay": "September 18 – 20, 2026",
+    "description": "A weekend set apart for deliverance — breaking bonds, restoring lives and releasing destinies. Friday deliverance service (8 PM), Saturday deliverance services (8 AM), and Sunday deliverance & anointing service (8 AM). Come and experience the power of God to set you free — “and ye shall know the truth, and the truth shall make you free” (John 8:32).",
+    "badgeStyle": "fire"
   }
 ];

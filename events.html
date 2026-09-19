@@ -143,9 +143,9 @@ document.addEventListener('DOMContentLoaded', function(){
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
   // Build the list: keep only happening-now / upcoming, soonest first (Dawn rule)
-  var items = E.map(function(e,i){ return {e:e,i:i,s:code(e),d:new Date(e.date+'T00:00:00').getTime()}; })
+  var items = E.map(function(e,i){ var st=code(e); return {e:e,i:i,s:st,d:new Date(e.date+'T00:00:00').getTime(),k:(st===0?new Date((e.endDate||e.date)+'T23:59:59').getTime():new Date(e.date+'T00:00:00').getTime())}; })
                .filter(function(x){ return x.s!==2; })
-               .sort(function(a,b){ return a.s!==b.s ? a.s-b.s : a.d-b.d; });
+               .sort(function(a,b){ return a.k-b.k; });
 
   // ---- render cards ----
   var SVG_ARROW='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
