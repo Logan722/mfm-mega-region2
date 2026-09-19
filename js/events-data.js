@@ -36,6 +36,7 @@ window.MFM_EVENTS = [
     ],
     "alt": "MFM 70-Day Prayer and Fasting 2026 — Prayer Battle 7, August 3 to October 11, 2026",
     "anchor": "prayer-battle-7",
+    "pinned": true,
     "dateDisplay": "August 3 – October 11, 2026",
     "description": "MFM's annual 70-Day Prayer & Fasting Programme returns for 2026, tagged \"Prayer Battle 7.\" From August 3 to October 11, it features daily scripture reading, confessions, warfare prayers, and targeted prayer points for the church and the nation, with praise and worship. Daily fast-breaking times (local): Monday & Friday — 5 PM; Tuesday, Wednesday, Thursday, Saturday & Sunday — 2 PM. The programme runs in 7 sections of 10 days each (70 days total), with a compulsory sectional vigil at the end of every section, a one-year Bible reading plan, and a closing Thanksgiving service in October. The \"Prayer Battle\" booklet is available in hard copy at all MFM regions, branches, and bookshops, and as a digital download.",
     "features": [
