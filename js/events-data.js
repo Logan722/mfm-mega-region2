@@ -36,7 +36,6 @@ window.MFM_EVENTS = [
     ],
     "alt": "MFM 70-Day Prayer and Fasting 2026 — Prayer Battle 7, August 3 to October 11, 2026",
     "anchor": "prayer-battle-7",
-    "pinned": true,
     "dateDisplay": "August 3 – October 11, 2026",
     "description": "MFM's annual 70-Day Prayer & Fasting Programme returns for 2026, tagged \"Prayer Battle 7.\" From August 3 to October 11, it features daily scripture reading, confessions, warfare prayers, and targeted prayer points for the church and the nation, with praise and worship. Daily fast-breaking times (local): Monday & Friday — 5 PM; Tuesday, Wednesday, Thursday, Saturday & Sunday — 2 PM. The programme runs in 7 sections of 10 days each (70 days total), with a compulsory sectional vigil at the end of every section, a one-year Bible reading plan, and a closing Thanksgiving service in October. The \"Prayer Battle\" booklet is available in hard copy at all MFM regions, branches, and bookshops, and as a digital download.",
     "features": [
@@ -234,27 +233,7 @@ window.MFM_EVENTS = [
     "badgeStyle": "gold",
     "ministry": "women"
   },
-  {
-    "date": "2026-09-19",
-    "title": "The Great Florida Deliverance Crusade & Church Property Dedication",
-    "theme": "Expect. Receive. Testify — power, deliverance, healing & breakthrough",
-    "venue": "Yuengling Center (USF) — 12499 USF Bull Run Drive, Tampa, FL 33620",
-    "ministering": "Dr. D.K. Olukoya — General Overseer, MFM Worldwide",
-    "host": "Pastor Kehinde Olajide (ASRO, MFM Florida) · Pastor Olumide Oni (PRO, Mega Region 2)",
-    "image": "img/announcements/florida-deliverance-crusade.jpg",
-    "alt": "The Great Florida Deliverance Crusade & Church Property Dedication — Tampa, FL, September 19–20, 2026",
-    "anchor": "florida-deliverance-crusade",
-    "video": "https://www.youtube.com/watch?v=ZbDw9eUwOKs",
-    "link": "https://www.eventbrite.com/e/the-great-florida-deliverance-crusade-with-dr-dk-olukoya-tickets-1996922802859?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=wsa&aff=ebdsshwebmobile",
-    "dateDisplay": "September 19 – 20, 2026",
-    "description": "Come with expectation — the tangible power of God for deliverance, healing, and breakthrough over your life and household. All are welcome; bring your family and friends.",
-    "badgeStyle": "fire",
-    "endDate": "2026-09-20",
-    "schedule": [
-      { "label": "Church Property Dedication", "shortDate": "Sep 19", "when": "Saturday, Sep 19 · 5:00 PM", "venue": "MFM Tampa", "address": "4618 North Florida Avenue, Tampa, FL 33603" },
-      { "label": "The Deliverance Crusade", "shortDate": "Sep 20", "when": "Sunday, Sep 20 · 4:00 PM", "venue": "Yuengling Center (USF)", "address": "12499 USF Bull Run Drive, Tampa, FL 33620" }
-    ]
-  },
+  
   {
     "date": "2026-10-10",
     "title": "Gen218 Regional Prayer Conference",
@@ -417,22 +396,6 @@ window.MFM_EVENTS = [
     "anchor": "duluth-midnight-vigil",
     "dateDisplay": "Friday, September 18, 2026",
     "description": "A midnight vigil set apart for your testimony — a night of deliverance, healing and breakthrough. Chains will break, yokes will be destroyed, testimonies will be released and destiny will be restored. Come fasting; come expecting.",
-    "badgeStyle": "fire"
-  },
-  {
-    "date": "2026-09-18",
-    "endDate": "2026-09-20",
-    "title": "Weekend Deliverance",
-    "theme": "Breaking Bonds · Restoring Lives · Releasing Destinies",
-    "time": "Fri 8:00 PM · Sat 8:00 AM · Sun 8:00 AM",
-    "venue": "Rehoboth Centre — 12142 Bissonnet St, Houston, TX 77099",
-    "ministering": "Anointed Men of God",
-    "host": "MFM Rehoboth Centre",
-    "image": "img/announcements/weekend-deliverance-rehoboth.jpg",
-    "alt": "Weekend Deliverance — September 18–20, 2026, Rehoboth Centre, Houston, TX",
-    "anchor": "weekend-deliverance-rehoboth",
-    "dateDisplay": "September 18 – 20, 2026",
-    "description": "A weekend set apart for deliverance — breaking bonds, restoring lives and releasing destinies. Friday deliverance service (8 PM), Saturday deliverance services (8 AM), and Sunday deliverance & anointing service (8 AM). Come and experience the power of God to set you free — “and ye shall know the truth, and the truth shall make you free” (John 8:32).",
     "badgeStyle": "fire"
   }
 ];
