@@ -1,6 +1,23 @@
 /*! MFM Mega Region 2 — canonical events data. Single source of truth for events.html, index.html, and the department pages (gen218.html, women.html). Tag departmental events with "ministry": "women" | "gen218". Region-wide events have no ministry. Keep anchors unique. */
 window.MFM_EVENTS = [
   {
+    "date": "2026-09-27",
+    "title": "Family Deliverance Service",
+    "theme": "\"My Stubborn Pursuers Must Die\"",
+    "time": "9:00 AM ET",
+    "venue": "MFM Revival Center, Duluth Branch \u2014 3480 Howell St NW, Duluth, GA 30096",
+    "ministering": "Anointed Men of God",
+    "host": "Pastor Abel Michael (Asst. Regional Overseer)",
+    "image": "img/announcements/duluth-stubborn-pursuers.jpg",
+    "alt": "MFM Revival Center Duluth Family Deliverance Service \u2014 My Stubborn Pursuers Must Die, Sunday September 27, 2026, 9 AM",
+    "anchor": "duluth-stubborn-pursuers",
+    "dateDisplay": "Sunday, September 27, 2026",
+    "description": "MFM Revival Center Duluth's Family Deliverance Service \u2014 \"My Stubborn Pursuers Must Die.\" Come and break every evil follower of your family, end generational pursuers, destroy unwanted monitoring spirits, and receive freedom for your children, peace and restoration.",
+    "scripture": "No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn.|Isaiah 54:17",
+    "badgeStyle": "fire"
+  },
+
+  {
     "date": "2026-08-23",
     "title": "Third Quarter Deliverance Service",
     "theme": "\"Breaking the Spirit of Spoiler\"",
