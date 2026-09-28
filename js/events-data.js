@@ -283,6 +283,7 @@ window.MFM_EVENTS = [
     "host": "Pastor Lovena Okeke (Host)",
     "image": "img/announcements/nashville-deliverance-crusade.jpg",
     "alt": "The Great Nashville Tennessee Deliverance Crusade — November 19, 2026, ministering Dr. D.K. Olukoya",
+    "link": "https://www.eventbrite.com/e/the-great-tennessee-deliverance-crusade-with-dr-dk-olukoya-tickets-1999884722039",
     "anchor": "nashville-deliverance-crusade",
     "dateDisplay": "November 19, 2026",
     "description": "A great deliverance crusade in Nashville, Tennessee with the General Overseer, Dr. D.K. Olukoya — a night of fire, deliverance and breakthrough. Theme: Dry Bones Shall Live Again (Ezekiel 37:4). Venue: The Forum, Goodlettsville, TN.",
