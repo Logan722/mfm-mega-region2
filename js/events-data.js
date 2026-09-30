@@ -417,3 +417,103 @@ window.MFM_EVENTS = [
     "badgeStyle": "fire"
   }
 ];
+
+
+/* ============================================================================
+   RECURRING WEEKLY PROGRAMS
+   Resolved to their next rolling occurrence so they always appear (with the
+   correct next date + a live countdown) on events.html AND the index.html home
+   slideshow. Single source of truth: both pages read this file.
+   Sources: WEBSITE-REFERENCE.md (HDH, Open Heaven Encounter) + prior live site
+   data recovered for the Weekend Deliverance session schedule + Psalm 34:17.
+   ========================================================================== */
+(function () {
+  var A = window.MFM_EVENTS; if (!A || !A.push) return;
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var MON = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function ymd(d){ return d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2); }
+  function nextDow(dow){ var d = new Date(today); d.setDate(d.getDate() + ((dow - d.getDay() + 7) % 7)); return d; }
+  function firstSatDate(y, m){ var d = new Date(y, m, 1); return 1 + ((6 - d.getDay() + 7) % 7); }
+  function rangeLabel(a, b){
+    if (a.getMonth() === b.getMonth()) return MON[a.getMonth()] + ' ' + a.getDate() + '–' + b.getDate() + ', ' + b.getFullYear();
+    return MON[a.getMonth()] + ' ' + a.getDate() + ' – ' + MON[b.getMonth()] + ' ' + b.getDate() + ', ' + b.getFullYear();
+  }
+
+  /* 1) Healing & Deliverance Hour -- every Tuesday, online */
+  var tue = nextDow(2);
+  A.push({
+    date: ymd(tue), endDate: ymd(tue),
+    title: 'Healing & Deliverance Hour',
+    theme: 'Weekly online prayer line · Healing · Breakthrough',
+    time: '7:00 PM CT / 8:00 PM ET',
+    venue: 'Online — MFM Mega Region 2 YouTube Live',
+    dateDisplay: 'Every Tuesday',
+    image: 'img/healing-deliverance-hour.jpg',
+    alt: 'Healing & Deliverance Hour — every Tuesday, 7:00 PM CT, online prayer line',
+    anchor: 'healing-deliverance-hour',
+    host: 'MFM Mega Region 2 USA',
+    description: 'Our weekly online prayer line — a focused hour of healing and deliverance ministry. Join us live each Tuesday for prayer against affliction, for breakthrough, and for the demonstration of God’s delivering power.',
+    recurring: true
+  });
+
+  /* 2) Open Heaven Encounter -- every Thursday, international (multi-timezone) */
+  var thu = nextDow(4);
+  A.push({
+    date: ymd(thu), endDate: ymd(thu),
+    title: 'Open Heaven Encounter',
+    theme: 'A weekly international prayer service',
+    time: '6:00 PM CT (USA)',
+    venue: 'Online — MFM Mega Region 2 YouTube Live',
+    dateDisplay: 'Every Thursday',
+    image: 'img/open-heaven-encounter.jpg',
+    alt: 'Open Heaven Encounter — every Thursday, international prayer service',
+    anchor: 'open-heaven-encounter',
+    host: 'MFM Mega Region 2 USA',
+    description: 'A weekly international prayer service that draws the region together — across the USA, Ghana, the UK, Nigeria and Canada — for an encounter under an open heaven.',
+    schedule: [
+      { label: 'USA (Central)', when: '6:00 PM CST' },
+      { label: 'Ghana / United Kingdom', when: '12:00 AM GMT' },
+      { label: 'Nigeria', when: '1:00 AM WAT' },
+      { label: 'Canada (Eastern)', when: '7:00 PM EST' }
+    ],
+    recurring: true
+  });
+
+  /* 3) Weekend Deliverance at Prayer City -- every weekend EXCEPT the first of
+        the month (first Saturday = PMCH). Rolls to the next qualifying Fri-Sun. */
+  (function () {
+    var d = new Date(today);
+    d.setDate(d.getDate() - ((d.getDay() - 5 + 7) % 7)); /* most recent Friday (<= today) */
+    for (var k = 0; k < 14; k++) {
+      var sat = new Date(d); sat.setDate(d.getDate() + 1);
+      var sun = new Date(d); sun.setDate(d.getDate() + 2);
+      var isFirstWeekend = (sat.getDate() === firstSatDate(sat.getFullYear(), sat.getMonth()));
+      if (sun >= today && !isFirstWeekend) {
+        A.push({
+          date: ymd(d), endDate: ymd(sun),
+          title: 'Weekend Deliverance',
+          theme: 'Three days of deliverance at Prayer City',
+          time: 'Fri 7:00 PM · Sat 9:00 AM & 8:00 PM · Sun 9:00 AM CT',
+          venue: 'MFM USA Prayer City — 10000 Kleckley Dr, Houston, TX 77075',
+          dateDisplay: 'Fri–Sun · ' + rangeLabel(d, sun),
+          image: 'img/announcements/weekend-deliverance.jpg',
+          alt: 'Weekend Deliverance at Prayer City — Friday through Sunday',
+          anchor: 'weekend-deliverance',
+          host: 'MFM USA Prayer City',
+          description: 'Three days of focused deliverance ministry at MFM USA Prayer City — sustained spiritual warfare, the breaking of yokes, and the demonstration of God’s delivering power. Held every weekend except the first weekend of the month, when Power Must Change Hands takes place.',
+          scripture: 'The righteous cry out, and the Lord hears them; he delivers them from all their troubles.|Psalm 34:17',
+          schedule: [
+            { label: 'Friday', when: '7:00 PM – 12:00 AM CT' },
+            { label: 'Saturday', when: '9:00 AM – 2:00 PM CT' },
+            { label: 'Saturday', when: '8:00 PM – 12:00 AM CT' },
+            { label: 'Sunday', when: '9:00 AM – 2:00 PM CT' }
+          ],
+          recurring: true
+        });
+        break;
+      }
+      d.setDate(d.getDate() + 7);
+    }
+  })();
+})();

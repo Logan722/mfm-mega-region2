@@ -198,6 +198,10 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('evtTheme').textContent=e.theme||'';
     document.getElementById('evtMeta').innerHTML='<span>'+esc(e.dateDisplay||e.date||'')+'</span><span>'+esc(e.time||'')+'</span><span>'+esc(e.venue||'')+'</span>';
     document.getElementById('evtDesc').textContent=e.description||'';
+    (function(){var dsc=document.getElementById('evtDesc');var sc=document.getElementById('evtScripture');
+     if(!sc){sc=document.createElement('blockquote');sc.id='evtScripture';sc.style.cssText='margin:20px 0;padding:10px 0 10px 18px;border-left:3px solid var(--gold);font-family:Fraunces,Georgia,serif;font-style:italic;font-size:1.02rem;line-height:1.6;color:var(--ink)';if(dsc&&dsc.parentNode)dsc.parentNode.insertBefore(sc,dsc.nextSibling);}
+     if(e.scripture){var p=String(e.scripture).split('|');sc.innerHTML='“'+esc(p[0])+'”'+(p[1]?'<cite style="display:block;font-style:normal;font-size:.82rem;letter-spacing:.06em;color:var(--gold-dark);margin-top:8px;font-family:Inter Tight,system-ui,sans-serif">— '+esc(p[1])+'</cite>':'');sc.hidden=false;}else{sc.innerHTML='';sc.hidden=true;}
+    })();
     document.getElementById('evtHost').textContent=[e.ministering,e.host].filter(Boolean).join(' · ');
     (function(){var host=document.getElementById('evtHost');var mp=(host&&host.closest('.event-modal-minister'))||host;var sch=document.getElementById('evtSchedule');
      if(!sch){sch=document.createElement('div');sch.id='evtSchedule';sch.className='event-modal-sessions';sch.style.cssText='display:grid;gap:2px;margin:16px 0';if(mp&&mp.parentNode)mp.parentNode.insertBefore(sch,mp.nextSibling);}
