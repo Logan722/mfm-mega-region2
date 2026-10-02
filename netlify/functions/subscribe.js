@@ -159,51 +159,83 @@ exports.handler = async (event) => {
 function buildWelcomeEmail(to, firstName) {
   const name = firstName || 'friend';
   const html = `<!DOCTYPE html>
-<html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
+<html>
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
 <body style="margin:0;padding:0;background:#0f1a30;font-family:-apple-system,'Inter Tight',Helvetica,Arial,sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f1a30;"><tr><td align="center">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;">
   <tr><td style="background:#c9952c;height:4px;line-height:4px;font-size:0;">&nbsp;</td></tr>
+
+  <!-- HEADER -->
   <tr><td style="background:#142240;padding:36px 40px 24px;text-align:center;">
     <img src="https://www.mfmmegaregion2usa.org/img/logo.png" alt="MFM Mega Region 2 USA" width="88" height="88" style="display:block;margin:0 auto 14px;width:88px;height:88px;" />
     <div style="font-family:Georgia,serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#c9952c;">MFM Mega Region 2 &middot; USA</div>
   </td></tr>
+
   <tr><td style="background:#142240;padding:0 40px 44px;text-align:center;">
     <h1 style="margin:0 0 16px;font-family:Georgia,serif;font-weight:400;font-size:30px;line-height:1.15;color:#f0e6d0;">Welcome to the family.</h1>
     <p style="margin:0;font-family:'Inter Tight',sans-serif;font-size:15px;line-height:1.6;color:#8899b8;">Grace and peace to you, ${escapeHtml(name)}.</p>
   </td></tr>
+
+  <!-- BODY -->
   <tr><td style="background:#ffffff;padding:44px 40px 32px;">
-    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#5a6270;">You've just joined Mountain of Fire and Miracles Ministries, Mega Region 2, in the USA. We're glad you did.</p>
-    <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9952c;">Here's what to expect</p>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#5a6270;">You&rsquo;ve just joined Mountain of Fire and Miracles Ministries, Mega Region 2, in the USA. We&rsquo;re glad you did.</p>
+
+    <p style="margin:0 0 8px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9952c;">Here&rsquo;s what to expect</p>
     <ul style="margin:0 0 24px;padding-left:20px;font-size:15px;line-height:1.7;color:#5a6270;">
-      <li>One newsletter each month — sermons, prayer points, testimonies, the next crusade near you.</li>
+      <li>About twice a month &mdash; sermons, prayer points, testimonies, the next crusade near you.</li>
       <li>One-off notes only when something big is coming.</li>
       <li>No spam. No shared lists. Ever.</li>
     </ul>
+
+    <!-- SCRIPTURE / PRAYER -->
     <div style="background:#f8f6f1;border-left:3px solid #c9952c;padding:16px 20px;margin:0 0 24px;">
-      <p style="margin:0 0 8px;font-family:Georgia,serif;font-style:italic;font-size:15px;line-height:1.55;color:#8b6f33;">"But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions."</p>
+      <p style="margin:0 0 8px;font-family:Georgia,serif;font-style:italic;font-size:15px;line-height:1.55;color:#8b6f33;">&ldquo;But upon mount Zion shall be deliverance, and there shall be holiness; and the house of Jacob shall possess their possessions.&rdquo;</p>
       <p style="margin:0;font-size:13px;color:#8a8f98;">&mdash; Obadiah 1:17</p>
     </div>
+
+    <!-- INBOX TIP -->
     <div style="background:#f8f6f1;border:1px solid #e8e4da;border-radius:6px;padding:14px 18px;margin:0 0 24px;">
       <p style="margin:0;font-size:13px;line-height:1.6;color:#5a6270;"><strong style="color:#142240;">One quick favor:</strong> add <strong style="color:#142240;">newsletter@mfmmegaregion2usa.org</strong> to your contacts, and drag this email to your Primary tab. That way future issues land in your inbox instead of Promotions or Spam.</p>
     </div>
-    <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9952c;">Three things you can do next</p>
-    <p style="margin:0 0 10px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">1.</strong> <a href="https://www.mfmmegaregion2usa.org/branches.html" style="color:#c9952c;text-decoration:underline;">Find the branch nearest you</a>.</p>
-    <p style="margin:0 0 10px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">2.</strong> Watch this week's live prayer &mdash; <a href="https://youtube.com/@mfmmegaregion2usa" style="color:#c9952c;text-decoration:underline;">Healing &amp; Deliverance Hour, Tuesdays 7 PM CT / 8 PM ET</a>.</p>
-    <p style="margin:0 0 24px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">3.</strong> Save <strong>newsletter@mfmmegaregion2usa.org</strong> to your contacts so future issues land in your inbox, not Promotions.</p>
-    <p style="margin:0;font-size:15px;line-height:1.7;color:#5a6270;">We're praying with you and for you.</p>
+
+    <!-- TWO NEXT ACTIONS (was 3; branch link removed) -->
+    <p style="margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9952c;">Two things you can do next</p>
+    <p style="margin:0 0 10px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">1.</strong> Watch this week&rsquo;s live prayer &mdash; <a href="https://youtube.com/@mfmmegaregion2usa" style="color:#c9952c;text-decoration:underline;">Healing &amp; Deliverance Hour, Tuesdays 7 PM CT / 8 PM ET</a>.</p>
+    <p style="margin:0 0 24px;font-size:15px;line-height:1.7;color:#5a6270;"><strong style="color:#142240;">2.</strong> Save <strong>newsletter@mfmmegaregion2usa.org</strong> to your contacts so future issues land in your inbox, not Promotions.</p>
+
+    <p style="margin:0;font-size:15px;line-height:1.7;color:#5a6270;">We&rsquo;re praying with you and for you.</p>
     <p style="margin:20px 0 0;font-family:Georgia,serif;font-size:15px;color:#142240;"><strong>Pastor Olumide Oni</strong><br/>
     <span style="font-family:'Inter Tight',sans-serif;font-size:13px;color:#8a8f98;">Principal Regional Overseer &middot; Mega Region 2 USA</span></p>
   </td></tr>
-  <tr><td style="background:#0f1a30;padding:24px 40px;text-align:center;">
-    <p style="margin:0;font-size:12px;line-height:1.6;color:#6a7a96;">MFM USA Prayer City &middot; 10000 Kleckley Dr &middot; Houston, TX 77075<br/>
-    <a href="https://www.mfmmegaregion2usa.org" style="color:#c9952c;text-decoration:none;">mfmmegaregion2usa.org</a> &middot;
-    <a href="https://www.mfmmegaregion2usa.org/privacy.html" style="color:#8899b8;text-decoration:underline;">Privacy Policy</a></p>
-    <p style="margin:14px 0 0;font-family:Georgia,serif;font-style:italic;font-size:12px;color:#3a4a68;">"Is not my word like as a fire?" &mdash; Jeremiah 23:29</p>
+
+  <!-- SOCIAL ICONS (NEW — 4 PNG icons, Royal Flame gold-outlined) -->
+  <tr><td style="background:#142240;padding:28px 40px 20px;text-align:center;">
+    <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9952c;font-weight:600;margin-bottom:14px;">Follow us</div>
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+      <tr>
+        <td style="padding:0 6px;"><a href="https://www.whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G" style="display:inline-block;text-decoration:none;" title="WhatsApp Channel"><img src="https://www.mfmmegaregion2usa.org/img/social/whatsapp.png" alt="WhatsApp" width="36" height="36" style="display:block;border:0;outline:none;text-decoration:none;" /></a></td>
+        <td style="padding:0 6px;"><a href="https://youtube.com/@mfmmegaregion2usa" style="display:inline-block;text-decoration:none;" title="YouTube"><img src="https://www.mfmmegaregion2usa.org/img/social/youtube.png" alt="YouTube" width="36" height="36" style="display:block;border:0;outline:none;text-decoration:none;" /></a></td>
+        <td style="padding:0 6px;"><a href="https://www.facebook.com/profile.php?id=61556716678081" style="display:inline-block;text-decoration:none;" title="Facebook"><img src="https://www.mfmmegaregion2usa.org/img/social/facebook.png" alt="Facebook" width="36" height="36" style="display:block;border:0;outline:none;text-decoration:none;" /></a></td>
+        <td style="padding:0 6px;"><a href="https://instagram.com/mfmmegaregion2usa" style="display:inline-block;text-decoration:none;" title="Instagram"><img src="https://www.mfmmegaregion2usa.org/img/social/instagram.png" alt="Instagram" width="36" height="36" style="display:block;border:0;outline:none;text-decoration:none;" /></a></td>
+      </tr>
+    </table>
   </td></tr>
+
+  <!-- FOOTER (site URL + privacy removed per Dawn; unsubscribe added) -->
+  <tr><td style="background:#0f1a30;padding:24px 40px 32px;text-align:center;">
+    <p style="margin:0;font-size:12px;line-height:1.6;color:#6a7a96;">MFM USA Prayer City &middot; 10000 Kleckley Dr &middot; Houston, TX 77075</p>
+    <p style="margin:14px 0 0;font-size:11px;line-height:1.55;color:#6a7a96;">
+      Didn&rsquo;t sign up? <a href="mailto:newsletter@mfmmegaregion2usa.org?subject=Unsubscribe%20request" style="color:#c9952c;text-decoration:underline;">Unsubscribe</a> &mdash; one click, no questions. &middot;
+      <a href="https://www.mfmmegaregion2usa.org/privacy.html" style="color:#6a7a96;text-decoration:underline;">Privacy Policy</a>
+    </p>
+    <p style="margin:18px 0 0;font-family:Georgia,serif;font-style:italic;font-size:12px;color:#3a4a68;">&ldquo;Is not my word like as a fire?&rdquo; &mdash; Jeremiah 23:29</p>
+  </td></tr>
+
 </table>
 </td></tr></table>
-</body></html>`;
+</body></html>
+`;
 
   const text = `Welcome to the MFM Mega Region 2 family.
 
