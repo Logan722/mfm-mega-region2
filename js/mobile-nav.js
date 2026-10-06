@@ -125,6 +125,7 @@
 /* Unify the Media & Events dropdown on every page (single source) */
 (function(){try{
  var items=[['/media','Media','Sermons, worship & teachings',false],
+  ['/gallery','Gallery','Photos from across the region',false],
   ['/events','Events','Weekly programs & special services',false],
   ['/watch','Watch Live','Join our services online',false],
   ['https://www.mountainoffire.org/resources/prayer-points','Prayer Points','Daily prayer points from MFM',true]];
@@ -137,6 +138,9 @@
     +'<div class="nav-dd-label">'+it[1]+'<span>'+it[2]+'</span></div></a>';}
   menu.innerHTML=html;}
 }catch(e){}})();
+
+/* Add Gallery to the mobile drawer Gather & Watch group */
+(function(){try{var g=document.getElementById('mfm-gather-menu');if(g&&!/\/gallery/.test(g.innerHTML)){var a=document.createElement('a');a.href='/gallery';a.setAttribute('data-mfm-menu-link','');a.innerHTML='<span><strong>Gallery</strong><small>Moments from across the region</small></span><span aria-hidden="true">&rarr;</span>';g.appendChild(a);}}catch(e){}})();
 
 /* Floating social hub — previous-build design (self-injecting) */
 (function(){
