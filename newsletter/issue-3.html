@@ -66,15 +66,40 @@
   }
   .mag-archive-note strong{color:var(--navy);}
 
-  /* EMAIL CONTENT WRAPPER — contain the email layout, kill the dark page bg bleed */
-  .mag-email-wrap{background:var(--cream); padding:40px 0 72px;}
+  /* EMAIL CONTENT WRAPPER — contain the email layout + make it fluid on all screens */
+  .mag-email-wrap{background:var(--cream); padding:40px 20px 72px; overflow-x:hidden;}
   .mag-email-wrap > table{background:transparent !important;}
   .mag-email-wrap > table > tbody > tr > td{background:transparent !important;}
+  /* FORCE all nested tables/cells inside the email to be fluid (overrides inline width=600, padding, etc.) */
+  .mag-email-wrap table{
+    width:100% !important; max-width:600px !important;
+    margin-left:auto !important; margin-right:auto !important;
+    box-sizing:border-box;
+  }
+  .mag-email-wrap td{
+    max-width:100% !important;
+    box-sizing:border-box;
+    word-wrap:break-word; overflow-wrap:break-word;
+  }
+  .mag-email-wrap img{max-width:100% !important; height:auto !important;}
   /* The 600px email container becomes a card on the page */
   .mag-email-wrap table[width="600"],
   .mag-email-wrap table[style*="max-width:600px"]{
     box-shadow:0 20px 60px rgba(20,34,64,.14) !important;
     border-radius:4px; overflow:hidden;
+  }
+  /* Mobile: shrink the heavy 40px side padding inside email cells */
+  @media (max-width:640px){
+    .mag-email-wrap{padding:24px 10px 56px;}
+    .mag-email-wrap td[style*="padding:36px 40px"],
+    .mag-email-wrap td[style*="padding:28px 40px"],
+    .mag-email-wrap td[style*="padding:24px 40px"],
+    .mag-email-wrap td[style*="padding:44px 40px"],
+    .mag-email-wrap td[style*="padding:0 40px"]{
+      padding-left:20px !important; padding-right:20px !important;
+    }
+    .mag-email-wrap h1{font-size:26px !important; line-height:1.2 !important;}
+    .mag-email-wrap h2{font-size:22px !important;}
   }
 
   /* PREV/NEXT NAV STRIP */
