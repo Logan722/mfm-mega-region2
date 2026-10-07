@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Subscribe to the MFM Newsletter — MFM Mega Region 2 USA</title>
+<meta name="description" content="Join the MFM Mega Region 2 USA newsletter. Twice-monthly sermons, prayer points, testimonies, and upcoming crusade updates."/>
+<link rel="icon" href="/img/favicon.ico"/>
+<link rel="stylesheet" href="/css/site.css"/>
+<style>
+  :root{
+    --navy:#142240; --navy-deep:#0f1a30; --gold:#c9952c; --fire:#e85d26;
+    --cream:#f8f6f1; --body:#5a6270; --muted:#8a8f98;
+  }
+  body{margin:0;font-family:'Inter Tight','Inter',-apple-system,Helvetica,Arial,sans-serif;color:var(--body);background:#fff;line-height:1.6;}
+  .sub-hero{background:var(--navy);color:#f0e6d0;padding:72px 20px 56px;text-align:center;position:relative;overflow:hidden;}
+  .sub-hero::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:120%;height:100%;
+    background:radial-gradient(ellipse at top,rgba(201,149,44,.12),transparent 60%);pointer-events:none;}
+  .sub-hero-inner{position:relative;max-width:620px;margin:0 auto;}
+  .sub-eyebrow{font-family:Georgia,'Fraunces',serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .sub-hero h1{font-family:Georgia,'Fraunces',serif;font-weight:400;font-size:40px;line-height:1.15;margin:0 0 18px;color:#f0e6d0;}
+  .sub-hero p.lede{font-size:17px;line-height:1.65;color:#b8c3d9;margin:0;max-width:520px;margin-left:auto;margin-right:auto;}
+  .sub-form-wrap{max-width:520px;margin:0 auto;padding:48px 20px 24px;}
+  .sub-card{background:var(--cream);border:1px solid #e8e4da;border-top:4px solid var(--gold);padding:36px 32px;border-radius:4px;}
+  .sub-form label{display:block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin:0 0 8px;}
+  .sub-form input[type=email],.sub-form input[type=text]{
+    width:100%;box-sizing:border-box;padding:14px 16px;border:1px solid #cfc9b8;border-radius:3px;
+    font-size:15px;font-family:inherit;background:#fff;color:var(--navy);margin-bottom:18px;
+  }
+  .sub-form input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,149,44,.15);}
+  .sub-form button{width:100%;padding:16px;background:var(--gold);color:#fff;border:0;border-radius:3px;
+    font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .15s;}
+  .sub-form button:hover{background:#b48525;}
+  .sub-form button:disabled{opacity:.6;cursor:wait;}
+  .sub-promise{display:flex;align-items:flex-start;gap:10px;padding:14px 0 0;font-size:13px;color:var(--muted);line-height:1.55;}
+  .sub-promise svg{flex-shrink:0;margin-top:2px;}
+  .sub-what{max-width:620px;margin:0 auto;padding:16px 20px 72px;}
+  .sub-what h2{font-family:Georgia,'Fraunces',serif;font-weight:400;font-size:22px;color:var(--navy);margin:40px 0 20px;text-align:center;}
+  .sub-what ul{list-style:none;padding:0;margin:0;}
+  .sub-what li{padding:12px 0 12px 32px;position:relative;border-bottom:1px solid #eee;font-size:15px;color:var(--body);}
+  .sub-what li:last-child{border-bottom:0;}
+  .sub-what li::before{content:"";position:absolute;left:0;top:17px;width:14px;height:14px;border:2px solid var(--gold);border-radius:50%;background:#fff;}
+  .sub-what li::after{content:"";position:absolute;left:4px;top:21px;width:6px;height:6px;background:var(--fire);border-radius:50%;}
+  .sub-scripture{text-align:center;max-width:580px;margin:48px auto 0;padding:28px 20px;border-top:1px solid #eee;border-bottom:1px solid #eee;}
+  .sub-scripture p{font-family:Georgia,'Fraunces',serif;font-style:italic;font-size:17px;color:#8b6f33;margin:0 0 8px;line-height:1.5;}
+  .sub-scripture cite{font-style:normal;font-size:13px;color:var(--muted);letter-spacing:.08em;}
+  .sub-msg{padding:16px;border-radius:3px;margin-bottom:20px;font-size:14px;}
+  .sub-msg.success{background:#eaf5e9;color:#2d5f32;border:1px solid #b8d9b8;}
+  .sub-msg.error{background:#fbe9e9;color:#8c2a2a;border:1px solid #e5b4b4;}
+  .sub-msg.hidden{display:none;}
+  @media (max-width:560px){
+    .sub-hero{padding:56px 20px 44px;}
+    .sub-hero h1{font-size:30px;}
+    .sub-card{padding:28px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" data-nav></header>
+
+<main>
+  <section class="sub-hero">
+    <div class="sub-hero-inner">
+      <div class="sub-eyebrow">MFM Mega Region 2 &middot; USA</div>
+      <h1>The fire falls. The chains break. Don't miss what's next.</h1>
+      <p class="lede">Join the newsletter. Sermons that cut, prayer points that work, testimonies from the altar, and the next crusade near you &mdash; delivered to your inbox about twice a month.</p>
+    </div>
+  </section>
+
+  <div class="sub-form-wrap">
+    <div class="sub-card">
+      <div id="sub-msg" class="sub-msg hidden"></div>
+      <form id="sub-form" class="sub-form" novalidate>
+        <label for="sub-name">First name</label>
+        <input type="text" id="sub-name" name="firstName" autocomplete="given-name" placeholder="What should we call you?" />
+
+        <label for="sub-email">Email address</label>
+        <input type="email" id="sub-email" name="email" autocomplete="email" required placeholder="you@example.com" />
+
+        <button type="submit" id="sub-submit">Subscribe to the Newsletter</button>
+
+        <div class="sub-promise">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9952c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>We never sell, share, or trade your email. One-click unsubscribe in every issue.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <section class="sub-what">
+    <h2>What you'll receive</h2>
+    <ul>
+      <li>About twice a month &mdash; sermons, prayer points, testimonies, upcoming crusades.</li>
+      <li>One-off notes when a Mega Crusade with Dr. D.K. Olukoya is coming.</li>
+      <li>Nothing else. No spam. No shared lists. Ever.</li>
+    </ul>
+
+    <div class="sub-scripture">
+      <p>&ldquo;Is not my word like as a fire? saith the LORD; and like a hammer that breaketh the rock in pieces?&rdquo;</p>
+      <cite>&mdash; Jeremiah 23:29</cite>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="/js/nav.js" defer></script>
+<script>
+(function(){
+  var form = document.getElementById('sub-form');
+  var msg  = document.getElementById('sub-msg');
+  var btn  = document.getElementById('sub-submit');
+  if (!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.className = 'sub-msg hidden';
+    var email = document.getElementById('sub-email').value.trim();
+    var fn    = document.getElementById('sub-name').value.trim();
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      msg.textContent = 'Please enter a valid email address.';
+      msg.className = 'sub-msg error';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Subscribing...';
+    fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email: email, firstName: fn, source: 'subscribe-page' })
+    })
+    .then(function(r){ return r.json().then(function(d){ return {status: r.status, body: d}; }); })
+    .then(function(res){
+      if (res.status >= 200 && res.status < 300) {
+        msg.textContent = 'Welcome. Check your inbox for a welcome note from newsletter@mfmmegaregion2usa.org.';
+        msg.className = 'sub-msg success';
+        form.reset();
+      } else {
+        msg.textContent = (res.body && res.body.error) ? res.body.error : 'Something went wrong. Please try again.';
+        msg.className = 'sub-msg error';
+      }
+    })
+    .catch(function(){
+      msg.textContent = 'Network error. Please check your connection and try again.';
+      msg.className = 'sub-msg error';
+    })
+    .finally(function(){
+      btn.disabled = false;
+      btn.textContent = 'Subscribe to the Newsletter';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
