@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Newsletter &mdash; MFM Mega Region 2 USA</title>
+<meta name="description" content="The MFM Mega Region 2 USA newsletter &mdash; sermons, prayer points, testimonies, and the next crusade near you. Read the latest issue and browse the archive."/>
+<link rel="canonical" href="https://www.mfmmegaregion2usa.org/newsletter"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="MFM Mega Region 2 USA"/>
+<meta property="og:title" content="Come and see what God did. — MFM Mega Region 2 Newsletter"/>
+<meta property="og:description" content="The gallery is live. The crusade testimonies are landing. Here&#x27;s what&#x27;s next."/>
+<meta property="og:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-3-og.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://www.mfmmegaregion2usa.org/newsletter"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Come and see what God did. — MFM Mega Region 2 Newsletter"/>
+<meta name="twitter:description" content="The gallery is live. The crusade testimonies are landing. Here&#x27;s what&#x27;s next."/>
+<meta name="twitter:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-3-og.jpg"/>
+
+<link rel="icon" href="/img/favicon.ico"/>
+<link rel="stylesheet" href="/css/site.css"/>
+
+<style>
+  :root{
+    --navy:#142240; --navy-deep:#0f1a30; --gold:#c9952c; --fire:#e85d26;
+    --cream:#f8f6f1; --body:#5a6270; --muted:#8a8f98; --border:#e8e4da;
+  }
+  body{margin:0;font-family:'Inter Tight','Inter',-apple-system,Helvetica,Arial,sans-serif;color:var(--body);background:#fff;line-height:1.6;}
+
+  /* Hub banner */
+  .hub-banner{
+    background:var(--navy); color:#f0e6d0; padding:72px 20px 56px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .hub-banner::before{
+    content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:120%; height:100%;
+    background:radial-gradient(ellipse at top,rgba(201,149,44,.12),transparent 60%);
+    pointer-events:none;
+  }
+  .hub-banner-inner{position:relative; max-width:720px; margin:0 auto;}
+  .hub-eyebrow{
+    font-family:Georgia,'Fraunces',serif; font-size:12px; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:18px;
+  }
+  .hub-banner h1{
+    font-family:Georgia,'Fraunces',serif; font-weight:400; font-size:48px;
+    line-height:1.1; margin:0 0 18px; color:#f0e6d0;
+  }
+  .hub-banner p{
+    font-size:17px; line-height:1.65; color:#b8c3d9;
+    max-width:560px; margin:0 auto;
+  }
+
+  /* Latest issue hero */
+  .hub-latest{padding:72px 20px; background:#fff;}
+  .hub-latest-inner{max-width:1100px; margin:0 auto;}
+  .latest-badge{
+    display:inline-block; background:var(--gold); color:#fff;
+    font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    padding:6px 14px; border-radius:2px; margin-bottom:24px;
+  }
+  .latest-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:center;
+  }
+  .latest-card{display:block; border-radius:4px; overflow:hidden; box-shadow:0 20px 60px rgba(20,34,64,.18); transition:transform .25s, box-shadow .25s;}
+  .latest-card:hover{transform:translateY(-4px); box-shadow:0 28px 72px rgba(20,34,64,.24);}
+  .latest-card img{display:block; width:100%; height:auto;}
+  .latest-meta .issue-number{
+    font-family:Georgia,'Fraunces',serif; font-size:12px; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:16px;
+  }
+  .latest-meta h2{
+    font-family:Georgia,'Fraunces',serif; font-weight:400; font-size:40px;
+    line-height:1.15; margin:0 0 18px; color:var(--navy);
+  }
+  .latest-meta p{font-size:16px; line-height:1.65; color:var(--body); margin:0 0 28px;}
+  .btn-gold{
+    display:inline-block; background:var(--gold); color:#fff; text-decoration:none;
+    padding:14px 28px; border-radius:3px; font-size:13px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; transition:background .15s;
+  }
+  .btn-gold:hover{background:#b48525;}
+
+  /* Archive */
+  .hub-archive{padding:56px 20px 80px; background:var(--cream);}
+  .hub-archive-inner{max-width:1100px; margin:0 auto;}
+  .arc-eyebrow{
+    font-family:Georgia,'Fraunces',serif; font-size:11px; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--gold); text-align:center; margin-bottom:12px;
+  }
+  .arc-h2{
+    font-family:Georgia,'Fraunces',serif; font-weight:400; font-size:32px;
+    text-align:center; color:var(--navy); margin:0 0 36px;
+  }
+  .arc-empty{text-align:center; color:var(--muted); font-size:15px; max-width:520px; margin:0 auto;}
+  .arc-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:28px;}
+  .arc-card{
+    display:block; background:#fff; border:1px solid var(--border); border-radius:4px;
+    overflow:hidden; text-decoration:none; color:inherit; transition:transform .2s, box-shadow .2s;
+  }
+  .arc-card:hover{transform:translateY(-3px); box-shadow:0 12px 32px rgba(20,34,64,.12);}
+  .arc-img{height:170px; background:#eee center/cover no-repeat;}
+  .arc-body{padding:20px 22px 22px;}
+  .arc-num{
+    font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:10px;
+  }
+  .arc-title{
+    font-family:Georgia,'Fraunces',serif; font-weight:400; font-size:20px;
+    line-height:1.3; margin:0 0 14px; color:var(--navy);
+  }
+  .arc-link{font-size:13px; font-weight:600; color:var(--gold); letter-spacing:.08em;}
+
+  /* Subscribe CTA */
+  .hub-sub{background:var(--navy-deep); color:#f0e6d0; padding:64px 20px 68px; text-align:center;}
+  .hub-sub h2{
+    font-family:Georgia,'Fraunces',serif; font-weight:400; font-size:32px;
+    margin:0 0 14px; color:#f0e6d0;
+  }
+  .hub-sub p{font-size:16px; color:#b8c3d9; max-width:520px; margin:0 auto 24px;}
+
+  /* Mobile */
+  @media (max-width:720px){
+    .hub-banner{padding:56px 20px 44px;}
+    .hub-banner h1{font-size:34px;}
+    .hub-latest{padding:48px 20px;}
+    .latest-grid{grid-template-columns:1fr; gap:28px;}
+    .latest-meta h2{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" data-nav></header>
+
+<main>
+
+  <section class="hub-banner">
+    <div class="hub-banner-inner">
+      <div class="hub-eyebrow">MFM Mega Region 2 &middot; USA</div>
+      <h1>The Newsletter</h1>
+      <p>Sermons, prayer points, testimonies, and what's next from our region &mdash; about twice a month.</p>
+    </div>
+  </section>
+
+  <section class="hub-latest">
+    <div class="hub-latest-inner">
+      <div class="latest-badge">Latest Issue</div>
+      <div class="latest-grid">
+        <a href="/newsletter/issue-3" class="latest-card">
+          <img src="/img/newsletter/issue-3-og.jpg" alt="Issue #3 cover"/>
+        </a>
+        <div class="latest-meta">
+          <div class="issue-number">ISSUE #3 &middot; October 2026</div>
+          <h2>Come and see what God did.</h2>
+          <p>The gallery is live. The crusade testimonies are landing. Here&#x27;s what&#x27;s next.</p>
+          <a class="btn-gold" href="/newsletter/issue-3">Read full issue &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+    <section class="hub-archive">
+      <div class="hub-archive-inner">
+        <div class="arc-eyebrow">Previous Issues</div>
+        <h2 class="arc-h2">The Archive</h2>
+        <p class="arc-empty">Issue #3 is our newest. The archive will grow with each release &mdash; check back when the next issue drops.</p>
+      </div>
+    </section>
+
+  <section class="hub-sub">
+    <h2>Never miss an issue.</h2>
+    <p>Join the newsletter &mdash; about twice a month, no spam, one-click unsubscribe.</p>
+    <a class="btn-gold" href="/subscribe">Subscribe &rarr;</a>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="/js/nav.js" defer></script>
+
+</body>
+</html>
