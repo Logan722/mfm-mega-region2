@@ -148,7 +148,7 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySe
 document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('.nav-dropdown'))document.querySelectorAll('.nav-dropdown.open').forEach(function(d){d.classList.remove('open')});});
 
 </script>
-  <script src="/js/events-data.js?v=56585d19d1"></script>
+  <script src="/js/events-data.js?v=d899661ee3"></script>
 <script>/* Department feed: current/upcoming only, from shared MFM_EVENTS (§9.5) */
 (function(){var U=window.MFM_EVT,EV={};if(!U)return;(window.MFM_EVENTS||[]).forEach(function(e){if(!e)return;if(e.anchor)EV[e.anchor]=e;if(e.page)EV[e.page]=e;});[].forEach.call(document.querySelectorAll(".event-card"),function(c){var link=c.querySelector("a[href]");var h=link?link.getAttribute("href"):"";var e=EV[h]||EV[h.split("#").pop()]||EV[c.id];if(!e||U.isPast(e))c.style.display="none";});[].forEach.call(document.querySelectorAll(".events-grid"),function(g){var vis=[].filter.call(g.querySelectorAll(".event-card"),function(c){return c.style.display!=="none";});if(!vis.length){var sec=g.closest("section");if(sec)sec.style.display="none";}else if(vis.length===1){g.classList.add("ev-single");}});})();
 </script>
