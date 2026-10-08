@@ -336,6 +336,7 @@ window.MFM_EVENTS = [
     "image": "img/announcements/couples-night.jpg",
     "alt": "Couples Night — MFM Mega Region 2, Friday December 11, 2026, Marriott Houston Energy Corridor, Houston TX",
     "anchor": "couples-night",
+    "link": "https://www.eventbrite.com/e/couples-night-2026-mfm-mega-region-2-usa-tickets-2003175525922",
     "dateDisplay": "Friday, December 11, 2026",
     "description": "An evening set apart for couples — a time to be strengthened, refreshed, and blessed together in the presence of God. Come expecting.",
     "badgeStyle": "gold"
