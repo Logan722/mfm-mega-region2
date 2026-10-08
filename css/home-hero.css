@@ -1,0 +1,47 @@
+/* Homepage full-bleed video hero (owner-locked scope, Oct 2026).
+   Loaded ONLY by index.html, after css/rf-site.css. Every rule is scoped to .home-hero so the
+   shared header, navigation, drawer and all other sections/pages are untouched. */
+
+/* --- Media layer: poster first, video fades in only once it is really playing --- */
+.home-hero{height:max(640px,calc(100svh - 56px));max-height:1000px;min-height:0;isolation:isolate}
+.home-hero>.home-hero-media{position:absolute;inset:0;z-index:0;display:block}
+.home-hero>.home-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+.home-hero>video.home-hero-video{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%;opacity:0;transition:opacity .8s ease}
+.home-hero.is-playing>video.home-hero-video{opacity:1}
+.home-hero>video.home-hero-video[hidden]{display:none}
+.home-hero>.home-hero-overlay{z-index:1}
+.home-hero:after{z-index:1}
+/* Visitor-started playback must still be visible under reduced motion (autoplay never happens there). */
+@media (prefers-reduced-motion:reduce){.home-hero>video.home-hero-video{display:block;transition:none}}
+
+/* --- Pause / Play control (≥44×44, keyboard operable, state-accurate label) --- */
+.hero-motion{position:absolute;z-index:4;left:max(24px,calc((100% - 1200px)/2));bottom:28px;display:inline-flex;align-items:center;gap:8px;min-width:44px;min-height:44px;padding:0 16px 0 13px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(8,16,34,.62);color:#fff;font:700 11px/1 'Inter Tight',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,border-color .2s}
+.hero-motion:hover{background:rgba(8,16,34,.82);border-color:#f0c760}
+.hero-motion:focus-visible{outline:3px solid #f0c760;outline-offset:3px}
+.hero-motion[hidden]{display:none}
+.hero-motion svg{width:16px;height:16px;flex:none}
+.hero-motion .hm-play{display:none}
+.hero-motion.is-paused .hm-play{display:block}
+.hero-motion.is-paused .hm-pause{display:none}
+
+/* --- Tablet / small desktop: keep the facade in frame --- */
+@media (max-width:850px){
+  .home-hero{height:max(620px,calc(100svh - 40px))}
+  .home-hero>.home-hero-media img,.home-hero>video.home-hero-video{object-position:64% 50%}
+}
+
+/* --- Phones: content-driven height; the "Next regional gathering" card sits in normal flow
+       under the hero copy so it can never cover the hero actions (audit B-13 / P0-04). --- */
+@media (max-width:600px){
+  .home-hero{height:auto;max-height:none;min-height:calc(100svh - 24px);display:flex;flex-direction:column}
+  .home-hero>.home-hero-media img,.home-hero>video.home-hero-video{object-position:50% 40%}
+  .home-hero>.home-hero-overlay{background:linear-gradient(180deg,rgba(8,16,34,.80) 0%,rgba(8,16,34,.66) 42%,rgba(8,16,34,.84) 100%)}
+  .home-hero-content{flex:1 0 auto;padding-bottom:20px}
+  /* 200% zoom / very narrow screens: reflow instead of clipping (49px from 320px up, as before) */
+  .home-hero h1{font-size:clamp(30px,15.3vw,49px);overflow-wrap:break-word}
+  .hero-motion{position:relative;left:auto;bottom:auto;align-self:flex-end;margin:0 16px 14px}
+  .home-hero .service-dock{position:relative;left:auto;right:auto;bottom:auto;z-index:2;width:auto;margin:0 16px max(20px,env(safe-area-inset-bottom))}
+}
+@media (max-width:600px) and (orientation:landscape){
+  .home-hero{min-height:0}
+}

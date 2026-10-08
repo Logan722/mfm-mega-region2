@@ -2311,20 +2311,6 @@ html, body {
    Force legible cream text on known dark cards. */
 .countdown-sidebar .btn--secondary { color: var(--cream); border-color: var(--line-strong); }
 .countdown-sidebar .btn--secondary:hover { color: var(--gold-light); border-color: var(--gold); background: var(--gold-glow); }
-@keyframes socialPulse { 0% { box-shadow: 0 0 0 0 rgba(201,149,44,0.5); } 70% { box-shadow: 0 0 0 14px rgba(201,149,44,0); } 100% { box-shadow: 0 0 0 0 rgba(201,149,44,0); } }
-
-/* Fan-out items */
-.social-item { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; opacity: 0; transform: translateY(14px) scale(.55); pointer-events: none; transition: opacity .25s ease, transform .3s cubic-bezier(.2,.8,.3,1.3); }
-.si-ico { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 6px 16px rgba(0,0,0,0.28); flex: none; transition: transform .2s ease; }
-.si-ico svg { width: 22px; height: 22px; }
-.social-item:hover .si-ico { transform: scale(1.08); }
-.si-label { background: #fff; color: var(--bg-navy); font-family: var(--font-sans); font-weight: 600; font-size: .82rem; padding: 6px 12px; border-radius: 20px; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
-.social-item[data-net="instagram"] .si-ico { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-.social-item[data-net="facebook"]  .si-ico { background: #1877F2; }
-.social-item[data-net="whatsapp"]  .si-ico { background: #25D366; }
-.social-item[data-net="youtube"]   .si-ico { background: #FF0000; }
-@media (max-width: 600px) { }
-@media (prefers-reduced-motion: reduce) { }
 
 /* ── "We're Live" banner ── */
 .live-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1600; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 16px; background: var(--fire); color: #fff; font-family: var(--font-sans); font-weight: 600; font-size: 0.9rem; text-decoration: none; box-shadow: 0 -4px 20px rgba(0,0,0,0.28); }
@@ -2630,3 +2616,9 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 .site-nav.scrolled{background:#142240!important}
 .nav-hamburger{background:none!important;border:none!important}
 
+
+/* Mobile footer as recorded (audit B-14 / MOB-002): identity full width, Explore + Ministries paired, Connect full width. */
+@media(max-width:560px){.site-footer .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px 20px}.site-footer .footer-grid>.footer-identity{grid-column:1/-1}.site-footer .footer-grid>div:last-child{grid-column:1/-1}.site-footer .footer-grid a{overflow-wrap:anywhere;min-height:32px;display:flex;align-items:center}}
+
+/* Click-to-load YouTube (audit C-10) */
+.yt-lite{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#0b1328;overflow:hidden;color:#fff;text-decoration:none}.yt-lite img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s,filter .3s;filter:brightness(.82)}.yt-lite:hover img,.yt-lite:focus-visible img{transform:scale(1.02);filter:brightness(.92)}.yt-lite .yt-play{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(232,93,38,.94);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}.yt-lite .yt-play svg{width:30px;height:30px;margin-left:4px}.yt-lite:focus-visible{outline:3px solid #f0c760;outline-offset:3px}.yt-lite-frame{width:100%;aspect-ratio:16/9;display:block;border:0}.video-frame .yt-lite,.video-frame .yt-lite-frame{position:absolute;inset:0;height:100%;aspect-ratio:auto}.yt-lite .yt-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

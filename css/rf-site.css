@@ -1058,3 +1058,39 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 .video-band-inner>p:not(.eyebrow){font-family:var(--serif);font-size:18px;line-height:1.7;color:#dde3ec;margin:0 auto;max-width:600px}
 .video-band-inner .button{margin-top:26px}
 @media (prefers-reduced-motion:reduce){.video-band>video{display:none}}
+
+/* Mobile footer as recorded (audit B-14 / MOB-002): identity full width, Explore + Ministries paired, Connect full width. */
+@media(max-width:560px){.site-footer .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px 20px}.site-footer .footer-grid>.footer-identity{grid-column:1/-1}.site-footer .footer-grid>div:last-child{grid-column:1/-1}.site-footer .footer-grid a{overflow-wrap:anywhere;min-height:32px;display:flex;align-items:center}}
+
+/* Minister social icons — contrast + target (audit B-17 / A11Y-002): >=3:1 on light sections, gold kept on navy. Still restrained inline circles (no cards). */
+.leader-socials a{border-color:#b07d24!important;color:#8f6212!important;min-width:44px;min-height:44px}
+.leader-socials a:hover,.leader-socials a:focus-visible{border-color:#142240!important;color:#142240!important}
+.leader-socials a:focus-visible{outline:3px solid #c9952c;outline-offset:2px}
+.regional-leadership .leader-socials a{border-color:rgba(201,149,44,.6)!important;color:#c6b58a!important}
+.regional-leadership .leader-socials a:hover,.regional-leadership .leader-socials a:focus-visible{border-color:#f0c760!important;color:#f0c760!important}
+
+/* Women hero: each phrase keeps together and wraps in balance; programmes CTA centred on phones (audit B-15 / MOB-003 / MOB-004). */
+.phrase-h1 .h1-phrase{display:block;text-wrap:balance}
+@media(max-width:600px){.women-programmes-cta{display:flex;width:max-content;max-width:100%;margin-left:auto!important;margin-right:auto!important;justify-content:center}}
+
+/* Video bands (About, Branches) — poster-first, fade in when playing, visible Pause/Play (audit C-06/C-08/C-09). */
+.video-band>.video-band-media{position:absolute;inset:0;z-index:0;display:block}
+.video-band>.video-band-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.video-band>video.video-band-video{opacity:0;transition:opacity .7s ease}
+.video-band.is-playing>video.video-band-video{opacity:1}
+.video-band>video.video-band-video[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.video-band>video.video-band-video{display:block;transition:none}}
+.band-motion{position:absolute;z-index:3;left:max(18px,calc((100% - 1200px)/2));bottom:18px;display:inline-flex;align-items:center;gap:8px;min-width:44px;min-height:44px;padding:0 15px 0 12px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(8,16,34,.6);color:#fff;font:700 11px/1 "Inter Tight",system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.band-motion:hover{background:rgba(8,16,34,.82);border-color:#f0c760}
+.band-motion:focus-visible{outline:3px solid #f0c760;outline-offset:3px}
+.band-motion[hidden]{display:none}
+.band-motion svg{width:16px;height:16px}
+.band-motion .hm-play{display:none}.band-motion.is-paused .hm-play{display:block}.band-motion.is-paused .hm-pause{display:none}
+.video-band.compact .video-band-inner{padding:clamp(64px,9vw,108px) 22px clamp(78px,10vw,118px)}
+@media(max-width:600px){.video-band-inner{padding-bottom:96px}}
+
+/* Click-to-load YouTube (audit C-10) */
+.yt-lite{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#0b1328;overflow:hidden;color:#fff;text-decoration:none}.yt-lite img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s,filter .3s;filter:brightness(.82)}.yt-lite:hover img,.yt-lite:focus-visible img{transform:scale(1.02);filter:brightness(.92)}.yt-lite .yt-play{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(232,93,38,.94);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}.yt-lite .yt-play svg{width:30px;height:30px;margin-left:4px}.yt-lite:focus-visible{outline:3px solid #f0c760;outline-offset:3px}.yt-lite-frame{width:100%;aspect-ratio:16/9;display:block;border:0}.video-frame .yt-lite,.video-frame .yt-lite-frame{position:absolute;inset:0;height:100%;aspect-ratio:auto}.yt-lite .yt-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* About closing call-to-action centred on phones (recording directive; audit B-16 / MOB-005). */
+@media(max-width:600px){.about-closing{text-align:center}.about-closing .section-head{align-items:center}.about-closing .eyebrow{justify-content:center}.about-closing .hero-actions{justify-content:center;align-items:center;margin-left:auto;margin-right:auto}}

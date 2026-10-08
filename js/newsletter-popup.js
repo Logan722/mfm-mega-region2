@@ -4,9 +4,15 @@
 // Self-contained. Add to any page with one line:
 //   <script src="/js/newsletter-popup.js" defer></script>
 //
-// Behavior:
-//   * Center modal, Royal Flame styling (navy card, gold accent, fire glow)
-//   * Fires 2.5 seconds after DOMContentLoaded
+// Behavior (Oct 2026 — audit B-10 / B-11 / B-12 / D-12 / D-13):
+//   * Center modal, Royal Flame styling (navy card, gold accent, fire glow) — unchanged look
+//   * Only on Home and Events. Never on /links (QR page), thanks/privacy/utility pages,
+//     detail pages or 404, never over another dialog/drawer, never while a form is in use.
+//   * Contextual trigger instead of a 2.5 s interruption: appears only after real engagement —
+//     the visitor has scrolled past half the page, or has been reading for 40 s — and never in
+//     the first 10 s (so the homepage hero is never interrupted).
+//   * Accessible dialog via js/overlay.js: focus moves in and is trapped, Escape closes,
+//     background inert, scroll locked, focus restored; 44 px close button.
 //   * Never shows again once the visitor subscribes (localStorage)
 //   * Suppressed for 14 days after dismiss (X / Esc / backdrop click)
 //   * POSTs to /.netlify/functions/subscribe (idempotent — duplicates safe)
@@ -20,7 +26,10 @@
 
   var CONFIG = {
     endpoint: '/.netlify/functions/subscribe',
-    delayMs: 2500,
+    minDelayMs: 10000,        // never before 10 s on the page
+    dwellMs: 40000,           // ...or after 40 s of reading
+    scrollRatio: 0.5,         // ...or once half the page has been scrolled
+    routes: /^\/(index(\.html)?|events(\.html)?)?$/,   // Home + Events only
     dismissSuppressDays: 14,
     subscribedFlag: 'mfm-newsletter-subscribed',
     dismissedFlag: 'mfm-newsletter-dismissed-until',
@@ -28,19 +37,22 @@
 
   // ---------- Guardrails ----------
   
-  // mfm-dialog-guard (§10): never open over another dialog, drawer, or while using the contact form
+  // mfm-dialog-guard (§10): never open over another dialog, drawer, or while using a form
   function blockedByDialog(){
     try{
+      if (window.MFMOverlay && window.MFMOverlay.busy()) return true;
       var m=document.querySelector('.event-modal-backdrop, .branch-modal, [aria-modal="true"]');
       if(m && getComputedStyle(m).display!=='none' && !m.hidden) return true;
       var dr=document.querySelector('.mfm-mobile-drawer'); if(dr && !dr.hidden) return true;
       if(document.body.classList.contains('mfm-menu-open')||document.body.classList.contains('drawer-open')) return true;
-      var ae=document.activeElement; if(ae && ae.closest && ae.closest('#reach-out, #reachForm')) return true;
+      var ae=document.activeElement; if(ae && ae.closest && ae.closest('form, #reach-out, #reachForm')) return true;
     }catch(e){}
     return false;
   }
 
   function shouldShow() {
+    if (!CONFIG.routes.test(location.pathname)) return false;
+    if (!window.MFMOverlay) return false;      // accessible dialog owner not on this page
     try {
       if (localStorage.getItem(CONFIG.subscribedFlag) === '1') return false;
       var until = parseInt(localStorage.getItem(CONFIG.dismissedFlag) || '0', 10);
@@ -82,11 +94,12 @@
     'radial-gradient(ellipse at 75% 100%,rgba(232,93,38,0.16) 0%,transparent 55%);',
     'pointer-events:none;}',
     '.mfm-pop-card>*{position:relative;z-index:1;}',
-    '.mfm-pop-close{position:absolute;top:10px;right:12px;width:32px;height:32px;',
+    '.mfm-pop-close{position:absolute;top:6px;right:6px;width:44px;height:44px;',
     'display:flex;align-items:center;justify-content:center;background:transparent;',
     'border:0;color:#6a7a96;cursor:pointer;border-radius:50%;',
     'transition:background .15s,color .15s;font-size:20px;line-height:1;z-index:2;}',
     '.mfm-pop-close:hover{background:rgba(255,255,255,0.06);color:#c9952c;}',
+    '.mfm-pop-close:focus-visible,.mfm-pop-btn:focus-visible{outline:3px solid #f0c760;outline-offset:2px;}',
     '.mfm-pop-emblem{width:72px;height:72px;border-radius:50%;',
     'margin:0 auto 14px;display:flex;align-items:center;justify-content:center;',
     'overflow:hidden;background:transparent;}',
@@ -130,26 +143,26 @@
 
   // ---------- HTML ----------
   var html = [
-    '<div class="mfm-pop-card" role="dialog" aria-modal="true" aria-labelledby="mfm-pop-title">',
-    '<button type="button" class="mfm-pop-close" aria-label="Close">&times;</button>',
+    '<div class="mfm-pop-card" role="dialog" aria-modal="true" aria-labelledby="mfm-pop-title" aria-describedby="mfm-pop-lede">',
+    '<button type="button" class="mfm-pop-close" aria-label="Close newsletter sign-up">&times;</button>',
     '<div class="mfm-pop-form-wrap">',
     '<div class="mfm-pop-emblem" aria-hidden="true"><img src="/img/logo.png" alt="" width="72" height="72" /></div>',
     '<div class="mfm-pop-eyebrow">Stay Connected</div>',
     '<h2 id="mfm-pop-title" class="mfm-pop-title">The Fire, once a month.</h2>',
-    '<p class="mfm-pop-lede">Prayer points, sermons, and the next crusade near you.</p>',
+    '<p class="mfm-pop-lede" id="mfm-pop-lede">Prayer points, sermons, and the next crusade near you.</p>',
     '<form class="mfm-pop-form" novalidate>',
-    '<input class="mfm-pop-input" name="FIRSTNAME" type="text" placeholder="Name" autocomplete="name" required />',
-    '<input class="mfm-pop-input" name="EMAIL" type="email" placeholder="Email address" autocomplete="email" required />',
-    '<input class="mfm-pop-hp" type="text" name="hp_website" tabindex="-1" autocomplete="off" />',
+    '<input class="mfm-pop-input" name="FIRSTNAME" type="text" placeholder="Name" aria-label="Name" autocomplete="name" required />',
+    '<input class="mfm-pop-input" name="EMAIL" type="email" placeholder="Email address" aria-label="Email address" autocomplete="email" required />',
+    '<input class="mfm-pop-hp" type="text" name="hp_website" tabindex="-1" autocomplete="off" aria-hidden="true" />',
     '<button type="submit" class="mfm-pop-btn">Subscribe</button>',
     '<div class="mfm-pop-status" role="status" aria-live="polite" hidden></div>',
-    '<p class="mfm-pop-fine">No spam. Unsubscribe anytime. See our <a href="/privacy.html">Privacy Policy</a>.</p>',
+    '<p class="mfm-pop-fine">No spam. Unsubscribe anytime. See our <a href="/privacy">Privacy Policy</a>.</p>',
     '</form>',
     '</div>',
     '<div class="mfm-pop-success" hidden>',
     '<div class="mfm-pop-emblem mfm-pop-emblem--success" aria-hidden="true">&#128293;</div>',
     '<div class="mfm-pop-eyebrow">You\'re in</div>',
-    '<h2 class="mfm-pop-title">The fire is lit.</h2>',
+    '<h2 class="mfm-pop-title" tabindex="-1">The fire is lit.</h2>',
     '<p class="mfm-pop-lede">Check your inbox &mdash; the first note is on its way. This popup won\'t bother you again.</p>',
     '</div>',
     '</div>',
@@ -158,7 +171,7 @@
   // ---------- Runtime ----------
   function init() {
     if (!shouldShow()) return;
-    if (blockedByDialog()) { setTimeout(init, 4000); return; }
+    if (blockedByDialog()) { setTimeout(init, 5000); return; }
 
     // Inject CSS
     var style = document.createElement('style');
@@ -180,17 +193,15 @@
     var status = backdrop.querySelector('.mfm-pop-status');
     var submitBtn = backdrop.querySelector('.mfm-pop-btn');
 
+    var closed = false;
     function close(dismiss) {
+      if (closed) return; closed = true;
       backdrop.classList.remove('is-open');
+      window.MFMOverlay.close(backdrop);
       setTimeout(function () {
         if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
       }, 260);
       if (dismiss) markDismissed();
-      document.removeEventListener('keydown', onKey);
-    }
-
-    function onKey(e) {
-      if (e.key === 'Escape') close(true);
     }
 
     closeBtn.addEventListener('click', function () { close(true); });
@@ -198,7 +209,6 @@
       if (e.target === backdrop) close(true);
     });
     card.addEventListener('click', function (e) { e.stopPropagation(); });
-    document.addEventListener('keydown', onKey);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -234,6 +244,7 @@
             markSubscribed();
             formWrap.hidden = true;
             successView.hidden = false;
+            var sh = successView.querySelector('.mfm-pop-title'); if (sh) sh.focus();
             setTimeout(function () { close(false); }, 4500);
           } else {
             showStatus('is-err',
@@ -257,14 +268,30 @@
       status.hidden = false;
     }
 
-    // Open with a small delay so the hero renders first.
+    window.MFMOverlay.open(backdrop, { dialog: card, initialFocus: 'input[name="FIRSTNAME"]', onRequestClose: function () { close(true); } });
     requestAnimationFrame(function () {
       requestAnimationFrame(function () { backdrop.classList.add('is-open'); });
     });
   }
 
+  // Contextual trigger: after real engagement, never in the first CONFIG.minDelayMs.
   function schedule() {
-    setTimeout(init, CONFIG.delayMs);
+    if (!shouldShow()) return;
+    var t0 = Date.now(), fired = false, dwellTimer = null;
+    function fire() {
+      if (fired) return;
+      if (Date.now() - t0 < CONFIG.minDelayMs) { setTimeout(fire, CONFIG.minDelayMs - (Date.now() - t0)); return; }
+      fired = true;
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(dwellTimer);
+      init();
+    }
+    function onScroll() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h > 0 && window.scrollY / h >= CONFIG.scrollRatio) fire();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    dwellTimer = setTimeout(fire, CONFIG.dwellMs);
   }
 
   if (document.readyState === 'loading') {
