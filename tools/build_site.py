@@ -259,6 +259,28 @@ def stamp_assets():
             return m.group(1) + '/' + m.group(3) + ('?v=' + v if v else '') + m.group(4) if v else m.group(0)
         write(rel, rx.sub(sub, t))
 
+CSP_META = ("default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io https://unpkg.com https://cdnjs.cloudflare.com; "
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; "
+            "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; "
+            "img-src 'self' data: blob: https://mfmmegaregion2usa.org https://www.mfmmegaregion2usa.org https://mfmmegaregion2yc.org https://www.mfmmegaregion2yc.org https://i.ytimg.com https://img.youtube.com https://*.tile.openstreetmap.org https://unpkg.com; "
+            "media-src 'self' blob:; frame-src https://www.youtube-nocookie.com https://www.youtube.com; "
+            "connect-src 'self' https://ingesteer.services-prod.nsvcs.net https://plausible.io https://nominatim.openstreetmap.org; "
+            "worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'")
+
+def ensure_csp_meta():
+    """Enforced CSP on public pages (E-11). Delivered as a meta tag so the CMS at /admin keeps only the
+    report-only header. frame-ancestors is covered by the X-Frame-Options header."""
+    tag = '<meta http-equiv="Content-Security-Policy" content="%s">' % CSP_META
+    for rel in html_files():
+        t = (ROOT / rel).read_text()
+        t2 = re.sub(r'<meta http-equiv="Content-Security-Policy" content="[^"]*">', tag, t)
+        if t2 == t and 'http-equiv="Content-Security-Policy"' not in t:
+            m = re.search(r'<meta charset="[^"]*"\s*/?>', t, re.I)
+            if not m:
+                continue
+            t2 = t[:m.end()] + tag + t[m.end():]
+        write(rel, t2)
+
 def ensure_touch_icon():
     """Same home-screen icon tag on every page (E-05)."""
     tag = '<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">'
@@ -338,6 +360,7 @@ def main():
     n = build_sitemap(live)
     ensure_sw_registration()
     ensure_touch_icon()
+    ensure_csp_meta()
     stamp_assets()           # last: hashes reflect the final file contents
     print('sitemap urls:', n)
     print('upcoming events:', len(ev))
