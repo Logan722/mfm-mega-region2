@@ -1094,3 +1094,11 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 
 /* About closing call-to-action centred on phones (recording directive; audit B-16 / MOB-005). */
 @media(max-width:600px){.about-closing{text-align:center}.about-closing .section-head{align-items:center}.about-closing .eyebrow{justify-content:center}.about-closing .hero-actions{justify-content:center;align-items:center;margin-left:auto;margin-right:auto}}
+
+/* Long unbroken words in the live YouTube title (e.g. hashtags) must wrap, never widen the page on phones */
+.media-band h2,.media-band p{overflow-wrap:anywhere}
+/* Phones: carousel dots + arrows must fit the screen (8 slides overflowed by ~5px) */
+@media(max-width:600px){.spotlight-controls>div{gap:6px;flex-wrap:wrap;justify-content:center}.spotlight-controls>div button{width:18px}}
+/* Small phones (320px): form fields shrink to the column instead of widening the page */
+.home-prayer .wrap>*,.home-prayer article,.prayer-form,.prayer-form label{min-width:0}
+.prayer-form select,.prayer-form input,.prayer-form textarea{min-width:0;max-width:100%}

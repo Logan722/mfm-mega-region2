@@ -18,12 +18,12 @@
   if (!hero) return;
   var v = hero.querySelector('video.home-hero-video');
   var btn = hero.querySelector('[data-hero-toggle]');
-  if (!v || !btn) return;
+  if (!v) return; /* the Pause/Play button was removed at the owner's request (Oct 11); kept optional here */
 
   var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
   var lowData = !!conn.saveData || /(^|slow-)2g$/.test(conn.effectiveType || '');
-  var label = btn.querySelector('.hm-label');
+  var label = btn ? btn.querySelector('.hm-label') : null;
   var userPaused = false, inView = true, attached = false, failed = false;
 
   function autoAllowed() { return !reduce.matches && !lowData; }
@@ -31,6 +31,7 @@
     return (window.matchMedia && window.matchMedia('(max-width: 600px)').matches) ? v.getAttribute('data-src-mobile') : v.getAttribute('data-src-desktop');
   }
   function setState(playing) {
+    if (!btn) return;
     btn.hidden = false;
     btn.classList.toggle('is-paused', !playing);
     btn.setAttribute('aria-label', playing ? 'Pause background video' : 'Play background video');
@@ -40,7 +41,7 @@
     failed = true;
     hero.classList.remove('is-playing');
     v.hidden = true;
-    btn.hidden = true;
+    if (btn) btn.hidden = true;
   }
   function attach() {
     if (attached) return;
@@ -61,7 +62,7 @@
   v.addEventListener('playing', function () { hero.classList.add('is-playing'); setState(true); });
   v.addEventListener('pause', function () { if (!failed) setState(false); });
 
-  btn.addEventListener('click', function () {
+  if (btn) btn.addEventListener('click', function () {
     if (v.paused) { userPaused = false; play(); }
     else { userPaused = true; v.pause(); }
   });
