@@ -34,9 +34,9 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 .home-hero .eyebrow.light{gap:0;flex-wrap:wrap}
 @media (min-width:601px){.home-hero .eyebrow.light>span{white-space:pre}}
 /* Text-cut Fraunces (low optical size): sturdier strokes and ball terminals, as in the reference */
-.home-hero h1{font-family:var(--serif);font-weight:400;font-optical-sizing:none;font-variation-settings:'opsz' 12;font-size:clamp(48px,min(calc((100vw - 48px) / 10.7),14vh),113px);line-height:1;letter-spacing:-.045em;margin:clamp(12px,1.8vh,20px) 0 clamp(22px,4vh,40px);max-width:none;color:#fff}
+.home-hero h1{font-family:var(--serif);font-weight:400;font-optical-sizing:none;font-variation-settings:'opsz' 12;font-size:clamp(48px,min(calc((100vw - 48px) / 9.1),14vh),132px);line-height:1;letter-spacing:-.045em;margin:clamp(12px,1.8vh,20px) 0 clamp(22px,4vh,40px);max-width:none;color:#fff}
 .home-hero h1 .h1-line,.home-hero h1 em{display:block}
-/* Owner request: 'Come and encounter the' on one line, 'fire of God.' on the next (phones wrap naturally) */
+/* Owner request: 'Come and encounter' on one line, 'the fire of God.' (coral) on the next (phones wrap naturally) */
 @media (min-width:601px){.home-hero h1 .h1-line{white-space:nowrap}}
 .home-hero h1 em{font-style:normal;font-weight:400;color:#f3836d}
 .home-hero .home-hero-content>p:not(.eyebrow){font-family:'Inter Tight',system-ui,sans-serif;font-size:clamp(17px,1.35vw,26px);line-height:1.6;color:#d6dbe3;max-width:680px;margin:0}
