@@ -6,7 +6,7 @@
 //
 // Behavior (Oct 2026 — audit B-10 / B-11 / B-12 / D-12 / D-13):
 //   * Center modal, Royal Flame styling (navy card, gold accent, fire glow) — unchanged look
-//   * Only on Home and Events. Never on /links (QR page), thanks/privacy/utility pages,
+//   * Only on Home, Events and Gallery. Never on /links (QR page), thanks/privacy/utility pages,
 //     detail pages or 404, never over another dialog/drawer, never while a form is in use.
 //   * Contextual trigger instead of a 2.5 s interruption: appears only after real engagement —
 //     the visitor has scrolled past half the page, or has been reading for 40 s — and never in
@@ -29,7 +29,7 @@
     minDelayMs: 10000,        // never before 10 s on the page
     dwellMs: 40000,           // ...or after 40 s of reading
     scrollRatio: 0.5,         // ...or once half the page has been scrolled
-    routes: /^\/(index(\.html)?|events(\.html)?)?$/,   // Home + Events only
+    routes: /^\/(index(\.html)?|events(\.html)?|gallery(\.html)?)?$/,   // Home, Events + Gallery (owner, Oct 11)
     dismissSuppressDays: 14,
     subscribedFlag: 'mfm-newsletter-subscribed',
     dismissedFlag: 'mfm-newsletter-dismissed-until',
@@ -41,8 +41,9 @@
   function blockedByDialog(){
     try{
       if (window.MFMOverlay && window.MFMOverlay.busy()) return true;
-      var m=document.querySelector('.event-modal-backdrop, .branch-modal, [aria-modal="true"]');
-      if(m && getComputedStyle(m).display!=='none' && !m.hidden) return true;
+      // any dialog actually on screen (a hidden ancestor, e.g. the closed gallery photo viewer, does not count)
+      var ms=document.querySelectorAll('.event-modal-backdrop, .branch-modal, [aria-modal="true"]');
+      for(var i=0;i<ms.length;i++){ if(ms[i].getClientRects().length && getComputedStyle(ms[i]).visibility!=='hidden') return true; }
       var dr=document.querySelector('.mfm-mobile-drawer'); if(dr && !dr.hidden) return true;
       if(document.body.classList.contains('mfm-menu-open')||document.body.classList.contains('drawer-open')) return true;
       var ae=document.activeElement; if(ae && ae.closest && ae.closest('form, #reach-out, #reachForm')) return true;
