@@ -8,9 +8,8 @@
 //   * Center modal, Royal Flame styling (navy card, gold accent, fire glow) — unchanged look
 //   * Only on Home, Events and Gallery. Never on /links (QR page), thanks/privacy/utility pages,
 //     detail pages or 404, never over another dialog/drawer, never while a form is in use.
-//   * Contextual trigger instead of a 2.5 s interruption: appears only after real engagement —
-//     the visitor has scrolled past half the page, or has been reading for 40 s — and never in
-//     the first 10 s (so the homepage hero is never interrupted).
+//   * Appears 4 s after the page opens (owner, Oct 11 2026); if a dialog, menu or form is in use
+//     it waits and checks again every 4 s.
 //   * Accessible dialog via js/overlay.js: focus moves in and is trapped, Escape closes,
 //     background inert, scroll locked, focus restored; 44 px close button.
 //   * Never shows again once the visitor subscribes (localStorage)
@@ -26,8 +25,8 @@
 
   var CONFIG = {
     endpoint: '/.netlify/functions/subscribe',
-    minDelayMs: 10000,        // never before 10 s on the page
-    dwellMs: 40000,           // ...or after 40 s of reading
+    minDelayMs: 4000,         // owner (Oct 11): appears 4 s after the page opens
+    dwellMs: 4000,            // ...at 4 s even without scrolling
     scrollRatio: 0.5,         // ...or once half the page has been scrolled
     routes: /^\/(index(\.html)?|events(\.html)?|gallery(\.html)?)?$/,   // Home, Events + Gallery (owner, Oct 11)
     dismissSuppressDays: 14,
@@ -172,7 +171,7 @@
   // ---------- Runtime ----------
   function init() {
     if (!shouldShow()) return;
-    if (blockedByDialog()) { setTimeout(init, 5000); return; }
+    if (blockedByDialog()) { setTimeout(init, 4000); return; }
 
     // Inject CSS
     var style = document.createElement('style');
