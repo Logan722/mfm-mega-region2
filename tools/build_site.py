@@ -321,6 +321,8 @@ SITEMAP_TOP = [('/', 'index.html', 'weekly', '1.0'), ('/about', 'about.html', 'm
                ('/branches', 'branches.html', 'monthly', '0.8'), ('/gallery', 'gallery.html', 'monthly', '0.7'), ('/media', 'media.html', 'weekly', '0.8'),
                ('/watch', 'watch.html', 'weekly', '0.8'), ('/ministries', 'ministries.html', 'monthly', '0.7'), ('/women', 'women.html', 'monthly', '0.7'),
                ('/gen218', 'gen218.html', 'monthly', '0.7'), ('/links', 'links.html', 'monthly', '0.5')]
+# Gallery album pages ('See all') — picked up automatically
+SITEMAP_TOP += [('/' + Path(f).stem, Path(f).name, 'monthly', '0.6') for f in sorted(Path(__file__).resolve().parent.parent.glob('gallery-*.html'))]
 
 def build_sitemap(live_pages):
     """Sitemap with truthful lastmod: today for pages changed since the published baseline, otherwise the previous date (E-01, E-02)."""
