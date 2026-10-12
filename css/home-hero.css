@@ -5,6 +5,12 @@
 /* --- Frame: full viewport; the fixed 81px header (untouched) sits over the top of it --- */
 .home-hero{height:max(640px,100svh);max-height:none;min-height:0;isolation:isolate;background:#0b1322}
 
+/* --- Menu bar on the homepage (owner request, reference behaviour): see-through over the video while
+       the page is at the top, solid navy as soon as the visitor scrolls. Only the background changes —
+       the menu's links, layout, dropdowns and drawer are untouched. No JS = solid bar as everywhere else. --- */
+.site-nav{transition:background-color .35s ease,border-color .35s ease}
+html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none!important}
+
 /* --- Media layer: poster first, video fades in only once it is really playing --- */
 .home-hero>.home-hero-media{position:absolute;inset:0;z-index:0;display:block}
 .home-hero>.home-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
@@ -18,7 +24,7 @@
 .home-hero>.home-hero-overlay{z-index:1;background:
   linear-gradient(90deg,rgba(9,14,28,.92) 0%,rgba(9,14,28,.80) 30%,rgba(9,14,28,.46) 58%,rgba(9,14,28,.16) 100%),
   linear-gradient(0deg,rgba(9,14,28,.55) 0%,rgba(9,14,28,0) 32%),
-  linear-gradient(180deg,rgba(9,14,28,.45) 0%,rgba(9,14,28,0) 22%)}
+  linear-gradient(180deg,rgba(9,14,28,.88) 0,rgba(9,14,28,.66) 90px,rgba(9,14,28,0) 220px)}
 .home-hero:after{display:none}
 
 /* --- Copy --- */
@@ -28,8 +34,10 @@
 .home-hero .eyebrow.light{gap:0;flex-wrap:wrap}
 @media (min-width:601px){.home-hero .eyebrow.light>span{white-space:pre}}
 /* Text-cut Fraunces (low optical size): sturdier strokes and ball terminals, as in the reference */
-.home-hero h1{font-family:var(--serif);font-weight:400;font-optical-sizing:none;font-variation-settings:'opsz' 12;font-size:clamp(54px,min(6.8vw,14vh),132px);line-height:1;letter-spacing:-.045em;margin:clamp(12px,1.8vh,20px) 0 clamp(22px,4vh,40px);max-width:none;color:#fff}
+.home-hero h1{font-family:var(--serif);font-weight:400;font-optical-sizing:none;font-variation-settings:'opsz' 12;font-size:clamp(48px,min(calc((100vw - 48px) / 10.7),14vh),113px);line-height:1;letter-spacing:-.045em;margin:clamp(12px,1.8vh,20px) 0 clamp(22px,4vh,40px);max-width:none;color:#fff}
 .home-hero h1 .h1-line,.home-hero h1 em{display:block}
+/* Owner request: 'Come and encounter the' on one line, 'fire of God.' on the next (phones wrap naturally) */
+@media (min-width:601px){.home-hero h1 .h1-line{white-space:nowrap}}
 .home-hero h1 em{font-style:normal;font-weight:400;color:#f3836d}
 .home-hero .home-hero-content>p:not(.eyebrow){font-family:'Inter Tight',system-ui,sans-serif;font-size:clamp(17px,1.35vw,26px);line-height:1.6;color:#d6dbe3;max-width:680px;margin:0}
 

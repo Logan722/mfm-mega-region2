@@ -7,6 +7,13 @@
    - Autoplay blocked or video failure: the poster + copy remain a complete first screen.
    - No JS: the <picture> poster, headline and actions work on their own. */
 (function () {
+  /* Menu bar: see-through only while the page is at the very top (class set early in <head>). */
+  var root = document.documentElement;
+  function navSync() { root.classList.toggle('home-top', (window.pageYOffset || document.documentElement.scrollTop || 0) < 24); }
+  navSync();
+  window.addEventListener('scroll', navSync, { passive: true });
+  window.addEventListener('pageshow', navSync);
+
   var hero = document.querySelector('[data-home-hero]');
   if (!hero) return;
   var v = hero.querySelector('video.home-hero-video');
