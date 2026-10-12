@@ -108,7 +108,7 @@ def build_grids(ev):
     t = (ROOT / 'index.html').read_text()
     e = ev[0]
     loc = dock_loc(e)
-    dock = '<span><i></i> Next regional gathering</span><b>%s</b><small>%s</small><a href="%s">See details %s</a>' % (
+    dock = '<span><i></i> Next regional gathering</span><b>%s</b><small>%s</small><a href="%s">View details %s</a>' % (
         esc(e['title']), esc((e.get('dateDisplay') or e['date']) + (' · ' + loc if loc else '')), esc(href_of(e)),
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>')
     i = t.index('<div class="service-dock"')

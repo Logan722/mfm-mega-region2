@@ -3,6 +3,8 @@
 /events/duluth-midnight-vigil.html  /events  301!
 /events/florida-deliverance-crusade  /events  301!
 /events/florida-deliverance-crusade.html  /events  301!
+/events/gen218-regional-conference  /events  301!
+/events/gen218-regional-conference.html  /events  301!
 /events/nc-deliverance-crusade  /events  301!
 /events/nc-deliverance-crusade.html  /events  301!
 /events/spiritual-refresh-tampa  /events  301!
@@ -11,6 +13,8 @@
 /events/tampa-membership-class.html  /events  301!
 /events/women-foundation-fl-august  /events  301!
 /events/women-foundation-fl-august.html  /events  301!
+/events/womens-retreat  /events  301!
+/events/womens-retreat.html  /events  301!
 /events/zonal-womens-conference  /events  301!
 /events/zonal-womens-conference.html  /events  301!
 /share/back-to-school-nw-houston  /events  301!
@@ -21,6 +25,8 @@
 /share/back-to-school-tampa.html  /events  301!
 /share/florida-deliverance-crusade  /events  301!
 /share/florida-deliverance-crusade.html  /events  301!
+/share/gen218-regional-conference  /events  301!
+/share/gen218-regional-conference.html  /events  301!
 /share/nc-deliverance-crusade  /events  301!
 /share/nc-deliverance-crusade.html  /events  301!
 /share/spiritual-refresh-tampa  /events  301!
@@ -31,6 +37,8 @@
 /share/third-quarter-deliverance.html  /events  301!
 /share/women-foundation-fl-august  /events  301!
 /share/women-foundation-fl-august.html  /events  301!
+/share/womens-retreat  /events  301!
+/share/womens-retreat.html  /events  301!
 /share/zonal-womens-conference  /events  301!
 /share/zonal-womens-conference.html  /events  301!
 # --- end build_site.py ---
@@ -81,12 +89,10 @@
 /branches.html  /branches  301!
 /events/couples-night.html  /events/couples-night  301!
 /events/dallas-deliverance-crusade.html  /events/dallas-deliverance-crusade  301!
-/events/gen218-regional-conference.html  /events/gen218-regional-conference  301!
 /events/movie-night-agbara-nla.html  /events/movie-night-agbara-nla  301!
 /events/nashville-deliverance-crusade.html  /events/nashville-deliverance-crusade  301!
 /events/prayer-battle-7.html  /events/prayer-battle-7  301!
 /events/thanksgiving-service.html  /events/thanksgiving-service  301!
-/events/womens-retreat.html  /events/womens-retreat  301!
 /events.html  /events  301!
 /gallery.html  /gallery  301!
 /gen218.html  /gen218  301!

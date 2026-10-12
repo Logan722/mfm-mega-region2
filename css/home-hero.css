@@ -22,18 +22,21 @@
 .home-hero:after{display:none}
 
 /* --- Copy --- */
-.home-hero .home-hero-content{padding-top:calc(81px + clamp(40px,12vh,130px))}
+.home-hero .home-hero-content{padding-top:calc(81px + clamp(28px,10vh,120px))}
 .home-hero .eyebrow.light{color:#f3836d;font-size:12px;letter-spacing:.2em;font-weight:800;margin-bottom:0}
 .home-hero .eyebrow.light:before{display:none}
-.home-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(54px,6.8vw,132px);line-height:.98;letter-spacing:-.045em;margin:clamp(14px,2.2vh,24px) 0 clamp(26px,4.4vh,44px);max-width:none;color:#fff}
+.home-hero .eyebrow.light{gap:0;flex-wrap:wrap}
+@media (min-width:601px){.home-hero .eyebrow.light>span{white-space:pre}}
+/* Text-cut Fraunces (low optical size): sturdier strokes and ball terminals, as in the reference */
+.home-hero h1{font-family:var(--serif);font-weight:400;font-optical-sizing:none;font-variation-settings:'opsz' 12;font-size:clamp(54px,min(6.8vw,14vh),132px);line-height:1;letter-spacing:-.045em;margin:clamp(12px,1.8vh,20px) 0 clamp(22px,4vh,40px);max-width:none;color:#fff}
 .home-hero h1 .h1-line,.home-hero h1 em{display:block}
-.home-hero h1 em{font-style:normal;font-weight:500;color:#f3836d}
-.home-hero .home-hero-content>p:not(.eyebrow){font-family:'Inter Tight',system-ui,sans-serif;font-size:clamp(17px,1.15vw,22px);line-height:1.62;color:#d0d5dd;max-width:560px;margin:0}
+.home-hero h1 em{font-style:normal;font-weight:400;color:#f3836d}
+.home-hero .home-hero-content>p:not(.eyebrow){font-family:'Inter Tight',system-ui,sans-serif;font-size:clamp(17px,1.35vw,26px);line-height:1.6;color:#d6dbe3;max-width:680px;margin:0}
 
 /* --- Buttons: square, uppercase, no arrows --- */
 .home-hero .hero-actions{gap:12px;margin-top:clamp(26px,4vh,40px)}
 /* rf-site.css forces site-wide buttons to rounded/sentence-case with !important; the hero alone opts out. */
-.home-hero .hero-actions .button{min-height:50px;padding:14px 22px;border-radius:0!important;font-family:'Inter Tight',system-ui,sans-serif;font-size:14px!important;font-weight:800!important;line-height:1;letter-spacing:.1em!important;text-transform:uppercase!important}
+.home-hero .hero-actions .button{min-height:56px;padding:16px 26px;border-radius:0!important;font-family:'Inter Tight',system-ui,sans-serif;font-size:14px!important;font-weight:800!important;line-height:1;letter-spacing:.1em!important;text-transform:uppercase!important}
 .home-hero .hero-actions .button svg{display:none}
 .home-hero .hero-actions .button:not(.light){background:#d4381f;border-color:#d4381f;color:#fff}
 .home-hero .hero-actions .button:not(.light):hover{background:#b52f19;border-color:#b52f19}
@@ -52,16 +55,22 @@
 .hero-motion.is-paused .hm-play{display:block}
 .hero-motion.is-paused .hm-pause{display:none}
 
-/* --- "Next regional gathering": slim navy bar directly under the hero --- */
-.hero-next{background:#0b1322;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
-.hero-next .service-dock{position:static;width:auto;box-shadow:none;background:transparent;color:#fff;padding:18px 0;display:flex;align-items:center;flex-wrap:wrap;gap:6px 22px}
-.hero-next .service-dock>span{display:inline-flex;align-items:center;font-size:11px;letter-spacing:.16em;color:#f3836d;margin:0}
-.hero-next .service-dock i{background:#f3836d}
-.hero-next .service-dock b{font-size:20px;margin:0;color:#fff}
-.hero-next .service-dock small{margin:0;color:#c3cad6;font-size:14px}
-.hero-next .service-dock a{margin:0 0 0 auto;padding:0;border:0;color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;min-height:44px;display:inline-flex;align-items:center;gap:8px}
-.hero-next .service-dock a:hover{color:#f3836d}
-.hero-next .service-dock a svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+/* --- "Next regional gathering": full-width fire bar directly under the hero (reference) --- */
+.hero-next{background:#d4381f;color:#fff}
+.hero-next .service-dock{position:static;width:auto;box-shadow:none;background:transparent;color:#fff;padding:22px 0;display:flex;align-items:center;flex-wrap:wrap;gap:8px 28px}
+.hero-next .service-dock>span{display:inline-flex;align-items:center;font-size:12px;letter-spacing:.16em;font-weight:800;color:#fff;margin:0}
+.hero-next .service-dock i{display:none}
+.hero-next .service-dock b{font-family:var(--serif);font-weight:400;font-size:clamp(22px,1.7vw,30px);margin:0;color:#fff}
+.hero-next .service-dock small{margin:0;color:#fff;font-size:15px}
+.hero-next .service-dock a{margin:0 0 0 auto;padding:0 26px;min-height:56px;border:1.5px solid #fff;color:#fff;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;transition:background .2s,color .2s}
+.hero-next .service-dock a:hover{background:#fff;color:#b52f19}
+.hero-next .service-dock a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hero-next .service-dock a svg{display:none}
+@media (min-width:901px){
+  .hero-next .service-dock{flex-wrap:nowrap}
+  .hero-next .service-dock>span,.hero-next .service-dock small,.hero-next .service-dock a{flex:none;white-space:nowrap}
+  .hero-next .service-dock b{flex:0 1 auto;min-width:0;line-height:1.2}
+}
 
 /* --- Tablet --- */
 @media (max-width:850px){
@@ -76,7 +85,8 @@
   .home-hero>.home-hero-media img,.home-hero>video.home-hero-video{object-position:50% 40%}
   .home-hero>.home-hero-overlay{background:linear-gradient(180deg,rgba(9,14,28,.82) 0%,rgba(9,14,28,.62) 45%,rgba(9,14,28,.86) 100%)}
   .home-hero .home-hero-content{flex:1 0 auto;padding-top:calc(81px + 36px);padding-bottom:96px}
-  .home-hero .eyebrow.light{font-size:10px;letter-spacing:.16em;line-height:1.5}
+  .home-hero .eyebrow.light{font-size:10px;letter-spacing:.16em;line-height:1.6;flex-direction:column;gap:2px}
+  .home-hero .eyebrow.light .eb-sep{display:none}
   /* 200% zoom / very narrow screens: reflow instead of clipping */
   .home-hero h1{font-size:clamp(34px,13.4vw,56px);overflow-wrap:break-word}
   .home-hero h1 .h1-line{display:inline}
@@ -85,7 +95,7 @@
   .hero-motion{right:16px;bottom:max(20px,env(safe-area-inset-bottom));width:48px;height:48px}
   .hero-next .service-dock{padding:16px 0;justify-content:center;text-align:center}
   .hero-next .service-dock>span{width:100%;justify-content:center}
-  .hero-next .service-dock a{margin:0;width:100%;justify-content:center}
+  .hero-next .service-dock a{margin:6px 0 0;width:100%;justify-content:center}
 }
 @media (max-width:600px) and (orientation:landscape){
   .home-hero{min-height:0}
