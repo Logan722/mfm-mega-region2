@@ -352,6 +352,9 @@ def build_sitemap(live_pages):
     return len(urls)
 
 def main():
+    # Media library <- YouTube channel (new uploads get a card + message page; skip with MFM_NO_FEED=1)
+    if not os.environ.get('MFM_NO_FEED'):
+        subprocess.run([sys.executable, str(ROOT / 'tools' / 'sync_media.py')], check=False)
     ev = snapshot()
     build_latest_video()
     build_grids(ev)
