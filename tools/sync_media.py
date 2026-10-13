@@ -179,7 +179,7 @@ def fetch_feed():
 def options_html(values, current_label):
     return ''.join('<option>%s</option>' % html.escape(v) for v in ['All'] + values)
 
-def main():
+def _main():
     media_p = ROOT / 'media.html'
     media = media_p.read_text()
     try:
@@ -236,6 +236,31 @@ def main():
     media_p.write_text(media)
     print('media sync: added %d video(s): %s' % (len(new), '; '.join('%s [%s]' % (n['title'], n['program']) for n in new)))
     return 0
+
+WOMEN_MAX = 6
+
+def refresh_women():
+    """Women page 'Messages for women' = every Women Foundation card in the Media library, newest first."""
+    media = (ROOT / 'media.html').read_text()
+    _, cards = parse_cards(media)
+    picks = [c for c in cards if c['program'] == 'Women Foundation'][:WOMEN_MAX]
+    if not picks:
+        return
+    wp = ROOT / 'women.html'
+    w = wp.read_text()
+    m = re.search(r'(<span class="eyebrow">Messages for women</span>.*?<div class="message-grid">)(.*?)(</div></div></section>)', w, re.S)
+    if not m:
+        print('women sync: messages block not found — skipped')
+        return
+    inner = ''.join(c['html'] for c in picks)
+    if m.group(2) != inner:
+        wp.write_text(w[:m.start(2)] + inner + w[m.end(2):])
+        print('women sync: %d Women Foundation messages' % len(picks))
+
+def main():
+    r = _main()
+    refresh_women()
+    return r
 
 if __name__ == '__main__':
     sys.exit(main())

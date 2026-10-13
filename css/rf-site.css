@@ -1102,3 +1102,22 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 /* Small phones (320px): form fields shrink to the column instead of widening the page */
 .home-prayer .wrap>*,.home-prayer article,.prayer-form,.prayer-form label{min-width:0}
 .prayer-form select,.prayer-form input,.prayer-form textarea{min-width:0;max-width:100%}
+
+/* Women Foundation: Ministry moments (retreat album link) — Oct 13 2026 */
+.women-moments{background:#fff}
+.wm-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:center}
+.wm-copy h2{margin:10px 0 8px}
+.wm-meta{color:var(--fire-dark,#b84a1f);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 16px}
+.wm-copy p{color:var(--muted,#5a6270);line-height:1.7}
+.wm-copy blockquote{margin:22px 0 4px;padding-left:16px;border-left:3px solid #c9952c;font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink,#142240)}
+.wm-copy blockquote cite{display:block;margin-top:6px;font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8a6a1f}
+.wm-photos{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:4/3}
+.wm-ph{position:relative;display:block;overflow:hidden;border-radius:10px;background:#efe9dc}
+.wm-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform .4s}
+.wm-ph:hover img{transform:scale(1.04)}
+.wm-big{grid-row:1/3}
+.wm-photos .wm-ph:nth-child(4){grid-column:2/4}
+@media(max-width:860px){.wm-grid{grid-template-columns:1fr;gap:32px}.wm-photos{order:-1}}
+@media(max-width:600px){.wm-copy{text-align:center}.wm-copy blockquote{text-align:left}.wm-copy .hero-actions{justify-content:center}}
+.women-moments .button.light{background:transparent;color:#142240;border-color:#142240}
+.women-moments .button.light:hover{background:#142240;color:#fff}
