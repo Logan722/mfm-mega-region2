@@ -94,3 +94,11 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 
 /* Wide screens: the card's right edge lines up with the stretched menu bar ("Request Prayer") */
 @media (min-width:1200px) and (min-height:641px){.home-hero .service-dock{right:clamp(32px,3.2vw,64px)}}
+
+/* --- Gold accents (owner request, Oct 13 2026): the hero eyebrow, "the fire of God." and the main button
+       move from coral/red to the Royal Flame gold. A brighter gold is used on the video so it stays crisp;
+       the button carries navy text for contrast. --- */
+.home-hero .eyebrow.light{color:#e0ad45}
+.home-hero h1 em{color:#e0ad45}
+.home-hero .hero-actions .button:not(.light){background:#e0ad45;border-color:#e0ad45;color:#0b1322}
+.home-hero .hero-actions .button:not(.light):hover{background:#c9952c;border-color:#c9952c;color:#0b1322}
