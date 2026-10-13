@@ -1121,3 +1121,14 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 @media(max-width:600px){.wm-copy{text-align:center}.wm-copy blockquote{text-align:left}.wm-copy .hero-actions{justify-content:center}}
 .women-moments .button.light{background:transparent;color:#142240;border-color:#142240}
 .women-moments .button.light:hover{background:#142240;color:#fff}
+/* Event pop-up: a hidden action button must stay hidden (the site-wide .button display rule overrode [hidden]) */
+.event-modal-actions [hidden]{display:none!important}
+
+/* Gen218 page: "Ministry moments" livestream feature (synced from the Media library by tools/sync_media.py) */
+.gen-moments{background:#fff}
+.gm-video .yt-lite{border-radius:14px;box-shadow:0 22px 50px rgba(20,34,64,.22)}
+.gm-cap{margin:12px 2px 0;font-size:13px;color:var(--muted,#5a6270)}
+.gm-note{font-size:14px;font-style:italic}
+.gen-moments .button.light{background:transparent;color:#142240;border-color:#142240}
+.gm-more{margin-top:56px}.gm-more h3{font-family:var(--serif);font-size:26px;margin:0 0 20px}
+@media(max-width:860px){.gm-video{order:-1}}

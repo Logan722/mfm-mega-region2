@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap">
-  <link rel="stylesheet" href="/css/rf-site.css?v=516ac07aaf">
+  <link rel="stylesheet" href="/css/rf-site.css?v=bf13bc2dab">
 
   <!-- Events Page Styles -->
   
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function(){
     })();
     var vw=document.getElementById('evtVideoWrap'),vf=document.getElementById('evtVideo'); if(e.video){vf.src='https://www.youtube-nocookie.com/embed/'+ytid(e.video);vw.hidden=false;}else{vf.src='';vw.hidden=true;}
     var tk=document.getElementById('evtTickets'), cal=document.getElementById('evtCal'), past=U.isPast(e);
-    if(U.ticketUrl(e)&&!past){tk.href=U.ticketUrl(e);tk.hidden=false;}else{tk.removeAttribute('href');tk.hidden=true;}
+    if(U.ticketUrl(e)&&!past){tk.href=U.ticketUrl(e);tk.textContent='Get Tickets';tk.target='_blank';tk.hidden=false;}else if(!past&&/youtube live/i.test(e.venue||'')){tk.href='/watch';tk.textContent='Watch Live';tk.removeAttribute('target');tk.hidden=false;}else{tk.removeAttribute('href');tk.hidden=true;}var eb=document.querySelector('#evtModal .event-modal-copy .eyebrow');if(eb)eb.textContent=e.recurring?'Weekly programme':'Event';
     if(!past){cal.href=gcal(e);cal.hidden=false;}else{cal.removeAttribute('href');cal.hidden=true;}
     mb.hidden=false; mb.style.display='grid'; if(e.anchor) history.replaceState(null,'',location.pathname+'#'+e.anchor);
     if(window.MFMOverlay){ window.MFMOverlay.open(mb,{dialog:mb.querySelector('.event-modal'),initialFocus:'#evtClose',returnFocus:mb._opener,onRequestClose:closeModal}); }

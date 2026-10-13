@@ -257,9 +257,51 @@ def refresh_women():
         wp.write_text(w[:m.start(2)] + inner + w[m.end(2):])
         print('women sync: %d Women Foundation messages' % len(picks))
 
+GEN_MAX = 7
+GEN_START, GEN_END = '<!-- gen218-videos:start -->', '<!-- gen218-videos:end -->'
+
+def refresh_gen218():
+    """Gen218 page 'Ministry moments' = newest Gen218 video (click-to-play) + any other Gen218 messages, from the Media library."""
+    media = (ROOT / 'media.html').read_text()
+    _, cards = parse_cards(media)
+    picks = [c for c in cards if re.search(r'gen ?218', c['title'] + ' ' + c['html'][:600], re.I)][:GEN_MAX]
+    if not picks:
+        return
+    gp = ROOT / 'gen218.html'
+    g = gp.read_text()
+    if GEN_START not in g or GEN_END not in g:
+        print('gen218 sync: markers not found — skipped')
+        return
+    top, rest = picks[0], picks[1:]
+    t = html.escape(html.unescape(top['title']))
+    sec = (GEN_START + '<section class="section gen-moments" aria-labelledby="gmTitle"><div class="wrap wm-grid">'
+           '<div class="wm-copy"><span class="eyebrow">Ministry moments</span><h2 id="gmTitle">' + t + '.</h2>'
+           '<p class="wm-meta">Prayer &middot; Purpose &middot; Power &mdash; watch the livestream</p>'
+           '<p>Singles from across the region gathered for powerful prayer, deliverance and sound teaching on purpose, '
+           'preparation and God&rsquo;s best for marriage. Missed it, or want to pray through it again? The full service is here.</p>'
+           '<blockquote>&ldquo;For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, '
+           'to give you an expected end.&rdquo;<cite>Jeremiah 29:11</cite></blockquote>'
+           '<p class="gm-note">Photos from the conference are coming soon.</p>'
+           '<div class="hero-actions"><a class="button" href="' + top['href'] + '">Watch the conference</a>'
+           '<a class="button light" href="/media">More messages</a></div></div>'
+           '<div class="gm-video"><a class="yt-lite" href="https://www.youtube.com/watch?v=' + top['id'] + '" data-yt="' + top['id'] + '" data-title="' + t + '">'
+           '<img src="https://i.ytimg.com/vi/' + top['id'] + '/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">'
+           '<span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
+           '<span class="yt-sr">Play video: ' + t + '</span></a>'
+           '<p class="gm-cap">' + t + ' &middot; full livestream</p></div></div>')
+    if rest:
+        sec += ('<div class="wrap gm-more"><h3>More from Gen218</h3><div class="message-grid">'
+                + ''.join(c['html'] for c in rest) + '</div></div>')
+    sec += '</section>' + GEN_END
+    a, b = g.index(GEN_START), g.index(GEN_END) + len(GEN_END)
+    if g[a:b] != sec:
+        gp.write_text(g[:a] + sec + g[b:])
+        print('gen218 sync: %d Gen218 video(s)' % len(picks))
+
 def main():
     r = _main()
     refresh_women()
+    refresh_gen218()
     return r
 
 if __name__ == '__main__':
