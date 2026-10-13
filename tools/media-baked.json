@@ -51,11 +51,12 @@
   "title": "GEN218 Regional Prayer Conference 2026",
   "published": "2026-10-10T20:18:45+00:00",
   "year": "2026",
-  "program": "Special Events",
+  "program": "Gen218",
   "speaker": "",
   "source": "",
   "topics": [
-   "Prayer"
+   "Prayer",
+   "Singles"
   ],
   "slug": "gen218-regional-prayer-conference-2026",
   "href": "/messages/gen218-regional-prayer-conference-2026"
@@ -137,5 +138,50 @@
   ],
   "slug": "from-the-altar-of-poverty-to-prosperity",
   "href": "/messages/from-the-altar-of-poverty-to-prosperity"
+ },
+ {
+  "id": "82TOfp_eH-w",
+  "raw": "GLORY REVEALED! 🌟| Quarterly Gen218 Virtual Conference",
+  "title": "Glory Revealed! — Quarterly Gen218 Virtual Conference",
+  "published": "2025-05-18T04:50:05+00:00",
+  "year": "2025",
+  "program": "Gen218",
+  "speaker": "",
+  "source": "",
+  "topics": [
+   "Singles"
+  ],
+  "slug": "glory-revealed-quarterly-gen218-virtual-conference",
+  "href": "/messages/glory-revealed-quarterly-gen218-virtual-conference"
+ },
+ {
+  "id": "Raib3YWzglY",
+  "raw": "GEN 218 Single's Conference: It Is My Time To Rejoice",
+  "title": "It Is My Time to Rejoice — Gen218 Singles’ Conference",
+  "published": "2024-10-12T21:04:06+00:00",
+  "year": "2024",
+  "program": "Gen218",
+  "speaker": "",
+  "source": "",
+  "topics": [
+   "Singles"
+  ],
+  "slug": "it-is-my-time-to-rejoice-gen218-singles-conference",
+  "href": "/messages/it-is-my-time-to-rejoice-gen218-singles-conference"
+ },
+ {
+  "id": "0Ys5YKUQ8EQ",
+  "raw": "GEN 218 | The Snare Is Broken",
+  "title": "The Snare Is Broken — Gen218",
+  "published": "2024-08-18T04:51:01+00:00",
+  "year": "2024",
+  "program": "Gen218",
+  "speaker": "",
+  "source": "",
+  "topics": [
+   "Singles"
+  ],
+  "slug": "the-snare-is-broken-gen218",
+  "href": "/messages/the-snare-is-broken-gen218"
  }
 ]

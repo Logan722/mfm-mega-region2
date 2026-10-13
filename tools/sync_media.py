@@ -20,6 +20,13 @@ CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug'
 FEED = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID
 ORIGIN = 'https://mfmmegaregion2usa.org'
 BAKED = ROOT / 'tools' / 'media-baked.json'
+# Ministry playlists pulled in on top of the channel feed (the channel feed only lists the latest 15 uploads).
+PLAYLISTS = {'gen218': 'PLW7hBicEbKy_9UNG4SSj27NCBiw1iP-yS'}   # 'Gen 218 Conferences | Mega Region 2'
+PLAYLIST_IDS = ROOT / 'tools' / 'playlists.json'
+# Hand-written titles for uploads whose YouTube titles don't clean up well
+TITLE_OVERRIDES = {'82TOfp_eH-w': 'Glory Revealed! — Quarterly Gen218 Virtual Conference',
+                   'Raib3YWzglY': 'It Is My Time to Rejoice — Gen218 Singles\u2019 Conference',
+                   '0Ys5YKUQ8EQ': 'The Snare Is Broken — Gen218'}
 TEMPLATE = ROOT / 'messages' / 'prayer-against-stubborn-condition.html'
 
 # ---------- classification (mirrored in media.html's live-sync script) ----------
@@ -82,6 +89,8 @@ def programme_of(raw):
         return 'Open Heaven Encounter'
     if re.search(r'women|retreat', l):
         return 'Women Foundation'
+    if re.search(r'gen ?218', l):
+        return 'Gen218'
     if re.search(r'crusade|conference|\blive\b|thanksgiving|gen ?218|pmch', l):
         return 'Special Events'
     return 'Sermons & Messages'
@@ -89,7 +98,7 @@ def programme_of(raw):
 TOPIC_RULES = [('Healing', r'heal'), ('Deliverance', r'deliver'), ('Prayer', r'pray|altar|intercess'),
                ('Breakthrough', r'breakthrough|prosper|poverty|miracle'), ('Women', r'women|retreat'),
                ('Crusade', r'crusade'), ('Worship', r'worship|praise'), ('Thanksgiving', r'thanksgiving'),
-               ('Restoration', r'restor')]
+               ('Restoration', r'restor'), ('Singles', r'gen ?218|single')]
 
 def topics_of(raw):
     l = raw.lower()
@@ -168,12 +177,12 @@ def message_page(tpl, it, related):
     assert old_id not in t and it['id'] in t
     return t
 
-def fetch_feed():
+def fetch_feed(url=FEED):
     ctx = ssl.create_default_context()
     ca = '/root/.ccr/ca-bundle.crt'
     if os.path.exists(ca):
         ctx.load_verify_locations(ca)
-    req = urllib.request.Request(FEED, headers={'user-agent': 'mfmmegaregion2usa.org media-sync'})
+    req = urllib.request.Request(url, headers={'user-agent': 'mfmmegaregion2usa.org media-sync'})
     return urllib.request.urlopen(req, timeout=20, context=ctx).read().decode('utf-8')
 
 def options_html(values, current_label):
@@ -187,6 +196,16 @@ def _main():
     except Exception as ex:
         print('media sync: feed unavailable (%s) — no change' % ex)
         return 0
+    pl_ids = json.loads(PLAYLIST_IDS.read_text()) if PLAYLIST_IDS.exists() else {}
+    for key, pid in PLAYLISTS.items():
+        try:
+            px = fetch_feed('https://www.youtube.com/feeds/videos.xml?playlist_id=' + pid)
+        except Exception as ex:
+            print('media sync: playlist %s unavailable (%s)' % (key, ex))
+            continue
+        pl_ids[key] = re.findall(r'<yt:videoId>([\w-]{11})</yt:videoId>', px)
+        xml += px
+    PLAYLIST_IDS.write_text(json.dumps(pl_ids, indent=1) + '\n')
     grid, cards = parse_cards(media)
     have = {c['id'] for c in cards}
     baked = json.loads(BAKED.read_text()) if BAKED.exists() else []
@@ -196,9 +215,9 @@ def _main():
         raw = html.unescape(re.search(r'<title>(.*?)</title>', entry, re.S).group(1)).strip()
         views = int((re.search(r'<media:statistics views="(\d+)"', entry) or [0, 0])[1])
         published = re.search(r'<published>([^<]+)</published>', entry).group(1)
-        if vid in have or not watchable(raw, views):
+        if vid in have or vid in {n['id'] for n in new} or not watchable(raw, views):
             continue
-        title = clean_title(raw)
+        title = TITLE_OVERRIDES.get(vid) or clean_title(raw)
         it = {'id': vid, 'raw': raw, 'title': title, 'published': published, 'year': published[:4],
               'program': programme_of(raw), 'speaker': speaker_of(raw), 'source': source_of(raw), 'topics': topics_of(raw)}
         slug = slugify(title)
@@ -221,9 +240,18 @@ def _main():
     # grid: baked videos newest first, then the original curated cards (unchanged order)
     baked_ids = {b['id'] for b in baked}
     old_cards = [c for c in cards if c['id'] not in baked_ids]
-    new_grid = ''.join(card_html(b, b['href']) for b in baked) + ''.join(
-        c['html'] if 'data-yt=' in c['html'] else c['html'].replace('<article class="message-card" ', '<article class="message-card" data-yt="%s" ' % c['id'], 1)
-        for c in old_cards)
+    old_html = [c['html'] if 'data-yt=' in c['html'] else c['html'].replace('<article class="message-card" ', '<article class="message-card" data-yt="%s" ' % c['id'], 1)
+                for c in old_cards]
+    # baked videos newest first; an older upload (e.g. from a playlist) slots in before the first curated card of its year or older
+    top, slotted = [], [[] for _ in old_cards] + [[]]
+    newest_old = max([c['year'] for c in old_cards if c['year']] or ['0'])
+    for b in baked:
+        if b['year'] > newest_old:
+            top.append(card_html(b, b['href']))
+            continue
+        k = next((i for i, c in enumerate(old_cards) if c['year'] and c['year'] <= b['year']), len(old_cards))
+        slotted[k].append(card_html(b, b['href']))
+    new_grid = ''.join(top) + ''.join(''.join(slotted[i]) + h for i, h in enumerate(old_html)) + ''.join(slotted[-1])
     media = media[:grid.start(2)] + new_grid + media[grid.end(2):]
     allc = baked + old_cards
     progs = sorted({c['program'] for c in allc if c['program']})
@@ -264,7 +292,8 @@ def refresh_gen218():
     """Gen218 page 'Ministry moments' = newest Gen218 video (click-to-play) + any other Gen218 messages, from the Media library."""
     media = (ROOT / 'media.html').read_text()
     _, cards = parse_cards(media)
-    picks = [c for c in cards if re.search(r'gen ?218', c['title'] + ' ' + c['html'][:600], re.I)][:GEN_MAX]
+    pl = set((json.loads(PLAYLIST_IDS.read_text()) if PLAYLIST_IDS.exists() else {}).get('gen218', []))
+    picks = [c for c in cards if c['id'] in pl or c['program'] == 'Gen218' or re.search(r'gen ?218', c['title'], re.I)][:GEN_MAX]
     if not picks:
         return
     gp = ROOT / 'gen218.html'
@@ -290,8 +319,9 @@ def refresh_gen218():
            '<span class="yt-sr">Play video: ' + t + '</span></a>'
            '<p class="gm-cap">' + t + ' &middot; full livestream</p></div></div>')
     if rest:
-        sec += ('<div class="wrap gm-more"><h3>More from Gen218</h3><div class="message-grid">'
-                + ''.join(c['html'] for c in rest) + '</div></div>')
+        sec += ('<div class="wrap gm-more"><div class="gm-more-head"><h3>More Gen218 conferences</h3>'
+                '<a class="gm-pl" href="https://www.youtube.com/playlist?list=' + PLAYLISTS['gen218'] + '" target="_blank" rel="noopener">Full playlist on YouTube &rarr;</a></div>'
+                '<div class="message-grid">' + ''.join(c['html'] for c in rest) + '</div></div>')
     sec += '</section>' + GEN_END
     a, b = g.index(GEN_START), g.index(GEN_END) + len(GEN_END)
     if g[a:b] != sec:

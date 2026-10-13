@@ -1132,3 +1132,5 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 .gen-moments .button.light{background:transparent;color:#142240;border-color:#142240}
 .gm-more{margin-top:56px}.gm-more h3{font-family:var(--serif);font-size:26px;margin:0 0 20px}
 @media(max-width:860px){.gm-video{order:-1}}
+.gm-more-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:20px}.gm-more-head h3{margin:0}
+.gm-pl{font-weight:700;color:#b84a1f;text-decoration:none;border-bottom:1px solid currentColor}.gm-pl:hover{color:#142240}
