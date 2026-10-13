@@ -91,3 +91,6 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 @media (max-width:600px) and (orientation:landscape){
   .home-hero{min-height:0}
 }
+
+/* Wide screens: the card's right edge lines up with the stretched menu bar ("Request Prayer") */
+@media (min-width:1200px) and (min-height:641px){.home-hero .service-dock{right:clamp(32px,3.2vw,64px)}}
