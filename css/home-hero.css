@@ -126,3 +126,14 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
   .home-hero .home-hero-content{display:flex;flex-direction:column;justify-content:center;padding-top:81px;padding-bottom:max(40px,env(safe-area-inset-bottom))}
 }
 @media (orientation:landscape) and (max-height:500px) and (max-width:950px){.home-hero .service-dock{display:none!important}}
+
+/* --- Phones (owner request, Oct 14 2026): "Come and encounter" on one line (sized to the screen width) and the
+       two buttons side by side on one row --- */
+@media (max-width:600px){
+  .home-hero h1 .h1-line{display:block;white-space:nowrap}
+  .home-hero h1{font-size:min(56px,calc((100vw - 36px) / 9))}
+  .home-hero .home-hero-content .hero-actions{flex-direction:row;flex-wrap:nowrap;justify-content:center;align-items:stretch;max-width:none;width:100%;gap:10px;margin-left:auto;margin-right:auto}
+  .home-hero .home-hero-content .hero-actions .button{flex:1 1 0;width:auto;max-width:200px;min-width:0;padding:15px 8px;justify-content:center;text-align:center;white-space:nowrap;font-size:12px!important;letter-spacing:.08em!important}
+}
+@media (max-width:350px){.home-hero .home-hero-content .hero-actions .button{font-size:11px!important;letter-spacing:.04em!important;padding:14px 6px}}
+@media (max-width:600px){.home-hero .home-hero-content>p:not(.eyebrow){text-wrap:balance}}
