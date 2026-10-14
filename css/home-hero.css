@@ -117,3 +117,12 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 }
 /* the line under the headline stays on one line on computers (owner request) */
 @media (min-width:901px){.home-hero .home-hero-content>p:not(.eyebrow){max-width:none;white-space:nowrap}}
+
+/* --- Phones (owner request, Oct 14 2026): full-bleed video hero — no "Coming up next" box; the copy sits
+       centred in the full-height video. Computers and tablets keep the box. --- */
+@media (max-width:600px){
+  .home-hero .service-dock{display:none!important}
+  .home-hero{height:100svh;min-height:560px}
+  .home-hero .home-hero-content{display:flex;flex-direction:column;justify-content:center;padding-top:81px;padding-bottom:max(40px,env(safe-area-inset-bottom))}
+}
+@media (orientation:landscape) and (max-height:500px) and (max-width:950px){.home-hero .service-dock{display:none!important}}
