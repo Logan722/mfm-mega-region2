@@ -7,10 +7,12 @@
 //
 // GET /.netlify/functions/latest-video         ->  { ok, id, title, url, thumb, published }
 // GET /.netlify/functions/latest-video?list=1  ->  { ok, items:[{id,title,published,views}] }  (Media page live sync)
+// GET /.netlify/functions/latest-video?live=1  ->  same shape, from the channel's Live tab (past live streams; /live page)
 // Cached at the CDN for 15 minutes; on any failure the page keeps its static fallback.
 
 const CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
 const FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+const LIVE_FEED = `https://www.youtube.com/feeds/videos.xml?playlist_id=UULV${CHANNEL_ID.slice(2)}`;
 
 function decode(s) {
   return String(s || '')
@@ -20,7 +22,9 @@ function decode(s) {
 }
 
 exports.handler = async (event) => {
-  const wantList = !!(event && event.queryStringParameters && event.queryStringParameters.list);
+  const q = (event && event.queryStringParameters) || {};
+  const wantLive = !!q.live;
+  const wantList = !!q.list || wantLive;
   const headers = {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'public, max-age=300',
@@ -29,7 +33,7 @@ exports.handler = async (event) => {
   try {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 6000);
-    const r = await fetch(FEED, { signal: ctrl.signal, headers: { 'user-agent': 'mfmmegaregion2usa.org latest-video' } });
+    const r = await fetch(wantLive ? LIVE_FEED : FEED, { signal: ctrl.signal, headers: { 'user-agent': 'mfmmegaregion2usa.org latest-video' } });
     clearTimeout(timer);
     if (!r.ok) throw new Error('feed ' + r.status);
     const xml = await r.text();

@@ -26,7 +26,8 @@ PLAYLIST_IDS = ROOT / 'tools' / 'playlists.json'
 # Hand-written titles for uploads whose YouTube titles don't clean up well
 TITLE_OVERRIDES = {'82TOfp_eH-w': 'Glory Revealed! — Quarterly Gen218 Virtual Conference',
                    'Raib3YWzglY': 'It Is My Time to Rejoice — Gen218 Singles\u2019 Conference',
-                   '0Ys5YKUQ8EQ': 'The Snare Is Broken — Gen218'}
+                   '0Ys5YKUQ8EQ': 'The Snare Is Broken — Gen218',
+                   '_HGRpiFhBEM': 'PMCH October 2026'}
 TEMPLATE = ROOT / 'messages' / 'prayer-against-stubborn-condition.html'
 
 # ---------- classification (mirrored in media.html's live-sync script) ----------
@@ -91,7 +92,7 @@ def programme_of(raw):
         return 'Women Foundation'
     if re.search(r'gen ?218', l):
         return 'Gen218'
-    if re.search(r'crusade|conference|\blive\b|thanksgiving|gen ?218|pmch', l):
+    if re.search(r'crusade|conference|\blive\b|thanksgiving|gen ?218|pmch|dedication', l):
         return 'Special Events'
     return 'Sermons & Messages'
 
@@ -338,33 +339,59 @@ def refresh_gen218():
         print('gen218 sync: %d Gen218 video(s)' % len(picks))
 
 LIVE_RECENT = 6
+# The channel's "Live" tab (past live streams), as a feed: YouTube's built-in UULV playlist for the channel
+LIVE_FEED = 'https://www.youtube.com/feeds/videos.xml?playlist_id=UULV' + CHANNEL_ID[2:]
+
+def live_title(raw, vid=''):
+    """Title for a past live stream: 'Name — subtitle' (subtitle dropped when it is a tagline or a speaker)."""
+    if vid in TITLE_OVERRIDES:
+        return TITLE_OVERRIDES[vid]
+    segs = [x.strip() for x in re.sub(r'^\s*(?:\U0001F534\s*)?LIVE\s*\|\s*', '', raw, flags=re.I).split('|') if x.strip()]
+    if len(segs) > 1 and re.match(r'(?:Dr\.?|Pastor|Rev\.?|Bishop)\b', segs[1]):
+        segs = segs[:1] + segs[2:]
+    return clean_title('LIVE | ' + ' | '.join(segs))
 
 def refresh_live():
-    """Live page (/live): 'Latest from our channel' player = newest video in the Media library;
-    'Recent messages' = the next LIVE_RECENT videos. The page also tops itself up in the browser."""
-    media = (ROOT / 'media.html').read_text()
-    _, cards = parse_cards(media)
-    if not cards:
-        return
+    """Live page (/live) = the channel's Live tab: the newest aired live service in the player, the next
+    LIVE_RECENT under 'Recent live services'. The page also tops itself up in the browser (?live=1)."""
     lp = ROOT / 'live.html'
     if not lp.exists():
         return
+    try:
+        xml = fetch_feed(LIVE_FEED)
+    except Exception as ex:
+        print('live sync: live-tab feed unavailable (%s) — no change' % ex)
+        return
+    _, cards = parse_cards((ROOT / 'media.html').read_text())
+    pages = {c['id']: c['href'] for c in cards}
+    items = []
+    for entry in re.findall(r'<entry>(.*?)</entry>', xml, re.S):
+        vid = re.search(r'<yt:videoId>([\w-]{11})</yt:videoId>', entry).group(1)
+        raw = html.unescape(re.search(r'<title>(.*?)</title>', entry, re.S).group(1)).strip()
+        views = int((re.search(r'<media:statistics views="(\d+)"', entry) or [0, 0])[1])
+        published = re.search(r'<published>([^<]+)</published>', entry).group(1)
+        if not watchable(raw, views):
+            continue          # not aired yet (scheduled) or a hashtag clip
+        items.append({'id': vid, 'raw': raw, 'title': live_title(raw, vid), 'published': published, 'year': published[:4],
+                      'program': programme_of(raw), 'speaker': speaker_of(raw), 'source': source_of(raw), 'topics': topics_of(raw),
+                      'href': pages.get(vid) or 'https://www.youtube.com/watch?v=' + vid})
+    if not items:
+        return
     s = lp.read_text()
-    top, rest = cards[0], cards[1:1 + LIVE_RECENT]
-    t = html.escape(html.unescape(top['title']))
+    top, rest = items[0], items[1:1 + LIVE_RECENT]
+    t = html.escape(top['title'])
     frame = ('<a class="yt-lite" href="https://www.youtube.com/watch?v=%s" data-yt="%s" data-title="%s" data-href="%s">'
              '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">'
              '<span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
-             '<span class="yt-sr">Play video: %s</span></a><span id="lvLabel"><i></i> Latest from our channel</span>') % (
-        top['id'], top['id'], t, top['href'], top['id'], t)
-    n = s
-    n = re.sub(r'(<div class="video-frame">).*?(</div><aside>)', lambda m: m.group(1) + frame + m.group(2), n, count=1, flags=re.S)
+             '<span class="yt-sr">Play video: %s</span></a><span id="lvLabel"><i></i> Latest live service</span>') % (
+        top['id'], top['id'], t, html.escape(top['href']), top['id'], t)
+    n = re.sub(r'(<div class="video-frame">).*?(</div><aside>)', lambda m: m.group(1) + frame + m.group(2), s, count=1, flags=re.S)
     m = re.search(r'(<span class="eyebrow">Continue watching</span>.*?<div class="message-grid"[^>]*>)(.*?)(</div></div></section>)', n, re.S)
     if m:
-        n = n[:m.start(2)] + ''.join(c['html'] for c in rest) + n[m.end(2):]
+        n = n[:m.start(2)] + ''.join(card_html(c, c['href']) for c in rest) + n[m.end(2):]
     if n != s:
         lp.write_text(n)
-        print('live sync: latest = %s; %d recent' % (top['title'], len(rest)))
+        print('live sync: latest live service = %s; %d recent' % (top['title'], len(rest)))
 
 def main():
     r = _main()
