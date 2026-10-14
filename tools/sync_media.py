@@ -12,7 +12,7 @@ of the 15-item feed. The page also adds any newer uploads live in the browser (j
 
 Run on its own or from build_site.py. Network failure = no change (prints a note, exits 0).
 """
-import html, json, os, re, ssl, sys, urllib.request
+import datetime, html, json, os, re, ssl, sys, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -351,9 +351,90 @@ def live_title(raw, vid=''):
         segs = segs[:1] + segs[2:]
     return clean_title('LIVE | ' + ' | '.join(segs))
 
+MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+WEEKLY_TIME = {'Healing & Deliverance Hour': '7:00 PM CT', 'Open Heaven Encounter': '6:00 PM CT'}
+LIVE_PREV = 10          # previous livestreams shown: 1 featured + 9 cards
+
+def title_date(raw):
+    """The service date written in a stream title ('10-13-2026', 'October 8, 2026'), or None."""
+    m = re.search(r'\b(\d{1,2})-(\d{1,2})-(20\d\d)\b', raw)
+    if m:
+        try:
+            return datetime.date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
+        except ValueError:
+            pass
+    m = re.search(r'\b(' + '|'.join(MONTHS) + r')\s+(\d{1,2}),?\s+(20\d\d)\b', raw, re.I)
+    if m:
+        try:
+            return datetime.date(int(m.group(3)), MONTHS.index(m.group(1).lower()) + 1, int(m.group(2)))
+        except ValueError:
+            pass
+    return None
+
+def nice_date(d, year=True):
+    return d.strftime('%A, %B ') + str(d.day) + (d.strftime(', %Y') if year else '')
+
+def live_items(xml, pages):
+    """Split the Live-tab feed into (scheduled soonest-first, previous most-recent-first)."""
+    today = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=6)).date()     # Central Time (close enough for a date)
+    sched, prev = [], []
+    for entry in re.findall(r'<entry>(.*?)</entry>', xml, re.S):
+        vid = re.search(r'<yt:videoId>([\w-]{11})</yt:videoId>', entry).group(1)
+        raw = html.unescape(re.search(r'<title>(.*?)</title>', entry, re.S).group(1)).strip()
+        views = int((re.search(r'<media:statistics views="(\d+)"', entry) or [0, 0])[1])
+        published = re.search(r'<published>([^<]+)</published>', entry).group(1)
+        if '#' in raw:
+            continue
+        td = title_date(raw)
+        it = {'id': vid, 'raw': raw, 'title': live_title(raw, vid), 'published': published, 'year': published[:4],
+              'program': programme_of(raw), 'speaker': speaker_of(raw), 'source': source_of(raw), 'topics': topics_of(raw),
+              'date': td or datetime.date.fromisoformat(published[:10]), 'dated': bool(td),
+              'href': pages.get(vid) or 'https://www.youtube.com/watch?v=' + vid}
+        if views == 0:
+            if td is None or td >= today:
+                sched.append(it)      # not aired yet: scheduled
+            continue                  # (a past date with no views never aired: skip)
+        prev.append(it)
+    sched.sort(key=lambda i: (i['date'], i['published']))
+    prev.sort(key=lambda i: (i['date'], i['published']), reverse=True)
+    return sched, prev
+
+def sched_card(it):
+    e = html.escape
+    yt = 'https://www.youtube.com/watch?v=' + it['id']
+    when = (nice_date(it['date'], False) if it['dated'] else 'Date to be announced')
+    if it['dated'] and WEEKLY_TIME.get(it['program']):
+        when += ' &middot; ' + WEEKLY_TIME[it['program']]
+    return ('<article class="message-card lv-sched" data-yt="%s"><a href="%s" target="_blank" rel="noopener"><img width="480" height="360" '
+            'src="https://img.youtube.com/vi/%s/hqdefault.jpg" alt="%s thumbnail" loading="lazy" decoding="async"><b class="lv-badge">Scheduled</b></a>'
+            '<div><small>%s</small><h3><a href="%s" target="_blank" rel="noopener">%s</a></h3><p class="lv-when">%s</p>'
+            '<a class="lv-remind" href="%s" target="_blank" rel="noopener">Set a reminder on YouTube &rarr;</a></div></article>') % (
+        it['id'], yt, it['id'], e(it['title']), e(it['program']), yt, e(it['title']), when, yt)
+
+SCHED_EMPTY = ('<p class="dept-empty lv-empty">No livestreams are scheduled on YouTube right now. Join us for Healing &amp; Deliverance Hour '
+               'every Tuesday at 7:00 PM CT and Open Heaven Encounter every Thursday at 6:00 PM CT.</p>')
+
+def prev_block(prev):
+    e = html.escape
+    top, rest = prev[0], prev[1:LIVE_PREV]
+    t = e(top['title'])
+    yt = 'https://www.youtube.com/watch?v=' + top['id']
+    meta = nice_date(top['date']) + (' &middot; ' + e(top['program']) if top['program'] not in ('Sermons & Messages',) else '')
+    link = ('<a class="channel-link" href="%s">Open the message page &rarr;</a>' % e(top['href'])) if top['href'].startswith('/') else \
+           ('<a class="channel-link" href="%s" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>' % yt)
+    feature = ('<div class="watch-layout lv-feature"><div class="video-frame"><a class="yt-lite" href="%s" data-yt="%s" data-title="%s">'
+               '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">'
+               '<span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
+               '<span class="yt-sr">Play video: %s</span></a><span id="lvLabel"><i></i> Most recent livestream</span></div>'
+               '<aside><span class="eyebrow">Most recent</span><h3 class="lv-ft">%s</h3><p class="lv-when">%s</p>%s</aside></div>') % (
+        yt, top['id'], t, top['id'], t, t, meta, link)
+    cards = ''.join(card_html(dict(c, speaker=nice_date(c['date'])), c['href']) for c in rest)
+    return feature + '<div class="message-grid" id="lvGrid">' + cards + '</div>'
+
 def refresh_live():
-    """Live page (/live) = the channel's Live tab: the newest aired live service in the player, the next
-    LIVE_RECENT under 'Recent live services'. The page also tops itself up in the browser (?live=1)."""
+    """Live page (/live) = the channel's YouTube Live tab, in two sections: 'Scheduled livestreams' (soonest first)
+    and 'Previous livestreams' (most recent first, by the service date in the title). The browser re-renders both
+    from the same feed (latest-video?live=1), so the page stays current between builds."""
     lp = ROOT / 'live.html'
     if not lp.exists():
         return
@@ -363,35 +444,15 @@ def refresh_live():
         print('live sync: live-tab feed unavailable (%s) — no change' % ex)
         return
     _, cards = parse_cards((ROOT / 'media.html').read_text())
-    pages = {c['id']: c['href'] for c in cards}
-    items = []
-    for entry in re.findall(r'<entry>(.*?)</entry>', xml, re.S):
-        vid = re.search(r'<yt:videoId>([\w-]{11})</yt:videoId>', entry).group(1)
-        raw = html.unescape(re.search(r'<title>(.*?)</title>', entry, re.S).group(1)).strip()
-        views = int((re.search(r'<media:statistics views="(\d+)"', entry) or [0, 0])[1])
-        published = re.search(r'<published>([^<]+)</published>', entry).group(1)
-        if not watchable(raw, views):
-            continue          # not aired yet (scheduled) or a hashtag clip
-        items.append({'id': vid, 'raw': raw, 'title': live_title(raw, vid), 'published': published, 'year': published[:4],
-                      'program': programme_of(raw), 'speaker': speaker_of(raw), 'source': source_of(raw), 'topics': topics_of(raw),
-                      'href': pages.get(vid) or 'https://www.youtube.com/watch?v=' + vid})
-    if not items:
+    sched, prev = live_items(xml, {c['id']: c['href'] for c in cards})
+    if not prev:
         return
     s = lp.read_text()
-    top, rest = items[0], items[1:1 + LIVE_RECENT]
-    t = html.escape(top['title'])
-    frame = ('<a class="yt-lite" href="https://www.youtube.com/watch?v=%s" data-yt="%s" data-title="%s" data-href="%s">'
-             '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">'
-             '<span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
-             '<span class="yt-sr">Play video: %s</span></a><span id="lvLabel"><i></i> Latest live service</span>') % (
-        top['id'], top['id'], t, html.escape(top['href']), top['id'], t)
-    n = re.sub(r'(<div class="video-frame">).*?(</div><aside>)', lambda m: m.group(1) + frame + m.group(2), s, count=1, flags=re.S)
-    m = re.search(r'(<span class="eyebrow">Continue watching</span>.*?<div class="message-grid"[^>]*>)(.*?)(</div></div></section>)', n, re.S)
-    if m:
-        n = n[:m.start(2)] + ''.join(card_html(c, c['href']) for c in rest) + n[m.end(2):]
+    n = re.sub(r'(<!-- live:sched -->).*?(<!-- /live:sched -->)', lambda m: m.group(1) + ('<div class="message-grid lv-sched-grid" id="lvSched">' + ''.join(sched_card(i) for i in sched[:6]) + '</div>' if sched else SCHED_EMPTY) + m.group(2), s, count=1, flags=re.S)
+    n = re.sub(r'(<!-- live:prev -->).*?(<!-- /live:prev -->)', lambda m: m.group(1) + prev_block(prev) + m.group(2), n, count=1, flags=re.S)
     if n != s:
         lp.write_text(n)
-        print('live sync: latest live service = %s; %d recent' % (top['title'], len(rest)))
+        print('live sync: %d scheduled; most recent = %s; %d previous' % (len(sched), prev[0]['title'], min(len(prev), LIVE_PREV)))
 
 def main():
     r = _main()

@@ -1138,3 +1138,17 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 /* Menu bar stretched to the screen edges on wide screens (owner request, Oct 13 2026) — logo left, links right;
    page content keeps its own column, so the menu no longer shares the hero text's axis */
 @media (min-width:1200px){.nav-inner{max-width:none;padding:0 clamp(32px,3.2vw,64px)}}
+
+/* Live page (/live): Scheduled livestreams + Previous livestreams (Oct 14 2026) */
+.live-scheduled .section-head>p{max-width:520px}
+.lv-sched>a{position:relative}
+.lv-badge{position:absolute;left:14px;top:14px;background:#142240;color:#e0ad45;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:7px 10px}
+.lv-when{color:var(--muted,#5a6270);font-size:14px;margin:6px 0 12px}
+.lv-remind{font-weight:700;font-size:13px;color:#b84a1f;text-decoration:none;border-bottom:1px solid currentColor}
+.lv-remind:hover{color:#142240}
+.lv-empty{max-width:720px}
+.lv-feature{margin-bottom:48px;align-items:center}
+.lv-feature aside .lv-ft{font-family:var(--serif);font-size:clamp(26px,2.6vw,38px);line-height:1.12;margin:10px 0 8px;color:var(--ink,#142240)}
+.lv-feature aside .channel-link{display:inline-flex;font-weight:700;color:#b84a1f}
+@media(max-width:860px){.lv-feature{grid-template-columns:1fr;gap:24px}}
+.message-card.lv-sched .lv-when{font-size:15px;font-weight:700;color:#142240;margin:8px 0 14px}
