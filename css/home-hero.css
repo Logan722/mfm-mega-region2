@@ -102,3 +102,16 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 .home-hero h1 em{color:#e0ad45}
 .home-hero .hero-actions .button:not(.light){background:#e0ad45;border-color:#e0ad45;color:#0b1322}
 .home-hero .hero-actions .button:not(.light):hover{background:#c9952c;border-color:#c9952c;color:#0b1322}
+
+/* --- Centred hero copy on computers and tablets (owner request, Oct 13 2026): headline, text and buttons
+       centred over the video; the shade is now darkest behind the centre instead of the left edge.
+       Phones were already centred. --- */
+@media (min-width:601px){
+  .home-hero .home-hero-content{text-align:center}
+  .home-hero .home-hero-content>p:not(.eyebrow){margin-inline:auto}
+  .home-hero .hero-actions{justify-content:center}
+  .home-hero>.home-hero-overlay{background:
+    radial-gradient(ellipse 75% 70% at 50% 45%,rgba(9,14,28,.78) 0%,rgba(9,14,28,.55) 60%,rgba(9,14,28,.35) 100%),
+    linear-gradient(180deg,rgba(9,14,28,.85) 0,rgba(9,14,28,0) 220px),
+    linear-gradient(0deg,rgba(9,14,28,.6) 0%,rgba(9,14,28,0) 35%)}
+}
