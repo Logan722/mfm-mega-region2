@@ -115,3 +115,5 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
     linear-gradient(180deg,rgba(9,14,28,.85) 0,rgba(9,14,28,0) 220px),
     linear-gradient(0deg,rgba(9,14,28,.6) 0%,rgba(9,14,28,0) 35%)}
 }
+/* the line under the headline stays on one line on computers (owner request) */
+@media (min-width:901px){.home-hero .home-hero-content>p:not(.eyebrow){max-width:none;white-space:nowrap}}
