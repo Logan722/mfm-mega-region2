@@ -226,9 +226,17 @@ def _main():
         it['slug'] = slug
         it['href'] = '/messages/' + slug
         new.append(it)
-    if not new:
+    # YouTube moves a stream's date from when it was scheduled to when it aired: keep baked dates current
+    feed_dates = {re.search(r'<yt:videoId>([\w-]{11})</yt:videoId>', e).group(1): re.search(r'<published>([^<]+)</published>', e).group(1)
+                  for e in re.findall(r'<entry>(.*?)</entry>', xml, re.S)}
+    redated = [b for b in baked if feed_dates.get(b['id']) and feed_dates[b['id']] != b['published']]
+    for b in redated:
+        b['published'] = feed_dates[b['id']]; b['year'] = b['published'][:4]
+    if not new and not redated:
         print('media sync: up to date (%d cards)' % len(cards))
         return 0
+    if redated:
+        print('media sync: re-dated %d video(s): %s' % (len(redated), '; '.join(b['title'] for b in redated)))
     baked = [b for b in baked if b['id'] not in {n['id'] for n in new}] + new
     baked.sort(key=lambda b: b['published'], reverse=True)
     BAKED.write_text(json.dumps([{k: v for k, v in b.items() if k != 'html'} for b in baked], ensure_ascii=False, indent=1) + '\n')
@@ -262,7 +270,8 @@ def _main():
         media = re.sub(r'(<select id="%s">).*?(</select>)' % sel, lambda m: m.group(1) + options_html(vals, '') + m.group(2), media, count=1, flags=re.S)
     media = re.sub(r'(<p class="results-count" id="mCount"[^>]*>)Showing \d+ messages', lambda m: m.group(1) + 'Showing %d messages' % len(allc), media)
     media_p.write_text(media)
-    print('media sync: added %d video(s): %s' % (len(new), '; '.join('%s [%s]' % (n['title'], n['program']) for n in new)))
+    if new:
+        print('media sync: added %d video(s): %s' % (len(new), '; '.join('%s [%s]' % (n['title'], n['program']) for n in new)))
     return 0
 
 WOMEN_MAX = 6
