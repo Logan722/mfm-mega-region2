@@ -102,3 +102,14 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 .home-hero h1 em{color:#e0ad45}
 .home-hero .hero-actions .button:not(.light){background:#e0ad45;border-color:#e0ad45;color:#0b1322}
 .home-hero .hero-actions .button:not(.light):hover{background:#c9952c;border-color:#c9952c;color:#0b1322}
+
+/* --- Phones (owner request, Oct 13 2026): a much bigger headline (about 1.5x, as large as fits a phone
+       width without breaking "encounter") and the hero copy aligned left; buttons stay full width --- */
+@media (max-width:600px){
+  .home-hero .home-hero-content{text-align:left}
+  .home-hero .eyebrow.light{align-items:flex-start;text-align:left}
+  .home-hero h1{font-size:clamp(34px,19.5vw,96px);line-height:.98;letter-spacing:-.05em}
+  .home-hero h1 .h1-line{display:block}
+  .home-hero .home-hero-content>p:not(.eyebrow){margin-inline:0}
+}
+@media (max-width:600px){.home-hero .home-hero-content .hero-actions{justify-content:flex-start;align-items:stretch;max-width:none;margin-left:0;margin-right:0}.home-hero .hero-actions .button{max-width:none;width:100%;margin-inline:0}}
