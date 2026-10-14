@@ -55,6 +55,9 @@
 /give.html      /                                  301!
 # --- build_site.py: legacy .html -> clean URLs (do not edit by hand) ---
 /index.html  /  301!
+/watch  /live  301!
+/watch/  /live  301!
+/watch.html  /live  301!
 /about.html  /about  301!
 /branches/mfm-7-north-houston.html  /branches/mfm-7-north-houston  301!
 /branches/mfm-arlington-matlock.html  /branches/mfm-arlington-matlock  301!
@@ -103,6 +106,7 @@
 /gallery.html  /gallery  301!
 /gen218.html  /gen218  301!
 /links.html  /links  301!
+/live.html  /live  301!
 /media.html  /media  301!
 /messages/10-facts-about-god-your-father-is-not-a-civilian.html  /messages/10-facts-about-god-your-father-is-not-a-civilian  301!
 /messages/a-battle-cry-for-deliverance.html  /messages/a-battle-cry-for-deliverance  301!
@@ -138,6 +142,5 @@
 /messages/word-of-exhortation-thanksgiving-service-2024.html  /messages/word-of-exhortation-thanksgiving-service-2024  301!
 /ministries.html  /ministries  301!
 /privacy.html  /privacy  301!
-/watch.html  /watch  301!
 /women.html  /women  301!
 # --- end legacy ---

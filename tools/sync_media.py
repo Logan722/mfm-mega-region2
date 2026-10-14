@@ -328,10 +328,40 @@ def refresh_gen218():
         gp.write_text(g[:a] + sec + g[b:])
         print('gen218 sync: %d Gen218 video(s)' % len(picks))
 
+LIVE_RECENT = 6
+
+def refresh_live():
+    """Live page (/live): 'Latest from our channel' player = newest video in the Media library;
+    'Recent messages' = the next LIVE_RECENT videos. The page also tops itself up in the browser."""
+    media = (ROOT / 'media.html').read_text()
+    _, cards = parse_cards(media)
+    if not cards:
+        return
+    lp = ROOT / 'live.html'
+    if not lp.exists():
+        return
+    s = lp.read_text()
+    top, rest = cards[0], cards[1:1 + LIVE_RECENT]
+    t = html.escape(html.unescape(top['title']))
+    frame = ('<a class="yt-lite" href="https://www.youtube.com/watch?v=%s" data-yt="%s" data-title="%s" data-href="%s">'
+             '<img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">'
+             '<span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>'
+             '<span class="yt-sr">Play video: %s</span></a><span id="lvLabel"><i></i> Latest from our channel</span>') % (
+        top['id'], top['id'], t, top['href'], top['id'], t)
+    n = s
+    n = re.sub(r'(<div class="video-frame">).*?(</div><aside>)', lambda m: m.group(1) + frame + m.group(2), n, count=1, flags=re.S)
+    m = re.search(r'(<span class="eyebrow">Continue watching</span>.*?<div class="message-grid"[^>]*>)(.*?)(</div></div></section>)', n, re.S)
+    if m:
+        n = n[:m.start(2)] + ''.join(c['html'] for c in rest) + n[m.end(2):]
+    if n != s:
+        lp.write_text(n)
+        print('live sync: latest = %s; %d recent' % (top['title'], len(rest)))
+
 def main():
     r = _main()
     refresh_women()
     refresh_gen218()
+    refresh_live()
     return r
 
 if __name__ == '__main__':

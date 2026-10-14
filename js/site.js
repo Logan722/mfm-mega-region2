@@ -10,7 +10,7 @@
   var prog = document.querySelector('.nav-dropdown-menu');
   if (prog) {
     var w = document.createElement('a');
-    w.href = 'watch.html';
+    w.href = '/live';
     w.innerHTML = '<div class="nav-dd-label">Watch Live<span>Join our services online</span></div>';
     prog.appendChild(w);
     var a = document.createElement('a');
@@ -20,7 +20,7 @@
   }
   var drawer = document.querySelector('.drawer-nav');
   if (drawer) {
-    var dw = document.createElement('a'); dw.href = 'watch.html'; dw.textContent = 'Watch Live'; drawer.appendChild(dw);
+    var dw = document.createElement('a'); dw.href = '/live'; dw.textContent = 'Watch Live'; drawer.appendChild(dw);
     var dp = document.createElement('a'); dp.href = PRAYER; dp.target = '_blank'; dp.rel = 'noopener'; dp.textContent = 'Prayer Points'; drawer.appendChild(dp);
   }
 
@@ -51,7 +51,7 @@
                (day === 4 && mins >= 1080 && mins <= 1170);    /* Thu 6:00-7:30 PM */
     if (live && !/watch\.html$/.test(location.pathname)) {
       var lb = document.createElement('a');
-      lb.href = 'watch.html'; lb.className = 'live-banner';
+      lb.href = '/live'; lb.className = 'live-banner';
       lb.innerHTML = '<span class="live-dot"></span> We are LIVE now — Watch the service &rarr;';
       document.body.appendChild(lb);
       document.body.classList.add('has-live-banner');

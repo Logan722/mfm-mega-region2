@@ -301,11 +301,15 @@ def ensure_sw_registration():
 
 LEGACY_START = '# --- build_site.py: legacy .html -> clean URLs (do not edit by hand) ---'
 LEGACY_END = '# --- end legacy ---'
+RENAMED = [('/watch', '/live')]
 NO_LEGACY = {'thanks.html', '404.html', 'give.html', '_template.html', 'present.html', 'subscribe.html'}
 
 def build_legacy_redirects(ended):
     """One permanent redirect from every legacy .html route to its clean URL (E-04)."""
     lines = ['/index.html  /  301!']
+    # renamed pages: old address -> new address (Oct 14 2026: Watch page is now /live)
+    for old, new in RENAMED:
+        lines += ['%s  %s  301!' % (old, new), '%s/  %s  301!' % (old, new), '%s.html  %s  301!' % (old, new)]
     for rel in html_files():
         if rel in NO_LEGACY or rel == 'index.html' or rel.startswith('share/'):
             continue
@@ -319,7 +323,7 @@ def build_legacy_redirects(ended):
 
 SITEMAP_TOP = [('/', 'index.html', 'weekly', '1.0'), ('/about', 'about.html', 'monthly', '0.8'), ('/events', 'events.html', 'weekly', '0.9'),
                ('/branches', 'branches.html', 'monthly', '0.8'), ('/gallery', 'gallery.html', 'monthly', '0.7'), ('/media', 'media.html', 'weekly', '0.8'),
-               ('/watch', 'watch.html', 'weekly', '0.8'), ('/ministries', 'ministries.html', 'monthly', '0.7'), ('/women', 'women.html', 'monthly', '0.7'),
+               ('/live', 'live.html', 'weekly', '0.8'), ('/ministries', 'ministries.html', 'monthly', '0.7'), ('/women', 'women.html', 'monthly', '0.7'),
                ('/gen218', 'gen218.html', 'monthly', '0.7'), ('/links', 'links.html', 'monthly', '0.5')]
 # Gallery album pages ('See all') — picked up automatically
 SITEMAP_TOP += [('/' + Path(f).stem, Path(f).name, 'monthly', '0.6') for f in sorted(Path(__file__).resolve().parent.parent.glob('gallery-*.html'))]

@@ -127,7 +127,7 @@
  var items=[['/media','Media','Sermons, worship & teachings',false],
   ['/gallery','Gallery','Photos from across the region',false],
   ['/events','Events','Weekly programs & special services',false],
-  ['/watch','Watch Live','Join our services online',false],
+  ['/live','Watch Live','Join our services online',false],
   ['https://www.mountainoffire.org/resources/prayer-points','Prayer Points','Daily prayer points from MFM',true]];
  var dds=document.querySelectorAll('.nav-dropdown');
  for(var k=0;k<dds.length;k++){var dd=dds[k],t=dd.querySelector('.nav-dropdown-toggle');
@@ -145,12 +145,12 @@
 /* (Floating social hub removed Oct 2026 — audit B-01 / GOV-008. Contextual minister icons and the /links tiles remain.) */
 
 /* "Live now" (owner request, Oct 14 2026): when Mega Region 2 or Pastor Olumide Oni is streaming on YouTube,
-   every page shows a small "Live now" card (bottom-left; dismissible for that stream), and the Watch page
-   shows the live player at the top. Data: /.netlify/functions/live-status (CDN-cached for 60 s). */
+   every page shows a small "Live now" card (bottom-left; dismissible for that stream), and the Live page
+   shows the live player at the top (the page is /live). Data: /.netlify/functions/live-status (CDN-cached for 60 s). */
 (function(){try{
   if(!window.fetch||!document.querySelector)return;
   var path=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';
-  var onWatch=path==='/watch';
+  var onWatch=path==='/live'||path==='/watch';
   function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   function dismissed(id){try{return sessionStorage.getItem('mfm-live-x')===id;}catch(e){return false;}}
   function remember(id){try{sessionStorage.setItem('mfm-live-x',id);}catch(e){}}
@@ -176,7 +176,7 @@
     if(onWatch||dismissed(s.id)||document.querySelector('.mfm-live'))return;
     var d=document.createElement('aside');d.className='mfm-live';d.setAttribute('aria-label','Live now');
     d.innerHTML='<b class="lv"><i aria-hidden="true"></i>Live now</b><small>'+esc(s.name)+'</small><p>'+esc(s.title)+'</p>'+
-      '<a class="go" href="/watch#live">Watch now</a><button type="button" class="x" aria-label="Close live notice">&times;</button>';
+      '<a class="go" href="/live">Watch now</a><button type="button" class="x" aria-label="Close live notice">&times;</button>';
     d.querySelector('.x').addEventListener('click',function(){remember(s.id);d.parentNode.removeChild(d);});
     document.body.appendChild(d);
   }
@@ -195,6 +195,8 @@
     var ref=hero?hero.nextSibling:main.firstChild;
     while(box.firstChild)main.insertBefore(box.firstChild,ref);
     if(location.hash==='#live'){var t=document.getElementById('live');if(t)t.scrollIntoView();}
+    var st=document.getElementById('bStatus'),bt=document.getElementById('bTitle'),bd=document.getElementById('bDetail'),bl=document.getElementById('bLink');
+    if(st&&bt){st.className='live';st.innerHTML='<i></i>Live now';bt.textContent=list[0].name;if(bd)bd.textContent=list[0].title;if(bl){bl.setAttribute('href','#live');bl.removeAttribute('target');bl.textContent='Watch now';}}
   }
   function check(){
     fetch('/.netlify/functions/live-status',{credentials:'omit'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
