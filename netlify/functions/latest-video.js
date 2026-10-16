@@ -8,7 +8,7 @@
 // GET /.netlify/functions/latest-video         ->  { ok, id, title, url, thumb, published }
 // GET /.netlify/functions/latest-video?list=1  ->  { ok, items:[{id,title,published,views}] }  (Media page live sync)
 // GET /.netlify/functions/latest-video?live=1  ->  same shape, from the channel's Live tab (past live streams; /live page)
-// Cached at the CDN for 15 minutes; on any failure the page keeps its static fallback.
+// Cached at the CDN for 5 minutes; on any failure the page keeps its static fallback.
 
 const CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
 const FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
@@ -27,8 +27,10 @@ exports.handler = async (event) => {
   const wantList = !!q.list || wantLive;
   const headers = {
     'content-type': 'application/json; charset=utf-8',
-    'cache-control': 'public, max-age=300',
-    'netlify-cdn-cache-control': 'public, s-maxage=900, stale-while-revalidate=3600',
+    // Fresh within ~5 minutes of a new upload (Oct 16 2026): short browser cache, short CDN cache, and only a
+    // brief stale window (a quiet site would otherwise keep serving an hour-old copy to the first visitor).
+    'cache-control': 'public, max-age=60',
+    'netlify-cdn-cache-control': 'public, s-maxage=300, stale-while-revalidate=60',
   };
   try {
     const ctrl = new AbortController();
