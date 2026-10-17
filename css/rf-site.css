@@ -1152,3 +1152,12 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 .lv-feature aside .channel-link{display:inline-flex;font-weight:700;color:#b84a1f}
 @media(max-width:860px){.lv-feature{grid-template-columns:1fr;gap:24px}}
 .message-card.lv-sched .lv-when{font-size:15px;font-weight:700;color:#142240;margin:8px 0 14px}
+
+/* Media page (Oct 16 2026): latest 9 + link to the channel's Videos tab; channel-wide search results */
+.media-more{margin:40px 0 0;text-align:center}
+.media-more a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border:1px solid #142240;color:#142240;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.media-more a:hover{background:#142240;color:#fff}.media-more a:focus-visible{outline:3px solid #c9952c;outline-offset:3px}
+.media-yt{margin-top:56px;padding-top:40px;border-top:1px solid var(--line,#e8e4da)}
+.media-yt-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px;margin-bottom:22px}
+.media-yt-head h3{font-family:var(--serif);font-size:clamp(24px,2.4vw,32px);margin:0;color:var(--ink,#142240)}
+.media-yt-head p{margin:0;color:var(--muted,#5a6270);font-size:14px}

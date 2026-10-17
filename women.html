@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap">
-  <link rel="stylesheet" href="/css/rf-site.css?v=dc5ae2dc11">
+  <link rel="stylesheet" href="/css/rf-site.css?v=4c6229ccaa">
 
   <!-- Netlify Identity Widget (needed for CMS) -->
 
@@ -149,7 +149,7 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySe
 document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('.nav-dropdown'))document.querySelectorAll('.nav-dropdown.open').forEach(function(d){d.classList.remove('open')});});
 
 </script>
-  <script src="/js/events-data.js?v=d899661ee3"></script>
+  <script src="/js/events-data.js?v=702eaac23e"></script>
 <script>/* Department feed: current/upcoming only, from shared MFM_EVENTS (§9.5) */
 (function(){var U=window.MFM_EVT,EV={};if(!U)return;(window.MFM_EVENTS||[]).forEach(function(e){if(!e)return;if(e.anchor)EV[e.anchor]=e;if(e.page)EV[e.page]=e;});[].forEach.call(document.querySelectorAll(".event-card"),function(c){var link=c.querySelector("a[href]");var h=link?link.getAttribute("href"):"";var e=EV[h]||EV[h.split("#").pop()]||EV[c.id];if(!e||U.isPast(e))c.style.display="none";});[].forEach.call(document.querySelectorAll(".events-grid"),function(g){var vis=[].filter.call(g.querySelectorAll(".event-card"),function(c){return c.style.display!=="none";});if(!vis.length){var sec=g.closest("section");if(sec)sec.style.display="none";}else if(vis.length===1){g.classList.add("ev-single");}});})();
 </script>
