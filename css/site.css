@@ -2622,3 +2622,15 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 
 /* Click-to-load YouTube (audit C-10) */
 .yt-lite{position:relative;display:block;width:100%;aspect-ratio:16/9;background:#0b1328;overflow:hidden;color:#fff;text-decoration:none}.yt-lite img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s,filter .3s;filter:brightness(.82)}.yt-lite:hover img,.yt-lite:focus-visible img{transform:scale(1.02);filter:brightness(.92)}.yt-lite .yt-play{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(232,93,38,.94);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}.yt-lite .yt-play svg{width:30px;height:30px;margin-left:4px}.yt-lite:focus-visible{outline:3px solid #f0c760;outline-offset:3px}.yt-lite-frame{width:100%;aspect-ratio:16/9;display:block;border:0}.video-frame .yt-lite,.video-frame .yt-lite-frame{position:absolute;inset:0;height:100%;aspect-ratio:auto}.yt-lite .yt-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Menu bar like the homepage, on every page with a banner at the top (owner request, Oct 20 2026):
+   see-through over the banner while the page is at the top (a soft dark fade keeps the links readable on
+   light photos), solid navy as soon as the visitor scrolls. The class is set by js/mobile-nav.js; with no JS
+   the bar simply stays solid. The open mobile menu always has the solid bar. */
+.site-nav{transition:background-color .35s ease,border-color .35s ease,box-shadow .35s ease}
+html.nav-over-hero.nav-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:linear-gradient(180deg,rgba(9,14,28,.72) 0%,rgba(9,14,28,.4) 55%,rgba(9,14,28,0) 100%) border-box no-repeat!important;border-bottom-color:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+/* Stretched menu bar on wide screens, as on the main pages (Oct 2026) */
+@media (min-width:1200px){.nav-inner{max-width:none;padding:0 clamp(32px,3.2vw,64px)}}
+/* Logo text in the menu bar matches the main pages (Oct 2026) */
+.nav-logo-text{font-size:15px}
+.nav-logo-text span{font-size:8px;letter-spacing:.06em;text-transform:none;color:#aebad0;max-width:220px}

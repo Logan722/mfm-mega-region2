@@ -245,3 +245,23 @@
   function start(){check();setInterval(function(){if(!document.hidden)check();},60000);}
   if(document.readyState==='complete')setTimeout(start,800);else window.addEventListener('load',function(){setTimeout(start,800);});
 }catch(e){}})();
+
+/* Homepage menu-bar behaviour on every page (owner request, Oct 20 2026): when a page opens with a dark banner
+   right under the menu bar, the bar is see-through while the page is at the top and turns solid on scroll.
+   The homepage keeps its own version (js/home-hero.js). Pages without such a banner keep the solid bar. */
+(function(){try{
+  var root=document.documentElement;
+  if(document.querySelector('.home-hero'))return;
+  var nav=document.querySelector('.site-nav'),main=document.querySelector('main');if(!nav||!main)return;
+  var f=main.firstElementChild;while(f&&(f.hidden||getComputedStyle(f).display==='none'||/^(SCRIPT|STYLE|LINK)$/.test(f.tagName)))f=f.nextElementSibling;
+  if(!f)return;
+  var r=f.getBoundingClientRect(),n=nav.getBoundingClientRect();
+  if(r.top>1||r.bottom<n.bottom+120)return;                       /* the banner must sit behind the bar */
+  function dark(el){var c=getComputedStyle(el),m=(c.backgroundColor||'').match(/rgba?\(([^)]+)\)/);
+    if(m){var v=m[1].split(',').map(parseFloat);if(v.length<4||v[3]>0.5){var L=(0.2126*v[0]+0.7152*v[1]+0.0722*v[2])/255;return L<0.35;}}
+    return /gradient|url\(/.test(c.backgroundImage||'')||!!el.querySelector(':scope > img, :scope > picture, :scope > video, :scope > .page-hero-shade');}
+  if(!dark(f))return;
+  root.classList.add('nav-over-hero');
+  function sync(){root.classList.toggle('nav-top',(window.pageYOffset||document.documentElement.scrollTop||0)<24);}
+  sync();window.addEventListener('scroll',sync,{passive:true});
+}catch(e){}})();

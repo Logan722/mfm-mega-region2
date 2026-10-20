@@ -1161,3 +1161,10 @@ body.mfm-menu-open { overflow: hidden; overscroll-behavior: none; }
 .media-yt-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 20px;margin-bottom:22px}
 .media-yt-head h3{font-family:var(--serif);font-size:clamp(24px,2.4vw,32px);margin:0;color:var(--ink,#142240)}
 .media-yt-head p{margin:0;color:var(--muted,#5a6270);font-size:14px}
+
+/* Menu bar like the homepage, on every page with a banner at the top (owner request, Oct 20 2026):
+   see-through over the banner while the page is at the top (a soft dark fade keeps the links readable on
+   light photos), solid navy as soon as the visitor scrolls. The class is set by js/mobile-nav.js; with no JS
+   the bar simply stays solid. The open mobile menu always has the solid bar. */
+.site-nav{transition:background-color .35s ease,border-color .35s ease,box-shadow .35s ease}
+html.nav-over-hero.nav-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:linear-gradient(180deg,rgba(9,14,28,.72) 0%,rgba(9,14,28,.4) 55%,rgba(9,14,28,0) 100%) border-box no-repeat!important;border-bottom-color:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
