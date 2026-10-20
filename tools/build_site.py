@@ -227,8 +227,9 @@ def build_latest_video():
         return
     t = (ROOT / 'index.html').read_text()
     t = re.sub(r'(<img width="1280" height="720" id="rf-latest-thumb" src=")[^"]*(" alt=")[^"]*(")',
-               lambda m: m.group(1) + 'https://i.ytimg.com/vi/%s/hqdefault.jpg' % v['id'] + m.group(2) + esc(v['title']) + m.group(3), t)
-    t = re.sub(r'(<h2 id="rf-latest-title">)[^<]*(</h2>)', lambda m: m.group(1) + esc(v['title']) + m.group(2), t)
+               lambda m: m.group(1) + 'https://i.ytimg.com/vi/%s/maxresdefault.jpg' % v['id'] + m.group(2) + esc(v['title']) + m.group(3), t)
+    t = re.sub(r'(<h2 id="rf-latest-title">)[^<]*(</h2>)', lambda m: m.group(1) + esc(v.get('headline') or v['title']) + m.group(2), t)
+    t = re.sub(r'(<p id="rf-latest-by">)[^<]*(</p>)', lambda m: m.group(1) + esc(v.get('by') or 'Latest message') + m.group(2), t)
     write('index.html', t)
 
 
