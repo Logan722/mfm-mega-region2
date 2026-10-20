@@ -190,7 +190,7 @@ window.MFM_EVENTS = [
     "image": "img/announcements/dallas-deliverance-crusade.jpg",
     "alt": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya — Saturday November 21, 2026, 4 PM CST, Southfork Ranch, Parker, TX",
     "anchor": "dallas-deliverance-crusade",
-    "link": "https://www.eventbrite.com/e/the-great-dallas-deliverance-crusade-with-dr-dk-olukoya-tickets-1999884755138",
+    "link": "https://www.eventbrite.com/e/great-dallas-deliverance-crusade-with-dr-dk-olukoya-tickets-2001274777733",
     "dateDisplay": "Saturday, November 21, 2026",
     "description": "The Great Dallas Deliverance Crusade (GDDC) with Dr. D.K. Olukoya, General Overseer of MFM Worldwide, hosted by MFM Dallas Texas. Come with expectation — a season of power, deliverance, healing and breakthrough for you and your household. All are welcome; bring your family and friends.",
     "badgeStyle": "fire"
