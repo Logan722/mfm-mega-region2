@@ -5,7 +5,7 @@
 // the YouTube RSS feed is read server-side and returned as ONE atomic object,
 // so title, thumbnail and link can never come from different videos.
 //
-// GET /.netlify/functions/latest-video         ->  { ok, id, title, url, thumb, published }
+// GET /.netlify/functions/latest-video         ->  { ok, id, title, headline, by, url, thumb, published }
 // GET /.netlify/functions/latest-video?list=1  ->  { ok, items:[{id,title,published,views}] }  (Media page live sync)
 // GET /.netlify/functions/latest-video?live=1  ->  same shape, from the channel's Live tab (past live streams; /live page)
 // Cached at the CDN for 5 minutes; on any failure the page keeps its static fallback.
@@ -20,6 +20,37 @@ function decode(s) {
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
     .replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&');
 }
+
+
+// Homepage "Watch & grow" (Oct 20 2026): YouTube titles are long ("Title — Speaker | Event 2026"). At headline
+// size the raw title wrapped to seven lines, so the block shows a short headline and a small "by" line instead.
+//   "Rekindling the Altar (Keynote) — Pastor Oluwatoyin Oni | MFM Women Foundation Retreat 2026"
+//   -> headline "Rekindling the Altar (Keynote)", by "Pastor Oluwatoyin Oni · MFM Women Foundation Retreat 2026"
+const SPEAKER = /^(?:pastor|pst\.?|dr\.?|rev\.?|reverend|evang\.?|evangelist|bishop|minister|apostle|prophet|elder|deacon(?:ess)?|sis\.?|bro\.?)\b/i;
+function caseFix(t) {
+  // ALL-CAPS titles read as shouting; small words stay lower case, short acronyms (MFM, USA) stay upper.
+  if (/[a-z]/.test(t)) return t;
+  return t.toLowerCase().replace(/[A-Za-z][\w'’]*/g, (w, i) => {
+    if (/^(mfm|usa|uk|dkc|gen218|ii|iii|iv)$/.test(w)) return w.toUpperCase();
+    if (i > 0 && /^(of|the|and|a|an|in|on|for|to|at|by|with|from|or)$/.test(w)) return w;
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  });
+}
+function displayTitle(raw) {
+  let t = String(raw || '').replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{200D}]/gu, '').replace(/#\S+/g, '');
+  t = t.replace(/^\s*LIVE\s*[|:\-–—]\s*/i, '');
+  const segs = t.split('|').map((x) => x.trim()).filter(Boolean);
+  let head = segs[0] || t.trim();
+  const rest = segs.slice(1);
+  let speaker = '';
+  const dash = head.split(/\s+[—–-]\s+/);
+  if (dash.length > 1 && SPEAKER.test(dash[dash.length - 1])) { speaker = dash.pop(); head = dash.join(' — '); }
+  const restSpeaker = rest.findIndex((x) => SPEAKER.test(x));
+  if (!speaker && restSpeaker >= 0) speaker = rest.splice(restSpeaker, 1)[0];
+  const by = [speaker, rest[0] || ''].filter(Boolean).map(caseFix).join(' · ');
+  return { headline: caseFix(head).replace(/\s{2,}/g, ' ').trim(), by };
+}
+exports.displayTitle = displayTitle;
 
 exports.handler = async (event) => {
   const q = (event && event.queryStringParameters) || {};
@@ -66,7 +97,7 @@ exports.handler = async (event) => {
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        ok: true, id, title, published,
+        ok: true, id, title, published, ...displayTitle(title),
         url: `https://www.youtube.com/watch?v=${id}`,
         thumb: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
       }),
