@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Issue #4 &mdash; The fire has not grown cold. &mdash; MFM Mega Region 2 Newsletter</title>
+<meta name="description" content="The altar burned at the Women&#x27;s Retreat. Here&#x27;s what carries forward."/>
+<link rel="canonical" href="https://www.mfmmegaregion2usa.org/newsletter/issue-4"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="MFM Mega Region 2 USA"/>
+<meta property="og:title" content="The fire has not grown cold. — MFM Mega Region 2 Newsletter"/>
+<meta property="og:description" content="The altar burned at the Women&#x27;s Retreat. Here&#x27;s what carries forward."/>
+<meta property="og:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-4-og.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://www.mfmmegaregion2usa.org/newsletter/issue-4"/>
+<meta property="article:published_time" content="2026-10-21"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="The fire has not grown cold. — MFM Mega Region 2 Newsletter"/>
+<meta name="twitter:description" content="The altar burned at the Women&#x27;s Retreat. Here&#x27;s what carries forward."/>
+<meta name="twitter:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-4-og.jpg"/>
+
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" href="/img/favicon-32.png"/>
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png"/>
+<link rel="stylesheet" href="/css/site.css"/>
+
+<style>
+  :root{
+    --navy:#142240; --navy-deep:#0f1a30; --gold:#c9952c; --fire:#e85d26;
+    --cream:#f8f6f1; --body:#5a6270; --muted:#8a8f98; --border:#e8e4da;
+  }
+  html,body{margin:0;overflow-x:hidden;max-width:100%;}
+  body{font-family:'Inter Tight','Inter',-apple-system,Helvetica,Arial,sans-serif;color:var(--body);line-height:1.6;background:#fff;}
+
+  /* HERO — full-bleed magazine cover */
+  .mag-hero{
+    position:relative; min-height:62vh; display:flex; align-items:flex-end;
+    background:var(--navy) center top/cover no-repeat;
+    background-image: linear-gradient(180deg, rgba(15,26,48,.4) 0%, rgba(15,26,48,.75) 55%, rgba(15,26,48,.98) 100%), url('https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-1.jpg');
+    background-position: center 25%;
+    color:#f0e6d0; padding:40px 20px 56px; overflow:hidden;
+  }
+  /* Solid bottom fade — definitively hides any gallery caption watermark baked into the hero photo */
+  .mag-hero::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:120px;
+    background:linear-gradient(to bottom, transparent 0%, rgba(15,26,48,.85) 55%, var(--navy-deep) 100%);
+    pointer-events:none; z-index:1;
+  }
+  .mag-hero-inner{max-width:900px; margin:0 auto; width:100%; position:relative; z-index:2;}
+  .mag-eyebrow{
+    font-family:Georgia,'Fraunces',serif; font-size:12px; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:18px;
+  }
+  .mag-eyebrow::after{content:""; display:block; width:60px; height:3px; background:var(--gold); margin-top:14px;}
+  .mag-hero h1{
+    font-family:Georgia,'Fraunces',serif; font-weight:400;
+    font-size:56px; line-height:1.08; margin:0 0 22px; color:#f0e6d0;
+    max-width:720px; text-shadow:0 2px 20px rgba(0,0,0,.45);
+  }
+  .mag-hero .teaser{
+    font-size:18px; line-height:1.6; color:#d8dff0; max-width:620px; margin:0 0 24px;
+    text-shadow:0 1px 6px rgba(0,0,0,.5);
+  }
+  .mag-sent{
+    display:inline-block; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:#b8c3d9; padding:6px 12px; border:1px solid rgba(201,149,44,.4); border-radius:2px;
+    background:rgba(15,26,48,.4);
+  }
+
+  /* ARCHIVE NOTE */
+  .mag-archive-note{
+    background:var(--cream); border-bottom:1px solid var(--border);
+    text-align:center; padding:18px 20px; font-size:13px; color:var(--muted);
+  }
+  .mag-archive-note strong{color:var(--navy);}
+
+  /* EMAIL CONTENT WRAPPER — contain the email layout + make it fluid on all screens */
+  .mag-email-wrap{background:var(--cream); padding:40px 16px 72px; max-width:100%; overflow:hidden;}
+  .mag-email-wrap > table{background:transparent !important;}
+  .mag-email-wrap > table > tbody > tr > td{background:transparent !important;}
+  /* NUCLEAR: force EVERY descendant to not exceed its parent (overrides inline width=600, min-content widths, etc.) */
+  .mag-email-wrap *{max-width:100% !important; box-sizing:border-box !important;}
+  .mag-email-wrap table{
+    table-layout:fixed !important;
+    width:100% !important; max-width:600px !important;
+    margin-left:auto !important; margin-right:auto !important;
+  }
+  .mag-email-wrap td{word-wrap:break-word !important; overflow-wrap:break-word !important;}
+  .mag-email-wrap img{max-width:100% !important; height:auto !important; width:auto !important;}
+  /* The 600px email container becomes a card on the page */
+  .mag-email-wrap table[width="600"],
+  .mag-email-wrap table[style*="max-width:600px"]{
+    box-shadow:0 20px 60px rgba(20,34,64,.14) !important;
+    border-radius:4px; overflow:hidden;
+  }
+  /* Mobile: shrink the heavy 40px side padding inside email cells */
+  @media (max-width:640px){
+    .mag-email-wrap{padding:24px 8px 56px;}
+    .mag-email-wrap td{padding-left:18px !important; padding-right:18px !important;}
+    .mag-email-wrap td[style*="height:4px"]{padding:0 !important;}
+    .mag-email-wrap h1{font-size:26px !important; line-height:1.2 !important;}
+    .mag-email-wrap h2{font-size:22px !important;}
+  }
+
+  /* PREV/NEXT NAV STRIP */
+  .mag-nav{
+    background:#fff; padding:28px 20px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:900px; margin:0 auto;
+  }
+  .mag-nav a{text-decoration:none; color:inherit; padding:16px 18px; border:1px solid var(--border); border-radius:3px; transition:border-color .15s, background .15s;}
+  .mag-nav a:hover{border-color:var(--gold); background:var(--cream);}
+  .nav-dir{display:block; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .nav-title{display:block; font-family:Georgia,'Fraunces',serif; color:var(--navy); font-size:15px; line-height:1.3;}
+  .nav-next{text-align:right;}
+  .mag-nav .nav-prev:only-child, .mag-nav .nav-next:only-child{grid-column:1 / -1;}
+
+  /* SUBSCRIBE CTA */
+  .mag-sub{background:var(--navy-deep); color:#f0e6d0; padding:56px 20px 64px; text-align:center;}
+  .mag-sub h2{font-family:Georgia,'Fraunces',serif; font-weight:400; font-size:30px; margin:0 0 12px; color:#f0e6d0;}
+  .mag-sub p{font-size:16px; color:#b8c3d9; max-width:520px; margin:0 auto 22px;}
+  .btn-gold{
+    display:inline-block; background:var(--gold); color:#fff; text-decoration:none;
+    padding:14px 28px; border-radius:3px; font-size:13px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; transition:background .15s;
+  }
+  .btn-gold:hover{background:#b48525;}
+
+  /* FLOATING SHARE BUTTON */
+  .mag-share-float{
+    position:fixed; bottom:24px; right:24px; z-index:50;
+    background:#25D366; color:#fff; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+    box-shadow:0 8px 24px rgba(37,211,102,.4); transition:transform .2s;
+  }
+  .mag-share-float:hover{transform:scale(1.08);}
+  .mag-share-float svg{width:28px; height:28px; fill:#fff;}
+
+  @media (max-width:720px){
+    .mag-hero{min-height:52vh;}
+    .mag-hero h1{font-size:36px;}
+    .mag-hero .teaser{font-size:16px;}
+    .mag-nav{grid-template-columns:1fr;}
+    .nav-next{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" data-nav></header>
+
+<main>
+
+  <section class="mag-hero">
+    <div class="mag-hero-inner">
+      <div class="mag-eyebrow">Issue #4 &middot; October 2026</div>
+      <h1>The fire has not grown cold.</h1>
+      <p class="teaser">The altar burned at the Women&#x27;s Retreat. Here&#x27;s what carries forward.</p>
+      <span class="mag-sent">Originally sent October 2026</span>
+    </div>
+  </section>
+
+  <div class="mag-archive-note">
+    <strong>From the archive.</strong> This issue was originally sent to subscribers on 2026-10-21. References to dates and upcoming events reflect that time.
+  </div>
+
+  <section class="mag-email-wrap">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f1a30;"><tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;">
+
+  <tr><td style="background:#c9952c;height:4px;line-height:4px;font-size:0;">&nbsp;</td></tr>
+
+  <!-- HEADER -->
+  <tr><td style="background:#142240;padding:36px 40px 24px;text-align:center;">
+    <img src="https://www.mfmmegaregion2usa.org/img/logo.png" alt="MFM Mega Region 2 USA" width="88" height="88" style="display:block;margin:0 auto 14px;width:88px;height:88px;" />
+    <div style="font-family:Georgia,serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#c9952c;">MFM MEGA REGION 2 &middot; USA</div>
+    <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8899b8;margin-top:6px;">Issue #04 &middot; October 2026</div>
+  </td></tr>
+
+  <!-- HERO IMAGE -->
+  <tr><td style="background:#142240;padding:0 0 32px;text-align:center;">
+    <img src="https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-1.jpg" alt="Rekindling the Altar — MFM Women's Retreat 2026" width="520" style="display:block;margin:0 auto;width:100%;max-width:520px;height:auto;border-radius:4px;" />
+  </td></tr>
+
+  <!-- HEADLINE -->
+  <tr><td style="background:#142240;padding:0 40px 44px;text-align:center;">
+    <h1 style="margin:0 0 14px;font-family:Georgia,serif;font-weight:400;font-size:32px;line-height:1.15;color:#f0e6d0;">The fire has not grown cold.</h1>
+    <p style="margin:0;font-family:'Inter Tight',sans-serif;font-size:15px;line-height:1.6;color:#8899b8;">The altar burned at the Women's Retreat. Here's what carries forward.</p>
+  </td></tr>
+
+  <!-- PASTOR'S WORD -->
+  <tr><td style="background:#ffffff;padding:44px 40px 36px;">
+    <p style="margin:0 0 10px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;">A WORD FROM THE PASTOR</p>
+    <h2 style="margin:0 0 24px;font-family:Georgia,serif;font-weight:400;font-size:26px;line-height:1.2;color:#142240;">Keep the fire burning.</h2>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#5a6270;">Beloved,</p>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#5a6270;">Something shifted at the Women's Retreat. The altar burned. Voices rose. Chains fell. If you were there, you felt it &mdash; the Spirit of God moved with a weight that could not be mistaken. If you heard about it after, you still carry the overflow, because what God does in one room, He releases over the whole region.</p>
+    <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#5a6270;">But fire does not keep itself. The retreat is behind us; what matters now is what we carry forward. The Word that cut through on Saturday has to keep cutting through on Monday morning. The prayers that broke open the heavens over the Banquet Hall have to keep rising over your home, your workplace, your children. The anointing that fell is yours to steward, not just remember.</p>
+    <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:#5a6270;">Our Mega Crusades with Dr. D.K. Olukoya are weeks away &mdash; <strong style="color:#142240;">Tennessee on November 19, Dallas on November 21</strong>. These are not events to attend. These are altars to carry. Come expectant. Come hungry. Come with the ones who need to be in the room. The fire has not grown cold.</p>
+    <p style="margin:20px 0 0;font-family:Georgia,serif;font-size:15px;color:#142240;"><strong>Pastor Olumide Oni</strong><br/>
+    <span style="font-family:'Inter Tight',sans-serif;font-size:13px;color:#8a8f98;">Principal Regional Overseer &middot; Mega Region 2 USA</span></p>
+  </td></tr>
+
+  <!-- WOMEN'S RETREAT GALLERY -->
+  <tr><td style="background:#f8f6f1;padding:40px 40px 20px;">
+    <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;text-align:center;">MFM Women Foundation</p>
+    <h2 style="margin:0 0 10px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#142240;text-align:center;">The altar burned.</h2>
+    <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:#5a6270;text-align:center;">Scenes from Rekindling the Altar &mdash; October 10, 2026 &middot; Houston.</p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="50%" style="padding:0 4px 8px 0;"><img src="https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-2.jpg" alt="At the Altar" width="256" style="display:block;width:100%;height:auto;border-radius:3px;"/></td>
+        <td width="50%" style="padding:0 0 8px 4px;"><img src="https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-3.jpg" alt="Caught Up in His Presence" width="256" style="display:block;width:100%;height:auto;border-radius:3px;"/></td>
+      </tr>
+      <tr>
+        <td style="padding:0 4px 8px 0;"><img src="https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-4.jpg" alt="The Word Received" width="256" style="display:block;width:100%;height:auto;border-radius:3px;"/></td>
+        <td style="padding:0 0 8px 4px;"><img src="https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-5.jpg" alt="Those Who Ministered" width="256" style="display:block;width:100%;height:auto;border-radius:3px;"/></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="padding:0 0 8px;"><img src="https://www.mfmmegaregion2usa.org/img/gallery/women-retreat-2026/cover-6.jpg" alt="One Family" width="520" style="display:block;width:100%;height:auto;border-radius:3px;"/></td>
+      </tr>
+    </table>
+
+    <p style="margin:20px 0 0;text-align:center;">
+      <a href="https://www.mfmmegaregion2usa.org/gallery" style="display:inline-block;background:#c9952c;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:3px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">See the full gallery &rarr;</a>
+    </p>
+  </td></tr>
+
+  <!-- WARFARE PRAISE VIDEO -->
+  <tr><td style="background:#ffffff;padding:40px 40px 32px;">
+    <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;text-align:center;">FROM THE PULPIT</p>
+    <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-weight:400;font-size:26px;line-height:1.2;color:#142240;text-align:center;">Warfare praise from the altar.</h2>
+    <a href="https://www.youtube.com/watch?v=9WrXN2VAc_0" style="display:block;text-decoration:none;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#142240;border-radius:4px;overflow:hidden;">
+        <tr><td style="position:relative;padding:0;">
+          <img src="https://img.youtube.com/vi/9WrXN2VAc_0/maxresdefault.jpg" alt="Warfare Praise Session at the Women Retreat" width="520" style="display:block;width:100%;height:auto;opacity:.85;"/>
+        </td></tr>
+        <tr><td style="background:#142240;padding:18px 22px;text-align:left;">
+          <p style="margin:0 0 4px;font-family:Georgia,serif;font-size:17px;line-height:1.3;color:#f0e6d0;">Warfare Praise Session &mdash; Rekindling the Altar</p>
+          <p style="margin:0;font-size:12px;color:#8899b8;">Pastor Olumide Oni &middot; Women's Retreat 2026 &middot; Watch on YouTube &rarr;</p>
+        </td></tr>
+      </table>
+    </a>
+  </td></tr>
+
+  <!-- UPCOMING CRUSADES -->
+  <tr><td style="background:#142240;padding:40px 40px 36px;">
+    <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;text-align:center;">UPCOMING CRUSADES</p>
+    <h2 style="margin:0 0 10px;font-family:Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;color:#f0e6d0;text-align:center;">Two altars. Four weeks out.</h2>
+    <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#8899b8;text-align:center;">With Dr. D.K. Olukoya &mdash; General Overseer, MFM Worldwide.</p>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="50%" valign="top" style="padding:0 6px 0 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f1a30;border:1px solid #2a3a5a;border-radius:4px;">
+            <tr><td style="padding:22px 20px;">
+              <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;">THURSDAY · NOVEMBER 19</p>
+              <h3 style="margin:0 0 12px;font-family:Georgia,serif;font-weight:400;font-size:20px;line-height:1.2;color:#f0e6d0;">Great Tennessee Deliverance Crusade</h3>
+              <p style="margin:0 0 14px;font-size:13px;line-height:1.5;color:#8899b8;">The Forum &middot; Goodlettsville, TN<br/>5:00 PM Central Time</p>
+              <a href="https://www.eventbrite.com/e/the-great-tennessee-deliverance-crusade-with-dr-dk-olukoya-tickets-1999884722039" style="display:inline-block;background:#c9952c;color:#ffffff;text-decoration:none;padding:9px 16px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">Register free &rarr;</a>
+            </td></tr>
+          </table>
+        </td>
+        <td width="50%" valign="top" style="padding:0 0 0 6px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0f1a30;border:1px solid #2a3a5a;border-radius:4px;">
+            <tr><td style="padding:22px 20px;">
+              <p style="margin:0 0 6px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;">SATURDAY · NOVEMBER 21</p>
+              <h3 style="margin:0 0 12px;font-family:Georgia,serif;font-weight:400;font-size:20px;line-height:1.2;color:#f0e6d0;">Great Dallas Deliverance Crusade</h3>
+              <p style="margin:0 0 14px;font-size:13px;line-height:1.5;color:#8899b8;">Southfork Ranch &middot; Parker, TX<br/>4:00 PM Central Time</p>
+              <a href="https://www.eventbrite.com/e/great-dallas-deliverance-crusade-with-dr-dk-olukoya-tickets-2001274777733" style="display:inline-block;background:#c9952c;color:#ffffff;text-decoration:none;padding:9px 16px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">Register free &rarr;</a>
+            </td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- SAVE THE DATE -->
+  <tr><td style="background:#f8f6f1;padding:32px 40px;">
+    <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;text-align:center;">SAVE THE DATE &middot; DECEMBER</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;">
+      <tr>
+        <td width="50%" valign="top" style="padding:0 6px 0 0;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e8e4da;border-radius:4px;">
+            <tr><td style="padding:18px 18px;">
+              <p style="margin:0 0 4px;font-size:10px;font-weight:700;letter-spacing:.14em;color:#c9952c;">FRI · DEC 11</p>
+              <h3 style="margin:0 0 8px;font-family:Georgia,serif;font-weight:400;font-size:17px;color:#142240;">Couples Night 2026</h3>
+              <p style="margin:0;font-size:12px;line-height:1.5;color:#5a6270;">Marriott Houston Energy Corridor<br/>For married &amp; intending couples.</p>
+            </td></tr>
+          </table>
+        </td>
+        <td width="50%" valign="top" style="padding:0 0 0 6px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e8e4da;border-radius:4px;">
+            <tr><td style="padding:18px 18px;">
+              <p style="margin:0 0 4px;font-size:10px;font-weight:700;letter-spacing:.14em;color:#c9952c;">SAT · DEC 12</p>
+              <h3 style="margin:0 0 8px;font-family:Georgia,serif;font-weight:400;font-size:17px;color:#142240;">Thanksgiving Service</h3>
+              <p style="margin:0;font-size:12px;line-height:1.5;color:#5a6270;">MFM Prayer City, Houston<br/>Come and thank Him together.</p>
+            </td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- FROM THE PASTOR — BOOK SPOTLIGHT -->
+  <tr><td style="background:#ffffff;padding:40px 40px 32px;">
+    <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;text-align:center;">FROM THE PASTOR &middot; BOOK OF THE MONTH</p>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8f6f1;border:1px solid #e8e4da;border-radius:4px;margin-top:16px;">
+      <tr>
+        <td width="35%" valign="middle" style="padding:20px 10px 20px 20px;">
+          <img src="https://pastorolumideoni.com/img/covers/your-destiny-is-unstoppable.jpg" alt="Your Destiny Is Unstoppable" width="150" style="display:block;width:100%;max-width:150px;height:auto;border-radius:3px;box-shadow:0 4px 12px rgba(20,34,64,.15);"/>
+        </td>
+        <td width="65%" valign="middle" style="padding:20px 20px 20px 10px;">
+          <h3 style="margin:0 0 10px;font-family:Georgia,serif;font-weight:400;font-size:20px;line-height:1.2;color:#142240;">Your Destiny Is Unstoppable</h3>
+          <p style="margin:0 0 14px;font-size:13px;line-height:1.6;color:#5a6270;">A prophetic call to walk in the unstoppable purpose God has placed in you. 144 pages &middot; Free download. Always.</p>
+          <a href="https://pastorolumideoni.com/books/your-destiny-is-unstoppable" style="display:inline-block;background:#c9952c;color:#ffffff;text-decoration:none;padding:9px 18px;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">Read free &rarr;</a>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- PRAYER POINTS -->
+  <tr><td style="background:#f8f6f1;padding:36px 40px;">
+    <p style="margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;text-align:center;">PRAYER POINTS</p>
+    <h2 style="margin:0 0 24px;font-family:Georgia,serif;font-weight:400;font-size:24px;line-height:1.2;color:#142240;text-align:center;">Pray these this week.</h2>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr><td style="padding:12px 0;border-bottom:1px solid #e8e4da;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td valign="top" style="width:36px;padding-top:2px;"><div style="width:28px;height:28px;background:#c9952c;color:#fff;border-radius:50%;font-family:Georgia,serif;font-weight:400;font-size:14px;text-align:center;line-height:28px;">1</div></td>
+          <td valign="top" style="padding-left:12px;"><p style="margin:0;font-size:15px;line-height:1.65;color:#5a6270;"><strong style="color:#142240;">Carry the fire.</strong> That every anointing received at the Women's Retreat shall not go cold in my home, in Jesus' name.</p></td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding:12px 0;border-bottom:1px solid #e8e4da;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td valign="top" style="width:36px;padding-top:2px;"><div style="width:28px;height:28px;background:#c9952c;color:#fff;border-radius:50%;font-family:Georgia,serif;font-weight:400;font-size:14px;text-align:center;line-height:28px;">2</div></td>
+          <td valign="top" style="padding-left:12px;"><p style="margin:0;font-size:15px;line-height:1.65;color:#5a6270;"><strong style="color:#142240;">Stand with the crusades.</strong> That the fire of God shall fall in Tennessee on November 19 and in Dallas on November 21, and no device of the enemy shall prosper against these gatherings.</p></td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding:12px 0;border-bottom:1px solid #e8e4da;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td valign="top" style="width:36px;padding-top:2px;"><div style="width:28px;height:28px;background:#c9952c;color:#fff;border-radius:50%;font-family:Georgia,serif;font-weight:400;font-size:14px;text-align:center;line-height:28px;">3</div></td>
+          <td valign="top" style="padding-left:12px;"><p style="margin:0;font-size:15px;line-height:1.65;color:#5a6270;"><strong style="color:#142240;">Pray for your household.</strong> That every member of my family shall encounter the God of Mount Zion this week, and that no spiritual blockage shall remain standing in our home.</p></td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding:12px 0;">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td valign="top" style="width:36px;padding-top:2px;"><div style="width:28px;height:28px;background:#c9952c;color:#fff;border-radius:50%;font-family:Georgia,serif;font-weight:400;font-size:14px;text-align:center;line-height:28px;">4</div></td>
+          <td valign="top" style="padding-left:12px;"><p style="margin:0;font-size:15px;line-height:1.65;color:#5a6270;"><strong style="color:#142240;">Bring someone with you.</strong> That the Lord shall put on my heart the name of one person who must be in the room at Tennessee or Dallas, and that I shall extend the invitation this week.</p></td>
+        </tr></table>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- PASS IT ON — WhatsApp share card -->
+  <tr><td style="background:#ffffff;padding:36px 40px 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8f6f1;border:1px solid #e8e4da;border-radius:4px;">
+      <tr><td style="padding:24px 24px 22px;text-align:center;">
+        <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#c9952c;">PASS IT ON</p>
+        <p style="margin:0 0 14px;font-family:Georgia,serif;font-size:17px;line-height:1.4;color:#142240;">Know someone who needs this fire?</p>
+        <p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:#5a6270;">Tap below to open WhatsApp with the full issue ready to send &mdash; cover, headline, and read link all together.</p>
+        <a href="https://wa.me/?text=https%3A%2F%2Fwww.mfmmegaregion2usa.org%2Fnewsletter%2Fissue-4%0A%0A%F0%9F%94%A5%20MFM%20MEGA%20REGION%202%20USA%20%E2%80%94%20NEWSLETTER%20ISSUE%20%234%0A%0A%22The%20fire%20has%20not%20grown%20cold.%22%0A%0AThe%20altar%20burned%20at%20the%20Women%27s%20Retreat%20%E2%80%94%20scenes%2C%20prayer%20points%2C%20and%20what%27s%20next%20for%20the%20region.%0A%0AInside%3A%0A%F0%9F%97%92%20Pastor%20Olumide%20Oni%27s%20word%20on%20keeping%20the%20fire%0A%F0%9F%96%BC%20Women%27s%20Retreat%20gallery%0A%F0%9F%8E%A5%20Warfare%20Praise%20video%0A%F0%9F%94%A5%20Nashville%20Nov%2019%20%2B%20Dallas%20Nov%2021%20crusades%0A%F0%9F%93%96%20Free%20book%3A%20Your%20Destiny%20Is%20Unstoppable%0A%F0%9F%99%8F%20Prayer%20points%20for%20this%20week%0A%0A%F0%9F%91%89%20Tap%20the%20link%20above%20to%20read." style="display:inline-block;background:#25D366;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:4px;font-size:13px;font-weight:700;letter-spacing:.1em;" target="_blank" rel="noopener">
+          <img src="https://www.mfmmegaregion2usa.org/img/social/whatsapp-white-mark.png" alt="" width="18" height="18" style="vertical-align:middle;margin-right:8px;border:0;" />SHARE ON WHATSAPP
+        </a>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- FIND A BRANCH + SOCIALS -->
+  <tr><td style="background:#142240;padding:28px 40px 20px;text-align:center;">
+    <div style="font-family:Georgia,serif;font-size:22px;color:#f0e6d0;margin-bottom:8px;">Find a Branch</div>
+    <p style="margin:0 0 14px;font-size:13px;color:#8899b8;">30+ locations across the US.</p>
+    <a href="https://www.mfmmegaregion2usa.org/branches" style="display:inline-block;background:transparent;color:#c9952c;text-decoration:none;padding:9px 18px;border:1px solid #c9952c;border-radius:3px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;">Nearest branch &rarr;</a>
+  </td></tr>
+
+  <!-- SOCIAL ICONS -->
+  <tr><td style="background:#142240;padding:24px 40px 20px;text-align:center;">
+    <div style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9952c;font-weight:600;margin-bottom:14px;">Follow us</div>
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+      <tr>
+        <td style="padding:0 6px;"><a href="https://www.whatsapp.com/channel/0029VaO63PADJ6H057Ikrl3G"><img src="https://www.mfmmegaregion2usa.org/img/social/whatsapp.png" alt="WhatsApp" width="36" height="36" style="display:block;border:0;" /></a></td>
+        <td style="padding:0 6px;"><a href="https://youtube.com/@mfmmegaregion2usa"><img src="https://www.mfmmegaregion2usa.org/img/social/youtube.png" alt="YouTube" width="36" height="36" style="display:block;border:0;" /></a></td>
+        <td style="padding:0 6px;"><a href="https://www.facebook.com/profile.php?id=61556716678081"><img src="https://www.mfmmegaregion2usa.org/img/social/facebook.png" alt="Facebook" width="36" height="36" style="display:block;border:0;" /></a></td>
+        <td style="padding:0 6px;"><a href="https://instagram.com/mfmmegaregion2usa"><img src="https://www.mfmmegaregion2usa.org/img/social/instagram.png" alt="Instagram" width="36" height="36" style="display:block;border:0;" /></a></td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td style="background:#0f1a30;padding:24px 40px 32px;text-align:center;">
+    <p style="margin:0 0 10px;font-size:12px;line-height:1.6;color:#8899b8;">You're receiving this because you subscribed to the MFM Mega Region 2 USA newsletter.</p>
+    <p style="margin:0;font-size:12px;line-height:1.6;color:#6a7a96;">MFM USA Prayer City &middot; 10000 Kleckley Dr &middot; Houston, TX 77075</p>
+    <p style="margin:14px 0 0;font-size:11px;line-height:1.55;color:#6a7a96;">
+      <a href="/subscribe" style="color:#c9952c;text-decoration:underline;">Unsubscribe</a> &middot;
+      <a href="https://www.mfmmegaregion2usa.org/newsletter/issue-4" style="color:#c9952c;text-decoration:underline;">View in browser</a> &middot;
+      <a href="https://www.mfmmegaregion2usa.org/privacy.html" style="color:#6a7a96;text-decoration:underline;">Privacy</a>
+    </p>
+    <p style="margin:18px 0 0;font-family:Georgia,serif;font-style:italic;font-size:12px;color:#3a4a68;">&ldquo;Is not my word like as a fire?&rdquo; &mdash; Jeremiah 23:29</p>
+  </td></tr>
+
+</table>
+</td></tr></table>
+  </section>
+
+  <nav class="mag-nav">
+    <a href="/newsletter/issue-3" class="nav-prev"><span class="nav-dir">← Previous</span><span class="nav-title">Issue #3: Come and see what God did.</span></a>
+    
+  </nav>
+
+  <section class="mag-sub">
+    <h2>Never miss an issue.</h2>
+    <p>Join the newsletter &mdash; about twice a month, no spam, one-click unsubscribe.</p>
+    <a class="btn-gold" href="/subscribe">Subscribe &rarr;</a>
+  </section>
+
+</main>
+
+<a class="mag-share-float" href="https://wa.me/?text=MFM%20Mega%20Region%202%20newsletter%20%E2%80%94%20The%20fire%20has%20not%20grown%20cold.%20%7C%20https://www.mfmmegaregion2usa.org/newsletter/issue-4" target="_blank" rel="noopener" title="Share on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="/js/nav.js" defer></script>
+
+</body>
+</html>
