@@ -224,7 +224,7 @@
   function strip(s){
     var a=document.createElement('a');a.className='mfm-live-strip';a.href=s.url;a.target='_blank';a.rel='noopener';
     a.setAttribute('aria-label','Live now on MFM Mega Region 2 USA: '+s.title+'. Watch the live stream on YouTube');
-    a.innerHTML='<b><i aria-hidden="true"></i>Live now</b><span class="t">'+esc(s.title)+'</span><span class="go">Watch on MFM Mega Region 2 &rarr;</span>';
+    a.innerHTML='<b><i aria-hidden="true"></i>Live now</b><span class="t">'+esc(s.title)+'</span><span class="go">Watch on YouTube &rarr;</span>';
     document.body.appendChild(a);
     document.documentElement.classList.add('has-live-strip');
   }
