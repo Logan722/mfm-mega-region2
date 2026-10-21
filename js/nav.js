@@ -30,3 +30,22 @@
           :'<a class="pri" href="/newsletter">'+arrow+'All issues</a><a class="home" href="/">Home</a>')+
     '</nav></div>';
 }catch(e){}})();
+
+/* Short footer on the newsletter pages (Oct 21 2026): ministry logo + name. The "Never miss an issue" sign-up
+   block sits right above it on these pages, so together they match the short footer on the rest of the site. */
+(function(){try{
+  var f=document.querySelector('footer[data-footer]');if(!f||f.getAttribute('data-footer-done'))return;
+  f.setAttribute('data-footer-done','1');
+  var css=document.createElement('style');
+  css.textContent='.nl-foot{background:#0b1328;color:#fff;font-family:"Inter Tight",Inter,-apple-system,Helvetica,Arial,sans-serif;padding:0 20px max(14px,env(safe-area-inset-bottom))}'+
+    '.nl-foot-in{max-width:1180px;margin:0 auto;padding:28px 0 18px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.08)}'+
+    '.nl-foot-id{display:flex;align-items:center;gap:12px}.nl-foot-id img{width:48px;height:48px}'+
+    '.nl-foot-id strong{display:block;font-family:Georgia,Fraunces,serif;font-weight:400;font-size:18px;color:#fff}'+
+    '.nl-foot-id small{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8493aa;margin-top:3px}'+
+    '.nl-foot-meta{font-size:11px;color:#718099}.nl-foot-meta a{color:inherit;text-decoration:none;margin-left:14px}.nl-foot-meta a:hover{color:#fff}'+
+    '@media(max-width:560px){.nl-foot-in{flex-direction:column;text-align:center}.nl-foot-meta a{margin-left:10px}}';
+  document.head.appendChild(css);
+  f.className+=' nl-foot';
+  f.innerHTML='<div class="nl-foot-in"><div class="nl-foot-id"><img src="/img/logo.png" alt="" width="48" height="48"><div><strong>MFM Mega Region 2 USA</strong><small>Prayer &middot; Deliverance &middot; The Word</small></div></div>'+
+    '<div class="nl-foot-meta">&copy; 2026 MFM Mega Region 2 USA<a href="/privacy">Privacy</a></div></div>';
+}catch(e){}})();
