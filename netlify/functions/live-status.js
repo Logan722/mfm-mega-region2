@@ -9,6 +9,7 @@
 // YouTube shows it as "watching now" (a scheduled/upcoming stream shows "waiting" and is ignored).
 // Cached at the CDN for 60 seconds so YouTube is asked at most about once a minute, whatever the traffic.
 // Any failure -> { ok:false } and the site simply shows nothing.
+// Same-name streams on both channels -> only the Mega Region 2 one is returned (see dedupe below).
 
 const CHANNELS = [
   { key: 'mfm', name: 'MFM Mega Region 2 USA', channel: 'UCr3gSJPBQDjN8CEbj86Pyug', handle: '@mfmmegaregion2usa' },
@@ -64,6 +65,18 @@ async function check(ch) {
   }
 }
 
+
+// Owner rule (Oct 20 2026): when Pastor Olumide Oni's channel carries a stream with the same name as one on the
+// MFM Mega Region 2 channel (the same service simulcast on both), show only the Mega Region 2 stream.
+function sameName(a, b) {
+  const n = (t) => String(t || '').toLowerCase().replace(/^\W*live\W+/, '').replace(/[^a-z0-9]+/g, '');
+  return !!n(a) && n(a) === n(b);
+}
+function dedupe(live) {
+  const mfm = live.filter((s) => s.key === 'mfm');
+  return live.filter((s) => s.key === 'mfm' || !mfm.some((m) => sameName(m.title, s.title)));
+}
+exports.dedupe = dedupe;
 exports.parseLivePage = parseLivePage;
 exports.CHANNELS = CHANNELS;
 exports.handler = async () => {
@@ -74,7 +87,7 @@ exports.handler = async () => {
   };
   try {
     const results = await Promise.all(CHANNELS.map(check));
-    const live = results.filter(Boolean);
+    const live = dedupe(results.filter(Boolean));
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true, live }) };
   } catch (e) {
     return { statusCode: 200, headers: { ...headers, 'cache-control': 'no-store' }, body: JSON.stringify({ ok: false, live: [] }) };

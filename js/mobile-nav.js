@@ -178,7 +178,21 @@
    '.watch-live-now .frame button b svg{width:34px;height:34px;margin-left:5px}.watch-live-now .frame button:hover b{background:#f0c760}'+
    '.watch-live-now .more{margin-top:18px}.watch-live-now .more a{color:#e0ad45;font-weight:700}'+
    '.watch-live-now+.watch-live-now{padding-top:0}'+
-   '.service-dock.is-live{border-top:4px solid #ff3b30}.service-dock.is-live>span{color:#d4381f}';
+   '.service-dock.is-live{border-top:4px solid #ff3b30}.service-dock.is-live>span{color:#d4381f}'+
+   '.mfm-live-strip{position:fixed;top:0;left:0;right:0;z-index:101;height:40px;display:flex;align-items:center;justify-content:center;gap:14px;padding:0 16px;background:#b3261e;color:#fff;text-decoration:none;font-size:14px;line-height:1;white-space:nowrap;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.12)}'+
+   '.mfm-live-strip b{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;flex:none}'+
+   '.mfm-live-strip b i{width:9px;height:9px;border-radius:50%;background:#fff;animation:mfmLivePulse 1.6s infinite}'+
+   '.mfm-live-strip .t{overflow:hidden;text-overflow:ellipsis;min-width:0;font-weight:600}'+
+   '.mfm-live-strip .go{flex:none;font-weight:800;color:#ffe6a6;text-decoration:underline;text-underline-offset:3px}'+
+   '.mfm-live-strip:hover{background:#9c1f18}.mfm-live-strip:hover .go{color:#fff}.mfm-live-strip:focus-visible{outline:3px solid #f0c760;outline-offset:-3px}'+
+   'a.mfm-live-strip,a.mfm-live-strip:visited,a.mfm-live-strip b,a.mfm-live-strip .t{color:#fff!important;text-decoration:none!important}a.mfm-live-strip .go{color:#ffe6a6!important;text-decoration:underline!important}a.mfm-live-strip:hover .go{color:#fff!important}'+
+   'html.has-live-strip .live-banner{display:none!important}'+
+   'html.has-live-strip body{padding-top:40px}html.has-live-strip .site-nav{top:40px!important}'+
+   'html.has-live-strip body.drawer-open .site-nav,html.has-live-strip body.mfm-menu-open .site-nav{top:0!important}'+
+   'html.has-live-strip body.drawer-open .mfm-live-strip,html.has-live-strip body.mfm-menu-open .mfm-live-strip{display:none}'+
+   '@media(max-width:600px){.mfm-live-strip{gap:10px;font-size:13px;padding:0 12px}.mfm-live-strip .go{font-size:12px}}'+
+   '@media(max-width:420px){.mfm-live-strip .t{display:none}}'+
+   '@media(prefers-reduced-motion:reduce){.mfm-live-strip b i{animation:none}}';
   var shownIds='',dockHTML=null,barHTML=null;
   function card(s){
     if(onLive||onHome||dismissed(s.id)||document.querySelector('.mfm-live'))return;
@@ -205,7 +219,18 @@
     var ref=anchor.nextSibling;
     while(box.firstChild)anchor.parentNode.insertBefore(box.firstChild,ref);
   }
+  /* Live strip (Oct 20 2026): while Mega Region 2 is live, a strip across the top of every page links straight to
+     the Mega Region 2 stream on YouTube. The menu bar moves down under it. */
+  function strip(s){
+    var a=document.createElement('a');a.className='mfm-live-strip';a.href=s.url;a.target='_blank';a.rel='noopener';
+    a.setAttribute('aria-label','Live now on MFM Mega Region 2 USA: '+s.title+'. Watch the live stream on YouTube');
+    a.innerHTML='<b><i aria-hidden="true"></i>Live now</b><span class="t">'+esc(s.title)+'</span><span class="go">Watch on MFM Mega Region 2 &rarr;</span>';
+    document.body.insertBefore(a,document.body.firstChild);
+    document.documentElement.classList.add('has-live-strip');
+  }
   function clearAll(){
+    var st=document.querySelector('.mfm-live-strip');if(st)st.parentNode.removeChild(st);
+    document.documentElement.classList.remove('has-live-strip');
     [].forEach.call(document.querySelectorAll('.watch-live-now'),function(n){n.parentNode.removeChild(n);});
     var old=document.querySelector('.mfm-live');if(old)old.parentNode.removeChild(old);
     var dk=document.querySelector('.home-hero .service-dock');if(dk&&dockHTML!==null){dk.innerHTML=dockHTML;dk.classList.remove('is-live');}
@@ -224,7 +249,8 @@
       if(bar){if(barHTML===null)barHTML=bar.innerHTML;
         bar.innerHTML='<span id="bStatus" class="live"><i></i>Live now</span><b id="bTitle">'+esc(list[0].name)+'</b><small id="bDetail">'+esc(list[0].title)+'</small><a id="bLink" href="#live-now">Watch now</a>';}
       if(location.hash==='#live'||location.hash==='#live-now'){var t=document.getElementById('live-now');if(t)t.scrollIntoView();}}
-    card(list[0]);
+    var mr=list.filter(function(s){return s.key==='mfm';})[0];
+    if(mr)strip(mr);else card(list[0]);       /* the strip replaces the corner card while Mega Region 2 is live */
   }
   document.addEventListener('click',function(e){
     var b=e.target.closest&&e.target.closest('button[data-live-yt]');if(!b)return;
@@ -238,6 +264,11 @@
     fetch('/.netlify/functions/live-status',{credentials:'omit'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
       if(!j||!j.ok)return;                      /* a failed check changes nothing */
       var list=j.live||[];
+      /* same-name rule (Oct 20 2026): a stream on Pastor Oni's channel with the same name as a Mega Region 2
+         stream is the same service simulcast, so only the Mega Region 2 one is shown */
+      var nm=function(t){return String(t||'').toLowerCase().replace(/^\W*live\W+/,'').replace(/[^a-z0-9]+/g,'');};
+      var mfm=list.filter(function(s){return s.key==='mfm';});
+      list=list.filter(function(s){return s.key==='mfm'||!mfm.some(function(m){return nm(m.title)&&nm(m.title)===nm(s.title);});});
       if(!list.length){if(shownIds)clearAll();return;}
       show(list);
     }).catch(function(){});
