@@ -49,3 +49,12 @@ has been **sent**, the site picks it up by itself:
 - `/newsletter` also checks in the browser, so visitors see the new issue within about 5 minutes of the send.
 
 An issue page published ahead of the send stays off `/newsletter` until Brevo shows it as sent.
+
+## WhatsApp share links (standing rule)
+
+Every issue page and email carries a WhatsApp "Pass it on" share whose pre-filled text starts with the issue
+URL on its own first line (`https://www.mfmmegaregion2usa.org/newsletter/issue-N`), then a blank line, then the
+rich message (title, teaser, "Inside:" list, "👉 Tap the link above to read."). Hardcode it; never use Brevo
+`{{ mirror }}` inside an encoded href. **If the issue's title or contents change, update the share text too**
+(Issue #4 was retitled after its share text was written; fixed Oct 21 2026). The floating WhatsApp button on
+the issue page uses the same text. Newsletter pages get their header (back to All issues / Home) from `js/nav.js`.
