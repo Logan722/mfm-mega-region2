@@ -43,7 +43,8 @@
     '.nl-foot-id strong{display:block;font-family:Georgia,Fraunces,serif;font-weight:400;font-size:18px;color:#fff}'+
     '.nl-foot-id small{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8493aa;margin-top:3px}'+
     '.nl-foot-meta{font-size:11px;color:#718099}.nl-foot-meta a{color:inherit;text-decoration:none;margin-left:14px}.nl-foot-meta a:hover{color:#fff}'+
-    '@media(max-width:560px){.nl-foot-in{flex-direction:column;text-align:center}.nl-foot-meta a{margin-left:10px}}';
+    '@media(max-width:560px){.nl-foot-in{flex-direction:column;text-align:center}.nl-foot-meta a{margin-left:10px}}'+
+    'body:has(.mag-share-float) .nl-foot{padding-bottom:96px}';
   document.head.appendChild(css);
   f.className+=' nl-foot';
   f.innerHTML='<div class="nl-foot-in"><div class="nl-foot-id"><img src="/img/logo.png" alt="" width="48" height="48"><div><strong>MFM Mega Region 2 USA</strong><small>Prayer &middot; Deliverance &middot; The Word</small></div></div>'+
