@@ -362,6 +362,8 @@ def main():
         subprocess.run([sys.executable, str(ROOT / 'tools' / 'sync_media.py')], check=False)
     ev = snapshot()
     build_latest_video()
+    import newsletter_hub                          # /newsletter: latest issue + archive from Brevo sends
+    newsletter_hub.build(ROOT, write)
     build_grids(ev)
     live = build_details(ev)
     gone = build_redirects(live, ev)

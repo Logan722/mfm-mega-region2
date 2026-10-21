@@ -34,3 +34,18 @@ Every issue needs from Dawn ~10 minutes of writing:
 3. Latest sermon — auto-pulled from https://www.youtube.com/feeds/videos.xml?channel_id=UCr3gSJPBQDjN8CEbj86Pyug
 
 Events auto-pulled from `js/events-data.js` — the same file that drives the site's events page and home slideshow. Never diverges.
+
+## Publishing to /newsletter (automatic, since Oct 21 2026)
+
+You do not edit `newsletter/index.html` by hand any more. Publish the issue page (`newsletter/issue-N.html`,
+with its OG tags and the `Issue #N · Month Year` eyebrow) before the send as usual. Once the Brevo campaign
+has been **sent**, the site picks it up by itself:
+
+- `/.netlify/functions/newsletter-issues` reads the sent campaigns from Brevo (campaign name must contain
+  `Issue #N`, as every issue so far has) and returns the issue numbers.
+- `tools/newsletter_hub.py` (run by `tools/build_site.py`, which the YouTube sync action runs every 30 min)
+  makes that issue the Latest Issue, moves the previous one into The Archive, updates the hub's share image,
+  and fixes the Previous / Next links on the issue pages.
+- `/newsletter` also checks in the browser, so visitors see the new issue within about 5 minutes of the send.
+
+An issue page published ahead of the send stays off `/newsletter` until Brevo shows it as sent.

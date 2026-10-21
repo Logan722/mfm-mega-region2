@@ -4,6 +4,7 @@
 #   - Media page: new uploads get a card and their own message page; the Women and Gen218 sections update
 #   - Live page: Scheduled livestreams / Previous livestreams from the channel's Live tab
 #   - event pages that have ended drop off (the build also refreshes date-based content)
+#   - Newsletter page: an issue that has gone out on Brevo becomes the Latest Issue (tools/newsletter_hub.py)
 # The pages still top themselves up in the browser between runs; this keeps the built pages current too.
 name: YouTube sync
 

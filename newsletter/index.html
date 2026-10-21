@@ -11,14 +11,14 @@
 <meta property="og:site_name" content="MFM Mega Region 2 USA"/>
 <meta property="og:title" content="Come and see what God did. — MFM Mega Region 2 Newsletter"/>
 <meta property="og:description" content="The gallery is live. The crusade testimonies are landing. Here&#x27;s what&#x27;s next."/>
-<meta property="og:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-3-og.jpg"/>
+<meta property="og:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-4-og.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:url" content="https://www.mfmmegaregion2usa.org/newsletter"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Come and see what God did. — MFM Mega Region 2 Newsletter"/>
 <meta name="twitter:description" content="The gallery is live. The crusade testimonies are landing. Here&#x27;s what&#x27;s next."/>
-<meta name="twitter:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-3-og.jpg"/>
+<meta name="twitter:image" content="https://www.mfmmegaregion2usa.org/img/newsletter/issue-4-og.jpg"/>
 
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" href="/img/favicon-32.png"/>
@@ -91,25 +91,33 @@
     <div class="hub-latest-inner">
       <div class="latest-badge">Latest Issue</div>
       <div class="latest-grid">
-        <a href="/newsletter/issue-3" class="latest-card">
-          <img src="/img/newsletter/issue-3-og.jpg" alt="Issue #3 cover"/>
+        <a href="/newsletter/issue-4" class="latest-card">
+          <img src="/img/newsletter/issue-4-og.jpg" alt="Issue #4 cover"/>
         </a>
         <div class="latest-meta">
-          <div class="issue-number">ISSUE #3 &middot; October 2026</div>
-          <h2>Come and see what God did.</h2>
-          <p>The gallery is live. The crusade testimonies are landing. Here&#x27;s what&#x27;s next.</p>
-          <a class="btn-gold" href="/newsletter/issue-3">Read full issue &rarr;</a>
+          <div class="issue-number">ISSUE #4 &middot; October 2026</div>
+          <h2>Together, to the glory of God.</h2>
+          <p>The altar burned. The next generation prayed. Here&#x27;s what carries forward.</p>
+          <a class="btn-gold" href="/newsletter/issue-4">Read full issue &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  
-    <section class="hub-archive">
+      <section class="hub-archive">
       <div class="hub-archive-inner">
         <div class="arc-eyebrow">Previous Issues</div>
         <h2 class="arc-h2">The Archive</h2>
         <div class="arc-grid">
+      <a href="/newsletter/issue-3" class="arc-card">
+        <div class="arc-img" style="background-image:url('/img/newsletter/issue-3-og.jpg');"></div>
+        <div class="arc-body">
+          <div class="arc-num">ISSUE #3 &middot; October 2026</div>
+          <h3 class="arc-title">Come and see what God did.</h3>
+          <span class="arc-link">Read &rarr;</span>
+        </div>
+      </a>
+
       <a href="/newsletter/issue-2" class="arc-card">
         <div class="arc-img" style="background-image:url('/img/newsletter/issue-2-og.jpg');"></div>
         <div class="arc-body">
@@ -142,5 +150,23 @@
 
 <script src="/js/nav.js" defer></script>
 
+<script id="nl-issues" type="application/json">{"published": [4, 3, 2, 1], "issues": {"3": {"n": 3, "title": "Come and see what God did.", "desc": "The gallery is live. The crusade testimonies are landing. Here's what's next.", "month": "October 2026", "img": "/img/newsletter/issue-3-og.jpg", "date": "2026-10-07"}, "4": {"n": 4, "title": "Together, to the glory of God.", "desc": "The altar burned. The next generation prayed. Here's what carries forward.", "month": "October 2026", "img": "/img/newsletter/issue-4-og.jpg", "date": "2026-10-21"}, "2": {"n": 2, "title": "The fire didn't stay in Burlington.", "desc": "What happened at the NC crusade. What's coming next.", "month": "September 2026", "img": "/img/newsletter/issue-2-og.jpg", "date": "2026-09-28"}, "1": {"n": 1, "title": "Fire in the bone.", "desc": "August prayer points, Prevailing Women, and the crusades ahead.", "month": "August 2026", "img": "/img/newsletter/issue-1-og.jpg", "date": "2026-08-19"}}}</script>
+<script id="nl-hub-sync">(function(){try{
+var D=JSON.parse(document.getElementById('nl-issues').textContent),shown=D.published;
+function e(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function mo(i){return i.month?' &middot; '+e(i.month):'';}
+fetch('/.netlify/functions/newsletter-issues',{credentials:'omit'}).then(function(r){return r.ok?r.json():null;}).then(function(j){
+  if(!j||!j.ok)return;
+  var pub=shown.slice();(j.sent||[]).forEach(function(s){if(D.issues[s.issue]&&pub.indexOf(s.issue)<0)pub.push(s.issue);});
+  if(pub.length===shown.length)return;
+  pub.sort(function(a,b){return b-a;});
+  var L=D.issues[pub[0]],lat=document.querySelector('.hub-latest');if(!lat)return;
+  lat.innerHTML='<div class="hub-latest-inner"><div class="latest-badge">Latest Issue</div><div class="latest-grid"><a href="/newsletter/issue-'+L.n+'" class="latest-card"><img src="'+e(L.img)+'" alt="Issue #'+L.n+' cover"/></a><div class="latest-meta"><div class="issue-number">ISSUE #'+L.n+mo(L)+'</div><h2>'+e(L.title)+'</h2><p>'+e(L.desc)+'</p><a class="btn-gold" href="/newsletter/issue-'+L.n+'">Read full issue &rarr;</a></div></div></div>';
+  var cards=pub.slice(1).map(function(n){var i=D.issues[n];return '<a href="/newsletter/issue-'+n+'" class="arc-card"><div class="arc-img" style="background-image:url(\''+e(i.img)+'\');"></div><div class="arc-body"><div class="arc-num">ISSUE #'+n+mo(i)+'</div><h3 class="arc-title">'+e(i.title)+'</h3><span class="arc-link">Read &rarr;</span></div></a>';}).join('');
+  var arc=document.querySelector('.hub-archive');
+  if(!arc&&cards){arc=document.createElement('section');arc.className='hub-archive';lat.parentNode.insertBefore(arc,lat.nextSibling);}
+  if(arc)arc.innerHTML='<div class="hub-archive-inner"><div class="arc-eyebrow">Previous Issues</div><h2 class="arc-h2">The Archive</h2><div class="arc-grid">'+cards+'</div></div>';
+}).catch(function(){});
+}catch(x){}})();</script>
 </body>
 </html>

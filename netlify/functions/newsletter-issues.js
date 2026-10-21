@@ -43,9 +43,7 @@ async function brevo(path) {
 
 exports.issueFromText = issueFromText;
 exports.issueFromHtml = issueFromHtml;
-exports.handler = async (event) => {
-  const debug = !!(((event && event.queryStringParameters) || {}).debug);   // TEMP: campaign names, to check matching
-  const seen = [];
+exports.handler = async () => {
   const headers = {
     'content-type': 'application/json; charset=utf-8',
     'cache-control': 'public, max-age=120',
@@ -60,7 +58,6 @@ exports.handler = async (event) => {
       const isNewsletter = /newsletter|issue/i.test(label);
       let n = /issue/i.test(label) ? (issueFromText(c.name) || issueFromText(c.subject)) : 0;
       if (!n && isNewsletter) n = issueFromText(label.replace(/issue/gi, ''));
-      if (debug) seen.push({ name: c.name, subject: c.subject, sentDate: c.sentDate, n });
       if (!n && isNewsletter) {
         try { n = issueFromHtml((await brevo('/emailCampaigns/' + c.id)).htmlContent); } catch (e) { n = 0; }
       }
@@ -69,7 +66,6 @@ exports.handler = async (event) => {
       if (!found[n] || when < found[n]) found[n] = when;      // first send of that issue
     }
     const sent = Object.keys(found).map((k) => ({ issue: +k, sent: found[k] })).sort((a, b) => b.issue - a.issue);
-    if (debug) return { statusCode: 200, headers: { ...headers, 'cache-control': 'no-store', 'netlify-cdn-cache-control': 'no-store' }, body: JSON.stringify({ ok: true, sent, seen }) };
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true, sent }) };
   } catch (e) {
     return { statusCode: 200, headers: { ...headers, 'cache-control': 'no-store', 'netlify-cdn-cache-control': 'no-store' }, body: JSON.stringify({ ok: false, sent: [] }) };
