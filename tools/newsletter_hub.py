@@ -140,7 +140,7 @@ def build(root, write):
     og = 'https://www.mfmmegaregion2usa.org' + i0['img']
     t = re.sub(r'(<meta property="og:image" content=")[^"]*(")', lambda m: m.group(1) + og + m.group(2), t)
     t = re.sub(r'(<meta name="twitter:image" content=")[^"]*(")', lambda m: m.group(1) + og + m.group(2), t)
-    data = json.dumps({'published': pub, 'issues': {str(k): v for k, v in issues.items()}}, ensure_ascii=False).replace('</', '<\\/')
+    data = json.dumps({'published': pub, 'issues': {str(k): issues[k] for k in sorted(issues)}}, ensure_ascii=False).replace('</', '<\\/')
     t = re.sub(r'\n?<script id="nl-issues"[^>]*>.*?</script>\n?<script id="nl-hub-sync">.*?</script>', '', t, flags=re.S)
     t = t.replace('</body>', '<script id="nl-issues" type="application/json">%s</script>\n%s\n</body>' % (data, RUNTIME), 1)
     write('newsletter/index.html', t)
