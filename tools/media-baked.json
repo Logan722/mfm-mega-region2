@@ -1,18 +1,5 @@
 [
  {
-  "id": "XA5mV1zHFtE",
-  "raw": "When God Speaks, Chains Must Break | Pastor Obatusin — GEN 2:18 Conference",
-  "title": "When God Speaks, Chains Must Break",
-  "published": "2026-10-26T21:31:27+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "",
-  "source": "",
-  "topics": [],
-  "slug": "when-god-speaks-chains-must-break",
-  "href": "/messages/when-god-speaks-chains-must-break"
- },
- {
   "id": "-JF6vmirsgw",
   "raw": "Crossed Out at the Last Minute | Breaking the Yoke of Almost There",
   "title": "Crossed Out at the Last Minute",
@@ -42,22 +29,6 @@
   "href": "/messages/rekindling-the-altar-dr-elizabeth-arisekola-oloko"
  },
  {
-  "id": "QuJWBt5VWB8",
-  "raw": "Fire on Every Altar | MFM Women Foundation Retreat 2026",
-  "title": "Fire on Every Altar",
-  "published": "2026-10-24T20:31:21+00:00",
-  "year": "2026",
-  "program": "Women Foundation",
-  "speaker": "",
-  "source": "MFM Women Foundation Retreat",
-  "topics": [
-   "Prayer",
-   "Women"
-  ],
-  "slug": "fire-on-every-altar",
-  "href": "/messages/fire-on-every-altar"
- },
- {
   "id": "2FcvGuzdmmM",
   "raw": "Rekindling the Altar — Pastor Oluwatoyin Jesurayibi | MFM Women Foundation Retreat 2026",
   "title": "Rekindling the Altar — Pastor Oluwatoyin Jesurayibi",
@@ -72,19 +43,6 @@
   ],
   "slug": "rekindling-the-altar-pastor-oluwatoyin-jesurayibi",
   "href": "/messages/rekindling-the-altar-pastor-oluwatoyin-jesurayibi"
- },
- {
-  "id": "UA7xssCWOCo",
-  "raw": "God's Word Will Not Fail in Your Life | Pastor Obatusin — GEN 2:18 Conference",
-  "title": "God's Word Will Not Fail in Your Life",
-  "published": "2026-10-23T21:02:13+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "",
-  "source": "",
-  "topics": [],
-  "slug": "god-s-word-will-not-fail-in-your-life",
-  "href": "/messages/god-s-word-will-not-fail-in-your-life"
  },
  {
   "id": "3ms8WMS8h4k",
@@ -117,34 +75,6 @@
   ],
   "slug": "rekindling-the-altar-pastor-atinuke-ibegbulem",
   "href": "/messages/rekindling-the-altar-pastor-atinuke-ibegbulem"
- },
- {
-  "id": "a5epJaUjzbs",
-  "raw": "Yesterday's Fire Cannot Sustain Today's Assignment | Pastor Oluwatoyin Oni",
-  "title": "Yesterday's Fire Cannot Sustain Today's Assignment",
-  "published": "2026-10-22T21:02:39+00:00",
-  "year": "2026",
-  "program": "Sermons & Messages",
-  "speaker": "Pastor Oluwatoyin Oni",
-  "source": "",
-  "topics": [],
-  "slug": "yesterday-s-fire-cannot-sustain-today-s-assignment",
-  "href": "/messages/yesterday-s-fire-cannot-sustain-today-s-assignment"
- },
- {
-  "id": "ZRH9t_ysipA",
-  "raw": "Where Heaven Came Down — MFM Women Foundation Retreat | MFM Mega Region 2",
-  "title": "Where Heaven Came Down — MFM Women Foundation Retreat",
-  "published": "2026-10-22T00:02:17+00:00",
-  "year": "2026",
-  "program": "Women Foundation",
-  "speaker": "",
-  "source": "MFM Women Foundation Retreat",
-  "topics": [
-   "Women"
-  ],
-  "slug": "where-heaven-came-down-mfm-women-foundation-retreat",
-  "href": "/messages/where-heaven-came-down-mfm-women-foundation-retreat"
  },
  {
   "id": "T7KodCHAQ7s",
@@ -210,22 +140,6 @@
   "href": "/messages/rekindling-the-altar-keynote-pastor-oluwatoyin-oni"
  },
  {
-  "id": "rmHjC-FunWI",
-  "raw": "He Lives — Worship From The MFM Florida Crusade",
-  "title": "He Lives — Worship From The MFM Florida Crusade",
-  "published": "2026-10-18T20:02:55+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "",
-  "source": "MFM Florida Crusade",
-  "topics": [
-   "Crusade",
-   "Worship"
-  ],
-  "slug": "he-lives-worship-from-the-mfm-florida-crusade",
-  "href": "/messages/he-lives-worship-from-the-mfm-florida-crusade"
- },
- {
   "id": "Wbp9Q9SXpZc",
   "raw": "Come and See | Pastor David Popoola | Healing & Deliverance Hour",
   "title": "Come and See",
@@ -242,38 +156,6 @@
   "href": "/messages/come-and-see"
  },
  {
-  "id": "7yEpR1FyeyU",
-  "raw": "Prayer Provokes Divine Intervention | Dr. D.K. Olukoya, MFM NC Crusade",
-  "title": "Prayer Provokes Divine Intervention",
-  "published": "2026-10-17T20:02:35+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "Dr. D.K. Olukoya",
-  "source": "MFM NC Crusade",
-  "topics": [
-   "Prayer",
-   "Crusade"
-  ],
-  "slug": "prayer-provokes-divine-intervention",
-  "href": "/messages/prayer-provokes-divine-intervention"
- },
- {
-  "id": "RbxuI7Qy9vg",
-  "raw": "Rekindling the Altar — MFM Women Foundation Retreat Highlights | MFM Mega Region 2",
-  "title": "Rekindling the Altar — MFM Women Foundation Retreat Highlights",
-  "published": "2026-10-17T00:02:21+00:00",
-  "year": "2026",
-  "program": "Women Foundation",
-  "speaker": "",
-  "source": "MFM Women Foundation Retreat",
-  "topics": [
-   "Prayer",
-   "Women"
-  ],
-  "slug": "rekindling-the-altar-mfm-women-foundation-retreat-highlights",
-  "href": "/messages/rekindling-the-altar-mfm-women-foundation-retreat-highlights"
- },
- {
   "id": "phWf2DNb4OY",
   "raw": "OPEN HEAVEN ENCOUNTER | October 15, 2026 | Divine Breakthrough & Deliverance LIVE",
   "title": "Open Heaven Encounter — October 15, 2026",
@@ -288,23 +170,6 @@
   ],
   "slug": "open-heaven-encounter-october-15-2026",
   "href": "/messages/open-heaven-encounter-october-15-2026"
- },
- {
-  "id": "5e2VrgzbC3w",
-  "raw": "Let Every Blockage Clear The Way — Deliverance Prayers | Dr. D.K. Olukoya, MFM NC Crusade",
-  "title": "Let Every Blockage Clear The Way — Deliverance Prayers",
-  "published": "2026-10-15T20:03:23+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "Dr. D.K. Olukoya",
-  "source": "MFM NC Crusade",
-  "topics": [
-   "Deliverance",
-   "Prayer",
-   "Crusade"
-  ],
-  "slug": "let-every-blockage-clear-the-way-deliverance-prayers",
-  "href": "/messages/let-every-blockage-clear-the-way-deliverance-prayers"
  },
  {
   "id": "irOC2Qy9RVA",
@@ -336,22 +201,6 @@
   "href": "/messages/healing-and-deliverance-hour-10-13-2026"
  },
  {
-  "id": "zjK3XXIRrIY",
-  "raw": "Instrumental Worship That Carried His Presence | MFM NC Crusade 2026",
-  "title": "Instrumental Worship That Carried His Presence",
-  "published": "2026-10-13T20:02:48+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "",
-  "source": "MFM NC Crusade",
-  "topics": [
-   "Crusade",
-   "Worship"
-  ],
-  "slug": "instrumental-worship-that-carried-his-presence",
-  "href": "/messages/instrumental-worship-that-carried-his-presence"
- },
- {
   "id": "YgNpvkDlPG0",
   "raw": "The Anointing That Breaks the Yoke | Pastor Tope Oluwayemiwo",
   "title": "The Anointing That Breaks the Yoke",
@@ -363,23 +212,6 @@
   "topics": [],
   "slug": "the-anointing-that-breaks-the-yoke",
   "href": "/messages/the-anointing-that-breaks-the-yoke"
- },
- {
-  "id": "ruzcU4oaY00",
-  "raw": "Receive Your 24-Hour Miracle — Altar Prayers | MFM Florida Crusade",
-  "title": "Receive Your 24-Hour Miracle — Altar Prayers",
-  "published": "2026-10-11T20:03:17+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "",
-  "source": "MFM Florida Crusade",
-  "topics": [
-   "Prayer",
-   "Breakthrough",
-   "Crusade"
-  ],
-  "slug": "receive-your-24-hour-miracle-altar-prayers",
-  "href": "/messages/receive-your-24-hour-miracle-altar-prayers"
  },
  {
   "id": "q2tolFt52qw",
@@ -414,36 +246,6 @@
   "href": "/messages/gen218-regional-prayer-conference-2026"
  },
  {
-  "id": "q7DPdZlXSNM",
-  "raw": "She Saw The Exam Answers In A Dream | Dr. D.K. Olukoya, MFM NC Crusade",
-  "title": "She Saw The Exam Answers In A Dream",
-  "published": "2026-10-10T20:02:56+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "Dr. D.K. Olukoya",
-  "source": "MFM NC Crusade",
-  "topics": [
-   "Crusade"
-  ],
-  "slug": "she-saw-the-exam-answers-in-a-dream",
-  "href": "/messages/she-saw-the-exam-answers-in-a-dream"
- },
- {
-  "id": "2WUhirDOkaQ",
-  "raw": "10 Facts About God — Your Father Is Not A Civilian | Dr. D.K. Olukoya, MFM NC Crusade",
-  "title": "10 Facts About God — Your Father Is Not A Civilian",
-  "published": "2026-10-09T20:03:46+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "Dr. D.K. Olukoya",
-  "source": "MFM NC Crusade",
-  "topics": [
-   "Crusade"
-  ],
-  "slug": "10-facts-about-god-your-father-is-not-a-civilian",
-  "href": "/messages/10-facts-about-god-your-father-is-not-a-civilian"
- },
- {
   "id": "Wh2u0kRf2rQ",
   "raw": "OPEN HEAVEN ENCOUNTER | October 8, 2026 | Divine Breakthrough & Deliverance LIVE",
   "title": "Open Heaven Encounter — October 8, 2026",
@@ -458,22 +260,6 @@
   ],
   "slug": "open-heaven-encounter-october-8-2026",
   "href": "/messages/open-heaven-encounter-october-8-2026"
- },
- {
-  "id": "OMS2cJCqjMs",
-  "raw": "The Short Leg That Grew — God Still Heals | MFM Florida Crusade",
-  "title": "The Short Leg That Grew — God Still Heals",
-  "published": "2026-10-07T20:03:45+00:00",
-  "year": "2026",
-  "program": "Special Events",
-  "speaker": "",
-  "source": "MFM Florida Crusade",
-  "topics": [
-   "Healing",
-   "Crusade"
-  ],
-  "slug": "the-short-leg-that-grew-god-still-heals",
-  "href": "/messages/the-short-leg-that-grew-god-still-heals"
  },
  {
   "id": "tK8mNtlw2h8",

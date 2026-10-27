@@ -6,7 +6,11 @@ Media page yet, it:
   * writes a message page  messages/<slug>.html  (same template as the existing message pages),
   * adds a card at the top of the Media library grid (newest first),
   * refreshes the Programme / Speaker / Topic / Year filter options from the cards.
-Skipped: #shorts and hashtag promo clips, and scheduled streams that have not aired yet (0 views).
+Skipped: YouTube Shorts (owner request, Oct 27 2026: the Media page shows the channel's Videos + past livestreams
+only), #shorts / hashtag promo clips, and scheduled streams that have not aired yet (0 views).
+A Short is recognised by its feed link (youtube.com/shorts/<id>); every Short seen is remembered in
+tools/shorts-ids.json. Any Short already on the site is taken off Media (and so off Women / Gen218), its
+message page is removed and redirected to /media (tools/retired-pages.json), and links to it are dropped.
 Baked videos are remembered in tools/media-baked.json, so they stay on the site after they drop out
 of the 15-item feed. The page also adds any newer uploads live in the browser (js in media.html).
 
@@ -23,6 +27,8 @@ BAKED = ROOT / 'tools' / 'media-baked.json'
 # Ministry playlists pulled in on top of the channel feed (the channel feed only lists the latest 15 uploads).
 PLAYLISTS = {'gen218': 'PLW7hBicEbKy_9UNG4SSj27NCBiw1iP-yS'}   # 'Gen 218 Conferences | Mega Region 2'
 PLAYLIST_IDS = ROOT / 'tools' / 'playlists.json'
+SHORTS = ROOT / 'tools' / 'shorts-ids.json'
+RETIRED = ROOT / 'tools' / 'retired-pages.json'
 # Hand-written titles for uploads whose YouTube titles don't clean up well
 TITLE_OVERRIDES = {'82TOfp_eH-w': 'Glory Revealed! — Quarterly Gen218 Virtual Conference',
                    'Raib3YWzglY': 'It Is My Time to Rejoice — Gen218 Singles\u2019 Conference',
@@ -189,6 +195,50 @@ def fetch_feed(url=FEED):
 def options_html(values, current_label):
     return ''.join('<option>%s</option>' % html.escape(v) for v in ['All'] + values)
 
+def purge_shorts(shorts, cards, baked):
+    """Take every YouTube Short off the Media page, the baked list and its message page (-> redirect to /media)."""
+    gone = [c for c in cards if c['id'] in shorts]
+    gone_b = [b for b in baked if b['id'] in shorts]
+    if not gone and not gone_b:
+        return 0
+    media_p = ROOT / 'media.html'
+    media = media_p.read_text()
+    grid, _ = parse_cards(media)
+    inner = grid.group(2)
+    for c in gone:
+        inner = inner.replace(c['html'], '')
+    media = media[:grid.start(2)] + inner + media[grid.end(2):]
+    left = len(cards) - len(gone)
+    media = re.sub(r'(<p class="results-count" id="mCount"[^>]*>)Showing \d+ messages', lambda m: m.group(1) + 'Showing %d messages' % left, media)
+    media_p.write_text(media)
+    if gone_b:
+        BAKED.write_text(json.dumps([b for b in baked if b['id'] not in shorts], ensure_ascii=False, indent=1) + '\n')
+    # message pages of the Shorts: remove, and send old links to /media
+    retired = json.loads(RETIRED.read_text()) if RETIRED.exists() else []
+    hrefs = set()
+    for c in gone + gone_b:
+        h = c.get('href') or ''
+        if h.startswith('/messages/'):
+            hrefs.add(h)
+    for h in sorted(hrefs):
+        f = ROOT / (h.lstrip('/') + '.html')
+        if f.exists():
+            f.unlink()
+        if h not in {r['from'] for r in retired}:
+            retired.append({'from': h, 'to': '/media', 'why': 'YouTube Short (not on Media)'})
+    RETIRED.write_text(json.dumps(retired, indent=1) + '\n')
+    # drop "related message" links that pointed at them
+    for f in (ROOT / 'messages').glob('*.html'):
+        t = f.read_text()
+        u = t
+        for h in hrefs:
+            u = re.sub(r'<a class="msg-rc" href="%s">.*?</a>' % re.escape(h), '', u, flags=re.S)
+        if u != t:
+            f.write_text(u)
+    print('media sync: took %d YouTube Short(s) off Media: %s' % (len(gone) + len([b for b in gone_b if b['id'] not in {c['id'] for c in gone}]),
+          '; '.join(html.unescape(c.get('title', c['id'])) for c in gone)))
+    return 1
+
 def _main():
     media_p = ROOT / 'media.html'
     media = media_p.read_text()
@@ -207,16 +257,27 @@ def _main():
         pl_ids[key] = re.findall(r'<yt:videoId>([\w-]{11})</yt:videoId>', px)
         xml += px
     PLAYLIST_IDS.write_text(json.dumps(pl_ids, indent=1) + '\n')
+    shorts = set(json.loads(SHORTS.read_text())) if SHORTS.exists() else set()
+    seen_shorts = set(re.findall(r'<link rel="alternate" href="https://www\.youtube\.com/shorts/([\w-]{11})"', xml))
+    if not seen_shorts <= shorts:
+        shorts |= seen_shorts
+        SHORTS.write_text(json.dumps(sorted(shorts), indent=1) + '\n')
     grid, cards = parse_cards(media)
     have = {c['id'] for c in cards}
     baked = json.loads(BAKED.read_text()) if BAKED.exists() else []
+    purged = purge_shorts(shorts, cards, baked)
+    if purged:
+        media = media_p.read_text()
+        grid, cards = parse_cards(media)
+        baked = json.loads(BAKED.read_text()) if BAKED.exists() else []
+        have = {c['id'] for c in cards}
     new = []
     for entry in re.findall(r'<entry>(.*?)</entry>', xml, re.S):
         vid = re.search(r'<yt:videoId>([\w-]{11})</yt:videoId>', entry).group(1)
         raw = html.unescape(re.search(r'<title>(.*?)</title>', entry, re.S).group(1)).strip()
         views = int((re.search(r'<media:statistics views="(\d+)"', entry) or [0, 0])[1])
         published = re.search(r'<published>([^<]+)</published>', entry).group(1)
-        if vid in have or vid in {n['id'] for n in new} or not watchable(raw, views):
+        if vid in have or vid in shorts or vid in {n['id'] for n in new} or not watchable(raw, views):
             continue
         title = TITLE_OVERRIDES.get(vid) or clean_title(raw)
         it = {'id': vid, 'raw': raw, 'title': title, 'published': published, 'year': published[:4],
@@ -233,7 +294,7 @@ def _main():
     redated = [b for b in baked if feed_dates.get(b['id']) and feed_dates[b['id']] != b['published']]
     for b in redated:
         b['published'] = feed_dates[b['id']]; b['year'] = b['published'][:4]
-    if not new and not redated:
+    if not new and not redated and not purged:
         print('media sync: up to date (%d cards)' % len(cards))
         return 0
     if redated:

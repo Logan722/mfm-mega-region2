@@ -72,10 +72,12 @@ exports.handler = async (event) => {
     const xml = await r.text();
     // Newest *watchable* message: skip scheduled/unaired streams (0 views) and #shorts clips.
     const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map((m) => m[1]);
+    // YouTube Shorts are not shown on the site (owner request, Oct 27 2026): the feed links them as /shorts/<id>
+    const isShort = (e) => /href="https:\/\/www\.youtube\.com\/shorts\//.test(e);
     const watchable = (e) => {
       const views = +((e.match(/<media:statistics views="(\d+)"/) || [])[1] || 0);
       const title = (e.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || '';
-      return views > 0 && !/#shorts/i.test(title);
+      return views > 0 && !/#shorts/i.test(title) && !isShort(e);
     };
     if (wantList) {
       // Media page live sync: every recent upload, newest first (the page applies its own filters).
@@ -84,10 +86,11 @@ exports.handler = async (event) => {
         title: decode((e.match(/<title>([\s\S]*?)<\/title>/) || [])[1]).trim(),
         published: (e.match(/<published>([^<]+)<\/published>/) || [])[1] || '',
         views: +((e.match(/<media:statistics views="(\d+)"/) || [])[1] || 0),
+        short: isShort(e),
       })).filter((i) => i.id && i.title);
       return { statusCode: 200, headers, body: JSON.stringify({ ok: true, items }) };
     }
-    const entry = entries.find(watchable) || entries[0];
+    const entry = entries.find(watchable) || entries.find((e) => !isShort(e)) || entries[0];
     if (!entry) throw new Error('no entry');
     const id = (entry.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/) || [])[1];
     const title = decode((entry.match(/<title>([\s\S]*?)<\/title>/) || [])[1]).trim();

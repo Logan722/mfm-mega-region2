@@ -158,6 +158,24 @@ window.MFM_EVENTS = [
     "badgeStyle": "gold"
   },
   {
+    "date": "2026-10-31",
+    "start": "2026-10-31T18:00",
+    "tz": "America/New_York",
+    "page": "/events/women-foundation-fl-october",
+    "title": "Women Foundation Florida — October Meeting",
+    "theme": "You Are Welcome",
+    "time": "6:00 PM ET",
+    "venue": "Online via Zoom",
+    "host": "MFM Women Foundation Florida",
+    "image": "img/announcements/women-foundation-fl-october.jpg",
+    "alt": "MFM Women Foundation Florida — October Meeting Invitation: You are welcome. Saturday October 31, 2026, 6:00 PM on Zoom. Broward, Jacksonville, Miami, Orlando, Tallahassee and Tampa. All women.",
+    "anchor": "women-foundation-fl-october",
+    "dateDisplay": "Saturday, October 31, 2026",
+    "description": "The MFM Women Foundation Florida invites all women across the Florida zones — Broward, Jacksonville, Miami, Orlando, Tallahassee and Tampa — to the October meeting on Zoom. You are welcome! Come and be blessed. The Zoom link is shared on request — please contact your zone's Women Foundation leader to join.",
+    "ministry": "women",
+    "badgeStyle": "gold"
+  },
+  {
     "date": "2026-11-19",
     "start": "2026-11-19T17:00",
     "tz": "America/Chicago",

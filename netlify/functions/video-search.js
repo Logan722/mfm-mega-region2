@@ -24,6 +24,8 @@ function collect(node, out) {
   if (Array.isArray(node)) { node.forEach((n) => collect(n, out)); return; }
   if (node.videoRenderer && node.videoRenderer.videoId) {
     const v = node.videoRenderer;
+    // YouTube Shorts are not shown on the site (Oct 27 2026): their link is /shorts/<id>
+    if (/^\/shorts\//.test((((v.navigationEndpoint || {}).commandMetadata || {}).webCommandMetadata || {}).url || '')) return;
     out.push({
       id: v.videoId,
       title: text(v.title).trim(),

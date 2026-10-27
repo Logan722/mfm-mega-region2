@@ -311,6 +311,10 @@ def build_legacy_redirects(ended):
     # renamed pages: old address -> new address (Oct 14 2026: Watch page is now /live)
     for old, new in RENAMED:
         lines += ['%s  %s  301!' % (old, new), '%s/  %s  301!' % (old, new), '%s.html  %s  301!' % (old, new)]
+    # retired pages (Oct 27 2026: message pages of YouTube Shorts, which are no longer on Media) -> tools/retired-pages.json
+    rp = ROOT / 'tools' / 'retired-pages.json'
+    for r in (json.loads(rp.read_text()) if rp.exists() else []):
+        lines += ['%s  %s  301!' % (r['from'], r['to']), '%s.html  %s  301!' % (r['from'], r['to'])]
     for rel in html_files():
         if rel in NO_LEGACY or rel == 'index.html' or rel.startswith('share/'):
             continue
