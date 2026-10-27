@@ -515,8 +515,28 @@ def refresh_live():
         lp.write_text(n)
         print('live sync: %d scheduled; most recent = %s; %d previous' % (len(sched), prev[0]['title'], min(len(prev), LIVE_PREV)))
 
+def refresh_playlist_filter():
+    """Media page 'Playlist' filter options = the channel's playlists (js/media-playlists.json, tools/yt_playlists.py)."""
+    try:
+        import yt_playlists
+        yt_playlists.refresh()
+    except Exception as ex:
+        print('playlists: refresh failed (%s)' % ex)
+    f = ROOT / 'js' / 'media-playlists.json'
+    if not f.exists():
+        return
+    pls = json.loads(f.read_text()).get('playlists', [])
+    mp = ROOT / 'media.html'
+    m = mp.read_text()
+    opts = '<option value="All">All</option>' + ''.join('<option value="%s">%s</option>' % (html.escape(p['id']), html.escape(p['title'])) for p in pls)
+    n = re.sub(r'(<select id="mPlaylist">).*?(</select>)', lambda x: x.group(1) + opts + x.group(2), m, count=1, flags=re.S)
+    if n != m:
+        mp.write_text(n)
+        print('playlists: filter has %d playlists' % len(pls))
+
 def main():
     r = _main()
+    refresh_playlist_filter()
     refresh_women()
     refresh_gen218()
     refresh_live()

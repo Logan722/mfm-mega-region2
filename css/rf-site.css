@@ -1175,3 +1175,7 @@ html.nav-over-hero.nav-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{
 /* Watch & grow thumbnail (Oct 20 2026): widescreen box so the whole YouTube thumbnail shows, uncropped */
 .media-band .media-image{height:auto!important;aspect-ratio:16/9;align-self:center}
 .media-band .media-image img{object-fit:contain;opacity:.92}
+
+/* Media: Playlist filter (Oct 27 2026) — five selects on wide screens */
+@media(min-width:1101px){.filter-selects{grid-template-columns:minmax(220px,1.7fr) repeat(4,minmax(120px,1fr)) auto}}
+.media-yt-head p a{color:var(--fire-dark,#b8461f);font-weight:700;text-decoration:none}.media-yt-head p a:hover{text-decoration:underline}
