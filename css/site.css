@@ -2634,3 +2634,16 @@ html.nav-over-hero.nav-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{
 /* Logo text in the menu bar matches the main pages (Oct 2026) */
 .nav-logo-text{font-size:15px}
 .nav-logo-text span{font-size:8px;letter-spacing:.06em;text-transform:none;color:#aebad0;max-width:220px}
+
+/* Desktop menu readability (owner request, Nov 7 2026): menu words were muted grey-blue (#8899b8, 13.6px) and got
+   lost over the hero videos/photos. Now warm cream, a little larger and bolder; gold on hover, gold underline on the
+   current page; a soft shadow only while the bar is see-through over a video or photo. Phone menu unchanged. */
+@media (min-width:769px){
+  .site-nav .nav-links>a:not(.nav-cta),.site-nav .nav-dropdown-toggle{color:#f0e6d0;font-size:.92rem;font-weight:600;letter-spacing:.02em}
+  .site-nav .nav-links>a:not(.nav-cta):hover,.site-nav .nav-links>a:not(.nav-cta):focus-visible,
+  .site-nav .nav-dropdown-toggle:hover,.site-nav .nav-dropdown-toggle:focus-visible,
+  .site-nav .nav-dropdown:hover>.nav-dropdown-toggle,.site-nav .nav-dropdown.open>.nav-dropdown-toggle{color:#e8b84a}
+  .site-nav .nav-links>a.active:not(.nav-cta){color:#fff}
+  html.home-top .site-nav .nav-links>a:not(.nav-cta),html.home-top .site-nav .nav-dropdown-toggle,
+  html.nav-over-hero.nav-top .site-nav .nav-links>a:not(.nav-cta),html.nav-over-hero.nav-top .site-nav .nav-dropdown-toggle{text-shadow:0 1px 2px rgba(5,9,20,.75),0 0 14px rgba(5,9,20,.55)}
+}
