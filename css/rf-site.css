@@ -1192,3 +1192,48 @@ html.nav-over-hero.nav-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{
   html.home-top .site-nav .nav-links>a:not(.nav-cta),html.home-top .site-nav .nav-dropdown-toggle,
   html.nav-over-hero.nav-top .site-nav .nav-links>a:not(.nav-cta),html.nav-over-hero.nav-top .site-nav .nav-dropdown-toggle{text-shadow:0 1px 2px rgba(5,9,20,.75),0 0 14px rgba(5,9,20,.55)}
 }
+
+/* ── Alignment pass (owner request, Nov 8 2026) ──────────────────────────────────────────────────────────
+   Centred: top banners, stand-alone section headings (heading + short text now stacked and centred), closing
+   sections, scripture bands, feature boxes, album/related headings, event/message/branch title banners.
+   Left on purpose: long reading text, forms, directory lists, card text, and text that sits beside a photo
+   (desktop; those stack and centre on phones). */
+/* 1 · top banners (phones were already centred) */
+.page-hero-content{text-align:center;align-items:center}
+.page-hero-content .eyebrow{justify-content:center}
+.page-hero-content>h1,.page-hero-content>p{margin-left:auto;margin-right:auto}
+.page-hero-content .hero-actions{justify-content:center;margin-left:auto;margin-right:auto}
+.page-hero-shade{background:radial-gradient(ellipse 75% 85% at 50% 52%,rgba(8,16,34,.86) 0%,rgba(8,16,34,.68) 55%,rgba(8,16,34,.5) 100%),linear-gradient(0deg,#0b132866,transparent)}
+html body section.ev-hero .ev-hero-inner,html body section.msg-hero .msg-hero-inner,html body section.bp-hero .bp-hero-inner{text-align:center}
+html body .msg-hero .msg-meta,html body .bp-hero .bp-eyebrow{justify-content:center}
+html body .ev-hero .ev-title,html body .msg-hero .msg-title,html body .bp-hero .bp-title,html body .ev-hero .ev-theme,html body .ev-hero .ev-date,html body .bp-hero .bp-sub{margin-left:auto;margin-right:auto}
+/* 2 · section headings: heading + short text stacked and centred */
+.section-head{flex-direction:column;align-items:center!important;justify-content:center;text-align:center;gap:14px}
+.section-head .eyebrow{justify-content:center}
+.section-head>p{max-width:640px;margin-left:auto;margin-right:auto}
+.section-head>.button{align-self:center}
+/* matching line after centred eyebrows */
+.page-hero-content .eyebrow::after,.section-head .eyebrow::after{content:"";width:26px;height:1px;background:currentColor}
+/* 3 · stand-alone headings above grids */
+.gl-head{justify-content:center!important;text-align:center}
+.gl-head .gl-sub{margin-left:auto;margin-right:auto}
+.gm-more-head{flex-direction:column;align-items:center!important;text-align:center}
+html body .msg-related-h{text-align:center}
+/* 4 · closing sections */
+.about-closing .hero-actions,.section-head~.hero-actions{justify-content:center}
+/* 5 · scripture bands */
+.scripture-band .wrap{text-align:center}
+.scripture-band blockquote{margin-left:auto;margin-right:auto}
+/* 6 · feature boxes */
+.values-grid article{text-align:center}
+.visitor-facts article{align-items:center;text-align:center}
+/* 7 · phones: text that sits beside a photo on desktop centres once it stacks */
+@media(max-width:600px){
+  .home-visitor-grid>div:first-child,.location-call>div:first-child,.welcome-photo>div,.prose-split>div:first-child,.leadership-feature>div{text-align:center}
+  .home-visitor-grid .eyebrow,.location-call .eyebrow,.welcome-photo .eyebrow,.prose-split .eyebrow{justify-content:center}
+  .home-visitor-grid .hero-actions,.location-call .hero-actions,.welcome-photo .hero-actions{justify-content:center}
+}
+/* 8 · Media search box uses the full width, like the filters under it */
+.media-filters>label{max-width:none}
+/* About closing: the outlined second button was white on white (invisible) — navy outline on light sections (Nov 8 2026) */
+.about-closing .button.light{color:var(--navy,#142240);border-color:var(--navy,#142240)}.about-closing .button.light:hover{background:var(--navy,#142240);color:#fff}
