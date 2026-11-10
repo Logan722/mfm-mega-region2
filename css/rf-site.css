@@ -1248,8 +1248,3 @@ html body .msg-related-h{text-align:center}
 .event-modal-copy{overflow-y:auto;max-height:92vh;min-height:0}
 }
 
-/* Event cards: show the whole flyer, no cropping (Nov 10 2026) */
-.event-card-image,.event-card-image:is(button){height:auto;aspect-ratio:4/5;overflow:hidden;isolation:isolate}
-.event-card-image::before{content:"";position:absolute;inset:-24px;background:var(--ev-bg,none) center/cover no-repeat;filter:blur(18px) brightness(.55);z-index:0}
-.event-card-image img{position:relative;z-index:1;object-fit:contain}
-.event-card-image span{z-index:2}
