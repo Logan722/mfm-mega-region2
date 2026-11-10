@@ -602,7 +602,19 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mfmmegaregion2usa.org/events/dallas-church-dedication</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mfmmegaregion2usa.org/events/dallas-deliverance-crusade</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mfmmegaregion2usa.org/events/nashville-church-dedication</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -615,6 +627,12 @@
   </url>
   <url>
     <loc>https://mfmmegaregion2usa.org/events/thanksgiving-service</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mfmmegaregion2usa.org/events/youth-game-night</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
