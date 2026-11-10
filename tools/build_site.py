@@ -66,9 +66,9 @@ def card(e, badge):
     w_h = img_size(e['image'])
     dims = ' width="%d" height="%d"' % w_h if w_h else ''
     h = esc(href_of(e))
-    return ('<article class="event-card"><a class="event-card-image" href="%s"><img src="%s" alt="%s" loading="lazy" decoding="async"%s><span>%s</span></a>'
+    return ('<article class="event-card"><a class="event-card-image" href="%s" style="--ev-bg:url('%s')"><img src="%s" alt="%s" loading="lazy" decoding="async"%s><span>%s</span></a>'
             '<div><small>%s</small><h3><a href="%s">%s</a></h3><p>%s</p><div class="event-card-actions"><a class="inline-link" href="%s">Event details %s</a></div></div></article>'
-            % (h, esc('/' + e['image'].lstrip('/')), esc(e.get('alt') or e['title']), dims, esc(badge), esc(e.get('dateDisplay') or e['date']),
+            % (h, esc('/' + e['image'].lstrip('/')), esc('/' + e['image'].lstrip('/')), esc(e.get('alt') or e['title']), dims, esc(badge), esc(e.get('dateDisplay') or e['date']),
                h, esc(e['title']), esc(e.get('venue')), h, ARROW))
 
 def dock_loc(e):

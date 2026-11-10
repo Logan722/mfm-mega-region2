@@ -1237,3 +1237,19 @@ html body .msg-related-h{text-align:center}
 .media-filters>label{max-width:none}
 /* About closing: the outlined second button was white on white (invisible) — navy outline on light sections (Nov 8 2026) */
 .about-closing .button.light{color:var(--navy,#142240);border-color:var(--navy,#142240)}.about-closing .button.light:hover{background:var(--navy,#142240);color:#fff}
+
+/* Event pop-up: flyer centred in its panel (Nov 10 2026) */
+.event-modal-frame{position:relative;width:100%}
+.event-modal-frame>span{left:12px!important;top:12px!important}
+@media(min-width:951px){
+.event-modal{overflow:hidden}
+.event-modal-flyer{align-items:center;justify-items:center;max-height:92vh;min-height:0}
+.event-modal-flyer img{position:static;max-height:calc(92vh - 68px)}
+.event-modal-copy{overflow-y:auto;max-height:92vh;min-height:0}
+}
+
+/* Event cards: show the whole flyer, no cropping (Nov 10 2026) */
+.event-card-image,.event-card-image:is(button){height:auto;aspect-ratio:4/5;overflow:hidden;isolation:isolate}
+.event-card-image::before{content:"";position:absolute;inset:-24px;background:var(--ev-bg,none) center/cover no-repeat;filter:blur(18px) brightness(.55);z-index:0}
+.event-card-image img{position:relative;z-index:1;object-fit:contain}
+.event-card-image span{z-index:2}
