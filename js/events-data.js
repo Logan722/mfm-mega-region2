@@ -496,7 +496,11 @@ window.MFM_EVT = (function () {
     for (var k = 0; k < 14; k++) {
       var sat = addDays(d, 1), sun = addDays(d, 2);
       var isFirstWeekend = (sat.getUTCDate() === firstSatDate(sat.getUTCFullYear(), sat.getUTCMonth()));
-      if (U.zoned(ymdU(sun) + 'T14:00', TZ).getTime() >= Date.now() && !isFirstWeekend) {
+      /* Paused for the rest of 2026 (Dawn, Nov 17–18 2026): no Weekend Deliverance
+         from Nov 20 to Dec 31 2026, and no card shown at all until Jan 1 2027. */
+      var pausedForYear = (ymdU(d) >= '2026-11-20' && ymdU(d) <= '2026-12-31') ||
+                          (ymdU(today) >= '2026-11-18' && ymdU(today) <= '2026-12-31'); /* nothing listed again until Jan 1 2027 */
+      if (U.zoned(ymdU(sun) + 'T14:00', TZ).getTime() >= Date.now() && !isFirstWeekend && !pausedForYear) {
         A.push({
           date: ymdU(d), endDate: ymdU(sun), start: ymdU(d) + 'T19:00', end: ymdU(sun) + 'T14:00', tz: TZ,
           title: 'Weekend Deliverance',

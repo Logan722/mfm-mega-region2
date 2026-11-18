@@ -28,5 +28,9 @@ t('Womens retreat past after 4 PM CT', ()=>assert.ok(w3.MFM_EVT.isPast(w3.MFM_EV
 t('Gen218 (no end time) still current same evening', ()=>assert.ok(!w3.MFM_EVT.isPast(w3.MFM_EVENTS.find(e=>e.anchor==='gen218-regional-conference'))));
 const w4=load('2026-12-03T15:00:00Z'); // winter
 t('Open Heaven schedule correct in CST (UK/Ghana 12:00 AM, Nigeria 1:00 AM)', ()=>{ const s=w4.MFM_EVENTS.find(e=>e.anchor==='open-heaven-encounter').schedule.map(x=>x.when).join('|'); assert.ok(s.includes('12:00 AM UK time')&&s.includes('12:00 AM GMT')&&s.includes('1:00 AM WAT'),s); });
-t('Weekend Deliverance skips first weekend of December', ()=>{ const e=w4.MFM_EVENTS.find(e=>e.anchor==='weekend-deliverance'); assert.equal(e.date,'2026-12-11'); });
+t('Weekend Deliverance not listed in December 2026', ()=>assert.ok(!w4.MFM_EVENTS.find(e=>e.anchor==='weekend-deliverance')));
+const w6=load('2027-01-02T15:00:00Z');
+t('Weekend Deliverance back from Jan 2027 (Jan 8-10, first weekend skipped)', ()=>assert.equal(w6.MFM_EVENTS.find(e=>e.anchor==='weekend-deliverance').date,'2027-01-08'));
+const w5=load('2026-11-18T07:00:00Z');
+t('No Weekend Deliverance listed Nov 20 - Dec 31 2026', ()=>{ const ds=w5.MFM_EVENTS.filter(e=>e.anchor==='weekend-deliverance').map(e=>e.date); assert.equal(ds.length,0,ds.join()); });
 console.log(n,'tests passed');
