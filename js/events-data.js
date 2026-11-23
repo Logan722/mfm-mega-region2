@@ -290,6 +290,31 @@ window.MFM_EVENTS = [
     "badgeStyle": "gold"
   },
   {
+    "date": "2026-12-11",
+    "endDate": "2026-12-12",
+    "start": "2026-12-11T22:00",
+    "end": "2026-12-12T05:00",
+    "tz": "America/New_York",
+    "page": "/events/praise-night-atlanta",
+    "title": "Praise Night — MFM Revival Center Atlanta",
+    "theme": "His Praises in My Mouth",
+    "time": "10:00 PM – 5:00 AM ET",
+    "venue": "MFM Revival Center Atlanta — 3480 Howell Street NW, Duluth, GA 30096",
+    "host": "MFM Revival Center Atlanta",
+    "image": "img/announcements/praise-night-atlanta.jpg",
+    "cardPos": "50% 40%",
+    "alt": "MFM Revival Center Atlanta presents Praise Night — theme: His Praises in My Mouth. Psalm 71:8. Friday December 11, 2026, 10:00 PM to 5:00 AM EST, MFM Revival Center Atlanta, 3480 Howell Street NW, Duluth, Georgia 30096.",
+    "anchor": "praise-night-atlanta",
+    "dateDisplay": "Friday, December 11, 2026",
+    "description": "MFM Revival Center Atlanta presents Praise Night — a special night of praise, worship and thanksgiving, celebrating God's faithfulness, with praise and worship ministration. Theme: His Praises in My Mouth — “My mouth shall shew forth thy praise, and thy glory all the day” (Psalm 71:8). Friday, December 11, from 10:00 PM to 5:00 AM (Eastern Time).",
+    "features": [
+      "A Night of Praise, Worship & Thanksgiving",
+      "Celebrating God's Faithfulness",
+      "Praise & Worship Ministration"
+    ],
+    "badgeStyle": "gold"
+  },
+  {
     "date": "2026-12-12",
     "start": "2026-12-12T10:00",
     "tz": "America/Chicago",
@@ -305,6 +330,30 @@ window.MFM_EVENTS = [
     "link": "https://www.eventbrite.com/e/thanksgiving-service-2026-mfm-mega-region-2-usa-tickets-1999884820333",
     "dateDisplay": "Saturday, December 12, 2026",
     "description": "A gathering to give God thanks and praise for His faithfulness, His power, and all He has done. He is faithful, He is able, and He will do it again.",
+    "badgeStyle": "fire"
+  },
+  {
+    "date": "2026-12-20",
+    "start": "2026-12-20T09:00",
+    "tz": "America/New_York",
+    "page": "/events/cultural-sunday-atlanta",
+    "title": "Celebration Cultural Sunday — MFM Revival Center Atlanta",
+    "theme": "Come in Your Best Culture Custom to Glorify God",
+    "time": "9:00 AM ET",
+    "venue": "MFM Revival Center Atlanta — 3480 Howell Street NW, Duluth, GA 30096",
+    "ministering": "Special Guest Minister",
+    "host": "MFM Revival Center Atlanta",
+    "image": "img/announcements/cultural-sunday-atlanta.jpg",
+    "cardPos": "50% 30%",
+    "alt": "MFM Revival Center Atlanta presents Celebration Cultural Sunday — come in your best culture custom to glorify God. Psalm 118:24. Special guest minister. Sunday December 20, 2026, 9:00 AM EST, MFM Revival Center Atlanta, 3480 Howell Street NW, Duluth, Georgia 30096.",
+    "anchor": "cultural-sunday-atlanta",
+    "dateDisplay": "Sunday, December 20, 2026",
+    "description": "MFM Revival Center Atlanta presents Celebration Cultural Sunday — a special Sunday of praise, worship and thanksgiving, celebrating our diverse cultures in Christ, with a special guest minister and praise and worship ministration. Come in your best culture custom to glorify God! “This is the day which the LORD hath made; we will rejoice and be glad in it” (Psalm 118:24). Sunday, December 20 at 9:00 AM (Eastern Time).",
+    "features": [
+      "Praise, Worship & Thanksgiving",
+      "Celebrating Our Diverse Cultures in Christ",
+      "Special Guest Minister"
+    ],
     "badgeStyle": "fire"
   }
 ];
