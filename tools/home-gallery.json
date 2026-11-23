@@ -1,0 +1,17 @@
+{
+ "_note": "Optional cover photo per album for the homepage gallery (key = album 'See all' link, value = photo file stem). Default = first preview photo.",
+ "covers": {
+  "/gallery-nashville-2026": "the-praise-rises",
+  "/gallery-women-retreat-2026": "retreat-02",
+  "/gallery-gen218-prayer-conference-2026": "gen-03",
+  "/gallery-north-carolina-2026": "ministers-rejoice",
+  "/gallery-florida": "hands-stretched"
+ },
+ "thumbs": {
+  "/gallery-nashville-2026": [
+   "a-holy-greeting",
+   "joy-unspeakable",
+   "the-plaque"
+  ]
+ }
+}

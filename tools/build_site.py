@@ -368,6 +368,8 @@ def main():
     build_latest_video()
     import newsletter_hub                          # /newsletter: latest issue + archive from Brevo sends
     newsletter_hub.build(ROOT, write)
+    import home_gallery                            # homepage gallery section <- /gallery albums (newest first)
+    home_gallery.build(ROOT, write)
     build_grids(ev)
     live = build_details(ev)
     gone = build_redirects(live, ev)
