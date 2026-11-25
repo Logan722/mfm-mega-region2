@@ -273,6 +273,26 @@ window.MFM_EVENTS = [
     "badgeStyle": "gold"
   },
   {
+    "date": "2026-11-27",
+    "endDate": "2026-11-28",
+    "start": "2026-11-27T23:00",
+    "tz": "America/Chicago",
+    "page": "/events/austin-end-of-year-vigil",
+    "title": "End of the Year Vigil — MFM Austin",
+    "theme": "Night of Divine Recovery: What Was Lost Shall Be Restored!",
+    "time": "11:00 PM CT",
+    "venue": "Church Auditorium, MFM The Lord Has Spoken Branch — 9411 Parkfield Drive, Suite 320, Austin, TX 78758",
+    "ministering": "Pastor (Dr.) Segun Obatusin",
+    "host": "MFM Austin, Texas (The Lord Has Spoken Branch)",
+    "image": "img/announcements/austin-end-of-year-vigil.jpg",
+    "cardPos": "50% 20%",
+    "alt": "Mountain of Fire and Miracles Ministries, Austin TX — End of the Year Vigil. Theme: Night of Divine Recovery — What Was Lost Shall Be Restored! Joel 2:25. Ministering: Pastor (Dr.) Segun Obatusin. November 27, 11 PM CST, Church Auditorium, 9411 Parkfield Drive, Suite 320, Austin TX 78758.",
+    "anchor": "austin-end-of-year-vigil",
+    "dateDisplay": "Friday, November 27, 2026",
+    "description": "MFM Austin, Texas (The Lord Has Spoken Branch) holds its End of the Year Vigil. Theme: Night of Divine Recovery — What Was Lost Shall Be Restored! “And I will restore to you the years that the locust hath eaten…” (Joel 2:25). Ministering: Pastor (Dr.) Segun Obatusin. Friday, November 27 at 11:00 PM (Central Time) in the church auditorium. More from MFM Austin at www.mfmaustin.org.",
+    "badgeStyle": "fire"
+  },
+  {
     "date": "2026-12-11",
     "start": "2026-12-11T19:00",
     "tz": "America/Chicago",
