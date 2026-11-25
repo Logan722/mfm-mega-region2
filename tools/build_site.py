@@ -121,7 +121,7 @@ DETAIL_GUARD = ('<script>(function(){var c=document.querySelector(".ev-cta[data-
 def detail_cta(e):
     btns = ''
     if e.get('_ticket'):
-        btns += '<a class="btn btn--fire" data-live-only href="%s" target="_blank" rel="noopener">Register / Get Tickets</a>' % esc(e['_ticket'])
+        btns += '<a class="btn btn--fire" data-live-only href="%s" target="_blank" rel="noopener">%s</a>' % (esc(e['_ticket']), esc(e.get('linkLabel') or 'Register / Get Tickets'))
     btns += '<a class="btn btn--primary" data-live-only href="%s" target="_blank" rel="noopener">Add to Calendar</a>' % esc(e['_gcal'])
     btns += '<a class="btn btn--secondary" href="/events">All events</a>'
     return '<div class="ev-cta" data-ends="%s">%s</div>' % (esc(e['_end']), btns)

@@ -7,7 +7,8 @@
      "date" to "endDate". Everything (past/upcoming, countdowns, calendar links, schema) is derived
      from these fields by window.MFM_EVT below — never from the free-text "time" label.
    - Tag departmental events with "ministry": "women" | "gen218". Keep anchors unique.
-   - "page" = clean URL of the event's own detail page, when one exists. */
+   - "page" = clean URL of the event's own detail page, when one exists.
+   - "linkLabel" (optional) = button text for "link" when it isn't a ticket sale (e.g. "Register"). */
 window.MFM_EVENTS = [
   {
     "date": "2026-08-03",
@@ -355,6 +356,30 @@ window.MFM_EVENTS = [
       "Special Guest Minister"
     ],
     "badgeStyle": "fire"
+  },
+  {
+    "date": "2027-01-06",
+    "endDate": "2027-01-15",
+    "tz": "America/Chicago",
+    "page": "/events/ministerial-schools-2027",
+    "title": "MFM Ministerial Schools 2027",
+    "theme": "Registration now open",
+    "venue": "MFM Prayer City USA — 10000 Kleckley Dr, Houston, TX 77075",
+    "host": "MFM America",
+    "image": "img/announcements/ministerial-schools-2027.jpg",
+    "cardPos": "50% 15%",
+    "alt": "Mountain of Fire and Miracles Ministries — Ministerial Schools: Biblical Studies, Mission and Evangelism, Prayer, Prophet, Deliverance. Starting January 7 and 8–15, 2027 at MFM Prayer City USA, 10000 Kleckley Dr, Houston TX 77075. School of Ministry Session 1: January 6–15, 2027. Registration now open. mfmamerica.org",
+    "anchor": "ministerial-schools-2027",
+    "link": "https://mfmamerica.org/ministerial-schools-application-for-admission/",
+    "linkLabel": "Register",
+    "dateDisplay": "January 6–15, 2027",
+    "description": "Registration is now open for the MFM Ministerial Schools at MFM Prayer City USA, Houston. School of Biblical Studies: January 7–15, 2027 (the prerequisite for the other Basic Schools). Basic Schools of Mission & Evangelism, Prayer, Prophets and Deliverance: January 8–15, 2027. School of Ministry, Session 1: January 6–15, 2027 (for those who have completed the Basic School courses). Register online at mfmamerica.org; for questions, call MFM America on (281) 888-5408 (Monday–Friday, 9 AM–5 PM).",
+    "features": [
+      "School of Biblical Studies — Jan 7–15",
+      "Mission & Evangelism · Prayer · Prophets · Deliverance — Jan 8–15",
+      "School of Ministry, Session 1 — Jan 6–15"
+    ],
+    "badgeStyle": "gold"
   }
 ];
 
