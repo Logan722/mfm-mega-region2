@@ -293,6 +293,27 @@ window.MFM_EVENTS = [
     "badgeStyle": "fire"
   },
   {
+    "date": "2026-11-27",
+    "tz": "America/Chicago",
+    "page": "/events/resurgence-praise-night",
+    "title": "Praise Night — MFM Resurgence Center",
+    "theme": "A Resurgence of Praise — Thanksgiving Service",
+    "venue": "MFM Resurgence Center — 6910 N Eldridge Pkwy, Back Suite, Houston, TX 77041",
+    "host": "MFM Resurgence Center · Mega Region 2 Youth & Young Adult Church",
+    "image": "img/announcements/resurgence-praise-night.jpg",
+    "cardPos": "50% 45%",
+    "alt": "MFM Resurgence Center presents Praise Night — A Resurgence of Praise, Thanksgiving Service.",
+    "anchor": "resurgence-praise-night",
+    "dateDisplay": "Friday, November 27, 2026",
+    "description": "The Youth & Young Adult Church of MFM Mega Region 2 invites you to Praise Night — A Resurgence of Praise, a thanksgiving service reflecting on God's faithfulness throughout the year: a night of endless thanksgiving, filled with ministers, art and pure praise. Turn your Friday into a time to give thanks and praise the Lord, and bring a friend.",
+    "features": [
+      "A Night of Thanksgiving",
+      "Ministers, Art & Pure Praise",
+      "Bring a Friend"
+    ],
+    "badgeStyle": "gold"
+  },
+  {
     "date": "2026-11-29",
     "start": "2026-11-29T08:00",
     "tz": "America/New_York",
