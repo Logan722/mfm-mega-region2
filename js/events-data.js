@@ -293,6 +293,25 @@ window.MFM_EVENTS = [
     "badgeStyle": "fire"
   },
   {
+    "date": "2026-11-29",
+    "start": "2026-11-29T08:00",
+    "tz": "America/New_York",
+    "page": "/events/riverdale-grand-finale-deliverance",
+    "title": "Grand Finale Deliverance Service — MFM Riverdale",
+    "theme": "The God That Astonishes His People (Mark 7:37)",
+    "time": "8:00 AM ET",
+    "venue": "MFM Riverdale — Bombay Plaza, 6989 GA-85, Suite D1, Riverdale, GA 30274",
+    "ministering": "Dr. D.K. Olukoya (G.O., MFM Worldwide) · Pastor Olumide Oni (Mega Region 2 USA PRO) · anointed men and women of God",
+    "host": "Pastor Francis Benede",
+    "image": "img/announcements/riverdale-grand-finale-2026.jpg",
+    "cardPos": "50% 25%",
+    "alt": "The Mountain of Fire and Miracles Ministries — Grand Finale Deliverance Service of the Year 2026. The God that astonishes his people (Mark 7:37). November 29, 2026, 8 AM. Dr. D.K. Olukoya, Pst Olumide Oni, host Pst Francis Benede. Bombay Plaza, 6989 GA-85 Ste D1, Riverdale, GA 30274. Bring any bill/note as a point of contact to be prayed over and returned to you for financial blessing.",
+    "anchor": "riverdale-grand-finale-deliverance",
+    "dateDisplay": "Sunday, November 29, 2026",
+    "description": "MFM Riverdale, Atlanta invites you to the Grand Finale of its quarterly Deliverance Service — the last of the year. Theme: The God that astonishes His people (Mark 7:37). It is a fasting programme: bring a bottle of oil, and bring any bill or note as a point of contact to be prayed over and returned to you for financial blessing. Sunday, November 29 at 8:00 AM (Eastern Time). Invite someone!",
+    "badgeStyle": "fire"
+  },
+  {
     "date": "2026-12-11",
     "start": "2026-12-11T19:00",
     "tz": "America/Chicago",
@@ -580,6 +599,29 @@ window.MFM_EVT = (function () {
       { label: 'Ghana', when: at('Africa/Accra') + ' GMT' },
       { label: 'Nigeria', when: at('Africa/Lagos') + ' WAT' }
     ],
+    recurring: true
+  });
+
+  /* 2b) MFM Tampa — "The Mountain of Bring Your Problems to God", every Thursday,
+         7:00–8:30 PM ET, in person (branch weekly programme; Eventbrite RSVP).
+         Source: mfmtampaflorida.org + Eventbrite (added Nov 24 2026). */
+  var thuT = ymdU(nextDow(4, '19:30'));            /* 8:30 PM ET = 7:30 PM CT */
+  A.push({
+    date: thuT, endDate: thuT, start: thuT + 'T19:00', end: thuT + 'T20:30', tz: 'America/New_York',
+    title: 'The Mountain of Bring Your Problems to God — MFM Tampa',
+    theme: 'A new weekly evening of prayer, worship and the Word',
+    time: '7:00 PM ET',
+    venue: 'MFM Tampa — 4618 North Florida Avenue, Tampa, FL 33603',
+    dateDisplay: 'Every Thursday',
+    image: 'img/announcements/tampa-bring-your-problems.jpg',
+    cardPos: '50% 15%',
+    alt: 'Mountain of Fire and Miracles Ministries, Tampa, Florida presents The Mountain of Bring Your Problems to God — every Thursday at 7 PM. Psalm 55:22. 4618 North Florida Avenue, Tampa, FL 33603.',
+    anchor: 'tampa-bring-your-problems',
+    host: 'MFM Tampa, Florida',
+    link: 'https://www.eventbrite.com/e/mountain-of-fire-and-miracles-ministries-tampa-florida-tickets-2002810199220',
+    linkLabel: 'RSVP',
+    description: 'Whatever you are carrying, you do not have to carry it alone. MFM Tampa invites you up to the mountain every Thursday night to lay your burdens before the Lord — an evening of prayer, worship and the Word, with targeted prayers for finances, health and family and pastoral help on site. Open to all; reserve your spot on Eventbrite.',
+    scripture: 'Cast thy burden upon the LORD, and he shall sustain thee: he shall never suffer the righteous to be moved.|Psalm 55:22',
     recurring: true
   });
 
