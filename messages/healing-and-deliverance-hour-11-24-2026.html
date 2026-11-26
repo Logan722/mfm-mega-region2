@@ -59,6 +59,7 @@
 <script src="/js/sw-register.js?v=9ac4c1b66b" defer></script>
 <script src="/js/mobile-nav.js?v=d19a0106a0" defer></script>
 <script src="/js/newsletter-popup.js?v=f0b251b62a" defer></script>
+<link rel="stylesheet" href="/css/engage.css?v=pv1">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -151,7 +152,8 @@
         <div class="msg-actions">
           <a class="btn btn--primary" href="https://www.youtube.com/watch?v=3l0kGCk11Wk" target="_blank" rel="noopener">Watch on YouTube</a>
           <a class="btn btn--secondary" href="/media">Browse the library</a>
-        </div>
+        </div><div class="pp" id="prayer-points"><span class="pv-note">Preview &middot; sample prayer points &mdash; the real ones come from the message</span><span class="ek-eyebrow" style="display:block">Prayer points from this message</span><h2>I Shall See the End of My Pharaoh</h2><p class="scr">&ldquo;For the Egyptians whom ye have seen to day, ye shall see them again no more for ever.&rdquo; &mdash; Exodus 14:13</p><ol><li>[Prayer point 1 from the message]</li><li>[Prayer point 2 from the message]</li><li>[Prayer point 3 from the message]</li><li>[Prayer point 4 from the message]</li><li>[Prayer point 5 from the message]</li></ol><div class="pp-actions"><a class="ek-btn" href="https://wa.me/?text=Prayer%20points%3A%20I%20Shall%20See%20the%20End%20of%20My%20Pharaoh%20https%3A%2F%2Fmfmmegaregion2usa.org%2Fmessages%2Fhealing-and-deliverance-hour-11-24-2026%23prayer-points">Share on WhatsApp</a><a class="ek-btn ghost" href="/play">Take this week&rsquo;s quiz</a></div></div>
+<div class="nl-inline" data-preview><p class="nl-inline-h">Get next week&rsquo;s prayer points in your inbox</p><p class="nl-inline-p">Every Monday: prayer points from HD and OHE, a new quiz pack and upcoming programmes.</p><form><input type="text" placeholder="First name" aria-label="First name"><input type="email" placeholder="Email address" aria-label="Email address"><button type="submit">Subscribe</button></form><p class="nl-inline-ok" hidden></p></div>
         <h2 class="msg-related-h">Related messages</h2><div class="msg-related"><a class="msg-rc" href="/messages/healing-and-deliverance-hour-11-17-2026"><img width="480" height="360" loading="lazy" src="https://img.youtube.com/vi/4_BaarvVSUA/hqdefault.jpg" alt="Healing &amp; Deliverance Hour — 11-17-2026"><div class="rc-b"><h3>Healing &amp; Deliverance Hour — 11-17-2026</h3><div class="rc-sp">Healing &amp; Deliverance Hour</div></div></a><a class="msg-rc" href="/messages/healing-and-deliverance-hour-11-17-2026"><img width="480" height="360" loading="lazy" src="https://img.youtube.com/vi/qaWwifZRJ6M/hqdefault.jpg" alt="Healing &amp; Deliverance Hour — 11-17-2026"><div class="rc-b"><h3>Healing &amp; Deliverance Hour — 11-17-2026</h3><div class="rc-sp">Healing &amp; Deliverance Hour</div></div></a><a class="msg-rc" href="/messages/healing-and-deliverance-hour-11-10-2026"><img width="480" height="360" loading="lazy" src="https://img.youtube.com/vi/QQ4CdeL3pGY/hqdefault.jpg" alt="Healing &amp; Deliverance Hour — 11-10-2026"><div class="rc-b"><h3>Healing &amp; Deliverance Hour — 11-10-2026</h3><div class="rc-sp">Healing &amp; Deliverance Hour</div></div></a></div>
       </div>
     </section>
@@ -173,5 +175,7 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dd){var t=dd.querySe
 document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('.nav-dropdown'))document.querySelectorAll('.nav-dropdown.open').forEach(function(d){d.classList.remove('open')});});
 
 </script>
+<script>document.querySelectorAll("form[data-preview]").forEach(function(f){f.addEventListener("submit",function(e){e.preventDefault();var o=f.querySelector(".nl-ok")||f.parentNode.querySelector(".nl-inline-ok");if(o){o.hidden=false;o.textContent="Preview only — sign-up is not sent from this preview.";}});});</script>
+<div class="pv-banner">Preview · not live · sample content</div>
 </body>
 </html>
