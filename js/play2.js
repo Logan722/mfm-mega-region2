@@ -228,18 +228,51 @@
     Object.keys(tot).forEach(function (k) { var a = k.split('|'); p.push({ name: a[0] + ' (you)', sub: a[1], pts: tot[k], me: true }); });
     return p.sort(function (a, b) { return b.pts - a.pts; }).slice(0, 10);
   }
+  /* five preview designs for the leaderboard (picker: Leaderboard 1–5) */
+  var BV = 1, TAB = 'branches';
+  var CHURCH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M10.5 4.5h3M5 21v-8l7-5 7 5v8Z"/></svg>';
+  function trend(name) { var h = 0; for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0; var v = Math.abs(h) % 5; return v === 0 ? 0 : v < 3 ? v : -(v - 2); }
+  function trendTag(x) { var t = trend(x.name); return t > 0 ? '<span class="tr up" title="Up ' + t + ' this week">&#9650; ' + t + '</span>' : t < 0 ? '<span class="tr dn" title="Down ' + (-t) + ' this week">&#9660; ' + (-t) + '</span>' : '<span class="tr eq">&ndash;</span>'; }
+  function av(x) { return TAB === 'branches' ? CHURCH : esc(initials(x.name)); }
+  function sub(x) { return x.sub ? '<small>' + esc(x.sub) + '</small>' : ''; }
+  var VIEWS = {
+    1: function (r, top) {  /* podium + list */
+      var pod = [1, 0, 2].map(function (i) { var x = r[i]; if (!x) return ''; return '<div class="pod p' + (i + 1) + (x.me ? ' me' : '') + '"><span class="pod-av">' + av(x) + '</span><b class="pod-n">' + esc(x.name) + '</b>' + sub(x) + '<span class="pod-pts">' + fmt(x.pts) + ' pts</span><span class="pod-block"><i>' + (i + 1) + '</i></span></div>'; }).join('');
+      var list = r.slice(3).map(function (x, k) { return '<li' + (x.me ? ' class="me"' : '') + '><b class="lb-rank">' + (k + 4) + '</b><span class="lb-name">' + esc(x.name) + sub(x) + '</span><span class="lb-bar"><i style="width:' + Math.max(6, Math.round(x.pts / top * 100)) + '%"></i></span><span class="lb-pts">' + fmt(x.pts) + '</span></li>'; }).join('');
+      return '<div class="pg-podium">' + pod + '</div><ol class="pg-list">' + list + '</ol>';
+    },
+    2: function (r) {  /* stadium scoreboard */
+      return '<div class="lv2"><div class="lv2-head"><span class="lv2-live"><i></i>Live</span><b>This week&rsquo;s scoreboard</b><span>Resets in <b data-reset>&nbsp;</b></span></div>' +
+        '<div class="lv2-cols"><span>#</span><span>' + (TAB === 'branches' ? 'Branch' : 'Player') + '</span><span>Move</span><span>Points</span></div>' +
+        r.map(function (x, k) { return '<div class="lv2-row' + (k < 3 ? ' top t' + (k + 1) : '') + (x.me ? ' me' : '') + '"><span class="lv2-rank">' + pad(k + 1) + '</span><span class="lv2-name">' + esc(x.name) + sub(x) + '</span>' + trendTag(x) + '<span class="lv2-pts">' + fmt(x.pts) + '</span></div>'; }).join('') + '</div>';
+    },
+    3: function (r, top) {  /* race track */
+      return '<div class="lv3"><div class="lv3-finish" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM5 5H3v1.5A3.5 3.5 0 0 0 6.6 10M19 5h2v1.5A3.5 3.5 0 0 1 17.4 10M10 13h4v3h-4zM8 16h8l1 4H7z"/></svg><span>Finish</span></div>' +
+        r.slice(0, 8).map(function (x, k) { var pc = Math.max(8, Math.round(x.pts / top * 100)); return '<div class="lv3-lane' + (x.me ? ' me' : '') + '"><span class="lv3-label"><b>' + (k + 1) + '</b>' + esc(x.name) + '</span><span class="lv3-track"><span class="lv3-run" style="--p:' + pc + '%;--d:' + (k * 90) + 'ms"><i>' + av(x) + '</i></span></span><span class="lv3-pts">' + fmt(x.pts) + '</span></div>'; }).join('') + '</div>';
+    },
+    4: function (r) {  /* trading cards */
+      var medals = ['Gold', 'Silver', 'Bronze'];
+      return '<div class="lv4-top">' + r.slice(0, 3).map(function (x, k) { return '<article class="lv4-card m' + (k + 1) + (x.me ? ' me' : '') + '"><span class="lv4-medal">' + (k + 1) + '</span><span class="lv4-av">' + av(x) + '</span><b>' + esc(x.name) + '</b>' + sub(x) + '<span class="lv4-pts">' + fmt(x.pts) + '<small>pts</small></span><span class="lv4-tag">' + medals[k] + ' this week</span></article>'; }).join('') + '</div>' +
+        '<div class="lv4-rest">' + r.slice(3).map(function (x, k) { return '<div class="lv4-mini' + (x.me ? ' me' : '') + '"><b>' + (k + 4) + '</b><span>' + esc(x.name) + sub(x) + '</span><em>' + fmt(x.pts) + '</em></div>'; }).join('') + '</div>';
+    },
+    5: function (r, top) {  /* fire meter */
+      return '<div class="lv5">' + r.slice(0, 7).map(function (x, k) { var pc = Math.max(10, Math.round(x.pts / top * 100)); return '<div class="lv5-col' + (k === 0 ? ' lead' : '') + (x.me ? ' me' : '') + '"><span class="lv5-pts">' + fmt(x.pts) + '</span><span class="lv5-bar"><span class="lv5-fill" style="--h:' + pc + '%;--d:' + (k * 80) + 'ms"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c3.6 3.3 6 6.5 6 10.3a6 6 0 0 1-12 0c0-2.7 1.5-4.8 3-6.3.1 1.8 1 3 2.1 3.3C10.3 7.1 11 4.6 12 2.5Z"/></svg></span></span><b class="lv5-rank">' + (k + 1) + '</b><span class="lv5-name">' + esc(x.name.replace(/^MFM /, '')) + '</span></div>'; }).join('') + '</div>' +
+        (r.length > 7 ? '<p class="lv5-more">' + r.slice(7).map(function (x, k) { return '<span>' + (k + 8) + '. ' + esc(x.name) + ' &middot; ' + fmt(x.pts) + '</span>'; }).join('') + '</p>' : '');
+    }
+  };
   function renderBoard() {
-    var list = document.getElementById('lb-body'), pod = document.getElementById('pg-podium'); if (!list || !pod) return;
-    var tab = list.dataset.tab || 'branches', r = rows(tab), top = r[0] ? r[0].pts : 1;
-    var order = [1, 0, 2];
-    pod.innerHTML = order.map(function (i) { var x = r[i]; if (!x) return ''; return '<div class="pod p' + (i + 1) + (x.me ? ' me' : '') + '"><span class="pod-av">' + (tab === 'branches' ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M10.5 4.5h3M5 21v-8l7-5 7 5v8Z"/></svg>' : esc(initials(x.name))) + '</span><b class="pod-n">' + esc(x.name) + '</b>' + (x.sub ? '<small>' + esc(x.sub) + '</small>' : '') + '<span class="pod-pts">' + fmt(x.pts) + ' pts</span><span class="pod-block"><i>' + (i + 1) + '</i></span></div>'; }).join('');
-    list.innerHTML = r.slice(3).map(function (x, k) { return '<li' + (x.me ? ' class="me"' : '') + '><b class="lb-rank">' + (k + 4) + '</b><span class="lb-name">' + esc(x.name) + (x.sub ? '<small>' + esc(x.sub) + '</small>' : '') + '</span><span class="lb-bar"><i style="width:' + Math.max(6, Math.round(x.pts / top * 100)) + '%"></i></span><span class="lb-pts">' + fmt(x.pts) + '</span></li>'; }).join('');
+    var el = document.getElementById('pg-boardview'); if (!el) return;
+    var r = rows(TAB), top = r[0] ? r[0].pts : 1;
+    el.setAttribute('data-v', BV); el.innerHTML = VIEWS[BV](r, top);
+    document.querySelectorAll('[data-lpick]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lpick') == BV ? 'true' : 'false'); });
     var br = rows('branches'); document.querySelectorAll('[data-topbranch]').forEach(function (x) { x.textContent = br[0].name; });
     document.querySelectorAll('[data-heropodium]').forEach(function (hp) {
       hp.innerHTML = [1, 0, 2].map(function (i) { var x = br[i]; return x ? '<div class="hp p' + (i + 1) + '"><b>' + esc(x.name.replace(/^MFM /, '')) + '</b><span>' + fmt(x.pts) + ' pts</span><i>' + (i + 1) + '</i></div>' : ''; }).join('');
     });
+    tick();
   }
-  document.querySelectorAll('.lb-tab').forEach(function (t) { t.addEventListener('click', function () { document.querySelectorAll('.lb-tab').forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t ? 'true' : 'false'); }); document.getElementById('lb-body').dataset.tab = t.dataset.tab; renderBoard(); }); });
+  document.querySelectorAll('[data-lpick]').forEach(function (b) { b.addEventListener('click', function () { BV = +b.getAttribute('data-lpick'); renderBoard(); }); });
+  document.querySelectorAll('.lb-tab').forEach(function (t) { t.addEventListener('click', function () { document.querySelectorAll('.lb-tab').forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t ? 'true' : 'false'); }); TAB = t.dataset.tab; renderBoard(); }); });
 
   function tick() {
     var p = ctParts(), h = +p.hour % 24, secs = 86400 - (h * 3600 + (+p.minute) * 60 + (+p.second));
@@ -268,6 +301,7 @@
   function hero(n) { document.querySelectorAll('[data-hero]').forEach(function (h) { h.hidden = h.getAttribute('data-hero') != n; }); document.querySelectorAll('[data-hpick]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-hpick') == n ? 'true' : 'false'); }); }
   document.querySelectorAll('[data-hpick]').forEach(function (b) { b.addEventListener('click', function () { hero(+b.getAttribute('data-hpick')); }); });
   var hq = /hero-(\d)/.exec(location.hash || ''), first = document.querySelector('[data-hero]'); if (hq) hero(+hq[1]); else if (first) hero(+first.getAttribute('data-hero'));
+  var lq = /board-(\d)/.exec(location.hash || ''); if (lq) BV = +lq[1];
   embers(); embers2(); tick(); setInterval(tick, 1000);
   document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-mode]'); if (b && !stage.contains(b)) start(b.dataset.mode, b.dataset.pack || null); });
   bindNl(document);
