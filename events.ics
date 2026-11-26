@@ -1,0 +1,119 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MFM Mega Region 2 USA//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:MFM Mega Region 2 USA
+X-WR-TIMEZONE:America/Chicago
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:austin-end-of-year-vigil-2026-11-27@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/Chicago:20261127T230000
+DTEND;TZID=America/Chicago:20261127T230000
+SUMMARY:End of the Year Vigil — MFM Austin
+LOCATION:Church Auditorium\, MFM The Lord Has Spoken Branch — 9411 Parkfield Drive\, Suite 320\, Austin\, TX 78758
+DESCRIPTION:Night of Divine Recovery: What Was Lost Shall Be Restored! — https://mfmmegaregion2usa.org/events/austin-end-of-year-vigil
+URL:https://mfmmegaregion2usa.org/events/austin-end-of-year-vigil
+END:VEVENT
+BEGIN:VEVENT
+UID:resurgence-praise-night-2026-11-27@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+SUMMARY:Praise Night — MFM Resurgence Center
+LOCATION:MFM Resurgence Center — 6910 N Eldridge Pkwy\, Back Suite\, Houston\, TX 77041
+DESCRIPTION:A Resurgence of Praise — Thanksgiving Service — https://mfmmegaregion2usa.org/events/resurgence-praise-night
+URL:https://mfmmegaregion2usa.org/events/resurgence-praise-night
+END:VEVENT
+BEGIN:VEVENT
+UID:riverdale-grand-finale-deliverance-2026-11-29@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/New_York:20261129T080000
+DTEND;TZID=America/New_York:20261129T100000
+SUMMARY:Grand Finale Deliverance Service — MFM Riverdale
+LOCATION:MFM Riverdale — Bombay Plaza\, 6989 GA-85\, Suite D1\, Riverdale\, GA 30274
+DESCRIPTION:The God That Astonishes His People (Mark 7:37) — https://mfmmegaregion2usa.org/events/riverdale-grand-finale-deliverance
+URL:https://mfmmegaregion2usa.org/events/riverdale-grand-finale-deliverance
+END:VEVENT
+BEGIN:VEVENT
+UID:couples-night-2026-12-11@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/Chicago:20261211T190000
+DTEND;TZID=America/Chicago:20261211T210000
+SUMMARY:Couples Night
+LOCATION:Marriott Houston Energy Corridor — 16011 Katy Freeway\, Houston\, TX 77094
+DESCRIPTION:For married & intending couples — https://mfmmegaregion2usa.org/events/couples-night
+URL:https://mfmmegaregion2usa.org/events/couples-night
+END:VEVENT
+BEGIN:VEVENT
+UID:praise-night-atlanta-2026-12-11@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/New_York:20261211T220000
+DTEND;TZID=America/New_York:20261212T050000
+SUMMARY:Praise Night — MFM Revival Center Atlanta
+LOCATION:MFM Revival Center Atlanta — 3480 Howell Street NW\, Duluth\, GA 30096
+DESCRIPTION:His Praises in My Mouth — https://mfmmegaregion2usa.org/events/praise-night-atlanta
+URL:https://mfmmegaregion2usa.org/events/praise-night-atlanta
+END:VEVENT
+BEGIN:VEVENT
+UID:thanksgiving-service-2026-12-12@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/Chicago:20261212T100000
+DTEND;TZID=America/Chicago:20261212T120000
+SUMMARY:Thanksgiving Service
+LOCATION:MFM Banquet Hall\, Prayer City — 10000 Kleckley Dr\, Houston\, TX 77075
+DESCRIPTION:Come Expecting — https://mfmmegaregion2usa.org/events/thanksgiving-service
+URL:https://mfmmegaregion2usa.org/events/thanksgiving-service
+END:VEVENT
+BEGIN:VEVENT
+UID:cultural-sunday-atlanta-2026-12-20@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/New_York:20261220T090000
+DTEND;TZID=America/New_York:20261220T110000
+SUMMARY:Celebration Cultural Sunday — MFM Revival Center Atlanta
+LOCATION:MFM Revival Center Atlanta — 3480 Howell Street NW\, Duluth\, GA 30096
+DESCRIPTION:Come in Your Best Culture Custom to Glorify God — https://mfmmegaregion2usa.org/events/cultural-sunday-atlanta
+URL:https://mfmmegaregion2usa.org/events/cultural-sunday-atlanta
+END:VEVENT
+BEGIN:VEVENT
+UID:ministerial-schools-2027-2027-01-06@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;VALUE=DATE:20270106
+DTEND;VALUE=DATE:20270116
+SUMMARY:MFM Ministerial Schools 2027
+LOCATION:MFM Prayer City USA — 10000 Kleckley Dr\, Houston\, TX 77075
+DESCRIPTION:Registration now open — https://mfmmegaregion2usa.org/events/ministerial-schools-2027
+URL:https://mfmmegaregion2usa.org/events/ministerial-schools-2027
+END:VEVENT
+BEGIN:VEVENT
+UID:healing-deliverance-hour-2026-12-01@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/Chicago:20261201T190000
+DTEND;TZID=America/Chicago:20261201T203000
+SUMMARY:Healing & Deliverance Hour
+LOCATION:Online — MFM Mega Region 2 YouTube Live
+DESCRIPTION:Weekly online prayer line · Healing · Breakthrough — https://mfmmegaregion2usa.org/events
+URL:https://mfmmegaregion2usa.org/events
+END:VEVENT
+BEGIN:VEVENT
+UID:open-heaven-encounter-2026-11-26@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/Chicago:20261126T180000
+DTEND;TZID=America/Chicago:20261126T193000
+SUMMARY:Open Heaven Encounter
+LOCATION:Online — MFM Mega Region 2 YouTube Live
+DESCRIPTION:A weekly prayer service — https://mfmmegaregion2usa.org/events
+URL:https://mfmmegaregion2usa.org/events
+END:VEVENT
+BEGIN:VEVENT
+UID:tampa-bring-your-problems-2026-11-26@mfmmegaregion2usa.org
+DTSTAMP:20261126T072315Z
+DTSTART;TZID=America/New_York:20261126T190000
+DTEND;TZID=America/New_York:20261126T203000
+SUMMARY:The Mountain of Bring Your Problems to God — MFM Tampa
+LOCATION:MFM Tampa — 4618 North Florida Avenue\, Tampa\, FL 33603
+DESCRIPTION:A new weekly evening of prayer\, worship and the Word — https://mfmmegaregion2usa.org/events
+URL:https://mfmmegaregion2usa.org/events
+END:VEVENT
+END:VCALENDAR
