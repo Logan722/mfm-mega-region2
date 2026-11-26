@@ -68,7 +68,7 @@
     showQ(); scrollTop();
   }
 
-  function title() { if (state.mode === 'daily') return 'Daily Quiz #' + dayNo(state.today); if (state.mode === 'kids') return 'Kids Quiz'; return BANK.packs[state.pack].label; }
+  function title() { if (state.mode === 'daily') return 'Play & Grow \u00b7 Day ' + dayNo(state.today); if (state.mode === 'kids') return 'Kids Mode'; return BANK.packs[state.pack].label; }
   function whoLine() { var p = player(); if (!p) return ''; return '<p class="qz-me">' + (p.guest ? 'Playing as a guest' : 'Playing as <b>' + esc(p.nick) + '</b> &middot; ' + esc(placeOf(p))) + ' &middot; <button type="button" class="qz-change">change</button></p>'; }
 
   function showQ() {
@@ -116,11 +116,11 @@
       ? '<div class="qz-lb"><p class="qz-lb-h">Want your score on the leaderboard?</p><button type="button" class="qz-btn qz-join">Add my name and branch</button></div>'
       : '<div class="qz-lb"><p class="qz-lb-h">Added to the leaderboard ✓</p><p class="qz-fine" style="margin:0">' + esc(p.nick) + ' &middot; ' + esc(placeOf(p)) + ' &middot; <a href="#leaderboard">see the board</a></p></div>';
     root.innerHTML = '<div class="qz-card qz-res" id="play-top"><p class="qz-pack">' + esc(title()) + '</p><div class="qz-score">' + state.score + '<small>/' + n + '</small></div><p class="qz-line">' + line + '</p>' +
-      '<p class="qz-msg">' + (state.score === n ? 'Perfect score! The fire of God is in you.' : state.score >= 3 ? 'Well done! Come back tomorrow for a new quiz.' : 'Keep going &mdash; &ldquo;Study to shew thyself approved unto God&rdquo; (2 Timothy 2:15).') + '</p>' +
+      '<p class="qz-msg">' + (state.score === n ? 'Perfect score! The fire of God is in you.' : state.score >= 3 ? 'Well done! Come back tomorrow for a new game.' : 'Keep going &mdash; &ldquo;Study to shew thyself approved unto God&rdquo; (2 Timothy 2:15).') + '</p>' +
       (state.mode === 'daily' ? '<p class="qz-streak">🔥 ' + streak.n + '-day streak</p>' : '') +
       '<div class="qz-share"><a class="qz-btn wa" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(share) + '">Share on WhatsApp</a><button type="button" class="qz-btn ghost qz-copy">Copy my score</button></div>' + lbLine +
       '<div class="qz-again"><button type="button" class="qz-btn ghost" data-mode="pack" data-pack="bible">Play the Bible pack</button><button type="button" class="qz-btn ghost" data-mode="pack" data-pack="mfm">Play MFM Family</button></div>' +
-      '<div class="nl-inline" data-preview><p class="nl-inline-h">Get a new quiz pack every Monday</p><p class="nl-inline-p">With the week&rsquo;s prayer points and declarations &mdash; and the MFM Mega Region 2 newsletter.</p><form><input type="text" placeholder="First name" aria-label="First name"><input type="email" placeholder="Email address" aria-label="Email address"><button type="submit">Subscribe</button></form><p class="nl-inline-ok" hidden></p></div></div>';
+      '<div class="nl-inline" data-preview><p class="nl-inline-h">Get new Play &amp; Grow packs every Monday</p><p class="nl-inline-p">With the week&rsquo;s prayer points and declarations &mdash; and the MFM Mega Region 2 newsletter.</p><form><input type="text" placeholder="First name" aria-label="First name"><input type="email" placeholder="Email address" aria-label="Email address"><button type="submit">Subscribe</button></form><p class="nl-inline-ok" hidden></p></div></div>';
     root.querySelector('.qz-copy').addEventListener('click', function (e) { try { navigator.clipboard.writeText(share).then(function () { e.target.textContent = 'Copied ✓'; }, function () {}); } catch (x) {} });
     var j = root.querySelector('.qz-join');
     if (j) j.addEventListener('click', function () { var s = state; showWho(function () { state = s; addScore(); results(); }, true); });
@@ -150,7 +150,7 @@
   function bindStarts(scope) { scope.querySelectorAll('[data-mode]').forEach(function (b) { b.addEventListener('click', function () { start(b.dataset.mode, b.dataset.pack || null); }); }); }
   function bindNl(scope) { scope.querySelectorAll('.nl-inline[data-preview] form').forEach(function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); var o = f.parentNode.querySelector('.nl-inline-ok'); o.hidden = false; o.textContent = 'Preview only — sign-up is not sent from this preview.'; }); }); }
 
-  fetch('/js/quiz-bank.json').then(function (r) { return r.json(); }).then(function (b) {
+  fetch('/js/quiz-bank.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (b) {
     BANK = b;
     var n = document.getElementById('qz-dayno'); if (n) n.textContent = '#' + dayNo(ctToday());
     var st = ls('mfm-quiz-streak'), se = document.getElementById('qz-mystreak'); if (se && st && st.n) se.textContent = '🔥 Your streak: ' + st.n + (st.n === 1 ? ' day' : ' days');
