@@ -24,10 +24,10 @@ import { getStore } from '@netlify/blobs';
 
 export const BRANCHES = ["MFM USA Prayer City","MFM Rehoboth","MFM Revival Chapel","MFM Houston 2","MFM Houston 3 — City of Refuge","MFM Houston 5 — New Glory","MFM 7 North Houston","MFM Greater Grace","MFM Northwest Houston","MFM Dallas","MFM House of His Glory","MFM Arlington","MFM Arlington — Matlock","MFM Grand Prairie","MFM Irving","MFM Mansfield","MFM The Lord Has Spoken","MFM San Antonio","MFM Pearland — Shadow of God","MFM Sugar Land","MFM Huntsville","MFM Tampa","MFM Broward","MFM Miami — Mount Zion","MFM Orlando — Citadel of Solution","MFM Tallahassee","MFM Revival Center","MFM Riverdale","MFM Citadel of Signs & Wonders","MFM Georgia Oasis of Grace","MFM Revival & Solution Center","MFM Tulsa","MFM Nashville","MFM Mega Region 2 Youth Church"];
 export const VISITORS = 'Visitors & friends';
-const CAP = { daily: 1500, word: 400, quiz: 1500, kids: 1500, blitz: 9000, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000 };
+const CAP = { daily: 1500, word: 400, quiz: 2000, kids: 1500, blitz: 9000, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000 };
 const FIRST_ONLY = { daily: 1, word: 1, connect: 1, dverse: 1, wheel: 1 };
 // most points one right answer / found item can earn (word and dverse are one-puzzle games, checked by CAP only)
-const PER = { daily: 150, quiz: 150, kids: 150, blitz: 150, connect: 200, wheel: 150, whoami: 500, build: 500, pairs: 100 };
+const PER = { daily: 150, quiz: 200, kids: 150, blitz: 150, connect: 200, wheel: 150, whoami: 500, build: 500, pairs: 100 };
 const EXTRA = { wheel: 100 };   // bonus words
 export const GAME = (m) => ({ daily: 'bquiz', quiz: 'bquiz', kids: 'bquiz', blitz: 'bquiz' }[m] || m);
 export const ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs'];

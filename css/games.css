@@ -204,3 +204,23 @@
 .cn>.st-k,.wh>.st-k,.dv>.st-k,.wa>.st-k,.vb>.st-k,.pr>.st-k{padding:0 110px}
 @media(max-width:560px){.cn>.st-k,.wh>.st-k,.dv>.st-k,.wa>.st-k,.vb>.st-k,.pr>.st-k{padding:0 0 0;margin-top:30px}}
 @media(max-width:560px){.tp{gap:8px}.tp-chip{min-height:40px!important;padding:0 12px!important;font-size:13.5px!important}}
+
+/* ---------- Quiz: how hard? (Nov 27) ---------- */
+.st-lv{text-align:center}
+.lv-opts{display:grid;gap:14px;margin:22px auto 22px;max-width:760px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.lv-opt{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 16px 18px;border-radius:20px;border:0;background:#fff;color:#14213d;cursor:pointer;font:inherit;box-shadow:0 6px 0 var(--sh,#c9cfdb);transition:transform .12s}
+.lv-opt:hover{transform:translateY(-2px)}.lv-opt:active{transform:translateY(3px);box-shadow:0 3px 0 var(--sh,#c9cfdb)}
+.lv-opt:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.lv-opt b{font:800 22px/1.15 'Inter Tight',sans-serif}
+.lv-opt small{font-size:14px;line-height:1.35;color:#4a5670}
+.lv-opt em{font-style:normal;font:700 12.5px 'Inter Tight',sans-serif;color:#5a4a1a;background:#fdf1d3;border-radius:999px;padding:4px 10px;margin-top:4px}
+.lv-bars{display:flex;gap:4px;align-items:flex-end;height:22px}
+.lv-bars i{width:8px;border-radius:3px;background:#dde2ea}.lv-bars i:nth-child(1){height:9px}.lv-bars i:nth-child(2){height:15px}.lv-bars i:nth-child(3){height:22px}
+.lv-easy{--sh:#2e9a5e}.lv-easy .lv-bars i.on{background:#2fb36b}
+.lv-normal{--sh:#a8781d}.lv-normal .lv-bars i.on{background:#e0ad45}
+.lv-challenge{--sh:#b23d14}.lv-challenge .lv-bars i.on{background:#e85d26}
+.lv-opt.last{box-shadow:0 6px 0 var(--sh),0 0 0 3px #ffd36b}
+.tm-lv span{width:auto;min-width:58px;padding:0 14px;font-size:16px}
+@media(max-width:640px){.lv-opts{grid-template-columns:1fr;gap:12px}.lv-opt{padding:16px 14px 14px}.lv-opt b{font-size:20px}}
+.dv-hint{margin:12px auto 0;max-width:520px;padding:10px 14px;border-radius:14px;background:rgba(255,211,107,.14);border:1px solid rgba(255,211,107,.4);color:#ffe7ad;font-size:15px;text-align:center}
+.dv-hint b{color:#ffd36b}

@@ -42,14 +42,33 @@
     }); });
     return sel;
   }
-  function mixAll(n, r) {
-    var BIB = ['bible', 'bible', 'verse', 'who', 'godnames', 'jesus', 'prayer', 'promises'], MIN = ['mfm', 'olukoya', 'go-books', 'oni-books', 'messages'], qs = [], seen = {};
-    for (var i = 0; qs.length < n && i < n * 6; i++) {
-      var p = i % 2 === 0 ? BIB[Math.floor(r() * BIB.length)] : MIN[Math.floor(r() * MIN.length)];
-      if (p === 'olukoya' && r() < .25) p = 'shade';
-      var q = fresh(p, 3, r).filter(function (x) { return !seen[x.id]; })[0]; if (q) { seen[q.id] = 1; qs.push(q); }
+  /* ---------- difficulty (Dawn, Nov 27: questions shouldn't be so difficult) ----------
+     every question is rated easy / medium / hard; games lean easy and get harder towards the end */
+  var LVR = { easy: 0, medium: 1, hard: 2 }, ORD = { easy: ['easy', 'medium', 'hard'], medium: ['medium', 'easy', 'hard'], hard: ['hard', 'medium', 'easy'] };
+  var DIFF = { easy: { label: 'Easy', plan: 'eeeeeeeeee', base: 100, line: 'Well-known stories and verses' },
+               normal: { label: 'Normal', plan: 'eeeeeemmmh', base: 125, line: 'Mostly easy, a little harder at the end' },
+               challenge: { label: 'Challenge', plan: 'mmmhhhhhhh', base: 150, line: 'For people who know their Bible and the ministry well' } };
+  function lvOf(q) { return q.level || q.lv || 'medium'; }
+  function planFor(n, d) { var p = (DIFF[d] || DIFF.normal).plan, out = []; for (var i = 0; i < n; i++) out.push({ e: 'easy', m: 'medium', h: 'hard' }[p[Math.floor(i * p.length / n)]]); return out; }
+  function byLevel(qs, r) { return qs.map(function (q) { return [LVR[lvOf(q)] + (r ? r() * .5 : 0), q]; }).sort(function (a, b) { return a[0] - b[0]; }).map(function (x) { return x[1]; }); }
+  /* one question at the wanted level (or the nearest), unseen first, from a pool of packs */
+  function pickLv(pools, lvl, r, taken) {
+    var sm = seenMap(), ps = shuffle(pools, r);
+    for (var pass = 0; pass < 2; pass++) for (var a = 0; a < 3; a++) {
+      var L = ORD[lvl][a];
+      for (var k = 0; k < ps.length; k++) {
+        var p = ps[k], seen = {}; (sm[p] || []).forEach(function (id) { seen[id] = 1; });
+        var c = BANK.questions.filter(function (q) { return q.pack === p && lvOf(q) === L && !taken[q.id] && (pass || !seen[q.id]); });
+        if (p === 'messages') c = c.sort(function (x, y) { return (y.date || '') < (x.date || '') ? -1 : 1; }).slice(0, 12);   /* newest messages first */
+        if (c.length) { if (pass) { sm[p] = []; ls('mfm-quiz-seen', sm); } return c[Math.floor(r() * c.length)]; }
+      }
     }
-    return shuffle(qs, r);
+    return null;
+  }
+  function mixAll(n, r, diff) {
+    var BIB = ['bible', 'bible', 'verse', 'who', 'godnames', 'jesus', 'prayer', 'promises'], MIN = ['mfm', 'mfm', 'olukoya', 'shade', 'go-books', 'oni-books', 'messages'], plan = planFor(n, diff), qs = [], taken = {};
+    for (var i = 0; i < n; i++) { var q = pickLv(i % 2 === 0 ? BIB : MIN, plan[i], r, taken); if (q) { taken[q.id] = 1; qs.push(q); } }
+    return byLevel(shuffle(qs, r));
   }
   function topicName(keys) { if (keys.length === ALLT.length) return 'Mix it up'; if (keys.length === 1) return TOPICS.filter(function (t) { return t.k === keys[0]; })[0].label; return 'Your mix'; }
   var SHAPES = [
@@ -95,8 +114,16 @@
   function initials(n) { n = (n || '').trim(); if (!n) return '?'; var w = n.split(/\s+/); return (w[0][0] + (w[1] ? w[1][0] : '')).toUpperCase(); }
   function pad(n) { return ('0' + n).slice(-2); }
   function fmt(n) { return Number(n).toLocaleString('en-US'); }
-  function dailySet(today) { var r = rng('daily-' + today); return [].concat(pick('bible', 3, r), pick('verse', 2, r), pick('who', 2, r), pick(r() < .6 ? 'mfm' : 'olukoya', 1, r), pick(r() < .65 ? 'oni-books' : 'go-books', 1, r), pick('messages', 1, r)); }
-  function titleOf() { if (S && S.title) return S.title; if (S.mode === 'daily') return 'Daily 10 · Day ' + dayNo(S.today); if (S.mode === 'kids') return 'Kids Mode'; if (S.mode === 'blitz') return '60-second Blitz'; if (S.mode === 'word') return S.practice ? 'Word practice' : 'Word of the Day · Day ' + dayNo(S.today); if (S.mode === 'team') return 'Team Battle'; if (S.mode === 'quiz') return S.ch ? 'Quiz \u00b7 Challenge' : 'Quiz'; return BANK.packs[S.pack] ? BANK.packs[S.pack].label : 'Play & Grow'; }
+  function dailySet(today) {
+    var r = rng('daily-' + today), taken = {}, out = [];
+    var slots = [['bible', 'easy'], ['bible', 'easy'], ['verse', 'easy'], ['verse', 'easy'], ['who', 'easy'], [r() < .6 ? 'mfm' : 'olukoya', 'easy'],
+                 ['who', 'medium'], [r() < .65 ? 'oni-books' : 'go-books', 'medium'], ['messages', 'medium'], ['bible', 'hard']];
+    slots.forEach(function (s) {
+      for (var a = 0; a < 3; a++) { var c = BANK.questions.filter(function (q) { return q.pack === s[0] && lvOf(q) === ORD[s[1]][a] && !taken[q.id]; }); if (c.length) { var q = c[Math.floor(r() * c.length)]; taken[q.id] = 1; out.push(q); return; } }
+    });
+    return byLevel(out);
+  }
+  function titleOf() { if (S && S.title) return S.title; if (S.mode === 'daily') return 'Daily 10 · Day ' + dayNo(S.today); if (S.mode === 'kids') return 'Kids Mode'; if (S.mode === 'blitz') return '60-second Blitz'; if (S.mode === 'word') return S.practice ? 'Word practice' : 'Word of the Day · Day ' + dayNo(S.today); if (S.mode === 'team') return 'Team Battle'; if (S.mode === 'quiz') return S.ch ? 'Quiz \u00b7 Challenge' : 'Quiz \u00b7 ' + (DIFF[S.diff] || DIFF.normal).label; return BANK.packs[S.pack] ? BANK.packs[S.pack].label : 'Play & Grow'; }
 
   /* ---------- stage open / close ---------- */
   function open() {
@@ -160,7 +187,7 @@
     if (X.games[mode]) { X.games[mode](pack, ch); return; }
     if (!BANK) return;
     if (mode === 'team') { teamSetup(); return; }
-    if (mode === 'quiz' && !ch) pack = ALLT;   /* Dawn, Nov 27: no topic picker; every game mixes everything */
+    if (mode === 'quiz' && !ch) { pack = ALLT; if (!X.diffChosen) { var gq = function () { quizLevel(); }; if (!player()) showWho(gq); else gq(); return; } }   /* Dawn, Nov 27: no topic picker; every game mixes everything; she picks how hard */
     var go = function () { (mode === 'blitz' ? beginBlitz : mode === 'word' ? beginWord : begin)(mode, pack, ch); };
     if (!player()) showWho(go); else go();
   }
@@ -173,9 +200,10 @@
       var r = rng(mode + pack + today + Math.random()), qs;
       if (ch && ch.ids) qs = byIds(ch.ids);
       else if (mode === 'daily') qs = dailySet(today);
-      else if (mode === 'quiz') { qs = mixAll(ROUND, r); markSeen(qs); }
+      else if (mode === 'quiz') { qs = mixAll(ROUND, r, X.diffChosen || 'normal'); markSeen(qs); }
       else { qs = fresh(mode === 'kids' ? 'kids' : pack, ROUND, r); markSeen(qs); }
-      S = { mode: mode, pack: mode === 'quiz' ? 'quiz' : pack, topics: mode === 'quiz' && !ch ? pack : null, today: today, ch: ch || null, qs: qs.map(function (q) { return { q: q, order: shuffle(q.options.map(function (o, i) { return i; }), r) }; }),
+      var dq = mode === 'quiz' ? (ch && ch.lv && DIFF[ch.lv] ? ch.lv : X.diffChosen || 'normal') : null; X.diffChosen = null;
+      S = { diff: dq, base: dq ? DIFF[dq].base : 100, mode: mode, pack: mode === 'quiz' ? 'quiz' : pack, topics: mode === 'quiz' && !ch ? pack : null, today: today, ch: ch || null, qs: qs.map(function (q) { return { q: q, order: shuffle(q.options.map(function (o, i) { return i; }), r) }; }),
             i: 0, score: 0, pts: 0, combo: 0, best: 0, marks: [], T: mode === 'kids' ? 30 : 20 };
       showQ();
     }, function () { frame('<div class="st-card st-load"><p>Sorry &mdash; the questions didn&rsquo;t load. Check your connection and try again.</p></div>'); });
@@ -219,7 +247,7 @@
   function answer(oi, btn) {
     if (S.phase !== 'q') return; S.phase = 'a'; stopTimer();
     var it = S.qs[S.i], q = it.q, ok = oi === q.answer, left = Math.max(0, S.T * 1000 - (Date.now() - S.t0));
-    var gain = ok ? 100 + Math.round(50 * left / (S.T * 1000)) : 0;
+    var gain = ok ? (S.base || 100) + Math.round(50 * left / (S.T * 1000)) : 0;
     S.marks[S.i] = ok; if (ok) { S.score++; S.combo++; S.best = Math.max(S.best, S.combo); } else S.combo = 0; S.pts += gain;
     if (S.mode === 'team') { var tm = S.teams[S.i % S.teams.length]; tm.pts += gain; if (ok) tm.ok++; }
     stage.querySelectorAll('.ans').forEach(function (b) { b.disabled = true; var v = +b.dataset.oi; if (v === q.answer) b.classList.add('right'); else if (v === oi) b.classList.add('wrong'); else b.classList.add('dim'); });
@@ -287,7 +315,7 @@
     addScore();
     var p = player() || {};
     var line = S.marks.map(function (m) { return m ? '🔥' : '⬜'; }).join('');
-    var link = challengeLink({ c: S.mode === 'daily' ? 'daily' : S.mode === 'kids' ? 'kids' : S.mode === 'quiz' ? 'quiz' : S.pack, q: S.qs.map(function (x) { return x.q.id; }).join(','), s: S.score, p: S.pts, t: n });
+    var link = challengeLink({ lv: S.mode === 'quiz' ? S.diff : '', c: S.mode === 'daily' ? 'daily' : S.mode === 'kids' ? 'kids' : S.mode === 'quiz' ? 'quiz' : S.pack, q: S.qs.map(function (x) { return x.q.id; }).join(','), s: S.score, p: S.pts, t: n });
     var share = 'MFM Play & Grow — ' + titleOf() + ': ' + S.score + '/' + n + ' (' + fmt(S.pts) + ' pts)\n' + line + '\nI challenge you to beat me — same questions: ' + link;
     var lb = p.guest
       ? '<div class="st-lb"><b>Want your points on the leaderboard?</b><button type="button" class="pg-btn light st-join">Add my name and branch</button></div>'
@@ -315,7 +343,7 @@
   function readChallenge(str) {
     var m = {}; (str || '').replace(/^[?#]/, '').split('&').forEach(function (kv) { var i = kv.indexOf('='); if (i > 0) m[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); });
     if (!m.c) return null;
-    return { c: m.c, ids: m.q ? m.q.split(',').slice(0, 20) : null, seed: m.seed || '', d: m.d || '', n: (m.n || 'A friend').slice(0, 20), s: +m.s || 0, p: +m.p || 0, t: +m.t || 0, g: m.g || '' };
+    return { c: m.c, ids: m.q ? m.q.split(',').slice(0, 20) : null, seed: m.seed || '', d: m.d || '', lv: m.lv || '', n: (m.n || 'A friend').slice(0, 20), s: +m.s || 0, p: +m.p || 0, t: +m.t || 0, g: m.g || '' };
   }
   function gameName(c) { return c === 'quiz' ? 'Quiz' : c === 'daily' ? 'Daily 10' : c === 'kids' ? 'Kids Mode' : c === 'blitz' ? '60-second Blitz' : c === 'word' ? 'Word of the Day' : (BANK.packs[c] ? BANK.packs[c].label : 'Play & Grow'); }
   function challengeIntro(ch) {
@@ -347,12 +375,21 @@
     stage.querySelector('.st-go').addEventListener('click', function () { var k = sel(); if (!k.length) { stage.querySelector('.st-err').hidden = false; return; } ls('mfm-quiz-topics', k); begin('quiz', k); });
   }
 
+  function quizLevel() {
+    open(); var last = ls('mfm-quiz-diff') || 'normal';
+    frame('<div class="st-card st-lv"><p class="st-k">Quiz</p><h2 class="st-h">How hard?</h2><p class="st-fine">Ten questions from the Bible, MFM, the G.O., our pastors&rsquo; books and our messages.</p><div class="lv-opts">' +
+      ['easy', 'normal', 'challenge'].map(function (k, i) { var d = DIFF[k]; return '<button type="button" class="lv-opt lv-' + k + (k === last ? ' last' : '') + '" data-lv="' + k + '"><span class="lv-bars" aria-hidden="true">' + [0, 1, 2].map(function (j) { return '<i' + (j <= i ? ' class="on"' : '') + '></i>'; }).join('') + '</span><b>' + d.label + '</b><small>' + d.line + '</small><em>' + d.base + ' pts a right answer' + (k === last ? ' &middot; last time' : '') + '</em></button>'; }).join('') +
+      '</div><p class="st-fine">Faster answers earn up to 50 bonus points.</p></div>');
+    stage.querySelectorAll('[data-lv]').forEach(function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-lv'); ls('mfm-quiz-diff', k); X.diffChosen = k; begin('quiz', ALLT, null); }); });
+    var f = stage.querySelector('.lv-opt.last') || stage.querySelector('.lv-opt'); setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (e) {} }, 50);
+  }
+
   /* ---------- 60-second Blitz: true or false against the clock ---------- */
   function beginBlitz(mode, pack, ch) {
     loading();
     need(['blitz']).then(function () {
       var all = BANK.questions.filter(function (q) { return q.pack === 'blitz'; }), seed = ch && ch.seed ? ch.seed : Math.random().toString(36).slice(2, 9);
-      var r = rng('blitz-' + seed), list = ch && ch.seed ? shuffle(all, r) : fresh('blitz', all.length, r);
+      var r = rng('blitz-' + seed), list = byLevel(ch && ch.seed ? shuffle(all, r) : fresh('blitz', all.length, r), r);   /* easy statements first */
       S = { mode: 'blitz', pack: 'blitz', today: ctToday(), ch: ch || null, seed: seed, list: list, i: 0, score: 0, pts: 0, combo: 0, best: 0, marks: [], miss: [], T: 60, end: Date.now() + 60000 };
       blitzFrame(); blitzTick();
     });
@@ -472,6 +509,7 @@
       '<fieldset class="tm-n"><legend>How many teams?</legend>' + [2, 3, 4].map(function (k) { return '<label><input type="radio" name="n" value="' + k + '"' + (last.n === k ? ' checked' : '') + '><span>' + k + '</span></label>'; }).join('') + '</fieldset>' +
       '<div class="tm-names">' + [0, 1, 2, 3].map(function (k) { return '<label class="tm-name" style="--tc:' + TEAM_COL[k] + '"' + (k >= last.n ? ' hidden' : '') + '><i></i><input name="t' + k + '" maxlength="18" value="' + esc(last.names[k] || TEAM_NAMES[k]) + '" aria-label="Team ' + (k + 1) + ' name"></label>'; }).join('') + '</div>' +
       '<p class="st-fine">Questions come from everything: the Bible, MFM, the G.O., our pastors&rsquo; books and our messages.</p>' +
+      '<fieldset class="tm-n tm-lv"><legend>How hard?</legend>' + ['easy', 'normal', 'challenge'].map(function (k) { return '<label><input type="radio" name="lv" value="' + k + '"' + ((last.lv || 'normal') === k ? ' checked' : '') + '><span>' + DIFF[k].label + '</span></label>'; }).join('') + '</fieldset>' +
       '<fieldset class="tm-n"><legend>Questions per team</legend>' + [3, 5, 10].map(function (k) { return '<label><input type="radio" name="per" value="' + k + '"' + (last.per === k ? ' checked' : '') + '><span>' + k + '</span></label>'; }).join('') + '</fieldset>' +
       '<button class="pg-btn gold wide xl" type="submit">Start the battle</button></form></div>');
     var f = stage.querySelector('form'), tsel = function () { return ALLT; };
@@ -480,12 +518,12 @@
       e.preventDefault();
       var n = +f.querySelector('input[name=n]:checked').value, per = +f.querySelector('input[name=per]:checked').value, topics = tsel(); if (!topics.length) { stage.querySelector('.st-team .st-err').hidden = false; return; }
       var names = [0, 1, 2, 3].map(function (k) { return (f['t' + k].value.trim() || TEAM_NAMES[k]).slice(0, 18); });
-      ls('mfm-team', { n: n, names: names, topics: topics, per: per });
+      var lv = (f.querySelector('input[name=lv]:checked') || {}).value || 'normal'; ls('mfm-team', { n: n, names: names, topics: topics, per: per, lv: lv });
       var packs = topicPacks(topics);
       loading();
       need(packs).then(function () {
         var r = rng('team' + Math.random()), total = n * per, qs = [];
-        qs = mixAll(total, r);
+        qs = mixAll(total, r, lv);
         markSeen(qs);
         S = { mode: 'team', pack: 'team', today: ctToday(), qs: qs.map(function (q) { return { q: q, order: shuffle(q.options.map(function (o, i) { return i; }), r) }; }), i: 0, score: 0, pts: 0, combo: 0, best: 0, marks: [], T: 25,
               teams: names.slice(0, n).map(function (nm, k) { return { name: nm, col: TEAM_COL[k], pts: 0, ok: 0 }; }) };

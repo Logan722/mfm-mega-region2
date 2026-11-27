@@ -22,12 +22,12 @@
   var ICON = window.GOTW.ICON;
   var G = window.GOTW.G;
   var HOW = {
-    bquiz: ['Choose a way to play: Daily 10, your own topics, the 60-second speed round, kids questions or a team battle.', 'Answer before the timer runs out. Faster answers earn bonus points.', 'Every answer shows its scripture or source, so you learn as you play.'],
+    bquiz: ['Choose a way to play: Daily 10, a fresh quiz (Easy, Normal or Challenge), the 60-second speed round, kids questions or a team battle.', 'Answer before the timer runs out. Faster answers earn bonus points.', 'Every answer shows its scripture or source, so you learn as you play.'],
     word: ['Type a 5-letter Bible word and press Enter.', 'Green means the right letter in the right place; yellow means the letter is in the word but somewhere else.', 'You have six tries. Then read the verse the word comes from.'],
-    connect: ['16 words hide 4 groups of 4, like four of Jacob\u2019s sons or four mountains.', 'Tap four words you think belong together, then press Submit.', 'Find all four groups. Four wrong guesses and the game ends. Groups get harder from yellow to purple.'],
+    connect: ['16 words hide 4 groups of 4, like four of Jacob\u2019s sons or four mountains.', 'Tap four words you think belong together, then press Submit.', 'Find all four groups. Four wrong guesses and the game ends. Yellow is the easiest group, purple the hardest.'],
     wheel: ['Swipe across the letters to spell a word, or tap them one by one and press Enter.', 'Every word is a word from the Bible. Fill all the spaces to clear the wheel.', 'Stuck? Shuffle the letters or use a hint (it costs 10 points). Extra words earn bonus points.'],
-    dverse: ['Read today\u2019s verse.', 'Choose the book and the chapter you think it is from, then press Guess.', 'Each guess tells you to go earlier or later in the Bible, or higher or lower in chapter. Find it in 5 tries.'],
-    whoami: ['Read the first clue about a Bible person.', 'Tap the name you think it is. Not sure? Take another clue.', 'The fewer clues you need, the more points: 500 for one clue, down to 100. A wrong guess shows the next clue.'],
+    dverse: ['Read today\u2019s verse.', 'Choose the book and the chapter you think it is from, then press Guess.', 'Each guess tells you to go earlier or later in the Bible, or higher or lower in chapter. After two misses you get a hint. Find it in 5 tries.'],
+    whoami: ['Read the first two clues about a Bible person.', 'Tap the name you think it is. Not sure? Take another clue.', 'The fewer clues you need, the more points: 500 with two clues, down to 200. A wrong guess shows the next clue.'],
     build: ['A verse is cut into pieces.', 'Tap the pieces in the right order to build the verse.', 'The faster you build it, and the fewer wrong taps, the more points.'],
     imposter: ['Choose the number of players and pass the phone round. Each player looks at their card alone.', 'Everyone sees the same Bible word except one player: the imposter.', 'Take turns giving a one-word clue, then vote on who the imposter is. If the imposter is caught, they can still win by guessing the word.'],
     charades: ['Split into teams. One player holds the phone on their forehead, screen facing their team.', 'The team acts out or describes the word without saying it. Tap Got it or Pass.', 'Get as many as you can before time runs out. Most words wins.'],
@@ -178,7 +178,7 @@
   /* ================================================================ Bible Quiz (hub for the quiz modes in play2.js) */
   X.games.bquiz = function () {
     ensureOpen(); setS({ title: 'Quiz' });
-    var M = [['daily', 'Today&rsquo;s Daily 10', 'Same 10 questions for everyone today'], ['quiz', 'A fresh quiz', '10 new questions from everything: the Bible, MFM, the G.O., our pastors&rsquo; books and our messages'], ['blitz', '60-second speed round', 'True or false, as many as you can'], ['kids', 'Kids questions', 'Easier questions, more time'], ['team', 'Team battle', '2 to 4 teams on one phone or TV']];
+    var M = [['daily', 'Today&rsquo;s Daily 10', 'Same 10 questions for everyone today'], ['quiz', 'A fresh quiz', '10 new questions from everything. Choose Easy, Normal or Challenge'], ['blitz', '60-second speed round', 'True or false, as many as you can'], ['kids', 'Kids questions', 'Easier questions, more time'], ['team', 'Team battle', '2 to 4 teams on one phone or TV']];
     frame('<div class="st-card gx-choose"><div class="gx-ico c-bquiz">' + ICON.bquiz + '</div><p class="st-k">' + (X.gotwId() === 'bquiz' ? 'Game of the Week' : 'Play &amp; Grow') + '</p><h2 class="st-h">Quiz</h2><p class="st-fine">Every answer shows its scripture or source.</p>' + howList('bquiz') + '<div class="gx-modes">' +
       M.map(function (m) { return '<button type="button" class="gx-mode' + (m[0] === 'team' ? ' team' : '') + '" data-q="' + m[0] + '"><b>' + m[1] + '</b><small>' + m[2] + '</small></button>'; }).join('') + '</div></div>');
     bindAll('[data-q]', function (b) { X.set(null); X.start(b.getAttribute('data-q')); });
@@ -191,7 +191,7 @@
     loadingCard();
     load('connect').then(function (d) {
       var day = today(), daily = !team && !practice, idx = daily ? (X.dayNo(day) - 1) % d.p.length : Math.floor(Math.random() * d.p.length), P = d.p[idx];
-      var key = 'mfm-cn-' + day, sv = daily ? ls(key) : null, r = rnd('cn' + day + idx);
+      var key = 'mfm-cn2-' + day, sv = daily ? ls(key) : null, r = rnd('cn' + day + idx);
       var words = []; P.forEach(function (g, gi) { g[1].forEach(function (w) { words.push({ w: w, g: gi }); }); });
       setS({ title: daily ? 'Connections · #' + X.dayNo(day) : practice ? 'Connections practice' : 'Connections', today: day, practice: !!practice, d: d, P: P, words: shuffle(words, r), found: sv ? sv.found : [], miss: sv ? sv.miss : 0, hist: sv ? sv.hist : [], tried: sv ? sv.tried || [] : [], sel: [], team: team, daily: daily, key: key, n: 4 });
       var s = S(); s.pts = cnPts(s);
@@ -201,7 +201,7 @@
   function cnPts(s) { return s.found.length * 150 + (s.found.length === 4 ? (4 - s.miss) * 50 : 0); }
   function cnFrame() {
     var s = S(), d = s.d; s.phase = 'cn';
-    var rows = s.found.map(function (gi) { var g = s.P[gi], c = d.cats[g[0]]; return '<div class="cn-found ' + CN_COL[c.l] + '"><b>' + esc(c.n) + '</b><span>' + g[1].map(esc).join(', ') + '</span><a href="' + esc(c.u) + '" target="_blank" rel="noopener">' + esc(c.r) + '</a></div>'; }).join('');
+    var rows = s.found.map(function (gi) { var g = s.P[gi], c = d.cats[g[0]]; return '<div class="cn-found ' + CN_COL[gi + 1] + '"><b>' + esc(c.n) + '</b><span>' + g[1].map(esc).join(', ') + '</span><a href="' + esc(c.u) + '" target="_blank" rel="noopener">' + esc(c.r) + '</a></div>'; }).join('');
     var left = s.words.filter(function (x) { return s.found.indexOf(x.g) < 0; });
     frame((s.team ? teamBar(s.team.T, s.team.T.turn % s.team.T.teams.length) : '') + '<div class="st-card cn">' + helpBtn('connect') + '<p class="st-k">Find four groups of four</p>' + rows +
       '<div class="cn-grid">' + left.map(function (x) { var on = s.sel.indexOf(x.w) >= 0; return '<button type="button" class="cn-w' + (on ? ' on' : '') + (x.w.length > 9 ? ' long' : '') + '" aria-pressed="' + on + '" data-w="' + esc(x.w) + '">' + esc(x.w) + '</button>'; }).join('') + '</div>' +
@@ -221,7 +221,7 @@
     if (s.tried.indexOf(sig) >= 0) { msg('You already tried that one'); return; }
     s.tried.push(sig);
     var gs = s.sel.map(function (w) { return s.words.filter(function (x) { return x.w === w; })[0].g; });
-    s.hist.push(gs.map(function (g) { return s.d.cats[s.P[g][0]].l; }));
+    s.hist.push(gs.map(function (g) { return g + 1; }));
     var cnt = {}; gs.forEach(function (g) { cnt[g] = (cnt[g] || 0) + 1; }); var mx = Math.max.apply(null, Object.keys(cnt).map(function (k) { return cnt[k]; }));
     if (mx === 4) { s.found.push(gs[0]); s.sel = []; s.pts = cnPts(s); topPts(); }
     else { s.miss++; shake(document.querySelector('#play-app .cn-grid')); }
@@ -233,7 +233,7 @@
   function cnEnd(again) {
     var s = S(), won = s.found.length === 4, d = s.d;
     s.score = s.found.length; s.pts = cnPts(s);
-    var all = s.P.map(function (g, gi) { var c = d.cats[g[0]]; return '<div class="cn-found ' + CN_COL[c.l] + (s.found.indexOf(gi) < 0 ? ' missed' : '') + '"><b>' + esc(c.n) + '</b><span>' + g[1].map(esc).join(', ') + '</span><a href="' + esc(c.u) + '" target="_blank" rel="noopener">' + esc(c.r) + (/biblegateway/.test(c.u) ? ' (KJV)' : '') + '</a></div>'; }).join('');
+    var all = s.P.map(function (g, gi) { var c = d.cats[g[0]]; return '<div class="cn-found ' + CN_COL[gi + 1] + (s.found.indexOf(gi) < 0 ? ' missed' : '') + '"><b>' + esc(c.n) + '</b><span>' + g[1].map(esc).join(', ') + '</span><a href="' + esc(c.u) + '" target="_blank" rel="noopener">' + esc(c.r) + (/biblegateway/.test(c.u) ? ' (KJV)' : '') + '</a></div>'; }).join('');
     var grid = s.hist.map(function (r) { return r.map(function (l) { return CN_EMO[l]; }).join(''); }).join('\n');
     if (s.team) { s.team.done(s.pts, won, '<div class="cn-all">' + all + '</div>'); return; }
     result({ id: 'connect', k: s.title, lb: again || s.practice ? null : 'connect', daily: !s.practice, win: won, big: '<span class="gx-num">' + s.found.length + '<small>/4</small></span><span class="gx-cap">groups found</span>', rank: won ? (s.miss === 0 ? 'Perfect!' : 'Well done!') : 'So close!', msg: won ? 'You found every group' + (s.miss ? ' with ' + s.miss + (s.miss === 1 ? ' mistake.' : ' mistakes.') : ' with no mistakes.') : 'Here are the four groups.',
@@ -245,7 +245,7 @@
   function whStart(team, practice) {
     loadingCard();
     load('wheel').then(function (d) {
-      var day = today(), base = (X.dayNo(day) - 1) * 3, list;
+      var day = today(), base = (X.dayNo(day) - 1) * 3, list; d = d.filter(function (w) { return w.k.length <= 6; });   /* Nov 27: shorter words */
       if (team || practice) list = [d[Math.floor(Math.random() * d.length)]];
       else list = [0, 1, 2].map(function (j) { return d[(base + j) % d.length]; });
       setS({ title: team ? 'Word Connect' : practice ? 'Word Connect practice' : 'Word Connect · #' + X.dayNo(day), today: day, list: list, w: 0, team: team, practice: !!practice, totalT: 0, foundT: 0, bonusN: 0, hints: 0 });
@@ -316,6 +316,12 @@
       if (S().done) dvEnd(true); else dvFrame();
     }, loadFail);
   }
+  function dvPart(b) {
+    var P = [[5, 'the books of Moses (Genesis to Deuteronomy)'], [17, 'the history books (Joshua to Esther)'], [22, 'the poetry books (Job to Song of Solomon)'], [27, 'the major prophets (Isaiah to Daniel)'], [39, 'the minor prophets (Hosea to Malachi)'],
+             [43, 'the Gospels (Matthew to John)'], [44, 'Acts'], [57, 'Paul&rsquo;s letters (Romans to Philemon)'], [65, 'the letters from Hebrews to Jude'], [66, 'Revelation']];
+    for (var i = 0; i < P.length; i++) if (b < P[i][0]) return P[i][1];
+    return 'the Bible';
+  }
   function dvFrame() {
     var s = S(), d = s.d, B = d.books; s.phase = 'dv';
     var rows = s.g.map(function (g) { var bk = g[0] === s.v[1], ch = bk && g[1] === s.v[2];
@@ -326,7 +332,7 @@
     var cur = s.b >= 0 ? s.b : 0, known = s.g.some(function (g) { return g[0] === s.v[1]; });
     if (known) cur = s.v[1];
     frame((s.team ? teamBar(s.team.T, s.team.T.turn % s.team.T.teams.length) : '') + '<div class="st-card dv">' + helpBtn('dverse') + '<p class="st-k">Where is this verse? &middot; Try ' + (s.g.length + 1) + ' of 5</p><blockquote class="dv-v">&ldquo;' + esc(s.v[3]) + '&rdquo;</blockquote>' +
-      (rows ? '<div class="dv-rows"><div class="dv-head"><span>Book</span><span>Chapter</span></div>' + rows + '</div>' : '') +
+      (s.g.length >= 2 && !s.g.some(function (g) { return g[0] === s.v[1]; }) ? '<p class="dv-hint"><b>Hint:</b> it&rsquo;s in ' + dvPart(s.v[1]) + '.</p>' : '') + (rows ? '<div class="dv-rows"><div class="dv-head"><span>Book</span><span>Chapter</span></div>' + rows + '</div>' : '') +
       '<form class="dv-form" autocomplete="off"><label>Book<select name="b">' + bookOpts(0, 39, 'Old Testament') + bookOpts(39, 66, 'New Testament') + '</select></label><label>Chapter<select name="c"></select></label><button class="pg-btn gold" type="submit">Guess</button></form><p class="gx-msg" aria-live="polite"></p></div>', s.team ? 'team' : '');
     var f = document.querySelector('#play-app .dv-form');
     f.b.value = String(cur);
@@ -356,10 +362,10 @@
   }
   function waNext() {
     var s = S(), p = s.d[s.list[s.i]], others = shuffle(s.d.filter(function (x) { return x.n !== p.n; })).slice(0, 7).map(function (x) { return x.n; });
-    s.p = p; s.shown = 1; s.opts = shuffle(others.concat([p.n])); s.wrong = []; s.over = false; s.phase = 'wa';
+    s.p = p; s.shown = Math.min(2, p.c.length); s.opts = shuffle(others.concat([p.n])); s.wrong = []; s.over = false; s.phase = 'wa';
     waFrame();
   }
-  function waStake(s) { return Math.max(0, 600 - s.shown * 100); }
+  function waStake(s) { return Math.max(0, 700 - s.shown * 100); }   /* two clues to start = 500 */
   function waFrame() {
     var s = S(), p = s.p;
     frame((s.team ? teamBar(s.team.T, s.team.T.turn % s.team.T.teams.length) : '') + '<div class="st-card wa">' + helpBtn('whoami') + '<p class="st-k">' + (s.list.length > 1 ? 'Person ' + (s.i + 1) + ' of ' + s.list.length : 'Who am I?') + (s.over ? '' : ' &middot; worth <b>' + waStake(s) + '</b>') + '</p>' +
