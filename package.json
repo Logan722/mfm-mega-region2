@@ -1,0 +1,8 @@
+{
+  "name": "mfm-mega-region2",
+  "private": true,
+  "description": "Static site. This file only exists so Netlify installs the Blobs client for netlify/functions/leaderboard.mjs.",
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  }
+}

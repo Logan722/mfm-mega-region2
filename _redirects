@@ -66,10 +66,25 @@
 /share/zonal-womens-conference  /events  301!
 /share/zonal-womens-conference.html  /events  301!
 # --- end build_site.py ---
+# Reach Out moved to its own page (Nov 26 2026): old homepage form links still land on it
+/  subject=:subject  branch=:branch  /reach-out?subject=:subject&branch=:branch  301!
+/  subject=:subject  origin=:origin  /reach-out?subject=:subject&origin=:origin  301!
+/  subject=:subject  /reach-out?subject=:subject  301!
+/testimony      /reach-out?subject=testimony       301
+# Former private previews -> the live pages
+/preview-home  /  301!
+/preview-play  /play  301!
+/preview-testimonies  /testimonies  301!
+/preview-reach-out  /reach-out  301!
+/preview-message  /media  301!
+/preview-home.html  /  301!
+/preview-play.html  /play  301!
+/preview-testimonies.html  /testimonies  301!
+/preview-reach-out.html  /reach-out  301!
+/preview-message.html  /media  301!
 /tools/*  /404.html  404!
 /connect        /links                        301
-/prayer         /?subject=prayer#reach-out         301
-/reach-out      /?subject=general#reach-out        301
+/prayer         /reach-out?subject=prayer          301
 /new-here       /#new-here                         301
 /give           /                                  301!
 /give.html      /                                  301!
@@ -234,11 +249,9 @@
 /messages/your-hard-season-has-an-expiry-date.html  /messages/your-hard-season-has-an-expiry-date  301!
 /messages/your-provision-must-locate-you.html  /messages/your-provision-must-locate-you  301!
 /ministries.html  /ministries  301!
-/preview-home.html  /preview-home  301!
-/preview-message.html  /preview-message  301!
-/preview-play.html  /preview-play  301!
-/preview-reach-out.html  /preview-reach-out  301!
-/preview-testimonies.html  /preview-testimonies  301!
+/play.html  /play  301!
 /privacy.html  /privacy  301!
+/reach-out.html  /reach-out  301!
+/testimonies.html  /testimonies  301!
 /women.html  /women  301!
 # --- end legacy ---

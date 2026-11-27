@@ -111,8 +111,9 @@ def build_grids(ev):
     dock = '<span><i></i> Coming up next</span><b>%s</b><small>%s</small><a href="%s">See details %s</a>' % (
         esc(e['title']), esc((e.get('dateDisplay') or e['date']) + (' · ' + loc if loc else '')), esc(href_of(e)),
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>')
-    i = t.index('<div class="service-dock"')
-    write('index.html', replace_inner(t, i, dock))
+    i = t.find('<div class="service-dock"')
+    if i >= 0:  # the Nov 2026 homepage shows the next gathering in the hero chip (runtime), not a dock
+        write('index.html', replace_inner(t, i, dock))
 
 DETAIL_GUARD = ('<script>(function(){var c=document.querySelector(".ev-cta[data-ends]");if(!c)return;'
                 'if(Date.now()>Date.parse(c.getAttribute("data-ends"))){[].forEach.call(c.querySelectorAll("[data-live-only]"),function(a){a.remove();});'
@@ -329,7 +330,8 @@ def build_legacy_redirects(ended):
 SITEMAP_TOP = [('/', 'index.html', 'weekly', '1.0'), ('/about', 'about.html', 'monthly', '0.8'), ('/events', 'events.html', 'weekly', '0.9'),
                ('/branches', 'branches.html', 'monthly', '0.8'), ('/gallery', 'gallery.html', 'monthly', '0.7'), ('/media', 'media.html', 'weekly', '0.8'),
                ('/live', 'live.html', 'weekly', '0.8'), ('/ministries', 'ministries.html', 'monthly', '0.7'), ('/women', 'women.html', 'monthly', '0.7'),
-               ('/gen218', 'gen218.html', 'monthly', '0.7'), ('/links', 'links.html', 'monthly', '0.5')]
+               ('/gen218', 'gen218.html', 'monthly', '0.7'), ('/links', 'links.html', 'monthly', '0.5'),
+               ('/play', 'play.html', 'daily', '0.7'), ('/testimonies', 'testimonies.html', 'monthly', '0.6'), ('/reach-out', 'reach-out.html', 'yearly', '0.6')]
 # Gallery album pages ('See all') — picked up automatically
 SITEMAP_TOP += [('/' + Path(f).stem, Path(f).name, 'monthly', '0.6') for f in sorted(Path(__file__).resolve().parent.parent.glob('gallery-*.html'))]
 

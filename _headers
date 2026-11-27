@@ -33,3 +33,6 @@
   Cache-Control: public, max-age=3600
 /sitemap.xml
   Cache-Control: public, max-age=3600
+# Homepage "Today in the region" feed (updated weekly from the Weekly Scheduler)
+/data/*
+  Cache-Control: public, max-age=300, must-revalidate

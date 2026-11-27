@@ -78,17 +78,18 @@
   // ---------- Styles ----------
   var css = [
     '.mfm-pop-backdrop{position:fixed;inset:0;background:rgba(9,15,30,0.72);',
-    'z-index:99998;opacity:0;transition:opacity .25s ease;',
+    'z-index:99998;opacity:0;transition:opacity .6s ease,-webkit-backdrop-filter .6s ease,backdrop-filter .6s ease;',
     'display:flex;align-items:center;justify-content:center;padding:20px;',
-    '-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);}',
-    '.mfm-pop-backdrop.is-open{opacity:1;}',
+    '-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);}',
+    '.mfm-pop-backdrop.is-open{opacity:1;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}',
     '.mfm-pop-card{position:relative;max-width:440px;width:100%;',
     'background:#142240;border:1px solid rgba(201,149,44,0.35);border-radius:12px;',
     'padding:36px 32px 28px;box-shadow:0 20px 60px rgba(0,0,0,0.55);',
-    'transform:scale(0.94);transition:transform .3s cubic-bezier(.2,.9,.3,1);',
+    'opacity:0;transform:translateY(28px) scale(0.96);transition:opacity .55s ease .12s,transform .75s cubic-bezier(.16,1,.3,1) .12s;',
     'font-family:"Inter Tight",-apple-system,BlinkMacSystemFont,sans-serif;',
     'color:#f0e6d0;overflow:hidden;}',
-    '.mfm-pop-backdrop.is-open .mfm-pop-card{transform:scale(1);}',
+    '.mfm-pop-backdrop.is-open .mfm-pop-card{opacity:1;transform:none;}',
+    '@media (prefers-reduced-motion:reduce){.mfm-pop-backdrop,.mfm-pop-card{transition:opacity .3s ease!important;transform:none!important;}}',
     '.mfm-pop-card::before{content:"";position:absolute;inset:0;',
     'background:radial-gradient(ellipse at 25% 0%,rgba(201,149,44,0.20) 0%,transparent 60%),',
     'radial-gradient(ellipse at 75% 100%,rgba(232,93,38,0.16) 0%,transparent 55%);',
@@ -200,7 +201,7 @@
       window.MFMOverlay.close(backdrop);
       setTimeout(function () {
         if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
-      }, 260);
+      }, 650);  // let the fade-out finish (Dawn, Nov 26: gentle transition in and out)
       if (dismiss) markDismissed();
     }
 

@@ -508,3 +508,25 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 
 /* Who's playing: "Where are you joining from?" only for Other / visiting */
 .qz-whof .qz-other[hidden]{display:none!important}
+/* ===== QC (Nov 26): readable text colours on light backgrounds (WCAG AA 4.5:1) ===== */
+.ek-eyebrow{color:#8a6414}
+.tcard .k,.play-today .k,.mode .soon,.qz-title,.today-panel .k,#hq-no{color:#b8451a}
+.ek-link,.play-today .streak,.qz-streak,.testi small,.qz-change,.tp-word cite,.tcard cite{color:#8a6414}
+.tsa-btn{background:#b83d12!important}
+/* Reach Out page: the message box uses the full width of the form (QC, Nov 26) */
+.ek-page #reach-out form label:has(textarea),.ek-page #reach-out form textarea{grid-column:1/-1;width:100%}
+/* Go-live (Nov 26): Today card weekly declaration paragraph; Watch & grow keeps one button */
+.tp-word .tp-decl{margin:4px 0 0;color:#2a3550;font-size:15.5px;line-height:1.6}
+.tp-word .tp-decl b{color:#142240;font-weight:700}
+@media(max-width:600px){.tp-word .tp-decl{font-size:14.5px;line-height:1.55}.wg-btns{grid-template-columns:1fr}}
+.testi-link{font-weight:600;color:#8a6414;text-decoration:none}.testi-link:hover{text-decoration:underline}
+.testi-share{max-width:820px;margin:26px auto 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.testi-share p{margin:0;color:#4a5670;font-size:16px}
+/* No scanty space: the declaration card centres its content and the button follows the text */
+.today-panel article{justify-content:center}
+.today-panel .foot{margin-top:6px}
+/* Reach Out page: centred intro (no default left alignment), no focus ring on the programmatic heading focus */
+.ek-page #reach-out article{text-align:center}
+.ek-page #reach-out .eyebrow{justify-content:center}
+.ek-page #reach-out .eyebrow::after{content:"";width:26px;height:1px;background:currentColor}
+.ek-page #reach-out h2:focus{outline:none}
