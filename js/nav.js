@@ -18,7 +18,7 @@
     '.nl-brand small{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c9952c;margin-top:1px}'+
     '.nl-links{display:flex;align-items:center;gap:8px;flex:none}'+
     '.nl-links a{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;color:#f0e6d0;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.04em;border:1px solid transparent;border-radius:2px}'+
-    '.nl-links a.pri{border-color:rgba(201,149,44,.6);color:#e0ad45}.nl-links a:hover{background:rgba(255,255,255,.06)}'+
+    '.nl-links a.pri{border-color:rgba(201,149,44,.6);color:#c9952c}.nl-links a:hover{background:rgba(255,255,255,.06)}'+
     '.nl-links a:focus-visible,.nl-brand:focus-visible{outline:3px solid #f0c760;outline-offset:2px}'+
     '.nl-links svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}'+
     '@media(max-width:560px){.nl-brand b{font-size:15px}.nl-brand small{display:none}.nl-links a{padding:0 10px;font-size:12px}.nl-links a.home{display:none}}';
@@ -44,7 +44,7 @@
     '.nl-foot *{box-sizing:border-box}'+
     '.nl-foot .fg{display:grid;grid-template-columns:1.7fr repeat(3,.7fr);gap:55px;max-width:1288px;margin:0 auto;padding:72px 24px}'+
     '.nl-foot .fg>div.col{display:flex;flex-direction:column;gap:9px;font-size:12px;color:#9ba9bd}'+
-    '.nl-foot .fg>div.col b{color:#f0c760;text-transform:uppercase;letter-spacing:.14em;font-size:9px;margin-bottom:8px}'+
+    '.nl-foot .fg>div.col b{color:#c9952c;text-transform:uppercase;letter-spacing:.14em;font-size:9px;margin-bottom:8px}'+
     '.nl-foot a{color:inherit;text-decoration:none;transition:color .15s}.nl-foot .fg a:hover{color:#fff}'+
     '.nl-foot .id{display:grid;grid-template-columns:64px 1fr;gap:14px;align-content:start}.nl-foot .id img{width:64px;height:64px;object-fit:contain}'+
     '.nl-foot .id strong{font-family:Fraunces,Georgia,serif;font-size:20px;color:#fff;font-weight:500;display:block}'+
@@ -56,7 +56,7 @@
     '.nl-foot .su input{width:100%;min-height:46px;padding:0 14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px;border-radius:2px}'+
     '.nl-foot .su input::placeholder{color:#8493aa}.nl-foot .su input:focus{outline:2px solid #c9952c;outline-offset:1px;border-color:#c9952c}'+
     '.nl-foot .su button{grid-column:1/-1;min-height:46px;border:0;background:#c9952c;color:#0b1322;font:inherit;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px}'+
-    '.nl-foot .su button:hover{background:#e0ad45}.nl-foot .su button:disabled{opacity:.7;cursor:default}.nl-foot .su button:focus-visible{outline:3px solid #f0c760;outline-offset:2px}'+
+    '.nl-foot .su button:hover{background:#c9952c}.nl-foot .su button:disabled{opacity:.7;cursor:default}.nl-foot .su button:focus-visible{outline:3px solid #f0c760;outline-offset:2px}'+
     '.nl-foot .su .msg{grid-column:1/-1;font-size:12.5px;line-height:1.45;margin:2px 0 0;min-height:1em}.nl-foot .su .msg.ok{color:#9be2b0}.nl-foot .su .msg.err{color:#ffb4a6}'+
     '.nl-foot .su small{display:block;font-size:11px;color:#718099;margin-top:10px}'+
     '.nl-foot .fb{border-top:1px solid #ffffff17;padding:18px 24px;display:flex;justify-content:space-between;gap:12px;color:#718099;font-size:10px;max-width:1288px;margin:0 auto}'+
@@ -67,7 +67,7 @@
     (onSub?'':'.mag-sub,.hub-sub{display:none!important}');
   document.head.appendChild(css);
   var first=onSub
-    ?'<div class="first id"><blockquote style="margin:0;font:400 17px/1.6 Fraunces,Georgia,serif;color:#b3bed0;max-width:420px">&ldquo;But upon mount Zion shall be deliverance, and there shall be holiness.&rdquo;<span style="display:block;color:#f0c760;font:600 10px/1 \'Inter Tight\',Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;margin-top:10px">Obadiah 1:17</span></blockquote></div>'
+    ?'<div class="first id"><blockquote style="margin:0;font:400 17px/1.6 Fraunces,Georgia,serif;color:#b3bed0;max-width:420px">&ldquo;But upon mount Zion shall be deliverance, and there shall be holiness.&rdquo;<span style="display:block;color:#c9952c;font:600 10px/1 \'Inter Tight\',Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;margin-top:10px">Obadiah 1:17</span></blockquote></div>'
     :'<div class="first su"><h3>Never miss an issue.</h3><p>Join the newsletter &mdash; sermons, prayer points and what&rsquo;s next from our region, about twice a month.</p>'+
       '<form novalidate><label for="nlf-name">First name</label><input id="nlf-name" type="text" name="firstName" autocomplete="given-name" placeholder="First name">'+
       '<label for="nlf-email">Email address</label><input id="nlf-email" type="email" name="email" autocomplete="email" required placeholder="Email address">'+

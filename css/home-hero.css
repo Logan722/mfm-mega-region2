@@ -98,9 +98,9 @@ html.home-top body:not(.drawer-open):not(.mfm-menu-open) .site-nav{background:tr
 /* --- Gold accents (owner request, Oct 13 2026): the hero eyebrow, "the fire of God." and the main button
        move from coral/red to the Royal Flame gold. A brighter gold is used on the video so it stays crisp;
        the button carries navy text for contrast. --- */
-.home-hero .eyebrow.light{color:#e0ad45}
-.home-hero h1 em{color:#e0ad45}
-.home-hero .hero-actions .button:not(.light){background:#e0ad45;border-color:#e0ad45;color:#0b1322}
+.home-hero .eyebrow.light{color:#c9952c}
+.home-hero h1 em{color:#c9952c}
+.home-hero .hero-actions .button:not(.light){background:#c9952c;border-color:#c9952c;color:#0b1322}
 .home-hero .hero-actions .button:not(.light):hover{background:#c9952c;border-color:#c9952c;color:#0b1322}
 
 /* --- Centred hero copy on computers and tablets (owner request, Oct 13 2026): headline, text and buttons

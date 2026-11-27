@@ -175,7 +175,7 @@ function apply(){
 function hav(a,b,c,d){var R=3959,p=Math.PI/180,dL=(c-a)*p,dN=(d-b)*p,x=Math.sin(dL/2)*Math.sin(dL/2)+Math.cos(a*p)*Math.cos(c*p)*Math.sin(dN/2)*Math.sin(dN/2);return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
 function rankByDistance(lat,lng,label){
   var arr=B.map(function(b,i){return {i:i,d:hav(lat,lng,b.lat,b.lng)};}).sort(function(x,y){return x.d-y.d;});
-  arr.forEach(function(o,rank){var c=cards[o.i];c.style.display='';list.appendChild(c);var old=c.querySelector('.bc-dist');if(old)old.remove();var s=document.createElement('span');s.className='bc-dist';s.textContent=Math.round(o.d)+' mi';s.style.cssText='position:absolute;top:14px;right:46px;font:700 11px/1 Inter Tight,sans-serif;color:#8f6212';c.style.position='relative';c.appendChild(s);});
+  arr.forEach(function(o,rank){var c=cards[o.i];c.style.display='';list.appendChild(c);var old=c.querySelector('.bc-dist');if(old)old.remove();var s=document.createElement('span');s.className='bc-dist';s.textContent=Math.round(o.d)+' mi';s.style.cssText='position:absolute;top:14px;right:46px;font:700 11px/1 Inter Tight,sans-serif;color:#142240';c.style.position='relative';c.appendChild(s);});
   cnt.textContent=(label||'Nearest first')+' — '+B.length+' locations';
   select(arr[0].i,true);
 }
@@ -231,7 +231,7 @@ function slugify(n){return n.replace(/&amp;/g,'and').replace(/&/g,'and').toLower
 </script>
 <style>
 .branch-card .bc-actions{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,149,44,.14)}
-.branch-card .bc-actions a{font:600 12px/1 'Inter Tight',sans-serif;text-decoration:none;color:#8f6212;display:inline-flex;align-items:center;gap:5px}
+.branch-card .bc-actions a{font:600 12px/1 'Inter Tight',sans-serif;text-decoration:none;color:#142240;display:inline-flex;align-items:center;gap:5px}
 .branch-card .bc-actions a.bc-detail{color:#b3471b}
 .branch-card .bc-actions a:hover{text-decoration:underline}
 </style>

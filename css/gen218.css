@@ -1,6 +1,6 @@
 /* Gen218 page (Dawn 2026-11-26): design 5, Bento tiles. Scoped to main.gf */
 .wf *{box-sizing:border-box}
-.wf{--navy:#142240;--deep:#0e1a33;--gold:#c9952c;--gold2:#f0c760;--fire:#e85d26;--cream:#f8f6f1;--ink:#1d2940;--muted:#596170;--edge:24px;font-family:'Inter Tight',sans-serif;color:var(--ink)}
+.wf{--navy:#142240;--deep:#0e1a33;--gold:#c9952c;--gold2:#c9952c;--fire:#e85d26;--cream:#f8f6f1;--ink:#1d2940;--muted:#596170;--edge:24px;font-family:'Inter Tight',sans-serif;color:var(--ink)}
 @media(min-width:1200px){.wf{--edge:clamp(32px,3.2vw,64px)}}
 main.wf :is(h1,h2,h3,p,blockquote,li,article){text-align:center}
 main.wf .message-card :is(h3,p,span,div){text-align:center}
@@ -51,7 +51,7 @@ main.wf .message-card>div>div{display:flex;justify-content:center;flex-wrap:wrap
 .gf .gen-moments .wrap{width:auto;max-width:none;margin-left:var(--edge);margin-right:var(--edge)}
 .gf .gen-moments .wm-copy{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
 .gf .gen-moments .wm-copy h2{font:500 clamp(28px,3.4vw,46px)/1.12 Fraunces,serif;margin:0}
-.gf .gen-moments .wm-meta{color:#8a6414;font-weight:600;font-size:14px;margin:0}
+.gf .gen-moments .wm-meta{color:#142240;font-weight:600;font-size:14px;margin:0}
 .gf .gen-moments .wm-copy>p{margin:0;line-height:1.65;max-width:600px}
 .gf .gen-moments blockquote{border:0!important;padding:0!important;margin:6px 0;font:italic 500 19px/1.5 Fraunces,serif;max-width:600px}
 .gf .gen-moments blockquote cite{display:block;font:700 11px 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:8px;font-style:normal}
@@ -90,10 +90,10 @@ main.gf .message-card>div>div{justify-content:center}
 .g5 .co .o{position:absolute;left:0;right:0;bottom:0;padding:80px 18px 22px;background:linear-gradient(180deg,transparent,rgba(14,26,51,.94) 50%);display:flex;flex-direction:column;align-items:center;gap:6px}
 .g5 .co h3{font-size:24px;color:#fff}.g5 .co p{margin:0;font-size:13px;color:#dfe5ee}
 .g5 .verse{background:var(--navy);border:0}
-.g5 .verse .n{position:absolute;right:-10px;bottom:-34px;font:600 150px/1 Fraunces,serif;color:rgba(240,199,96,.1)}
+.g5 .verse .n{position:absolute;right:-10px;bottom:-34px;font:600 150px/1 Fraunces,serif;color:rgba(201,149,44,.1)}
 .g5 .verse p{font:italic 500 clamp(18px,1.7vw,23px)/1.45 Fraunces,serif;color:#e9d9b4;margin:0;max-width:560px;position:relative}
 .g5 .verse b{font:700 11px 'Inter Tight';letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);position:relative}
-.g5 .val b{font:600 28px Fraunces,serif;color:#8a6414}.g5 .val h3{font-size:24px}.g5 .val p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+.g5 .val b{font:600 28px Fraunces,serif;color:#142240}.g5 .val h3{font-size:24px}.g5 .val p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 .g5 .about p{font:500 clamp(18px,1.6vw,22px)/1.5 Fraunces,serif;color:var(--ink);margin:0;max-width:760px}
 .g5 .pl{background:linear-gradient(135deg,#c2471a,#e85d26);border:0;color:#fff;text-decoration:none}
 .g5 .pl h3{font-size:24px;color:#fff}.g5 .pl p{margin:0;color:#ffe6d8}.g5 .pl .btn{margin-top:6px;min-height:44px;font-size:14px}
@@ -110,5 +110,5 @@ main.gf .message-card>div>div{justify-content:center}
  .g5 .valt .values-grid>*{flex:0 0 82%!important;max-width:82%!important;grid-area:auto!important}
  .g5 .valt .val{background:#fff!important;border:1px solid #ebe4d6!important;border-top:3px solid var(--gold)!important;border-radius:0 0 18px 18px;padding:24px 16px!important;min-height:170px}}
 /* QC 2026-11-26: contrast */
-.gf .gen-moments blockquote cite{color:#8a6414}
+.gf .gen-moments blockquote cite{color:#142240}
 .gf .gen-moments .gm-note{opacity:1;color:#5f6776}

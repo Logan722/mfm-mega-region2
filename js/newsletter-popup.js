@@ -123,7 +123,7 @@
     'border:0;border-radius:6px;font-family:inherit;font-weight:600;font-size:.95rem;',
     'letter-spacing:.06em;text-transform:uppercase;cursor:pointer;',
     'transition:background .15s,transform .1s;}',
-    '.mfm-pop-btn:hover{background:#d4a853;}',
+    '.mfm-pop-btn:hover{background:#c9952c;}',
     '.mfm-pop-btn:active{transform:translateY(1px);}',
     '.mfm-pop-btn[disabled]{opacity:.55;cursor:wait;}',
     '.mfm-pop-fine{text-align:center;font-size:.75rem;color:#6a7a96;',
