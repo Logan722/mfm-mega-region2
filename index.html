@@ -16,13 +16,13 @@
 <link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" href="/img/favicon-32.png"><link rel="apple-touch-icon" href="/img/apple-touch-icon.png"><link rel="manifest" href="/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="/css/rf-site.css?v=f45d09cead">
+<link rel="stylesheet" href="/css/rf-site.css?v=07c974b402">
 <script>document.documentElement.classList.add("home-top")</script>
 <link rel="stylesheet" href="/css/home-hero.css?v=cb4c56a935">
 <link rel="preload" as="image" href="/img/hero/home-worship-poster.webp" type="image/webp" media="(min-width: 601px)">
 <link rel="preload" as="image" href="/img/hero/home-worship-poster-mobile.webp" type="image/webp" media="(max-width: 600px)">
 <script defer data-domain="mfmmegaregion2usa.org" src="https://plausible.io/js/script.js"></script>
-<link rel="stylesheet" href="/css/engage.css?v=17bf417ba5">
+<link rel="stylesheet" href="/css/engage.css?v=c8c51cb8ae">
 </head><body>
 <a class="skip-link" href="#content">Skip to content</a>
   <nav class="site-nav" id="siteNav" data-mfm-header>
@@ -204,7 +204,7 @@ var pick=hero.querySelectorAll('[data-pick]');
 function show(n){n=T[n]?n:1;box.setAttribute('data-d',n);box.innerHTML=T[n];box.hidden=false;tick();for(var i=0;i<pick.length;i++)pick[i].setAttribute('aria-pressed',pick[i].getAttribute('data-pick')==n?'true':'false');}
 for(var i=0;i<pick.length;i++)pick[i].addEventListener('click',function(){show(+this.getAttribute('data-pick'));});
 show(3);setInterval(tick,1000);})();</script>
-<script src="/js/gotw.js"></script>
+<script src="/js/gotw.js?v=4454b810fd"></script>
 <script>/* Today card: real top branch + Game of the Week from the leaderboard */(function(){var el=document.querySelector("[data-home-top]");if(!el)return;fetch("/.netlify/functions/leaderboard").then(function(r){return r.json()}).then(function(d){if(d&&d.gotw&&window.GOTW){GOTW.server=d.gotw;GOTW.paint();}if(d&&d.branches&&d.branches[0]){el.innerHTML="Top branch this week: <b></b>";el.querySelector("b").textContent=d.branches[0].name;}}).catch(function(){});})();</script>
 </body></html>
 
