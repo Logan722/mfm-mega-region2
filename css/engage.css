@@ -682,3 +682,27 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 
 
 .dz [hidden]{display:none!important}
+/* Homepage testimonies (Dawn, Nov 26 21:42): fewer lines, less spread out */
+.tsa .tsa-feat h3,.tsa .tsa-small h3{overflow:hidden;max-width:100%}
+.tsa .tsa-feat .tsa-k{overflow:hidden;max-width:100%}
+@media(max-width:760px){
+ .tsa{padding:56px 0}
+ .tsa .tsa-head{padding-bottom:18px;margin-bottom:20px}
+ .tsa .tsa-feat{min-height:0!important;padding:30px 22px}
+ .tsa .tsa-feat h3{margin:12px 0 10px}
+ .tsa .tsa-feat .tsa-k{letter-spacing:.12em}
+ .tsa .tsa-meta{margin-top:18px;padding-top:12px}
+ .tsa .tsa-small{padding:22px 20px}
+ .tsa .tsa-small h3{margin:10px 0 8px}
+ .tsa .tsa-small>a{margin-top:10px}
+ .tsa .tsa-list{gap:14px}.tsa .tsa-grid{gap:14px}
+ .tsa .tsa-actions{margin-top:20px}
+}
+.tsa .tsa-grid>*,.tsa .tsa-list>*{min-width:0}
+.tsa .tsa-feat h3,.tsa .tsa-small h3,.tsa .tsa-feat .tsa-k{width:100%;box-sizing:border-box}
+.tsa .tsa-list{grid-template-columns:minmax(0,1fr)}
+@media(max-width:900px){.tsa .tsa-grid{grid-template-columns:minmax(0,1fr)!important}}
+@media(max-width:760px){.tsa .tsa-small h3{font-size:22px!important}}
+@media(max-width:380px){.tsa .tsa-small h3{font-size:20px!important}}
+@media(max-width:900px){.tsa .tsa-list{grid-template-rows:none!important}.tsa .tsa-small{justify-content:center!important}}
+@media(max-width:900px){.tsa .tsa-small{min-height:0!important}}

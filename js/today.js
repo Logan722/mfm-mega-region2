@@ -54,3 +54,20 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   fit();
 })();
+/* Homepage testimonies: each card title on one line where it can be (shrinks to fit, never below 20px) */
+(function () {
+  var els = [].slice.call(document.querySelectorAll('.tsa .tsa-feat h3, .tsa .tsa-small h3, .tsa .tsa-feat .tsa-k'));
+  if (!els.length) return;
+  function fit() {
+    els.forEach(function (h) {
+      h.style.fontSize = ''; h.style.whiteSpace = '';
+      var base = parseFloat(getComputedStyle(h).fontSize), size = base, floor = Math.max(h.classList.contains('tsa-k') ? 9.5 : 20, base * 0.45);
+      h.style.whiteSpace = 'nowrap';
+      while (h.scrollWidth > h.clientWidth + 1 && size > floor) { size -= 0.5; h.style.fontSize = size + 'px'; }
+      if (h.scrollWidth > h.clientWidth + 1) { h.style.fontSize = ''; h.style.whiteSpace = ''; }
+    });
+  }
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
+})();
