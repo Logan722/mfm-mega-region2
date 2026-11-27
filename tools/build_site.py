@@ -374,6 +374,11 @@ def main():
     # Media library <- YouTube channel (new uploads get a card + message page; skip with MFM_NO_FEED=1)
     if not os.environ.get('MFM_NO_FEED'):
         subprocess.run([sys.executable, str(ROOT / 'tools' / 'sync_media.py')], check=False)
+    try:                                           # Play & Grow "Our messages" questions <- new sermons (Nov 27 2026)
+        import quiz_messages
+        quiz_messages.build()
+    except Exception as e:                         # never let the quiz stop a site build
+        print('quiz messages: skipped (%s)' % e)
     ev = snapshot()
     build_latest_video()
     import newsletter_hub                          # /newsletter: latest issue + archive from Brevo sends

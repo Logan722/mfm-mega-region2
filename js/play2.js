@@ -285,8 +285,11 @@
     var mode = lbMode(); if (!mode) return;
     S.added = true;
     var rec = { nick: p.nick, branch: p.branch === OTHER ? 'Visitors & friends' : p.branch, place: placeOf(p), score: S.score, pts: S.pts, n: S.n || (S.qs ? S.qs.length : S.marks.length), day: S.today, mode: mode, game: X.gameOf(mode) };
+    /* which questions were right or wrong (Nov 27: lets the difficulty ratings learn from real play) */
+    var qr = S.qs && S.marks ? S.qs.slice(0, S.marks.length).map(function (x, k) { return x.q.id + (S.marks[k] ? '1' : '0'); }) : S.list && S.marks ? S.list.slice(0, S.marks.length).map(function (x, k) { return x.id + (S.marks[k] ? '1' : '0'); }) : [];
+    var qs = qr.length && /^(daily|quiz|kids|blitz)$/.test(mode) ? qr.slice(0, 100).join(',') : '';
     var mine = ls('mfm-quiz-local') || []; mine.push(rec); ls('mfm-quiz-local', mine.slice(-60));   /* this device's history (also the preview fallback) */
-    var body = { dev: devId(), nick: p.nick, branch: p.branch, place: placeOf(p), mode: mode, pts: S.pts, score: S.score, n: rec.n, day: S.today };
+    var body = { dev: devId(), nick: p.nick, branch: p.branch, place: placeOf(p), mode: mode, pts: S.pts, score: S.score, n: rec.n, day: S.today }; if (qs) body.q = qs;
     fetch(LB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(function (r) { return r.json(); })
       .then(function (d) { LB_LIVE = true; if (d && d.h) { myH = d.h; ls('mfm-quiz-h', d.h); } lbNote(d && d.ok ? (d.counted ? 'Added to this week\u2019s leaderboard' : 'Not added: ' + d.reason) : 'Could not add your score this time'); loadBoard(true); })

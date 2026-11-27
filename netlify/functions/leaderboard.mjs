@@ -122,6 +122,13 @@ export async function handle(req, store, ip = '') {
   const origin = req.headers.get('origin') || '';
   const week = weekOf();
   if (req.method === 'OPTIONS') return new Response('', { status: 204, headers: { 'Access-Control-Allow-Origin': ORIGINS.includes(origin) ? origin : ORIGINS[0], 'Access-Control-Allow-Methods': 'GET, POST', 'Access-Control-Allow-Headers': 'Content-Type' } });
+  if (req.method === 'GET' && new URL(req.url).searchParams.get('stats')) {
+    // question stats for tuning difficulty (Nov 27): how often each question was answered right, from the stored plays
+    const wk = new URL(req.url).searchParams.get('stats'), w = /^\d{4}-\d{2}-\d{2}$/.test(wk) ? wk : week, out = {};
+    const { blobs } = await store.list({ prefix: `s/${w}/` });
+    for (const x of blobs) { const r = await store.get(x.key, { type: 'json' }); if (!r || !r.q) continue; for (const it of r.q.split(',')) { const id = it.slice(0, -1), o = out[id] || (out[id] = [0, 0]); o[0]++; if (it.slice(-1) === '1') o[1]++; } }
+    return json({ week: w, plays: blobs.length, q: out }, 200, origin, 'public, max-age=0, s-maxage=3600');
+  }
   if (req.method === 'GET') {
     const agg = await board(store, week);
     // short CDN cache: everyone polling at once costs one function run every 10 s
@@ -133,6 +140,7 @@ export async function handle(req, store, ip = '') {
   const mode = clean(b.mode, 10), dev = clean(b.dev, 40), nick = clean(b.nick, 20), day = ct().day;
   let branch = clean(b.branch, 60), place = clean(b.place, 40);
   const pts = Math.round(Number(b.pts)), score = Math.round(Number(b.score)), n = Math.round(Number(b.n));
+  const q = typeof b.q === 'string' && /^[A-Za-z0-9_-]{1,30}[01](,[A-Za-z0-9_-]{1,30}[01]){0,99}$/.test(b.q) ? b.q : '';   // per-question right (1) / wrong (0), for difficulty stats
   if (!(mode in CAP)) return json({ ok: false, error: 'mode' }, 400, origin);
   if (!/^[a-z0-9]{12,40}$/i.test(dev)) return json({ ok: false, error: 'device' }, 400, origin);
   if (!nick || BAD.test(nick) || BAD.test(place)) return json({ ok: false, error: 'name' }, 400, origin);
@@ -151,7 +159,7 @@ export async function handle(req, store, ip = '') {
   const prev = await store.get(key, { type: 'json' });
   let counted = false, featured = false;
   if (!prev || (!FIRST_ONLY[mode] && pts > prev.pts)) {
-    const rec = { h, nick, branch, place, mode, pts, day, ts: Date.now() };
+    const rec = { h, nick, branch, place, mode, pts, day, ts: Date.now() }; if (q) rec.q = q;
     const agg = await board(store, week);   // read (or rebuild) the board BEFORE adding this score, so it is never counted twice
     await store.setJSON(key, rec);          // stored for every game: the play stats use it
     featured = GAME(mode) === agg.gotw;

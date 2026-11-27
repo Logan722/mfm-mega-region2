@@ -627,6 +627,7 @@ window.MFM_EVT = (function () {
          7:00–8:30 PM ET, in person (branch weekly programme; Eventbrite RSVP).
          Source: mfmtampaflorida.org + Eventbrite (added Nov 24 2026). */
   var thuT = ymdU(nextDow(4, '19:30'));            /* 8:30 PM ET = 7:30 PM CT */
+  var tampaRsvp = thuT <= '2026-12-17';             /* the Eventbrite series runs Oct 8 – Dec 17 2026: no RSVP button after that (standing rule: never a button without a working link) */
   A.push({
     date: thuT, endDate: thuT, start: thuT + 'T19:00', end: thuT + 'T20:30', tz: 'America/New_York',
     title: 'The Mountain of Bring Your Problems to God — MFM Tampa',
@@ -639,9 +640,9 @@ window.MFM_EVT = (function () {
     alt: 'Mountain of Fire and Miracles Ministries, Tampa, Florida presents The Mountain of Bring Your Problems to God — every Thursday at 7 PM. Psalm 55:22. 4618 North Florida Avenue, Tampa, FL 33603.',
     anchor: 'tampa-bring-your-problems',
     host: 'MFM Tampa, Florida',
-    link: 'https://www.eventbrite.com/e/mountain-of-fire-and-miracles-ministries-tampa-florida-tickets-2002810199220',
-    linkLabel: 'RSVP',
-    description: 'Whatever you are carrying, you do not have to carry it alone. MFM Tampa invites you up to the mountain every Thursday night to lay your burdens before the Lord — an evening of prayer, worship and the Word, with targeted prayers for finances, health and family and pastoral help on site. Open to all; reserve your spot on Eventbrite.',
+    link: tampaRsvp ? 'https://www.eventbrite.com/e/mountain-of-fire-and-miracles-ministries-tampa-florida-tickets-2002810199220' : '',
+    linkLabel: tampaRsvp ? 'RSVP' : '',
+    description: 'Whatever you are carrying, you do not have to carry it alone. MFM Tampa invites you up to the mountain every Thursday night to lay your burdens before the Lord — an evening of prayer, worship and the Word, with targeted prayers for finances, health and family and pastoral help on site. Open to all' + (tampaRsvp ? '; reserve your spot on Eventbrite.' : '.'),
     scripture: 'Cast thy burden upon the LORD, and he shall sustain thee: he shall never suffer the righteous to be moved.|Psalm 55:22',
     recurring: true
   });
