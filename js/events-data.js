@@ -440,6 +440,33 @@ window.MFM_EVENTS = [
       "School of Ministry, Session 1 — Jan 6–15"
     ],
     "badgeStyle": "gold"
+  },
+  {
+    "date": "2027-01-16",
+    "endDate": "2027-01-17",
+    "start": "2027-01-16T09:00",
+    "tz": "America/Chicago",
+    "page": "/events/command-the-year-2027",
+    "title": "Command the Year 2027",
+    "theme": "Speak to the Womb of the Year",
+    "time": "9:00 AM CT",
+    "venue": "MFM Prayer City America — 10000 Kleckley Drive, Houston, TX 77075",
+    "ministering": "Dr. Daniel Olukoya, General Overseer, MFM Worldwide",
+    "host": "Mountain of Fire and Miracles Ministries",
+    "image": "img/announcements/command-the-year-2027.jpg",
+    "cardPos": "50% 18%",
+    "alt": "Mountain of Fire and Miracles Ministries — Command the Year 2027: Speak to the Womb of the Year. Saturday, January 16: Ministers’ Conference 9:00 AM–12 noon; Command the Year 6:00 PM–9:00 PM. Sunday, January 17: Conclusion 8:00 AM–12 noon. M.F.M Prayer City America, 10,000 Kleckley Drive, Houston, Texas. Dr. Daniel Olukoya, General Overseer, Mountain of Fire and Miracles Ministries Worldwide.",
+    "anchor": "command-the-year-2027",
+    "link": "https://www.eventbrite.com/e/command-the-year-2027-speak-to-the-womb-of-the-year-tickets-2005553924777",
+    "linkLabel": "Register",
+    "dateDisplay": "January 16–17, 2027",
+    "description": "Command the Year 2027 — Speak to the Womb of the Year — with Dr. Daniel Olukoya, General Overseer of Mountain of Fire and Miracles Ministries Worldwide, at MFM Prayer City America, Houston. Saturday, January 16: Ministers’ Conference from 9:00 AM to 12 noon, then Command the Year from 6:00 PM to 9:00 PM. Sunday, January 17: the Conclusion service from 8:00 AM to 12 noon (all times Central). Register on Eventbrite.",
+    "features": [
+      "Sat, Jan 16 — Ministers’ Conference, 9 AM–12 noon",
+      "Sat, Jan 16 — Command the Year, 6–9 PM",
+      "Sun, Jan 17 — Conclusion, 8 AM–12 noon"
+    ],
+    "badgeStyle": "gold"
   }
 ];
 
