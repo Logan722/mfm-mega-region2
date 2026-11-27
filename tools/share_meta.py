@@ -7,7 +7,7 @@ ORIGIN = 'https://mfmmegaregion2usa.org'
 
 SHARE = {
     'play.html': ('/play', 'Play & Grow: can you get all 10?',
-                  'Free daily Bible games: 10 questions a day, Word of the Day, a 60-second Blitz and team battles. Build your streak and put your branch on the board.',
+                  'Ten free games from the Bible and the ministry: Connections, Word Connect, Daily Verse, Who Am I? and more. Play solo or as teams, and lift your branch on the weekly board.',
                   '/img/og/play.jpg', 'Play & Grow: daily Bible games. 10 questions a day. Can you get them all?'),
     'testimonies.html': ('/testimonies', 'Testimonies: God is still doing it.',
                          'Read what God has done across our churches, and share your own testimony to encourage someone today.',

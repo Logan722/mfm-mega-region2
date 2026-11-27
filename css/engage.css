@@ -768,3 +768,12 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 .n5 .cnt{color:#5f6776}
 .dz .by{color:#5f6776}
 .n5 .tc:first-child .by,.n5 .tc:first-child .by span{color:#c9d3e3}
+/* homepage Game of the Week card (Dawn, 2026-11-27) */
+.tp-gw .gw-badge{border-radius:24px;background:linear-gradient(150deg,var(--c,#8a5cc7),var(--c2,#5c3797));box-shadow:0 6px 0 rgba(20,34,64,.18),0 14px 30px rgba(20,34,64,.18);animation:none}
+.tp-gw .gw-badge svg{width:56px!important;height:56px!important;filter:drop-shadow(0 4px 0 rgba(0,0,0,.18))}
+.tp-gw .gw-badge .w{fill:#fff}.tp-gw .gw-badge .w2{fill:#fff3d6}.tp-gw .gw-badge .o{fill:rgba(255,255,255,.22)}.tp-gw .gw-badge .f{fill:#ffd36b}.tp-gw .gw-badge .d{fill:var(--c2)}
+.tp-gw .gw-badge .s,.tp-gw .gw-badge .s2,.tp-gw .gw-badge .s3{fill:none;stroke-linecap:round;stroke-width:3.5}.tp-gw .gw-badge .s{stroke:#fff}.tp-gw .gw-badge .s2,.tp-gw .gw-badge .s3{stroke:var(--c2)}
+.tp-gw .foot{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap}
+.tp-gw .gw-all{font-weight:700;color:#8a6414;text-decoration:none;border-bottom:1.5px solid currentColor}
+.tp-gw .gw-all:hover{color:#142240}
+@media(max-width:600px){.tp-gw .gw-badge{width:64px;height:64px;border-radius:18px}.tp-gw .gw-badge svg{width:42px!important;height:42px!important}}

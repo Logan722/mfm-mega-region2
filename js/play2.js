@@ -42,6 +42,15 @@
     }); });
     return sel;
   }
+  function mixAll(n, r) {
+    var BIB = ['bible', 'bible', 'verse', 'who', 'godnames', 'jesus', 'prayer', 'promises'], MIN = ['mfm', 'olukoya', 'go-books', 'oni-books', 'messages'], qs = [], seen = {};
+    for (var i = 0; qs.length < n && i < n * 6; i++) {
+      var p = i % 2 === 0 ? BIB[Math.floor(r() * BIB.length)] : MIN[Math.floor(r() * MIN.length)];
+      if (p === 'olukoya' && r() < .25) p = 'shade';
+      var q = fresh(p, 3, r).filter(function (x) { return !seen[x.id]; })[0]; if (q) { seen[q.id] = 1; qs.push(q); }
+    }
+    return shuffle(qs, r);
+  }
   function topicName(keys) { if (keys.length === ALLT.length) return 'Mix it up'; if (keys.length === 1) return TOPICS.filter(function (t) { return t.k === keys[0]; })[0].label; return 'Your mix'; }
   var SHAPES = [
     '<path d="M12 2.5c3.6 3.3 6 6.5 6 10.3a6 6 0 0 1-12 0c0-2.7 1.5-4.8 3-6.3.1 1.8 1 3 2.1 3.3C10.3 7.1 11 4.6 12 2.5Z"/>',   /* flame */
@@ -87,7 +96,7 @@
   function pad(n) { return ('0' + n).slice(-2); }
   function fmt(n) { return Number(n).toLocaleString('en-US'); }
   function dailySet(today) { var r = rng('daily-' + today); return [].concat(pick('bible', 3, r), pick('verse', 2, r), pick('who', 2, r), pick(r() < .6 ? 'mfm' : 'olukoya', 1, r), pick(r() < .65 ? 'oni-books' : 'go-books', 1, r), pick('messages', 1, r)); }
-  function titleOf() { if (S && S.title) return S.title; if (S.mode === 'daily') return 'Daily 10 · Day ' + dayNo(S.today); if (S.mode === 'kids') return 'Kids Mode'; if (S.mode === 'blitz') return '60-second Blitz'; if (S.mode === 'word') return S.practice ? 'Word practice' : 'Word of the Day · Day ' + dayNo(S.today); if (S.mode === 'team') return 'Team Battle'; if (S.mode === 'quiz') return 'Quiz \u00b7 ' + (S.topics ? topicName(S.topics) : 'Challenge'); return BANK.packs[S.pack] ? BANK.packs[S.pack].label : 'Play & Grow'; }
+  function titleOf() { if (S && S.title) return S.title; if (S.mode === 'daily') return 'Daily 10 · Day ' + dayNo(S.today); if (S.mode === 'kids') return 'Kids Mode'; if (S.mode === 'blitz') return '60-second Blitz'; if (S.mode === 'word') return S.practice ? 'Word practice' : 'Word of the Day · Day ' + dayNo(S.today); if (S.mode === 'team') return 'Team Battle'; if (S.mode === 'quiz') return S.ch ? 'Quiz \u00b7 Challenge' : 'Quiz'; return BANK.packs[S.pack] ? BANK.packs[S.pack].label : 'Play & Grow'; }
 
   /* ---------- stage open / close ---------- */
   function open() {
@@ -151,7 +160,7 @@
     if (X.games[mode]) { X.games[mode](pack, ch); return; }
     if (!BANK) return;
     if (mode === 'team') { teamSetup(); return; }
-    if (mode === 'quiz' && !ch) { var go2 = function () { quizSetup(); }; if (!player()) showWho(go2); else go2(); return; }
+    if (mode === 'quiz' && !ch) pack = ALLT;   /* Dawn, Nov 27: no topic picker; every game mixes everything */
     var go = function () { (mode === 'blitz' ? beginBlitz : mode === 'word' ? beginWord : begin)(mode, pack, ch); };
     if (!player()) showWho(go); else go();
   }
@@ -164,7 +173,7 @@
       var r = rng(mode + pack + today + Math.random()), qs;
       if (ch && ch.ids) qs = byIds(ch.ids);
       else if (mode === 'daily') qs = dailySet(today);
-      else if (mode === 'quiz') { qs = mixQs(pack, ROUND, r); markSeen(qs); }
+      else if (mode === 'quiz') { qs = mixAll(ROUND, r); markSeen(qs); }
       else { qs = fresh(mode === 'kids' ? 'kids' : pack, ROUND, r); markSeen(qs); }
       S = { mode: mode, pack: mode === 'quiz' ? 'quiz' : pack, topics: mode === 'quiz' && !ch ? pack : null, today: today, ch: ch || null, qs: qs.map(function (q) { return { q: q, order: shuffle(q.options.map(function (o, i) { return i; }), r) }; }),
             i: 0, score: 0, pts: 0, combo: 0, best: 0, marks: [], T: mode === 'kids' ? 30 : 20 };
@@ -462,10 +471,10 @@
     frame('<div class="st-card st-team"><p class="st-k">Play together</p><h2 class="st-h">Team Battle</h2><p class="st-fine">Pass the phone, or put it on the TV. Teams take turns answering.</p><form class="st-form" autocomplete="off">' +
       '<fieldset class="tm-n"><legend>How many teams?</legend>' + [2, 3, 4].map(function (k) { return '<label><input type="radio" name="n" value="' + k + '"' + (last.n === k ? ' checked' : '') + '><span>' + k + '</span></label>'; }).join('') + '</fieldset>' +
       '<div class="tm-names">' + [0, 1, 2, 3].map(function (k) { return '<label class="tm-name" style="--tc:' + TEAM_COL[k] + '"' + (k >= last.n ? ' hidden' : '') + '><i></i><input name="t' + k + '" maxlength="18" value="' + esc(last.names[k] || TEAM_NAMES[k]) + '" aria-label="Team ' + (k + 1) + ' name"></label>'; }).join('') + '</div>' +
-      topicChips(last.topics || ['bible', 'oni', 'go', 'mfm']) + '<p class="st-err" hidden>Pick at least one topic.</p>' +
+      '<p class="st-fine">Questions come from everything: the Bible, MFM, the G.O., our pastors&rsquo; books and our messages.</p>' +
       '<fieldset class="tm-n"><legend>Questions per team</legend>' + [3, 5, 10].map(function (k) { return '<label><input type="radio" name="per" value="' + k + '"' + (last.per === k ? ' checked' : '') + '><span>' + k + '</span></label>'; }).join('') + '</fieldset>' +
       '<button class="pg-btn gold wide xl" type="submit">Start the battle</button></form></div>');
-    var f = stage.querySelector('form'), tsel = bindChips(stage.querySelector('.tp'));
+    var f = stage.querySelector('form'), tsel = function () { return ALLT; };
     f.querySelectorAll('input[name=n]').forEach(function (r) { r.addEventListener('change', function () { stage.querySelectorAll('.tm-name').forEach(function (l, k) { l.hidden = k >= +r.value; }); }); });
     f.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -476,7 +485,7 @@
       loading();
       need(packs).then(function () {
         var r = rng('team' + Math.random()), total = n * per, qs = [];
-        qs = mixQs(topics, total, r);
+        qs = mixAll(total, r);
         markSeen(qs);
         S = { mode: 'team', pack: 'team', today: ctToday(), qs: qs.map(function (q) { return { q: q, order: shuffle(q.options.map(function (o, i) { return i; }), r) }; }), i: 0, score: 0, pts: 0, combo: 0, best: 0, marks: [], T: 25,
               teams: names.slice(0, n).map(function (nm, k) { return { name: nm, col: TEAM_COL[k], pts: 0, ok: 0 }; }) };

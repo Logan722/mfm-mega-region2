@@ -19,30 +19,8 @@
   X.closers.push(clearAll);
 
   /* ---------------------------------------------------------------- the ten games */
-  var ICON = {
-    bquiz: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" class="w"/><path d="M25 25a7 7 0 1 1 10 6.3c-2 1-3 2.4-3 4.7v1" class="s3"/><circle cx="32" cy="44" r="2.6" class="d"/><circle cx="50" cy="14" r="5" class="f"/></svg>',
-    word: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="14" height="14" rx="3" class="w"/><rect x="25" y="14" width="14" height="14" rx="3" class="f"/><rect x="42" y="14" width="14" height="14" rx="3" class="w"/><rect x="8" y="34" width="14" height="14" rx="3" class="o"/><rect x="25" y="34" width="14" height="14" rx="3" class="w"/><rect x="42" y="34" width="14" height="14" rx="3" class="f"/></svg>',
-    connect: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="22" height="10" rx="3" class="f"/><rect x="34" y="8" width="22" height="10" rx="3" class="f"/><rect x="8" y="22" width="22" height="10" rx="3" class="w"/><rect x="34" y="22" width="22" height="10" rx="3" class="w2"/><rect x="8" y="36" width="22" height="10" rx="3" class="w2"/><rect x="34" y="36" width="22" height="10" rx="3" class="w"/><rect x="8" y="50" width="48" height="8" rx="3" class="o"/></svg>',
-    wheel: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="34" r="22" class="w"/><circle cx="32" cy="18" r="6" class="f"/><circle cx="47" cy="29" r="6" class="f"/><circle cx="42" cy="47" r="6" class="d"/><circle cx="22" cy="47" r="6" class="d"/><circle cx="17" cy="29" r="6" class="f"/><path d="M32 18 47 29 42 47" class="s2"/></svg>',
-    dverse: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 14c8-3 16-2 22 3 6-5 14-6 22-3v36c-8-3-16-2-22 3-6-5-14-6-22-3Z" class="w"/><path d="M32 17v36" class="s2"/><circle cx="46" cy="44" r="9" class="f"/><path d="M46 39v5l3 2" class="s2"/></svg>',
-    whoami: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="24" r="12" class="w"/><path d="M12 56c0-11 9-18 20-18s20 7 20 18Z" class="w"/><path d="M28 21a4 4 0 1 1 5.7 3.6c-1 .5-1.7 1.3-1.7 2.4" class="s3"/><circle cx="32" cy="31" r="1.8" class="d"/><circle cx="50" cy="12" r="5" class="f"/></svg>',
-    build: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="10" width="30" height="11" rx="3" class="w"/><rect x="26" y="26" width="30" height="11" rx="3" class="f"/><rect x="8" y="42" width="22" height="11" rx="3" class="w2"/><rect x="34" y="42" width="22" height="11" rx="3" class="o"/></svg>',
-    imposter: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="18" cy="26" r="8" class="w"/><circle cx="46" cy="26" r="8" class="w"/><circle cx="32" cy="20" r="9" class="f"/><path d="M4 54c0-9 6-15 14-15s14 6 14 15ZM32 54c0-9 6-15 14-15s14 6 14 15Z" class="w"/><path d="M18 56c0-10 6-17 14-17s14 7 14 17Z" class="f"/><path d="M28 19h8" class="s2"/></svg>',
-    charades: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="6" width="32" height="20" rx="4" class="f"/><circle cx="32" cy="38" r="10" class="w"/><path d="M14 60c0-9 8-14 18-14s18 5 18 14Z" class="w"/><path d="M8 30l6 4M56 30l-6 4" class="s"/></svg>',
-    pairs: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 40h52l-6 12H12Z" class="w"/><path d="M14 40V26h36v14" class="w2"/><path d="M22 26l10-10 10 10" class="f"/><circle cx="24" cy="33" r="3" class="d"/><circle cx="40" cy="33" r="3" class="d"/></svg>'
-  };
-  var G = {
-    bquiz: { name: 'Bible Quiz', line: 'Daily 10, pick your topics, a 60-second speed round, kids questions or a team battle.', badges: ['Daily', 'Solo', 'Teams'], lb: 1 },
-    word: { name: 'Word of the Day', line: 'Guess the Bible word in six tries, then read the verse it comes from.', badges: ['Daily', 'Solo'], lb: 1 },
-    connect: { name: 'Bible Connections', line: '16 words, 4 hidden groups. Find them with 4 mistakes or fewer.', badges: ['Daily', 'Solo', 'Teams'], lb: 1, team: 1 },
-    wheel: { name: 'Bible Word Connect', line: 'Swipe the letters to make Bible words and unlock a verse.', badges: ['Daily', 'Solo', 'Teams'], lb: 1, team: 1 },
-    dverse: { name: 'Daily Verse', line: 'Read today’s verse and find where it is: the book, then the chapter, in 5 tries.', badges: ['Daily', 'Solo', 'Teams'], lb: 1, team: 1 },
-    whoami: { name: 'Who Am I?', line: 'Clues about a Bible person, one at a time. The fewer you need, the more you score.', badges: ['Solo', 'Teams'], lb: 1, team: 1 },
-    build: { name: 'Verse Builder', line: 'A verse in pieces. Put it back in order against the clock.', badges: ['Solo', 'Teams'], lb: 1, team: 1 },
-    imposter: { name: 'Bible Imposter', line: 'Everyone sees the same Bible word except one. Give clues, then find the imposter.', badges: ['Group', '3+ players'], group: 1 },
-    charades: { name: 'Bible Charades', line: 'Phone on your forehead. Your team acts it out. Guess as many as you can in 60 seconds.', badges: ['Group', 'Teams'], group: 1 },
-    pairs: { name: 'Noah’s Pairs', line: 'Find the animals two by two. Made for children, fun for everyone.', badges: ['Kids', 'Solo', 'Teams'], lb: 1, team: 1 }
-  };
+  var ICON = window.GOTW.ICON;
+  var G = window.GOTW.G;
   var HOW = {
     bquiz: ['Choose a way to play: Daily 10, your own topics, the 60-second speed round, kids questions or a team battle.', 'Answer before the timer runs out. Faster answers earn bonus points.', 'Every answer shows its scripture or source, so you learn as you play.'],
     word: ['Type a 5-letter Bible word and press Enter.', 'Green means the right letter in the right place; yellow means the letter is in the word but somewhere else.', 'You have six tries. Then read the verse the word comes from.'],
@@ -75,9 +53,7 @@
 
   /* ---------------------------------------------------------------- Game of the Week */
   /* weeks 1-8: each scorable game gets one turn; after that the server picks from play stats (see leaderboard.mjs) */
-  var ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs'], ROT_START = '2026-11-23';
-  function weekIdx() { return Math.max(0, Math.round((Date.parse(X.mondayCT()) - Date.parse(ROT_START)) / (7 * 864e5))); }
-  X.gotwId = function () { return (X.serverGotw && G[X.serverGotw]) ? X.serverGotw : ORDER[weekIdx() % ORDER.length]; };
+  X.gotwId = function () { window.GOTW.server = X.serverGotw || null; return window.GOTW.id(); };
   X.paintGotw = function () {
     var id = X.gotwId(), g = G[id];
     document.querySelectorAll('[data-gotw-name]').forEach(function (e) { e.textContent = g.name; });
@@ -201,9 +177,9 @@
 
   /* ================================================================ Bible Quiz (hub for the quiz modes in play2.js) */
   X.games.bquiz = function () {
-    ensureOpen(); setS({ title: 'Bible Quiz' });
-    var M = [['daily', 'Today&rsquo;s Daily 10', 'Same 10 questions for everyone today'], ['quiz', 'Pick your topics', 'The Bible, the G.O.&rsquo;s books, Pastor Oni&rsquo;s books, MFM and more'], ['blitz', '60-second speed round', 'True or false, as many as you can'], ['kids', 'Kids questions', 'Easier questions, more time'], ['team', 'Team battle', '2 to 4 teams on one phone or TV']];
-    frame('<div class="st-card gx-choose"><div class="gx-ico c-bquiz">' + ICON.bquiz + '</div><p class="st-k">' + (X.gotwId() === 'bquiz' ? 'Game of the Week' : 'Play &amp; Grow') + '</p><h2 class="st-h">Bible Quiz</h2><p class="st-fine">Every answer shows its scripture or source.</p>' + howList('bquiz') + '<div class="gx-modes">' +
+    ensureOpen(); setS({ title: 'Quiz' });
+    var M = [['daily', 'Today&rsquo;s Daily 10', 'Same 10 questions for everyone today'], ['quiz', 'A fresh quiz', '10 new questions from everything: the Bible, MFM, the G.O., our pastors&rsquo; books and our messages'], ['blitz', '60-second speed round', 'True or false, as many as you can'], ['kids', 'Kids questions', 'Easier questions, more time'], ['team', 'Team battle', '2 to 4 teams on one phone or TV']];
+    frame('<div class="st-card gx-choose"><div class="gx-ico c-bquiz">' + ICON.bquiz + '</div><p class="st-k">' + (X.gotwId() === 'bquiz' ? 'Game of the Week' : 'Play &amp; Grow') + '</p><h2 class="st-h">Quiz</h2><p class="st-fine">Every answer shows its scripture or source.</p>' + howList('bquiz') + '<div class="gx-modes">' +
       M.map(function (m) { return '<button type="button" class="gx-mode' + (m[0] === 'team' ? ' team' : '') + '" data-q="' + m[0] + '"><b>' + m[1] + '</b><small>' + m[2] + '</small></button>'; }).join('') + '</div></div>');
     bindAll('[data-q]', function (b) { X.set(null); X.start(b.getAttribute('data-q')); });
   };
@@ -217,7 +193,7 @@
       var day = today(), daily = !team && !practice, idx = daily ? (X.dayNo(day) - 1) % d.p.length : Math.floor(Math.random() * d.p.length), P = d.p[idx];
       var key = 'mfm-cn-' + day, sv = daily ? ls(key) : null, r = rnd('cn' + day + idx);
       var words = []; P.forEach(function (g, gi) { g[1].forEach(function (w) { words.push({ w: w, g: gi }); }); });
-      setS({ title: daily ? 'Bible Connections · #' + X.dayNo(day) : practice ? 'Connections practice' : 'Bible Connections', today: day, practice: !!practice, d: d, P: P, words: shuffle(words, r), found: sv ? sv.found : [], miss: sv ? sv.miss : 0, hist: sv ? sv.hist : [], tried: sv ? sv.tried || [] : [], sel: [], team: team, daily: daily, key: key, n: 4 });
+      setS({ title: daily ? 'Connections · #' + X.dayNo(day) : practice ? 'Connections practice' : 'Connections', today: day, practice: !!practice, d: d, P: P, words: shuffle(words, r), found: sv ? sv.found : [], miss: sv ? sv.miss : 0, hist: sv ? sv.hist : [], tried: sv ? sv.tried || [] : [], sel: [], team: team, daily: daily, key: key, n: 4 });
       var s = S(); s.pts = cnPts(s);
       if (sv && sv.done) cnEnd(true); else cnFrame();
     }, loadFail);
@@ -257,7 +233,7 @@
   function cnEnd(again) {
     var s = S(), won = s.found.length === 4, d = s.d;
     s.score = s.found.length; s.pts = cnPts(s);
-    var all = s.P.map(function (g, gi) { var c = d.cats[g[0]]; return '<div class="cn-found ' + CN_COL[c.l] + (s.found.indexOf(gi) < 0 ? ' missed' : '') + '"><b>' + esc(c.n) + '</b><span>' + g[1].map(esc).join(', ') + '</span><a href="' + esc(c.u) + '" target="_blank" rel="noopener">' + esc(c.r) + ' (KJV)</a></div>'; }).join('');
+    var all = s.P.map(function (g, gi) { var c = d.cats[g[0]]; return '<div class="cn-found ' + CN_COL[c.l] + (s.found.indexOf(gi) < 0 ? ' missed' : '') + '"><b>' + esc(c.n) + '</b><span>' + g[1].map(esc).join(', ') + '</span><a href="' + esc(c.u) + '" target="_blank" rel="noopener">' + esc(c.r) + (/biblegateway/.test(c.u) ? ' (KJV)' : '') + '</a></div>'; }).join('');
     var grid = s.hist.map(function (r) { return r.map(function (l) { return CN_EMO[l]; }).join(''); }).join('\n');
     if (s.team) { s.team.done(s.pts, won, '<div class="cn-all">' + all + '</div>'); return; }
     result({ id: 'connect', k: s.title, lb: again || s.practice ? null : 'connect', daily: !s.practice, win: won, big: '<span class="gx-num">' + s.found.length + '<small>/4</small></span><span class="gx-cap">groups found</span>', rank: won ? (s.miss === 0 ? 'Perfect!' : 'Well done!') : 'So close!', msg: won ? 'You found every group' + (s.miss ? ' with ' + s.miss + (s.miss === 1 ? ' mistake.' : ' mistakes.') : ' with no mistakes.') : 'Here are the four groups.',
@@ -272,7 +248,7 @@
       var day = today(), base = (X.dayNo(day) - 1) * 3, list;
       if (team || practice) list = [d[Math.floor(Math.random() * d.length)]];
       else list = [0, 1, 2].map(function (j) { return d[(base + j) % d.length]; });
-      setS({ title: team ? 'Bible Word Connect' : practice ? 'Word Connect practice' : 'Bible Word Connect · #' + X.dayNo(day), today: day, list: list, w: 0, team: team, practice: !!practice, totalT: 0, foundT: 0, bonusN: 0, hints: 0 });
+      setS({ title: team ? 'Word Connect' : practice ? 'Word Connect practice' : 'Word Connect · #' + X.dayNo(day), today: day, list: list, w: 0, team: team, practice: !!practice, totalT: 0, foundT: 0, bonusN: 0, hints: 0 });
       whLevel();
     }, loadFail);
   }
@@ -489,12 +465,12 @@
   }
 
   /* ================================================================ Bible Imposter (group game, no leaderboard) */
-  function catChips(sel) { return '<fieldset class="tm-n gx-cats"><legend>Words from</legend>' + ['Mix', 'People', 'Places', 'Things', 'Stories'].map(function (c) { return '<label><input type="radio" name="cat" value="' + c + '"' + (sel === c ? ' checked' : '') + '><span>' + c + '</span></label>'; }).join('') + '</fieldset>'; }
-  function wordsFor(d, cat) { if (cat === 'Mix') return [].concat(d.People, d.Places, d.Things, d.Stories); return d[cat]; }
+  function catChips(sel) { return '<fieldset class="tm-n gx-cats"><legend>Words from</legend>' + ['Mix', 'People', 'Places', 'Things', 'Stories', 'MFM'].map(function (c) { return '<label><input type="radio" name="cat" value="' + c + '"' + (sel === c ? ' checked' : '') + '><span>' + c + '</span></label>'; }).join('') + '</fieldset>'; }
+  function wordsFor(d, cat) { if (cat === 'Mix') return [].concat(d.People, d.Places, d.Things, d.Stories, d.MFM || []); return d[cat] || []; }
   X.games.imposter = function () {
     ensureOpen(); var last = ls('mfm-imp') || { n: 4, cat: 'Mix', hint: true };
-    setS({ title: 'Bible Imposter' });
-    frame('<div class="st-card st-team imp"><div class="gx-ico c-imposter">' + ICON.imposter + '</div><p class="st-k">A group game &middot; one phone</p><h2 class="st-h">Bible Imposter</h2>' + howList('imposter') +
+    setS({ title: 'Imposter' });
+    frame('<div class="st-card st-team imp"><div class="gx-ico c-imposter">' + ICON.imposter + '</div><p class="st-k">A group game &middot; one phone</p><h2 class="st-h">Imposter</h2>' + howList('imposter') +
       '<form class="st-form" autocomplete="off"><fieldset class="tm-n"><legend>How many players?</legend><div class="gx-step"><button type="button" data-d="-1" aria-label="Fewer players">&minus;</button><b class="imp-n">' + last.n + '</b><button type="button" data-d="1" aria-label="More players">+</button></div></fieldset>' + catChips(last.cat) +
       '<label class="gx-check"><input type="checkbox" name="hint"' + (last.hint ? ' checked' : '') + '> Tell the imposter the category</label><button class="pg-btn gold wide xl" type="submit">Deal the cards</button></form></div>');
     var n = last.n, f = document.querySelector('#play-app form');
@@ -504,7 +480,7 @@
       load('words').then(function (d) {
         var used = ls('mfm-imp-used') || [], pool = wordsFor(d, cat).filter(function (w) { return used.indexOf(w) < 0; }); if (!pool.length) { used = []; pool = wordsFor(d, cat); }
         var word = pool[Math.floor(Math.random() * pool.length)]; ls('mfm-imp-used', used.concat([word]).slice(-60));
-        var realCat = cat === 'Mix' ? ['People', 'Places', 'Things', 'Stories'].filter(function (c) { return d[c].indexOf(word) >= 0; })[0] : cat;
+        var realCat = cat === 'Mix' ? ['People', 'Places', 'Things', 'Stories', 'MFM'].filter(function (c) { return (d[c] || []).indexOf(word) >= 0; })[0] : cat;
         impDeal({ n: n, word: word, cat: realCat, hint: hint, imp: Math.floor(Math.random() * n), first: Math.floor(Math.random() * n), i: 0 });
       }, loadFail);
     });
@@ -525,7 +501,7 @@
       frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res imp-end"><p class="st-k">The imposter was</p><h2 class="st-rank">Player ' + (G1.imp + 1) + '</h2><p class="st-msg">The word was <b>' + esc(G1.word) + '</b>.</p><p class="st-fine">If the group caught the imposter, they can still win by guessing the word.</p>' +
         '<div class="st-acts"><button type="button" class="pg-btn gold imp-again">Play again</button><button type="button" class="pg-btn light imp-set">Change players or words</button></div><div class="st-acts two"><button type="button" class="pg-btn ghost gx-more">Play another game</button></div></div>', 'done');
       X.confetti();
-      bind('.imp-again', function () { var last = ls('mfm-imp'); load('words').then(function (d) { var used = ls('mfm-imp-used') || [], pool = wordsFor(d, last.cat).filter(function (w) { return used.indexOf(w) < 0; }); if (!pool.length) { used = []; pool = wordsFor(d, last.cat); } var word = pool[Math.floor(Math.random() * pool.length)]; ls('mfm-imp-used', used.concat([word]).slice(-60)); var realCat = last.cat === 'Mix' ? ['People', 'Places', 'Things', 'Stories'].filter(function (c) { return d[c].indexOf(word) >= 0; })[0] : last.cat; impDeal({ n: G1.n, word: word, cat: realCat, hint: G1.hint, imp: Math.floor(Math.random() * G1.n), first: Math.floor(Math.random() * G1.n), i: 0 }); }); });
+      bind('.imp-again', function () { var last = ls('mfm-imp'); load('words').then(function (d) { var used = ls('mfm-imp-used') || [], pool = wordsFor(d, last.cat).filter(function (w) { return used.indexOf(w) < 0; }); if (!pool.length) { used = []; pool = wordsFor(d, last.cat); } var word = pool[Math.floor(Math.random() * pool.length)]; ls('mfm-imp-used', used.concat([word]).slice(-60)); var realCat = last.cat === 'Mix' ? ['People', 'Places', 'Things', 'Stories', 'MFM'].filter(function (c) { return (d[c] || []).indexOf(word) >= 0; })[0] : last.cat; impDeal({ n: G1.n, word: word, cat: realCat, hint: G1.hint, imp: Math.floor(Math.random() * G1.n), first: Math.floor(Math.random() * G1.n), i: 0 }); }); });
       bind('.imp-set', X.games.imposter);
       bind('.gx-more', function () { X.close(); X.scrollToId('games'); });
     });
@@ -542,7 +518,7 @@
   function chTurn(T) {
     if (T.turn >= T.teams.length * T.per) { teamEnd(T, null); return; }
     var k = T.turn % T.teams.length, t = T.teams[k];
-    setS({ title: 'Bible Charades', pts: t.pts });
+    setS({ title: 'Charades', pts: t.pts });
     frame(teamBar(T, k) + '<div class="st-card tm-pass" style="--tc:' + t.col + '"><p class="st-k">Turn ' + (Math.floor(T.turn / T.teams.length) + 1) + ' of ' + T.per + ' &middot; ' + T.opt.secs + ' seconds</p><span class="tm-flag" aria-hidden="true"></span><h2 class="st-h">' + esc(t.name) + '</h2><p class="st-fine">Choose who will guess. They hold the phone to their forehead, screen facing the team. The team taps <b>Got it</b> or <b>Pass</b>.</p><button type="button" class="pg-btn gold wide xl" data-focus>Start</button></div>', 'team');
     bind('.tm-pass .pg-btn', function () {
       var n = 3; frame('<div class="st-card ch-count"><b>' + n + '</b></div>', 'team ch-on');
