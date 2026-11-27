@@ -77,7 +77,7 @@
   f.innerHTML='<div class="fg">'+first+
     '<div class="col"><b>Explore</b><a href="/about">About</a><a href="/branches">Find a Church</a><a href="/ministries">Ministries</a><a href="/events">Events</a></div>'+
     '<div class="col"><b>Ministries</b><a href="/women">Women Foundation</a><a href="/gen218">Gen218 Singles</a><a href="https://www.mfmmegaregion2yc.org/" target="_blank" rel="noopener">Youth Church</a><a href="/live">Watch</a></div>'+
-    '<div class="col"><b>Connect</b><a href="/#new-here">New Here?</a><a href="/reach-out?subject=prayer">Prayer Request</a><a href="/reach-out?subject=general">Reach Out to Us</a><a href="/links">Contact &amp; Social</a><a href="/privacy">Privacy</a></div>'+
+    '<div class="col"><b>Connect</b><a href="/#new-here">New Here?</a><a href="/reach-out/prayer">Prayer Request</a><a href="/reach-out/contact">Reach Out to Us</a><a href="/links">Contact &amp; Social</a><a href="/privacy">Privacy</a></div>'+
     '</div><div class="fb"><span>&copy; 2026 MFM Mega Region 2 USA</span><span>Prayer &middot; Deliverance &middot; The Word</span></div>';
   var form=f.querySelector('form');if(!form)return;
   var msg=form.querySelector('.msg'),btn=form.querySelector('button');

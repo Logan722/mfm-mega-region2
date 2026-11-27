@@ -32,3 +32,25 @@
       '<div class="foot"><a class="ek-btn ghost" href="https://wa.me/?text=' + encodeURIComponent(share) + '" target="_blank" rel="noopener">Share on WhatsApp</a></div>';
   }).catch(function () {});
 })();
+/* Watch & grow: keep the message title on one line on computers (shrinks to fit, never below 28px; a title
+   too long even then wraps to two lines at its normal size) */
+(function () {
+  var h = document.getElementById('rf-latest-title');
+  if (!h) return;
+  var busy = false;
+  function fit() {
+    if (busy) return; busy = true;
+    h.style.fontSize = ''; h.classList.remove('one-line');
+    if (window.innerWidth >= 901) {
+      h.classList.add('one-line');
+      var size = parseFloat(getComputedStyle(h).fontSize);
+      while (h.scrollWidth > h.clientWidth + 1 && size > 28) { size -= 1; h.style.fontSize = size + 'px'; }
+      if (h.scrollWidth > h.clientWidth + 1) { h.style.fontSize = ''; h.classList.remove('one-line'); }
+    }
+    busy = false;
+  }
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
+  if (window.MutationObserver) new MutationObserver(function () { if (!busy) fit(); }).observe(h, { childList: true, characterData: true, subtree: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
+})();

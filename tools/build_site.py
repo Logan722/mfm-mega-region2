@@ -331,7 +331,8 @@ SITEMAP_TOP = [('/', 'index.html', 'weekly', '1.0'), ('/about', 'about.html', 'm
                ('/branches', 'branches.html', 'monthly', '0.8'), ('/gallery', 'gallery.html', 'monthly', '0.7'), ('/media', 'media.html', 'weekly', '0.8'),
                ('/live', 'live.html', 'weekly', '0.8'), ('/ministries', 'ministries.html', 'monthly', '0.7'), ('/women', 'women.html', 'monthly', '0.7'),
                ('/gen218', 'gen218.html', 'monthly', '0.7'), ('/links', 'links.html', 'monthly', '0.5'),
-               ('/play', 'play.html', 'daily', '0.7'), ('/testimonies', 'testimonies.html', 'monthly', '0.6'), ('/reach-out', 'reach-out.html', 'yearly', '0.6')]
+               ('/play', 'play.html', 'daily', '0.7'), ('/testimonies', 'testimonies.html', 'monthly', '0.6'), ('/reach-out', 'reach-out.html', 'yearly', '0.6'),
+               ('/reach-out/prayer', 'reach-out/prayer.html', 'yearly', '0.6'), ('/reach-out/testimony', 'reach-out/testimony.html', 'yearly', '0.6'), ('/reach-out/contact', 'reach-out/contact.html', 'yearly', '0.6')]
 # Gallery album pages ('See all') — picked up automatically
 SITEMAP_TOP += [('/' + Path(f).stem, Path(f).name, 'monthly', '0.6') for f in sorted(Path(__file__).resolve().parent.parent.glob('gallery-*.html'))]
 
@@ -373,6 +374,10 @@ def main():
     import home_gallery                            # homepage gallery section <- /gallery albums (newest first)
     home_gallery.build(ROOT, write)
     build_grids(ev)
+    import share_meta                              # link previews + /reach-out/prayer|testimony|contact
+    share_meta.build_share(ROOT, write)
+    (ROOT / 'reach-out').mkdir(exist_ok=True)
+    share_meta.build_reach_pages(ROOT, write)
     live = build_details(ev)
     gone = build_redirects(live, ev)
     ended = {g.replace('.html', '') for g in gone}

@@ -530,3 +530,21 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 .ek-page #reach-out .eyebrow{justify-content:center}
 .ek-page #reach-out .eyebrow::after{content:"";width:26px;height:1px;background:currentColor}
 .ek-page #reach-out h2:focus{outline:none}
+/* Footer reach-out row (Dawn, Nov 26 21:02): heading the same size as the footer's ministry name (Fraunces 500, 20px); smaller buttons */
+.site-footer .foot-reach.fr-wide{padding:24px 0 26px!important}
+.site-footer .foot-reach.fr-wide p,.site-footer .footer-identity .foot-reach.fr3 p{font:500 20px/1.25 Fraunces,Georgia,serif!important;letter-spacing:0!important;margin:0 0 12px!important}
+.site-footer .foot-reach.fr-wide a,.site-footer .footer-identity .foot-reach.fr3 a{min-height:40px!important;padding:8px 16px!important;font:600 14px/1.2 'Inter Tight',sans-serif!important}
+.site-footer .foot-reach.fr-wide .btns{gap:10px!important}
+/* Edge to edge (Dawn, Nov 26 21:02): Watch & grow and Testimonies line up with the logo (left) and the Request Prayer button (right), like the hero chip */
+:root{--edge:24px}
+@media(min-width:1200px){:root{--edge:clamp(32px,3.2vw,64px)}}
+@media(min-width:601px){
+ .media-band .media-band-grid{width:auto!important;max-width:none!important;margin-left:var(--edge)!important;margin-right:var(--edge)!important}
+ .tsa .wrap{width:auto!important;max-width:none!important;margin-left:var(--edge)!important;margin-right:var(--edge)!important}
+}
+@media(min-width:901px){
+ .media-band .media-band-grid{grid-template-columns:1.3fr 1fr;gap:clamp(36px,4vw,72px)}
+
+ .media-band .media-band-grid>*{min-width:0}
+ .media-band h2#rf-latest-title.one-line{white-space:nowrap;display:block;-webkit-line-clamp:unset;overflow:hidden}
+}

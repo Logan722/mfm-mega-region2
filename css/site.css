@@ -2696,3 +2696,9 @@ html body .msg-related-h{text-align:center}
 .site-footer .footer-identity>picture img{width:64px;height:64px;object-fit:contain}
 /* About closing: the outlined second button was white on white (invisible) — navy outline on light sections (Nov 8 2026) */
 .about-closing .button.light{color:var(--navy,#142240);border-color:var(--navy,#142240)}.about-closing .button.light:hover{background:var(--navy,#142240);color:#fff}
+
+/* Footer (Dawn, Nov 26 21:04 — option A): the name already sits in the menu bar, so the footer keeps a small logo and lets the verse lead (name kept for screen readers) */
+.site-footer .footer-identity{grid-template-columns:1fr!important;gap:0!important}
+.site-footer .footer-identity>div:not(.foot-reach){position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;margin:-1px!important;padding:0!important}
+.site-footer .footer-identity>picture,.site-footer .footer-identity>picture img,.site-footer .footer-identity>img{width:48px!important;height:48px!important}
+.site-footer .footer-identity blockquote{margin:14px 0 0!important}
