@@ -758,3 +758,13 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
  .section.home-gallery{padding-top:36px!important}
 }
 @media(max-width:760px){.ev2 .ev2-head{gap:0!important}.ev2 .ev2-head p{margin-top:10px!important}}
+
+/* Reach Out: the page heading is the H1 (QC 2026-11-26) */
+.dz .r4 h1{text-wrap:balance;font-size:clamp(36px,4.2vw,60px);font-weight:500;line-height:1.06;margin:16px 0 14px;color:#fff}
+.ek-page #reach-out h1:focus{outline:none}
+#reach-out h1{scroll-margin-top:96px}
+
+/* QC 2026-11-26: contrast (WCAG AA) on testimonies small text */
+.n5 .cnt{color:#5f6776}
+.dz .by{color:#5f6776}
+.n5 .tc:first-child .by,.n5 .tc:first-child .by span{color:#c9d3e3}

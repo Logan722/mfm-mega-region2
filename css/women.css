@@ -53,7 +53,7 @@ main.wf .message-card>div>div{display:flex;justify-content:center;flex-wrap:wrap
 .w1-pil{background:var(--cream)}
 .w1-pil .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .w1-pil .values-grid article{background:#fff;border-top:3px solid var(--gold);padding:34px 28px;border-radius:0 0 16px 16px;box-shadow:0 12px 30px rgba(20,34,64,.06)}
-.w1-pil .values-grid b{font:600 30px Fraunces,serif;color:var(--gold)}
+.w1-pil .values-grid b{font:600 30px Fraunces,serif;color:#8a6414}
 .w1-pil .values-grid h3{font-size:24px;margin:10px 0 8px}.w1-pil .values-grid p{color:var(--muted);margin:0;line-height:1.6;font-size:15px}
 .w1-mo{position:relative;min-height:620px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .w1-mo .mos{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -83,7 +83,7 @@ main.wf .message-card>div>div{display:flex;justify-content:center;flex-wrap:wrap
 .w5 .pils .values-grid{width:100%;padding:2px 16px 6px!important;scroll-padding:0 16px}
 .w5 .pils .values-grid>*{flex:0 0 82%!important;max-width:82%!important}
 .w5 .pils article{background:var(--cream)!important;border:0!important;border-top:3px solid var(--gold)!important;border-radius:0 0 14px 14px;padding:22px 16px!important;display:flex;flex-direction:column;align-items:center;gap:6px}
-.w5 .pils article b{font:600 28px Fraunces,serif;color:var(--gold)}
+.w5 .pils article b{font:600 28px Fraunces,serif;color:#8a6414}
 .w5 .pils article h3{font-size:20px;margin:0;padding:0}
 .w5 .pils article p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 .w5 .photo{padding:0;border:0;min-height:280px}

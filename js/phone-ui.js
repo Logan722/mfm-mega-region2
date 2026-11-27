@@ -5,6 +5,7 @@
   function swipe(sel) {
     [].forEach.call(document.querySelectorAll(sel), function (g) {
       if (g.getAttribute('data-sw')) return; g.setAttribute('data-sw', '1');
+      if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { g.tabIndex = 0; g.setAttribute('role', 'region'); g.setAttribute('aria-label', 'Swipe for more'); }
       var cards = [].slice.call(g.children), dots = document.createElement('div');
       if (cards.length < 2) return;
       dots.className = 'sw-dots';
