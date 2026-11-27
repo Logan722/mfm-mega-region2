@@ -1310,3 +1310,9 @@ html body .msg-related-h{text-align:center}
  #lvGrid .message-card>div>div{display:none!important}
  #lvGrid .message-card>div{padding:12px 10px!important}
 }
+
+/* Readability pass (Dawn, Nov 27 2026): text on gold/fire backgrounds meets WCAG AA */
+.nav-links a.nav-cta,.nav-links a.nav-cta:hover,.nav-links a.nav-cta.active,.drawer-nav a.drawer-cta,.drawer-nav a.drawer-cta:hover{color:#142240}
+.scripture-band span{color:#fff3d6}
+.media-band .eyebrow.light,#rf-latest-by{color:#fff3d6}
+.media-band #rf-latest-by{color:#fff3d6!important}

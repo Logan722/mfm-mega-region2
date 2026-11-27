@@ -2705,3 +2705,9 @@ html body .msg-related-h{text-align:center}
 /* Footer (Dawn, Nov 26 21:56): no logo in the footer at all; the verse opens it */
 .site-footer .footer-identity>picture,.site-footer .footer-identity>img{display:none!important}
 .site-footer .footer-identity blockquote{margin:0!important}
+
+/* Readability pass (Dawn, Nov 27 2026): text on gold/fire backgrounds meets WCAG AA */
+.nav-links a.nav-cta,.nav-links a.nav-cta:hover,.nav-links a.nav-cta.active,.drawer-nav a.drawer-cta,.drawer-nav a.drawer-cta:hover{color:#142240}
+.scripture-band span{color:#fff3d6}
+.media-band .eyebrow.light,#rf-latest-by{color:#fff3d6}
+.media-band #rf-latest-by{color:#fff3d6!important}

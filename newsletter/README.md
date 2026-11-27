@@ -58,3 +58,7 @@ rich message (title, teaser, "Inside:" list, "👉 Tap the link above to read.")
 `{{ mirror }}` inside an encoded href. **If the issue's title or contents change, update the share text too**
 (Issue #4 was retitled after its share text was written; fixed Oct 21 2026). The floating WhatsApp button on
 the issue page uses the same text. Newsletter pages get their header (back to All issues / Home) from `js/nav.js`.
+
+## Web page headings (Nov 27 2026)
+Each issue page already has the page title as its only `<h1>` (the hero). Inside the embedded email copy, use `<h2>` for the email masthead title (same inline style), so the page never has two `<h1>`s.
+`template.html`, `sample-issue-A.html` and `sample-issue-B.html` stay in the repo for composing issues but are redirected to /newsletter for visitors (tools/retired-pages.json).
