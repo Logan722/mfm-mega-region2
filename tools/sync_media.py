@@ -560,7 +560,16 @@ def live_title(raw, vid=''):
     segs = [x.strip() for x in re.sub(r'^\s*(?:\U0001F534\s*)?LIVE\s*\|\s*', '', raw, flags=re.I).split('|') if x.strip()]
     if len(segs) > 1 and re.match(r'(?:Dr\.?|Pastor|Rev\.?|Bishop)\b', segs[1]):
         segs = segs[:1] + segs[2:]
-    return clean_title('LIVE | ' + ' | '.join(segs))
+    return one_date_style(clean_title('LIVE | ' + ' | '.join(segs)))
+
+def one_date_style(t):
+    """Dawn, Nov 27: one date style in titles: '12-01-2026' and 'December 3, 2026' both become 'Tuesday, December 1'."""
+    d = title_date(t)
+    if not d:
+        return t
+    t = re.sub(r'\b\d{1,2}-\d{1,2}-20\d\d\b', nice_date(d, year=False), t, count=1)
+    t = re.sub(r'\b(?:(?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,\s+)?(' + '|'.join(MONTHS) + r')\s+\d{1,2},?\s+20\d\d\b', nice_date(d, year=False), t, count=1, flags=re.I)
+    return t
 
 MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
 WEEKLY_TIME = {'Healing & Deliverance Hour': '7:00 PM CT', 'Open Heaven Encounter': '6:00 PM CT'}

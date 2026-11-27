@@ -2790,3 +2790,250 @@ html body .bp-badge--hq:hover,
 html body .mfm-live a.go:hover,
 html body .nl-foot .su button:hover,
 html body .mfm-pop-btn:hover{background:#22355f!important;color:#fff!important}
+
+/* ===================== STYLE SYSTEM (Dawn, Nov 27 2026: one site, one set of styles) =====================
+   Buttons A (pill; 52 / 44 / 36px), Titles A (Fraunces 500), Labels A (clear text + gold lines), Corners A (16px),
+   Spacing A (104 / 80 / 56; phones 72 / 56 / 40). Game screens (.pg-*, #play-app) and the homepage hero headline keep their own look. */
+
+/* --- buttons: one shape, one type, three sizes --- */
+:is(.btn, a.button, button.button, .ek-btn, .nav-links a.nav-cta, .drawer-nav a.drawer-cta, .ev2-all a, .foot-reach .btns a, .btns > a,
+    .cs-form button, .hg-btn, .media-more a, .filter-selects button, .tsa-btn, .tsa-more, .sub-form button, .nl-links a, .mf-toggle,
+    .thanks-btn, .btn--primary, .btn--secondary, .btn--fire, .prayer-form button, .nl-form button, .nl-inline button):not(.pg-btn):not([hidden]):not(.mf-toggle):not(.nl-links a.home){
+  border-radius:999px!important;text-transform:none!important;letter-spacing:0!important;font-family:'Inter Tight',Inter,sans-serif!important;
+  font-weight:600!important;font-size:15px!important;line-height:1.2!important;min-height:44px!important;height:auto!important;
+  padding-top:0!important;padding-bottom:0!important;padding-left:22px!important;padding-right:22px!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px}
+:is(.home-hero .hero-actions .button, .acts .btn, .page-hero .hero-actions .button, .gen-moments .hero-actions .button):not(.pg-btn){min-height:52px!important;padding-left:26px!important;padding-right:26px!important}
+:is(.a5 .lead .mo, .w5 .lead .more, .nav-links a.nav-cta, .nl-links a){min-height:36px!important;font-size:14px!important;padding-left:16px!important;padding-right:16px!important;border-radius:999px!important;text-transform:none!important;letter-spacing:0!important}
+.nav-links a.nav-cta{min-height:40px!important}
+:is(.cats button, .mtabs button, .quick-filter-row button){border-radius:999px!important;min-height:40px!important;font-weight:600!important;text-transform:none!important;letter-spacing:0!important}
+.sub-form button{width:100%!important}
+
+/* --- titles: one voice (Fraunces 500), one scale --- */
+h1:not(.pg-word):not(.home-hero-content h1):not(#play-app h1):not([style*="font"]){font-family:Fraunces,Georgia,serif!important;font-weight:500!important;font-size:clamp(44px,6vw,88px)!important;line-height:1.04!important;letter-spacing:-.01em!important}
+h2:not(.pg-h2):not(#play-app h2):not(.legal-body h2):not(#rf-latest-title):not(.sub-h2):not([style*="font"]){font-family:Fraunces,Georgia,serif!important;font-weight:500!important;font-size:clamp(34px,4.2vw,52px)!important;line-height:1.08!important;letter-spacing:-.01em!important}
+#rf-latest-title{font-family:Fraunces,Georgia,serif!important;font-weight:500!important;letter-spacing:-.01em!important}
+.legal-body h2{font-family:Fraunces,Georgia,serif!important;font-weight:500!important}
+
+/* --- small labels: clear text (inherits the section's own text colour) with a gold line each side --- */
+:is(.eyebrow, span.k, p.k, .ev2-k, .tsa-k, .legal-eyebrow, .sub-eyebrow, .ek-eyebrow):not(.tp-word .k):not(.tp-quiz .k):not(.tsa-feat .tsa-k):not(.tsa-small .tsa-k):not(#play-app *){
+  display:inline-flex!important;align-items:center!important;justify-content:center;gap:12px!important;font-family:'Inter Tight',Inter,sans-serif!important;
+  font-size:12px!important;font-weight:700!important;letter-spacing:.18em!important;text-transform:uppercase!important;color:inherit!important;
+  background:none!important;-webkit-text-fill-color:currentColor}
+:is(.eyebrow, span.k, p.k, .ev2-k, .tsa-k, .legal-eyebrow, .sub-eyebrow, .ek-eyebrow):not(.tp-word .k):not(.tp-quiz .k):not(.tsa-feat .tsa-k):not(.tsa-small .tsa-k):not(#play-app *)::before,
+:is(.eyebrow, span.k, p.k, .ev2-k, .tsa-k, .legal-eyebrow, .sub-eyebrow, .ek-eyebrow):not(.tp-word .k):not(.tp-quiz .k):not(.tsa-feat .tsa-k):not(.tsa-small .tsa-k):not(#play-app *)::after{
+  content:""!important;display:block!important;flex:0 0 28px!important;width:28px!important;height:2px!important;background:#c9952c!important;position:static!important;margin:0!important;transform:none!important;opacity:1!important}
+/* card and meta labels: same type, no lines */
+:is(.tp-word .k, .tp-quiz .k, .tsa-feat .tsa-k, .tsa-small .tsa-k, .tc .tag, .message-card small, .lv-badge, .hb-k, .cd-lab, .hg-k, .wrap > .scheduled, .video-frame > span){
+  font-family:'Inter Tight',Inter,sans-serif!important;font-size:11px!important;font-weight:700!important;letter-spacing:.16em!important}
+/* scripture references and footer headings: 12px, clear */
+:is(.site-footer blockquote span, .site-footer .footer-grid b, .site-footer div > b, blockquote > cite, .dz-v > b, .nl-foot b){font-size:12px!important;letter-spacing:.16em!important;color:inherit!important}
+.site-footer blockquote span{display:block;margin-top:8px}
+
+/* --- corners: 16px on cards --- */
+:is(.message-card, .tsa-small, .tsa-feat, .wf .t, .wf .card, .wf .ld, .sub-card, .tc, .pn, .lv-card, .hg-big, .hg-alb, .ministry-card):not(#play-app *){border-radius:16px!important;overflow:hidden}
+
+/* --- spacing: 104 / 80 / 56 (phones 72 / 56 / 40); two plain sections in a row don't double their gap --- */
+:is(.ev2, .tsa, .section.a5, .media-band){padding-top:80px!important;padding-bottom:80px!important}
+.today{padding-top:56px!important;padding-bottom:56px!important}
+.section.wrap + .section.wrap, .section.wrap + .section.wrap.ministry-grid{padding-top:24px!important}
+@media (max-width:640px){
+  .section{padding-top:72px!important;padding-bottom:72px!important}
+  :is(.ev2, .tsa, .section.a5, .media-band){padding-top:56px!important;padding-bottom:56px!important}
+  .today{padding-top:40px!important;padding-bottom:40px!important}
+  .section.wrap + .section.wrap, .section.wrap + .section.wrap.ministry-grid{padding-top:16px!important}
+}
+
+/* badges sit on their own dark fill: white text */
+:is(.lv-badge, .video-frame > span, .evx-flyer > span, .hg-tag){color:#fff!important}
+/* --- small fixes --- */
+.ministry-grid article > div{text-align:center!important;align-items:center!important}
+.ministry-grid article > div > a{align-self:center}
+.legal-hero .container{text-align:center!important}
+.legal-hero .container > *{margin-left:auto!important;margin-right:auto!important}
+
+/* --- style system refinements: balanced headline lines; back-to-back plain sections share one gap --- */
+h1, h2, h3{text-wrap:balance}
+.section.wrap:has(+ .section.wrap){padding-bottom:48px!important}
+@media (max-width:640px){.section.wrap:has(+ .section.wrap){padding-bottom:32px!important}}
+:is(.eyebrow, span.k, p.k, .ev2-k, .tsa-k, .legal-eyebrow, .sub-eyebrow, .ek-eyebrow):not(.tp-word .k):not(.tp-quiz .k):not(.tsa-feat .tsa-k):not(.tsa-small .tsa-k):not(#play-app *).lt{color:#fff!important}
+.section.wrap:has(+ .section.wrap) .section-head:last-child{margin-bottom:0!important}
+/* the pill rule must not reveal controls that are meant to be hidden */
+@media (min-width:761px){html body .mf-toggle{display:none!important}}
+:is(.btn, a.button, button.button, .ek-btn, .hg-btn, .tsa-btn, .tsa-more, .media-more a, .filter-selects button, .mf-toggle, .thanks-btn, .btn--primary, .btn--secondary, .btn--fire)[hidden]{display:none!important}
+
+
+/* ===== Buttons stand out: solid fire orange, white words (Dawn, Nov 27: the 2px gold ring didn't stand out; chose A).
+   White on #c33f17 = 5.2:1. Second buttons stay outlined. Badges and selected tabs keep the navy + gold frame. ===== */
+html body .nav-links a.nav-cta,
+html body .drawer-nav a.drawer-cta,
+html body .btn--primary,
+html body .section--white a.btn--primary,
+html body .section--cream a.btn--primary,
+html body .thanks-btn--primary,
+html body .home-hero .hero-actions .button:not(.light),
+html body .ek-btn:not(.ghost),
+html body .nl-form button,
+html body .nl-inline button,
+html body .cs-form button,
+html body .foot-reach a.prim,
+html body .evx-actions a.button:not(a.button ~ a.button),
+html body .dz .btn:not(.ghost),
+html body .wf .btn:not(.dark):not(.ghost),
+html body .w5 .lead .more,
+html body .a5 .lead .mo,
+html body .gf .gen-moments .hero-actions .button:not(.light),
+html body .sub-form button,
+html body .btn-gold,
+html body .mfm-live a.go,
+html body .nl-foot .su button,
+html body .mfm-pop-btn,
+html body .btn--fire,
+html body .section--white a.btn--fire,
+html body .section--cream a.btn--fire,
+html body .btn.fire{background:#c33f17!important;background-image:none!important;color:#fff!important;border-color:#c33f17!important;box-shadow:0 10px 22px -12px rgba(195,63,23,.75)!important;text-shadow:none!important;-webkit-text-fill-color:#fff}
+html body .nav-links a.nav-cta:hover,
+html body .drawer-nav a.drawer-cta:hover,
+html body .btn--primary:hover,
+html body .section--white a.btn--primary:hover,
+html body .section--cream a.btn--primary:hover,
+html body .thanks-btn--primary:hover,
+html body .home-hero .hero-actions .button:not(.light):hover,
+html body .ek-btn:not(.ghost):hover,
+html body .nl-form button:hover,
+html body .nl-inline button:hover,
+html body .cs-form button:hover,
+html body .foot-reach a.prim:hover,
+html body .evx-actions a.button:not(a.button ~ a.button):hover,
+html body .dz .btn:not(.ghost):hover,
+html body .wf .btn:not(.dark):not(.ghost):hover,
+html body .w5 .lead .more:hover,
+html body .a5 .lead .mo:hover,
+html body .gf .gen-moments .hero-actions .button:not(.light):hover,
+html body .sub-form button:hover,
+html body .btn-gold:hover,
+html body .mfm-live a.go:hover,
+html body .nl-foot .su button:hover,
+html body .mfm-pop-btn:hover,
+html body .btn--fire:hover,
+html body .section--white a.btn--fire:hover,
+html body .section--cream a.btn--fire:hover,
+html body .btn.fire:hover{background:#a8340f!important;border-color:#a8340f!important;color:#fff!important}
+/* on an orange tile the button turns navy so it still stands out */
+html body .wf .t.cta .btn:not(.dark):not(.ghost){background:#142240!important;border-color:#142240!important;box-shadow:0 10px 22px -12px rgba(10,18,36,.7)!important}
+html body .wf .t.cta .btn:not(.dark):not(.ghost):hover{background:#22355f!important;border-color:#22355f!important}
+html body .home-gallery .hg-btn{background:#c33f17!important;border-color:#c33f17!important;color:#fff!important;box-shadow:0 10px 22px -12px rgba(195,63,23,.75)!important}
+html body .home-gallery .hg-btn:hover{background:#a8340f!important;border-color:#a8340f!important}
+
+
+/* ===== Buttons: solid and calm (Dawn, Nov 27: chose B; orange buttons caused disharmony with gold).
+   Navy button on white/cream sections, white button on navy sections. Gold stays the one accent; orange stays on its panels only. ===== */
+html body .nav-links a.nav-cta,
+html body .drawer-nav a.drawer-cta,
+html body .btn--primary,
+html body .section--white a.btn--primary,
+html body .section--cream a.btn--primary,
+html body .thanks-btn--primary,
+html body .home-hero .hero-actions .button:not(.light),
+html body .ek-btn:not(.ghost),
+html body .nl-form button,
+html body .nl-inline button,
+html body .cs-form button,
+html body .foot-reach a.prim,
+html body .evx-actions a.button:not(a.button ~ a.button),
+html body .dz .btn:not(.ghost),
+html body .wf .btn:not(.dark):not(.ghost),
+html body .w5 .lead .more,
+html body .a5 .lead .mo,
+html body .gf .gen-moments .hero-actions .button:not(.light),
+html body .sub-form button,
+html body .btn-gold,
+html body .mfm-live a.go,
+html body .nl-foot .su button,
+html body .mfm-pop-btn,
+html body .btn--fire,
+html body .section--white a.btn--fire,
+html body .section--cream a.btn--fire,
+html body .btn.fire,
+html body .home-gallery .hg-btn,
+html body .wf .t.cta .btn:not(.dark):not(.ghost),
+html body a.button:not(.light):not(.ghost),
+html body button.button:not(.light):not(.ghost),
+html body .tsa-btn,
+html body .event-card-actions a.ticket,
+html body .location-tools > button{background:#142240!important;background-image:none!important;color:#fff!important;-webkit-text-fill-color:#fff;border-color:#142240!important;box-shadow:0 10px 22px -12px rgba(10,18,36,.6)!important;text-shadow:none!important}
+html body .nav-links a.nav-cta:hover,
+html body .drawer-nav a.drawer-cta:hover,
+html body .btn--primary:hover,
+html body .section--white a.btn--primary:hover,
+html body .section--cream a.btn--primary:hover,
+html body .thanks-btn--primary:hover,
+html body .home-hero .hero-actions .button:not(.light):hover,
+html body .ek-btn:not(.ghost):hover,
+html body .nl-form button:hover,
+html body .nl-inline button:hover,
+html body .cs-form button:hover,
+html body .foot-reach a.prim:hover,
+html body .evx-actions a.button:not(a.button ~ a.button):hover,
+html body .dz .btn:not(.ghost):hover,
+html body .wf .btn:not(.dark):not(.ghost):hover,
+html body .w5 .lead .more:hover,
+html body .a5 .lead .mo:hover,
+html body .gf .gen-moments .hero-actions .button:not(.light):hover,
+html body .sub-form button:hover,
+html body .btn-gold:hover,
+html body .mfm-live a.go:hover,
+html body .nl-foot .su button:hover,
+html body .mfm-pop-btn:hover,
+html body .btn--fire:hover,
+html body .section--white a.btn--fire:hover,
+html body .section--cream a.btn--fire:hover,
+html body .btn.fire:hover,
+html body .home-gallery .hg-btn:hover,
+html body .wf .t.cta .btn:not(.dark):not(.ghost):hover,
+html body a.button:not(.light):not(.ghost):hover,
+html body button.button:not(.light):not(.ghost):hover,
+html body .tsa-btn:hover,
+html body .event-card-actions a.ticket:hover,
+html body .location-tools > button:hover{background:#22355f!important;border-color:#22355f!important;color:#fff!important}
+html body .nav-links a.nav-cta,
+html body .drawer-nav a.drawer-cta,
+html body .thanks-btn--primary,
+html body .home-hero .hero-actions .button:not(.light),
+html body .foot-reach a.prim,
+html body .evx-actions a.button:not(a.button ~ a.button),
+html body .page-hero .hero-actions .button:not(.light),
+html body .wf .navy .btn:not(.dark):not(.ghost),
+html body .navy .btn:not(.ghost),
+html body .navy a.button:not(.light),
+html body .ev2 a.button,
+html body .mfm-live a.go,
+html body .nl-foot .su button,
+html body .mfm-pop-btn,
+html body .wf .t.cta .btn:not(.dark):not(.ghost),
+html body .dz .pn.cta .btn:not(.ghost){background:#fff!important;color:#142240!important;-webkit-text-fill-color:#142240;border-color:#fff!important;box-shadow:0 10px 24px -12px rgba(0,0,0,.55)!important}
+html body .nav-links a.nav-cta:hover,
+html body .drawer-nav a.drawer-cta:hover,
+html body .thanks-btn--primary:hover,
+html body .home-hero .hero-actions .button:not(.light):hover,
+html body .foot-reach a.prim:hover,
+html body .evx-actions a.button:not(a.button ~ a.button):hover,
+html body .page-hero .hero-actions .button:not(.light):hover,
+html body .wf .navy .btn:not(.dark):not(.ghost):hover,
+html body .navy .btn:not(.ghost):hover,
+html body .navy a.button:not(.light):hover,
+html body .ev2 a.button:hover,
+html body .mfm-live a.go:hover,
+html body .nl-foot .su button:hover,
+html body .mfm-pop-btn:hover,
+html body .wf .t.cta .btn:not(.dark):not(.ghost):hover,
+html body .dz .pn.cta .btn:not(.ghost):hover{background:#f0e6d0!important;border-color:#f0e6d0!important;color:#142240!important}
+html body .dz .navy .btn:not(.fire):not(.ghost){background:#fff!important;color:#142240!important;-webkit-text-fill-color:#142240;border-color:#fff!important}
+html body .dz .navy .btn:not(.fire):not(.ghost):hover{background:#f0e6d0!important;border-color:#f0e6d0!important}
+html body .dz .btn.ol:not(.ghost){box-shadow:0 10px 22px -12px rgba(10,18,36,.6)!important;border-color:#142240!important}
+html body .dz .navy .btn:not(.fire):not(.ghost){box-shadow:0 10px 24px -12px rgba(0,0,0,.55)!important}
+/* small labels and text links on light sections: navy, not orange (one warm accent: gold) */
+html body :is(.tp-word .k, .tp-quiz .k, .hg-txt .hg-k, .tsa-k, .tc:not(:first-child) .tag, .tc .tag, .message-card small, .gm-more-head a.gm-pl, a.lv-remind, a.channel-link, .event-card-actions .inline-link, .bc-actions a.bc-detail){color:#142240!important;-webkit-text-fill-color:#142240}
+html body .n5 .tc:first-child .tag{color:#f0e6d0!important;-webkit-text-fill-color:#f0e6d0}
+html body :is(.event-card small, .branch-card small){color:#142240!important;-webkit-text-fill-color:#142240}
+html body :is(.tsa-feat .tsa-k, .navy .message-card small, .wf .navy .message-card small){color:#f0e6d0!important;-webkit-text-fill-color:#f0e6d0}
