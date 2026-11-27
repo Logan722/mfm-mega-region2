@@ -9,6 +9,11 @@
 //   agg/<week>                    the board as shown (updated on every score, rebuilt from s/… every 5 min)
 // The week starts Monday 00:00 Central Time, so the board resets on its own every Monday.
 //
+// Game of the Week (Dawn, 2026-11-27): only the featured game's scores count on the weekly board. Every finished
+// scorable game is still stored, so the play stats can pick later weeks' games. Weeks 1-8 give each scorable game one
+// turn (ORDER); from week 9 the game with the most players coming back on 2+ days over the last two weeks is chosen
+// (a game can be featured at most 2 weeks in a row). The pick is saved in gotw/<week> so it never changes mid-week.
+//
 // Rules (checked here, not in the browser):
 //   - Daily 10 and Word of the Day: only the first play of the day counts.
 //   - Quiz, Kids and Blitz: the best score of the day per game type counts.
@@ -19,8 +24,14 @@ import { getStore } from '@netlify/blobs';
 
 export const BRANCHES = ["MFM USA Prayer City","MFM Rehoboth","MFM Revival Chapel","MFM Houston 2","MFM Houston 3 — City of Refuge","MFM Houston 5 — New Glory","MFM 7 North Houston","MFM Greater Grace","MFM Northwest Houston","MFM Dallas","MFM House of His Glory","MFM Arlington","MFM Arlington — Matlock","MFM Grand Prairie","MFM Irving","MFM Mansfield","MFM The Lord Has Spoken","MFM San Antonio","MFM Pearland — Shadow of God","MFM Sugar Land","MFM Huntsville","MFM Tampa","MFM Broward","MFM Miami — Mount Zion","MFM Orlando — Citadel of Solution","MFM Tallahassee","MFM Revival Center","MFM Riverdale","MFM Citadel of Signs & Wonders","MFM Georgia Oasis of Grace","MFM Revival & Solution Center","MFM Tulsa","MFM Nashville","MFM Mega Region 2 Youth Church"];
 export const VISITORS = 'Visitors & friends';
-const CAP = { daily: 1500, word: 400, quiz: 1500, kids: 1500, blitz: 9000 };
-const FIRST_ONLY = { daily: 1, word: 1 };
+const CAP = { daily: 1500, word: 400, quiz: 1500, kids: 1500, blitz: 9000, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000 };
+const FIRST_ONLY = { daily: 1, word: 1, connect: 1, dverse: 1, wheel: 1 };
+// most points one right answer / found item can earn (word and dverse are one-puzzle games, checked by CAP only)
+const PER = { daily: 150, quiz: 150, kids: 150, blitz: 150, connect: 200, wheel: 150, whoami: 500, build: 500, pairs: 100 };
+const EXTRA = { wheel: 100 };   // bonus words
+export const GAME = (m) => ({ daily: 'bquiz', quiz: 'bquiz', kids: 'bquiz', blitz: 'bquiz' }[m] || m);
+export const ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs'];
+export const ROT_START = '2026-11-23';   // the Monday the rotation starts (week 1); set to the go-live week
 const BAD = /(https?:|www\.|\.(com|net|org)\b|\b(fuck\w*|shit\w*|bitch\w*|nigg\w*|porn\w*|pussy|asshole|bastard|satan\w*|sex\w*)\b)/i;
 const ORIGINS = ['https://mfmmegaregion2usa.org', 'https://www.mfmmegaregion2usa.org', 'https://mfmmegaregion2usa.netlify.app'];
 
@@ -37,7 +48,36 @@ async function hashId(dev) {
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('mfm-play:' + dev));
   return [...new Uint8Array(b)].slice(0, 5).map((x) => x.toString(16).padStart(2, '0')).join('');
 }
-function emptyBoard(week) { return { week, players: {}, updated: Date.now(), built: 0 }; }
+function weekIndex(week) { return Math.max(0, Math.round((Date.parse(week) - Date.parse(ROT_START)) / (7 * 864e5))); }
+function prevWeek(week, n = 1) { return new Date(Date.parse(week) - n * 7 * 864e5).toISOString().slice(0, 10); }
+export async function playStats(store, week) {
+  const per = {};   // game -> device -> set of days
+  const { blobs } = await store.list({ prefix: `s/${week}/` });
+  for (const b of blobs) {
+    const [, , h, day, mode] = b.key.split('/'); const g = GAME(mode);
+    ((per[g] = per[g] || {})[h] = per[g][h] || new Set()).add(day);
+  }
+  const out = {};
+  for (const g of Object.keys(per)) { const devs = Object.values(per[g]); out[g] = { players: devs.length, returning: devs.filter((d) => d.size >= 2).length }; }
+  return out;
+}
+export async function gotw(store, week) {
+  const saved = await store.get(`gotw/${week}`, { type: 'json' });
+  if (saved && saved.g) return saved.g;
+  const i = weekIndex(week); let g;
+  if (i < ORDER.length) g = ORDER[i];
+  else {
+    const a = await playStats(store, prevWeek(week)), b = await playStats(store, prevWeek(week, 2));
+    const last = await store.get(`gotw/${prevWeek(week)}`, { type: 'json' }), last2 = await store.get(`gotw/${prevWeek(week, 2)}`, { type: 'json' });
+    const blocked = last && last2 && last.g === last2.g ? last.g : null;
+    const score = (x) => ((a[x] || {}).returning || 0) * 3 + ((b[x] || {}).returning || 0) * 2 + ((a[x] || {}).players || 0) + ((b[x] || {}).players || 0) * 0.5;
+    const cands = ORDER.filter((x) => x !== blocked);
+    g = cands.reduce((best, x) => (score(x) > score(best) ? x : best), cands[i % cands.length]);
+  }
+  await store.setJSON(`gotw/${week}`, { g, at: Date.now() });
+  return g;
+}
+function emptyBoard(week, g) { return { week, gotw: g, players: {}, updated: Date.now(), built: 0 }; }
 function view(agg) {
   const players = Object.values(agg.players);
   const br = {};
@@ -46,17 +86,18 @@ function view(agg) {
   let nextMon = Date.parse(agg.week + 'T06:00:00Z') + 7 * 864e5;   // Monday 00:00 CT = 06:00 UTC (CST) or 05:00 UTC (CDT)
   if (new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', hour: 'numeric', hour12: false }).format(new Date(nextMon)) === '1') nextMon -= 3600e3;
   return {
-    week: agg.week, resetsAt: new Date(nextMon).toISOString(), updated: agg.updated,
+    week: agg.week, gotw: agg.gotw, resetsAt: new Date(nextMon).toISOString(), updated: agg.updated,
     totals: { players: players.length, branches: Object.keys(br).length, pts: players.reduce((s, p) => s + p.pts, 0) },
     branches: top(Object.values(br)),
     players: top(players.map((p) => ({ name: p.nick, sub: p.place, pts: p.pts, h: p.h }))),
   };
 }
 async function rebuild(store, week) {
-  const agg = emptyBoard(week);
+  const g = await gotw(store, week);
+  const agg = emptyBoard(week, g);
   const { blobs } = await store.list({ prefix: `s/${week}/` });
   for (const b of blobs) {
-    const s = await store.get(b.key, { type: 'json' }); if (!s) continue;
+    const s = await store.get(b.key, { type: 'json' }); if (!s || GAME(s.mode) !== g) continue;
     const p = agg.players[s.h] || (agg.players[s.h] = { h: s.h, nick: s.nick, branch: s.branch, place: s.place, pts: 0 });
     p.pts += s.pts; p.nick = s.nick; p.branch = s.branch; p.place = s.place;
   }
@@ -66,7 +107,7 @@ async function rebuild(store, week) {
 }
 async function board(store, week) {
   const agg = await store.get(`agg/${week}`, { type: 'json' });
-  if (!agg || Date.now() - (agg.built || 0) > 5 * 60e3) return rebuild(store, week);
+  if (!agg || !agg.gotw || Date.now() - (agg.built || 0) > 5 * 60e3) return rebuild(store, week);
   return agg;
 }
 function json(body, status, origin, cache) {
@@ -94,8 +135,8 @@ export async function handle(req, store, ip = '') {
   if (!/^[a-z0-9]{12,40}$/i.test(dev)) return json({ ok: false, error: 'device' }, 400, origin);
   if (!nick || BAD.test(nick) || BAD.test(place)) return json({ ok: false, error: 'name' }, 400, origin);
   if (!Number.isFinite(pts) || pts < 0 || pts > CAP[mode]) return json({ ok: false, error: 'points' }, 400, origin);
-  if (mode !== 'blitz' && mode !== 'word' && (!(n > 0 && n <= 20) || score < 0 || score > n)) return json({ ok: false, error: 'score' }, 400, origin);
-  if (mode !== 'word' && pts > Math.max(0, score) * 150) return json({ ok: false, error: 'score' }, 400, origin);   // at most 150 points per right answer
+  if (mode !== 'blitz' && mode !== 'word' && (!(n > 0 && n <= 30) || score < 0 || score > n)) return json({ ok: false, error: 'score' }, 400, origin);
+  if (PER[mode] && pts > Math.max(0, score) * PER[mode] + (EXTRA[mode] || 0)) return json({ ok: false, error: 'score' }, 400, origin);   // points per right answer are capped
   if (branch === 'Other / visiting' || branch === VISITORS) { branch = VISITORS; if (!place) place = 'Visiting'; }
   else if (!BRANCHES.includes(branch)) return json({ ok: false, error: 'branch' }, 400, origin);
   else place = branch;
@@ -106,18 +147,22 @@ export async function handle(req, store, ip = '') {
   await store.setJSON(rk, { c: rl.c + 1 });
   const h = await hashId(dev), key = `s/${week}/${h}/${day}/${mode}`;
   const prev = await store.get(key, { type: 'json' });
-  let counted = false;
+  let counted = false, featured = false;
   if (!prev || (!FIRST_ONLY[mode] && pts > prev.pts)) {
     const rec = { h, nick, branch, place, mode, pts, day, ts: Date.now() };
     const agg = await board(store, week);   // read (or rebuild) the board BEFORE adding this score, so it is never counted twice
-    await store.setJSON(key, rec);
+    await store.setJSON(key, rec);          // stored for every game: the play stats use it
+    featured = GAME(mode) === agg.gotw;
+    if (featured) {
     const p = agg.players[h] || (agg.players[h] = { h, nick, branch, place, pts: 0 });
     p.pts += pts - (prev ? prev.pts : 0); p.nick = nick; p.branch = branch; p.place = place;
     agg.updated = Date.now();
     await store.setJSON(`agg/${week}`, agg);
     counted = true;
+    }
   }
-  return json({ ok: true, counted, reason: counted ? '' : (FIRST_ONLY[mode] ? 'first play of the day already counted' : 'your best today is higher'), h }, 200, origin);
+  const reason = counted ? '' : prev && !featured && (FIRST_ONLY[mode] || pts <= prev.pts) ? (FIRST_ONLY[mode] ? 'first play of the day already counted' : 'your best today is higher') : !featured ? 'only the Game of the Week counts this week' : (FIRST_ONLY[mode] ? 'first play of the day already counted' : 'your best today is higher');
+  return json({ ok: true, counted, reason, h }, 200, origin);
 }
 
 export default async (req, context) => {

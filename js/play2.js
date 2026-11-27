@@ -9,13 +9,15 @@
   var stage = document.getElementById('play-app');
   if (!stage) return;
   var BANK = null, S = null, timer = null, lastFocus = null;
+  var X = window.PG = window.PG || { games: {}, closers: [], key: null };
+  X.games = X.games || {}; X.closers = X.closers || []; X.gameOf = X.gameOf || function (m) { return { daily: 'bquiz', quiz: 'bquiz', kids: 'bquiz', blitz: 'bquiz' }[m] || m; };
   var OTHER = 'Other / visiting';
   var BRANCHES = ["MFM USA Prayer City","MFM Rehoboth","MFM Revival Chapel","MFM Houston 2","MFM Houston 3 — City of Refuge","MFM Houston 5 — New Glory","MFM 7 North Houston","MFM Greater Grace","MFM Northwest Houston","MFM Dallas","MFM House of His Glory","MFM Arlington","MFM Arlington — Matlock","MFM Grand Prairie","MFM Irving","MFM Mansfield","MFM The Lord Has Spoken","MFM San Antonio","MFM Pearland — Shadow of God","MFM Sugar Land","MFM Huntsville","MFM Tampa","MFM Broward","MFM Miami — Mount Zion","MFM Orlando — Citadel of Solution","MFM Tallahassee","MFM Revival Center","MFM Riverdale","MFM Citadel of Signs & Wonders","MFM Georgia Oasis of Grace","MFM Revival & Solution Center","MFM Tulsa","MFM Nashville","MFM Mega Region 2 Youth Church", OTHER];
-  var PACK_CLASS = { bible: 'c-bible', verse: 'c-verse', mfm: 'c-mfm', 'go-books': 'c-go', 'oni-books': 'c-oni', messages: 'c-msg', who: 'c-who', kids: 'c-kids', blitz: 'c-blitz' };
+  var PACK_CLASS = { bible: 'c-bible', verse: 'c-verse', mfm: 'c-mfm', olukoya: 'c-mfm', shade: 'c-mfm', 'go-books': 'c-go', 'oni-books': 'c-oni', messages: 'c-msg', who: 'c-who', kids: 'c-kids', blitz: 'c-blitz' };
   var ROUND = 10, LAZY = { bible: 1, verse: 1, who: 1, kids: 1, 'oni-books': 1, blitz: 1 }, PREFIX = { B: 'bible', V: 'verse', W: 'who', K: 'kids', O: 'oni-books', Z: 'blitz' }, loaded = {}, WORDS = null, CH = null;
   var SITE = 'https://mfmmegaregion2usa.org/play';
   /* topics = question banks you can mix (Dawn, Nov 26: Who Said It? and Fill the Verse are mixed into the Bible) */
-  var TOPICS = [{ k: 'bible', label: 'The Bible', packs: ['bible', 'verse', 'who'] }, { k: 'oni', label: 'Pastor Oni\u2019s Books', packs: ['oni-books'] }, { k: 'go', label: 'The G.O.\u2019s Books', packs: ['go-books'] }, { k: 'mfm', label: 'MFM Family', packs: ['mfm'] }, { k: 'msg', label: 'Our Messages', packs: ['messages'] }];
+  var TOPICS = [{ k: 'bible', label: 'The Bible', packs: ['bible', 'verse', 'who'] }, { k: 'oni', label: 'Pastor Oni\u2019s Books', packs: ['oni-books'] }, { k: 'go', label: 'The G.O.\u2019s Books', packs: ['go-books'] }, { k: 'mfm', label: 'MFM', packs: ['mfm'] }, { k: 'olukoya', label: 'Dr. D.K. Olukoya', packs: ['olukoya'] }, { k: 'shade', label: 'Pastor (Mrs.) Shade Olukoya', packs: ['shade'] }, { k: 'msg', label: 'Our Messages', packs: ['messages'] }];
   var ALLT = TOPICS.map(function (t) { return t.k; });
   function topicPacks(keys) { var o = []; TOPICS.forEach(function (t) { if (keys.indexOf(t.k) >= 0) o = o.concat(t.packs); }); return o; }
   function mixQs(keys, n, r) {
@@ -84,15 +86,15 @@
   function initials(n) { n = (n || '').trim(); if (!n) return '?'; var w = n.split(/\s+/); return (w[0][0] + (w[1] ? w[1][0] : '')).toUpperCase(); }
   function pad(n) { return ('0' + n).slice(-2); }
   function fmt(n) { return Number(n).toLocaleString('en-US'); }
-  function dailySet(today) { var r = rng('daily-' + today); return [].concat(pick('bible', 3, r), pick('verse', 2, r), pick('who', 2, r), pick('mfm', 1, r), pick(r() < .65 ? 'oni-books' : 'go-books', 1, r), pick('messages', 1, r)); }
-  function titleOf() { if (S.mode === 'daily') return 'Daily 10 · Day ' + dayNo(S.today); if (S.mode === 'kids') return 'Kids Mode'; if (S.mode === 'blitz') return '60-second Blitz'; if (S.mode === 'word') return S.practice ? 'Word practice' : 'Word of the Day · Day ' + dayNo(S.today); if (S.mode === 'team') return 'Team Battle'; if (S.mode === 'quiz') return 'Quiz \u00b7 ' + (S.topics ? topicName(S.topics) : 'Challenge'); return BANK.packs[S.pack] ? BANK.packs[S.pack].label : 'Play & Grow'; }
+  function dailySet(today) { var r = rng('daily-' + today); return [].concat(pick('bible', 3, r), pick('verse', 2, r), pick('who', 2, r), pick(r() < .6 ? 'mfm' : 'olukoya', 1, r), pick(r() < .65 ? 'oni-books' : 'go-books', 1, r), pick('messages', 1, r)); }
+  function titleOf() { if (S && S.title) return S.title; if (S.mode === 'daily') return 'Daily 10 · Day ' + dayNo(S.today); if (S.mode === 'kids') return 'Kids Mode'; if (S.mode === 'blitz') return '60-second Blitz'; if (S.mode === 'word') return S.practice ? 'Word practice' : 'Word of the Day · Day ' + dayNo(S.today); if (S.mode === 'team') return 'Team Battle'; if (S.mode === 'quiz') return 'Quiz \u00b7 ' + (S.topics ? topicName(S.topics) : 'Challenge'); return BANK.packs[S.pack] ? BANK.packs[S.pack].label : 'Play & Grow'; }
 
   /* ---------- stage open / close ---------- */
   function open() {
     if (stage.hidden) { lastFocus = document.activeElement; stage.hidden = false; document.documentElement.classList.add('pg-lock'); requestAnimationFrame(function () { stage.classList.add('on'); }); }
   }
   function close() {
-    stopTimer(); stage.classList.remove('on'); document.documentElement.classList.remove('pg-lock');
+    stopTimer(); X.closers.forEach(function (f) { try { f(); } catch (e) {} }); stage.classList.remove('on'); document.documentElement.classList.remove('pg-lock');
     setTimeout(function () { stage.hidden = true; stage.innerHTML = ''; }, reduce ? 0 : 220);
     if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {}
     refreshHub();
@@ -110,6 +112,7 @@
   document.addEventListener('keydown', function (e) {
     if (stage.hidden) return;
     if (e.key === 'Escape') { close(); return; }
+    if (S && S.ext) { if (X.key) X.key(e); return; }
     if (S && S.phase === 'q' && /^[1-4]$/.test(e.key)) { var b = stage.querySelectorAll('.ans')[+e.key - 1]; if (b && !b.disabled) b.click(); }
     if (S && S.phase === 'bz') { if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 't') blitzAnswer(true); if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'f') blitzAnswer(false); }
     if (S && S.phase === 'wd') { if (e.key === 'Enter') wordKey('ENTER'); else if (e.key === 'Backspace') wordKey('DEL'); else if (/^[a-z]$/i.test(e.key)) wordKey(e.key.toUpperCase()); }
@@ -145,6 +148,7 @@
   }
 
   function start(mode, pack, ch) {
+    if (X.games[mode]) { X.games[mode](pack, ch); return; }
     if (!BANK) return;
     if (mode === 'team') { teamSetup(); return; }
     if (mode === 'quiz' && !ch) { var go2 = function () { quizSetup(); }; if (!player()) showWho(go2); else go2(); return; }
@@ -238,12 +242,12 @@
   /* ---------- real leaderboard (Netlify Function + Blobs) ---------- */
   var LB_URL = '/.netlify/functions/leaderboard', LB = null, LB_OK = false, LB_LIVE = false, myH = ls('mfm-quiz-h');
   function devId() { var d = ls('mfm-quiz-dev'); if (!d) { d = ''; for (var i = 0; i < 20; i++) d += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]; ls('mfm-quiz-dev', d); } return d; }
-  function lbMode() { if (S.mode === 'team' || (S.mode === 'word' && S.practice)) return null; return { daily: 'daily', word: 'word', quiz: 'quiz', kids: 'kids', blitz: 'blitz', pack: 'quiz' }[S.mode] || null; }
+  function lbMode() { if (S.lb !== undefined) return S.lb; if (S.mode === 'team' || (S.mode === 'word' && S.practice)) return null; return { daily: 'daily', word: 'word', quiz: 'quiz', kids: 'kids', blitz: 'blitz', pack: 'quiz' }[S.mode] || null; }
   function addScore() {
     var p = player(); if (!p || p.guest || S.added) return;
     var mode = lbMode(); if (!mode) return;
     S.added = true;
-    var rec = { nick: p.nick, branch: p.branch === OTHER ? 'Visitors & friends' : p.branch, place: placeOf(p), score: S.score, pts: S.pts, n: S.qs ? S.qs.length : S.marks.length, day: S.today, mode: mode };
+    var rec = { nick: p.nick, branch: p.branch === OTHER ? 'Visitors & friends' : p.branch, place: placeOf(p), score: S.score, pts: S.pts, n: S.n || (S.qs ? S.qs.length : S.marks.length), day: S.today, mode: mode, game: X.gameOf(mode) };
     var mine = ls('mfm-quiz-local') || []; mine.push(rec); ls('mfm-quiz-local', mine.slice(-60));   /* this device's history (also the preview fallback) */
     var body = { dev: devId(), nick: p.nick, branch: p.branch, place: placeOf(p), mode: mode, pts: S.pts, score: S.score, n: rec.n, day: S.today };
     fetch(LB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
@@ -254,7 +258,7 @@
   function lbNote(t) { var el = stage.querySelector('.st-lb small'); if (el) el.textContent = t; }
   function loadBoard(fresh) {
     return fetch(LB_URL + (fresh ? '?fresh=' + Date.now() : ''), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw r; return r.json(); })
-      .then(function (d) { LB = d; LB_OK = true; LB_LIVE = true; renderBoard(); })
+      .then(function (d) { LB = d; LB_OK = true; LB_LIVE = true; if (d && d.gotw) X.serverGotw = d.gotw; renderBoard(); })
       .catch(function () { LB_OK = false; renderBoard(); });
   }
   /* poll while the leaderboard is on screen and the tab is visible: updates as people play */
@@ -513,7 +517,7 @@
       return LB.players.map(function (x) { return { name: x.name + (myH && x.h === myH ? ' (you)' : ''), sub: x.sub, pts: x.pts, me: !!(myH && x.h === myH) }; });
     }
     /* no server (private preview / offline): only this device's own scores, this week */
-    var wk = mondayCT(), mine = (ls('mfm-quiz-local') || []).filter(function (s) { return s.day >= wk; });
+    var wk = mondayCT(), g = X.gotwId ? X.gotwId() : null, mine = (ls('mfm-quiz-local') || []).filter(function (s) { return s.day >= wk && (!g || (s.game || X.gameOf(s.mode)) === g); });
     if (tab === 'branches') { var m = {}; mine.forEach(function (s) { m[s.branch] = (m[s.branch] || 0) + (s.pts || 0); }); return Object.keys(m).map(function (k) { return { name: k, sub: '', pts: m[k] }; }).sort(function (a, b) { return b.pts - a.pts; }); }
     var tot = {}; mine.forEach(function (s) { var k = s.nick + '|' + s.place; tot[k] = (tot[k] || 0) + (s.pts || 0); });
     return Object.keys(tot).map(function (k) { var a = k.split('|'); return { name: a[0] + ' (you)', sub: a[1], pts: tot[k], me: true }; });
@@ -521,7 +525,7 @@
   function mondayCT() { var p = ctParts(), dow = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }[p.weekday]; return new Date(Date.parse(p.year + '-' + p.month + '-' + p.day + 'T12:00:00Z') - dow * 864e5).toISOString().slice(0, 10); }
   function emptyBoard() {
     return '<div class="lb-empty"><span class="lb-empty-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM5 5H3v1.5A3.5 3.5 0 0 0 6.6 10M19 5h2v1.5A3.5 3.5 0 0 1 17.4 10M10 13h4v3h-4zM8 16h8l1 4H7z"/></svg></span>' +
-      '<h3>No scores yet this week</h3><p>Be the first to put your branch on the board. Scores appear here as people play.</p><button type="button" class="pg-btn gold" data-mode="daily">Play today&rsquo;s Daily 10</button></div>';
+      '<h3>No scores yet this week</h3><p>Be the first to put your branch on the board. Only <b data-gotw-name>the Game of the Week</b> counts this week.</p><button type="button" class="pg-btn gold" data-gotw-play>Play the Game of the Week</button></div>';
   }
   /* five preview designs for the leaderboard (picker: Leaderboard 1–5) */
   var BV = 4, TAB = 'branches';  /* Dawn chose design 4, medal cards (Nov 26) */
@@ -565,6 +569,7 @@
     document.querySelectorAll('[data-heropodium]').forEach(function (hp) {
       hp.innerHTML = !br.length ? '<p class="hp-empty">Be the first branch on the board this week</p>' : [1, 0, 2].map(function (i) { var x = br[i]; return x ? '<div class="hp p' + (i + 1) + '"><b>' + esc(x.name.replace(/^MFM /, '')) + '</b><span>' + fmt(x.pts) + ' pts</span><i>' + (i + 1) + '</i></div>' : ''; }).join('');
     });
+    if (X.paintGotw) X.paintGotw();
     tick();
   }
   document.querySelectorAll('[data-lpick]').forEach(function (b) { b.addEventListener('click', function () { BV = +b.getAttribute('data-lpick'); renderBoard(); }); });
@@ -606,6 +611,12 @@
   document.querySelectorAll('[data-gcat]').forEach(function (b) { b.addEventListener('click', function () { gcat(b.getAttribute('data-gcat')); }); });
   document.querySelectorAll('.gs-arrow').forEach(function (b) { b.addEventListener('click', function () { var g = document.querySelector('.pg-games .pg-grid'); g.scrollBy({ left: (b.classList.contains('next') ? 1 : -1) * 300, behavior: reduce ? 'auto' : 'smooth' }); }); });
   var gq = /games-(\d)/.exec(location.hash || ''); if (gq) gstyle(+gq[1]);  /* Dawn chose style 2, Spotlight (Nov 26) */
+  /* ---------- API for the other games (js/games.js) ---------- */
+  X.open = open; X.close = close; X.frame = frame; X.esc = esc; X.ls = ls; X.rng = rng; X.shuffle = shuffle; X.ctToday = ctToday; X.fmt = fmt; X.pad = pad;
+  X.dayNo = function (d) { return BANK ? dayNo(d) : 1; }; X.player = player; X.placeOf = placeOf; X.showWho = showWho; X.confetti = confetti; X.scrollToId = scrollToId;
+  X.set = function (o) { S = o; }; X.get = function () { return S; }; X.addScore = addScore; X.start = start; X.initials = initials; X.SITE = SITE; X.mondayCT = mondayCT; X.ctParts = ctParts;
+  X.TEAM_NAMES = TEAM_NAMES; X.TEAM_COL = TEAM_COL; X.renderBoard = renderBoard; X.loading = loading;
+  X.lbNote = lbNote;
   embers(); embers2(); tick(); setInterval(tick, 1000);
   document.addEventListener('click', function (e) { var b = e.target.closest && e.target.closest('[data-mode]'); if (b && !stage.contains(b)) start(b.dataset.mode, b.dataset.pack || null); });
   bindNl(document);
@@ -617,5 +628,6 @@
         refreshHub(); loadBoard();
     var ch = readChallenge(location.search) || readChallenge(location.hash.indexOf('c=') >= 0 ? location.hash : '');
     if (ch) challengeIntro(ch);
+    else { var pq = /[?&#]play=([a-z]+)/.exec(location.search + location.hash); if (pq && X.games[pq[1]]) start(pq[1]); }
   });
 })();
