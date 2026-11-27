@@ -314,7 +314,14 @@ def build_legacy_redirects(ended):
         lines += ['%s  %s  301!' % (old, new), '%s/  %s  301!' % (old, new), '%s.html  %s  301!' % (old, new)]
     # retired pages (Oct 27 2026: message pages of YouTube Shorts, which are no longer on Media) -> tools/retired-pages.json
     rp = ROOT / 'tools' / 'retired-pages.json'
-    for r in (json.loads(rp.read_text()) if rp.exists() else []):
+    retired = json.loads(rp.read_text()) if rp.exists() else []
+    # a retired message page that exists again (a deleted video re-uploaded under the same title, Nov 27) must not redirect any more
+    live_again = [r for r in retired if r['from'].startswith('/messages/') and (ROOT / (r['from'].lstrip('/') + '.html')).exists()]
+    if live_again:
+        retired = [r for r in retired if r not in live_again]
+        rp.write_text(json.dumps(retired, indent=1) + '\n')
+        print('redirects: message page is back, redirect dropped:', ', '.join(r['from'] for r in live_again))
+    for r in retired:
         lines += ['%s  %s  301!' % (r['from'], r['to']), '%s.html  %s  301!' % (r['from'], r['to'])]
     for rel in html_files():
         if rel in NO_LEGACY or rel == 'index.html' or rel.startswith('share/'):
