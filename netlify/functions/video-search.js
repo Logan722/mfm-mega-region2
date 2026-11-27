@@ -49,6 +49,8 @@ function parseSearch(html) {
   const seen = {};
   return out.filter((v) => {
     if (seen[v.id] || !v.title || v.title.indexOf('#') >= 0) return false;
+    // Media page = uploaded videos only (Nov 26 2026): past/current livestreams belong on /live
+    if (v.live || /^streamed\b/i.test(v.when || '')) return false;
     seen[v.id] = 1;
     return true;
   }).slice(0, 24);

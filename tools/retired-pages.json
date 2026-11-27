@@ -68,5 +68,10 @@
   "from": "/messages/yesterday-s-fire-cannot-sustain-today-s-assignment",
   "to": "/media",
   "why": "YouTube Short (not on Media)"
+ },
+ {
+  "from": "/messages/the-problem-that-keeps-coming-back-ends-here",
+  "to": "/media",
+  "why": "Video deleted or made private on YouTube"
  }
 ]

@@ -162,6 +162,16 @@ def refresh(force=False):
         return False
     shorts = set(json.loads(SHORTS.read_text())) if SHORTS.exists() else set()
     kind = json.loads(KIND.read_text()) if KIND.exists() else {}
+    # Media = uploaded videos only (Nov 26 2026): livestreams (the channel's Live tab) are left out of every playlist
+    live_f = ROOT / 'tools' / 'live-ids.json'
+    live = set(json.loads(live_f.read_text())) if live_f.exists() else set()
+    try:
+        tab = {v['id'] for v in playlist_videos('UULV' + CHANNEL_ID[2:])}
+        if tab - live:
+            live |= tab
+            live_f.write_text(json.dumps(sorted(live), indent=0) + '\n')
+    except Exception as ex:
+        print('playlists: Live tab unavailable (%s) — using the saved list' % ex)
     for s in shorts:
         kind[s] = 'short'
     prev = {p['id']: p for p in (old or {}).get('playlists', [])}
@@ -177,7 +187,7 @@ def refresh(force=False):
         for v in vids:
             if v.pop('short', False):
                 kind[v['id']] = 'short'
-        keep = [v for v in vids if not (v['id'] in shorts or kind.get(v['id']) == 'short' or (v['length'] <= 180 and is_short(v['id'], kind)))]
+        keep = [v for v in vids if not (v['id'] in live or v['id'] in shorts or kind.get(v['id']) == 'short' or (v['length'] <= 180 and is_short(v['id'], kind)))]
         if keep:
             out.append({'id': pl['id'], 'title': pl['title'], 'count': len(keep), 'videos': keep})
     new_shorts = {k for k, v in kind.items() if v == 'short'} - shorts

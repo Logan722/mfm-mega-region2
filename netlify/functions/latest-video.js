@@ -8,11 +8,14 @@
 // GET /.netlify/functions/latest-video         ->  { ok, id, title, headline, by, url, thumb, published }
 // GET /.netlify/functions/latest-video?list=1  ->  { ok, items:[{id,title,published,views}] }  (Media page live sync)
 // GET /.netlify/functions/latest-video?live=1  ->  same shape, from the channel's Live tab (past live streams; /live page)
+// GET /.netlify/functions/latest-video?list=1&videos=1 -> same shape, from the channel's Videos tab only (Media page, Nov 26 2026:
+//     no livestreams on Media). The homepage call (no parameters) is unchanged.
 // Cached at the CDN for 5 minutes; on any failure the page keeps its static fallback.
 
 const CHANNEL_ID = 'UCr3gSJPBQDjN8CEbj86Pyug';
 const FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 const LIVE_FEED = `https://www.youtube.com/feeds/videos.xml?playlist_id=UULV${CHANNEL_ID.slice(2)}`;
+const VIDEOS_FEED = `https://www.youtube.com/feeds/videos.xml?playlist_id=UULF${CHANNEL_ID.slice(2)}`;
 
 function decode(s) {
   return String(s || '')
@@ -56,6 +59,7 @@ exports.handler = async (event) => {
   const q = (event && event.queryStringParameters) || {};
   const wantLive = !!q.live;
   const wantList = !!q.list || wantLive;
+  const wantVideos = !!q.videos && !wantLive;
   const headers = {
     'content-type': 'application/json; charset=utf-8',
     // Fresh within ~5 minutes of a new upload (Oct 16 2026): short browser cache, short CDN cache, and only a
@@ -66,7 +70,7 @@ exports.handler = async (event) => {
   try {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 6000);
-    const r = await fetch(wantLive ? LIVE_FEED : FEED, { signal: ctrl.signal, headers: { 'user-agent': 'mfmmegaregion2usa.org latest-video' } });
+    const r = await fetch(wantLive ? LIVE_FEED : (wantVideos ? VIDEOS_FEED : FEED), { signal: ctrl.signal, headers: { 'user-agent': 'mfmmegaregion2usa.org latest-video' } });
     clearTimeout(timer);
     if (!r.ok) throw new Error('feed ' + r.status);
     const xml = await r.text();

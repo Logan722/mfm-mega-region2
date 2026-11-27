@@ -3,3 +3,4 @@ netlify.toml
 package.json
 netlify/
 node_modules
+__pycache__/

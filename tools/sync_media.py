@@ -6,8 +6,8 @@ Media page yet, it:
   * writes a message page  messages/<slug>.html  (same template as the existing message pages),
   * adds a card at the top of the Media library grid (newest first),
   * refreshes the Programme / Speaker / Topic / Year filter options from the cards.
-Skipped: YouTube Shorts (owner request, Oct 27 2026: the Media page shows the channel's Videos + past livestreams
-only), #shorts / hashtag promo clips, and scheduled streams that have not aired yet (0 views).
+Skipped: YouTube Shorts (owner request, Oct 27 2026), livestreams (Nov 26 2026: Media = the channel's Videos tab only,
+see tidy_media), #shorts / hashtag promo clips, and scheduled streams that have not aired yet (0 views).
 A Short is recognised by its feed link (youtube.com/shorts/<id>); every Short seen is remembered in
 tools/shorts-ids.json. Any Short already on the site is taken off Media (and so off Women / Gen218), its
 message page is removed and redirected to /media (tools/retired-pages.json), and links to it are dropped.
@@ -16,7 +16,7 @@ of the 15-item feed. The page also adds any newer uploads live in the browser (j
 
 Run on its own or from build_site.py. Network failure = no change (prints a note, exits 0).
 """
-import datetime, html, json, os, re, ssl, sys, urllib.request
+import datetime, html, json, os, re, ssl, sys, urllib.error, urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,6 +35,16 @@ TITLE_OVERRIDES = {'82TOfp_eH-w': 'Glory Revealed! — Quarterly Gen218 Virtual 
                    '0Ys5YKUQ8EQ': 'The Snare Is Broken — Gen218',
                    '_HGRpiFhBEM': 'PMCH October 2026'}
 TEMPLATE = ROOT / 'messages' / 'prayer-against-stubborn-condition.html'
+# Owner request (Nov 26 2026): the Media page = the channel's VIDEOS tab only (no livestreams; those live on /live),
+# as a rolling list: new uploads come in at the top and the oldest drop off the end (MEDIA_MAX). Videos that are
+# deleted or made private on YouTube are removed from the site. Livestreams and older videos that leave Media are kept
+# in tools/media-archive.json, so the Women Foundation, Gen218 and Live pages can still show them.
+VIDEOS_FEED = 'https://www.youtube.com/feeds/videos.xml?playlist_id=UULF' + CHANNEL_ID[2:]
+LIVE_IDS = ROOT / 'tools' / 'live-ids.json'          # every video id seen on the channel's Live tab
+ARCHIVE = ROOT / 'tools' / 'media-archive.json'      # cards that left Media (livestreams, overflow), newest first
+GONE = ROOT / 'tools' / 'gone-check.json'            # deleted/private check: {checked, miss:{id:count}, gone:[ids]}
+MEDIA_MAX = 40
+GONE_EVERY_HOURS = 6
 
 # ---------- classification (mirrored in media.html's live-sync script) ----------
 EMOJI = re.compile('[\U0001F000-\U0001FAFF☀-➿️‍]+')
@@ -243,10 +253,19 @@ def _main():
     media_p = ROOT / 'media.html'
     media = media_p.read_text()
     try:
-        xml = fetch_feed()
+        xml = fetch_feed(VIDEOS_FEED)
     except Exception as ex:
         print('media sync: feed unavailable (%s) — no change' % ex)
         return 0
+    live_ids = load_live_ids()
+    try:
+        lx = fetch_feed(LIVE_FEED)
+        add = set(re.findall(r'<yt:videoId>([\w-]{11})</yt:videoId>', lx)) - live_ids
+        if add:
+            live_ids |= add
+            LIVE_IDS.write_text(json.dumps(sorted(live_ids), indent=0) + '\n')
+    except Exception as ex:
+        print('media sync: live-tab feed unavailable (%s)' % ex)
     pl_ids = json.loads(PLAYLIST_IDS.read_text()) if PLAYLIST_IDS.exists() else {}
     for key, pid in PLAYLISTS.items():
         try:
@@ -272,12 +291,13 @@ def _main():
         baked = json.loads(BAKED.read_text()) if BAKED.exists() else []
         have = {c['id'] for c in cards}
     new = []
+    known = {a['id'] for a in load_archive()} | {b['id'] for b in baked}   # already on the site (archive / baked)
     for entry in re.findall(r'<entry>(.*?)</entry>', xml, re.S):
         vid = re.search(r'<yt:videoId>([\w-]{11})</yt:videoId>', entry).group(1)
         raw = html.unescape(re.search(r'<title>(.*?)</title>', entry, re.S).group(1)).strip()
         views = int((re.search(r'<media:statistics views="(\d+)"', entry) or [0, 0])[1])
         published = re.search(r'<published>([^<]+)</published>', entry).group(1)
-        if vid in have or vid in shorts or vid in {n['id'] for n in new} or not watchable(raw, views):
+        if vid in have or vid in known or vid in shorts or vid in {n['id'] for n in new} or not watchable(raw, views):
             continue
         title = TITLE_OVERRIDES.get(vid) or clean_title(raw)
         it = {'id': vid, 'raw': raw, 'title': title, 'published': published, 'year': published[:4],
@@ -336,12 +356,143 @@ def _main():
         print('media sync: added %d video(s): %s' % (len(new), '; '.join('%s [%s]' % (n['title'], n['program']) for n in new)))
     return 0
 
+
+def load_live_ids():
+    return set(json.loads(LIVE_IDS.read_text())) if LIVE_IDS.exists() else set()
+
+def load_archive():
+    return json.loads(ARCHIVE.read_text()) if ARCHIVE.exists() else []
+
+def _date_key(c, baked_dates):
+    return baked_dates.get(c['id']) or ((c.get('year') or '0000') + '-00')
+
+def library_cards():
+    """Every video the site knows, newest first: the Media cards plus the archive (livestreams, older videos)."""
+    _, cards = parse_cards((ROOT / 'media.html').read_text())
+    seen = {c['id'] for c in cards}
+    allc = cards + [a for a in load_archive() if a['id'] not in seen]
+    baked_dates = {b['id']: b['published'] for b in (json.loads(BAKED.read_text()) if BAKED.exists() else [])}
+    return sorted(allc, key=lambda c: _date_key(c, baked_dates), reverse=True)     # stable: ties keep page order
+
+def oembed_status(vid):
+    try:
+        fetch_feed('https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=' + vid)
+        return 200
+    except urllib.error.HTTPError as ex:
+        return ex.code
+    except Exception:
+        return None                     # network trouble: no verdict
+
+def retire_pages(hrefs, why):
+    """Remove message pages, send their old links to /media, and drop 'related message' links to them."""
+    retired = json.loads(RETIRED.read_text()) if RETIRED.exists() else []
+    known = {r['from'] for r in retired}
+    for h in sorted(hrefs):
+        f = ROOT / (h.lstrip('/') + '.html')
+        if f.exists():
+            f.unlink()
+        if h not in known:
+            retired.append({'from': h, 'to': '/media', 'why': why})
+    RETIRED.write_text(json.dumps(retired, indent=1) + '\n')
+    for f in (ROOT / 'messages').glob('*.html'):
+        t = f.read_text(); u = t
+        for h in hrefs:
+            u = re.sub(r'<a class="msg-rc" href="%s">.*?</a>' % re.escape(h), '', u, flags=re.S)
+        if u != t:
+            f.write_text(u)
+
+def repair_pages(baked, library):
+    """Every baked video keeps a message page that really shows it (rewritten if missing or showing another video)."""
+    tpl = None
+    retired = json.loads(RETIRED.read_text()) if RETIRED.exists() else []
+    fixed = []
+    for b in baked:
+        f = ROOT / 'messages' / (b['slug'] + '.html')
+        if f.exists() and ('data-yt="%s"' % b['id']) in f.read_text():
+            continue
+        tpl = tpl or TEMPLATE.read_text()
+        f.write_text(message_page(tpl, b, related_html([dict(c) for c in library], b)))
+        fixed.append(b)
+    if fixed:
+        keep_r = [r for r in retired if r['from'] not in {b['href'] for b in fixed}]
+        if keep_r != retired:
+            RETIRED.write_text(json.dumps(keep_r, indent=1) + '\n')
+        print('media sync: rebuilt %d message page(s): %s' % (len(fixed), '; '.join(b['title'] for b in fixed)))
+
+def check_gone(ids, force=False):
+    """Deleted or private YouTube videos: oEmbed answers 404 for them. A video counts as gone after two 404s
+    in two separate checks (at most one check every GONE_EVERY_HOURS), so a YouTube hiccup can't remove anything."""
+    st = json.loads(GONE.read_text()) if GONE.exists() else {'checked': '', 'miss': {}, 'gone': []}
+    now = datetime.datetime.now(datetime.timezone.utc)
+    try:
+        last = datetime.datetime.fromisoformat(st['checked'])
+    except Exception:
+        last = None
+    if not force and last and now - last < datetime.timedelta(hours=GONE_EVERY_HOURS):
+        return set(st['gone'])
+    gone = set(st['gone'])
+    for vid in sorted(set(ids) - gone):
+        code = oembed_status(vid)
+        if code == 404:
+            st['miss'][vid] = st['miss'].get(vid, 0) + 1
+            if st['miss'][vid] >= 2:
+                gone.add(vid); st['miss'].pop(vid, None)
+        elif code is not None:
+            st['miss'].pop(vid, None)
+    st['checked'] = now.replace(microsecond=0).isoformat(); st['gone'] = sorted(gone)
+    GONE.write_text(json.dumps(st, indent=1) + '\n')
+    return gone
+
+def tidy_media(force_check=False):
+    """Media = Videos-tab uploads only, newest MEDIA_MAX. Livestreams and overflow move to the archive;
+    deleted/private videos leave the site (message page removed, old link -> /media)."""
+    media_p = ROOT / 'media.html'
+    media = media_p.read_text()
+    grid, cards = parse_cards(media)
+    archive = load_archive()
+    live_ids = load_live_ids()
+    gone = check_gone([c['id'] for c in cards] + [a['id'] for a in archive], force=force_check)
+    keep, moved = [], []
+    for c in cards:
+        if c['id'] in gone:
+            continue
+        (moved if c['id'] in live_ids or len(keep) >= MEDIA_MAX else keep).append(c)
+    arch_ids = {a['id'] for a in archive}
+    archive = [dict((k, v) for k, v in c.items()) for c in moved if c['id'] not in arch_ids] + archive
+    gone_cards = [c for c in cards + archive if c['id'] in gone]
+    archive = [a for a in archive if a['id'] not in gone and a['id'] not in {k['id'] for k in keep}]
+    baked = json.loads(BAKED.read_text()) if BAKED.exists() else []
+    gone_baked = [b for b in baked if b['id'] in gone]
+    if gone_baked:
+        BAKED.write_text(json.dumps([b for b in baked if b['id'] not in gone], ensure_ascii=False, indent=1) + '\n')
+    hrefs = {c['href'] for c in gone_cards + gone_baked if (c.get('href') or '').startswith('/messages/')}
+    in_use = {c['href'] for c in keep + archive} | {b['href'] for b in baked if b['id'] not in gone}
+    hrefs -= in_use                    # two videos can share an address: never retire a page a live video still uses
+    if hrefs:
+        retire_pages(hrefs, 'Video deleted or made private on YouTube')
+    repair_pages([b for b in baked if b['id'] not in gone], keep + archive)
+    new_grid = ''.join(c['html'] for c in keep)
+    n = media[:grid.start(2)] + new_grid + media[grid.end(2):]
+    progs = sorted({c['program'] for c in keep if c['program']})
+    spk = sorted({c['speaker'] for c in keep if c.get('speaker')})
+    tops = sorted({t for c in keep for t in c.get('topics', [])})
+    years = sorted({c['year'] for c in keep if c.get('year')})
+    for sel, vals in (('mProgram', progs), ('mSpeaker', spk), ('mTopic', tops), ('mYear', years)):
+        n = re.sub(r'(<select id="%s">).*?(</select>)' % sel, lambda m: m.group(1) + options_html(vals, '') + m.group(2), n, count=1, flags=re.S)
+    old_arch = load_archive()
+    if archive != old_arch:
+        ARCHIVE.write_text(json.dumps(archive, ensure_ascii=False, indent=1) + '\n')
+    if n != media:
+        media_p.write_text(n)
+        print('media sync: Media = %d videos (Videos tab only); %d livestream/older card(s) moved to the archive; %d deleted video(s) removed%s' % (
+            len(keep), len([c for c in moved if c['id'] not in arch_ids]), len({c['id'] for c in gone_cards}),
+            (': ' + '; '.join(sorted({html.unescape(c['title']) for c in gone_cards}))) if gone_cards else ''))
+
 WOMEN_MAX = 6
 
 def refresh_women():
     """Women page 'Messages for women' = every Women Foundation card in the Media library, newest first."""
-    media = (ROOT / 'media.html').read_text()
-    _, cards = parse_cards(media)
+    cards = library_cards()
     picks = [c for c in cards if c['program'] == 'Women Foundation'][:WOMEN_MAX]
     if not picks:
         return
@@ -361,8 +512,7 @@ GEN_START, GEN_END = '<!-- gen218-videos:start -->', '<!-- gen218-videos:end -->
 
 def refresh_gen218():
     """Gen218 page 'Ministry moments' = newest Gen218 video (click-to-play) + any other Gen218 messages, from the Media library."""
-    media = (ROOT / 'media.html').read_text()
-    _, cards = parse_cards(media)
+    cards = library_cards()
     pl = set((json.loads(PLAYLIST_IDS.read_text()) if PLAYLIST_IDS.exists() else {}).get('gen218', []))
     picks = [c for c in cards if c['id'] in pl or c['program'] == 'Gen218' or re.search(r'gen ?218', c['title'], re.I)][:GEN_MAX]
     if not picks:
@@ -504,7 +654,7 @@ def refresh_live():
     except Exception as ex:
         print('live sync: live-tab feed unavailable (%s) — no change' % ex)
         return
-    _, cards = parse_cards((ROOT / 'media.html').read_text())
+    cards = library_cards()
     sched, prev = live_items(xml, {c['id']: c['href'] for c in cards})
     if not prev:
         return
@@ -536,6 +686,7 @@ def refresh_playlist_filter():
 
 def main():
     r = _main()
+    tidy_media()
     refresh_playlist_filter()
     refresh_women()
     refresh_gen218()
