@@ -1287,3 +1287,26 @@ html body .msg-related-h{text-align:center}
 /* Footer (Dawn, Nov 26 21:56): no logo in the footer at all; the verse opens it */
 .site-footer .footer-identity>picture,.site-footer .footer-identity>img{display:none!important}
 .site-footer .footer-identity blockquote{margin:0!important}
+/* Phone layouts (Dawn, Nov 26 22:34): swipe value cards + homepage albums, Ministries tabs, Live tiles */
+.sw-dots,.mtabs{display:none}
+@media(max-width:760px){
+ .values-grid,.hg-more{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;padding:2px 0 6px!important;scrollbar-width:none;grid-template-columns:none!important}
+ .values-grid::-webkit-scrollbar,.hg-more::-webkit-scrollbar{display:none}
+ .values-grid>*,.hg-more>*{flex:0 0 84%;max-width:84%;scroll-snap-align:center;margin:0!important}
+ .hg-more>a{display:flex!important;flex-direction:column!important;align-items:center;text-align:center;gap:10px;padding:0 0 14px!important}
+ .hg-more>a picture,.hg-more>a img{width:100%!important;height:auto!important;aspect-ratio:16/10;object-fit:cover}
+ .sw-dots{display:flex;justify-content:center;gap:8px;margin:14px 0 0}
+ .sw-dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#cdc6bc;cursor:pointer;transition:width .25s,background .25s}
+ .sw-dots button.on{width:26px;border-radius:5px;background:#c9952c}
+ .mtabs{display:flex;gap:6px;justify-content:center;margin:0 0 4px;grid-column:1/-1}
+ .mtabs button{flex:1;min-height:44px;border-radius:100px;border:1.5px solid #d9d1c2;background:#fff;color:#142240;font:700 13.5px 'Inter Tight',sans-serif;cursor:pointer}
+ .mtabs button.on{background:#142240;border-color:#142240;color:#fff}
+ .ministry-grid>.mt-off{display:none!important}
+ #lvGrid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px!important}
+ #lvGrid .message-card{min-width:0}
+ #lvGrid .message-card h3{font-size:15px!important;line-height:1.25!important}
+ #lvGrid .message-card small{font-size:10px!important;letter-spacing:.1em}
+ #lvGrid .message-card>div>p{font-size:12px!important}
+ #lvGrid .message-card>div>div{display:none!important}
+ #lvGrid .message-card>div{padding:12px 10px!important}
+}
