@@ -203,3 +203,4 @@
 /* keep the top line clear of the help button */
 .cn>.st-k,.wh>.st-k,.dv>.st-k,.wa>.st-k,.vb>.st-k,.pr>.st-k{padding:0 110px}
 @media(max-width:560px){.cn>.st-k,.wh>.st-k,.dv>.st-k,.wa>.st-k,.vb>.st-k,.pr>.st-k{padding:0 0 0;margin-top:30px}}
+@media(max-width:560px){.tp{gap:8px}.tp-chip{min-height:40px!important;padding:0 12px!important;font-size:13.5px!important}}
