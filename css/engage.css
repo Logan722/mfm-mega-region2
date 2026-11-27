@@ -706,3 +706,55 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 @media(max-width:380px){.tsa .tsa-small h3{font-size:20px!important}}
 @media(max-width:900px){.tsa .tsa-list{grid-template-rows:none!important}.tsa .tsa-small{justify-content:center!important}}
 @media(max-width:900px){.tsa .tsa-small{min-height:0!important}}
+/* Watch & grow on phones (Dawn, Nov 26 21:53): gold label above the video; title, date and button centred; title on one line */
+.media-band h2#rf-latest-title.one-line{white-space:nowrap;display:block;-webkit-line-clamp:unset;overflow:hidden;max-width:100%}
+@media(max-width:900px){
+ .media-band{padding:52px 0}
+ .media-band .media-band-grid{display:flex!important;flex-direction:column;align-items:stretch;gap:0!important;text-align:center}
+ .media-band .media-band-grid>div:not(.media-image){display:contents}
+ .media-band .media-band-grid .eyebrow{order:0;justify-content:center;margin:0 0 16px!important}
+ .media-band .media-band-grid .eyebrow::after{content:"";width:26px;height:1px;background:currentColor}
+ .media-band .media-image{order:1;margin:0 0 20px}
+ .media-band h2#rf-latest-title{order:2;margin:0 0 8px;font-size:clamp(26px,8vw,36px)}
+ .media-band #rf-latest-by{order:3;margin:0 0 18px!important}
+ .media-band .wg-btns{order:4;margin-top:0!important;display:flex!important;justify-content:center}
+ .media-band .wg-btns .button{width:auto!important;min-width:220px}
+ .media-band .wg-btns .lg{display:inline!important}.media-band .wg-btns .sm{display:none!important}
+}
+/* Homepage testimonies on phones (Dawn, Nov 26 21:56): versions A swipe / B featured + pair / C featured + list */
+@media(max-width:760px){
+ .tsa[data-mv="a"] .tsa-grid{position:relative;display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -18px;padding:2px 18px 4px;scroll-padding:0 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ .tsa[data-mv="a"] .tsa-grid::-webkit-scrollbar{display:none}
+ .tsa[data-mv="a"] .tsa-list{display:contents!important}
+ .tsa[data-mv="a"] .tsa-feat,.tsa[data-mv="a"] .tsa-small{flex:0 0 86%;scroll-snap-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+ .tsa[data-mv="a"] .tsa-small{padding:28px 20px}
+ .tsa-dots{display:flex;justify-content:center;gap:8px;margin:16px 0 0}
+ .tsa-dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:#cdc6bc;cursor:pointer;transition:width .25s,background .25s}
+ .tsa-dots button.on{width:26px;border-radius:5px;background:#c9952c}
+ .tsa[data-mv="b"] .tsa-list{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px!important}
+ .tsa[data-mv="b"] .tsa-small{padding:18px 12px!important}
+ .tsa[data-mv="b"] .tsa-small h3{font-size:18px!important;line-height:1.2;margin:8px 0 6px}
+ .tsa[data-mv="b"] .tsa-small p{font-size:13px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+ .tsa[data-mv="b"] .tsa-small .tsa-k{font-size:10.5px;letter-spacing:.12em}
+ .tsa[data-mv="b"] .tsa-small>a{font-size:12.5px;margin-top:8px}
+ .tsa[data-mv="c"] .tsa-list{gap:0!important;background:#fffdf9;border:1px solid #ded8ce;margin-top:0}
+ .tsa[data-mv="c"] .tsa-small{background:transparent;border:0;border-bottom:1px solid #e6dfd3;padding:16px 14px!important}
+ .tsa[data-mv="c"] .tsa-small:last-child{border-bottom:0}
+ .tsa[data-mv="c"] .tsa-small p{display:none}
+ .tsa[data-mv="c"] .tsa-small h3{margin:6px 0 4px!important}
+ .tsa[data-mv="c"] .tsa-small>a{margin-top:4px}
+}
+@media(min-width:761px){.tsa-dots{display:none}}
+.tsa-dots[hidden]{display:none!important}
+@media(max-width:760px){.tsa[data-mv="b"] .tsa-small>a{font-size:12px;white-space:nowrap}}
+.tsa .tsa-small>div{min-width:0;max-width:100%;width:100%}
+/* Phone pass (Nov 26 22:00): no left-aligned section headings; no doubled white gap between "Find a church" and the gallery */
+@media(max-width:760px){
+ .ev2 .ev2-head,.ev2 .ev2-head>div{text-align:center!important}
+ .ev2 .ev2-head{display:flex;flex-direction:column;align-items:center}
+ .ev2 .ev2-head p{margin-left:auto;margin-right:auto}
+ .ev2 .ev2-k{justify-content:center}
+ .section.location-call{padding-bottom:36px!important}
+ .section.home-gallery{padding-top:36px!important}
+}
+@media(max-width:760px){.ev2 .ev2-head{gap:0!important}.ev2 .ev2-head p{margin-top:10px!important}}

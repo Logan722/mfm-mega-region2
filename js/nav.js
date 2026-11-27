@@ -67,7 +67,7 @@
     (onSub?'':'.mag-sub,.hub-sub{display:none!important}');
   document.head.appendChild(css);
   var first=onSub
-    ?'<div class="first id"><img src="/img/logo.png" alt="" width="64" height="64"><div><strong>MFM Mega Region 2 USA</strong><p>Prayer &middot; Deliverance &middot; The Word</p></div></div>'
+    ?'<div class="first id"><blockquote style="margin:0;font:400 17px/1.6 Fraunces,Georgia,serif;color:#b3bed0;max-width:420px">&ldquo;But upon mount Zion shall be deliverance, and there shall be holiness.&rdquo;<span style="display:block;color:#f0c760;font:600 10px/1 \'Inter Tight\',Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;margin-top:10px">Obadiah 1:17</span></blockquote></div>'
     :'<div class="first su"><h3>Never miss an issue.</h3><p>Join the newsletter &mdash; sermons, prayer points and what&rsquo;s next from our region, about twice a month.</p>'+
       '<form novalidate><label for="nlf-name">First name</label><input id="nlf-name" type="text" name="firstName" autocomplete="given-name" placeholder="First name">'+
       '<label for="nlf-email">Email address</label><input id="nlf-email" type="email" name="email" autocomplete="email" required placeholder="Email address">'+

@@ -32,8 +32,8 @@
       '<div class="foot"><a class="ek-btn ghost" href="https://wa.me/?text=' + encodeURIComponent(share) + '" target="_blank" rel="noopener">Share on WhatsApp</a></div>';
   }).catch(function () {});
 })();
-/* Watch & grow: keep the message title on one line on computers (shrinks to fit, never below 28px; a title
-   too long even then wraps to two lines at its normal size) */
+/* Watch & grow: keep the message title on one line (shrinks to fit, never below 28px on computers / 20px on phones;
+   a title too long even then wraps at its normal size) */
 (function () {
   var h = document.getElementById('rf-latest-title');
   if (!h) return;
@@ -41,11 +41,13 @@
   function fit() {
     if (busy) return; busy = true;
     h.style.fontSize = ''; h.classList.remove('one-line');
-    if (window.innerWidth >= 901) {
-      h.classList.add('one-line');
+    var floor = window.innerWidth >= 901 ? 28 : 20;
+    {
+      h.classList.add('one-line'); h.style.textAlign = 'left';   /* measure left-aligned: centred overflow is not counted */
       var size = parseFloat(getComputedStyle(h).fontSize);
-      while (h.scrollWidth > h.clientWidth + 1 && size > 28) { size -= 1; h.style.fontSize = size + 'px'; }
-      if (h.scrollWidth > h.clientWidth + 1) { h.style.fontSize = ''; h.classList.remove('one-line'); }
+      while (h.scrollWidth > h.clientWidth + 1 && size > floor) { size -= 1; h.style.fontSize = size + 'px'; }
+      var over = h.scrollWidth > h.clientWidth + 1; h.style.textAlign = '';
+      if (over) { h.style.fontSize = ''; h.classList.remove('one-line'); }
     }
     busy = false;
   }
@@ -60,14 +62,37 @@
   if (!els.length) return;
   function fit() {
     els.forEach(function (h) {
-      h.style.fontSize = ''; h.style.whiteSpace = '';
-      var base = parseFloat(getComputedStyle(h).fontSize), size = base, floor = Math.max(h.classList.contains('tsa-k') ? 9.5 : 20, base * 0.45);
-      h.style.whiteSpace = 'nowrap';
-      while (h.scrollWidth > h.clientWidth + 1 && size > floor) { size -= 0.5; h.style.fontSize = size + 'px'; }
-      if (h.scrollWidth > h.clientWidth + 1) { h.style.fontSize = ''; h.style.whiteSpace = ''; }
+      h.style.removeProperty('font-size'); h.style.whiteSpace = '';
+      var base = parseFloat(getComputedStyle(h).fontSize), size = base, floor = Math.min(base, h.classList.contains('tsa-k') ? 9.5 : 18);
+      h.style.whiteSpace = 'nowrap'; h.style.textAlign = 'left';   /* measure left-aligned: centred overflow is not counted */
+      while (h.scrollWidth > h.clientWidth + 1 && size > floor) { size -= 0.5; h.style.setProperty('font-size', size + 'px', 'important'); }
+      var over = h.scrollWidth > h.clientWidth + 1; h.style.textAlign = '';
+      if (over) { h.style.removeProperty('font-size'); h.style.whiteSpace = ''; }
     });
   }
   var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   fit();
+})();
+/* Homepage testimonies, phone version A: swipe cards with dots */
+(function () {
+  var sec = document.querySelector('.tsa'), g = sec && sec.querySelector('.tsa-grid');
+  if (!g) return;
+  var cards = [].slice.call(g.querySelectorAll('.tsa-feat, .tsa-small')), dots = document.createElement('div');
+  dots.className = 'tsa-dots'; dots.setAttribute('aria-label', 'Testimonies');
+  cards.forEach(function (c, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Testimony ' + (i + 1));
+    b.addEventListener('click', function () { g.scrollTo({ left: c.offsetLeft - 18, behavior: 'smooth' }); });
+    dots.appendChild(b);
+  });
+  g.parentNode.insertBefore(dots, g.nextSibling);
+  function on() {
+    if (sec.getAttribute('data-mv') !== 'a' || getComputedStyle(g).display !== 'flex') { dots.hidden = true; return; }
+    dots.hidden = false;
+    var mid = g.scrollLeft + g.clientWidth / 2, best = 0, bd = 1e9;
+    cards.forEach(function (c, i) { var d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
+    [].forEach.call(dots.children, function (b, i) { b.classList.toggle('on', i === best); });
+  }
+  g.addEventListener('scroll', function () { window.requestAnimationFrame(on); }, { passive: true });
+  window.addEventListener('resize', on); on();
 })();
