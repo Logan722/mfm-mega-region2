@@ -32,6 +32,8 @@ const EXTRA = { wheel: 100 };   // bonus words
 export const GAME = (m) => ({ daily: 'bquiz', quiz: 'bquiz', kids: 'bquiz', blitz: 'bquiz' }[m] || m);
 export const ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs'];
 export const ROT_START = '2026-11-23';   // the Monday the rotation starts (week 1); set to the go-live week
+// scores saved before the Game of the Week went live (Nov 27, 2026) keep counting for that first week, whatever the game
+export const CUTOVER = Date.parse('2026-11-27T08:30:00Z');
 const BAD = /(https?:|www\.|\.(com|net|org)\b|\b(fuck\w*|shit\w*|bitch\w*|nigg\w*|porn\w*|pussy|asshole|bastard|satan\w*|sex\w*)\b)/i;
 const ORIGINS = ['https://mfmmegaregion2usa.org', 'https://www.mfmmegaregion2usa.org', 'https://mfmmegaregion2usa.netlify.app'];
 
@@ -97,7 +99,7 @@ async function rebuild(store, week) {
   const agg = emptyBoard(week, g);
   const { blobs } = await store.list({ prefix: `s/${week}/` });
   for (const b of blobs) {
-    const s = await store.get(b.key, { type: 'json' }); if (!s || GAME(s.mode) !== g) continue;
+    const s = await store.get(b.key, { type: 'json' }); if (!s || (GAME(s.mode) !== g && !(s.ts && s.ts < CUTOVER))) continue;
     const p = agg.players[s.h] || (agg.players[s.h] = { h: s.h, nick: s.nick, branch: s.branch, place: s.place, pts: 0 });
     p.pts += s.pts; p.nick = s.nick; p.branch = s.branch; p.place = s.place;
   }
