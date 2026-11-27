@@ -166,7 +166,7 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
 .st-timer circle{fill:none;stroke-width:6}.st-timer .bg{stroke:rgba(255,255,255,.12)}.st-timer .fg{stroke:#ffd36b;stroke-linecap:round;transition:stroke-dashoffset .1s linear}
 .st-timer b{position:absolute;inset:0;display:grid;place-items:center;font:900 20px 'Inter Tight',sans-serif;font-variant-numeric:tabular-nums}
 .st-timer.low .fg{stroke:#ff5a36}.st-timer.low b{color:#ff8a6a;animation:stBump .5s infinite}
-.st-combo{display:inline-flex;align-items:center;gap:6px;margin:0 0 10px;padding:6px 12px;border-radius:100px;background:linear-gradient(90deg,#ff7a2f,#e2451d);font:800 13px 'Inter Tight',sans-serif;box-shadow:0 4px 0 #8e2c0b}
+.st-combo{display:inline-flex;align-items:center;gap:6px;margin:0 0 10px;padding:6px 12px;border-radius:100px;background:linear-gradient(90deg,#c4481a,#a8340f);font:800 13px 'Inter Tight',sans-serif;box-shadow:0 4px 0 #8e2c0b}
 .st-combo svg{width:16px;height:16px;fill:#ffe08a}
 .st-question{font:800 clamp(24px,3.4vw,38px)/1.18 Fraunces,Georgia,serif;text-align:center;margin:6px 0 14px;text-wrap:balance}
 .st-me{text-align:center;font-size:13.5px;color:#aab6cc;margin:0 0 22px;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
@@ -321,8 +321,8 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
 .hv2-ans{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .hv2-ans .ans{min-height:60px;font-size:16px;padding:10px 12px;cursor:default;border-radius:16px}
 .hv2-ans .ans .sh{width:34px;height:34px}.hv2-ans .ans .sh svg{width:20px;height:20px}
-.hv2-pop{position:absolute;left:26%;top:52%;font:900 38px 'Inter Tight',sans-serif;color:#ffd36b;text-shadow:0 3px 0 #8a5f12,0 0 20px rgba(255,200,80,.8);transform:rotate(-8deg)}
-.hv2-combo{position:absolute;right:-14px;top:-16px;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:100px;background:linear-gradient(90deg,#ff7a2f,#e2451d);font:800 13px 'Inter Tight',sans-serif;box-shadow:0 5px 0 #8e2c0b;transform:rotate(-4deg)}
+.hv2-pop{position:absolute;left:26%;top:52%;font:900 38px 'Inter Tight',sans-serif;color:#fff;text-shadow:0 3px 0 #142240,0 0 18px rgba(20,34,64,.7);transform:rotate(-8deg)}
+.hv2-combo{position:absolute;right:-14px;top:-16px;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:100px;background:linear-gradient(90deg,#c4481a,#a8340f);font:800 13px 'Inter Tight',sans-serif;box-shadow:0 5px 0 #8e2c0b;transform:rotate(-4deg)}
 .hv2-combo svg{width:16px;height:16px;fill:#ffe08a}
 
 /* 3 — today's ticket */
@@ -727,7 +727,7 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
 /* QC (Nov 26): contrast — white text on these colours now meets WCAG AA */
 .t-quiz .pg-body .pg-btn.dark{--b:#a84607}
 .st-pack.c-oni{background:#0b7476}
-.ans.a2{--a:#b47a10;--as:#6e4a05}
+.ans.a2{--a:#8a5c06;--as:#5a3c02}
 .t-kids .pg-body .pg-btn.dark{--b:#157a4b}
 /* ===== real leaderboard: live line + empty state (Dawn, Nov 26) ===== */
 .lb-live{display:flex;align-items:center;justify-content:center;gap:8px;margin:-4px auto 14px;font:700 13px 'Inter Tight',sans-serif;color:#cdd6e6;text-align:center}

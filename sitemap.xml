@@ -740,6 +740,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mfmmegaregion2usa.org/events/command-the-year-2027</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mfmmegaregion2usa.org/events/couples-night</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -753,6 +759,12 @@
   </url>
   <url>
     <loc>https://mfmmegaregion2usa.org/events/ministerial-schools-2027</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mfmmegaregion2usa.org/events/ministers-conference-2027</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

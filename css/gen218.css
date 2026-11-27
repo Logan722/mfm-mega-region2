@@ -95,8 +95,8 @@ main.gf .message-card>div>div{justify-content:center}
 .g5 .verse b{font:700 11px 'Inter Tight';letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);position:relative}
 .g5 .val b{font:600 28px Fraunces,serif;color:#142240}.g5 .val h3{font-size:24px}.g5 .val p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 .g5 .about p{font:500 clamp(18px,1.6vw,22px)/1.5 Fraunces,serif;color:var(--ink);margin:0;max-width:760px}
-.g5 .pl{background:linear-gradient(135deg,#c2471a,#e85d26);border:0;color:#fff;text-decoration:none}
-.g5 .pl h3{font-size:24px;color:#fff}.g5 .pl p{margin:0;color:#ffe6d8}.g5 .pl .btn{margin-top:6px;min-height:44px;font-size:14px}
+.g5 .pl{background:linear-gradient(135deg,#b33c12,#c4481a);border:0;color:#fff;text-decoration:none}
+.g5 .pl h3{font-size:24px;color:#fff}.g5 .pl p{margin:0;color:#fff}.g5 .pl .btn{margin-top:6px;min-height:44px;font-size:14px}
 .g5-b .gen-moments{background:#fff}
 .g5-b .wm-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(30px,4vw,60px);align-items:center;margin-left:max(var(--edge),calc((100% - 1280px)/2))!important;margin-right:max(var(--edge),calc((100% - 1280px)/2))!important}
 .g5-b .wm-grid .gm-video{order:-1}

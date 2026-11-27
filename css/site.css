@@ -3033,7 +3033,9 @@ html body .dz .navy .btn:not(.fire):not(.ghost):hover{background:#f0e6d0!importa
 html body .dz .btn.ol:not(.ghost){box-shadow:0 10px 22px -12px rgba(10,18,36,.6)!important;border-color:#142240!important}
 html body .dz .navy .btn:not(.fire):not(.ghost){box-shadow:0 10px 24px -12px rgba(0,0,0,.55)!important}
 /* small labels and text links on light sections: navy, not orange (one warm accent: gold) */
-html body :is(.tp-word .k, .tp-quiz .k, .hg-txt .hg-k, .tsa-k, .tc:not(:first-child) .tag, .tc .tag, .message-card small, .gm-more-head a.gm-pl, a.lv-remind, a.channel-link, .event-card-actions .inline-link, .bc-actions a.bc-detail){color:#142240!important;-webkit-text-fill-color:#142240}
+html body :is(.tp-word .k, .tp-quiz .k, .hg-txt .hg-k, .tsa-k, .tc:not(:first-child) .tag, .tc .tag, .message-card small, .gm-more-head a.gm-pl, a.lv-remind, a.channel-link, .event-card-actions .inline-link:not(.ticket), .bc-actions a.bc-detail){color:#142240!important;-webkit-text-fill-color:#142240}
 html body .n5 .tc:first-child .tag{color:#f0e6d0!important;-webkit-text-fill-color:#f0e6d0}
 html body :is(.event-card small, .branch-card small){color:#142240!important;-webkit-text-fill-color:#142240}
 html body :is(.tsa-feat .tsa-k, .navy .message-card small, .wf .navy .message-card small){color:#f0e6d0!important;-webkit-text-fill-color:#f0e6d0}
+/* small grey labels on white detail cards: darker grey so they read (was #8a8f98, 3.3:1 -> 5.9:1) */
+html body :is(.ev-k, .bp-k, .bp-soc-lbl, .rc-sp, .mag-archive-note){color:#5f6672!important}
