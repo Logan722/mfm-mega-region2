@@ -637,6 +637,6 @@
         refreshHub(); loadBoard();
     var ch = readChallenge(location.search) || readChallenge(location.hash.indexOf('c=') >= 0 ? location.hash : '');
     if (ch) challengeIntro(ch);
-    else { var pq = /[?&#]play=([a-z]+)/.exec(location.search + location.hash); if (pq && X.games[pq[1]]) start(pq[1]); }
+    else { var pq = /[?&#]play=([a-z]+)/.exec(location.search + location.hash), go = function () { if (pq && X.games[pq[1]]) start(pq[1]); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); }
   });
 })();
