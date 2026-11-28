@@ -94,7 +94,7 @@
     opts = opts || {}; ensureOpen(); var g = G[id], last = ls('mfm-team2') || { n: 2, names: X.TEAM_NAMES.slice(), per: 2 };
     setS({ title: g.name + ' · Teams' });
     var pers = opts.pers || [1, 2, 3];
-    frame('<div class="st-card st-team"><p class="st-k">Play together</p><h2 class="st-h">' + esc(g.name) + '</h2><p class="st-fine">' + (opts.note || 'Teams take turns. Pass the phone, or put it on the TV.') + '</p><form class="st-form" autocomplete="off">' +
+    frame('<div class="st-card st-team"><p class="st-k">Team play</p><h2 class="st-h">' + esc(g.name) + '</h2><p class="st-fine">' + (opts.note || 'Teams take turns. Pass the phone, or put it on the TV.') + '</p><form class="st-form" autocomplete="off">' +
       '<fieldset class="tm-n"><legend>How many teams?</legend>' + [2, 3, 4].map(function (k) { return '<label><input type="radio" name="n" value="' + k + '"' + (last.n === k ? ' checked' : '') + '><span>' + k + '</span></label>'; }).join('') + '</fieldset>' +
       '<div class="tm-names">' + [0, 1, 2, 3].map(function (k) { return '<label class="tm-name" style="--tc:' + X.TEAM_COL[k] + '"' + (k >= last.n ? ' hidden' : '') + '><i></i><input name="t' + k + '" maxlength="18" value="' + esc(last.names[k] || X.TEAM_NAMES[k]) + '" aria-label="Team ' + (k + 1) + ' name"></label>'; }).join('') + '</div>' +
       (opts.extra || '') +
