@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter+Tight:wght@500;600;700;800&display=block" rel="stylesheet">
+<style>
+/* Link-preview card, 1200x630 (Royal Flame). One gold (#c9952c); no words on a gold fill (Dawn, Nov 27 2026). */
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{background:#0e1a33;font-family:'Inter Tight',sans-serif;color:#fff;position:relative}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 85% at 50% -10%,rgba(201,149,44,.34),transparent 62%),radial-gradient(ellipse 50% 60% at 50% 120%,rgba(232,93,38,.22),transparent 70%),linear-gradient(180deg,#172848 0%,#101d38 55%,#0b1529 100%)}
+.ph{position:absolute;inset:0;background-size:cover;background-position:center}
+.ph:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 50% 52%,rgba(14,26,51,.62),rgba(14,26,51,.80) 72%),linear-gradient(180deg,rgba(20,34,64,.35),rgba(11,21,41,.85))}
+.shaft{position:absolute;left:50%;top:-140px;width:520px;height:900px;transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,226,160,.15),rgba(255,226,160,0) 70%);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);filter:blur(8px)}
+.grain{position:absolute;inset:0;background:url(../../img/grain.png);opacity:.10;mix-blend-mode:overlay}
+.frame{position:absolute;inset:22px;border:1px solid rgba(201,149,44,.42)}
+.wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 90px 76px}
+.icon{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#1d2f55 0%,#142240 70%);box-shadow:0 0 0 10px rgba(201,149,44,.14),0 0 60px rgba(201,149,44,.38);margin-bottom:24px}
+.icon svg{width:72px;height:72px}
+.logo{width:150px;height:132px;object-fit:contain;margin-bottom:18px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.5))}
+.logo.badge{width:120px;height:120px;border-radius:24px;background:#fff;padding:10px;box-shadow:0 0 0 8px rgba(201,149,44,.18),0 12px 30px rgba(0,0,0,.45)}
+.k{font:800 17px/1 'Inter Tight',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#d9a948;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.k:before,.k:after{content:"";width:34px;height:1.5px;background:currentColor;opacity:.8}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:92px;line-height:1.02;letter-spacing:-.02em;font-variation-settings:'opsz' 144;max-width:1020px;text-wrap:balance}
+h1 em{font-style:italic;color:#d9a948;font-weight:500}
+.sub{margin-top:18px;font:500 28px/1.35 'Inter Tight',sans-serif;color:#dbe2ee;max-width:940px;text-wrap:balance}
+.chips{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.chips span{font:600 19px/1 'Inter Tight',sans-serif;color:#f6ead0;border:1.5px solid rgba(201,149,44,.75);background:rgba(20,34,64,.55);border-radius:100px;padding:11px 20px}
+.verse{margin-top:22px;font:italic 500 24px/1.4 Fraunces,Georgia,serif;color:#eadcbc;max-width:940px;text-wrap:balance}
+.verse b{display:block;font:800 14px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#d9a948;margin-top:10px;font-style:normal}
+.big .verse{font-size:40px;line-height:1.28;margin-top:6px;color:#fff;max-width:1000px}
+.big .verse b{font-size:17px;margin-top:16px}
+.big .sub{font-size:25px;margin-top:20px;color:#e6d6b0;font-weight:600}
+.foot{position:absolute;z-index:2;left:0;right:0;bottom:42px;display:flex;align-items:center;justify-content:center;gap:12px;font:600 18px/1 'Inter Tight',sans-serif;color:#b6c2d6;letter-spacing:.02em}
+.foot img{width:40px;height:36px;object-fit:contain}
+.bar{position:absolute;left:0;right:0;bottom:0;height:8px;background:linear-gradient(90deg,#c9952c,#e85d26,#c9952c)}
+</style></head><body><div class="bg"></div><div class="ph" id="ph" hidden></div><div class="shaft"></div><div class="grain"></div><div class="frame"></div>
+<div class="wrap" id="w"></div><div class="foot"><img src="../../img/logo.png" alt="">mfmmegaregion2usa.org</div><div class="bar"></div>
+<script>
+window.paint=function(C){
+  var w=document.getElementById('w'),ph=document.getElementById('ph');
+  if(C.photo){ph.hidden=false;ph.style.backgroundImage='url('+C.photo+')';if(C.pos)ph.style.backgroundPosition=C.pos;}else ph.hidden=true;
+  document.body.className=C.big?'big':'';
+  w.innerHTML=(C.logo?'<img class="logo'+(C.badge?' badge':'')+'" src="'+C.logo+'" alt="">':C.icon?'<div class="icon">'+C.icon+'</div>':'')+(C.k?'<div class="k">'+C.k+'</div>':'')+(C.h?'<h1>'+C.h+'</h1>':'')+
+   (C.big&&C.verse?'<p class="verse">“'+C.verse[0]+'”<b>'+C.verse[1]+'</b></p>':'')+(C.sub?'<p class="sub">'+C.sub+'</p>':'')+
+   (C.chips?'<div class="chips">'+C.chips.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>':'')+(!C.big&&C.verse?'<p class="verse">“'+C.verse[0]+'”<b>'+C.verse[1]+'</b></p>':'');
+  var h=document.querySelector('h1');if(h){h.style.fontSize=(C.h1||92)+'px';var s=C.h1||92;while(h.scrollHeight>(C.maxH||210)&&s>48){s-=4;h.style.fontSize=s+'px';}}
+  var v=document.querySelector('.big .verse');if(v){var z=46;v.style.fontSize=z+'px';var span=function(){var k=w.children;return k[k.length-1].getBoundingClientRect().bottom-k[0].getBoundingClientRect().top;};while(span()>470&&z>26){z-=2;v.style.fontSize=z+'px';}}
+};
+</script></body></html>

@@ -13,4 +13,7 @@ var md=document.getElementById('dzModal');document.addEventListener('click',func
  if(e.target===md||(e.target.closest&&e.target.closest('.dz-modal .x')))md.classList.remove('open');});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')md.classList.remove('open');});
 draw();
+// a shared testimony link (/testimonies/<slug> -> /testimonies#<slug>) opens that testimony (Dawn, Nov 28 2026)
+(function(){var id=decodeURIComponent((location.hash||'').slice(1));if(!id)return;var a=document.getElementById(id);if(!a||!a.hasAttribute('data-it'))return;var i=items.indexOf(a);if(i>=shown){shown=Math.ceil((i+1)/size)*size;draw();}
+ setTimeout(function(){a.scrollIntoView({block:'center'});var r=a.querySelector('[data-read]');if(r)r.click();},60);})();
 document.querySelectorAll('[data-cnt]').forEach(function(s){var b=s.closest('button');if(b&&s.textContent==='0')b.hidden=true;});})();

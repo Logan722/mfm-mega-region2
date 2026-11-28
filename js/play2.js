@@ -380,7 +380,8 @@
   /* ---------- challenge a friend (no server: the link carries the questions) ---------- */
   function challengeLink(o) {
     var p = player() || {}; o.n = p.guest ? '' : (p.nick || '');
-    return SITE + '?' + Object.keys(o).filter(function (k) { return o[k] !== '' && o[k] != null; }).map(function (k) { return k + '=' + encodeURIComponent(o[k]); }).join('&');
+    // /play/word or /play/bquiz: the link preview shows the game (tools/share_meta.py); the page keeps the challenge
+    return SITE + '/' + (o.c === 'word' ? 'word' : 'bquiz') + '?' + Object.keys(o).filter(function (k) { return o[k] !== '' && o[k] != null; }).map(function (k) { return k + '=' + encodeURIComponent(o[k]); }).join('&');
   }
   function readChallenge(str) {
     var m = {}; (str || '').replace(/^[?#]/, '').split('&').forEach(function (kv) { var i = kv.indexOf('='); if (i > 0) m[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); });
@@ -581,7 +582,7 @@
   }
   function teamResults() {
     S.phase = 'r'; var t = S.teams.slice().sort(function (a, b) { return b.pts - a.pts; }), tie = t[1] && t[0].pts === t[1].pts, top = t[0].pts || 1;
-    var share = 'MFM Play & Grow — Team Battle\n' + t.map(function (x, k) { return (k + 1) + '. ' + x.name + ' — ' + fmt(x.pts) + ' pts'; }).join('\n') + '\nPlay with your family: ' + SITE;
+    var share = 'MFM Play & Grow — Team Battle\n' + t.map(function (x, k) { return (k + 1) + '. ' + x.name + ' — ' + fmt(x.pts) + ' pts'; }).join('\n') + '\nPlay with your family: ' + SITE + '/bquiz';
     frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res tm-res"><p class="st-k">Team Battle</p><div class="tm-crown" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-2 10H5Z"/></svg></div><h2 class="st-rank">' + (tie ? 'It&rsquo;s a tie!' : esc(t[0].name) + ' wins!') + '</h2>' +
       '<div class="tm-board">' + t.map(function (x, k) { return '<div class="tm-row" style="--tc:' + x.col + ';--w:' + Math.max(6, Math.round(x.pts / top * 100)) + '%"><b>' + (k + 1) + '</b><span>' + esc(x.name) + '<small>' + x.ok + ' right</small></span><i></i><em>' + fmt(x.pts) + '</em></div>'; }).join('') + '</div>' +
       '<div class="st-acts"><a class="pg-btn green" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(share) + '">Share the result</a><button type="button" class="pg-btn light st-again">Rematch</button></div><div class="st-acts two"><button type="button" class="pg-btn ghost st-more">Play another game</button></div></div>', 'done');

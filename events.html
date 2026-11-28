@@ -9,12 +9,26 @@
 
   <!-- SEO Meta -->
   <meta name="description" content="Events and programs at MFM Mega Region 2 USA. Healing &amp; Deliverance Hour, Open Heaven Encounter, Weekend Deliverance, Power Must Change Hands, and more.">
-  <meta name="theme-color" content="#142240">
+<link rel="canonical" href="https://mfmmegaregion2usa.org/events">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MFM Mega Region 2 USA">
+<meta property="og:title" content="Events &amp; programs">
+<meta property="og:description" content="Healing &amp; Deliverance Hour, Open Heaven Encounter, crusades and special programs across MFM Mega Region 2 USA. Join us.">
+<meta property="og:url" content="https://mfmmegaregion2usa.org/events">
+<meta property="og:image" content="https://mfmmegaregion2usa.org/img/og/events.jpg">
+<meta property="og:image:secure_url" content="https://mfmmegaregion2usa.org/img/og/events.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Come and encounter God">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Events &amp; programs">
+<meta name="twitter:description" content="Healing &amp; Deliverance Hour, Open Heaven Encounter, crusades and special programs across MFM Mega Region 2 USA. Join us.">
+<meta name="twitter:image" content="https://mfmmegaregion2usa.org/img/og/events.jpg">
+<meta name="twitter:image:alt" content="Come and encounter God">
+<meta name="theme-color" content="#142240">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Events &amp; Programs — MFM Mega Region 2 USA">
-  <meta property="og:description" content="Join us for weekly prayer, healing, deliverance, and breakthrough. Healing &amp; Deliverance Hour every Tuesday, Open Heaven Encounter every Thursday, PMCH every 1st Saturday.">
-  <meta property="og:type" content="website">
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -36,18 +50,6 @@
 
   <!-- Netlify Identity Widget -->
   <!-- Canonical & Extended Open Graph -->
-  <link rel="canonical" href="https://mfmmegaregion2usa.org/events">
-  <meta property="og:url" content="https://mfmmegaregion2usa.org/events">
-  <meta property="og:site_name" content="MFM Mega Region 2 USA">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Events &amp; Programs — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Events &amp; Programs — MFM Mega Region 2 USA | Mountain of Fire and Miracles Ministries">
-  <meta name="twitter:description" content="Events and programs at MFM Mega Region 2 USA. Healing &amp; Deliverance Hour, Open Heaven Encounter, Weekend Deliverance, Power Must Change Hands, and more.">
-  <meta name="twitter:image" content="https://mfmmegaregion2usa.org/img/og-image.png">
   <script defer data-domain="mfmmegaregion2usa.org" src="https://plausible.io/js/script.js"></script>
 
 <script src="/js/overlay.js?v=ce4a99e90d" defer></script><script src="/js/newsletter-popup.js?v=e9fc0311b0" defer></script>
@@ -210,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function(){
     mb.hidden=false; mb.style.display='grid'; if(e.anchor) history.replaceState(null,'',location.pathname+'#'+e.anchor);
     if(window.MFMOverlay){ window.MFMOverlay.open(mb,{dialog:mb.querySelector('.event-modal'),initialFocus:'#evtClose',returnFocus:mb._opener,onRequestClose:closeModal}); }
     else { document.body.style.overflow='hidden'; document.getElementById('evtClose').focus(); }
-    mb._share=function(){ var url=location.origin+location.pathname+'#'+(e.anchor||''); if(navigator.share){navigator.share({title:e.title||'',url:url});} else { var b=document.getElementById('evtShare'); if(navigator.clipboard)navigator.clipboard.writeText(url); b.textContent='Link copied'; setTimeout(function(){b.textContent='Share Event';},1800); } };
+    mb._share=function(){ var url=location.origin+(e.page?e.page:'/events'+(e.anchor?'#'+e.anchor:'')); /* the event's own page = its own link preview (Dawn, Nov 28) */ if(navigator.share){navigator.share({title:e.title||'',url:url});} else { var b=document.getElementById('evtShare'); if(navigator.clipboard)navigator.clipboard.writeText(url); b.textContent='Link copied'; setTimeout(function(){b.textContent='Share Event';},1800); } };
   }
   function closeModal(){ if(mb.hidden) return; mb.hidden=true; mb.style.display='none'; var vf=document.getElementById('evtVideo'); if(vf) vf.src='';
     if(window.MFMOverlay){ window.MFMOverlay.close(mb); } else { document.body.style.overflow=''; var f=mb._opener; if(f&&f.focus){try{f.focus();}catch(_){}} }

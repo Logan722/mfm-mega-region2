@@ -20,7 +20,7 @@ http.createServer(async (req, res) => {
     const txt = await r.text(); if (r.status >= 400) console.log('LIVE', r.status, body.slice(0, 200), txt); res.writeHead(r.status, Object.fromEntries(r.headers)); res.end(txt); return;
   }
   if (u.pathname === '/__dump') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify([...mem.keys()])); return; }
-  let f = path.join(ROOT, decodeURIComponent(u.pathname)); if (fs.existsSync(f) && fs.statSync(f).isDirectory()) f = path.join(f, 'index.html');
+  let f = path.join(ROOT, decodeURIComponent(u.pathname)); if (fs.existsSync(f) && fs.statSync(f).isDirectory()) f = fs.existsSync(f.replace(/\/$/, '') + '.html') ? f.replace(/\/$/, '') + '.html' : path.join(f, 'index.html'); // like Netlify: /play -> play.html even with a play/ folder
   if (!fs.existsSync(f) && fs.existsSync(f + '.html')) f += '.html';
   if (!fs.existsSync(f)) { res.writeHead(404); res.end('nf'); return; }
   res.writeHead(200, { 'Content-Type': types[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(res);

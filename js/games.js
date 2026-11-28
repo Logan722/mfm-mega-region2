@@ -133,7 +133,7 @@
   function teamEnd(T, again) {
     var t = T.teams.slice().sort(function (a, b) { return b.pts - a.pts; }), tie = t[1] && t[0].pts === t[1].pts, top = t[0].pts || 1, g = G[T.id];
     setS({ title: g.name + ' · Teams', pts: t[0].pts });
-    var share = 'MFM Play & Grow — ' + g.name + ' (teams)\n' + t.map(function (x, k) { return (k + 1) + '. ' + x.name + ' — ' + fmt(x.pts) + ' pts'; }).join('\n') + '\nPlay with your family: ' + X.SITE + '?play=' + T.id;
+    var share = 'MFM Play & Grow — ' + g.name + ' (teams)\n' + t.map(function (x, k) { return (k + 1) + '. ' + x.name + ' — ' + fmt(x.pts) + ' pts'; }).join('\n') + '\nPlay with your family: ' + X.SITE + '/' + T.id;
     frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res tm-res"><p class="st-k">' + esc(g.name) + '</p><div class="tm-crown" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-2 10H5Z"/></svg></div><h2 class="st-rank">' + (tie ? 'It&rsquo;s a tie!' : esc(t[0].name) + ' wins!') + '</h2>' +
       '<div class="tm-board">' + t.map(function (x, k) { return '<div class="tm-row" style="--tc:' + x.col + ';--w:' + Math.max(6, Math.round(x.pts / top * 100)) + '%"><b>' + (k + 1) + '</b><span>' + esc(x.name) + '</span><i></i><em>' + fmt(x.pts) + '</em></div>'; }).join('') + '</div>' +
       '<div class="st-acts"><a class="pg-btn green" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(share) + '">Share the result</a><button type="button" class="pg-btn light gx-again">Rematch</button></div><div class="st-acts two"><button type="button" class="pg-btn ghost gx-more">Play another game</button></div></div>', 'done');
@@ -150,7 +150,7 @@
     var isG = X.gotwId() === id;
     var lb = !o.lb ? '' : p.guest ? '<div class="st-lb"><b>Want your points on the leaderboard?</b><button type="button" class="pg-btn light gx-join">Add my name and branch</button></div>'
       : '<div class="st-lb"><span class="st-mini big">' + esc(X.initials(p.nick)) + '</span><span><b>+' + fmt(s.pts) + ' pts for ' + esc(X.placeOf(p)) + '</b><small>' + (isG ? 'Game of the Week: counts double. Adding&hellip;' : 'Adding to this week&rsquo;s leaderboard&hellip;') + '</small></span></div>';
-    var link = X.SITE + '?play=' + id;
+    var link = X.SITE + '/' + id; // /play/<game>: a link with that game's own preview (tools/share_meta.py)
     var share = 'MFM Play & Grow — ' + (o.shareTitle || g.name) + ': ' + o.shareLine + (o.grid ? '\n' + o.grid : '') + '\n' + (o.daily ? 'Same puzzle for everyone today. ' : '') + 'Can you beat me? ' + link;
     frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res gx-res"><p class="st-k">' + esc(o.k || g.name) + '</p>' +
       '<div class="gx-big">' + o.big + '</div><h2 class="st-rank">' + esc(o.rank) + '</h2><p class="st-msg">' + esc(o.msg) + '</p>' + (o.extra || '') +

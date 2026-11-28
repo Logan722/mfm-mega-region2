@@ -32,7 +32,7 @@
 
     var toast=document.createElement('div'); toast.className='evt-toast'; document.body.appendChild(toast); var toastT;
     function showToast(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(function(){ toast.classList.remove('show'); },2200); }
-    function shareUrl(ev){ return ev.anchor ? (location.origin+'/share/'+ev.anchor+'.html') : (location.origin+'/events.html'); }
+    function shareUrl(ev){ return location.origin + (ev.page ? ev.page : '/events' + (ev.anchor ? '#' + ev.anchor : '')); } // the event's own page = its own link preview (Dawn, Nov 28)
     function shareEvent(ev){
       var s=parseYMD(ev.date), e=parseYMD(ev.endDate||ev.date)||s, url=shareUrl(ev);
       var msg='🔥 You’re invited — '+ev.title+'\n'

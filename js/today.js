@@ -13,9 +13,9 @@
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function pick(days, today) {
-    if (days[today]) return { d: days[today], today: true };
+    if (days[today]) return { d: days[today], day: today, today: true };
     var keys = Object.keys(days).filter(function (k) { return k <= today && days[k].kind === 'weekly'; }).sort();
-    return keys.length ? { d: days[keys[keys.length - 1]], today: false } : null;
+    return keys.length ? { d: days[keys[keys.length - 1]], day: keys[keys.length - 1], today: false } : null;
   }
   fetch('/data/declarations.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : Promise.reject(); }).then(function (feed) {
     var hit = pick((feed && feed.days) || {}, ctDate());
@@ -27,7 +27,7 @@
       : '<ul>' + (d.lines || []).map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>';
     var share = '*' + (weekly ? 'Declaration of the week' : 'Today\'s declaration') + '*\n\n"' + d.verse + '" (' + d.ref + ')\n\n' +
       (weekly ? d.title + '\n' + d.text : (d.lines || []).map(function (l, i) { return (i + 1) + '. ' + l; }).join('\n')) +
-      '\n\nMFM Mega Region 2 USA | https://mfmmegaregion2usa.org';
+      '\n\nMFM Mega Region 2 USA | https://mfmmegaregion2usa.org/declaration/' + hit.day; // its own page and preview (tools/share_meta.py)
     card.innerHTML = '<span class="k">' + label + '</span><blockquote>“' + esc(d.verse) + '”<cite>' + esc(d.ref) + '</cite></blockquote>' + body +
       '<div class="foot"><a class="ek-btn ghost" href="https://wa.me/?text=' + encodeURIComponent(share) + '" target="_blank" rel="noopener">Share on WhatsApp</a></div>';
   }).catch(function () {});

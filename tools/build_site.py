@@ -130,6 +130,34 @@ def detail_cta(e):
 def schema_tag(e):
     return '<script type="application/ld+json">%s</script>' % json.dumps(e['_schema'], ensure_ascii=False)
 
+def share_image(e):
+    """1200x630 link-preview picture for an event (Dawn, Nov 28 2026): the whole flyer on a soft blurred copy of
+    itself, under 300 KB so WhatsApp shows it. img/share/<slug>.jpg, remade when the flyer changes."""
+    src = ROOT / e['image'].lstrip('/')
+    out = ROOT / 'img' / 'share' / (e['page'].rstrip('/').split('/')[-1] + '.jpg')
+    if not src.exists():
+        return None
+    if out.exists() and out.stat().st_mtime >= src.stat().st_mtime:
+        return out
+    try:
+        from PIL import Image, ImageFilter, ImageEnhance
+    except ImportError:
+        return out if out.exists() else None
+    W, H = 1200, 630
+    im = Image.open(src).convert('RGB')
+    bg = im.copy(); r = max(W / bg.width, H / bg.height)
+    bg = bg.resize((int(bg.width * r) + 1, int(bg.height * r) + 1)); bg = bg.crop(((bg.width - W) // 2, (bg.height - H) // 2, (bg.width - W) // 2 + W, (bg.height - H) // 2 + H))
+    bg = ImageEnhance.Brightness(bg.filter(ImageFilter.GaussianBlur(28))).enhance(0.45)
+    r = min((W - 80) / im.width, (H - 52) / im.height); fg = im.resize((int(im.width * r), int(im.height * r)), Image.LANCZOS)
+    bg.paste(fg, ((W - fg.width) // 2, (H - 8 - fg.height) // 2))
+    bar = Image.new('RGB', (W, 8), (201, 149, 44)); bg.paste(bar, (0, H - 8))
+    out.parent.mkdir(parents=True, exist_ok=True)
+    for q in (84, 76, 68, 60):
+        bg.save(out, 'JPEG', quality=q, optimize=True, progressive=True)
+        if out.stat().st_size < 290 * 1024:
+            break
+    return out
+
 def build_detail(e, template):
     path = e['page'].lstrip('/') + '.html'
     p = ROOT / path
@@ -170,6 +198,13 @@ def build_detail(e, template):
             body += '<div class="ev-scripture">“%s”<cite>— %s</cite></div>\n          ' % (esc(q), esc(ref))
         t = re.sub(r'(<div class="ev-card">\s*).*?(?=<div class="ev-cta")', lambda m: m.group(1) + body, t, flags=re.S)
     # always refreshed (existing + new pages)
+    si = share_image(e)
+    if si:
+        simg = ORIGIN + '/img/share/' + si.name
+        for prop in ('og:image', 'twitter:image'):
+            t = re.sub(r'(<meta (?:property|name)="%s" content=")[^"]*(")' % prop, lambda m: m.group(1) + simg + m.group(2), t)
+        t = re.sub(r'\s*<meta property="og:image:(?:width|height)" content="[^"]*">', '', t)
+        t = re.sub(r'(<meta property="og:image" content="[^"]*">)', r'\1\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">', t, count=1)
     for name in ('description', 'og:description', 'twitter:description'):
         attr = 'property' if name.startswith('og:') else 'name'
         t = re.sub(r'(<meta %s="%s" content=")[^"]*(")' % (attr, re.escape(name)), lambda m: m.group(1) + esc(desc_meta) + m.group(2), t)

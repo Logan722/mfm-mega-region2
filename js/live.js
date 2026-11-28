@@ -25,7 +25,7 @@
   function post(b) { return fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) }).then(function (r) { return r.json().catch(function () { return { ok: false, reason: 'net' }; }); }); }
   function getState() { return fetch(API + '?r=' + L.code + '&p=' + L.pid, { cache: 'no-store' }).then(function (r) { return r.json(); }); }
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-  function link(code) { return location.href.split('#')[0].split('?')[0] + '?room=' + code; }
+  function link(code) { return (/^https?:/.test(location.protocol) && !/\.html$/.test(location.pathname) ? location.origin + '/play/live' : location.href.split('#')[0].split('?')[0]) + '?room=' + code; } // /play/live: the room's own link preview
   function frame(html, cls) { X.set({ mode: 'live', pts: L && L.score || 0, phase: 'live', ext: 1, title: 'Live room' }); X.frame('<div class="st-card lr ' + (cls || '') + '">' + html + '</div>', 'lr-stage' + (L && L.role === 'host' && L.tv ? ' lr-tvh' : '')); }
   function stop() { if (L && L.t) clearTimeout(L.t); if (L && L.raf) cancelAnimationFrame(L.raf); if (L) L.dead = 1; }
   X.closers.push(function () { stop(); L = null; });

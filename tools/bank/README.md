@@ -55,6 +55,8 @@ node tools/bank/server/server.mjs . 8095 &                       # local site + 
 node tools/bank/checks/site/games_qc.js                          #   every game, computer + phone
 node tools/bank/checks/site/live_room_e2e.js                     #   live room: host + phones
 node tools/bank/checks/site/axe_play.js                          #   accessibility on /play
+python3 tools/bank/checks/site/share_qc.py .                     #   link previews: every page + share button (Dawn, Nov 28)
+# link-preview pictures: python3 tools/og/pages.py && node tools/og/render.js --missing   (stories: --stories=http://localhost:8095)
 ```
 
 Results on Nov 27 2026: bank NO ISSUES; 4 stories 0 quote mismatches; 4 story play-throughs 500/600

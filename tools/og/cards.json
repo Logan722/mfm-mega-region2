@@ -1,0 +1,1075 @@
+[
+ {
+  "img": "home",
+  "photo": "../../img/photos/fullhouse.jpg",
+  "logo": "../../img/logo.png",
+  "k": "Mountain of Fire and Miracles Ministries",
+  "h": "Mega Region 2 USA",
+  "h1": 96,
+  "verse": [
+   "Is not my word like as a fire? saith the LORD",
+   "Jeremiah 23:29"
+  ]
+ },
+ {
+  "img": "about",
+  "photo": "../../img/photos/G.O Couple.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "About us",
+  "h": "Who we are",
+  "sub": "Our identity, our mandate, and our core values of prayer, deliverance and the Word."
+ },
+ {
+  "img": "branches",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Our branches",
+  "h": "Find a branch <em>near you</em>",
+  "chips": [
+   "Texas",
+   "Georgia",
+   "Florida",
+   "Tennessee",
+   "North Carolina",
+   "Oklahoma"
+  ]
+ },
+ {
+  "img": "events",
+  "photo": "../../img/photos/worship.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"10\" y=\"14\" width=\"44\" height=\"40\" rx=\"6\"/><path d=\"M10 26h44M22 8v12M42 8v12M21 36h6M37 36h6M21 45h6\"/></svg>",
+  "k": "Events & programs",
+  "h": "Come and <em>encounter God</em>",
+  "sub": "Healing & Deliverance Hour, Open Heaven Encounter, crusades and special programs."
+ },
+ {
+  "img": "fire-for-the-week",
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Fire for the Week",
+  "h": "Prayer points <em>for this week</em>",
+  "sub": "Fresh prayer points every week. Read, download and pray along.",
+  "verse": [
+   "his word was in mine heart as a burning fire shut up in my bones",
+   "Jeremiah 20:9"
+  ]
+ },
+ {
+  "img": "gen218",
+  "logo": "../../img/gen218-logo.jpg",
+  "badge": 1,
+  "k": "Christian singles ministry",
+  "h": "Gen218",
+  "verse": [
+   "It is not good that the man should be alone",
+   "Genesis 2:18"
+  ]
+ },
+ {
+  "img": "give",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M32 52S10 39 10 24a11 11 0 0 1 22-3 11 11 0 0 1 22 3c0 15-22 28-22 28Z\"/></svg>",
+  "k": "Give",
+  "h": "Support the <em>work of God</em>",
+  "sub": "Tithes, offerings, special seeds and the building fund, online.",
+  "verse": [
+   "God loveth a cheerful giver.",
+   "2 Corinthians 9:7"
+  ]
+ },
+ {
+  "img": "links",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.6\" stroke-linecap=\"round\"><path d=\"M27 37a10 10 0 0 0 14 0l9-9a10 10 0 0 0-14-14l-3 3\"/><path d=\"M37 27a10 10 0 0 0-14 0l-9 9a10 10 0 0 0 14 14l3-3\"/></svg>",
+  "k": "Connect with us",
+  "h": "All our links <em>in one place</em>",
+  "chips": [
+   "YouTube",
+   "Facebook",
+   "Instagram",
+   "WhatsApp"
+  ]
+ },
+ {
+  "img": "live",
+  "photo": "../../img/photos/band.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"8\" y=\"14\" width=\"48\" height=\"32\" rx=\"6\"/><path d=\"M27 23v14l12-7Z\" fill=\"#d9a948\"/><path d=\"M22 54h20\"/></svg>",
+  "k": "Watch live",
+  "h": "Join us <em>live</em>",
+  "chips": [
+   "Healing & Deliverance Hour · Tue 7:00 PM CT",
+   "Open Heaven Encounter · Thu 6:00 PM CT"
+  ]
+ },
+ {
+  "img": "media",
+  "photo": "../../img/photos/choir.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"8\" y=\"14\" width=\"48\" height=\"32\" rx=\"6\"/><path d=\"M27 23v14l12-7Z\" fill=\"#d9a948\"/><path d=\"M22 54h20\"/></svg>",
+  "k": "Media",
+  "h": "Sermons &amp; <em>messages</em>",
+  "sub": "Healing & Deliverance Hour, Open Heaven Encounter, crusades and more."
+ },
+ {
+  "img": "ministries",
+  "photo": "../../img/photos/community.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"32\" cy=\"22\" r=\"8\"/><circle cx=\"15\" cy=\"28\" r=\"6\"/><circle cx=\"49\" cy=\"28\" r=\"6\"/><path d=\"M18 52c0-9 6-15 14-15s14 6 14 15M5 50c0-6 4-10 10-10M59 50c0-6-4-10-10-10\"/></svg>",
+  "k": "Our ministries",
+  "h": "Find your place",
+  "chips": [
+   "Women Foundation",
+   "Gen218",
+   "Youth Church"
+  ]
+ },
+ {
+  "img": "women",
+  "photo": "../../img/photos/women.jpg",
+  "logo": "../../img/women-foundation-logo.png",
+  "k": "MFM Mega Region 2 USA",
+  "h": "Women Foundation",
+  "sub": "Empowerment, prayer and deliverance for women of purpose and destiny."
+ },
+ {
+  "img": "privacy",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 7 12 15v15c0 13 9 22 20 27 11-5 20-14 20-27V15Z\"/><path d=\"m23 32 6 6 12-13\" stroke-linecap=\"round\"/></svg>",
+  "k": "Privacy",
+  "h": "Your privacy",
+  "sub": "How we collect, use and protect your information."
+ },
+ {
+  "img": "thanks",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"32\" cy=\"32\" r=\"22\"/><path d=\"m21 33 8 8 15-17\"/></svg>",
+  "k": "Message received",
+  "h": "Thank you",
+  "sub": "Our ministry team will be in touch."
+ },
+ {
+  "img": "subscribe",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.2\" stroke-linejoin=\"round\"><rect x=\"9\" y=\"16\" width=\"46\" height=\"33\" rx=\"5\"/><path d=\"m11 19 21 16 21-16\" stroke-linecap=\"round\"/></svg>",
+  "k": "Newsletter",
+  "h": "Get the <em>newsletter</em>",
+  "sub": "Sermons, prayer points, testimonies and crusade updates, twice a month."
+ },
+ {
+  "img": "play",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Free Bible games",
+  "h": "Play &amp; Grow",
+  "h1": 104,
+  "sub": "11 games, animated Bible Stories and a live room for friends anywhere.",
+  "chips": [
+   "Solo",
+   "Team",
+   "Live room",
+   "Weekly branch board"
+  ]
+ },
+ {
+  "img": "branch-mfm-7-north-houston",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM 7 North Houston",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Lydia Yemisi Ekibolaji",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-arlington-matlock",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Arlington, TX",
+  "h": "MFM Arlington — Matlock",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Lilian Freshley Onyeforo",
+  "chips": [
+   "Sun 9:30 AM–12:30 PM",
+   "Wed 5:00–7:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-arlington",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Arlington, TX",
+  "h": "MFM Arlington",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Johnbull Mafinuyomi",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-broward",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Hollywood, FL",
+  "h": "MFM Broward",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Tope Oluwayemiwo",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-citadel-of-signs-and-wonders",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Marietta, GA",
+  "h": "MFM Citadel of Signs &amp; Wonders",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Olayemi N",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-dallas",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Richardson, TX",
+  "h": "MFM Dallas",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor David Popoola",
+  "chips": [
+   "Sun 10:00 AM–1:00 PM",
+   "Wed &amp; Thu 7:00–9:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-georgia-oasis-of-grace",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Duluth, GA",
+  "h": "MFM Georgia Oasis of Grace",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Ohunene Oluwatoyin Aramunde",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-grand-prairie",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Grand Prairie, TX",
+  "h": "MFM Grand Prairie",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Olubunmi Lukula",
+  "chips": [
+   "Sun 9:30 AM–12:00 PM",
+   "Tue 10:00 AM–12:00 PM",
+   "Wed 7:00–9:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-greater-grace",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Greater Grace",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Oluwole Oyebode",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-house-of-his-glory",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Richardson, TX",
+  "h": "MFM House of His Glory",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Ademola Oluyombo",
+  "chips": [
+   "Sun 9:00 AM",
+   "Mon 7:00 PM",
+   "Wed 4:30 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-houston-2",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Houston 2",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor David Bolaji",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-houston-3-city-of-refuge",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Houston 3 — City of Refuge",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Edward Adeniyi Rowland",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-houston-5-new-glory",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Houston 5 — New Glory",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Shola Ajisafe",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-huntsville",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Huntsville, TX",
+  "h": "MFM Huntsville",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Oyindamola Alabi",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-irving",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Irving, TX",
+  "h": "MFM Irving",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Ekene I",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-mansfield",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Mansfield, TX",
+  "h": "MFM Mansfield",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Cecilia Chukwueke",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-mega-region-2-youth-church",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Mega Region 2 Youth Church",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Adebayo Asoro",
+  "chips": [
+   "Sun 9:00–11:00 AM"
+  ]
+ },
+ {
+  "img": "branch-mfm-miami-mount-zion",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Miami Gardens, FL",
+  "h": "MFM Miami — Mount Zion",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Lawrence Oyetunji",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-nashville",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Mount Juliet, TN",
+  "h": "MFM Nashville",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Lovena Okeke",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-northwest-houston",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Northwest Houston",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Morenike Coker",
+  "chips": [
+   "Sun 9:00 AM–12:00 PM",
+   "Wed 10:30 AM &amp; 7:00–9:00 PM",
+   "Night Vigil 11:30 PM (Zoom)"
+  ]
+ },
+ {
+  "img": "branch-mfm-orlando-citadel-of-solution",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Orlando, FL",
+  "h": "MFM Orlando — Citadel of Solution",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Samuel Ayodele Omoigberae",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-pearland-shadow-of-god",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Pearland, TX",
+  "h": "MFM Pearland — Shadow of God",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Joshua Ahire",
+  "chips": [
+   "Mon 7:00–9:00 PM",
+   "Wed 7:00 PM (Manna Water)",
+   "Thu 7:00–9:00 PM (Zoom)"
+  ]
+ },
+ {
+  "img": "branch-mfm-rehoboth",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Rehoboth",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Kola Akanni Oloko",
+  "chips": [
+   "Sun 8:30 AM",
+   "Mon &amp; Wed 7:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-revival-and-solution-center",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Raleigh, NC",
+  "h": "MFM Revival &amp; Solution Center",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Ebenezer Afolabi",
+  "chips": [
+   "Sun 9:30 AM–12:00 PM",
+   "Wed 7:00–8:45 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-revival-center",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Duluth, GA",
+  "h": "MFM Revival Center",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Abel Michael",
+  "chips": [
+   "Sun 9:00 AM–12:30 PM",
+   "Tue 7:00–9:00 PM",
+   "Thu 7:00–9:30 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-revival-chapel",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM Revival Chapel",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Substance Ibegbulem",
+  "chips": [
+   "Sun 9:00 AM–12:00 PM",
+   "Tue 6:30–7:30 PM",
+   "Wed 11:00 AM–12:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-riverdale",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Riverdale, GA",
+  "h": "MFM Riverdale",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Francis Ebiboulomi Benede",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-san-antonio",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "San Antonio, TX",
+  "h": "MFM San Antonio",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Stephen Ademola",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-sugar-land",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Sugar Land, TX",
+  "h": "MFM Sugar Land",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Caroline Omotosho",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "branch-mfm-tallahassee",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Tallahassee, FL",
+  "h": "MFM Tallahassee",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Bode Adeniyi",
+  "chips": [
+   "Sun 10:00 AM–12:00 PM",
+   "Mon &amp; Wed 7:00–8:30 PM",
+   "Fri Vigil 12:00 AM"
+  ]
+ },
+ {
+  "img": "branch-mfm-tampa",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Tampa, FL",
+  "h": "MFM Tampa",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Kehinde Julius Olajide",
+  "chips": [
+   "Sun 10:00 AM",
+   "Tue &amp; Thu 7:00 PM",
+   "Fri 11:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-the-lord-has-spoken",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Austin, TX",
+  "h": "MFM The Lord Has Spoken",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Segun Obatusin",
+  "chips": [
+   "Sun 9:00 AM",
+   "Mon 7:00 PM",
+   "Wed 7:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-tulsa",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Tulsa, OK",
+  "h": "MFM Tulsa",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Jide Adigun",
+  "chips": [
+   "Sun 9:30 AM–12:00 PM",
+   "Wed 6:30–8:00 PM"
+  ]
+ },
+ {
+  "img": "branch-mfm-usa-prayer-city",
+  "photo": "../../img/photos/building.jpg",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linejoin=\"round\"><path d=\"M32 57s17-17.5 17-31a17 17 0 0 0-34 0c0 13.5 17 31 17 31Z\"/><circle cx=\"32\" cy=\"26\" r=\"6.5\"/></svg>",
+  "k": "Houston, TX",
+  "h": "MFM USA Prayer City",
+  "h1": 84,
+  "maxH": 190,
+  "sub": "Pastor Olumide Oni",
+  "chips": [
+   "Visit in person or watch online"
+  ]
+ },
+ {
+  "img": "game-bquiz",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Quiz",
+  "h1": 96,
+  "sub": "Daily 10, a fresh quiz, a 60-second speed round, kids questions or a team battle. Questions from the Bible, MFM and our pastors’ books.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-word",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Word of the Day",
+  "h1": 96,
+  "sub": "Guess the Bible word in six tries, then read the verse it comes from.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-connect",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Connections",
+  "h1": 96,
+  "sub": "16 words, 4 hidden groups from the Bible and the ministry. Find them with 4 mistakes or fewer.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-wheel",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Word Connect",
+  "h1": 96,
+  "sub": "Swipe the letters to make words and unlock a verse.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-dverse",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Daily Verse",
+  "h1": 96,
+  "sub": "Read today’s verse and find where it is: the book, then the chapter, in 5 tries.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-whoami",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Who Am I?",
+  "h1": 96,
+  "sub": "Clues about a Bible person, one at a time. The fewer you need, the more you score.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-build",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Verse Builder",
+  "h1": 96,
+  "sub": "A verse in pieces. Put it back in order against the clock.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-imposter",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Imposter",
+  "h1": 96,
+  "sub": "Everyone sees the same secret word except one. Give clues, then find the imposter.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-charades",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Charades",
+  "h1": 96,
+  "sub": "Phone on your forehead. Your team acts it out. Guess as many as you can in 60 seconds.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-pairs",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Noah’s Pairs",
+  "h1": 96,
+  "sub": "Find the animals two by two. Made for children, fun for everyone.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-story",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M20 10h24v12a12 12 0 0 1-24 0Z\" fill=\"#d9a948\"/><path d=\"M20 14h-8a8 8 0 0 0 8 10M44 14h8a8 8 0 0 1-8 10\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\"/><path d=\"M28 34h8v8h-8z\" fill=\"#d9a948\"/><rect x=\"21\" y=\"42\" width=\"22\" height=\"7\" rx=\"2\" fill=\"#d9a948\"/><path d=\"M32 13c2.6 2.6 4 4.6 4 6.8a4 4 0 0 1-8 0c0-2.2 1.4-4.2 4-6.8Z\" fill=\"#e85d26\"/></svg>",
+  "k": "Play & Grow",
+  "h": "Bible Stories",
+  "h1": 96,
+  "sub": "Play a Bible story as an animated storybook. Answer as it unfolds, and the story keeps going.",
+  "chips": [
+   "Can you beat me?"
+  ]
+ },
+ {
+  "img": "game-live",
+  "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"#d9a948\" stroke-width=\"3.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"20\" y=\"8\" width=\"24\" height=\"44\" rx=\"5\"/><path d=\"M29 46h6\"/><path d=\"M12 22a20 20 0 0 0 0 20M52 22a20 20 0 0 1 0 20M6 16a30 30 0 0 0 0 32M58 16a30 30 0 0 1 0 32\"/></svg>",
+  "k": "Play & Grow live room",
+  "h": "Join my <em>live room</em>",
+  "sub": "Same questions, same time, on your own phone, wherever you are."
+ },
+ {
+  "img": "t/a-4-million-lawsuit-withdrawn",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Deliverance",
+  "h": "A $4 million lawsuit, withdrawn.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Benga · Nashville Deliverance Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/my-neck-is-healed",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "My neck is healed.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Ken · Nashville Deliverance Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/the-pain-simply-disappeared",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "The pain simply disappeared.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Isaiah · Nashville Deliverance Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/married-by-fire",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Family",
+  "h": "Married by fire.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Sarah · Nashville Deliverance Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/today-im-walking-upright",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "Today I&rsquo;m walking upright.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "A crusade attendee · Nashville Deliverance Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/a-baby-at-56-after-20-years",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Family",
+  "h": "A baby at 56, after 20 years.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Soluronke · North Carolina Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/the-back-pain-is-gone",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "The back pain is gone.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Tatenda · North Carolina Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/it-moved-out-forever",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Deliverance",
+  "h": "It moved out &mdash; forever.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "Judith · North Carolina Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/at-75-i-can-bend-again",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "At 75, I can bend again.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "A crusade attendee · North Carolina Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/weeks-of-pain-gone",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "Weeks of pain, gone.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "A crusade attendee · North Carolina Crusade 2026",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/from-barren-to-a-father-of-twins",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Family",
+  "h": "From barren to a father of twins.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "A Rehoboth father · MFM Rehoboth",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/a-dream-that-saved-my-life",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Deliverance",
+  "h": "A dream that saved my life.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/spared-from-a-disastrous-crash",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Deliverance",
+  "h": "Spared from a disastrous crash.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/reconciled-and-both-working-again",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Breakthrough",
+  "h": "Reconciled &mdash; and both working again.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/six-months-of-favour-at-work",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Provision",
+  "h": "Six months of favour at work.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/i-passed-and-doors-opened",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Breakthrough",
+  "h": "I passed &mdash; and doors opened.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/a-whole-year-without-sickness",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Healing",
+  "h": "A whole year without sickness.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "t/an-instant-miracle-in-prayer",
+  "icon": "<svg viewBox=\"0 0 64 64\"><path d=\"M14 40c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H14Zm22 0c0-10 5-17 15-21l2 4c-5 2.6-7.6 6-8 10h7v14H36Z\" fill=\"#d9a948\"/></svg>",
+  "k": "Breakthrough",
+  "h": "An instant miracle in prayer.",
+  "h1": 80,
+  "maxH": 250,
+  "sub": "An MFM Austin member · MFM Austin",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ]
+ },
+ {
+  "img": "decl/2026-11-23",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Declaration of the week",
+  "verse": [
+   "Then shall the earth yield her increase; and God, even our own God, shall bless us",
+   "Psalm 67:6"
+  ],
+  "sub": "This week, your harvest comes in."
+ },
+ {
+  "img": "decl/2026-11-24",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Tuesday declaration",
+  "verse": [
+   "Bless the LORD, O my soul, and forget not all his benefits",
+   "Psalm 103:2"
+  ],
+  "sub": "I will not forget the benefits of the Lord in my life this year."
+ },
+ {
+  "img": "decl/2026-11-25",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Wednesday declaration",
+  "verse": [
+   "The LORD hath done great things for us; whereof we are glad",
+   "Psalm 126:3"
+  ],
+  "sub": "The Lord has done great things for me, and greater things are coming."
+ },
+ {
+  "img": "decl/2026-11-26",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Thursday declaration",
+  "verse": [
+   "O give thanks unto the LORD; for he is good: for his mercy endureth for ever",
+   "Psalm 136:1"
+  ],
+  "sub": "The mercy of God over my life and my family endures today and for ever."
+ },
+ {
+  "img": "decl/2026-11-27",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Friday declaration",
+  "verse": [
+   "The LORD is my strength and my shield; my heart trusted in him, and I am helped: therefore my heart greatly rejoiceth; and with my song will I praise him",
+   "Psalm 28:7"
+  ],
+  "sub": "The Lord is my strength and my shield in every place I go today."
+ },
+ {
+  "img": "decl/2026-11-28",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Saturday declaration",
+  "verse": [
+   "Thou crownest the year with thy goodness; and thy paths drop fatness",
+   "Psalm 65:11"
+  ],
+  "sub": "The Lord crowns the rest of my year with His goodness."
+ },
+ {
+  "img": "decl/2026-11-29",
+  "big": 1,
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Sunday declaration",
+  "verse": [
+   "Serve the LORD with gladness: come before his presence with singing",
+   "Psalm 100:2"
+  ],
+  "sub": "I serve the Lord with gladness today, and my worship is accepted."
+ },
+ {
+  "img": "declaration",
+  "icon": "<svg viewBox=\"0 0 64 64\"><defs><linearGradient id=\"f\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M32 5c10 9 15 17 15 26a15 15 0 0 1-30 0c0-7 3.8-12.6 7.4-16.4.3 5 2.6 8.2 5.4 8.9C27.9 16.6 29.3 10.7 32 5Z\" fill=\"url(#f)\"/><path d=\"M32 30c3.6 3.4 5.4 6.2 5.4 9.4a5.4 5.4 0 0 1-10.8 0c0-3 1.8-5.6 5.4-9.4Z\" fill=\"#fff3d6\"/></svg>",
+  "k": "Declaration of the week",
+  "h": "Speak it <em>over your week</em>",
+  "sub": "A declaration from MFM Mega Region 2 USA."
+ }
+]
