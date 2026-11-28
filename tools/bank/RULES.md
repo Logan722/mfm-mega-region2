@@ -53,6 +53,7 @@ when Dawn says something new in chat, add it here in the same session.
 - **Weekly volume (Dawn, Nov 28 2026): 2 new characters + 1 new event every Monday,** with chapters that fit each story (up to 4, never padded). Replaces "4 characters a week". Start small.
   - Finishing a character already on the shelf (for example Joseph's last 2 chapters on Dec 7) counts as one of the 2 character slots.
   - Characters can come back later with new chapters that continue their story.
+- **Points per chapter (leaderboard cap 600):** 5 questions (100 each) plus at most 2 tap games (50 each). The leaderboard rejects a chapter score above 100 per right answer + 100, so a third tap game would lose the player's score.
 - **Never "run out".** The Bible has many characters and events. Keep adding to the waiting list (popular and lesser-known) so there is always a next week.
 - **Release day: Monday.** The story week runs Monday to Sunday (US Central), the same week as the Weekly Scheduler.
   New chapters go live on Monday in one push.

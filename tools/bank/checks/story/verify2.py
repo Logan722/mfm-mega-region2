@@ -3,7 +3,7 @@ import re,sys,json
 sys.path.insert(0,__import__('os').path.join(__import__('os').path.dirname(__import__('os').path.abspath(__file__)),'../../gen'))
 from kjvload import load,norm
 names,A,B,C,o2,o3=load()
-BOOK={'GENESIS':'Genesis','GEN':'Genesis','PSALM':'Psalms','PS':'Psalms','EXODUS':'Exodus','1 CORINTHIANS':'1 Corinthians','LUKE':'Luke','MATTHEW':'Matthew','ISAIAH':'Isaiah','JOHN':'John','MICAH':'Micah'}
+BOOK={'GENESIS':'Genesis','GEN':'Genesis','PSALM':'Psalms','PS':'Psalms','EXODUS':'Exodus','1 CORINTHIANS':'1 Corinthians','LUKE':'Luke','MATTHEW':'Matthew','ISAIAH':'Isaiah','JOHN':'John','MICAH':'Micah','1 SAMUEL':'1 Samuel','2 SAMUEL':'2 Samuel','1 KINGS':'1 Kings','2 KINGS':'2 Kings','DANIEL':'Daniel','ESTHER':'Esther','JOSHUA':'Joshua','JEREMIAH':'Jeremiah','1 CHRONICLES':'1 Chronicles','ACTS':'Acts','HEBREWS':'Hebrews','ROMANS':'Romans','PROVERBS':'Proverbs','MARK':'Mark','JUDGES':'Judges','RUTH':'Ruth','NUMBERS':'Numbers','DEUTERONOMY':'Deuteronomy','2 CORINTHIANS':'2 Corinthians','JAMES':'James','1 PETER':'1 Peter','REVELATION':'Revelation','JONAH':'Jonah','NEHEMIAH':'Nehemiah','EZRA':'Ezra','PHILIPPIANS':'Philippians','EPHESIANS':'Ephesians','GALATIANS':'Galatians','1 JOHN':'1 John','LAMENTATIONS':'Lamentations','ISA':'Isaiah'}
 def verses(ref):
     m=re.match(r'\s*((?:\d )?[A-Za-z]+)\s+(\d+):(\d+)(?:[–-](\d+))?',ref)
     b=names.index(BOOK[m.group(1).upper()]); c=int(m.group(2)); v1=int(m.group(3)); v2=int(m.group(4) or v1)

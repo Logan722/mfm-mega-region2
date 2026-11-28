@@ -80,12 +80,12 @@ The pipeline:
 
 Read a builder before re-running it: some rebuild a whole pack, and the bank's ids must stay stable so the "seen" history and challenge links keep working.
 
-## Weekly Bible Stories run (4 characters a week, live every Monday CT; not switched on yet)
+## Weekly Bible Stories run (2 characters + 1 event a week, live every Monday 9:00 AM CT; not switched on yet)
 
 1. Read `RULES.md` and `storylines.json`, and pick this week's characters and chapters.
 2. Research each character's era and appearance, and write `tools/stories/<id>.js` straight from the KJV.
 3. Build, then run all three checks. A chapter that fails is held, not shipped.
-4. Add the chapters to `js/stories.js` (mark them ready) and to `STORIES` in `netlify/functions/leaderboard.mjs`, then update `storylines.json`.
+4. Add the chapters to `js/stories.js` (ready: 1, added: '<that Monday>': they stay hidden until 9:00 AM CT that day, so the batch can go out earlier) and to `STORIES` in `netlify/functions/leaderboard.mjs`, add the answers to `checks/story/play.js`, render the share pictures (`node tools/og/render.js --stories=...`), then update `storylines.json`.
 5. Make one commit and one push to `main` a week (about 15 Netlify credits). Auto go-live is approved for checked stories.
 6. Write a short report: what shipped, what was held and why.
 

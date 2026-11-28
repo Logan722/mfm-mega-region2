@@ -8,7 +8,14 @@ const RIGHT={
  'joseph-1':['He told his brothers','The sun, the moon and eleven stars','Reuben','Nothing. It was empty','Twenty pieces'],
  'joseph-2':['Potiphar, captain of the guard','The LORD blessed it for Joseph’s sake','He refused, because it would be sin against God','He put him into the prison','All the prisoners in the prison'],
  'christmas-1':['JESUS','Because he would save his people from their sins','In a manger','A babe wrapped in swaddling clothes, lying in a manger','In a house, with Mary his mother'],
- 'joseph-3':['“Do not interpretations belong to God?”','The birds','No. He forgot him for two full years','“It is not in me: God shall give Pharaoh an answer of peace.”','Seven years of famine']}[CH];
+ 'joseph-3':['“Do not interpretations belong to God?”','The birds','No. He forgot him for two full years','“It is not in me: God shall give Pharaoh an answer of peace.”','Seven years of famine'],
+ 'joseph-4':['To buy corn, because of the famine','The dreams he had dreamed of them','Simeon','Stay as a bondman in Benjamin’s place','God'],
+ 'joseph-5':['Fear not to go down into Egypt','One hundred and thirty years','Ephraim, the younger','With his fathers, in the cave of Machpelah in Canaan','“God meant it unto good.”'],
+ 'david-1':['The heart','Out keeping the sheep','The Spirit of the LORD','His armourbearer','Saul was refreshed, and was well'],
+ 'david-2':['Forty days, morning and evening','The paw of the lion and the paw of the bear','Five','In the name of the LORD of hosts','A sling and a stone'],
+ 'david-3':['His robe, his sword and his bow','“Saul hath slain his thousands, and David his ten thousands.”','David slipped away, and the javelin went into the wall','Go thy way: for the LORD hath sent thee away','“Go in peace.”'],
+ 'david-4':['In the wilderness of En-gedi','The skirt of Saul’s robe','Saul was the LORD’s anointed','“Thou art more righteous than I.”','With good: he spared his life'],
+ 'noah-1':['An ark of gopher wood','Two and two, the male and the female','Forty days and forty nights','An olive leaf','God’s covenant: the waters shall no more become a flood']}[CH];
 (async()=>{const b=await chromium.launch();const c=await __ctx(b, {viewport:{width:W,height:H},isMobile:W<500,hasTouch:W<500});const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.stack.slice(0,300)));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
 await p.goto(process.env.BASE ? `${process.env.BASE}/stories/${CH}.html` : `file://${process.env.MFM_REPO||require("path").resolve(__dirname,"../../../..")}/stories/${CH}.html`);await p.waitForTimeout(600);
 const box=p.locator('.box');let n=0;const shot=async(name)=>{await box.screenshot({path:OUTDIR+'/'+`${tag}-${String(++n).padStart(2,'0')}-${name}.png`})};

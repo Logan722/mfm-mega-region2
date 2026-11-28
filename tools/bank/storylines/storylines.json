@@ -11,7 +11,7 @@
  },
  "characters": {
   "joseph": {
-   "status": "in progress",
+   "status": "complete (5 chapters)",
    "chapters_done": [
     {
      "id": "joseph-1",
@@ -30,34 +30,23 @@
      "title": "The Prison and the Palace",
      "ref": "Genesis 40-41",
      "checked": "51 quotes, 0 mismatches"
-    }
-   ],
-   "next": [
+    },
     {
      "id": "joseph-4",
      "title": "I Am Joseph",
      "ref": "Genesis 42–45",
-     "moments": [
-      "Famine: the ten brothers come to Egypt to buy corn and bow down before the governor (42:3, 6); Joseph's dream comes true",
-      "Joseph knew his brethren, but they knew not him (42:8); he calls them spies, keeps Simeon bound, turns away and weeps (42:24)",
-      "They come back with Benjamin: 'God be gracious unto thee, my son' (43:29)",
-      "The silver cup in Benjamin's sack (44:2); Judah offers himself in Benjamin's place (44:33)",
-      "'I am Joseph your brother, whom ye sold into Egypt... God did send me before you to preserve life' (45:4-5)"
-     ]
+     "checked": "42 quotes, 0 mismatches",
+     "added": "2026-12-07"
     },
     {
      "id": "joseph-5",
      "title": "God Meant It unto Good",
      "ref": "Genesis 46–50",
-     "moments": [
-      "God speaks to Jacob in the visions of the night: 'fear not to go down into Egypt' (46:2-3); shown as light and a voice, God never drawn",
-      "Joseph meets his father in Goshen and weeps on his neck a good while (46:29)",
-      "Jacob before Pharaoh, 130 years old (47:9); the family settles in Goshen (47:6)",
-      "Jacob blesses Ephraim and Manasseh and sets Ephraim before Manasseh (48:20)",
-      "'Ye thought evil against me; but God meant it unto good' (50:20); 'ye shall carry up my bones from hence' (50:25)"
-     ]
+     "checked": "37 quotes, 0 mismatches",
+     "added": "2026-12-07"
     }
    ],
+   "next": [],
    "note": "Genesis 38 is about Judah, not Joseph, so it is not one of the Joseph chapters. Chapters 4-5 finish Joseph's story (Dec 7 2026); after them his card has no 'more'.",
    "added": "2026-11-30"
   },
@@ -66,52 +55,39 @@
    "ref": "Exodus"
   },
   "david": {
-   "status": "planned 2026-12-07",
+   "status": "chapters 1-4 built, live Mon 2026-12-07 9:00 AM CT",
    "ref": "1 Samuel 16-17",
-   "chapters_plan": [
+   "later": "David the king (2 Samuel) can come back as a returning character",
+   "chapters_done": [
     {
      "id": "david-1",
      "title": "The Shepherd Boy Is Chosen",
      "ref": "1 Samuel 16",
-     "moments": [
-      "Samuel comes to Jesse's house in Bethlehem; the sons pass by; 'man looketh on the outward appearance, but the LORD looketh on the heart' (16:7)",
-      "The youngest is keeping the sheep; David is anointed and the Spirit of the LORD comes upon him (16:11-13)",
-      "David plays the harp for troubled King Saul, and Saul is refreshed (16:14, 23)"
-     ]
+     "added": "2026-12-07",
+     "checked": "24 quotes, 0 mismatches"
     },
     {
      "id": "david-2",
      "title": "David and Goliath",
      "ref": "1 Samuel 17",
-     "moments": [
-      "Goliath of Gath, six cubits and a span, defies Israel morning and evening for forty days (17:4, 16)",
-      "David brings food to his brothers; 'The LORD that delivered me out of the paw of the lion, and out of the paw of the bear' (17:34-37)",
-      "Five smooth stones out of the brook (17:40); 'I come to thee in the name of the LORD of hosts' (17:45)",
-      "The stone strikes his forehead and Goliath falls on his face (17:49-50); no gore shown"
-     ]
+     "added": "2026-12-07",
+     "checked": "30 quotes, 0 mismatches"
     },
     {
      "id": "david-3",
      "title": "Jonathan, a True Friend",
      "ref": "1 Samuel 18–20",
-     "moments": [
-      "Jonathan's soul is knit with David's; he gives David his robe, sword and bow (18:1-4)",
-      "'Saul hath slain his thousands, and David his ten thousands'; Saul is very wroth (18:7-8); the javelin, and David slips away (19:10)",
-      "The arrows signal; the two friends part in peace in the name of the LORD (20:22, 42)"
-     ]
+     "added": "2026-12-07",
+     "checked": "27 quotes, 0 mismatches"
     },
     {
      "id": "david-4",
      "title": "Mercy in the Cave",
      "ref": "1 Samuel 24",
-     "moments": [
-      "Saul hunts David and goes into the very cave where David and his men are hiding (24:3)",
-      "David cuts off the skirt of Saul's robe but will not stretch out his hand against the LORD's anointed (24:4-6)",
-      "Saul: 'Thou art more righteous than I' (24:17)"
-     ]
+     "added": "2026-12-07",
+     "checked": "20 quotes, 0 mismatches"
     }
-   ],
-   "later": "David the king (2 Samuel) can come back as a returning character"
+   ]
   },
   "daniel": {
    "status": "waiting list",
@@ -171,23 +147,18 @@
    "ref": "Matthew 26-28, Luke 24"
   },
   "noah": {
-   "status": "planned 2026-12-07",
+   "status": "built, live Mon 2026-12-07 9:00 AM CT",
    "ref": "Genesis 6-9",
-   "chapters_plan": [
+   "content_choices": "God is a voice and light, never drawn; the flood is shown as rain and rising water around the ark, no one shown drowning; clean beasts by sevens is mentioned so the 'two by two' is not misread",
+   "chapters_done": [
     {
      "id": "noah-1",
-     "title": "Noah and the Flood",
+     "title": "Two by Two",
      "ref": "Genesis 6–9",
-     "moments": [
-      "Noah found grace in the eyes of the LORD; build an ark of gopher wood, 300 by 50 by 30 cubits (6:8, 14-15); 'Thus did Noah' (6:22)",
-      "Two of every sort, and of every clean beast by sevens (6:19; 7:2); the LORD shut him in (7:16)",
-      "Rain forty days and forty nights (7:12); the ark rests upon the mountains of Ararat (8:4)",
-      "A raven, then the dove returns with an olive leaf (8:7-11)",
-      "Noah builds an altar (8:20); the bow in the cloud, God's covenant never to flood the earth again (9:13-15)"
-     ]
+     "checked": "28 quotes, 0 mismatches",
+     "added": "2026-12-07"
     }
-   ],
-   "content_choices": "God is a voice and light, never drawn; the flood is shown as rain and rising water around the ark, no one shown drowning; clean beasts by sevens is mentioned so the 'two by two' is not misread"
+   ]
   },
   "redsea": {
    "status": "waiting list",
@@ -209,7 +180,7 @@
  "returning_characters": "A character can come back in a later week with new chapters that continue the story (for example David's later years, Paul's journeys).",
  "releases": {
   "2026-12-07": {
-   "status": "approved by Dawn (Nov 28 2026, 10:34 CT: 'approved'); building",
+   "status": "built and checked; on the shelf from Mon Dec 7 9:00 AM CT (added-date gate in js/stories.js), so it can go out in an earlier batch push",
    "characters": [
     "joseph (ch 4-5, finishing)",
     "david (ch 1-4, new)"

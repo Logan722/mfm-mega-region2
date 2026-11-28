@@ -27,10 +27,19 @@
       { id: 'joseph', name: 'Joseph', ref: 'Genesis 37–50', tag: 'The dreamer', ico: 'coat', col: '#7a3fa0', chapters: [
         { id: 'joseph-1', title: 'The Coat and the Pit', ref: 'Genesis 37', ready: 1, added: '2026-11-30' },
         { id: 'joseph-2', title: 'Potiphar’s House', ref: 'Genesis 39', ready: 1, added: '2026-11-30' },
-        { id: 'joseph-3', title: 'The Prison and the Palace', ref: 'Genesis 40–41', ready: 1, added: '2026-11-30' }], more: 1 }] },
+        { id: 'joseph-3', title: 'The Prison and the Palace', ref: 'Genesis 40–41', ready: 1, added: '2026-11-30' },
+        { id: 'joseph-4', title: 'I Am Joseph', ref: 'Genesis 42–45', ready: 1, added: '2026-12-07' },
+        { id: 'joseph-5', title: 'God Meant It unto Good', ref: 'Genesis 46–50', ready: 1, added: '2026-12-07' }] },
+      { id: 'david', name: 'David', ref: '1 Samuel 16–24', tag: 'The shepherd boy', ico: 'sling', col: '#2e9b57', more: 1, chapters: [
+        { id: 'david-1', title: 'The Shepherd Boy Is Chosen', ref: '1 Samuel 16', ready: 1, added: '2026-12-07' },
+        { id: 'david-2', title: 'David and Goliath', ref: '1 Samuel 17', ready: 1, added: '2026-12-07' },
+        { id: 'david-3', title: 'Jonathan, a True Friend', ref: '1 Samuel 18–20', ready: 1, added: '2026-12-07' },
+        { id: 'david-4', title: 'Mercy in the Cave', ref: '1 Samuel 24', ready: 1, added: '2026-12-07' }] }] },
     { id: 'events', title: 'Great Events', line: 'The great moments of the Bible, each one a story you can play in one go.', items: [
       { id: 'christmas', name: 'The First Christmas', ref: 'Luke 1–2 · Matthew 1–2', tag: 'A Saviour is born', ico: 'star', col: '#2f4f8f', chapters: [
-        { id: 'christmas-1', title: 'A Saviour Is Born', ref: 'Luke 1–2 · Matthew 1–2', ready: 1, added: '2026-11-30' }] }] }
+        { id: 'christmas-1', title: 'A Saviour Is Born', ref: 'Luke 1–2 · Matthew 1–2', ready: 1, added: '2026-11-30' }] },
+      { id: 'noah', name: 'Noah and the Flood', ref: 'Genesis 6–9', tag: 'Two by two', ico: 'ark', col: '#11908f', chapters: [
+        { id: 'noah-1', title: 'Two by Two', ref: 'Genesis 6–9', ready: 1, added: '2026-12-07' }] }] }
   ];
   var MAX = 600;
   function prog() { return ls('mfm-story') || {}; }
@@ -43,7 +52,9 @@
   // from 9:00 AM CT that Monday for seven days. Earlier releases stay on the shelf for good.
   function relAt(d) { return Date.parse(d + 'T15:00:00Z'); } // 9:00 AM CST
   function isNew(c) { if (!c || !c.added) return false; var t = relAt(c.added), n = Date.now(); return n >= t - 36e5 && n < t + 7 * 864e5; }
-  function live(it) { return (it.chapters || []).filter(function (c) { return c.ready; }); }
+  // a chapter added for a coming Monday stays hidden until 9:00 AM CT that day, so a release can go out ahead of time
+  function live(it) { var n = Date.now(); return (it.chapters || []).filter(function (c) { return c.ready && (!c.added || n >= relAt(c.added)); }); }
+  function more(it) { return !!it.more || live(it).length < (it.chapters || []).filter(function (c) { return c.ready; }).length; }
   var NEWTAG = '<span class="sb-new"><i aria-hidden="true"></i>New this week</span>';
   function card(it) {
     var chs = live(it), ready = chs.length;
@@ -52,7 +63,7 @@
     return '<button type="button" class="sb-card' + (nw ? ' is-new' : '') + '" data-story="' + it.id + '">' + (nw ? NEWTAG : '') + ico(it) +
       '<b>' + esc(it.name) + '</b><small>' + esc(it.tag) + ' &middot; ' + esc(it.ref) + '</small>' +
       '<span class="sb-meta">' + ready + (ready === 1 ? ' chapter' : ' chapters') + (got ? ' &middot; ' + got + ' &#9733;' : '') + '</span>' +
-      (it.more ? '<span class="sb-more">More chapters coming</span>' : '') + '</button>';
+      (more(it) ? '<span class="sb-more">More chapters coming</span>' : '') + '</button>';
   }
   // Wide screens show each shelf as one row that scrolls sideways (so the library fits on one screen as it grows);
   // arrow buttons appear only when a shelf has more cards than fit.
@@ -75,7 +86,7 @@
         return '<section class="sb-shelf"><h3>' + esc(sh.title) + '</h3><p>' + esc(sh.line) + '</p><div class="sb-grid' + (its.length > 4 ? ' two' : '') + '">' + its.map(card).join('') + '</div><p class="sb-swipe" aria-hidden="true">Swipe to see more &rarr;</p></section>'; }).join('') + '</div>', 'sb-stage');
     var st = document.getElementById('play-app');
     shelfArrows(st);
-    st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); var cs = it && live(it); if (!cs || !cs.length) return; if (cs.length === 1 && !it.more) { location.href = href(cs[0].id); return; } chapters(it); }); });
+    st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); var cs = it && live(it); if (!cs || !cs.length) return; if (cs.length === 1 && !more(it)) { location.href = href(cs[0].id); return; } chapters(it); }); });
   }
   function find(id) { var r = null; SHELVES.forEach(function (s) { s.items.forEach(function (i) { if (i.id === id) r = i; }); }); return r; }
   function chapters(it) {
@@ -85,7 +96,7 @@
         var can = open, done = p[c.id] && p[c.id].done; if (!done) open = false;
         return '<li class="' + (can ? '' : 'next') + '"><span class="sb-n">' + (k + 1) + '</span><span class="sb-t"><b>' + esc(c.title) + (isNew(c) ? ' <span class="sb-new sm">New</span>' : '') + '</b><small>' + esc(c.ref) + (done ? ' &middot; best ' + p[c.id].best + ' of ' + MAX : '') + '</small></span>' +
           (can ? starRow(stars(c.id)) + '<a class="pg-btn light" href="' + href(c.id) + '">' + (done ? 'Play again' : 'Play') + '</a>' : '<span class="sb-after">Play chapter ' + k + ' first</span>') + '</li>';
-      }).join('') + '</ol>' + (it.more ? '<p class="sb-more-l">More chapters of ' + esc(it.name) + '’s story are coming.</p>' : '') + '</div>', 'sb-stage');
+      }).join('') + '</ol>' + (more(it) ? '<p class="sb-more-l">More chapters of ' + esc(it.name) + '’s story are coming.</p>' : '') + '</div>', 'sb-stage');
     document.querySelector('#play-app .sb-back').addEventListener('click', library);
   }
   X.games.story = function () { library(); };
