@@ -574,5 +574,10 @@
   dots(grid, function () { return Math.round(grid.scrollWidth / (grid.clientWidth || 1)); });
   var hint = document.createElement('p'); hint.className = 'gm-hint'; hint.setAttribute('aria-hidden', 'true'); hint.textContent = 'Swipe to see all the games →';
   grid.parentNode.insertBefore(hint, grid.nextSibling.nextSibling);
-  var steps = document.querySelector('.pg-how .pg-steps'); if (steps) dots(steps, function () { return steps.children.length; });
+  var steps = document.querySelector('.pg-how .pg-steps');
+  if (steps) {
+    // on phones the steps scroll sideways, so keyboard users must be able to reach and scroll them
+    steps.setAttribute('tabindex', '0'); steps.setAttribute('role', 'region'); steps.setAttribute('aria-label', 'How it works: 3 steps, swipe or use the arrow keys');
+    dots(steps, function () { return steps.children.length; });
+  }
 })();

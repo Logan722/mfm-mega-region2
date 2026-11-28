@@ -96,3 +96,12 @@
   g.addEventListener('scroll', function () { window.requestAnimationFrame(on); }, { passive: true });
   window.addEventListener('resize', on); on();
 })();
+/* Today in the region on phones: the declaration and Game of the Week cards swipe side by side; dots show which one is in view */
+(function () {
+  var g = document.querySelector('.today .today-panel'); if (!g) return;
+  var n = g.children.length; if (n < 2) return;
+  var d = document.createElement('div'); d.className = 'td-dots'; d.setAttribute('aria-hidden', 'true'); d.innerHTML = new Array(n + 1).join('<i></i>');
+  g.parentNode.insertBefore(d, g.nextSibling);
+  function upd() { var max = g.scrollWidth - g.clientWidth, k = max > 0 ? Math.round(g.scrollLeft / max * (n - 1)) : 0; Array.prototype.forEach.call(d.children, function (x, i) { x.className = i === k ? 'on' : ''; }); }
+  g.addEventListener('scroll', function () { window.requestAnimationFrame(upd); }, { passive: true }); upd();
+})();

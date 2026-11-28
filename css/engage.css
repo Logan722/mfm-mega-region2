@@ -785,3 +785,34 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 .r4 .ph img{transition:opacity .35s ease}
 .r4 .ph img.ro-fade{opacity:0}
 @media(max-width:900px){.r4 .ph{min-height:calc(420px + var(--hdr))}.r4 .ov{padding-top:calc(var(--hdr) + 32px);padding-bottom:32px}.r4 .side{padding-top:40px}}
+
+/* ===== Today in the region (Dawn, Nov 28 2026) =====
+   Desktop: the current design, running from the left boundary (logo) to the right boundary (end of "Request prayer").
+   Phones: the navy declaration card and the Game of the Week card sit side by side as swipe cards. */
+#content .today{--bnd:24px}
+@media(min-width:1200px){#content .today{--bnd:clamp(32px,3.2vw,64px)}}
+#content .today .ek-wrap{width:100%;max-width:none;margin:0;padding-left:var(--bnd);padding-right:var(--bnd);box-sizing:border-box}
+#content .today .today-head.th2,#content .today .today-panel{max-width:none}
+@media(min-width:901px){#content .today .today-panel{grid-template-columns:1.5fr 1fr}#content .today .tp-word blockquote{max-width:760px}}
+.td-dots{display:none}
+@media(max-width:700px){
+ #content .today .today-panel{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78vw;gap:12px;align-items:stretch;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin:0 calc(-1 * var(--bnd));padding:4px var(--bnd) 12px;scroll-padding:0 var(--bnd);border:0;border-radius:0;background:none;box-shadow:none;scrollbar-width:none}
+ #content .today .today-panel::-webkit-scrollbar{display:none}
+ #content .today .today-panel article{scroll-snap-align:start;border-radius:22px;padding:26px 18px 22px}
+ #content .today .today-panel article *{-webkit-text-fill-color:currentColor!important}
+ #content .today .tp-word{background:radial-gradient(60% 80% at 50% 0%,#24407a,#142240 70%)!important;color:#d6deec!important;box-shadow:0 14px 32px rgba(20,34,64,.22)}
+ #content .today .tp-word .k{color:#f0c760!important}
+ #content .today .tp-word blockquote{color:#fff!important;font-size:19px}
+ #content .today .tp-word cite{color:#f0c760!important}
+ #content .today .tp-word ul,#content .today .tp-word .tp-decl{color:#e6ebf4!important}
+ #content .today .tp-word .tp-decl b,#content .today .tp-word li b{color:#fff!important}
+ #content .today .tp-word ul li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px}
+ #content .today .tp-word .ek-btn.ghost{color:#fff!important;border-color:rgba(255,255,255,.7)!important;background:transparent!important}
+ #content .today .tp-gw{background:#f5efe3!important;border:1px solid #ece3cf;justify-content:center}
+ .td-dots{display:flex;justify-content:center;gap:6px;margin:6px 0 0}
+ .td-dots i{width:7px;height:7px;border-radius:50%;background:#d5cdbb;transition:width .2s,background .2s}
+ .td-dots i.on{width:20px;border-radius:4px;background:#c9952c}
+}
+/* Small phones (up to 375px): "Gather with expectation." stays on one line without pushing the page sideways.
+   (The site-wide h2 minimum of 34px is 11px too wide at 360px; the repeated id outranks that rule.) */
+@media(max-width:375px){#content #ev2-h#ev2-h{font-size:7.6vw!important}}

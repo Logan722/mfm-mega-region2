@@ -280,3 +280,4 @@
  .pg-how .pg-steps::-webkit-scrollbar{display:none}
  .pg-how .pg-steps>div{scroll-snap-align:center;padding:22px 18px}
 }
+.pg-how .pg-steps:focus-visible{outline:3px solid #c9952c;outline-offset:4px;border-radius:12px}
