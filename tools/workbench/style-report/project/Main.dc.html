@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Style check overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700&amp;family=Inter+Tight:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#142240}a:hover{color:#b23d14}
+</style>
+</helmet>
+<div style="width:1400px;height:960px;box-sizing:border-box;background:#142240;color:#fff;font-family:'Inter Tight',sans-serif;padding:64px 72px;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">
+<p style="margin:0;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff">Style check · preview of Nov 27, 2026</p>
+<div style="width:56px;height:2px;background:#c9952c"></div>
+<h1 style="margin:0;font-family:Fraunces,serif;font-weight:500;font-size:56px;line-height:1.05">One site, one set of styles.</h1>
+<p style="margin:0;max-width:760px;font-size:17px;line-height:1.6;color:#d4dce9">I checked the 12 pages in the preview on computer and phone, measuring every button, title, label, card and section. The pages were built at different times, and it shows. Each board on this canvas shows what's there now and two or three ways to make it consistent.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div style="background:#1c2c50;border:1px solid #2c3d63;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><b style="font-family:Fraunces,serif;font-weight:500;font-size:40px;color:#fff">27</b><span style="font-size:15px;font-weight:600">button styles</span><span style="font-size:14px;color:#c3cddd;line-height:1.5">10 corner shapes, text from 12.6 to 19px, some in capitals</span></div>
+<div style="background:#1c2c50;border:1px solid #2c3d63;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><b style="font-family:Fraunces,serif;font-weight:500;font-size:40px;color:#fff">33</b><span style="font-size:15px;font-weight:600">small-label styles</span><span style="font-size:14px;color:#c3cddd;line-height:1.5">6 oranges and golds, 9 to 12.5px, three kinds of line</span></div>
+<div style="background:#1c2c50;border:1px solid #2c3d63;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><b style="font-family:Fraunces,serif;font-weight:500;font-size:40px;color:#fff">4</b><span style="font-size:15px;font-weight:600">title weights</span><span style="font-size:14px;color:#c3cddd;line-height:1.5">Page titles from 57 to 126px; older pages bold, newer ones light</span></div>
+<div style="background:#1c2c50;border:1px solid #2c3d63;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><b style="font-family:Fraunces,serif;font-weight:500;font-size:40px;color:#fff">7</b><span style="font-size:15px;font-weight:600">card corner sizes</span><span style="font-size:14px;color:#c3cddd;line-height:1.5">0, 4, 16, 18, 20, 22 and 24px</span></div>
+<div style="background:#1c2c50;border:1px solid #2c3d63;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><b style="font-family:Fraunces,serif;font-weight:500;font-size:40px;color:#fff">14</b><span style="font-size:15px;font-weight:600">section spacings</span><span style="font-size:14px;color:#c3cddd;line-height:1.5">Plus a 308px empty gap on the phone Ministries page</span></div>
+<div style="background:#1c2c50;border:1px solid #2c3d63;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:6px"><b style="font-family:Fraunces,serif;font-weight:500;font-size:40px;color:#fff">2</b><span style="font-size:15px;font-weight:600">bugs, already fixed</span><span style="font-size:14px;color:#c3cddd;line-height:1.5">Subscribe button showed no words; its footer verse wrapped one word per line</span></div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+<p style="margin:0;font-size:15px;color:#d4dce9">Five choices, one per board. Reply with your picks, e.g. "Buttons A, Titles B, Labels A, Corners A, all the small fixes".</p>
+<p style="margin:0;font-size:14px;color:#9fb0c9">Game screens on /play keep their own brighter look and aren't part of this check.</p>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1400,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

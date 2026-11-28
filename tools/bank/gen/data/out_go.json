@@ -1,0 +1,2432 @@
+[
+{
+"id": "go0",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Mystery of ____”",
+"options": [
+"Crush",
+"Power",
+"Winners",
+"Seduction"
+],
+"answer": 3,
+"explain": "The book is “The Mystery of Seduction” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go1",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Technical Prayers to Disgrace Local ____”",
+"options": [
+"Victory",
+"Down",
+"Goliaths",
+"Pointer"
+],
+"answer": 2,
+"explain": "The book is “Technical Prayers to Disgrace Local Goliaths” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go2",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Problems of Incomplete ____”",
+"options": [
+"Demons",
+"Deliverance",
+"Contest",
+"Skeleton"
+],
+"answer": 1,
+"explain": "The book is “The Problems of Incomplete Deliverance” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go3",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Born Great But Tied ____”",
+"options": [
+"Hold",
+"Rain",
+"Down",
+"Witchcraft"
+],
+"answer": 2,
+"explain": "The book is “Born Great But Tied Down” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go4",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Wealth Transfer ____”",
+"options": [
+"Agenda",
+"Family",
+"Divine",
+"Dining"
+],
+"answer": 0,
+"explain": "The book is “The Wealth Transfer Agenda” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go5",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Safeguarding Your ____”",
+"options": [
+"Surrounded",
+"Home",
+"Goliaths",
+"Enemies"
+],
+"answer": 1,
+"explain": "The book is “Safeguarding Your Home” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go6",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The A-Z of Complete ____”",
+"options": [
+"Deliverance",
+"Oppression",
+"Spirit",
+"Wealth"
+],
+"answer": 0,
+"explain": "The book is “The A-Z of Complete Deliverance” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go7",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Deliverance from Limiting ____”",
+"options": [
+"Witchcraft",
+"Corridor",
+"Powers",
+"Breakthrough"
+],
+"answer": 2,
+"explain": "The book is “Deliverance from Limiting Powers” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go8",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayer is the ____”",
+"options": [
+"Battle",
+"Divine",
+"Dining",
+"Warfare"
+],
+"answer": 0,
+"explain": "The book is “Prayer is the Battle” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go9",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Mystery of Mobile ____”",
+"options": [
+"Enlargement",
+"Snake",
+"Curses",
+"Complete"
+],
+"answer": 2,
+"explain": "The book is “The Mystery of Mobile Curses” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go10",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The ____ in Your Sky”",
+"options": [
+"Complete",
+"Curses",
+"Star",
+"Winners"
+],
+"answer": 2,
+"explain": "The book is “The Star in Your Sky” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go11",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayers to Kill Enchantment and ____”",
+"options": [
+"Wasting",
+"Divination",
+"Greatness",
+"Steps"
+],
+"answer": 1,
+"explain": "The book is “Prayers to Kill Enchantment and Divination” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go12",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Dangerous ____”",
+"options": [
+"Evil",
+"Provocation",
+"Highway",
+"Passport"
+],
+"answer": 2,
+"explain": "The book is “The Dangerous Highway” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go13",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Unconquerable ____”",
+"options": [
+"Dream",
+"Technology",
+"Power",
+"Snake"
+],
+"answer": 2,
+"explain": "The book is “The Unconquerable Power” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go14",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Biblical Principles of Dream ____”",
+"options": [
+"Freedom",
+"Interpretation",
+"Winners",
+"Serpent"
+],
+"answer": 1,
+"explain": "The book is “Biblical Principles of Dream Interpretation” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go15",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Skeleton in your Grandfather's ____”",
+"options": [
+"Exchange",
+"Cupboard",
+"Serpents",
+"Listeners"
+],
+"answer": 1,
+"explain": "The book is “The Skeleton in your Grandfather's Cupboard” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go16",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Dealing with The Satanic ____”",
+"options": [
+"Exchange",
+"Table",
+"Father's",
+"Evil"
+],
+"answer": 0,
+"explain": "The book is “Dealing with The Satanic Exchange” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go17",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Mystery of the Mobile ____”",
+"options": [
+"Powers",
+"Great",
+"Temple",
+"Brain"
+],
+"answer": 2,
+"explain": "The book is “The Mystery of the Mobile Temple” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go18",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Battle Against The Spirit of ____”",
+"options": [
+"Incomplete",
+"Impossibility",
+"Spiritual",
+"Heavens"
+],
+"answer": 1,
+"explain": "The book is “Battle Against The Spirit of Impossibility” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go19",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Paying Evil ____”",
+"options": [
+"Corridor",
+"Tithes",
+"Destiny's",
+"Seduction"
+],
+"answer": 1,
+"explain": "The book is “Paying Evil Tithes” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go20",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Dining Table of ____”",
+"options": [
+"Listeners",
+"Darkness",
+"Mantle",
+"Grandfather's"
+],
+"answer": 1,
+"explain": "The book is “The Dining Table of Darkness” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go21",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “How to Pray When Surrounded by ____”",
+"options": [
+"Greatness",
+"Unconquerable",
+"Singles",
+"Enemies"
+],
+"answer": 3,
+"explain": "The book is “How to Pray When Surrounded by Enemies” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go22",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Open Heavens through Holy ____”",
+"options": [
+"Satanic",
+"Complete",
+"Wealth",
+"Disturbance"
+],
+"answer": 3,
+"explain": "The book is “Open Heavens through Holy Disturbance” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go23",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Tied Down in the ____”",
+"options": [
+"Maximum",
+"Snake",
+"Spirit",
+"Slaves"
+],
+"answer": 2,
+"explain": "The book is “Tied Down in the Spirit” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go24",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Wasting the ____”",
+"options": [
+"Divine",
+"Unconquerable",
+"Hidden",
+"Wasters"
+],
+"answer": 3,
+"explain": "The book is “Wasting the Wasters” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go25",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Power For Explosive ____”",
+"options": [
+"Success",
+"Warfare",
+"Command",
+"Impossibility"
+],
+"answer": 0,
+"explain": "The book is “Power For Explosive Success” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go26",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Provocation At The Corridor of ____”",
+"options": [
+"Pointer",
+"Breakthroughs",
+"Minimum",
+"Dining"
+],
+"answer": 1,
+"explain": "The book is “Provocation At The Corridor of Breakthroughs” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go27",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Medicine for ____”",
+"options": [
+"Strategies",
+"Wasters",
+"Listeners",
+"Winners"
+],
+"answer": 3,
+"explain": "The book is “Medicine for Winners” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go28",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Freedom from the Grip of ____”",
+"options": [
+"Pointer",
+"Diseases",
+"Dreaming",
+"Witchcraft"
+],
+"answer": 3,
+"explain": "The book is “Freedom from the Grip of Witchcraft” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go29",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Power Over Tropical ____”",
+"options": [
+"Pray",
+"Wasting",
+"Demons",
+"Receiving"
+],
+"answer": 2,
+"explain": "The book is “Power Over Tropical Demons” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go30",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Principles of ____”",
+"options": [
+"Listeners",
+"Grip",
+"Victory",
+"Prayer"
+],
+"answer": 3,
+"explain": "The book is “Principles of Prayer” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go31",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Divine Immunity During ____”",
+"options": [
+"Enchantment",
+"Watching",
+"Prayers",
+"Sleep"
+],
+"answer": 3,
+"explain": "The book is “Divine Immunity During Sleep” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go32",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Mystery of ____”",
+"options": [
+"Exchange",
+"Dream",
+"Brain",
+"Sleep"
+],
+"answer": 3,
+"explain": "The book is “The Mystery of Sleep” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go33",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayers to Fulfill your Destiny's ____”",
+"options": [
+"Attack",
+"Dreams",
+"Tropical",
+"Technical"
+],
+"answer": 1,
+"explain": "The book is “Prayers to Fulfill your Destiny's Dreams” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go34",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Dreaming Divine ____”",
+"options": [
+"Disgrace",
+"Mantle",
+"Demons",
+"Dreams"
+],
+"answer": 3,
+"explain": "The book is “Dreaming Divine Dreams” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go35",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Power Against Dream ____”",
+"options": [
+"Praying",
+"Minimum",
+"Woman",
+"Criminals"
+],
+"answer": 3,
+"explain": "The book is “Power Against Dream Criminals” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go36",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Victory Over Satanic ____”",
+"options": [
+"Magician",
+"Wasters",
+"Dreams",
+"Wasting"
+],
+"answer": 2,
+"explain": "The book is “Victory Over Satanic Dreams” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go37",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Watching The Serpents of the ____”",
+"options": [
+"Magician",
+"Mystery",
+"Wasting",
+"Sleep"
+],
+"answer": 0,
+"explain": "The book is “Watching The Serpents of the Magician” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go38",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Contest of the ____”",
+"options": [
+"Wasting",
+"Serpents",
+"Tithes",
+"Table"
+],
+"answer": 1,
+"explain": "The book is “The Contest of the Serpents” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go39",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Snake in the Power ____”",
+"options": [
+"Great",
+"House",
+"Highway",
+"Technology"
+],
+"answer": 1,
+"explain": "The book is “Snake in the Power House” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go40",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Killing the Serpent of ____”",
+"options": [
+"Marital",
+"Weapons",
+"Frustration",
+"Pray"
+],
+"answer": 2,
+"explain": "The book is “Killing the Serpent of Frustration” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go41",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Hidden ____”",
+"options": [
+"Viper",
+"Singles",
+"Success",
+"Progress"
+],
+"answer": 0,
+"explain": "The book is “The Hidden Viper” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go42",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Pray your Way to Marital ____”",
+"options": [
+"Breakthrough",
+"Mobile",
+"Dream",
+"Tithes"
+],
+"answer": 0,
+"explain": "The book is “Pray your Way to Marital Breakthrough” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go43",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Steps to ____”",
+"options": [
+"Greatness",
+"Victory",
+"Listeners",
+"Spiritual"
+],
+"answer": 0,
+"explain": "The book is “Steps to Greatness” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go44",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Mystery of ____”",
+"options": [
+"Strategies",
+"Pray",
+"Table",
+"Voices"
+],
+"answer": 3,
+"explain": "The book is “The Mystery of Voices” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go45",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Fat ____”",
+"options": [
+"Local",
+"Deliverance",
+"Down",
+"Slaves"
+],
+"answer": 3,
+"explain": "The book is “The Fat Slaves” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go46",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Learners and The ____”",
+"options": [
+"Strategies",
+"Listeners",
+"Contest",
+"Impossibility"
+],
+"answer": 1,
+"explain": "The book is “The Learners and The Listeners” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go47",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Neutralising Satanic ____”",
+"options": [
+"Limiting",
+"Prayers",
+"Demons",
+"Strongman"
+],
+"answer": 1,
+"explain": "The book is “Neutralising Satanic Prayers” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go48",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Command The ____”",
+"options": [
+"Hold",
+"Morning",
+"Violent",
+"Strongman"
+],
+"answer": 1,
+"explain": "The book is “Command The Morning” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go49",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “How to Pray When You are under ____”",
+"options": [
+"Rain",
+"Prayer",
+"Tithes",
+"Attack"
+],
+"answer": 3,
+"explain": "The book is “How to Pray When You are under Attack” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go50",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Deliverance of the ____”",
+"options": [
+"Unconquerable",
+"Biblical",
+"Brain",
+"Oppression"
+],
+"answer": 2,
+"explain": "The book is “Deliverance of the Brain” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go51",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Receiving the oil Divine ____”",
+"options": [
+"Interpretation",
+"Favour",
+"Disgrace",
+"Safeguarding"
+],
+"answer": 1,
+"explain": "The book is “Receiving the oil Divine Favour” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go52",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “How to receive the Mantle of ____”",
+"options": [
+"Biblical",
+"Down",
+"Table",
+"Power"
+],
+"answer": 3,
+"explain": "The book is “How to receive the Mantle of Power” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go53",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Praying by the Blood of ____”",
+"options": [
+"Wonder",
+"Enchantment",
+"Brain",
+"Jesus"
+],
+"answer": 3,
+"explain": "The book is “Praying by the Blood of Jesus” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go54",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Dealing with the Evil Powers of Your Father's ____”",
+"options": [
+"Sleep",
+"House",
+"Receiving",
+"Command"
+],
+"answer": 1,
+"explain": "The book is “Dealing with the Evil Powers of Your Father's House” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go55",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “40 Marriages that must not ____”",
+"options": [
+"Interpretation",
+"Prayers",
+"Hold",
+"Problems"
+],
+"answer": 2,
+"explain": "The book is “40 Marriages that must not Hold” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go56",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Violent Prayers to Disgrace Stubborn ____”",
+"options": [
+"Biblical",
+"Problems",
+"Dining",
+"Singles"
+],
+"answer": 1,
+"explain": "The book is “Violent Prayers to Disgrace Stubborn Problems” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go57",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayer Strategies for ____”",
+"options": [
+"Paying",
+"Singles",
+"Dreams",
+"Maximum"
+],
+"answer": 1,
+"explain": "The book is “Prayer Strategies for Singles” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go58",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayers to Destroy Diseases and ____”",
+"options": [
+"Wonder",
+"Viper",
+"Infirmities",
+"Paying"
+],
+"answer": 2,
+"explain": "The book is “Prayers to Destroy Diseases and Infirmities” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go59",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayers To Move From Minimum To ____”",
+"options": [
+"Maximum",
+"Skeleton",
+"Marriages",
+"Grip"
+],
+"answer": 0,
+"explain": "The book is “Prayers To Move From Minimum To Maximum” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go60",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Dealing with Local Satanic ____”",
+"options": [
+"Explosive",
+"Technology",
+"Spiritual",
+"Enemies"
+],
+"answer": 1,
+"explain": "The book is “Dealing with Local Satanic Technology” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go61",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Woman of ____”",
+"options": [
+"Unconquerable",
+"Wonder",
+"Viper",
+"Local"
+],
+"answer": 1,
+"explain": "The book is “The Woman of Wonder” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go62",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Prayer Passport to Crush ____”",
+"options": [
+"Provocation",
+"Battle",
+"Oppression",
+"Complete"
+],
+"answer": 2,
+"explain": "The book is “Prayer Passport to Crush Oppression” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go63",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Intensity in ____”",
+"options": [
+"Prayer",
+"Evil",
+"Jesus",
+"Tithes"
+],
+"answer": 0,
+"explain": "The book is “Intensity in Prayer” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go64",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The God of ____”",
+"options": [
+"Victory",
+"Elijah",
+"Passport",
+"Agenda"
+],
+"answer": 1,
+"explain": "The book is “The God of Elijah” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go65",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “101 Weapons of Spiritual ____”",
+"options": [
+"Warfare",
+"Kill",
+"Dangerous",
+"Technology"
+],
+"answer": 0,
+"explain": "The book is “101 Weapons of Spiritual Warfare” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go66",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “Raiding The House Of The ____”",
+"options": [
+"Strategies",
+"Strongman",
+"Success",
+"Frustration"
+],
+"answer": 1,
+"explain": "The book is “Raiding The House Of The Strongman” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go67",
+"pack": "go-books",
+"level": "all",
+"q": "Finish the title of this book by Dr. D.K. Olukoya: “The Secret of Progress and ____”",
+"options": [
+"Grip",
+"Home",
+"Transfer",
+"Enlargement"
+],
+"answer": 3,
+"explain": "The book is “The Secret of Progress and Enlargement” by Dr. D.K. Olukoya.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go68",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Mystery of Seduction” belong to?",
+"options": [
+"Dream and Sleep",
+"Stepping High",
+"Serpent",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“The Mystery of Seduction” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go69",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Technical Prayers to Disgrace Local Goliaths” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Stepping High"
+],
+"answer": 2,
+"explain": "“Technical Prayers to Disgrace Local Goliaths” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go70",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Problems of Incomplete Deliverance” belong to?",
+"options": [
+"Stepping High",
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Serpent"
+],
+"answer": 2,
+"explain": "“The Problems of Incomplete Deliverance” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go71",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Born Great But Tied Down” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“Born Great But Tied Down” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go72",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Wealth Transfer Agenda” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“The Wealth Transfer Agenda” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go73",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Safeguarding Your Home” belong to?",
+"options": [
+"Serpent",
+"Stepping High",
+"Warfare Prayer Series",
+"Dream and Sleep"
+],
+"answer": 2,
+"explain": "“Safeguarding Your Home” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go74",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The A-Z of Complete Deliverance” belong to?",
+"options": [
+"Serpent",
+"Stepping High",
+"Dream and Sleep",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“The A-Z of Complete Deliverance” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go75",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Deliverance from Limiting Powers” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Stepping High",
+"Dream and Sleep",
+"Serpent"
+],
+"answer": 0,
+"explain": "“Deliverance from Limiting Powers” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go76",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Prayer is the Battle” belong to?",
+"options": [
+"Stepping High",
+"Serpent",
+"Dream and Sleep",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“Prayer is the Battle” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go77",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Mystery of Mobile Curses” belong to?",
+"options": [
+"Dream and Sleep",
+"Serpent",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“The Mystery of Mobile Curses” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go78",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Star in Your Sky” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Stepping High",
+"Dream and Sleep",
+"Serpent"
+],
+"answer": 0,
+"explain": "“The Star in Your Sky” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go79",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Prayers to Kill Enchantment and Divination” belong to?",
+"options": [
+"Dream and Sleep",
+"Serpent",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“Prayers to Kill Enchantment and Divination” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go80",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Dangerous Highway” belong to?",
+"options": [
+"Stepping High",
+"Dream and Sleep",
+"Serpent",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“The Dangerous Highway” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go81",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Unconquerable Power” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Stepping High"
+],
+"answer": 2,
+"explain": "“The Unconquerable Power” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go82",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Biblical Principles of Dream Interpretation” belong to?",
+"options": [
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Serpent",
+"Stepping High"
+],
+"answer": 1,
+"explain": "“Biblical Principles of Dream Interpretation” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go83",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Skeleton in your Grandfather's Cupboard” belong to?",
+"options": [
+"Stepping High",
+"Warfare Prayer Series",
+"Serpent",
+"Dream and Sleep"
+],
+"answer": 1,
+"explain": "“The Skeleton in your Grandfather's Cupboard” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go84",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Dealing with The Satanic Exchange” belong to?",
+"options": [
+"Dream and Sleep",
+"Stepping High",
+"Warfare Prayer Series",
+"Serpent"
+],
+"answer": 2,
+"explain": "“Dealing with The Satanic Exchange” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go85",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Mystery of the Mobile Temple” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Dream and Sleep",
+"Stepping High",
+"Serpent"
+],
+"answer": 0,
+"explain": "“The Mystery of the Mobile Temple” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go86",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Battle Against The Spirit of Impossibility” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Stepping High"
+],
+"answer": 2,
+"explain": "“Battle Against The Spirit of Impossibility” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go87",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Paying Evil Tithes” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Serpent",
+"Stepping High",
+"Dream and Sleep"
+],
+"answer": 0,
+"explain": "“Paying Evil Tithes” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go88",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Dining Table of Darkness” belong to?",
+"options": [
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Stepping High",
+"Serpent"
+],
+"answer": 1,
+"explain": "“The Dining Table of Darkness” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go89",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “How to Pray When Surrounded by Enemies” belong to?",
+"options": [
+"Serpent",
+"Warfare Prayer Series",
+"Dream and Sleep",
+"Stepping High"
+],
+"answer": 1,
+"explain": "“How to Pray When Surrounded by Enemies” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go90",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Family Deliverance” belong to?",
+"options": [
+"Stepping High",
+"Serpent",
+"Dream and Sleep",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“Family Deliverance” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go91",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Open Heavens through Holy Disturbance” belong to?",
+"options": [
+"Serpent",
+"Warfare Prayer Series",
+"Stepping High",
+"Dream and Sleep"
+],
+"answer": 1,
+"explain": "“Open Heavens through Holy Disturbance” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go92",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Tied Down in the Spirit” belong to?",
+"options": [
+"Stepping High",
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Serpent"
+],
+"answer": 2,
+"explain": "“Tied Down in the Spirit” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go93",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Wasting the Wasters” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Dream and Sleep",
+"Stepping High",
+"Serpent"
+],
+"answer": 0,
+"explain": "“Wasting the Wasters” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go94",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Power For Explosive Success” belong to?",
+"options": [
+"Stepping High",
+"Warfare Prayer Series",
+"Serpent",
+"Dream and Sleep"
+],
+"answer": 1,
+"explain": "“Power For Explosive Success” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go95",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Provocation At The Corridor of Breakthroughs” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Serpent",
+"Dream and Sleep",
+"Stepping High"
+],
+"answer": 0,
+"explain": "“Provocation At The Corridor of Breakthroughs” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go96",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Medicine for Winners” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Stepping High",
+"Dream and Sleep",
+"Serpent"
+],
+"answer": 0,
+"explain": "“Medicine for Winners” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go97",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Freedom from the Grip of Witchcraft” belong to?",
+"options": [
+"Dream and Sleep",
+"Serpent",
+"Warfare Prayer Series",
+"Stepping High"
+],
+"answer": 2,
+"explain": "“Freedom from the Grip of Witchcraft” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go98",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Power Over Tropical Demons” belong to?",
+"options": [
+"Serpent",
+"Stepping High",
+"Dream and Sleep",
+"Warfare Prayer Series"
+],
+"answer": 3,
+"explain": "“Power Over Tropical Demons” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go99",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Principles of Prayer” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Dream and Sleep",
+"Serpent",
+"Stepping High"
+],
+"answer": 0,
+"explain": "“Principles of Prayer” is in the Warfare Prayer Series series.",
+"source": {
+"label": "Warfare Prayer Series — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=8&stext=Warfare+Prayer+Series"
+}
+},
+{
+"id": "go100",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Divine Immunity During Sleep” belong to?",
+"options": [
+"Stepping High",
+"Dream and Sleep",
+"Serpent",
+"Warfare Prayer Series"
+],
+"answer": 1,
+"explain": "“Divine Immunity During Sleep” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go101",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Dream Pointer” belong to?",
+"options": [
+"Stepping High",
+"Serpent",
+"Dream and Sleep",
+"Warfare Prayer Series"
+],
+"answer": 2,
+"explain": "“Dream Pointer” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go102",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Mystery of Sleep” belong to?",
+"options": [
+"Stepping High",
+"Dream and Sleep",
+"Warfare Prayer Series",
+"Serpent"
+],
+"answer": 1,
+"explain": "“The Mystery of Sleep” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go103",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Prayers to Fulfill your Destiny's Dreams” belong to?",
+"options": [
+"Serpent",
+"Warfare Prayer Series",
+"Dream and Sleep",
+"Stepping High"
+],
+"answer": 2,
+"explain": "“Prayers to Fulfill your Destiny's Dreams” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go104",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Dreaming Divine Dreams” belong to?",
+"options": [
+"Serpent",
+"Stepping High",
+"Dream and Sleep",
+"Warfare Prayer Series"
+],
+"answer": 2,
+"explain": "“Dreaming Divine Dreams” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go105",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Power Against Dream Criminals” belong to?",
+"options": [
+"Stepping High",
+"Warfare Prayer Series",
+"Serpent",
+"Dream and Sleep"
+],
+"answer": 3,
+"explain": "“Power Against Dream Criminals” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go106",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Victory Over Satanic Dreams” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Dream and Sleep",
+"Serpent",
+"Stepping High"
+],
+"answer": 1,
+"explain": "“Victory Over Satanic Dreams” is in the Dream and Sleep series.",
+"source": {
+"label": "Dream and Sleep — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go107",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Watching The Serpents of the Magician” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 0,
+"explain": "“Watching The Serpents of the Magician” is in the Serpent series.",
+"source": {
+"label": "Serpent — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go108",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Contest of the Serpents” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Stepping High",
+"Serpent",
+"Dream and Sleep"
+],
+"answer": 2,
+"explain": "“The Contest of the Serpents” is in the Serpent series.",
+"source": {
+"label": "Serpent — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go109",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Snake in the Power House” belong to?",
+"options": [
+"Stepping High",
+"Warfare Prayer Series",
+"Serpent",
+"Dream and Sleep"
+],
+"answer": 2,
+"explain": "“Snake in the Power House” is in the Serpent series.",
+"source": {
+"label": "Serpent — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go110",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Killing the Serpent of Frustration” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 0,
+"explain": "“Killing the Serpent of Frustration” is in the Serpent series.",
+"source": {
+"label": "Serpent — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go111",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “The Hidden Viper” belong to?",
+"options": [
+"Serpent",
+"Dream and Sleep",
+"Stepping High",
+"Warfare Prayer Series"
+],
+"answer": 0,
+"explain": "“The Hidden Viper” is in the Serpent series.",
+"source": {
+"label": "Serpent — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go112",
+"pack": "go-books",
+"level": "all",
+"q": "Which series of Dr. Olukoya's books does “Serpentine Enemies” belong to?",
+"options": [
+"Warfare Prayer Series",
+"Stepping High",
+"Dream and Sleep",
+"Serpent"
+],
+"answer": 3,
+"explain": "“Serpentine Enemies” is in the Serpent series.",
+"source": {
+"label": "Serpent — dkoebooks.com",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go113",
+"pack": "go-books",
+"level": "all",
+"q": "Which of these books was written by Pastor (Mrs.) Shade Olukoya, Mummy G.O.?",
+"options": [
+"The Call Of God",
+"Violent Prayers to Disgrace Stubborn Problems",
+"Receiving the oil Divine Favour",
+"Praying by the Blood of Jesus"
+],
+"answer": 0,
+"explain": "“The Call Of God” is by Pastor (Mrs.) Shade Olukoya.",
+"source": {
+"label": "Pastor Mrs. Shade Olukoya — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=3&stext=Mrs.+Shade+Olukoya"
+}
+},
+{
+"id": "go114",
+"pack": "go-books",
+"level": "all",
+"q": "Which of these books was written by Pastor (Mrs.) Shade Olukoya, Mummy G.O.?",
+"options": [
+"Violence Against Negative Voices",
+"How to receive the Mantle of Power",
+"Intensity in Prayer",
+"Pray your Way to Marital Breakthrough"
+],
+"answer": 0,
+"explain": "“Violence Against Negative Voices” is by Pastor (Mrs.) Shade Olukoya.",
+"source": {
+"label": "Pastor Mrs. Shade Olukoya — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=3&stext=Mrs.+Shade+Olukoya"
+}
+},
+{
+"id": "go115",
+"pack": "go-books",
+"level": "all",
+"q": "Which of these books was written by Pastor (Mrs.) Shade Olukoya, Mummy G.O.?",
+"options": [
+"The Daughters of Phillip",
+"Prayers to Destroy Diseases and Infirmities",
+"Raiding The House Of The Strongman",
+"Neutralising Satanic Prayers"
+],
+"answer": 0,
+"explain": "“The Daughters of Phillip” is by Pastor (Mrs.) Shade Olukoya.",
+"source": {
+"label": "Pastor Mrs. Shade Olukoya — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=3&stext=Mrs.+Shade+Olukoya"
+}
+},
+{
+"id": "go116",
+"pack": "go-books",
+"level": "all",
+"q": "Which of these books was written by Pastor (Mrs.) Shade Olukoya, Mummy G.O.?",
+"options": [
+"When Your Destiny Is Under Attack",
+"Command The Morning",
+"The God of Elijah",
+"Deliverance of the Brain"
+],
+"answer": 0,
+"explain": "“When Your Destiny Is Under Attack” is by Pastor (Mrs.) Shade Olukoya.",
+"source": {
+"label": "Pastor Mrs. Shade Olukoya — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=3&stext=Mrs.+Shade+Olukoya"
+}
+},
+{
+"id": "go117",
+"pack": "go-books",
+"level": "all",
+"q": "Which of these books was written by Pastor (Mrs.) Shade Olukoya, Mummy G.O.?",
+"options": [
+"Power to Fulfill Your Destiny",
+"Neutralising Satanic Prayers",
+"The Mystery of Voices",
+"Praying by the Blood of Jesus"
+],
+"answer": 0,
+"explain": "“Power to Fulfill Your Destiny” is by Pastor (Mrs.) Shade Olukoya.",
+"source": {
+"label": "Pastor Mrs. Shade Olukoya — dkoebooks.com",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=3&stext=Mrs.+Shade+Olukoya"
+}
+},
+{
+"id": "go118",
+"pack": "go-books",
+"level": "all",
+"q": "The 2020 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"1",
+"5",
+"3",
+"2"
+],
+"answer": 0,
+"explain": "The 2020 edition is titled Prayer Battle; 2021 was Prayer Battle 2.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go119",
+"pack": "go-books",
+"level": "all",
+"q": "The 2021 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"8",
+"5",
+"2",
+"4"
+],
+"answer": 2,
+"explain": "The 2021 edition is Prayer Battle 2.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go120",
+"pack": "go-books",
+"level": "all",
+"q": "The 2022 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"3",
+"7",
+"1",
+"5"
+],
+"answer": 0,
+"explain": "The 2022 edition is Prayer Battle 3.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go121",
+"pack": "go-books",
+"level": "all",
+"q": "The 2023 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"4",
+"3",
+"6",
+"1"
+],
+"answer": 0,
+"explain": "The 2023 edition is Prayer Battle 4.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go122",
+"pack": "go-books",
+"level": "all",
+"q": "The 2024 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"2",
+"5",
+"8",
+"4"
+],
+"answer": 1,
+"explain": "The 2024 edition is Prayer Battle 5.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go123",
+"pack": "go-books",
+"level": "all",
+"q": "The 2025 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"8",
+"6",
+"5",
+"3"
+],
+"answer": 1,
+"explain": "The 2025 edition is Prayer Battle 6.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go124",
+"pack": "go-books",
+"level": "all",
+"q": "The 2026 edition of the 70 Days Prayer and Fasting Programme is called Prayer Battle number...",
+"options": [
+"6",
+"7",
+"3",
+"4"
+],
+"answer": 1,
+"explain": "The 2026 edition is Prayer Battle 7.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://www.dkoebooks.com/index.php?module=ebooks&func=qsearch&sfld=top&stext=Top+Sellers"
+}
+},
+{
+"id": "go125",
+"pack": "go-books",
+"level": "all",
+"q": "What was the theme of the 2019 70 Days Prayer and Fasting Programme?",
+"options": [
+"Prayers that bring unparalleled favour",
+"Prayers to secure fresh oil and distinctive shining",
+"Prayers that bring supernatural ease and double honor",
+"Prayers That Bring Extraordinary Turnaround and Rejoicing"
+],
+"answer": 2,
+"explain": "2019: “Prayers that bring supernatural ease and double honor”.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go126",
+"pack": "go-books",
+"level": "all",
+"q": "What was the theme of the 2018 70 Days Prayer and Fasting Programme?",
+"options": [
+"Prayers that bring supernatural ease and double honor",
+"Prayers that bring indisputable victory and uncommon deliverance",
+"Prayers that bring dominion favor and divine acceleration",
+"Prayers That Bring Extraordinary Turnaround and Rejoicing"
+],
+"answer": 3,
+"explain": "2018: “Prayers That Bring Extraordinary Turnaround and Rejoicing”.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go127",
+"pack": "go-books",
+"level": "all",
+"q": "What was the theme of the 2017 70 Days Prayer and Fasting Programme?",
+"options": [
+"Prayers That Bring Extraordinary Turnaround and Rejoicing",
+"Prayers that bring supernatural ease and double honor",
+"Prayers that bring indisputable victory and uncommon deliverance",
+"Prayers that bring unparalleled favour"
+],
+"answer": 2,
+"explain": "2017: “Prayers that bring indisputable victory and uncommon deliverance”.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go128",
+"pack": "go-books",
+"level": "all",
+"q": "What was the theme of the 2016 70 Days Prayer and Fasting Programme?",
+"options": [
+"Prayers that bring indisputable victory and uncommon deliverance",
+"Prayers that bring supernatural ease and double honor",
+"Prayers to secure fresh oil and distinctive shining",
+"Prayers that bring dominion favor and divine acceleration"
+],
+"answer": 3,
+"explain": "2016: “Prayers that bring dominion favor and divine acceleration”.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go129",
+"pack": "go-books",
+"level": "all",
+"q": "What was the theme of the 2015 70 Days Prayer and Fasting Programme?",
+"options": [
+"Prayers that bring supernatural ease and double honor",
+"Prayers that bring unparalleled favour",
+"Prayers that bring indisputable victory and uncommon deliverance",
+"Prayers to secure fresh oil and distinctive shining"
+],
+"answer": 1,
+"explain": "2015: “Prayers that bring unparalleled favour”.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go130",
+"pack": "go-books",
+"level": "all",
+"q": "What was the theme of the 2013 70 Days Prayer and Fasting Programme?",
+"options": [
+"Prayers to secure fresh oil and distinctive shining",
+"Prayers that bring dominion favor and divine acceleration",
+"Prayers That Bring Extraordinary Turnaround and Rejoicing",
+"Prayers that bring indisputable victory and uncommon deliverance"
+],
+"answer": 0,
+"explain": "2013: “Prayers to secure fresh oil and distinctive shining”.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go131",
+"pack": "go-books",
+"level": "all",
+"q": "For how many days is the Stepping High personal prayer and fasting programme?",
+"options": [
+"70",
+"40",
+"21",
+"7"
+],
+"answer": 2,
+"explain": "Stepping High is a 21-day personal prayer and fasting programme for all-round open heavens.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go132",
+"pack": "go-books",
+"level": "all",
+"q": "“Pluie De Prieres” is the French edition of which book by Dr. Olukoya?",
+"options": [
+"Prayer is the Battle",
+"Command The Morning",
+"Intensity in Prayer",
+"Prayer Rain"
+],
+"answer": 3,
+"explain": "Pluie De Prieres = Prayer Rain (French edition).",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go133",
+"pack": "go-books",
+"level": "all",
+"q": "What is the name of Dr. Olukoya's daily devotional?",
+"options": [
+"Prayer Rain Daily",
+"Open Heavens",
+"Our Daily Bread",
+"Mountain Top Life"
+],
+"answer": 3,
+"explain": "Mountain Top Life Daily Devotional.",
+"source": {
+"label": "dkoebooks.com — Dr. D.K. Olukoya e-books",
+"url": "https://dkoebooks.com/"
+}
+},
+{
+"id": "go134",
+"pack": "go-books",
+"level": "all",
+"q": "Where can you buy and read Dr. D.K. Olukoya's e-books online?",
+"options": [
+"dkoebooks.com",
+"amazon-only",
+"olukoyabooks.net",
+"mfmbooks.org.ng"
+],
+"answer": 0,
+"explain": "His e-books are on dkoebooks.com (MFM e-books: mfmebooks.com).",
+"source": {
+"label": "mountainoffire.org",
+"url": "https://mountainoffire.org/"
+}
+}
+]

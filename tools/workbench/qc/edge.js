@@ -1,0 +1,10 @@
+const { chromium } = require('playwright');
+(async()=>{const b=await chromium.launch();for(const [w,h,t] of [[1440,900,'d'],[1024,768,'t'],[390,844,'m']]){const p=await b.newPage({viewport:{width:w,height:h}});const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.goto('http://localhost:8095/index.html');await p.waitForTimeout(1500);
+await p.evaluate(()=>document.querySelectorAll('[class*="nl-"]').forEach(e=>{if(getComputedStyle(e).position==='fixed')e.remove()}));
+const m=p.locator('section.media-band');await m.scrollIntoViewIfNeeded();await m.screenshot({path:`edge-media-${t}.png`});
+const info=await p.evaluate(()=>{const g=document.querySelector('.media-band-grid').getBoundingClientRect(),i=document.querySelector('.media-band .media-image').getBoundingClientRect(),h=document.getElementById('rf-latest-title');const ts=document.querySelector('.tsa-stage').getBoundingClientRect();return{grid:[g.left,g.right].map(Math.round),img:[Math.round(i.width),Math.round(i.height)],title:h.textContent,fs:getComputedStyle(h).fontSize,lines:Math.round(h.getBoundingClientRect().height/parseFloat(getComputedStyle(h).lineHeight)),tsa:[ts.left,ts.right].map(Math.round),ov:document.documentElement.scrollWidth-innerWidth}});
+await p.evaluate(()=>{document.getElementById('rf-latest-title').textContent='The Problem That Keeps Coming Back Ends Here'});await p.waitForTimeout(300);
+const long=await p.evaluate(()=>{const h=document.getElementById('rf-latest-title');return{fs:getComputedStyle(h).fontSize,cls:h.className,h:Math.round(h.getBoundingClientRect().height)}});
+await m.screenshot({path:`edge-media-long-${t}.png`});
+const s=p.locator('section.tsa');await s.scrollIntoViewIfNeeded();await s.screenshot({path:`edge-tsa-${t}.png`});
+console.log(t,JSON.stringify(info),JSON.stringify(long),errs);await p.close();}await b.close();})();

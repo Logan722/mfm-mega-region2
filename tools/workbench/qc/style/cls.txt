@@ -1,0 +1,104 @@
+B .acts > a.btn [dark] | 100px | 50 | Watch the messages | women,gen218,women/m,gen218/m
+B .acts > a.btn.dark [dark] | 100px | 50 | Watch the retreat | women
+B .acts > a.btn.ghost [dark] | 100px | 50 | See the photos | women,gen218,women/m,gen218/m
+B .acts > a.btn.ghost [light] | 100px | 50 | Watch the retreat | women/m
+B .btns > a [dark] | 100px | 40 | Share a testimony | index,play,testimonies,reach-out,index/m
+B .btns > a.prim [dark] | 100px | 40 | Request prayer | index,play,testimonies,reach-out,index/m
+B .cats > button [light] | 10px | 40 | Healing
+7 | testimonies,testimonies/m
+B .cats > button.on [dark] | 10px | 40 | All
+18 | testimonies,testimonies/m
+B .cs-form > button [dark] | 8px | 44 | Find a Church | index,index/m
+B .div > a.button [dark] | 6px | 48 | Explore Women | ministries,ministries/m
+B .ed > a.btn [dark] | 100px | 50 | Share your testimony | testimonies/m
+B .ev2-all > a [dark] | 100px | 49 | Explore All Events | index,index/m
+B .evx-actions > a.button [dark] | 100px | 43 | Event Details | index,index/m
+B .evx-controls > button.sp-next [dark] | 50% | 44 | › | index,index/m
+B .evx-controls > button.sp-prev [dark] | 50% | 44 | ‹ | index,index/m
+B .filter-selects > button [light] | 100px | 46 | Clear filters | media
+B .foot > a.ek-btn [dark] | 8px | 41 | Play now | index,index/m
+B .foot > a.ek-btn.ghost [light] | 8px | 43 | Share on WhatsApp | index,index/m
+B .gw-acts > a.pg-btn.ghost [light] | 16px | 64 | See the leaderboard | play,play/m
+B .gw-acts > button.pg-btn.gold [light] | 20px | 64 | Play now | play,play/m
+B .hero-actions > a.button [dark] | 0px | 56 | FIND A CHURCH | index,gen218,live,index/m,gen218/m
+B .hero-actions > a.button.light [dark] | 0px | 56 | WATCH LIVE | index,index/m
+B .hero-actions > a.button.light [light] | 6px | 48 | Choose a Location | index,gen218,index/m,gen218/m
+B .hg-btns > a.hg-btn [dark] | 4px | 48 | SEE THE PHOTOS | index,index/m
+B .home-hero > button.hb-play [dark] | 50% | 52 | Pause | index,index/m
+B .lb-empty > button.pg-btn.gold [light] | 16px | 50 | Play the Game of the W | play,play/m
+B .media-more > a [light] | 100px | 48 | SEE ALL OUR VIDEOS ON  | media,media/m
+B .mf-row > button.mf-toggle [light] | 100px | 56 | Filters | media/m
+B .ministry-help > a.button [dark] | 6px | 48 | Help Me Find My Place | ministries,ministries/m
+B .more > button.btn.ol [dark] | 100px | 50 | Load more testimonies | testimonies,testimonies/m
+B .mtabs > button [light] | 100px | 44 | Gen218 | ministries/m
+B .mtabs > button.on [dark] | 100px | 44 | Women | ministries/m
+B .nav-links > a.nav-cta [dark] | 6px | 44 | Request Prayer | women,gen218,media,live,ministries
+B .nav-links > a.nav-cta.js-request-prayer [dark] | 6px | 44 | Request Prayer | index,about,play,testimonies,reach-out
+B .nl-links > a.home [dark] | 2px | 40 | Home | subscribe
+B .nl-links > a.pri [dark] | 2px | 40 | All issues | subscribe,subscribe/m
+B .pg-body > button.pg-btn.dark [dark] | 16px | 46 | Play | play,play/m
+B .pg-ctas > a.pg-btn.kids [light] | 16px | 64 | View more games | play,play/m
+B .pg-ctas > button.pg-btn.gold [light] | 20px | 64 | Play the Game of the W | play,play/m
+B .pg-tabs > button.lb-tab.on [dark] | 100px | 42 | Branches | play,play/m
+B .pn > a.btn [dark] | 100px | 50 | Share your testimony | testimonies
+B .prayer-form > button.button [dark] | 6px | 48 | Send message | reach-out,reach-out/m
+B .quick-filter-row > button [light] | 100px | 40 | Prayer | media
+B .quick-filter-row > button.active [dark] | 100px | 40 | All | media
+B .section-head > a.button [dark] | 6px | 48 | All livestreams | live,live/m
+B .sub-form > button [dark] | 3px | 49 | SUBSCRIBE TO THE NEWSL | subscribe,subscribe/m
+B .tsa-actions > a.tsa-btn [dark] | 100px | 49 | Share Your Testimony | index,index/m
+B .tsa-actions > a.tsa-more [light] | 100px | 49 | Read more testimonies | index,index/m
+B .video-band-inner > a.button.light [dark] | 6px | 48 | Find a Church Near You | about,about/m
+B .wg-btns > a.button.light [dark] | 6px | 48 | Watch latest video | index,index/m
+L .a > b.lv-badge [dark] | 10px | rgb(201, 149, 44) | SCHEDULED | live,live/m
+L .aside > span.eyebrow [light] | 10px | rgb(179, 71, 27) | MOST RECENT | live,live/m
+L .blockquote > cite [light] | 11px | rgb(20, 34, 64) | LEVITICUS 6:13 | women,gen218,gen218/m
+L .blockquote > span [dark] | 9px | rgb(201, 149, 44) | OBADIAH 1:17 | index,about,women,gen218,media
+L .card > span.k [light] | 12px | rgb(168, 74, 32) | MINISTRY MOMENTS | women
+L .col > b [dark] | 9px | rgb(201, 149, 44) | EXPLORE | subscribe,subscribe/m
+L .container > div.legal-eyebrow [dark] | 12.48px | rgb(201, 149, 44) | LEGAL | privacy,privacy/m
+L .div > b [dark] | 9px | rgb(201, 149, 44) | EXPLORE | index,about,women,gen218,media
+L .div > p.eyebrow [light] | 10px | rgb(179, 71, 27) | YOUR FIRST VISIT | index,index/m
+L .div > p.eyebrow.light [dark] | 10px | rgb(255, 243, 214) | WATCH & GROW | index,index/m
+L .div > small [dark] | 9px | rgb(201, 149, 44) | WOMEN FOUNDATION | women,media,women/m,media/m
+L .div > small [light] | 9px | rgb(179, 71, 27) | SPECIAL EVENTS | gen218,media,live,gen218/m,media/m
+L .div > span.ev2-k [dark] | 12.2px | rgb(201, 149, 44) | UPCOMING GATHERINGS | index,index/m
+L .div > span.eyebrow [light] | 10px | rgb(179, 71, 27) | COMING UP | live,ministries,live/m,ministries/m
+L .div > span.hb-k [dark] | 10.5px | rgb(201, 149, 44) | COMING UP NEXT | index
+L .div > span.tsa-k [light] | 12.2px | rgb(168, 74, 32) | TESTIMONIES | index,index/m
+L .dz-v > b [light] | 11px | rgb(201, 149, 44) | JEREMIAH 33:3 | reach-out,reach-out/m
+L .ed > span.k.lt [dark] | 12px | rgb(201, 149, 44) | ABOUT MFM MEGA REGION  | about,women,gen218,media,testimonies
+L .evx-cd > span.cd-lab [dark] | 11px | rgb(201, 149, 44) | BEGINS IN | index,index/m
+L .evx-cd > span.cd-u [dark] | 10.7px | rgb(212, 220, 233) | 00
+DAYS | index,index/m
+L .evx-flyer > span [dark] | 10.9px | rgb(255, 255, 255) | STARTS SOON | index,index/m
+L .hd > span.eyebrow [dark] | 10px | rgb(201, 149, 44) | MESSAGES FOR WOMEN | women,women/m
+L .hd > span.k [light] | 12px | rgb(168, 74, 32) | AT A GLANCE | about,women,gen218,about/m,women/m
+L .hd > span.k.lt [dark] | 12px | rgb(201, 149, 44) | OUR MOTHERS IN THE FAI | women
+L .hg-big > span.hg-tag [dark] | 11px | rgb(255, 255, 255) | LATEST ALBUM | index,index/m
+L .hg-btns > a.hg-btn [dark] | 14px | rgb(255, 255, 255) | SEE THE PHOTOS | index,index/m
+L .hg-txt > p.hg-k [light] | 12px | rgb(184, 85, 31) | NASHVILLE, TN · DEDICA | index,index/m
+L .hv2-top > span [dark] | 12px | rgb(170, 182, 204) | QUESTION 1 OF 5 | play,play/m
+L .media-more > a [light] | 13px | rgb(20, 34, 64) | SEE ALL OUR VIDEOS ON  | media,media/m
+L .ministry-help > span.eyebrow [light] | 10px | rgb(179, 71, 27) | FIND YOUR PLACE | ministries,ministries/m
+L .o > span.k.lt [light] | 12px | rgb(201, 149, 44) | GEN218 COORDINATOR | gen218,gen218/m
+L .ov > span.k.lt [light] | 12px | rgb(201, 149, 44) | REACH OUT TO US | reach-out,reach-out/m
+L .page-hero-content > span.eyebrow.light [dark] | 10px | rgb(201, 149, 44) | WATCH LIVE | live,ministries,live/m,ministries/m
+L .pg-art > span.gw-tag [light] | 10.5px | rgb(61, 42, 5) | GAME OF THE WEEK | play,play/m
+L .pg-wrap > p.pg-k [dark] | 12px | rgb(224, 173, 69) | PICK YOUR GAME | play,play/m
+L .span > small [dark] | 10px | rgb(201, 149, 44) | THE NEWSLETTER | subscribe
+L .sub-hero-inner > div.sub-eyebrow [dark] | 12px | rgb(201, 149, 44) | MFM MEGA REGION 2 · US | subscribe,subscribe/m
+L .t > b [dark] | 11px | rgb(255, 243, 214) | OBADIAH 1:17 | about,gen218,about/m,women/m,gen218/m
+L .t > span.k [light] | 12px | rgb(168, 74, 32) | WHO WE ARE | about,about/m,women/m
+L .tc > span.tag [dark] | 11px | rgb(201, 149, 44) | DELIVERANCE | testimonies,testimonies/m
+L .tc > span.tag [light] | 11px | rgb(168, 74, 32) | HEALING | testimonies,testimonies/m
+L .today-head > span.ek-eyebrow [light] | 12px | rgb(20, 34, 64) | TODAY IN THE REGION | index,index/m
+L .tp-quiz > span.k [light] | 11px | rgb(184, 69, 26) | PLAY & GROW · GAME OF  | index,index/m
+L .tp-word > span.k [light] | 11px | rgb(184, 69, 26) | TODAY’S DECLARATION | index,index/m
+L .tsa-feat > span.tsa-k [dark] | 12.2px | rgb(201, 149, 44) | FEATURED TESTIMONY · N | index,index/m
+L .tx > span.k [dark] | 12px | rgb(168, 74, 32) | INTERNATIONAL LEADERSH | women
+L .video-band-inner > p.eyebrow.light [dark] | 10px | rgb(201, 149, 44) | A GATHERING ON THE MOU | about,about/m
+L .video-frame > span [dark] | 9px | rgb(255, 255, 255) | MOST RECENT LIVESTREAM | live,live/m
+L .wm-copy > p.wm-meta [light] | 14px | rgb(20, 34, 64) | PRAYER · PURPOSE · POW | gen218,gen218/m
+L .wm-copy > span.eyebrow [light] | 10px | rgb(179, 71, 27) | MINISTRY MOMENTS | gen218,gen218/m
+L .wrap > span.scheduled [dark] | 8px | rgb(201, 149, 44) | NEXT SERVICE | live,live/m

@@ -1,0 +1,87 @@
+PASS | desktop · six game tiles
+PASS | desktop · page has no sideways scroll
+PASS | desktop · Who's playing is centred
+PASS | desktop · "Other / visiting" asks for a place
+PASS | desktop · Daily has 10 questions
+PASS | desktop · question screen centred
+PASS | desktop · keyboard key answers
+PASS | desktop · Daily results screen
+PASS | desktop · score credited to the player
+PASS | desktop · Daily challenge link carries the questions
+PASS | desktop · results: no sideways scroll
+PASS | desktop · Daily is the same for everyone (same first question after reload)
+PASS | desktop · leaderboard renders
+PASS | desktop · Quiz setup centred
+PASS | desktop · Quiz asks for at least one topic
+PASS | desktop · 3 Bible rounds = 30 different questions | 30/30
+PASS | desktop · Quiz remembers the last topics
+PASS | desktop · Mix it up covers all 5 topics | The G.O.'s Books/MFM Family/Pastor Oni's Books/Our Messages/The Bible
+PASS | desktop · challenge screen opens
+PASS | desktop · challenge shows You vs friend
+PASS | desktop · challenge results: no sideways scroll
+PASS | desktop · challenge link has 10 question ids
+PASS | desktop · timer runs out → "Time's up"
+PASS | desktop · Escape closes the game
+PASS | desktop · Kids timer is 30 s
+PASS | desktop · Kids has 10 questions
+PASS | desktop · Kids results
+PASS | desktop · Kids results: no sideways scroll
+PASS | desktop · Word screen centred
+PASS | desktop · Word rejects made-up words
+PASS | desktop · Word win shows the word
+PASS | desktop · Word shows its verse with the word highlighted
+PASS | desktop · Word results: no sideways scroll
+PASS | desktop · Word of the Day stays solved after reopening
+PASS | desktop · Word practice: 6 tries then shows the answer
+PASS | desktop · Team Battle: 3 teams on the scoreboard
+PASS | desktop · Team results: no sideways scroll
+PASS | desktop · Blitz centred
+PASS | desktop · Blitz ends after 60 s with a score | 257 answers
+PASS | desktop · Blitz shows the ones you missed
+PASS | desktop · Blitz results: no sideways scroll
+PASS | desktop · Blitz challenge link
+PASS | desktop · no JavaScript or loading errors
+PASS | phone · six game tiles
+PASS | phone · page has no sideways scroll
+PASS | phone · Who's playing is centred
+PASS | phone · "Other / visiting" asks for a place
+PASS | phone · Daily has 10 questions
+PASS | phone · question screen centred
+PASS | phone · keyboard key answers
+PASS | phone · Daily results screen
+PASS | phone · score credited to the player
+PASS | phone · Daily challenge link carries the questions
+PASS | phone · results: no sideways scroll
+PASS | phone · Daily is the same for everyone (same first question after reload)
+PASS | phone · leaderboard renders
+PASS | phone · Quiz setup centred
+PASS | phone · Quiz asks for at least one topic
+PASS | phone · 3 Bible rounds = 30 different questions | 30/30
+PASS | phone · Quiz remembers the last topics
+PASS | phone · Mix it up covers all 5 topics | Our Messages/The G.O.'s Books/MFM Family/The Bible/Pastor Oni's Books
+PASS | phone · challenge screen opens
+PASS | phone · challenge shows You vs friend
+PASS | phone · challenge results: no sideways scroll
+PASS | phone · challenge link has 10 question ids
+PASS | phone · timer runs out → "Time's up"
+PASS | phone · Escape closes the game
+PASS | phone · Kids timer is 30 s
+PASS | phone · Kids has 10 questions
+PASS | phone · Kids results
+PASS | phone · Kids results: no sideways scroll
+PASS | phone · Word screen centred
+PASS | phone · Word rejects made-up words
+PASS | phone · Word win shows the word
+PASS | phone · Word shows its verse with the word highlighted
+PASS | phone · Word results: no sideways scroll
+PASS | phone · Word of the Day stays solved after reopening
+PASS | phone · Word practice: 6 tries then shows the answer
+PASS | phone · Team Battle: 3 teams on the scoreboard
+PASS | phone · Team results: no sideways scroll
+PASS | phone · Blitz centred
+PASS | phone · Blitz ends after 60 s with a score | 260 answers
+PASS | phone · Blitz shows the ones you missed
+PASS | phone · Blitz results: no sideways scroll
+PASS | phone · Blitz challenge link
+PASS | phone · no JavaScript or loading errors
+TOTAL 86 PASS 86

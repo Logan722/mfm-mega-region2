@@ -1,0 +1,3656 @@
+[
+{
+"id": "ba_0",
+"pack": "bible",
+"level": "kids",
+"q": "Who was thrown into a den of lions?",
+"options": [
+"Daniel",
+"Elijah",
+"Jonah",
+"Joseph"
+],
+"answer": 0,
+"explain": "Daniel — Daniel 6:16.",
+"source": {
+"label": "Daniel 6:16 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Daniel%206%3A16&version=KJV"
+}
+},
+{
+"id": "ba_1",
+"pack": "bible",
+"level": "kids",
+"q": "Who was swallowed by a great fish?",
+"options": [
+"Jonah",
+"Paul",
+"Elisha",
+"Peter"
+],
+"answer": 0,
+"explain": "Jonah — Jonah 1:17.",
+"source": {
+"label": "Jonah 1:17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Jonah%201%3A17&version=KJV"
+}
+},
+{
+"id": "ba_2",
+"pack": "bible",
+"level": "kids",
+"q": "Who was sold into Egypt by his own brothers?",
+"options": [
+"Moses",
+"Jacob",
+"Benjamin",
+"Joseph"
+],
+"answer": 3,
+"explain": "Joseph — Genesis 37:28.",
+"source": {
+"label": "Genesis 37:28 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2037%3A28&version=KJV"
+}
+},
+{
+"id": "ba_3",
+"pack": "bible",
+"level": "all",
+"q": "What did Esau sell to his brother Jacob for a meal?",
+"options": [
+"His land",
+"His birthright",
+"His coat",
+"His flock"
+],
+"answer": 1,
+"explain": "His birthright — Genesis 25:33.",
+"source": {
+"label": "Genesis 25:33 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2025%3A33&version=KJV"
+}
+},
+{
+"id": "ba_4",
+"pack": "bible",
+"level": "kids",
+"q": "Who killed the giant Philistine with a sling?",
+"options": [
+"Jonathan",
+"Saul",
+"Samson",
+"David"
+],
+"answer": 3,
+"explain": "David — 1 Samuel 17:50.",
+"source": {
+"label": "1 Samuel 17:50 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2017%3A50&version=KJV"
+}
+},
+{
+"id": "ba_5",
+"pack": "bible",
+"level": "kids",
+"q": "How many days and nights did it rain in the flood?",
+"options": [
+"Seven",
+"Three",
+"Twelve",
+"Forty"
+],
+"answer": 3,
+"explain": "Forty — Genesis 7:12.",
+"source": {
+"label": "Genesis 7:12 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%207%3A12&version=KJV"
+}
+},
+{
+"id": "ba_6",
+"pack": "bible",
+"level": "all",
+"q": "Who was the first king of Israel?",
+"options": [
+"Samuel",
+"Solomon",
+"David",
+"Saul"
+],
+"answer": 3,
+"explain": "Saul — 1 Samuel 10:21-24.",
+"source": {
+"label": "1 Samuel 10:21-24 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2010%3A21-24&version=KJV"
+}
+},
+{
+"id": "ba_7",
+"pack": "bible",
+"level": "all",
+"q": "Which king asked God for an understanding heart?",
+"options": [
+"Saul",
+"Hezekiah",
+"David",
+"Solomon"
+],
+"answer": 3,
+"explain": "Solomon — 1 Kings 3:5-9.",
+"source": {
+"label": "1 Kings 3:5-9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Kings%203%3A5-9&version=KJV"
+}
+},
+{
+"id": "ba_8",
+"pack": "bible",
+"level": "kids",
+"q": "Who did God send to bring Israel out of Egypt?",
+"options": [
+"Joshua",
+"Moses",
+"Aaron",
+"Abraham"
+],
+"answer": 1,
+"explain": "Moses — Exodus 3:10-11.",
+"source": {
+"label": "Exodus 3:10-11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%203%3A10-11&version=KJV"
+}
+},
+{
+"id": "ba_9",
+"pack": "bible",
+"level": "all",
+"q": "Who led Israel over the Jordan after Moses died?",
+"options": [
+"Gideon",
+"Joshua",
+"Caleb",
+"Aaron"
+],
+"answer": 1,
+"explain": "Joshua — Joshua 1:1-2.",
+"source": {
+"label": "Joshua 1:1-2 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Joshua%201%3A1-2&version=KJV"
+}
+},
+{
+"id": "ba_10",
+"pack": "bible",
+"level": "kids",
+"q": "Which city's walls fell down flat when the people shouted?",
+"options": [
+"Babylon",
+"Jerusalem",
+"Jericho",
+"Nineveh"
+],
+"answer": 2,
+"explain": "Jericho — Joshua 6:2-20.",
+"source": {
+"label": "Joshua 6:2-20 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Joshua%206%3A2-20&version=KJV"
+}
+},
+{
+"id": "ba_11",
+"pack": "bible",
+"level": "kids",
+"q": "Whose strength would go if his head was shaved?",
+"options": [
+"Gideon",
+"Samson",
+"Goliath",
+"Saul"
+],
+"answer": 1,
+"explain": "Samson — Judges 16:14-17.",
+"source": {
+"label": "Judges 16:14-17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Judges%2016%3A14-17&version=KJV"
+}
+},
+{
+"id": "ba_12",
+"pack": "bible",
+"level": "all",
+"q": "Who handed Samson over to the Philistines?",
+"options": [
+"Jezebel",
+"Ruth",
+"Delilah",
+"Rahab"
+],
+"answer": 2,
+"explain": "Delilah — Judges 16:18.",
+"source": {
+"label": "Judges 16:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Judges%2016%3A18&version=KJV"
+}
+},
+{
+"id": "ba_13",
+"pack": "bible",
+"level": "all",
+"q": "What was the name of Ruth's mother-in-law?",
+"options": [
+"Hannah",
+"Sarah",
+"Orpah",
+"Naomi"
+],
+"answer": 3,
+"explain": "Naomi — Ruth 1:2-4.",
+"source": {
+"label": "Ruth 1:2-4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Ruth%201%3A2-4&version=KJV"
+}
+},
+{
+"id": "ba_14",
+"pack": "bible",
+"level": "kids",
+"q": "Who did Ruth marry?",
+"options": [
+"Boaz",
+"Jesse",
+"Obed",
+"Elimelech"
+],
+"answer": 0,
+"explain": "Boaz — Ruth 4:13.",
+"source": {
+"label": "Ruth 4:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Ruth%204%3A13&version=KJV"
+}
+},
+{
+"id": "ba_15",
+"pack": "bible",
+"level": "all",
+"q": "Ruth's great-grandson became which king?",
+"options": [
+"Hezekiah",
+"Solomon",
+"Saul",
+"David"
+],
+"answer": 3,
+"explain": "David — Ruth 4:17.",
+"source": {
+"label": "Ruth 4:17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Ruth%204%3A17&version=KJV"
+}
+},
+{
+"id": "ba_16",
+"pack": "bible",
+"level": "all",
+"q": "Which woman prayed for a child and gave him to the LORD?",
+"options": [
+"Rachel",
+"Elisabeth",
+"Hannah",
+"Sarah"
+],
+"answer": 2,
+"explain": "Hannah — 1 Samuel 1:20-28.",
+"source": {
+"label": "1 Samuel 1:20-28 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%201%3A20-28&version=KJV"
+}
+},
+{
+"id": "ba_17",
+"pack": "bible",
+"level": "kids",
+"q": "Which boy heard God call his name in the night?",
+"options": [
+"Joseph",
+"David",
+"Eli",
+"Samuel"
+],
+"answer": 3,
+"explain": "Samuel — 1 Samuel 3:10.",
+"source": {
+"label": "1 Samuel 3:10 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%203%3A10&version=KJV"
+}
+},
+{
+"id": "ba_18",
+"pack": "bible",
+"level": "kids",
+"q": "Who went up to heaven in a whirlwind?",
+"options": [
+"Elisha",
+"Moses",
+"Enoch",
+"Elijah"
+],
+"answer": 3,
+"explain": "Elijah — 2 Kings 2:11.",
+"source": {
+"label": "2 Kings 2:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Kings%202%3A11&version=KJV"
+}
+},
+{
+"id": "ba_19",
+"pack": "bible",
+"level": "all",
+"q": "Who asked for a double portion of Elijah's spirit?",
+"options": [
+"Obadiah",
+"Gehazi",
+"Jonah",
+"Elisha"
+],
+"answer": 3,
+"explain": "Elisha — 2 Kings 2:9.",
+"source": {
+"label": "2 Kings 2:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Kings%202%3A9&version=KJV"
+}
+},
+{
+"id": "ba_20",
+"pack": "bible",
+"level": "all",
+"q": "Which Syrian captain was healed after dipping seven times in the Jordan?",
+"options": [
+"Hazael",
+"Abner",
+"Naaman",
+"Rezin"
+],
+"answer": 2,
+"explain": "Naaman — 2 Kings 5:11-14.",
+"source": {
+"label": "2 Kings 5:11-14 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Kings%205%3A11-14&version=KJV"
+}
+},
+{
+"id": "ba_21",
+"pack": "bible",
+"level": "all",
+"q": "Which queen said, \"if I perish, I perish\"?",
+"options": [
+"Vashti",
+"Esther",
+"The queen of Sheba",
+"Jezebel"
+],
+"answer": 1,
+"explain": "Esther — Esther 4:15-16.",
+"source": {
+"label": "Esther 4:15-16 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Esther%204%3A15-16&version=KJV"
+}
+},
+{
+"id": "ba_22",
+"pack": "bible",
+"level": "all",
+"q": "Who brought up Esther, his uncle's daughter?",
+"options": [
+"Nehemiah",
+"Mordecai",
+"Haman",
+"Ahasuerus"
+],
+"answer": 1,
+"explain": "Mordecai — Esther 2:7.",
+"source": {
+"label": "Esther 2:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Esther%202%3A7&version=KJV"
+}
+},
+{
+"id": "ba_23",
+"pack": "bible",
+"level": "all",
+"q": "Who plotted to destroy all the Jews in Esther's day?",
+"options": [
+"Sanballat",
+"Mordecai",
+"Haman",
+"Pharaoh"
+],
+"answer": 2,
+"explain": "Haman — Esther 3:6.",
+"source": {
+"label": "Esther 3:6 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Esther%203%3A6&version=KJV"
+}
+},
+{
+"id": "ba_24",
+"pack": "bible",
+"level": "kids",
+"q": "Which three men walked unharmed in the fiery furnace?",
+"options": [
+"Shem, Ham and Japheth",
+"Shadrach, Meshach and Abednego",
+"Peter, James and John",
+"Moses, Aaron and Hur"
+],
+"answer": 1,
+"explain": "Shadrach, Meshach and Abednego — Daniel 3:26.",
+"source": {
+"label": "Daniel 3:26 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Daniel%203%3A26&version=KJV"
+}
+},
+{
+"id": "ba_25",
+"pack": "bible",
+"level": "all",
+"q": "Which king saw fingers writing on the wall?",
+"options": [
+"Cyrus",
+"Nebuchadnezzar",
+"Darius",
+"Belshazzar"
+],
+"answer": 3,
+"explain": "Belshazzar — Daniel 5:1-5.",
+"source": {
+"label": "Daniel 5:1-5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Daniel%205%3A1-5&version=KJV"
+}
+},
+{
+"id": "ba_26",
+"pack": "bible",
+"level": "kids",
+"q": "To which great city did God send Jonah?",
+"options": [
+"Babylon",
+"Nineveh",
+"Tarshish",
+"Joppa"
+],
+"answer": 1,
+"explain": "Nineveh — Jonah 1:2.",
+"source": {
+"label": "Jonah 1:2 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Jonah%201%3A2&version=KJV"
+}
+},
+{
+"id": "ba_27",
+"pack": "bible",
+"level": "all",
+"q": "Where did Jonah try to run away to?",
+"options": [
+"Tarshish",
+"Nineveh",
+"Damascus",
+"Egypt"
+],
+"answer": 0,
+"explain": "Tarshish — Jonah 1:3.",
+"source": {
+"label": "Jonah 1:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Jonah%201%3A3&version=KJV"
+}
+},
+{
+"id": "ba_28",
+"pack": "bible",
+"level": "all",
+"q": "Who lived the longest in the Bible — 969 years?",
+"options": [
+"Methuselah",
+"Adam",
+"Enoch",
+"Noah"
+],
+"answer": 0,
+"explain": "Methuselah — Genesis 5:27.",
+"source": {
+"label": "Genesis 5:27 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%205%3A27&version=KJV"
+}
+},
+{
+"id": "ba_29",
+"pack": "bible",
+"level": "all",
+"q": "Who \"walked with God: and he was not; for God took him\"?",
+"options": [
+"Enoch",
+"Methuselah",
+"Elijah",
+"Noah"
+],
+"answer": 0,
+"explain": "Enoch — Genesis 5:24.",
+"source": {
+"label": "Genesis 5:24 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%205%3A24&version=KJV"
+}
+},
+{
+"id": "ba_30",
+"pack": "bible",
+"level": "kids",
+"q": "What did God set in the cloud as a sign of his covenant with Noah?",
+"options": [
+"A star",
+"A fire",
+"A rainbow",
+"A dove"
+],
+"answer": 2,
+"explain": "A rainbow — Genesis 9:13.",
+"source": {
+"label": "Genesis 9:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%209%3A13&version=KJV"
+}
+},
+{
+"id": "ba_31",
+"pack": "bible",
+"level": "kids",
+"q": "What did the dove bring back to Noah?",
+"options": [
+"A grape",
+"A fig",
+"A cedar twig",
+"An olive leaf"
+],
+"answer": 3,
+"explain": "An olive leaf — Genesis 8:11.",
+"source": {
+"label": "Genesis 8:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%208%3A11&version=KJV"
+}
+},
+{
+"id": "ba_32",
+"pack": "bible",
+"level": "kids",
+"q": "What was the name of Abraham's wife?",
+"options": [
+"Sarah",
+"Leah",
+"Rebekah",
+"Rachel"
+],
+"answer": 0,
+"explain": "Sarah — Genesis 17:15.",
+"source": {
+"label": "Genesis 17:15 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2017%3A15&version=KJV"
+}
+},
+{
+"id": "ba_33",
+"pack": "bible",
+"level": "kids",
+"q": "What was the name of the son God promised Abraham and Sarah?",
+"options": [
+"Ishmael",
+"Esau",
+"Isaac",
+"Jacob"
+],
+"answer": 2,
+"explain": "Isaac — Genesis 21:3.",
+"source": {
+"label": "Genesis 21:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2021%3A3&version=KJV"
+}
+},
+{
+"id": "ba_34",
+"pack": "bible",
+"level": "all",
+"q": "How old was Abraham when Isaac was born?",
+"options": [
+"100",
+"120",
+"75",
+"90"
+],
+"answer": 0,
+"explain": "100 — Genesis 21:5.",
+"source": {
+"label": "Genesis 21:5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2021%3A5&version=KJV"
+}
+},
+{
+"id": "ba_35",
+"pack": "bible",
+"level": "all",
+"q": "Who became Isaac's wife?",
+"options": [
+"Rebekah",
+"Rachel",
+"Sarah",
+"Leah"
+],
+"answer": 0,
+"explain": "Rebekah — Genesis 24:67.",
+"source": {
+"label": "Genesis 24:67 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2024%3A67&version=KJV"
+}
+},
+{
+"id": "ba_36",
+"pack": "bible",
+"level": "kids",
+"q": "God changed Jacob's name to what?",
+"options": [
+"Judah",
+"Joseph",
+"Abraham",
+"Israel"
+],
+"answer": 3,
+"explain": "Israel — Genesis 32:28.",
+"source": {
+"label": "Genesis 32:28 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2032%3A28&version=KJV"
+}
+},
+{
+"id": "ba_37",
+"pack": "bible",
+"level": "all",
+"q": "How many sons did Jacob have?",
+"options": [
+"Eleven",
+"Seven",
+"Ten",
+"Twelve"
+],
+"answer": 3,
+"explain": "Twelve — Genesis 35:22.",
+"source": {
+"label": "Genesis 35:22 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2035%3A22&version=KJV"
+}
+},
+{
+"id": "ba_38",
+"pack": "bible",
+"level": "kids",
+"q": "Which son did Jacob give a coat of many colours?",
+"options": [
+"Joseph",
+"Reuben",
+"Benjamin",
+"Judah"
+],
+"answer": 0,
+"explain": "Joseph — Genesis 37:3.",
+"source": {
+"label": "Genesis 37:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2037%3A3&version=KJV"
+}
+},
+{
+"id": "ba_39",
+"pack": "bible",
+"level": "all",
+"q": "Who explained Pharaoh's dreams?",
+"options": [
+"Joseph",
+"Moses",
+"Aaron",
+"Daniel"
+],
+"answer": 0,
+"explain": "Joseph — Genesis 41:25.",
+"source": {
+"label": "Genesis 41:25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2041%3A25&version=KJV"
+}
+},
+{
+"id": "ba_40",
+"pack": "bible",
+"level": "kids",
+"q": "Who found baby Moses in the river?",
+"options": [
+"Pharaoh's daughter",
+"Rahab",
+"Miriam",
+"Zipporah"
+],
+"answer": 0,
+"explain": "Pharaoh's daughter — Exodus 2:5.",
+"source": {
+"label": "Exodus 2:5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%202%3A5&version=KJV"
+}
+},
+{
+"id": "ba_41",
+"pack": "bible",
+"level": "kids",
+"q": "God spoke to Moses out of a...",
+"options": [
+"Burning bush",
+"Rock",
+"Whirlwind",
+"Thick cloud"
+],
+"answer": 0,
+"explain": "Burning bush — Exodus 3:2.",
+"source": {
+"label": "Exodus 3:2 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%203%3A2&version=KJV"
+}
+},
+{
+"id": "ba_42",
+"pack": "bible",
+"level": "all",
+"q": "Who was Moses' brother?",
+"options": [
+"Hur",
+"Joshua",
+"Caleb",
+"Aaron"
+],
+"answer": 3,
+"explain": "Aaron — Exodus 4:14.",
+"source": {
+"label": "Exodus 4:14 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%204%3A14&version=KJV"
+}
+},
+{
+"id": "ba_43",
+"pack": "bible",
+"level": "kids",
+"q": "What food did God send from heaven in the wilderness?",
+"options": [
+"Locusts",
+"Manna",
+"Figs",
+"Wheat bread"
+],
+"answer": 1,
+"explain": "Manna — Exodus 16:31.",
+"source": {
+"label": "Exodus 16:31 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2016%3A31&version=KJV"
+}
+},
+{
+"id": "ba_44",
+"pack": "bible",
+"level": "all",
+"q": "On which mount did the LORD come down to speak to Moses?",
+"options": [
+"Sinai",
+"Carmel",
+"Olivet",
+"Zion"
+],
+"answer": 0,
+"explain": "Sinai — Exodus 19:20.",
+"source": {
+"label": "Exodus 19:20 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2019%3A20&version=KJV"
+}
+},
+{
+"id": "ba_45",
+"pack": "bible",
+"level": "kids",
+"q": "What golden idol did Israel make in the wilderness?",
+"options": [
+"A calf",
+"A lion",
+"An eagle",
+"A serpent"
+],
+"answer": 0,
+"explain": "A calf — Exodus 32:4.",
+"source": {
+"label": "Exodus 32:4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2032%3A4&version=KJV"
+}
+},
+{
+"id": "ba_46",
+"pack": "bible",
+"level": "all",
+"q": "What did Moses set on a pole so the bitten people could live?",
+"options": [
+"His rod",
+"The ark",
+"A golden calf",
+"A serpent of brass"
+],
+"answer": 3,
+"explain": "A serpent of brass — Numbers 21:9.",
+"source": {
+"label": "Numbers 21:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Numbers%2021%3A9&version=KJV"
+}
+},
+{
+"id": "ba_47",
+"pack": "bible",
+"level": "all",
+"q": "Whose donkey (KJV: ass) spoke to him?",
+"options": [
+"Moses",
+"Balak",
+"Gideon",
+"Balaam"
+],
+"answer": 3,
+"explain": "Balaam — Numbers 22:28.",
+"source": {
+"label": "Numbers 22:28 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Numbers%2022%3A28&version=KJV"
+}
+},
+{
+"id": "ba_48",
+"pack": "bible",
+"level": "all",
+"q": "Which two spies stood up for the LORD's promise?",
+"options": [
+"Phinehas and Eleazar",
+"Moses and Aaron",
+"Joshua and Caleb",
+"Eldad and Medad"
+],
+"answer": 2,
+"explain": "Joshua and Caleb — Numbers 14:6.",
+"source": {
+"label": "Numbers 14:6 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Numbers%2014%3A6&version=KJV"
+}
+},
+{
+"id": "ba_49",
+"pack": "bible",
+"level": "all",
+"q": "Who hid the two spies in Jericho?",
+"options": [
+"Jael",
+"Ruth",
+"Deborah",
+"Rahab"
+],
+"answer": 3,
+"explain": "Rahab — Joshua 2:1-4.",
+"source": {
+"label": "Joshua 2:1-4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Joshua%202%3A1-4&version=KJV"
+}
+},
+{
+"id": "ba_50",
+"pack": "bible",
+"level": "all",
+"q": "Which prophetess judged Israel under a palm tree?",
+"options": [
+"Jael",
+"Huldah",
+"Miriam",
+"Deborah"
+],
+"answer": 3,
+"explain": "Deborah — Judges 4:4-5.",
+"source": {
+"label": "Judges 4:4-5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Judges%204%3A4-5&version=KJV"
+}
+},
+{
+"id": "ba_51",
+"pack": "bible",
+"level": "all",
+"q": "Who beat the Midianites with only 300 men?",
+"options": [
+"Jephthah",
+"Gideon",
+"Samson",
+"Barak"
+],
+"answer": 1,
+"explain": "Gideon — Judges 7:7.",
+"source": {
+"label": "Judges 7:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Judges%207%3A7&version=KJV"
+}
+},
+{
+"id": "ba_52",
+"pack": "bible",
+"level": "all",
+"q": "What did Gideon's 300 men hold besides trumpets?",
+"options": [
+"Slings and stones",
+"Pitchers with lamps inside",
+"Spears",
+"Shields"
+],
+"answer": 1,
+"explain": "Pitchers with lamps inside — Judges 7:16.",
+"source": {
+"label": "Judges 7:16 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Judges%207%3A16&version=KJV"
+}
+},
+{
+"id": "ba_53",
+"pack": "bible",
+"level": "all",
+"q": "Which priest raised the boy Samuel?",
+"options": [
+"Eli",
+"Nathan",
+"Aaron",
+"Zadok"
+],
+"answer": 0,
+"explain": "Eli — 1 Samuel 3:1.",
+"source": {
+"label": "1 Samuel 3:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%203%3A1&version=KJV"
+}
+},
+{
+"id": "ba_54",
+"pack": "bible",
+"level": "kids",
+"q": "Who was David's father?",
+"options": [
+"Jesse",
+"Saul",
+"Obed",
+"Boaz"
+],
+"answer": 0,
+"explain": "Jesse — 1 Samuel 17:12.",
+"source": {
+"label": "1 Samuel 17:12 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2017%3A12&version=KJV"
+}
+},
+{
+"id": "ba_55",
+"pack": "bible",
+"level": "kids",
+"q": "What job did young David do?",
+"options": [
+"He kept sheep",
+"He collected taxes",
+"He built houses",
+"He caught fish"
+],
+"answer": 0,
+"explain": "He kept sheep — 1 Samuel 16:11.",
+"source": {
+"label": "1 Samuel 16:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2016%3A11&version=KJV"
+}
+},
+{
+"id": "ba_56",
+"pack": "bible",
+"level": "all",
+"q": "Which son of Saul loved David as his own soul?",
+"options": [
+"Absalom",
+"Jonathan",
+"Abner",
+"Joab"
+],
+"answer": 1,
+"explain": "Jonathan — 1 Samuel 18:1.",
+"source": {
+"label": "1 Samuel 18:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2018%3A1&version=KJV"
+}
+},
+{
+"id": "ba_57",
+"pack": "bible",
+"level": "all",
+"q": "Which prophet told David, \"Thou art the man\"?",
+"options": [
+"Samuel",
+"Elijah",
+"Gad",
+"Nathan"
+],
+"answer": 3,
+"explain": "Nathan — 2 Samuel 12:7.",
+"source": {
+"label": "2 Samuel 12:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Samuel%2012%3A7&version=KJV"
+}
+},
+{
+"id": "ba_58",
+"pack": "bible",
+"level": "all",
+"q": "Which son of David was caught by his head in an oak tree?",
+"options": [
+"Amnon",
+"Absalom",
+"Solomon",
+"Adonijah"
+],
+"answer": 1,
+"explain": "Absalom — 2 Samuel 18:9.",
+"source": {
+"label": "2 Samuel 18:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Samuel%2018%3A9&version=KJV"
+}
+},
+{
+"id": "ba_59",
+"pack": "bible",
+"level": "all",
+"q": "Who built the house of the LORD in Jerusalem?",
+"options": [
+"Saul",
+"Hezekiah",
+"David",
+"Solomon"
+],
+"answer": 3,
+"explain": "Solomon — 1 Kings 6:14.",
+"source": {
+"label": "1 Kings 6:14 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Kings%206%3A14&version=KJV"
+}
+},
+{
+"id": "ba_60",
+"pack": "bible",
+"level": "all",
+"q": "Which queen came to test Solomon with hard questions?",
+"options": [
+"Vashti",
+"The queen of Sheba",
+"Jezebel",
+"Esther"
+],
+"answer": 1,
+"explain": "The queen of Sheba — 1 Kings 10:1.",
+"source": {
+"label": "1 Kings 10:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Kings%2010%3A1&version=KJV"
+}
+},
+{
+"id": "ba_61",
+"pack": "bible",
+"level": "kids",
+"q": "Which prophet was fed by ravens?",
+"options": [
+"Elijah",
+"Jeremiah",
+"Elisha",
+"Jonah"
+],
+"answer": 0,
+"explain": "Elijah — 1 Kings 17:1-6.",
+"source": {
+"label": "1 Kings 17:1-6 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Kings%2017%3A1-6&version=KJV"
+}
+},
+{
+"id": "ba_62",
+"pack": "bible",
+"level": "all",
+"q": "On which mount did Elijah face the prophets of Baal?",
+"options": [
+"Zion",
+"Sinai",
+"Carmel",
+"Horeb"
+],
+"answer": 2,
+"explain": "Carmel — 1 Kings 18:19.",
+"source": {
+"label": "1 Kings 18:19 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Kings%2018%3A19&version=KJV"
+}
+},
+{
+"id": "ba_63",
+"pack": "bible",
+"level": "all",
+"q": "Who was King Ahab's wife?",
+"options": [
+"Athaliah",
+"Jezebel",
+"Vashti",
+"Delilah"
+],
+"answer": 1,
+"explain": "Jezebel — 1 Kings 16:30-31.",
+"source": {
+"label": "1 Kings 16:30-31 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Kings%2016%3A30-31&version=KJV"
+}
+},
+{
+"id": "ba_64",
+"pack": "bible",
+"level": "all",
+"q": "Which king was given fifteen more years to live?",
+"options": [
+"Asa",
+"Josiah",
+"Uzziah",
+"Hezekiah"
+],
+"answer": 3,
+"explain": "Hezekiah — Isaiah 38:1-5.",
+"source": {
+"label": "Isaiah 38:1-5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Isaiah%2038%3A1-5&version=KJV"
+}
+},
+{
+"id": "ba_65",
+"pack": "bible",
+"level": "all",
+"q": "In whose days was the book of the law found in the temple?",
+"options": [
+"Manasseh",
+"Josiah",
+"Joash",
+"Hezekiah"
+],
+"answer": 1,
+"explain": "Josiah — 2 Kings 22:1-8.",
+"source": {
+"label": "2 Kings 22:1-8 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Kings%2022%3A1-8&version=KJV"
+}
+},
+{
+"id": "ba_66",
+"pack": "bible",
+"level": "all",
+"q": "Which man's words begin, \"the LORD gave, and the LORD hath taken away\"?",
+"options": [
+"David",
+"Jeremiah",
+"Elijah",
+"Job"
+],
+"answer": 3,
+"explain": "Job — Job 1:20-21.",
+"source": {
+"label": "Job 1:20-21 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Job%201%3A20-21&version=KJV"
+}
+},
+{
+"id": "ba_67",
+"pack": "bible",
+"level": "all",
+"q": "Which prophet saw a valley full of dry bones?",
+"options": [
+"Isaiah",
+"Daniel",
+"Ezekiel",
+"Jeremiah"
+],
+"answer": 2,
+"explain": "Ezekiel — Ezekiel 37:1-4.",
+"source": {
+"label": "Ezekiel 37:1-4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Ezekiel%2037%3A1-4&version=KJV"
+}
+},
+{
+"id": "ba_68",
+"pack": "bible",
+"level": "all",
+"q": "Who said, \"Here am I; send me\"?",
+"options": [
+"Isaiah",
+"Amos",
+"Jeremiah",
+"Ezekiel"
+],
+"answer": 0,
+"explain": "Isaiah — Isaiah 6:8.",
+"source": {
+"label": "Isaiah 6:8 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Isaiah%206%3A8&version=KJV"
+}
+},
+{
+"id": "ba_69",
+"pack": "bible",
+"level": "all",
+"q": "To which prophet did God say, \"Before I formed thee in the belly I knew thee\"?",
+"options": [
+"Ezekiel",
+"Isaiah",
+"Jeremiah",
+"Samuel"
+],
+"answer": 2,
+"explain": "Jeremiah — Jeremiah 1:1-5.",
+"source": {
+"label": "Jeremiah 1:1-5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Jeremiah%201%3A1-5&version=KJV"
+}
+},
+{
+"id": "ba_70",
+"pack": "bible",
+"level": "kids",
+"q": "In which town was Jesus born?",
+"options": [
+"Nazareth",
+"Capernaum",
+"Jerusalem",
+"Bethlehem"
+],
+"answer": 3,
+"explain": "Bethlehem — Matthew 2:1.",
+"source": {
+"label": "Matthew 2:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%202%3A1&version=KJV"
+}
+},
+{
+"id": "ba_71",
+"pack": "bible",
+"level": "kids",
+"q": "In which town did Jesus grow up?",
+"options": [
+"Nazareth",
+"Capernaum",
+"Bethany",
+"Bethlehem"
+],
+"answer": 0,
+"explain": "Nazareth — Luke 2:51.",
+"source": {
+"label": "Luke 2:51 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%202%3A51&version=KJV"
+}
+},
+{
+"id": "ba_72",
+"pack": "bible",
+"level": "kids",
+"q": "What was the name of Jesus' mother?",
+"options": [
+"Elisabeth",
+"Anna",
+"Mary",
+"Martha"
+],
+"answer": 2,
+"explain": "Mary — Matthew 1:18.",
+"source": {
+"label": "Matthew 1:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%201%3A18&version=KJV"
+}
+},
+{
+"id": "ba_73",
+"pack": "bible",
+"level": "all",
+"q": "Which angel was sent to Mary?",
+"options": [
+"Uriel",
+"Gabriel",
+"Raphael",
+"Michael"
+],
+"answer": 1,
+"explain": "Gabriel — Luke 1:26-27.",
+"source": {
+"label": "Luke 1:26-27 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%201%3A26-27&version=KJV"
+}
+},
+{
+"id": "ba_74",
+"pack": "bible",
+"level": "kids",
+"q": "Who baptized Jesus?",
+"options": [
+"Andrew",
+"Philip",
+"Peter",
+"John the Baptist"
+],
+"answer": 3,
+"explain": "John the Baptist — Matthew 3:13.",
+"source": {
+"label": "Matthew 3:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%203%3A13&version=KJV"
+}
+},
+{
+"id": "ba_75",
+"pack": "bible",
+"level": "all",
+"q": "In which river was Jesus baptized?",
+"options": [
+"The Jordan",
+"The Nile",
+"The Kidron",
+"The Euphrates"
+],
+"answer": 0,
+"explain": "The Jordan — Matthew 3:13.",
+"source": {
+"label": "Matthew 3:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%203%3A13&version=KJV"
+}
+},
+{
+"id": "ba_76",
+"pack": "bible",
+"level": "kids",
+"q": "How many days did Jesus fast in the wilderness?",
+"options": [
+"Three",
+"Twelve",
+"Forty",
+"Seven"
+],
+"answer": 2,
+"explain": "Forty — Matthew 4:2.",
+"source": {
+"label": "Matthew 4:2 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%204%3A2&version=KJV"
+}
+},
+{
+"id": "ba_77",
+"pack": "bible",
+"level": "all",
+"q": "Where did Jesus turn water into wine?",
+"options": [
+"Nain",
+"Bethany",
+"Cana of Galilee",
+"Capernaum"
+],
+"answer": 2,
+"explain": "Cana of Galilee — John 2:11.",
+"source": {
+"label": "John 2:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%202%3A11&version=KJV"
+}
+},
+{
+"id": "ba_78",
+"pack": "bible",
+"level": "kids",
+"q": "How many apostles did Jesus choose?",
+"options": [
+"Seventy",
+"Three",
+"Seven",
+"Twelve"
+],
+"answer": 3,
+"explain": "Twelve — Luke 6:13.",
+"source": {
+"label": "Luke 6:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%206%3A13&version=KJV"
+}
+},
+{
+"id": "ba_79",
+"pack": "bible",
+"level": "kids",
+"q": "Which disciple walked on the water to Jesus?",
+"options": [
+"Thomas",
+"John",
+"Andrew",
+"Peter"
+],
+"answer": 3,
+"explain": "Peter — Matthew 14:29.",
+"source": {
+"label": "Matthew 14:29 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2014%3A29&version=KJV"
+}
+},
+{
+"id": "ba_80",
+"pack": "bible",
+"level": "all",
+"q": "Which disciple would not believe until he saw the nail prints?",
+"options": [
+"Judas",
+"Philip",
+"Thomas",
+"Peter"
+],
+"answer": 2,
+"explain": "Thomas — John 20:24-25.",
+"source": {
+"label": "John 20:24-25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%2020%3A24-25&version=KJV"
+}
+},
+{
+"id": "ba_81",
+"pack": "bible",
+"level": "all",
+"q": "Who agreed to betray Jesus for thirty pieces of silver?",
+"options": [
+"Thomas",
+"Judas Iscariot",
+"Peter",
+"Barabbas"
+],
+"answer": 1,
+"explain": "Judas Iscariot — Matthew 26:14-15.",
+"source": {
+"label": "Matthew 26:14-15 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2026%3A14-15&version=KJV"
+}
+},
+{
+"id": "ba_82",
+"pack": "bible",
+"level": "kids",
+"q": "Which disciple denied Jesus three times?",
+"options": [
+"Judas",
+"John",
+"Peter",
+"James"
+],
+"answer": 2,
+"explain": "Peter — Matthew 26:75.",
+"source": {
+"label": "Matthew 26:75 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2026%3A75&version=KJV"
+}
+},
+{
+"id": "ba_83",
+"pack": "bible",
+"level": "kids",
+"q": "Who climbed a sycamore tree to see Jesus?",
+"options": [
+"Nicodemus",
+"Matthew",
+"Zacchaeus",
+"Bartimaeus"
+],
+"answer": 2,
+"explain": "Zacchaeus — Luke 19:2-4.",
+"source": {
+"label": "Luke 19:2-4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%2019%3A2-4&version=KJV"
+}
+},
+{
+"id": "ba_84",
+"pack": "bible",
+"level": "all",
+"q": "Who came to Jesus by night?",
+"options": [
+"Nicodemus",
+"Lazarus",
+"Zacchaeus",
+"Joseph of Arimathaea"
+],
+"answer": 0,
+"explain": "Nicodemus — John 3:1-2.",
+"source": {
+"label": "John 3:1-2 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%203%3A1-2&version=KJV"
+}
+},
+{
+"id": "ba_85",
+"pack": "bible",
+"level": "all",
+"q": "Who had been in the grave four days when Jesus raised him?",
+"options": [
+"Lazarus",
+"Jairus",
+"Bartimaeus",
+"Malchus"
+],
+"answer": 0,
+"explain": "Lazarus — John 11:14-17.",
+"source": {
+"label": "John 11:14-17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%2011%3A14-17&version=KJV"
+}
+},
+{
+"id": "ba_86",
+"pack": "bible",
+"level": "kids",
+"q": "How many loaves did the disciples have when Jesus fed the great crowd?",
+"options": [
+"Twelve",
+"Five",
+"Two",
+"Seven"
+],
+"answer": 1,
+"explain": "Five — Matthew 14:17.",
+"source": {
+"label": "Matthew 14:17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2014%3A17&version=KJV"
+}
+},
+{
+"id": "ba_87",
+"pack": "bible",
+"level": "all",
+"q": "How many baskets of leftovers were gathered after the five thousand ate?",
+"options": [
+"Five",
+"Seven",
+"Twelve",
+"Three"
+],
+"answer": 2,
+"explain": "Twelve — Matthew 14:20.",
+"source": {
+"label": "Matthew 14:20 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2014%3A20&version=KJV"
+}
+},
+{
+"id": "ba_88",
+"pack": "bible",
+"level": "all",
+"q": "Who was made to carry Jesus' cross?",
+"options": [
+"John",
+"Simon of Cyrene",
+"Peter",
+"Joseph of Arimathaea"
+],
+"answer": 1,
+"explain": "Simon of Cyrene — Matthew 27:32.",
+"source": {
+"label": "Matthew 27:32 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2027%3A32&version=KJV"
+}
+},
+{
+"id": "ba_89",
+"pack": "bible",
+"level": "all",
+"q": "Which governor handed Jesus over to be crucified?",
+"options": [
+"Felix",
+"Herod",
+"Pilate",
+"Festus"
+],
+"answer": 2,
+"explain": "Pilate — Matthew 27:24-26.",
+"source": {
+"label": "Matthew 27:24-26 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2027%3A24-26&version=KJV"
+}
+},
+{
+"id": "ba_90",
+"pack": "bible",
+"level": "all",
+"q": "Which prisoner was released instead of Jesus?",
+"options": [
+"Barabbas",
+"Bartimaeus",
+"Barnabas",
+"Bartholomew"
+],
+"answer": 0,
+"explain": "Barabbas — Matthew 27:26.",
+"source": {
+"label": "Matthew 27:26 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2027%3A26&version=KJV"
+}
+},
+{
+"id": "ba_91",
+"pack": "bible",
+"level": "all",
+"q": "To whom did Jesus appear first after he rose (Mark 16)?",
+"options": [
+"Thomas",
+"John",
+"Peter",
+"Mary Magdalene"
+],
+"answer": 3,
+"explain": "Mary Magdalene — Mark 16:9.",
+"source": {
+"label": "Mark 16:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Mark%2016%3A9&version=KJV"
+}
+},
+{
+"id": "ba_92",
+"pack": "bible",
+"level": "all",
+"q": "On which feast day did the Holy Ghost fill the believers in Acts 2?",
+"options": [
+"Tabernacles",
+"Passover",
+"The sabbath",
+"Pentecost"
+],
+"answer": 3,
+"explain": "Pentecost — Acts 2:1-4.",
+"source": {
+"label": "Acts 2:1-4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%202%3A1-4&version=KJV"
+}
+},
+{
+"id": "ba_93",
+"pack": "bible",
+"level": "all",
+"q": "After whose sermon did about 3,000 people believe and get baptized?",
+"options": [
+"Peter",
+"Paul",
+"John",
+"Stephen"
+],
+"answer": 0,
+"explain": "Peter — Acts 2:38-41.",
+"source": {
+"label": "Acts 2:38-41 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%202%3A38-41&version=KJV"
+}
+},
+{
+"id": "ba_94",
+"pack": "bible",
+"level": "all",
+"q": "Who prayed while being stoned, \"Lord, lay not this sin to their charge\"?",
+"options": [
+"Peter",
+"Stephen",
+"James",
+"Paul"
+],
+"answer": 1,
+"explain": "Stephen — Acts 7:59-60.",
+"source": {
+"label": "Acts 7:59-60 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%207%3A59-60&version=KJV"
+}
+},
+{
+"id": "ba_95",
+"pack": "bible",
+"level": "kids",
+"q": "On the road to which city did a light from heaven stop Saul?",
+"options": [
+"Tarsus",
+"Damascus",
+"Antioch",
+"Jerusalem"
+],
+"answer": 1,
+"explain": "Damascus — Acts 9:3.",
+"source": {
+"label": "Acts 9:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%209%3A3&version=KJV"
+}
+},
+{
+"id": "ba_96",
+"pack": "bible",
+"level": "kids",
+"q": "What other name was Saul of Tarsus called?",
+"options": [
+"Paul",
+"Peter",
+"Silas",
+"Barnabas"
+],
+"answer": 0,
+"explain": "Paul — Acts 13:9.",
+"source": {
+"label": "Acts 13:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2013%3A9&version=KJV"
+}
+},
+{
+"id": "ba_97",
+"pack": "bible",
+"level": "all",
+"q": "Who prayed and sang with Paul in prison at midnight?",
+"options": [
+"Barnabas",
+"Luke",
+"Timothy",
+"Silas"
+],
+"answer": 3,
+"explain": "Silas — Acts 16:25.",
+"source": {
+"label": "Acts 16:25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2016%3A25&version=KJV"
+}
+},
+{
+"id": "ba_98",
+"pack": "bible",
+"level": "all",
+"q": "After the shipwreck, Paul landed on which island?",
+"options": [
+"Melita (Malta)",
+"Cyprus",
+"Crete",
+"Patmos"
+],
+"answer": 0,
+"explain": "Melita (Malta) — Acts 28:1.",
+"source": {
+"label": "Acts 28:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2028%3A1&version=KJV"
+}
+},
+{
+"id": "ba_99",
+"pack": "bible",
+"level": "all",
+"q": "What came out of the fire and fastened on Paul's hand?",
+"options": [
+"A spider",
+"A viper",
+"A lizard",
+"A scorpion"
+],
+"answer": 1,
+"explain": "A viper — Acts 28:3.",
+"source": {
+"label": "Acts 28:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2028%3A3&version=KJV"
+}
+},
+{
+"id": "ba_100",
+"pack": "bible",
+"level": "all",
+"q": "Which seller of purple from Thyatira opened her heart to the gospel?",
+"options": [
+"Dorcas",
+"Phebe",
+"Priscilla",
+"Lydia"
+],
+"answer": 3,
+"explain": "Lydia — Acts 16:14.",
+"source": {
+"label": "Acts 16:14 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2016%3A14&version=KJV"
+}
+},
+{
+"id": "ba_101",
+"pack": "bible",
+"level": "all",
+"q": "Tabitha, whom Peter raised, was also called...",
+"options": [
+"Mary",
+"Lydia",
+"Dorcas",
+"Rhoda"
+],
+"answer": 2,
+"explain": "Dorcas — Acts 9:36.",
+"source": {
+"label": "Acts 9:36 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%209%3A36&version=KJV"
+}
+},
+{
+"id": "ba_102",
+"pack": "bible",
+"level": "all",
+"q": "Which young man fell from a window while Paul preached?",
+"options": [
+"Tychicus",
+"Eutychus",
+"Trophimus",
+"Timothy"
+],
+"answer": 1,
+"explain": "Eutychus — Acts 20:9.",
+"source": {
+"label": "Acts 20:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2020%3A9&version=KJV"
+}
+},
+{
+"id": "ba_103",
+"pack": "bible",
+"level": "all",
+"q": "On which island was John when he saw the Revelation?",
+"options": [
+"Cyprus",
+"Patmos",
+"Crete",
+"Melita"
+],
+"answer": 1,
+"explain": "Patmos — Revelation 1:9.",
+"source": {
+"label": "Revelation 1:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Revelation%201%3A9&version=KJV"
+}
+},
+{
+"id": "ba_104",
+"pack": "bible",
+"level": "all",
+"q": "Which of these is NOT in the list of the fruit of the Spirit?",
+"options": [
+"Peace",
+"Joy",
+"Love",
+"Wisdom"
+],
+"answer": 3,
+"explain": "Wisdom — Galatians 5:22-23.",
+"source": {
+"label": "Galatians 5:22-23 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Galatians%205%3A22-23&version=KJV"
+}
+},
+{
+"id": "ba_105",
+"pack": "bible",
+"level": "all",
+"q": "Jesus said the first and great commandment is to love...",
+"options": [
+"The Lord thy God",
+"Thine enemies",
+"Thy parents",
+"Thy neighbour"
+],
+"answer": 0,
+"explain": "The Lord thy God — Matthew 22:37-38.",
+"source": {
+"label": "Matthew 22:37-38 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2022%3A37-38&version=KJV"
+}
+},
+{
+"id": "ba_106",
+"pack": "bible",
+"level": "kids",
+"q": "In John 10:11, Jesus says, \"I am the good...\"",
+"options": [
+"Door",
+"Vine",
+"Bread",
+"Shepherd"
+],
+"answer": 3,
+"explain": "Shepherd — John 10:11.",
+"source": {
+"label": "John 10:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%2010%3A11&version=KJV"
+}
+},
+{
+"id": "ba_107",
+"pack": "bible",
+"level": "all",
+"q": "Which piece of armour is \"the word of God\"?",
+"options": [
+"The shield of faith",
+"The helmet of salvation",
+"The sword of the Spirit",
+"The breastplate of righteousness"
+],
+"answer": 2,
+"explain": "The sword of the Spirit — Ephesians 6:17.",
+"source": {
+"label": "Ephesians 6:17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Ephesians%206%3A17&version=KJV"
+}
+},
+{
+"id": "ba_108",
+"pack": "bible",
+"level": "all",
+"q": "Which piece of armour quenches the fiery darts of the wicked?",
+"options": [
+"The girdle of truth",
+"The sword of the Spirit",
+"The helmet of salvation",
+"The shield of faith"
+],
+"answer": 3,
+"explain": "The shield of faith — Ephesians 6:16.",
+"source": {
+"label": "Ephesians 6:16 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Ephesians%206%3A16&version=KJV"
+}
+},
+{
+"id": "ba_109",
+"pack": "bible",
+"level": "all",
+"q": "What is \"the substance of things hoped for\"?",
+"options": [
+"Hope",
+"Grace",
+"Love",
+"Faith"
+],
+"answer": 3,
+"explain": "Faith — Hebrews 11:1.",
+"source": {
+"label": "Hebrews 11:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Hebrews%2011%3A1&version=KJV"
+}
+},
+{
+"id": "ba_110",
+"pack": "bible",
+"level": "all",
+"q": "Who looked back and became a pillar of salt?",
+"options": [
+"Lot's wife",
+"Sarah",
+"Rebekah",
+"Hagar"
+],
+"answer": 0,
+"explain": "Lot's wife — Genesis 19:26.",
+"source": {
+"label": "Genesis 19:26 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2019%3A26&version=KJV"
+}
+},
+{
+"id": "ba_111",
+"pack": "bible",
+"level": "all",
+"q": "Which two cities did the LORD rain brimstone and fire on?",
+"options": [
+"Tyre and Sidon",
+"Babylon and Nineveh",
+"Jericho and Ai",
+"Sodom and Gomorrah"
+],
+"answer": 3,
+"explain": "Sodom and Gomorrah — Genesis 19:24.",
+"source": {
+"label": "Genesis 19:24 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2019%3A24&version=KJV"
+}
+},
+{
+"id": "ba_112",
+"pack": "bible",
+"level": "all",
+"q": "Who was Abram's brother's son that travelled with him?",
+"options": [
+"Nahor",
+"Lot",
+"Laban",
+"Ishmael"
+],
+"answer": 1,
+"explain": "Lot — Genesis 12:5.",
+"source": {
+"label": "Genesis 12:5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2012%3A5&version=KJV"
+}
+},
+{
+"id": "ba_113",
+"pack": "bible",
+"level": "all",
+"q": "Who was the son of Hagar?",
+"options": [
+"Isaac",
+"Esau",
+"Midian",
+"Ishmael"
+],
+"answer": 3,
+"explain": "Ishmael — Genesis 16:15.",
+"source": {
+"label": "Genesis 16:15 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2016%3A15&version=KJV"
+}
+},
+{
+"id": "ba_114",
+"pack": "bible",
+"level": "all",
+"q": "Who wrestled until the breaking of the day?",
+"options": [
+"Moses",
+"Esau",
+"Elijah",
+"Jacob"
+],
+"answer": 3,
+"explain": "Jacob — Genesis 32:24.",
+"source": {
+"label": "Genesis 32:24 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2032%3A24&version=KJV"
+}
+},
+{
+"id": "ba_115",
+"pack": "bible",
+"level": "kids",
+"q": "Who dreamed of a ladder reaching to heaven?",
+"options": [
+"Jacob",
+"Abraham",
+"Daniel",
+"Joseph"
+],
+"answer": 0,
+"explain": "Jacob — Genesis 28:10-12.",
+"source": {
+"label": "Genesis 28:10-12 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2028%3A10-12&version=KJV"
+}
+},
+{
+"id": "ba_116",
+"pack": "bible",
+"level": "all",
+"q": "Jacob served seven years to marry whom?",
+"options": [
+"Dinah",
+"Rebekah",
+"Rachel",
+"Leah"
+],
+"answer": 2,
+"explain": "Rachel — Genesis 29:20.",
+"source": {
+"label": "Genesis 29:20 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2029%3A20&version=KJV"
+}
+},
+{
+"id": "ba_117",
+"pack": "bible",
+"level": "all",
+"q": "Who was Joseph's younger brother, his mother's son?",
+"options": [
+"Judah",
+"Levi",
+"Reuben",
+"Benjamin"
+],
+"answer": 3,
+"explain": "Benjamin — Genesis 43:29.",
+"source": {
+"label": "Genesis 43:29 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2043%3A29&version=KJV"
+}
+},
+{
+"id": "ba_118",
+"pack": "bible",
+"level": "all",
+"q": "Which prophetess, Aaron's sister, led the women with timbrels?",
+"options": [
+"Deborah",
+"Zipporah",
+"Rahab",
+"Miriam"
+],
+"answer": 3,
+"explain": "Miriam — Exodus 15:20.",
+"source": {
+"label": "Exodus 15:20 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2015%3A20&version=KJV"
+}
+},
+{
+"id": "ba_119",
+"pack": "bible",
+"level": "kids",
+"q": "Which sea did God part for Israel?",
+"options": [
+"The Dead Sea",
+"The Great Sea",
+"The Sea of Galilee",
+"The Red Sea"
+],
+"answer": 3,
+"explain": "The Red Sea — Exodus 15:4.",
+"source": {
+"label": "Exodus 15:4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2015%3A4&version=KJV"
+}
+},
+{
+"id": "ba_120",
+"pack": "bible",
+"level": "all",
+"q": "What did Moses strike so water would come out?",
+"options": [
+"A tree",
+"A well",
+"A rock",
+"The ground"
+],
+"answer": 2,
+"explain": "A rock — Exodus 17:6.",
+"source": {
+"label": "Exodus 17:6 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2017%3A6&version=KJV"
+}
+},
+{
+"id": "ba_121",
+"pack": "bible",
+"level": "all",
+"q": "What were the commandments written on?",
+"options": [
+"Gold plates",
+"Clay jars",
+"Scrolls",
+"Tables of stone"
+],
+"answer": 3,
+"explain": "Tables of stone — Exodus 31:18.",
+"source": {
+"label": "Exodus 31:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%2031%3A18&version=KJV"
+}
+},
+{
+"id": "ba_122",
+"pack": "bible",
+"level": "all",
+"q": "Which king ate grass like oxen?",
+"options": [
+"Pharaoh",
+"Darius",
+"Belshazzar",
+"Nebuchadnezzar"
+],
+"answer": 3,
+"explain": "Nebuchadnezzar — Daniel 4:33.",
+"source": {
+"label": "Daniel 4:33 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Daniel%204%3A33&version=KJV"
+}
+},
+{
+"id": "ba_123",
+"pack": "bible",
+"level": "all",
+"q": "Which king had Daniel put in the den of lions?",
+"options": [
+"Darius",
+"Cyrus",
+"Belshazzar",
+"Nebuchadnezzar"
+],
+"answer": 0,
+"explain": "Darius — Daniel 6:9-16.",
+"source": {
+"label": "Daniel 6:9-16 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Daniel%206%3A9-16&version=KJV"
+}
+},
+{
+"id": "ba_124",
+"pack": "bible",
+"level": "all",
+"q": "Which prophet married Gomer?",
+"options": [
+"Amos",
+"Micah",
+"Hosea",
+"Joel"
+],
+"answer": 2,
+"explain": "Hosea — Hosea 1:2-3.",
+"source": {
+"label": "Hosea 1:2-3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Hosea%201%3A2-3&version=KJV"
+}
+},
+{
+"id": "ba_125",
+"pack": "bible",
+"level": "all",
+"q": "Who was Moses' father-in-law, the priest of Midian?",
+"options": [
+"Boaz",
+"Jethro",
+"Eli",
+"Laban"
+],
+"answer": 1,
+"explain": "Jethro — Exodus 3:1.",
+"source": {
+"label": "Exodus 3:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%203%3A1&version=KJV"
+}
+},
+{
+"id": "ba_126",
+"pack": "bible",
+"level": "all",
+"q": "What did the good Samaritan pour into the man's wounds?",
+"options": [
+"Oil and wine",
+"Honey",
+"Salt",
+"Water"
+],
+"answer": 0,
+"explain": "Oil and wine — Luke 10:34.",
+"source": {
+"label": "Luke 10:34 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%2010%3A34&version=KJV"
+}
+},
+{
+"id": "ba_127",
+"pack": "bible",
+"level": "all",
+"q": "In the parable of the sower, the seed is...",
+"options": [
+"The word of God",
+"Faith",
+"The kingdom",
+"Money"
+],
+"answer": 0,
+"explain": "The word of God — Luke 8:11.",
+"source": {
+"label": "Luke 8:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%208%3A11&version=KJV"
+}
+},
+{
+"id": "ba_128",
+"pack": "bible",
+"level": "kids",
+"q": "The wise man built his house upon...",
+"options": [
+"The sand",
+"A hill",
+"A rock",
+"Clay"
+],
+"answer": 2,
+"explain": "A rock — Matthew 7:24.",
+"source": {
+"label": "Matthew 7:24 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%207%3A24&version=KJV"
+}
+},
+{
+"id": "ba_129",
+"pack": "bible",
+"level": "all",
+"q": "How many lepers did Jesus cleanse when only one came back?",
+"options": [
+"Ten",
+"Seven",
+"Five",
+"Twelve"
+],
+"answer": 0,
+"explain": "Ten — Luke 17:17.",
+"source": {
+"label": "Luke 17:17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%2017%3A17&version=KJV"
+}
+},
+{
+"id": "ba_130",
+"pack": "bible",
+"level": "all",
+"q": "Who asked for the head of John the Baptist?",
+"options": [
+"Delilah",
+"Jezebel",
+"The daughter of Herodias",
+"Bernice"
+],
+"answer": 2,
+"explain": "The daughter of Herodias — Matthew 14:6-8.",
+"source": {
+"label": "Matthew 14:6-8 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2014%3A6-8&version=KJV"
+}
+},
+{
+"id": "ba_131",
+"pack": "bible",
+"level": "all",
+"q": "What did John the Baptist eat?",
+"options": [
+"Figs",
+"Bread and fish",
+"Manna",
+"Locusts and wild honey"
+],
+"answer": 3,
+"explain": "Locusts and wild honey — Matthew 3:4.",
+"source": {
+"label": "Matthew 3:4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%203%3A4&version=KJV"
+}
+},
+{
+"id": "ba_132",
+"pack": "bible",
+"level": "all",
+"q": "Who was the father of James and John?",
+"options": [
+"Joseph",
+"Zebedee",
+"Jonas",
+"Alphaeus"
+],
+"answer": 1,
+"explain": "Zebedee — Matthew 4:21.",
+"source": {
+"label": "Matthew 4:21 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%204%3A21&version=KJV"
+}
+},
+{
+"id": "ba_133",
+"pack": "bible",
+"level": "kids",
+"q": "Who was Peter's brother?",
+"options": [
+"John",
+"James",
+"Andrew",
+"Philip"
+],
+"answer": 2,
+"explain": "Andrew — Matthew 4:18.",
+"source": {
+"label": "Matthew 4:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%204%3A18&version=KJV"
+}
+},
+{
+"id": "ba_134",
+"pack": "bible",
+"level": "all",
+"q": "Which disciple was called from the receipt of custom?",
+"options": [
+"Matthew",
+"Simon",
+"Zacchaeus",
+"Judas"
+],
+"answer": 0,
+"explain": "Matthew — Matthew 9:9.",
+"source": {
+"label": "Matthew 9:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%209%3A9&version=KJV"
+}
+},
+{
+"id": "ba_135",
+"pack": "bible",
+"level": "all",
+"q": "What happened to the veil of the temple when Jesus died?",
+"options": [
+"It was torn in two",
+"It caught fire",
+"It turned white",
+"It fell down"
+],
+"answer": 0,
+"explain": "It was torn in two — Matthew 27:51.",
+"source": {
+"label": "Matthew 27:51 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2027%3A51&version=KJV"
+}
+},
+{
+"id": "ba_136",
+"pack": "bible",
+"level": "all",
+"q": "Who laid Jesus' body in his own new tomb?",
+"options": [
+"Peter",
+"Lazarus",
+"Nicodemus",
+"Joseph of Arimathaea"
+],
+"answer": 3,
+"explain": "Joseph of Arimathaea — Matthew 27:57-60.",
+"source": {
+"label": "Matthew 27:57-60 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2027%3A57-60&version=KJV"
+}
+},
+{
+"id": "ba_137",
+"pack": "bible",
+"level": "all",
+"q": "For how many days was the risen Jesus seen before he ascended?",
+"options": [
+"Three",
+"Seven",
+"Forty",
+"Fifty"
+],
+"answer": 2,
+"explain": "Forty — Acts 1:3.",
+"source": {
+"label": "Acts 1:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%201%3A3&version=KJV"
+}
+},
+{
+"id": "ba_138",
+"pack": "bible",
+"level": "all",
+"q": "Who was chosen to replace Judas?",
+"options": [
+"Barnabas",
+"Matthias",
+"Silas",
+"Stephen"
+],
+"answer": 1,
+"explain": "Matthias — Acts 1:26.",
+"source": {
+"label": "Acts 1:26 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%201%3A26&version=KJV"
+}
+},
+{
+"id": "ba_139",
+"pack": "bible",
+"level": "all",
+"q": "Who fell down dead after lying with his wife about money?",
+"options": [
+"Alexander",
+"Simon",
+"Demas",
+"Ananias"
+],
+"answer": 3,
+"explain": "Ananias — Acts 5:1-5.",
+"source": {
+"label": "Acts 5:1-5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%205%3A1-5&version=KJV"
+}
+},
+{
+"id": "ba_140",
+"pack": "bible",
+"level": "all",
+"q": "Where were the disciples first called Christians?",
+"options": [
+"Jerusalem",
+"Antioch",
+"Ephesus",
+"Rome"
+],
+"answer": 1,
+"explain": "Antioch — Acts 11:26.",
+"source": {
+"label": "Acts 11:26 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2011%3A26&version=KJV"
+}
+},
+{
+"id": "ba_141",
+"pack": "bible",
+"level": "all",
+"q": "What was the name of Timothy's grandmother?",
+"options": [
+"Lois",
+"Eunice",
+"Lydia",
+"Priscilla"
+],
+"answer": 0,
+"explain": "Lois — 2 Timothy 1:5.",
+"source": {
+"label": "2 Timothy 1:5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Timothy%201%3A5&version=KJV"
+}
+},
+{
+"id": "ba_142",
+"pack": "bible",
+"level": "all",
+"q": "What was the name of Timothy's mother?",
+"options": [
+"Phebe",
+"Lois",
+"Lydia",
+"Eunice"
+],
+"answer": 3,
+"explain": "Eunice — 2 Timothy 1:5.",
+"source": {
+"label": "2 Timothy 1:5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Timothy%201%3A5&version=KJV"
+}
+},
+{
+"id": "ba_143",
+"pack": "bible",
+"level": "all",
+"q": "Paul wrote to Philemon about which servant?",
+"options": [
+"Epaphras",
+"Demas",
+"Tychicus",
+"Onesimus"
+],
+"answer": 3,
+"explain": "Onesimus — Philemon 1:10.",
+"source": {
+"label": "Philemon 1:10 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Philemon%201%3A10&version=KJV"
+}
+},
+{
+"id": "ba_144",
+"pack": "bible",
+"level": "all",
+"q": "Who was the high priest when Jesus was taken in Matthew?",
+"options": [
+"Eli",
+"Zadok",
+"Caiaphas",
+"Annas"
+],
+"answer": 2,
+"explain": "Caiaphas — Matthew 26:57.",
+"source": {
+"label": "Matthew 26:57 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2026%3A57&version=KJV"
+}
+},
+{
+"id": "ba_145",
+"pack": "bible",
+"level": "all",
+"q": "Whom did Jesus call \"an Israelite indeed, in whom is no guile\"?",
+"options": [
+"Philip",
+"Nathanael",
+"Andrew",
+"Peter"
+],
+"answer": 1,
+"explain": "Nathanael — John 1:47.",
+"source": {
+"label": "John 1:47 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%201%3A47&version=KJV"
+}
+},
+{
+"id": "ba_146",
+"pack": "bible",
+"level": "all",
+"q": "What did Pilate's title on the cross say (John)?",
+"options": [
+"The Son of David",
+"Jesus of Nazareth the King of the Jews",
+"The Son of God",
+"The Lamb of God"
+],
+"answer": 1,
+"explain": "Jesus of Nazareth the King of the Jews — John 19:19.",
+"source": {
+"label": "John 19:19 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%2019%3A19&version=KJV"
+}
+},
+{
+"id": "ba_147",
+"pack": "bible",
+"level": "all",
+"q": "At Jacob's well, Jesus talked with a woman of...",
+"options": [
+"Samaria",
+"Galilee",
+"Jericho",
+"Tyre"
+],
+"answer": 0,
+"explain": "Samaria — John 4:7.",
+"source": {
+"label": "John 4:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%204%3A7&version=KJV"
+}
+},
+{
+"id": "ba_148",
+"pack": "bible",
+"level": "all",
+"q": "What did Jesus put on the blind man's eyes in John 9?",
+"options": [
+"Oil",
+"Jordan water",
+"A cloth",
+"Clay made with spittle"
+],
+"answer": 3,
+"explain": "Clay made with spittle — John 9:6.",
+"source": {
+"label": "John 9:6 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%209%3A6&version=KJV"
+}
+},
+{
+"id": "ba_149",
+"pack": "bible",
+"level": "all",
+"q": "Which pool was the blind man told to wash in?",
+"options": [
+"Gibeon",
+"Siloam",
+"Hezekiah's pool",
+"Bethesda"
+],
+"answer": 1,
+"explain": "Siloam — John 9:7.",
+"source": {
+"label": "John 9:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%209%3A7&version=KJV"
+}
+},
+{
+"id": "ba_150",
+"pack": "bible",
+"level": "all",
+"q": "At which pool did Jesus heal a man sick for 38 years?",
+"options": [
+"Siloam",
+"Solomon's pool",
+"Gibeon",
+"Bethesda"
+],
+"answer": 3,
+"explain": "Bethesda — John 5:2-5.",
+"source": {
+"label": "John 5:2-5 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%205%3A2-5&version=KJV"
+}
+},
+{
+"id": "ba_151",
+"pack": "bible",
+"level": "all",
+"q": "For how many years had the woman who touched Jesus' garment been ill?",
+"options": [
+"Thirty-eight",
+"Seven",
+"Eighteen",
+"Twelve"
+],
+"answer": 3,
+"explain": "Twelve — Mark 5:25.",
+"source": {
+"label": "Mark 5:25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Mark%205%3A25&version=KJV"
+}
+},
+{
+"id": "ba_152",
+"pack": "bible",
+"level": "all",
+"q": "How old was Jairus' daughter?",
+"options": [
+"Twelve",
+"Fifteen",
+"Ten",
+"Seven"
+],
+"answer": 0,
+"explain": "Twelve — Mark 5:42.",
+"source": {
+"label": "Mark 5:42 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Mark%205%3A42&version=KJV"
+}
+},
+{
+"id": "ba_153",
+"pack": "bible",
+"level": "all",
+"q": "Which blind man cried, \"Jesus, thou Son of David, have mercy on me\"?",
+"options": [
+"Bartimaeus",
+"Lazarus",
+"Malchus",
+"Zacchaeus"
+],
+"answer": 0,
+"explain": "Bartimaeus — Mark 10:46-47.",
+"source": {
+"label": "Mark 10:46-47 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Mark%2010%3A46-47&version=KJV"
+}
+},
+{
+"id": "ba_154",
+"pack": "bible",
+"level": "all",
+"q": "Whose ear did Peter cut off?",
+"options": [
+"Barabbas",
+"Annas",
+"Caiaphas",
+"Malchus"
+],
+"answer": 3,
+"explain": "Malchus — John 18:10.",
+"source": {
+"label": "John 18:10 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%2018%3A10&version=KJV"
+}
+},
+{
+"id": "ba_155",
+"pack": "bible",
+"level": "all",
+"q": "How often did Jesus tell Peter to forgive?",
+"options": [
+"Seventy times seven",
+"Three times",
+"Twelve times",
+"Seven times"
+],
+"answer": 0,
+"explain": "Seventy times seven — Matthew 18:22.",
+"source": {
+"label": "Matthew 18:22 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2018%3A22&version=KJV"
+}
+},
+{
+"id": "ba_156",
+"pack": "bible",
+"level": "all",
+"q": "Who was the father of John the Baptist?",
+"options": [
+"Joseph",
+"Simeon",
+"Zacharias",
+"Zebedee"
+],
+"answer": 2,
+"explain": "Zacharias — Luke 1:13.",
+"source": {
+"label": "Luke 1:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%201%3A13&version=KJV"
+}
+},
+{
+"id": "ba_157",
+"pack": "bible",
+"level": "all",
+"q": "Which old man took baby Jesus in his arms and blessed God?",
+"options": [
+"Eli",
+"Simeon",
+"Joseph",
+"Zacharias"
+],
+"answer": 1,
+"explain": "Simeon — Luke 2:25-28.",
+"source": {
+"label": "Luke 2:25-28 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%202%3A25-28&version=KJV"
+}
+},
+{
+"id": "ba_158",
+"pack": "bible",
+"level": "all",
+"q": "Which aged prophetess gave thanks when she saw baby Jesus?",
+"options": [
+"Anna",
+"Huldah",
+"Deborah",
+"Elisabeth"
+],
+"answer": 0,
+"explain": "Anna — Luke 2:36-38.",
+"source": {
+"label": "Luke 2:36-38 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%202%3A36-38&version=KJV"
+}
+},
+{
+"id": "ba_159",
+"pack": "bible",
+"level": "kids",
+"q": "Who came from the east to worship baby Jesus?",
+"options": [
+"Wise men",
+"Priests",
+"Fishermen",
+"Soldiers"
+],
+"answer": 0,
+"explain": "Wise men — Matthew 2:1.",
+"source": {
+"label": "Matthew 2:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%202%3A1&version=KJV"
+}
+},
+{
+"id": "ba_160",
+"pack": "bible",
+"level": "kids",
+"q": "What gifts did the wise men bring?",
+"options": [
+"Bread, wine and oil",
+"Gold, silver and bronze",
+"Lambs, doves and incense",
+"Gold, frankincense and myrrh"
+],
+"answer": 3,
+"explain": "Gold, frankincense and myrrh — Matthew 2:11.",
+"source": {
+"label": "Matthew 2:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%202%3A11&version=KJV"
+}
+},
+{
+"id": "ba_161",
+"pack": "bible",
+"level": "kids",
+"q": "Who told the shepherds that Jesus was born?",
+"options": [
+"Mary",
+"A star",
+"The wise men",
+"An angel"
+],
+"answer": 3,
+"explain": "An angel — Luke 2:8-10.",
+"source": {
+"label": "Luke 2:8-10 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%202%3A8-10&version=KJV"
+}
+},
+{
+"id": "ba_162",
+"pack": "bible",
+"level": "kids",
+"q": "Where was baby Jesus laid?",
+"options": [
+"In a basket",
+"In a manger",
+"In a cradle",
+"In the temple"
+],
+"answer": 1,
+"explain": "In a manger — Luke 2:7.",
+"source": {
+"label": "Luke 2:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%202%3A7&version=KJV"
+}
+},
+{
+"id": "ba_163",
+"pack": "bible",
+"level": "all",
+"q": "Which king had the children of Bethlehem killed?",
+"options": [
+"Pilate",
+"Caesar Augustus",
+"Herod",
+"Archelaus"
+],
+"answer": 2,
+"explain": "Herod — Matthew 2:16.",
+"source": {
+"label": "Matthew 2:16 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%202%3A16&version=KJV"
+}
+},
+{
+"id": "ba_164",
+"pack": "bible",
+"level": "all",
+"q": "Who was Caesar when Jesus was born?",
+"options": [
+"Claudius",
+"Nero",
+"Tiberius",
+"Caesar Augustus"
+],
+"answer": 3,
+"explain": "Caesar Augustus — Luke 2:1.",
+"source": {
+"label": "Luke 2:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Luke%202%3A1&version=KJV"
+}
+},
+{
+"id": "ba_165",
+"pack": "bible",
+"level": "all",
+"q": "On which day did God make man?",
+"options": [
+"The third day",
+"The sixth day",
+"The seventh day",
+"The first day"
+],
+"answer": 1,
+"explain": "The sixth day — Genesis 1:26-31.",
+"source": {
+"label": "Genesis 1:26-31 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%201%3A26-31&version=KJV"
+}
+},
+{
+"id": "ba_166",
+"pack": "bible",
+"level": "kids",
+"q": "What did God do on the seventh day?",
+"options": [
+"He made the sea",
+"He rested",
+"He made the stars",
+"He made man"
+],
+"answer": 1,
+"explain": "He rested — Genesis 2:2.",
+"source": {
+"label": "Genesis 2:2 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%202%3A2&version=KJV"
+}
+},
+{
+"id": "ba_167",
+"pack": "bible",
+"level": "kids",
+"q": "God formed man from...",
+"options": [
+"River clay",
+"A rib",
+"The dust of the ground",
+"Water"
+],
+"answer": 2,
+"explain": "The dust of the ground — Genesis 2:7.",
+"source": {
+"label": "Genesis 2:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%202%3A7&version=KJV"
+}
+},
+{
+"id": "ba_168",
+"pack": "bible",
+"level": "kids",
+"q": "God made the woman from Adam's...",
+"options": [
+"Breath",
+"Heart",
+"Rib",
+"Hand"
+],
+"answer": 2,
+"explain": "Rib — Genesis 2:22.",
+"source": {
+"label": "Genesis 2:22 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%202%3A22&version=KJV"
+}
+},
+{
+"id": "ba_169",
+"pack": "bible",
+"level": "kids",
+"q": "What was the name of the garden God planted?",
+"options": [
+"Gethsemane",
+"Eden",
+"Goshen",
+"Sharon"
+],
+"answer": 1,
+"explain": "Eden — Genesis 2:8.",
+"source": {
+"label": "Genesis 2:8 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%202%3A8&version=KJV"
+}
+},
+{
+"id": "ba_170",
+"pack": "bible",
+"level": "kids",
+"q": "Which son of Adam was killed by his brother Cain?",
+"options": [
+"Seth",
+"Enoch",
+"Abel",
+"Lamech"
+],
+"answer": 2,
+"explain": "Abel — Genesis 4:8.",
+"source": {
+"label": "Genesis 4:8 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%204%3A8&version=KJV"
+}
+},
+{
+"id": "ba_171",
+"pack": "bible",
+"level": "all",
+"q": "Who was born to Adam and Eve in Abel's place?",
+"options": [
+"Enoch",
+"Enos",
+"Lamech",
+"Seth"
+],
+"answer": 3,
+"explain": "Seth — Genesis 4:25.",
+"source": {
+"label": "Genesis 4:25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%204%3A25&version=KJV"
+}
+},
+{
+"id": "ba_172",
+"pack": "bible",
+"level": "all",
+"q": "Which son of Noah was the father of Canaan?",
+"options": [
+"Ham",
+"Cush",
+"Shem",
+"Japheth"
+],
+"answer": 0,
+"explain": "Ham — Genesis 9:18.",
+"source": {
+"label": "Genesis 9:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%209%3A18&version=KJV"
+}
+},
+{
+"id": "ba_173",
+"pack": "bible",
+"level": "kids",
+"q": "Where did Noah's ark come to rest?",
+"options": [
+"Mount Carmel",
+"Mount Zion",
+"The mountains of Ararat",
+"Mount Sinai"
+],
+"answer": 2,
+"explain": "The mountains of Ararat — Genesis 8:4.",
+"source": {
+"label": "Genesis 8:4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%208%3A4&version=KJV"
+}
+},
+{
+"id": "ba_174",
+"pack": "bible",
+"level": "all",
+"q": "What was the city with the tall tower called?",
+"options": [
+"Babel",
+"Salem",
+"Zion",
+"Siloam"
+],
+"answer": 0,
+"explain": "Babel — Genesis 11:9.",
+"source": {
+"label": "Genesis 11:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2011%3A9&version=KJV"
+}
+},
+{
+"id": "ba_175",
+"pack": "bible",
+"level": "all",
+"q": "Abram's family set out from which place?",
+"options": [
+"Nineveh",
+"Haran",
+"Ur of the Chaldees",
+"Babylon"
+],
+"answer": 2,
+"explain": "Ur of the Chaldees — Genesis 11:31.",
+"source": {
+"label": "Genesis 11:31 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2011%3A31&version=KJV"
+}
+},
+{
+"id": "ba_176",
+"pack": "bible",
+"level": "all",
+"q": "Melchizedek was king of which city?",
+"options": [
+"Sodom",
+"Salem",
+"Gerar",
+"Gomorrah"
+],
+"answer": 1,
+"explain": "Salem — Genesis 14:18.",
+"source": {
+"label": "Genesis 14:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2014%3A18&version=KJV"
+}
+},
+{
+"id": "ba_177",
+"pack": "bible",
+"level": "kids",
+"q": "What animal did God provide in place of Isaac?",
+"options": [
+"A bullock",
+"A ram",
+"A lion",
+"A goat"
+],
+"answer": 1,
+"explain": "A ram — Genesis 22:13.",
+"source": {
+"label": "Genesis 22:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2022%3A13&version=KJV"
+}
+},
+{
+"id": "ba_178",
+"pack": "bible",
+"level": "kids",
+"q": "Who was Samuel's mother?",
+"options": [
+"Hannah",
+"Elisabeth",
+"Naomi",
+"Peninnah"
+],
+"answer": 0,
+"explain": "Hannah — 1 Samuel 1:20.",
+"source": {
+"label": "1 Samuel 1:20 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%201%3A20&version=KJV"
+}
+},
+{
+"id": "ba_179",
+"pack": "bible",
+"level": "kids",
+"q": "What did David use to defeat the giant?",
+"options": [
+"A bow",
+"A sword",
+"A spear",
+"A sling and a stone"
+],
+"answer": 3,
+"explain": "A sling and a stone — 1 Samuel 17:50.",
+"source": {
+"label": "1 Samuel 17:50 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2017%3A50&version=KJV"
+}
+},
+{
+"id": "ba_180",
+"pack": "bible",
+"level": "all",
+"q": "Which prophet anointed David with oil?",
+"options": [
+"Nathan",
+"Samuel",
+"Gad",
+"Elijah"
+],
+"answer": 1,
+"explain": "Samuel — 1 Samuel 16:13.",
+"source": {
+"label": "1 Samuel 16:13 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2016%3A13&version=KJV"
+}
+},
+{
+"id": "ba_181",
+"pack": "bible",
+"level": "all",
+"q": "Who cut off the skirt of Saul's robe in a cave?",
+"options": [
+"Jonathan",
+"Abner",
+"Joab",
+"David"
+],
+"answer": 3,
+"explain": "David — 1 Samuel 24:4.",
+"source": {
+"label": "1 Samuel 24:4 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2024%3A4&version=KJV"
+}
+},
+{
+"id": "ba_182",
+"pack": "bible",
+"level": "all",
+"q": "Which wise woman kept David from taking revenge on Nabal?",
+"options": [
+"Bathsheba",
+"Abishag",
+"Abigail",
+"Michal"
+],
+"answer": 2,
+"explain": "Abigail — 1 Samuel 25:32-33.",
+"source": {
+"label": "1 Samuel 25:32-33 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=1%20Samuel%2025%3A32-33&version=KJV"
+}
+},
+{
+"id": "ba_183",
+"pack": "bible",
+"level": "all",
+"q": "Gehazi was the servant of which prophet?",
+"options": [
+"Isaiah",
+"Elisha",
+"Samuel",
+"Elijah"
+],
+"answer": 1,
+"explain": "Elisha — 2 Kings 4:8-12.",
+"source": {
+"label": "2 Kings 4:8-12 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Kings%204%3A8-12&version=KJV"
+}
+},
+{
+"id": "ba_184",
+"pack": "bible",
+"level": "all",
+"q": "What did Elisha make float on the water?",
+"options": [
+"An iron axe head",
+"A shield",
+"A crown",
+"A stone"
+],
+"answer": 0,
+"explain": "An iron axe head — 2 Kings 6:5-6.",
+"source": {
+"label": "2 Kings 6:5-6 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=2%20Kings%206%3A5-6&version=KJV"
+}
+},
+{
+"id": "ba_185",
+"pack": "bible",
+"level": "all",
+"q": "Upon what did Jesus say he would build his church?",
+"options": [
+"This mountain",
+"This rock",
+"This city",
+"This temple"
+],
+"answer": 1,
+"explain": "This rock — Matthew 16:18.",
+"source": {
+"label": "Matthew 16:18 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2016%3A18&version=KJV"
+}
+},
+{
+"id": "ba_186",
+"pack": "bible",
+"level": "all",
+"q": "What did Jesus say he would give Peter?",
+"options": [
+"The keys of the kingdom of heaven",
+"A sword",
+"A crown",
+"A staff"
+],
+"answer": 0,
+"explain": "The keys of the kingdom of heaven — Matthew 16:19.",
+"source": {
+"label": "Matthew 16:19 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2016%3A19&version=KJV"
+}
+},
+{
+"id": "ba_187",
+"pack": "bible",
+"level": "all",
+"q": "From which mount did Jesus ascend?",
+"options": [
+"Olivet",
+"Tabor",
+"Carmel",
+"Sinai"
+],
+"answer": 0,
+"explain": "Olivet — Acts 1:12.",
+"source": {
+"label": "Acts 1:12 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%201%3A12&version=KJV"
+}
+},
+{
+"id": "ba_188",
+"pack": "bible",
+"level": "all",
+"q": "How did Paul escape from Damascus?",
+"options": [
+"Through a tunnel",
+"Dressed as a soldier",
+"Let down by the wall in a basket",
+"By ship"
+],
+"answer": 2,
+"explain": "Let down by the wall in a basket — Acts 9:25.",
+"source": {
+"label": "Acts 9:25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%209%3A25&version=KJV"
+}
+},
+{
+"id": "ba_189",
+"pack": "bible",
+"level": "all",
+"q": "Which couple were tentmakers like Paul?",
+"options": [
+"Aquila and Priscilla",
+"Ananias and Sapphira",
+"Silas and Timothy",
+"Barnabas and Mark"
+],
+"answer": 0,
+"explain": "Aquila and Priscilla — Acts 18:2-3.",
+"source": {
+"label": "Acts 18:2-3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Acts%2018%3A2-3&version=KJV"
+}
+},
+{
+"id": "ba_190",
+"pack": "bible",
+"level": "all",
+"q": "To how many churches was John told to write in Revelation 1?",
+"options": [
+"Ten",
+"Three",
+"Seven",
+"Twelve"
+],
+"answer": 2,
+"explain": "Seven — Revelation 1:11.",
+"source": {
+"label": "Revelation 1:11 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Revelation%201%3A11&version=KJV"
+}
+},
+{
+"id": "ba_191",
+"pack": "bible",
+"level": "all",
+"q": "The twelve gates of the new Jerusalem are made of...",
+"options": [
+"Gold",
+"Jasper",
+"Pearls",
+"Sapphire"
+],
+"answer": 2,
+"explain": "Pearls — Revelation 21:21.",
+"source": {
+"label": "Revelation 21:21 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Revelation%2021%3A21&version=KJV"
+}
+},
+{
+"id": "ba_192",
+"pack": "bible",
+"level": "all",
+"q": "The street of the holy city is...",
+"options": [
+"Crystal",
+"Marble",
+"Pure gold",
+"Silver"
+],
+"answer": 2,
+"explain": "Pure gold — Revelation 21:21.",
+"source": {
+"label": "Revelation 21:21 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Revelation%2021%3A21&version=KJV"
+}
+},
+{
+"id": "ba_193",
+"pack": "bible",
+"level": "kids",
+"q": "Who built an ark at God's word?",
+"options": [
+"Moses",
+"David",
+"Noah",
+"Abraham"
+],
+"answer": 2,
+"explain": "Noah — Genesis 6:13-14.",
+"source": {
+"label": "Genesis 6:13-14 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%206%3A13-14&version=KJV"
+}
+},
+{
+"id": "ba_194",
+"pack": "bible",
+"level": "kids",
+"q": "What bird did Noah send out first?",
+"options": [
+"A dove",
+"An eagle",
+"A sparrow",
+"A raven"
+],
+"answer": 3,
+"explain": "A raven — Genesis 8:7.",
+"source": {
+"label": "Genesis 8:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%208%3A7&version=KJV"
+}
+},
+{
+"id": "ba_195",
+"pack": "bible",
+"level": "kids",
+"q": "Which creature spoke to Eve in the garden?",
+"options": [
+"The serpent",
+"A bird",
+"A lamb",
+"A lion"
+],
+"answer": 0,
+"explain": "The serpent — Genesis 3:1.",
+"source": {
+"label": "Genesis 3:1 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%203%3A1&version=KJV"
+}
+},
+{
+"id": "ba_196",
+"pack": "bible",
+"level": "kids",
+"q": "Baby Moses was hidden in an ark made of...",
+"options": [
+"Cedar wood",
+"Gold",
+"Bulrushes",
+"Stone"
+],
+"answer": 2,
+"explain": "Bulrushes — Exodus 2:3.",
+"source": {
+"label": "Exodus 2:3 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Exodus%202%3A3&version=KJV"
+}
+},
+{
+"id": "ba_197",
+"pack": "bible",
+"level": "all",
+"q": "Who dreamed the sun, moon and eleven stars bowed to him?",
+"options": [
+"Daniel",
+"Solomon",
+"Joseph",
+"Jacob"
+],
+"answer": 2,
+"explain": "Joseph — Genesis 37:5-9.",
+"source": {
+"label": "Genesis 37:5-9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Genesis%2037%3A5-9&version=KJV"
+}
+},
+{
+"id": "ba_198",
+"pack": "bible",
+"level": "kids",
+"q": "What did Jesus sit on to ride into Jerusalem?",
+"options": [
+"A horse",
+"A chariot",
+"A colt",
+"A camel"
+],
+"answer": 2,
+"explain": "A colt — Mark 11:7.",
+"source": {
+"label": "Mark 11:7 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Mark%2011%3A7&version=KJV"
+}
+},
+{
+"id": "ba_199",
+"pack": "bible",
+"level": "kids",
+"q": "What did Jesus say to the wind and the sea?",
+"options": [
+"Go away",
+"Stop, wind",
+"Peace, be still",
+"Be quiet now"
+],
+"answer": 2,
+"explain": "Peace, be still — Mark 4:39.",
+"source": {
+"label": "Mark 4:39 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Mark%204%3A39&version=KJV"
+}
+},
+{
+"id": "ba_200",
+"pack": "bible",
+"level": "kids",
+"q": "Jesus came to his disciples walking on the...",
+"options": [
+"Sea",
+"Clouds",
+"Road",
+"Sand"
+],
+"answer": 0,
+"explain": "Sea — Matthew 14:25.",
+"source": {
+"label": "Matthew 14:25 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2014%3A25&version=KJV"
+}
+},
+{
+"id": "ba_201",
+"pack": "bible",
+"level": "kids",
+"q": "What did Jesus turn water into at Cana?",
+"options": [
+"Honey",
+"Wine",
+"Oil",
+"Milk"
+],
+"answer": 1,
+"explain": "Wine — John 2:9.",
+"source": {
+"label": "John 2:9 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=John%202%3A9&version=KJV"
+}
+},
+{
+"id": "ba_202",
+"pack": "bible",
+"level": "kids",
+"q": "What did Jesus feed the five thousand with?",
+"options": [
+"Manna and quails",
+"Figs and grapes",
+"Five loaves and two fishes",
+"Bread and honey"
+],
+"answer": 2,
+"explain": "Five loaves and two fishes — Matthew 14:17.",
+"source": {
+"label": "Matthew 14:17 (KJV)",
+"url": "https://www.biblegateway.com/passage/?search=Matthew%2014%3A17&version=KJV"
+}
+}
+]

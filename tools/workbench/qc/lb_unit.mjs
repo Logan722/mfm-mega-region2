@@ -1,0 +1,13 @@
+import { handle, weekOf } from '/home/claude/mfm-mega-region2/netlify/functions/leaderboard.mjs';
+import assert from 'node:assert';
+const mem=new Map();const store={async get(k){const v=mem.get(k);return v===undefined?null:JSON.parse(v)},async setJSON(k,v){mem.set(k,JSON.stringify(v))},async list({prefix}){return{blobs:[...mem.keys()].filter(k=>k.startsWith(prefix)).map(key=>({key}))}}};
+const post=(b,ip='1')=>handle(new Request('http://x/',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}),store,ip).then(r=>r.json());
+const get=()=>handle(new Request('http://x/'),store).then(r=>r.json());
+let n=0;const t=async(name,fn)=>{await fn();n++;console.log('ok',name)};
+await t('empty board at start',async()=>{const d=await get();assert.equal(d.players.length,0);assert.equal(d.branches.length,0)});
+await t('week starts Monday CT: Sun 11:30 PM CT is still last week',()=>{assert.equal(weekOf(new Date('2026-11-30T05:30:00Z')),'2026-11-23');assert.equal(weekOf(new Date('2026-11-30T06:30:00Z')),'2026-11-30')});
+await t('scores add up per branch',async()=>{await post({dev:'aaaaaaaaaaaa01',nick:'A',branch:'MFM Tampa',mode:'daily',pts:1000,score:8,n:10});await post({dev:'aaaaaaaaaaaa02',nick:'B',branch:'MFM Tampa',mode:'quiz',pts:600,score:5,n:10});const d=await get();assert.equal(d.branches[0].name,'MFM Tampa');assert.equal(d.branches[0].pts,1600);assert.equal(d.branches[0].players,2)});
+await t('rebuild from scores gives the same board (heals lost updates)',async()=>{const k=[...mem.keys()].find(k=>k.startsWith('agg/'));const a=JSON.parse(mem.get(k));a.built=0;a.players={};mem.set(k,JSON.stringify(a));const d=await get();assert.equal(d.totals.pts,1600);assert.equal(d.totals.players,2)});
+await t('concurrent posts all land after rebuild',async()=>{await Promise.all([3,4,5,6,7].map(i=>post({dev:'aaaaaaaaaaaa0'+i,nick:'P'+i,branch:'MFM Dallas',mode:'kids',pts:100*i,score:i,n:10})));const k=[...mem.keys()].find(k=>k.startsWith('agg/'));const a=JSON.parse(mem.get(k));a.built=0;mem.set(k,JSON.stringify(a));const d=await get();assert.equal(d.branches.find(b=>b.name==='MFM Dallas').pts,2500)});
+await t('top 10 only',async()=>{for(let i=10;i<25;i++)await post({dev:'bbbbbbbbbbbb'+i,nick:'Q'+i,branch:'MFM Irving',mode:'quiz',pts:150,score:1,n:10},'ip'+i);const d=await get();assert.equal(d.players.length,10)});
+console.log(n,'tests passed');

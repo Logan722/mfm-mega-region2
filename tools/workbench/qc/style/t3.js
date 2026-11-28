@@ -1,0 +1,3 @@
+const { chromium } = require('playwright');
+(async()=>{const b=await chromium.launch();const c=await b.newContext({viewport:{width:390,height:900},isMobile:true});const p=await c.newPage();await p.goto('http://localhost:8097/testimonies.html');await p.waitForTimeout(500);
+console.log(await p.evaluate(()=>{const e=[...document.querySelectorAll('a,button')].find(a=>/Share your testimony/.test(a.textContent)&&a.offsetParent&&getComputedStyle(a).backgroundColor==='rgb(20, 34, 64)');let o=[];for(let x=e;x&&o.length<6;x=x.parentElement)o.push(x.tagName+'.'+x.className+' '+getComputedStyle(x).backgroundColor);return o.join('\n')}));await b.close()})();

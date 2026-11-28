@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Play & Grow Stories — style test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600;700&display=swap">
+<style>
+/* VOICE: reverent, warm, playful enough for families — a Royal Flame storybook
+   IDEA: an animated Bible storybook you tap through, like a children's Bible app on a stage
+   PICTURE: the stage itself — Jacob giving Joseph the coat while the brothers watch
+   COLOUR and TYPE: navy #142240 housing, gold #c9952c accent, white; Fraunces + Inter Tight
+   LAYOUT: modest title, big 16:9 stage, style picker under it, then the three style notes */
+:root{color-scheme:light dark;--bg:#0e1a33;--ink:#fff;--gold:#c9952c;--navy:#142240;--cream:#f8f6f1}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Inter Tight',system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(24px,4vw,56px) max(5vw,16px)}
+.wrap{max-width:1180px;margin:0 auto}
+h1{font:500 clamp(30px,4.2vw,48px)/1.05 Fraunces,Georgia,serif;margin:0 0 10px;text-align:center;text-wrap:balance}
+.sub{color:#cfd6e4;text-align:center;margin:0 auto 26px;max-width:640px}
+.stagebox{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 30px 70px -30px #000;container-type:inline-size;background:#000}
+.stage{position:relative;aspect-ratio:16/9;width:100%}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bub{position:absolute;transform:translate(-50%,-100%);max-width:34cqw;padding:1.1cqw 1.6cqw;font-size:clamp(12px,1.75cqw,21px);line-height:1.3;font-weight:600;opacity:0;transition:opacity .35s,transform .35s;pointer-events:none;text-align:center}
+.bub.on{opacity:1;transform:translate(-50%,calc(-100% - 6px))}
+.bub i{display:block;font-style:normal;font-size:.68em;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-bottom:.15em}
+.bub.whisper{font-style:italic;font-weight:500}
+.cap{position:absolute;left:50%;bottom:3cqw;transform:translateX(-50%);width:min(86%,760px);text-align:center;font:500 clamp(12px,1.7cqw,20px)/1.4 Fraunces,Georgia,serif;padding:1cqw 2cqw;border-radius:12px;opacity:0;transition:opacity .5s}
+.cap.on{opacity:1}.cap small{display:block;font:600 .62em 'Inter Tight',sans-serif;letter-spacing:.08em;margin-top:.3em;opacity:.8}
+.choice{position:absolute;inset:0;display:grid;place-items:center;background:rgba(8,14,30,.55);opacity:0;pointer-events:none;transition:opacity .5s}
+.choice.on{opacity:1;pointer-events:auto}
+.card{width:min(88%,620px);background:#fff;color:var(--navy);border-radius:16px;padding:clamp(14px,2.6cqw,30px);text-align:center;box-shadow:0 20px 50px -20px #000}
+.card h3{font:600 clamp(15px,2.3cqw,26px)/1.2 Fraunces,serif;margin:0 0 .5em}
+.card p{margin:0 0 1em;font-size:clamp(12px,1.6cqw,17px);color:#3a4560}
+.opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.opts button,.ctl button{font:600 15px 'Inter Tight',sans-serif;min-height:44px;padding:0 20px;border-radius:999px;border:0;cursor:pointer}
+.opts button{background:var(--navy);color:#fff}
+.opts button.alt{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
+.opts button:focus-visible,.ctl button:focus-visible,.tabs button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tap{position:absolute;right:2cqw;top:2cqw;font-size:clamp(11px,1.3cqw,14px);background:rgba(0,0,0,.35);color:#fff;padding:.4em .9em;border-radius:999px}
+.ctl{display:flex;gap:10px;justify-content:center;margin:16px 0 28px;flex-wrap:wrap}
+.ctl button{background:#fff;color:var(--navy)}.ctl button.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tabs button{all:unset;cursor:pointer;border-radius:16px;padding:18px;background:#16264a;box-shadow:inset 0 0 0 1.5px #2a3c66;text-align:center}
+.tabs button[aria-pressed=true]{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 2px var(--gold)}
+.tabs b{display:block;font:600 19px Fraunces,serif;margin-bottom:4px}
+.tabs span{font-size:14px;opacity:.85}
+.note{max-width:760px;margin:30px auto 0;text-align:center;color:#cfd6e4;font-size:15px}
+@media(max-width:600px){.tabs{grid-template-columns:1fr}.tap{display:none}}
+/* character motion */
+.p .eyes{animation:blink 4.6s infinite;transform-box:fill-box;transform-origin:center}
+.p.b1 .eyes{animation-delay:1.3s}.p.b2 .eyes{animation-delay:2.4s}.p.b3 .eyes{animation-delay:.6s}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+.p .torso{animation:breathe 3.4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes breathe{50%{transform:scaleY(1.012)}}
+.p.talking .mouth{animation:talk .16s infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes talk{to{transform:scaleY(.35)}}
+.arm{transition:transform .8s cubic-bezier(.4,.1,.2,1)}
+.p .ex{display:none}.p[data-expr=neutral] .ex-neutral,.p[data-expr=smile] .ex-smile,.p[data-expr=happy] .ex-happy,.p[data-expr=jealous] .ex-jealous{display:inline}
+.p .armsX{opacity:0;transition:opacity .4s}.p[data-pose=cross] .armsX{opacity:1}.p[data-pose=cross] .arm{opacity:0}
+.coatwear{opacity:0;transition:opacity .7s .1s}.p.coat .coatwear{opacity:1}
+.mover{transition:transform 1s cubic-bezier(.4,.1,.2,1)}
+.hop{animation:hop .55s ease-out 2}@keyframes hop{40%{transform:translateY(-18px)}}
+#fly{transition:transform 1.2s cubic-bezier(.45,.05,.25,1),opacity .4s}
+.spark{opacity:0}.spark.go{animation:spark 1s ease-out forwards}@keyframes spark{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.6)}}
+.cloud{animation:drift 60s linear infinite}@keyframes drift{from{transform:translateX(-200px)}to{transform:translateX(1500px)}}
+.rays{animation:spin 40s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes spin{to{transform:rotate(360deg)}}
+.dust circle{animation:rise 9s linear infinite}@keyframes rise{from{transform:translateY(0);opacity:0}15%{opacity:.9}to{transform:translateY(-260px);opacity:0}}
+.shaft{animation:pulse 6s ease-in-out infinite}@keyframes pulse{0%,100%{opacity:.05}50%{opacity:.12}}
+.cam{animation:cam 9s ease-out forwards;transform-origin:640px 420px}@keyframes cam{from{transform:scale(1.07)}to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<section class="band"><div class="wrap">
+<h1>Play &amp; Grow Stories: pick the look</h1>
+<p class="sub">One scene from Joseph, Chapter 1, drawn three ways. Watch it play, try the choice at the end, then switch styles below.</p>
+<div class="stagebox"><div class="stage" id="stage">
+<svg id="svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Animated scene: Jacob gives Joseph a coat of many colours while his brothers watch"></svg>
+<div class="bub" id="bub"></div>
+<div class="cap" id="cap"></div>
+<div class="tap" id="tap">Tap the scene to continue</div>
+<div class="choice" id="choice"><div class="card" id="card"></div></div>
+</div></div>
+<div class="ctl"><button id="next">Next</button><button class="ghost" id="replay">Replay scene</button></div>
+<div class="tabs" id="tabs">
+<button data-s="A" aria-pressed="true"><b>A · Storybook</b><span>Soft, warm and gentle, like a children's Bible app. Friendly for every age.</span></button>
+<button data-s="B" aria-pressed="false"><b>B · Bold cartoon</b><span>Outlined, bright and expressive, like an animated series. The most playful.</span></button>
+<button data-s="C" aria-pressed="false"><b>C · Royal Flame</b><span>Cinematic sunset in navy and gold, matching the website. The most dramatic.</span></button>
+</div>
+<p class="note">This is a style test, not the finished chapter. Whichever style you pick, the full game adds more scenes, hands-on moments, a pray button, the end-of-chapter verse and points on the Play &amp; Grow leaderboard.</p>
+</div></section>
+<script>
+{
+const svg=document.getElementById('svg'),bub=document.getElementById('bub'),cap=document.getElementById('cap'),choice=document.getElementById('choice'),card=document.getElementById('card');
+let ST='A',step=0,timer=null,busy=false;
+const SP={A:{R:30,ol:0,oc:'none',eye:'dot'},B:{R:41,ol:4.5,oc:'#2b1a10',eye:'big'},C:{R:31,ol:0,oc:'none',eye:'glint',sil:true}};
+const COAT=['#c8312b','#e9a826','#2f6fd0','#2e9b57','#7a3fa0','#e8662a'];
+const CAST={
+ jacob:{x:400,y:644,s:1.3,f:1,skin:'#b9825a',robe:'#2f4f8f',sash:'#c9952c',wrap:'#efe3c8',band:'#6b4a2b',beard:'long',bc:'#ece8e0',staff:1,expr:'smile',pose:'stand',name:'Jacob'},
+ joseph:{x:660,y:644,s:1.19,f:-1,skin:'#c08a5f',robe:'#efe6d2',sash:'#8a5a2b',hair:'#2a1a12',expr:'smile',pose:'stand',name:'Joseph'},
+ reuben:{x:925,y:616,s:1.1,f:-1,skin:'#a87550',robe:'#8a3b2a',sash:'#3b2a1a',wrap:'#d9c9a3',band:'#3b2a1a',beard:'short',bc:'#24170f',expr:'neutral',pose:'stand',name:'Reuben',cls:'b1'},
+ judah:{x:1035,y:622,s:1.07,f:-1,skin:'#9c6a47',robe:'#3e6b46',sash:'#c9952c',wrap:'#c9b78e',band:'#2a1d12',beard:'short',bc:'#1d130c',expr:'neutral',pose:'stand',name:'Judah',cls:'b2'},
+ simeon:{x:1145,y:628,s:1.02,f:-1,skin:'#b07a52',robe:'#5b4a7a',sash:'#2a1d12',wrap:'#e2d6b8',band:'#4a3420',beard:'short',bc:'#2a1a10',expr:'neutral',pose:'stand',name:'Simeon',cls:'b3'}
+};
+const POSES={stand:[-6,6],give:[-80,-8],receive:[-58,-48],joy:[-160,-150]};
+const sk=w=>SP[ST].ol?`stroke="${SP[ST].oc}" stroke-width="${w||SP[ST].ol}" stroke-linejoin="round" stroke-linecap="round"`:'';
+const silFill=(c,k)=>SP[ST].sil?(k==='skin'?'#1d2a48':k==='hair'?'#0b1222':'#121e3b'):c;
+
+function face(o,R){
+ const e1=R*.12,e2=R*.58,ey=-R*.08,st=SP[ST];
+ let eyes='';
+ if(st.eye==='dot')eyes=[e1,e2].map((x,i)=>`<ellipse cx="${x}" cy="${ey}" rx="${R*.1}" ry="${R*.14}" fill="#2a1a12"/><circle cx="${x+R*.04}" cy="${ey-R*.05}" r="${R*.035}" fill="#fff"/>`).join('');
+ else if(st.eye==='big')eyes=[e1,e2].map((x,i)=>`<ellipse cx="${x}" cy="${ey}" rx="${R*(i?.2:.17)}" ry="${R*(i?.24:.21)}" fill="#fff" ${sk(2.4)}/><circle cx="${x+R*.06}" cy="${ey+R*.02}" r="${R*.11}" fill="#2a1a12"/><circle cx="${x+R*.1}" cy="${ey-R*.03}" r="${R*.04}" fill="#fff"/>`).join('');
+ else eyes=`<ellipse cx="${e2}" cy="${ey}" rx="${R*.09}" ry="${R*.06}" fill="#f6cf7a" opacity=".85"/>`;
+ const bc=st.sil?'#0b1222':'#3b2414',bw=st.eye==='big'?R*.09:R*.07;
+ const brow=(lift,tilt)=>[e1,e2].map((x,i)=>{const t=i?-tilt:tilt;return `<path d="M${x-R*.16} ${ey-R*.3-lift+t} L${x+R*.16} ${ey-R*.3-lift-t}" stroke="${bc}" stroke-width="${bw}" stroke-linecap="round" fill="none"/>`}).join('');
+ const mx=R*.46,my=R*.44,mc=st.sil?'#0b1222':'#5a2316';
+ const M={neutral:`<path d="M${mx-R*.14} ${my} L${mx+R*.14} ${my}" stroke="${mc}" stroke-width="${R*.07}" stroke-linecap="round"/>`,
+  smile:`<path d="M${mx-R*.2} ${my-R*.04} Q${mx} ${my+R*.16} ${mx+R*.2} ${my-R*.04}" stroke="${mc}" stroke-width="${R*.07}" fill="none" stroke-linecap="round"/>`,
+  happy:`<path d="M${mx-R*.24} ${my-R*.06} Q${mx} ${my+R*.34} ${mx+R*.24} ${my-R*.06} Z" fill="${mc}"/><path d="M${mx-R*.1} ${my+R*.12} Q${mx} ${my+R*.2} ${mx+R*.1} ${my+R*.12}" fill="#d9605a"/>`,
+  jealous:`<path d="M${mx-R*.18} ${my+R*.08} Q${mx} ${my-R*.08} ${mx+R*.18} ${my+R*.08}" stroke="${mc}" stroke-width="${R*.07}" fill="none" stroke-linecap="round"/>`};
+ const B={neutral:brow(0,0),smile:brow(R*.04,R*.02),happy:brow(R*.1,R*.03),jealous:brow(-R*.04,-R*.1)};
+ const blush=(!st.sil)?`<ellipse cx="${R*.72}" cy="${R*.25}" rx="${R*.14}" ry="${R*.09}" fill="#e0716a" opacity="${st.eye==='big'?.45:.3}"/>`:'';
+ const nose=st.sil?'':`<path d="M${R*.9} ${-R*.08} Q${R*1.12} ${R*.16} ${R*.88} ${R*.24}" fill="${o.skin}" ${sk(2.4)}/>`;
+ const exprs=['neutral','smile','happy','jealous'].map(k=>`<g class="ex ex-${k}">${B[k]}<g class="mouth">${M[k]}</g></g>`).join('');
+ return `${nose}<g class="eyes">${eyes}</g>${blush}${exprs}`;
+}
+function head(o,R){
+ const skin=silFill(o.skin,'skin');let h='';
+ if(o.wrap){const w=silFill(o.wrap,'w');h+=`<path d="M${.86*R} ${-.42*R} C${.72*R} ${-1.3*R} ${-.95*R} ${-1.38*R} ${-1.08*R} ${-.3*R} L${-1.2*R} ${1.65*R} Q${-.55*R} ${1.85*R} ${-.12*R} ${1.42*R} L${-.36*R} ${.2*R} Q${-.1*R} ${-.42*R} ${.86*R} ${-.42*R} Z" fill="${w}" ${sk()}/>`}
+ h+=`<circle cx="0" cy="0" r="${R}" fill="${skin}" ${sk()}/>`;
+ if(!o.wrap)h+=`<circle cx="${-.12*R}" cy="${.05*R}" r="${.17*R}" fill="${skin}" ${sk(2.4)}/>`;
+ if(o.beard){const L=o.beard==='long'?1.85:1.18,bc=silFill(o.bc,'hair');h+=`<path d="M${-.36*R} ${.02*R} Q${-.34*R} ${(L-.6)*R} ${.22*R} ${L*R} Q${.7*R} ${(L-.55)*R} ${.98*R} ${.3*R} Q${.64*R} ${.72*R} ${.46*R} ${.6*R} Q${.2*R} ${.55*R} ${.02*R} ${.6*R} Q${-.1*R} ${.3*R} ${-.36*R} ${.02*R} Z" fill="${bc}" ${sk()}/><ellipse cx="${.5*R}" cy="${.3*R}" rx="${.26*R}" ry="${.08*R}" fill="${bc}"/>`}
+ if(o.hair){const hc=silFill(o.hair,'hair');h+=[[-.5,-.55,.5],[-.02,-.8,.44],[.46,-.7,.36],[-.86,-.12,.4],[-.78,.36,.3],[.72,-.5,.25]].map(([x,y,r])=>`<circle cx="${x*R}" cy="${y*R}" r="${r*R}" fill="${hc}" ${sk()}/>`).join('')+`<circle cx="${-.35*R}" cy="${-.35*R}" r="${.62*R}" fill="${hc}"/>`}
+ h+=face(o,R);
+ if(o.wrap){const b=silFill(o.band,'hair');h+=`<path d="M${.9*R} ${-.46*R} Q${-.05*R} ${-.78*R} ${-1.04*R} ${-.4*R}" stroke="${b}" stroke-width="${.13*R}" fill="none" stroke-linecap="round"/>`}
+ return h;
+}
+function arm(o,side,ang){
+ const st=SP[ST],W=st.eye==='big'?29:26,L=st.eye==='big'?84:92,sx=side?16:-12,sy=-196,robe=silFill(o.robe,'r');
+ const sleeve=side?robe:shade(robe,-14);
+ let staff='';if(o.staff&&!side)staff=`<rect x="-5" y="${L-112}" width="9" height="${196}" rx="4" fill="${silFill('#7a5230','h')}" ${sk()}/><path d="M0 ${L-112} q-2 -22 16 -24 q14 2 10 16" fill="none" stroke="${silFill('#7a5230','h')}" stroke-width="9" stroke-linecap="round"/>`;
+ return `<g class="arm arm${side}" style="transform:translate(${sx}px,${sy}px) rotate(${ang}deg)">${side?'':staff}<rect x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="${sleeve}" ${sk()}/>${o.coat!==undefined||o===CAST.joseph?`<rect class="coatwear" x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="url(#cp${ST})"/>`:''}<circle cx="0" cy="${L}" r="${W*.48}" fill="${silFill(o.skin,'skin')}" ${sk()}/>${side?'':''}</g>`;
+}
+function shade(hex,d){if(!/^#/.test(hex))return hex;const n=parseInt(hex.slice(1),16);const c=[n>>16,n>>8&255,n&255].map(v=>Math.max(0,Math.min(255,v+d)));return '#'+c.map(v=>v.toString(16).padStart(2,'0')).join('')}
+function person(id){
+ const o=CAST[id],st=SP[ST],R=st.R,robe=silFill(o.robe,'r'),[a1,a0]=POSES[o.pose]||POSES.stand;
+ const hy=-212-R*.92;
+ const robeD='M-34 -206 Q-47 -110 -59 -8 Q0 6 59 -8 Q47 -110 34 -206 Q0 -214 -34 -206 Z';
+ const clip=`<clipPath id="rc-${id}-${ST}"><path d="${robeD}"/></clipPath>`;
+ let g=`<defs>${clip}</defs><ellipse cx="0" cy="0" rx="62" ry="10" fill="#000" opacity="${st.sil?.35:.18}"/>`;
+ g+=arm(o,0,a0);
+ g+=`<g class="torso"><ellipse cx="-18" cy="-6" rx="17" ry="8" fill="${silFill('#6b4a2b','h')}" ${sk()}/><ellipse cx="22" cy="-5" rx="18" ry="8" fill="${silFill('#6b4a2b','h')}" ${sk()}/>`;
+ g+=`<path d="${robeD}" fill="${robe}" ${sk()}/>`;
+ if(!st.sil&&!st.ol)g+=`<path d="M-34 -206 Q-47 -110 -59 -8 Q-30 0 -8 -4 Q-10 -110 -6 -210 Z" fill="#000" opacity=".12"/>`;
+ if(id==='joseph')g+=`<g class="coatwear" clip-path="url(#rc-${id}-${ST})"><rect x="-70" y="-220" width="140" height="230" fill="url(#cp${ST})"/><path d="M-4 -206 L-6 -6" stroke="rgba(0,0,0,.18)" stroke-width="3"/></g>`;
+ g+=`<rect x="-44" y="-132" width="88" height="15" rx="5" fill="${silFill(o.sash,'h')}" ${sk(3)} transform="rotate(-3)"/>`;
+ g+=`<rect x="-9" y="-224" width="20" height="24" rx="6" fill="${silFill(o.skin,'skin')}"/>`;
+ g+=`<g transform="translate(4 ${hy})">${head(o,R)}</g></g>`;
+ g+=`<g class="armsX"><rect x="-32" y="-170" width="70" height="25" rx="12" fill="${shade(robe,-14)}" ${sk()} transform="rotate(10 0 -158)"/><rect x="-34" y="-162" width="72" height="25" rx="12" fill="${robe}" ${sk()} transform="rotate(-8 0 -150)"/><circle cx="36" cy="-166" r="12" fill="${silFill(o.skin,'skin')}" ${sk()}/><circle cx="-30" cy="-150" r="12" fill="${silFill(o.skin,'skin')}" ${sk()}/></g>`;
+ g+=arm(o,1,a1);
+ const inner=`<g transform="scale(${o.f*o.s} ${o.s})">${g}</g>`;
+ return `<g class="mover" id="mv-${id}" style="transform:translate(${o.x}px,${o.y}px)"><g ${st.sil?'filter="url(#rim)"':''}><g class="p ${o.cls||''}" id="p-${id}" data-expr="${o.expr}" data-pose="${o.pose}">${inner}</g></g></g>`;
+}
+function bg(){
+ const s=ST;let d=`<defs><pattern id="cp${s}" patternUnits="userSpaceOnUse" width="96" height="60" patternTransform="rotate(8)">${COAT.map((c,i)=>`<rect x="${i*16}" y="0" width="16" height="60" fill="${c}"/>`).join('')}<rect width="96" height="3" y="28" fill="rgba(255,255,255,.35)"/></pattern>
+ <filter id="rim" x="-20%" y="-20%" width="140%" height="140%"><feMorphology in="SourceAlpha" operator="erode" radius="2.2" result="e"/><feOffset in="e" dx="3.5" dy="1.5" result="o"/><feComposite in="SourceAlpha" in2="o" operator="out" result="edge"/><feFlood flood-color="#f6c76a"/><feComposite in2="edge" operator="in" result="rim"/><feGaussianBlur in="rim" stdDeviation="1.2" result="rb"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="rb"/><feMergeNode in="rim"/></feMerge></filter>
+ <radialGradient id="sun${s}"><stop offset="0" stop-color="${s==='C'?'#fff2c2':'#fffbe6'}"/><stop offset=".45" stop-color="${s==='C'?'#f7b24a':'#ffe08a'}" stop-opacity="${s==='C'?1:.9}"/><stop offset="1" stop-color="${s==='C'?'#f08a2e':'#ffd36b'}" stop-opacity="0"/></radialGradient>
+ <linearGradient id="sky${s}" x1="0" y1="0" x2="0" y2="1">${s==='A'?'<stop offset="0" stop-color="#a9d8ef"/><stop offset=".6" stop-color="#f3e2c4"/><stop offset="1" stop-color="#ffd7a8"/>':s==='B'?'<stop offset="0" stop-color="#5cc4ff"/><stop offset=".7" stop-color="#b9ecff"/><stop offset="1" stop-color="#fff1b3"/>':'<stop offset="0" stop-color="#0a1328"/><stop offset=".45" stop-color="#1d2c58"/><stop offset=".72" stop-color="#9a4a2c"/><stop offset=".9" stop-color="#e99a3f"/><stop offset="1" stop-color="#f6c26a"/>'}</linearGradient>
+ <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .08 0"/></filter></defs>`;
+ d+=`<rect width="1280" height="720" fill="url(#sky${s})"/>`;
+ const ol=s==='B'?'stroke="#2b1a10" stroke-width="4" stroke-linejoin="round"':'';
+ if(s==='C'){d+=`<circle cx="640" cy="540" r="330" fill="url(#sunC)" opacity=".9"/><circle cx="640" cy="560" r="110" fill="#ffe6a6" opacity=".95"/>`+[...Array(9)].map((_,i)=>`<polygon class="shaft" style="animation-delay:${i*.7}s" points="640,560 ${-200+i*210},-40 ${-120+i*210},-40" fill="#f9d48a" opacity=".07"/>`).join('')}
+ else {d+=`<circle cx="1010" cy="160" r="${s==='A'?120:105}" fill="url(#sun${s})"/><circle cx="1010" cy="160" r="${s==='A'?46:52}" fill="${s==='A'?'#fff3c7':'#ffd23f'}" ${ol}/>`;
+  if(s==='B')d+=`<g class="rays">${[...Array(12)].map((_,i)=>`<rect x="1004" y="72" width="12" height="30" rx="6" fill="#ffd23f" ${ol} transform="rotate(${i*30} 1010 160)"/>`).join('')}</g>`;
+  d+=[[0,120,1],[ -25,210,.8],[-45,90,.65]].map(([dl,y,sc])=>`<g class="cloud" style="animation-delay:${dl}s"><g transform="translate(0 ${y}) scale(${sc})"><ellipse cx="0" cy="0" rx="70" ry="28" fill="#fff" opacity="${s==='A'?.85:1}" ${ol}/><ellipse cx="-40" cy="8" rx="44" ry="22" fill="#fff" opacity="${s==='A'?.85:1}"/><ellipse cx="36" cy="-12" rx="46" ry="30" fill="#fff" opacity="${s==='A'?.85:1}"/></g></g>`).join('')}
+ const H=s==='A'?['#c8d8a6','#b2c98b','#e2c891','#d6b878']:s==='B'?['#9fdc6e','#6ec25a','#f3cf6c','#e7b84f']:['#1a2547','#141d3a','#0f1730','#0b1226'];
+ d+=`<path d="M0 470 Q200 400 420 450 T860 430 T1280 455 V720 H0Z" fill="${H[0]}" ${ol}/><path d="M0 520 Q260 470 520 515 T1000 500 T1280 520 V720 H0Z" fill="${H[1]}" ${ol}/>`;
+ d+=`<g transform="translate(120 600)"><path d="M-110 0 L0 -150 L120 0 Z" fill="${s==='C'?'#0d1530':'#8a5a35'}" ${ol}/><path d="M-60 0 L0 -150 L40 0 Z" fill="${s==='C'?'#111a38':'#e6d3ae'}" ${ol}/><path d="M-12 0 L0 -70 L14 0Z" fill="${s==='C'?'#f3b85a':'#4a2e18'}" opacity="${s==='C'?.6:1}"/></g>`;
+ d+=`<g opacity="${s==='C'?1:.95}">${[[290,548],[330,556],[262,560]].map(([x,y])=>`<g transform="translate(${x} ${y})"><ellipse rx="18" ry="11" fill="${s==='C'?'#0c1530':'#fbfaf5'}" ${ol}/><circle cx="17" cy="-3" r="6" fill="${s==='C'?'#0c1530':'#3b2a1a'}"/></g>`).join('')}</g>`;
+ d+=`<path d="M0 580 Q320 560 640 585 T1280 575 V720 H0Z" fill="${H[2]}" ${ol}/><rect y="640" width="1280" height="80" fill="${H[3]}"/>`;
+ d+=`<g transform="translate(1215 560)"><rect x="-8" y="-10" width="16" height="70" rx="6" fill="${s==='C'?'#0b1226':'#6b4a2b'}" ${ol}/><ellipse cx="0" cy="-40" rx="62" ry="44" fill="${s==='C'?'#0d1530':'#7f9a5a'}" ${ol}/><ellipse cx="-30" cy="-60" rx="34" ry="26" fill="${s==='C'?'#0d1530':'#8fae66'}"/></g>`;
+ return d;
+}
+function fx(){
+ const J=CAST.jacob,Y=CAST.joseph;let d=`<g id="fly" style="opacity:0;transform:translate(${J.x+108*J.s}px,${J.y-182*J.s}px) scale(.7)"><g transform="translate(-34 -24)"><rect width="68" height="48" rx="8" fill="url(#cp${ST})" ${sk()}/><path d="M6 24 H62" stroke="rgba(0,0,0,.25)" stroke-width="3"/></g></g>`;
+ d+=`<g id="sparks" transform="translate(${Y.x} ${Y.y-160*Y.s})">${[...Array(10)].map((_,i)=>{const a=i*36*Math.PI/180;return `<circle class="spark" cx="${Math.cos(a)*70}" cy="${Math.sin(a)*70-30}" r="${5+i%3*2}" fill="${i%2?'#ffe08a':'#fff'}" style="transform-box:fill-box;transform-origin:center"/>`}).join('')}</g>`;
+ if(ST==='C')d+=`<g class="dust">${[...Array(26)].map((_,i)=>`<circle cx="${(i*97)%1280}" cy="${560+(i*37)%140}" r="${1.4+(i%3)}" fill="#f7cf7f" style="animation-delay:${-(i*.7)}s;animation-duration:${7+i%5}s"/>`).join('')}</g><rect width="1280" height="720" filter="url(#grain)" opacity=".6" pointer-events="none"/><rect width="1280" height="720" fill="url(#vig)"/>`;
+ return d;
+}
+function render(){
+ clearTimeout(timer);step=0;busy=false;
+ for(const k in CAST){Object.assign(CAST[k],{pose:'stand',expr:k==='jacob'||k==='joseph'?'smile':'neutral'})}
+ svg.innerHTML=bg()+`<defs><radialGradient id="vig" cx=".5" cy=".55" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient></defs><g class="cam">${['simeon','judah','reuben','jacob','joseph'].map(person).join('')}${fx()}</g>`;
+ const th=THEME[ST];bub.style.cssText=th.bub;cap.style.cssText=th.cap;
+ bub.className='bub';cap.className='cap';choice.className='choice';
+ setTimeout(()=>run(),500);
+}
+const THEME={A:{bub:'background:#fff;color:#3b2414;border-radius:22px;box-shadow:0 8px 20px -8px rgba(0,0,0,.35)',cap:'background:rgba(255,250,240,.92);color:#3b2414'},
+ B:{bub:'background:#fff;color:#2b1a10;border-radius:18px;border:3.5px solid #2b1a10;box-shadow:4px 4px 0 #2b1a10',cap:'background:#fff;color:#2b1a10;border:3.5px solid #2b1a10;box-shadow:4px 4px 0 #2b1a10'},
+ C:{bub:'background:rgba(14,22,44,.86);color:#fff;border-radius:16px;box-shadow:inset 0 0 0 1.5px #c9952c,0 10px 24px -10px #000',cap:'background:rgba(10,16,34,.78);color:#fff;box-shadow:inset 0 0 0 1px rgba(201,149,44,.7)'}};
+const P=id=>document.getElementById('p-'+id);
+function pose(id,p){const o=CAST[id];o.pose=p;const el=P(id);el.dataset.pose=p;const [a1,a0]=POSES[p]||POSES.stand;const st=SP[ST];
+ el.querySelector('.arm1').style.transform=`translate(16px,-196px) rotate(${a1}deg)`;el.querySelector('.arm0').style.transform=`translate(-12px,-196px) rotate(${a0}deg)`}
+function expr(id,e){CAST[id].expr=e;P(id).dataset.expr=e}
+function say(id,txt,whisper){document.querySelectorAll('.p.talking').forEach(e=>e.classList.remove('talking'));
+ if(!id){bub.classList.remove('on');return}
+ const o=CAST[id],R=SP[ST].R,top=o.y-(212+R*1.95+(CAST[id].wrap?R*.4:R*.2))*o.s-14;
+ bub.innerHTML=`<i>${o.name}</i>${txt}`;bub.classList.toggle('whisper',!!whisper);
+ bub.style.left=Math.min(88,Math.max(12,o.x/1280*100))+'%';bub.style.top=Math.max(12,top/720*100)+'%';
+ bub.classList.remove('on');void bub.offsetWidth;bub.classList.add('on');P(id).classList.add('talking');setTimeout(()=>P(id)&&P(id).classList.remove('talking'),Math.min(2600,txt.length*55));}
+function narr(t,ref){if(!t){cap.classList.remove('on');return}cap.innerHTML=`${t}${ref?`<small>${ref}</small>`:''}`;cap.classList.add('on')}
+const STEPS=[
+ ()=>{narr('“Now Israel loved Joseph more than all his children… and he made him a coat of many colours.”','GENESIS 37:3 · KJV');say()},
+ ()=>{narr();pose('jacob','give');const f=document.getElementById('fly');setTimeout(()=>{f.style.opacity=1},500);say('jacob','Joseph, my son, come. This is for you.')},
+ ()=>{say();const f=document.getElementById('fly');f.style.transform=`translate(${CAST.joseph.x-10}px,${CAST.joseph.y-150*CAST.joseph.s}px) scale(1)`;setTimeout(()=>{f.style.opacity=0;P('joseph').classList.add('coat');document.querySelectorAll('.spark').forEach(s=>{s.classList.remove('go');void s.getBBox();s.classList.add('go')});pose('jacob','stand')},1150);return 1700},
+ ()=>{expr('joseph','happy');pose('joseph','joy');P('joseph').classList.add('hop');say('joseph','A coat of many colours! Thank you, father!')},
+ ()=>{pose('joseph','stand');expr('reuben','jealous');expr('judah','jealous');expr('simeon','jealous');['reuben','judah','simeon'].forEach(b=>pose(b,'cross'));
+  document.getElementById('mv-judah').style.transform=`translate(${CAST.judah.x-40}px,${CAST.judah.y}px)`;document.getElementById('mv-simeon').style.transform=`translate(${CAST.simeon.x-55}px,${CAST.simeon.y}px)`;say('reuben','Always Joseph…',1)},
+ ()=>{say('judah','Look at him. Father’s favourite.',1);narr('“…they hated him, and could not speak peaceably unto him.”','GENESIS 37:4 · KJV')},
+ ()=>{say();narr();card.innerHTML=`<h3>That night, Joseph has a dream.</h3><p>In it, his brothers’ sheaves of wheat bow down to his. In the morning, what should Joseph do?</p><div class="opts"><button data-c="tell">Tell his brothers the dream</button><button class="alt" data-c="pray">Keep it in his heart and pray</button></div>`;choice.classList.add('on');document.getElementById('tap').style.display='none'}
+];
+function run(){if(busy)return;if(step>=STEPS.length)return;busy=true;const r=STEPS[step++]();busy=false;clearTimeout(timer);if(step<STEPS.length)timer=setTimeout(run,r||3300)}
+card.addEventListener('click',e=>{const b=e.target.closest('button[data-c]');if(!b)return;
+ const t=b.dataset.c==='tell'?['Joseph told them.','The Bible says “they hated him yet the more for his dreams” (Genesis 37:8). In the full chapter, this is where the story heads towards the pit.']:['A wise first step.','“In every thing by prayer and supplication… let your requests be made known unto God” (Philippians 4:6). The story still follows the Bible: you’ll see how God turns what follows for good.'];
+ card.innerHTML=`<h3>${t[0]}</h3><p>${t[1]}</p><div class="opts"><button data-r="1">Watch again</button></div>`});
+card.addEventListener('click',e=>{if(e.target.closest('button[data-r]')){document.getElementById('tap').style.display='';render()}});
+document.getElementById('stage').addEventListener('click',e=>{if(e.target.closest('.choice'))return;clearTimeout(timer);run()});
+document.getElementById('next').addEventListener('click',()=>{clearTimeout(timer);run()});
+document.getElementById('replay').addEventListener('click',()=>{document.getElementById('tap').style.display='';render()});
+document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;ST=b.dataset.s;document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('tap').style.display='';render()});
+render();
+}
+</script>
+</body>
+</html>

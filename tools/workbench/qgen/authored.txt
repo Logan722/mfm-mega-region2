@@ -1,0 +1,203 @@
+k|Who was thrown into a den of lions?|Daniel|Jonah|Joseph|Elijah|Daniel 6:16|Daniel,lions
+k|Who was swallowed by a great fish?|Jonah|Peter|Paul|Elisha|Jonah 1:17|Jonah,fish
+k|Who was sold into Egypt by his own brothers?|Joseph|Benjamin|Moses|Jacob|Genesis 37:28|Joseph,Egypt
+a|What did Esau sell to his brother Jacob for a meal?|His birthright|His flock|His coat|His land|Genesis 25:33|birthright,Jacob
+k|Who killed the giant Philistine with a sling?|David|Saul|Jonathan|Samson|1 Samuel 17:50|David,Philistine,sling
+k|How many days and nights did it rain in the flood?|Forty|Seven|Twelve|Three|Genesis 7:12|forty
+a|Who was the first king of Israel?|Saul|David|Solomon|Samuel|1 Samuel 10:21-24|Saul,king
+a|Which king asked God for an understanding heart?|Solomon|David|Saul|Hezekiah|1 Kings 3:5-9|Solomon,understanding
+k|Who did God send to bring Israel out of Egypt?|Moses|Joshua|Aaron|Abraham|Exodus 3:10-11|Egypt,Moses
+a|Who led Israel over the Jordan after Moses died?|Joshua|Caleb|Aaron|Gideon|Joshua 1:1-2|Joshua,Moses,Jordan
+k|Which city's walls fell down flat when the people shouted?|Jericho|Jerusalem|Babylon|Nineveh|Joshua 6:2-20|Jericho,wall,shout
+k|Whose strength would go if his head was shaved?|Samson|Gideon|Saul|Goliath|Judges 16:14-17|Samson,razor,strength
+a|Who handed Samson over to the Philistines?|Delilah|Jezebel|Rahab|Ruth|Judges 16:18|Delilah,Philistines
+a|What was the name of Ruth's mother-in-law?|Naomi|Orpah|Hannah|Sarah|Ruth 1:2-4|Naomi,Ruth
+k|Who did Ruth marry?|Boaz|Obed|Jesse|Elimelech|Ruth 4:13|Boaz,Ruth
+a|Ruth's great-grandson became which king?|David|Saul|Solomon|Hezekiah|Ruth 4:17|Obed,Jesse,David
+a|Which woman prayed for a child and gave him to the LORD?|Hannah|Sarah|Rachel|Elisabeth|1 Samuel 1:20-28|Hannah,Samuel,child
+k|Which boy heard God call his name in the night?|Samuel|David|Joseph|Eli|1 Samuel 3:10|Samuel
+k|Who went up to heaven in a whirlwind?|Elijah|Elisha|Enoch|Moses|2 Kings 2:11|Elijah,whirlwind
+a|Who asked for a double portion of Elijah's spirit?|Elisha|Gehazi|Jonah|Obadiah|2 Kings 2:9|Elisha,double
+a|Which Syrian captain was healed after dipping seven times in the Jordan?|Naaman|Hazael|Rezin|Abner|2 Kings 5:11-14|Naaman,seven,Jordan
+a|Which queen said, "if I perish, I perish"?|Esther|Vashti|Jezebel|The queen of Sheba|Esther 4:15-16|Esther,perish
+a|Who brought up Esther, his uncle's daughter?|Mordecai|Haman|Ahasuerus|Nehemiah|Esther 2:7|Mordecai,uncle
+a|Who plotted to destroy all the Jews in Esther's day?|Haman|Mordecai|Pharaoh|Sanballat|Esther 3:6|Haman,Jews
+k|Which three men walked unharmed in the fiery furnace?|Shadrach, Meshach and Abednego|Peter, James and John|Moses, Aaron and Hur|Shem, Ham and Japheth|Daniel 3:26|Shadrach,Meshach,Abed-nego,fire
+a|Which king saw fingers writing on the wall?|Belshazzar|Nebuchadnezzar|Darius|Cyrus|Daniel 5:1-5|Belshazzar,wall,wrote
+k|To which great city did God send Jonah?|Nineveh|Tarshish|Babylon|Joppa|Jonah 1:2|Nineveh
+a|Where did Jonah try to run away to?|Tarshish|Nineveh|Egypt|Damascus|Jonah 1:3|Tarshish
+a|Who lived the longest in the Bible — 969 years?|Methuselah|Noah|Adam|Enoch|Genesis 5:27|Methuselah,sixty,nine
+a|Who "walked with God: and he was not; for God took him"?|Enoch|Elijah|Noah|Methuselah|Genesis 5:24|Enoch,took
+k|What did God set in the cloud as a sign of his covenant with Noah?|A rainbow|A star|A dove|A fire|Genesis 9:13|bow,cloud,covenant
+k|What did the dove bring back to Noah?|An olive leaf|A fig|A cedar twig|A grape|Genesis 8:11|olive,leaf,dove
+k|What was the name of Abraham's wife?|Sarah|Rebekah|Rachel|Leah|Genesis 17:15|Sarah
+k|What was the name of the son God promised Abraham and Sarah?|Isaac|Ishmael|Jacob|Esau|Genesis 21:3|Isaac
+a|How old was Abraham when Isaac was born?|100|75|90|120|Genesis 21:5|hundred,Isaac
+a|Who became Isaac's wife?|Rebekah|Rachel|Sarah|Leah|Genesis 24:67|Rebekah,Isaac
+k|God changed Jacob's name to what?|Israel|Abraham|Judah|Joseph|Genesis 32:28|Israel,Jacob
+a|How many sons did Jacob have?|Twelve|Ten|Seven|Eleven|Genesis 35:22|twelve,Jacob
+k|Which son did Jacob give a coat of many colours?|Joseph|Benjamin|Reuben|Judah|Genesis 37:3|Joseph,colours
+a|Who explained Pharaoh's dreams?|Joseph|Daniel|Moses|Aaron|Genesis 41:25|Joseph,Pharaoh,dream
+k|Who found baby Moses in the river?|Pharaoh's daughter|Miriam|Zipporah|Rahab|Exodus 2:5|daughter,Pharaoh
+k|God spoke to Moses out of a...|Burning bush|Thick cloud|Whirlwind|Rock|Exodus 3:2|bush,fire
+a|Who was Moses' brother?|Aaron|Hur|Joshua|Caleb|Exodus 4:14|Aaron,brother
+k|What food did God send from heaven in the wilderness?|Manna|Wheat bread|Figs|Locusts|Exodus 16:31|manna
+a|On which mount did the LORD come down to speak to Moses?|Sinai|Carmel|Zion|Olivet|Exodus 19:20|Sinai,Moses
+k|What golden idol did Israel make in the wilderness?|A calf|A serpent|A lion|An eagle|Exodus 32:4|calf
+a|What did Moses set on a pole so the bitten people could live?|A serpent of brass|A golden calf|His rod|The ark|Numbers 21:9|serpent,brass
+a|Whose donkey (KJV: ass) spoke to him?|Balaam|Balak|Moses|Gideon|Numbers 22:28|ass,Balaam
+a|Which two spies stood up for the LORD's promise?|Joshua and Caleb|Moses and Aaron|Eldad and Medad|Phinehas and Eleazar|Numbers 14:6|Joshua,Caleb
+a|Who hid the two spies in Jericho?|Rahab|Deborah|Ruth|Jael|Joshua 2:1-4|Rahab,hid
+a|Which prophetess judged Israel under a palm tree?|Deborah|Miriam|Huldah|Jael|Judges 4:4-5|Deborah,prophetess,palm
+a|Who beat the Midianites with only 300 men?|Gideon|Samson|Jephthah|Barak|Judges 7:7|Gideon,three,hundred
+a|What did Gideon's 300 men hold besides trumpets?|Pitchers with lamps inside|Spears|Slings and stones|Shields|Judges 7:16|pitchers,lamps
+a|Which priest raised the boy Samuel?|Eli|Aaron|Zadok|Nathan|1 Samuel 3:1|Samuel,Eli
+k|Who was David's father?|Jesse|Obed|Boaz|Saul|1 Samuel 17:12|David,Jesse
+k|What job did young David do?|He kept sheep|He built houses|He caught fish|He collected taxes|1 Samuel 16:11|sheep
+a|Which son of Saul loved David as his own soul?|Jonathan|Absalom|Abner|Joab|1 Samuel 18:1|Jonathan,David
+a|Which prophet told David, "Thou art the man"?|Nathan|Samuel|Gad|Elijah|2 Samuel 12:7|Nathan,man
+a|Which son of David was caught by his head in an oak tree?|Absalom|Amnon|Solomon|Adonijah|2 Samuel 18:9|Absalom,oak,head
+a|Who built the house of the LORD in Jerusalem?|Solomon|David|Hezekiah|Saul|1 Kings 6:14|Solomon,built
+a|Which queen came to test Solomon with hard questions?|The queen of Sheba|Jezebel|Esther|Vashti|1 Kings 10:1|Sheba,questions
+k|Which prophet was fed by ravens?|Elijah|Elisha|Jonah|Jeremiah|1 Kings 17:1-6|Elijah,ravens
+a|On which mount did Elijah face the prophets of Baal?|Carmel|Sinai|Horeb|Zion|1 Kings 18:19|Carmel,Baal
+a|Who was King Ahab's wife?|Jezebel|Athaliah|Delilah|Vashti|1 Kings 16:30-31|Jezebel,Ahab
+a|Which king was given fifteen more years to live?|Hezekiah|Josiah|Uzziah|Asa|Isaiah 38:1-5|Hezekiah,fifteen
+a|In whose days was the book of the law found in the temple?|Josiah|Joash|Hezekiah|Manasseh|2 Kings 22:1-8|Josiah,book,law
+a|Which man's words begin, "the LORD gave, and the LORD hath taken away"?|Job|David|Jeremiah|Elijah|Job 1:20-21|Job,taken
+a|Which prophet saw a valley full of dry bones?|Ezekiel|Isaiah|Daniel|Jeremiah|Ezekiel 37:1-4|bones,valley,prophesy
+a|Who said, "Here am I; send me"?|Isaiah|Jeremiah|Ezekiel|Amos|Isaiah 6:8|send,here am i
+a|To which prophet did God say, "Before I formed thee in the belly I knew thee"?|Jeremiah|Isaiah|Samuel|Ezekiel|Jeremiah 1:1-5|Jeremiah,belly
+k|In which town was Jesus born?|Bethlehem|Nazareth|Jerusalem|Capernaum|Matthew 2:1|Bethlehem,Jesus
+k|In which town did Jesus grow up?|Nazareth|Bethlehem|Capernaum|Bethany|Luke 2:51|Nazareth
+k|What was the name of Jesus' mother?|Mary|Martha|Elisabeth|Anna|Matthew 1:18|Mary,Jesus
+a|Which angel was sent to Mary?|Gabriel|Michael|Raphael|Uriel|Luke 1:26-27|Gabriel,Mary
+k|Who baptized Jesus?|John the Baptist|Peter|Andrew|Philip|Matthew 3:13|John,baptized
+a|In which river was Jesus baptized?|The Jordan|The Nile|The Euphrates|The Kidron|Matthew 3:13|Jordan
+k|How many days did Jesus fast in the wilderness?|Forty|Seven|Twelve|Three|Matthew 4:2|forty
+a|Where did Jesus turn water into wine?|Cana of Galilee|Capernaum|Bethany|Nain|John 2:11|Cana
+k|How many apostles did Jesus choose?|Twelve|Seven|Seventy|Three|Luke 6:13|twelve
+k|Which disciple walked on the water to Jesus?|Peter|John|Andrew|Thomas|Matthew 14:29|Peter,water
+a|Which disciple would not believe until he saw the nail prints?|Thomas|Peter|Philip|Judas|John 20:24-25|Thomas,believe,nails
+a|Who agreed to betray Jesus for thirty pieces of silver?|Judas Iscariot|Peter|Thomas|Barabbas|Matthew 26:14-15|Judas,thirty
+k|Which disciple denied Jesus three times?|Peter|John|Judas|James|Matthew 26:75|Peter,thrice
+k|Who climbed a sycamore tree to see Jesus?|Zacchaeus|Matthew|Nicodemus|Bartimaeus|Luke 19:2-4|Zacchaeus,sycomore
+a|Who came to Jesus by night?|Nicodemus|Zacchaeus|Joseph of Arimathaea|Lazarus|John 3:1-2|Nicodemus,night
+a|Who had been in the grave four days when Jesus raised him?|Lazarus|Jairus|Bartimaeus|Malchus|John 11:14-17|Lazarus,four
+k|How many loaves did the disciples have when Jesus fed the great crowd?|Five|Seven|Twelve|Two|Matthew 14:17|five,loaves
+a|How many baskets of leftovers were gathered after the five thousand ate?|Twelve|Seven|Five|Three|Matthew 14:20|twelve,baskets
+a|Who was made to carry Jesus' cross?|Simon of Cyrene|Peter|Joseph of Arimathaea|John|Matthew 27:32|Simon,Cyrene,cross
+a|Which governor handed Jesus over to be crucified?|Pilate|Herod|Festus|Felix|Matthew 27:24-26|Pilate,crucified
+a|Which prisoner was released instead of Jesus?|Barabbas|Bartimaeus|Barnabas|Bartholomew|Matthew 27:26|Barabbas
+a|To whom did Jesus appear first after he rose (Mark 16)?|Mary Magdalene|Peter|John|Thomas|Mark 16:9|Mary,Magdalene
+a|On which feast day did the Holy Ghost fill the believers in Acts 2?|Pentecost|Passover|The sabbath|Tabernacles|Acts 2:1-4|Pentecost,Holy,Ghost
+a|After whose sermon did about 3,000 people believe and get baptized?|Peter|Paul|Stephen|John|Acts 2:38-41|Peter,thousand
+a|Who prayed while being stoned, "Lord, lay not this sin to their charge"?|Stephen|James|Peter|Paul|Acts 7:59-60|Stephen,sin
+k|On the road to which city did a light from heaven stop Saul?|Damascus|Jerusalem|Antioch|Tarsus|Acts 9:3|Damascus
+k|What other name was Saul of Tarsus called?|Paul|Peter|Barnabas|Silas|Acts 13:9|Saul,Paul
+a|Who prayed and sang with Paul in prison at midnight?|Silas|Barnabas|Timothy|Luke|Acts 16:25|Paul,Silas
+a|After the shipwreck, Paul landed on which island?|Melita (Malta)|Cyprus|Crete|Patmos|Acts 28:1|Melita
+a|What came out of the fire and fastened on Paul's hand?|A viper|A scorpion|A lizard|A spider|Acts 28:3|viper
+a|Which seller of purple from Thyatira opened her heart to the gospel?|Lydia|Dorcas|Priscilla|Phebe|Acts 16:14|Lydia,purple
+a|Tabitha, whom Peter raised, was also called...|Dorcas|Lydia|Rhoda|Mary|Acts 9:36|Tabitha,Dorcas
+a|Which young man fell from a window while Paul preached?|Eutychus|Timothy|Tychicus|Trophimus|Acts 20:9|Eutychus
+a|On which island was John when he saw the Revelation?|Patmos|Melita|Crete|Cyprus|Revelation 1:9|Patmos
+a|Which of these is NOT in the list of the fruit of the Spirit?|Wisdom|Love|Joy|Peace|Galatians 5:22-23|love,joy,peace,temperance|-wisdom
+a|Jesus said the first and great commandment is to love...|The Lord thy God|Thy neighbour|Thine enemies|Thy parents|Matthew 22:37-38|love,God,first
+k|In John 10:11, Jesus says, "I am the good..."|Shepherd|Vine|Bread|Door|John 10:11|good,shepherd
+a|Which piece of armour is "the word of God"?|The sword of the Spirit|The shield of faith|The helmet of salvation|The breastplate of righteousness|Ephesians 6:17|sword,Spirit,word
+a|Which piece of armour quenches the fiery darts of the wicked?|The shield of faith|The helmet of salvation|The sword of the Spirit|The girdle of truth|Ephesians 6:16|shield,faith,fiery
+a|What is "the substance of things hoped for"?|Faith|Hope|Love|Grace|Hebrews 11:1|faith,substance
+a|Who looked back and became a pillar of salt?|Lot's wife|Sarah|Hagar|Rebekah|Genesis 19:26|wife,pillar,salt
+a|Which two cities did the LORD rain brimstone and fire on?|Sodom and Gomorrah|Tyre and Sidon|Babylon and Nineveh|Jericho and Ai|Genesis 19:24|Sodom,Gomorrah,brimstone
+a|Who was Abram's brother's son that travelled with him?|Lot|Laban|Ishmael|Nahor|Genesis 12:5|Lot,brother
+a|Who was the son of Hagar?|Ishmael|Isaac|Esau|Midian|Genesis 16:15|Hagar,Ishmael
+a|Who wrestled until the breaking of the day?|Jacob|Esau|Moses|Elijah|Genesis 32:24|Jacob,wrestled
+k|Who dreamed of a ladder reaching to heaven?|Jacob|Joseph|Abraham|Daniel|Genesis 28:10-12|Jacob,ladder
+a|Jacob served seven years to marry whom?|Rachel|Leah|Rebekah|Dinah|Genesis 29:20|Jacob,seven,Rachel
+a|Who was Joseph's younger brother, his mother's son?|Benjamin|Reuben|Judah|Levi|Genesis 43:29|Benjamin,younger
+a|Which prophetess, Aaron's sister, led the women with timbrels?|Miriam|Zipporah|Deborah|Rahab|Exodus 15:20|Miriam,sister,Aaron,timbrel
+k|Which sea did God part for Israel?|The Red Sea|The Dead Sea|The Sea of Galilee|The Great Sea|Exodus 15:4|red,sea
+a|What did Moses strike so water would come out?|A rock|A tree|The ground|A well|Exodus 17:6|rock,water,smite
+a|What were the commandments written on?|Tables of stone|Scrolls|Clay jars|Gold plates|Exodus 31:18|tables,stone
+a|Which king ate grass like oxen?|Nebuchadnezzar|Belshazzar|Darius|Pharaoh|Daniel 4:33|Nebuchadnezzar,grass,oxen
+a|Which king had Daniel put in the den of lions?|Darius|Nebuchadnezzar|Cyrus|Belshazzar|Daniel 6:9-16|Darius,lions
+a|Which prophet married Gomer?|Hosea|Amos|Joel|Micah|Hosea 1:2-3|Hosea,Gomer
+a|Who was Moses' father-in-law, the priest of Midian?|Jethro|Laban|Eli|Boaz|Exodus 3:1|Jethro,father,law,Midian
+a|What did the good Samaritan pour into the man's wounds?|Oil and wine|Water|Salt|Honey|Luke 10:34|oil,wine
+a|In the parable of the sower, the seed is...|The word of God|Faith|Money|The kingdom|Luke 8:11|seed,word,God
+k|The wise man built his house upon...|A rock|The sand|A hill|Clay|Matthew 7:24|rock
+a|How many lepers did Jesus cleanse when only one came back?|Ten|Seven|Twelve|Five|Luke 17:17|ten
+a|Who asked for the head of John the Baptist?|The daughter of Herodias|Jezebel|Delilah|Bernice|Matthew 14:6-8|daughter,Herodias,head
+a|What did John the Baptist eat?|Locusts and wild honey|Manna|Bread and fish|Figs|Matthew 3:4|locusts,honey
+a|Who was the father of James and John?|Zebedee|Jonas|Alphaeus|Joseph|Matthew 4:21|James,John,Zebedee
+k|Who was Peter's brother?|Andrew|James|John|Philip|Matthew 4:18|Peter,Andrew,brother
+a|Which disciple was called from the receipt of custom?|Matthew|Zacchaeus|Judas|Simon|Matthew 9:9|Matthew,custom
+a|What happened to the veil of the temple when Jesus died?|It was torn in two|It caught fire|It fell down|It turned white|Matthew 27:51|veil,rent,twain
+a|Who laid Jesus' body in his own new tomb?|Joseph of Arimathaea|Nicodemus|Peter|Lazarus|Matthew 27:57-60|Joseph,Arimathaea,body
+a|For how many days was the risen Jesus seen before he ascended?|Forty|Seven|Three|Fifty|Acts 1:3|forty
+a|Who was chosen to replace Judas?|Matthias|Barnabas|Silas|Stephen|Acts 1:26|Matthias
+a|Who fell down dead after lying with his wife about money?|Ananias|Simon|Demas|Alexander|Acts 5:1-5|Ananias,Sapphira
+a|Where were the disciples first called Christians?|Antioch|Jerusalem|Rome|Ephesus|Acts 11:26|Antioch,Christians
+a|What was the name of Timothy's grandmother?|Lois|Eunice|Lydia|Priscilla|2 Timothy 1:5|Lois,grandmother
+a|What was the name of Timothy's mother?|Eunice|Lois|Lydia|Phebe|2 Timothy 1:5|Eunice,mother
+a|Paul wrote to Philemon about which servant?|Onesimus|Tychicus|Epaphras|Demas|Philemon 1:10|Onesimus
+a|Who was the high priest when Jesus was taken in Matthew?|Caiaphas|Annas|Eli|Zadok|Matthew 26:57|Caiaphas,high,priest
+a|Whom did Jesus call "an Israelite indeed, in whom is no guile"?|Nathanael|Philip|Andrew|Peter|John 1:47|Nathanael,guile
+a|What did Pilate's title on the cross say (John)?|Jesus of Nazareth the King of the Jews|The Son of God|The Lamb of God|The Son of David|John 19:19|Nazareth,king,Jews
+a|At Jacob's well, Jesus talked with a woman of...|Samaria|Galilee|Tyre|Jericho|John 4:7|woman,Samaria,water
+a|What did Jesus put on the blind man's eyes in John 9?|Clay made with spittle|Oil|Jordan water|A cloth|John 9:6|clay,spittle
+a|Which pool was the blind man told to wash in?|Siloam|Bethesda|Gibeon|Hezekiah's pool|John 9:7|Siloam
+a|At which pool did Jesus heal a man sick for 38 years?|Bethesda|Siloam|Gibeon|Solomon's pool|John 5:2-5|Bethesda,thirty,eight
+a|For how many years had the woman who touched Jesus' garment been ill?|Twelve|Eighteen|Seven|Thirty-eight|Mark 5:25|twelve
+a|How old was Jairus' daughter?|Twelve|Seven|Ten|Fifteen|Mark 5:42|twelve
+a|Which blind man cried, "Jesus, thou Son of David, have mercy on me"?|Bartimaeus|Lazarus|Zacchaeus|Malchus|Mark 10:46-47|Bartimaeus,mercy
+a|Whose ear did Peter cut off?|Malchus|Barabbas|Caiaphas|Annas|John 18:10|Malchus,ear
+a|How often did Jesus tell Peter to forgive?|Seventy times seven|Seven times|Three times|Twelve times|Matthew 18:22|seventy,seven
+a|Who was the father of John the Baptist?|Zacharias|Joseph|Simeon|Zebedee|Luke 1:13|Zacharias,John
+a|Which old man took baby Jesus in his arms and blessed God?|Simeon|Zacharias|Eli|Joseph|Luke 2:25-28|Simeon,arms
+a|Which aged prophetess gave thanks when she saw baby Jesus?|Anna|Elisabeth|Huldah|Deborah|Luke 2:36-38|Anna,prophetess
+k|Who came from the east to worship baby Jesus?|Wise men|Fishermen|Soldiers|Priests|Matthew 2:1|wise,east
+k|What gifts did the wise men bring?|Gold, frankincense and myrrh|Gold, silver and bronze|Bread, wine and oil|Lambs, doves and incense|Matthew 2:11|gold,frankincense,myrrh
+k|Who told the shepherds that Jesus was born?|An angel|A star|The wise men|Mary|Luke 2:8-10|shepherds,angel
+k|Where was baby Jesus laid?|In a manger|In a cradle|In a basket|In the temple|Luke 2:7|manger
+a|Which king had the children of Bethlehem killed?|Herod|Pilate|Caesar Augustus|Archelaus|Matthew 2:16|Herod,slew
+a|Who was Caesar when Jesus was born?|Caesar Augustus|Tiberius|Nero|Claudius|Luke 2:1|Augustus
+a|On which day did God make man?|The sixth day|The first day|The seventh day|The third day|Genesis 1:26-31|man,sixth
+k|What did God do on the seventh day?|He rested|He made the stars|He made man|He made the sea|Genesis 2:2|seventh,rested
+k|God formed man from...|The dust of the ground|A rib|Water|River clay|Genesis 2:7|dust,ground
+k|God made the woman from Adam's...|Rib|Hand|Heart|Breath|Genesis 2:22|rib
+k|What was the name of the garden God planted?|Eden|Gethsemane|Goshen|Sharon|Genesis 2:8|Eden
+k|Which son of Adam was killed by his brother Cain?|Abel|Seth|Enoch|Lamech|Genesis 4:8|Cain,Abel,slew
+a|Who was born to Adam and Eve in Abel's place?|Seth|Enos|Enoch|Lamech|Genesis 4:25|Seth,Abel
+a|Which son of Noah was the father of Canaan?|Ham|Shem|Japheth|Cush|Genesis 9:18|Ham,Canaan
+k|Where did Noah's ark come to rest?|The mountains of Ararat|Mount Sinai|Mount Carmel|Mount Zion|Genesis 8:4|Ararat
+a|What was the city with the tall tower called?|Babel|Zion|Siloam|Salem|Genesis 11:9|Babel
+a|Abram's family set out from which place?|Ur of the Chaldees|Haran|Babylon|Nineveh|Genesis 11:31|Ur,Chaldees
+a|Melchizedek was king of which city?|Salem|Sodom|Gerar|Gomorrah|Genesis 14:18|Melchizedek,Salem
+k|What animal did God provide in place of Isaac?|A ram|A lion|A goat|A bullock|Genesis 22:13|ram
+k|Who was Samuel's mother?|Hannah|Peninnah|Elisabeth|Naomi|1 Samuel 1:20|Hannah,Samuel
+k|What did David use to defeat the giant?|A sling and a stone|A spear|A sword|A bow|1 Samuel 17:50|sling,stone
+a|Which prophet anointed David with oil?|Samuel|Nathan|Elijah|Gad|1 Samuel 16:13|Samuel,anointed,David
+a|Who cut off the skirt of Saul's robe in a cave?|David|Jonathan|Abner|Joab|1 Samuel 24:4|David,skirt,robe
+a|Which wise woman kept David from taking revenge on Nabal?|Abigail|Bathsheba|Michal|Abishag|1 Samuel 25:32-33|Abigail,David
+a|Gehazi was the servant of which prophet?|Elisha|Elijah|Isaiah|Samuel|2 Kings 4:8-12|Elisha,Gehazi
+a|What did Elisha make float on the water?|An iron axe head|A stone|A crown|A shield|2 Kings 6:5-6|axe,iron,swim
+a|Upon what did Jesus say he would build his church?|This rock|This mountain|This temple|This city|Matthew 16:18|rock,church
+a|What did Jesus say he would give Peter?|The keys of the kingdom of heaven|A sword|A staff|A crown|Matthew 16:19|keys,kingdom
+a|From which mount did Jesus ascend?|Olivet|Sinai|Carmel|Tabor|Acts 1:12|Olivet
+a|How did Paul escape from Damascus?|Let down by the wall in a basket|By ship|Dressed as a soldier|Through a tunnel|Acts 9:25|basket,wall
+a|Which couple were tentmakers like Paul?|Aquila and Priscilla|Barnabas and Mark|Silas and Timothy|Ananias and Sapphira|Acts 18:2-3|Aquila,Priscilla,tentmakers
+a|To how many churches was John told to write in Revelation 1?|Seven|Twelve|Three|Ten|Revelation 1:11|seven,churches
+a|The twelve gates of the new Jerusalem are made of...|Pearls|Gold|Jasper|Sapphire|Revelation 21:21|twelve,gates,pearls
+a|The street of the holy city is...|Pure gold|Silver|Marble|Crystal|Revelation 21:21|street,gold
+k|Who built an ark at God's word?|Noah|Moses|David|Abraham|Genesis 6:13-14|Noah,ark
+k|What bird did Noah send out first?|A raven|A dove|An eagle|A sparrow|Genesis 8:7|raven
+k|Which creature spoke to Eve in the garden?|The serpent|A lion|A bird|A lamb|Genesis 3:1|serpent
+k|Baby Moses was hidden in an ark made of...|Bulrushes|Cedar wood|Gold|Stone|Exodus 2:3|bulrushes
+a|Who dreamed the sun, moon and eleven stars bowed to him?|Joseph|Daniel|Jacob|Solomon|Genesis 37:5-9|Joseph,eleven,stars
+k|What did Jesus sit on to ride into Jerusalem?|A colt|A horse|A camel|A chariot|Mark 11:7|colt
+k|What did Jesus say to the wind and the sea?|Peace, be still|Go away|Be quiet now|Stop, wind|Mark 4:39|peace,still
+k|Jesus came to his disciples walking on the...|Sea|Sand|Clouds|Road|Matthew 14:25|walking,sea
+k|What did Jesus turn water into at Cana?|Wine|Milk|Oil|Honey|John 2:9|water,wine
+k|What did Jesus feed the five thousand with?|Five loaves and two fishes|Manna and quails|Bread and honey|Figs and grapes|Matthew 14:17|five,loaves,two,fishes

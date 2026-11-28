@@ -1,0 +1,2852 @@
+[
+{
+"id": "ms0",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Nashville Church Dedication 2026”?",
+"options": [
+"Pastor David Popoola",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor Obatusin",
+"Dr. D.K. Olukoya"
+],
+"answer": 3,
+"explain": "“Nashville Church Dedication 2026” — Dr. D.K. Olukoya.",
+"date": "2026-11-19",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=cde4vdc2__I"
+}
+},
+{
+"id": "ms1",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “This Limitation Must Break: You Were Made to Break Forth”?",
+"options": [
+"Pastor Oluyemi Jesurayibi",
+"Pastor David Popoola",
+"Pastor Abel Michael",
+"Pastor Olalekan Ademakin"
+],
+"answer": 3,
+"explain": "“This Limitation Must Break: You Were Made to Break Forth” — Pastor Olalekan Ademakin.",
+"date": "2026-11-23",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=yg1Yz7dkNBw"
+}
+},
+{
+"id": "ms2",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “This Limitation Must Break: You Were Made to Break Forth” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-11-23",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=yg1Yz7dkNBw"
+}
+},
+{
+"id": "ms3",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “What Do You See? The Breakthrough Power of Vision”?",
+"options": [
+"Pastor (Mrs.) Obatusin",
+"Pastor Jacob Kuye",
+"Pastor (Mrs.) Oluwatoyin Oni",
+"Pastor Oluwatoyin Jesurayibi"
+],
+"answer": 1,
+"explain": "“What Do You See? The Breakthrough Power of Vision” — Pastor Jacob Kuye.",
+"date": "2026-11-15",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=wdiHyJL1bCQ"
+}
+},
+{
+"id": "ms4",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “What Do You See? The Breakthrough Power of Vision” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Open Heaven Encounter"
+],
+"answer": 3,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-11-15",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=wdiHyJL1bCQ"
+}
+},
+{
+"id": "ms5",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Your Provision Must Locate You”?",
+"options": [
+"Dr. D.K. Olukoya",
+"Pastor Abel Michael",
+"Pastor Oluyemi Jesurayibi",
+"Pastor Jacob Kuye"
+],
+"answer": 1,
+"explain": "“Your Provision Must Locate You” — Pastor Abel Michael.",
+"date": "2026-11-06",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=GqVMndrvzE8"
+}
+},
+{
+"id": "ms6",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Your Provision Must Locate You” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 0,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-11-06",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=GqVMndrvzE8"
+}
+},
+{
+"id": "ms7",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Enlargement Without Preparation Creates Pressure”?",
+"options": [
+"Pastor Olumide Oni",
+"Pastor Abel Michael",
+"Pastor David Bolaji",
+"Pastor Olalekan Ademakin"
+],
+"answer": 3,
+"explain": "“Enlargement Without Preparation Creates Pressure” — Pastor Olalekan Ademakin.",
+"date": "2026-10-30",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=93L2EZAmS_I"
+}
+},
+{
+"id": "ms8",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Enlargement Without Preparation Creates Pressure” preached?",
+"options": [
+"MFM Women Foundation",
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter"
+],
+"answer": 3,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-10-30",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=93L2EZAmS_I"
+}
+},
+{
+"id": "ms9",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Delay Is Not Denial” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-10-28",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=0aOJSCZk8qI"
+}
+},
+{
+"id": "ms10",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Power to True Prosperity”?",
+"options": [
+"Pastor Oluyemi Jesurayibi",
+"Pastor Substance Ibegbulem",
+"Pastor (Mrs.) Sola Ajisafe",
+"Dr. D.K. Olukoya"
+],
+"answer": 1,
+"explain": "“The Power to True Prosperity” — Pastor Substance Ibegbulem.",
+"date": "2026-10-20",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=eIWLNRD_ZK4"
+}
+},
+{
+"id": "ms11",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Power to True Prosperity” preached?",
+"options": [
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter"
+],
+"answer": 3,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-10-20",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=eIWLNRD_ZK4"
+}
+},
+{
+"id": "ms12",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Open Heaven for Signs and Wonders”?",
+"options": [
+"Pastor Abel Michael",
+"Pastor (Mrs.) Sola Ajisafe",
+"Pastor Obatusin",
+"Pastor Segun Obatusin"
+],
+"answer": 1,
+"explain": "“Open Heaven for Signs and Wonders” — Pastor (Mrs.) Sola Ajisafe.",
+"date": "2026-10-14",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=irOC2Qy9RVA"
+}
+},
+{
+"id": "ms13",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Open Heaven for Signs and Wonders” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter"
+],
+"answer": 3,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-10-14",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=irOC2Qy9RVA"
+}
+},
+{
+"id": "ms14",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “I Shall See the End of My Pharaoh” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-11-25",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=3l0kGCk11Wk"
+}
+},
+{
+"id": "ms15",
+"pack": "messages",
+"level": "all",
+"q": "Which message was preached on Healing & Deliverance Hour on Nov 24, 2026?",
+"options": [
+"Don’t Block Your Miracle! 🚫",
+"I Shall See the End of My Pharaoh",
+"Deliverance From Evil Garments: Breaking Free From Spiritual Bondage",
+"Divine Prescription"
+],
+"answer": 1,
+"explain": "Nov 24, 2026: “I Shall See the End of My Pharaoh”.",
+"date": "2026-11-25",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=3l0kGCk11Wk"
+}
+},
+{
+"id": "ms16",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Pharaoh Behind Your Affliction” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-11-18",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=4_BaarvVSUA"
+}
+},
+{
+"id": "ms17",
+"pack": "messages",
+"level": "all",
+"q": "Which message was preached on Healing & Deliverance Hour on Nov 17, 2026?",
+"options": [
+"Dress To Kill",
+"The Killer Affliction In My Father's House Will Not Kill Me Before My Time",
+"The Pharaoh Behind Your Affliction",
+"When The Wicked Wants To Kill You Because of Your Testimony"
+],
+"answer": 2,
+"explain": "Nov 17, 2026: “The Pharaoh Behind Your Affliction”.",
+"date": "2026-11-18",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=4_BaarvVSUA"
+}
+},
+{
+"id": "ms18",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “This Limitation Must Break” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2026-11-20",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Pkz_rhejYPs"
+}
+},
+{
+"id": "ms19",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Heavens Are Open!” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 2,
+"explain": "It was preached on Open Heaven Encounter.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=b-V8Ez753DI"
+}
+},
+{
+"id": "ms20",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Role of Health In Becoming A Mother In Israel” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=6ko9fPkL4hQ"
+}
+},
+{
+"id": "ms21",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “My Time of Restoration”?",
+"options": [
+"Pastor David Popoola",
+"Pastor (Mrs.) Oluwatoyin Oni",
+"Pastor Olalekan Ademakin",
+"Pastor Jacob Kuye"
+],
+"answer": 1,
+"explain": "“My Time of Restoration” — Pastor (Mrs.) Oluwatoyin Oni.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=9V7K82rEod8"
+}
+},
+{
+"id": "ms22",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “My Time of Restoration” preached?",
+"options": [
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter"
+],
+"answer": 1,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=9V7K82rEod8"
+}
+},
+{
+"id": "ms23",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Relationship: The Bridge to Destiny”?",
+"options": [
+"Pastor Abel Michael",
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor (Mrs.) Sola Ajisafe",
+"Pastor Jacob Kuye"
+],
+"answer": 0,
+"explain": "“Relationship: The Bridge to Destiny” — Pastor Abel Michael.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=wKJM0gog33I"
+}
+},
+{
+"id": "ms24",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Relationship: The Bridge to Destiny” preached?",
+"options": [
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour"
+],
+"answer": 1,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=wKJM0gog33I"
+}
+},
+{
+"id": "ms25",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Fire Must Not Go Out”?",
+"options": [
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor Atinuke Ibegbulem",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor Kola Oloko"
+],
+"answer": 2,
+"explain": "“The Fire Must Not Go Out” — Dr. Elizabeth Arisekola-Oloko, MFM Women Foundation Retreat 2026.",
+"date": "2026-10-24",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2hNq-EhTjP8"
+}
+},
+{
+"id": "ms26",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Fire Must Not Go Out” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2026-10-24",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2hNq-EhTjP8"
+}
+},
+{
+"id": "ms27",
+"pack": "messages",
+"level": "all",
+"q": "“The Fire Must Not Go Out” was part of which event?",
+"options": [
+"GEN 218 Single's Conference",
+"MFM Women Foundation Retreat 2026",
+"MFM Women Conference",
+"Quarterly Gen218 Virtual Conference"
+],
+"answer": 1,
+"explain": "MFM Women Foundation Retreat 2026: “The Fire Must Not Go Out”.",
+"date": "2026-10-24",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2hNq-EhTjP8"
+}
+},
+{
+"id": "ms28",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Women As Carriers of Fire”?",
+"options": [
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor (Mrs.) Obatusin",
+"Pastor Tope Oluwayemiwo",
+"Pastor Obatusin"
+],
+"answer": 0,
+"explain": "“Women As Carriers of Fire” — Pastor Oluwatoyin Jesurayibi, MFM Women Foundation Retreat 2026.",
+"date": "2026-10-23",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2FcvGuzdmmM"
+}
+},
+{
+"id": "ms29",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Women As Carriers of Fire” preached?",
+"options": [
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 0,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2026-10-23",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2FcvGuzdmmM"
+}
+},
+{
+"id": "ms30",
+"pack": "messages",
+"level": "all",
+"q": "“Women As Carriers of Fire” was part of which event?",
+"options": [
+"Thanksgiving Service 2024",
+"Great Dallas Deliverance Crusade 2026",
+"Women Foundation Retreat 2026",
+"MFM Women Foundation Retreat 2026"
+],
+"answer": 3,
+"explain": "MFM Women Foundation Retreat 2026: “Women As Carriers of Fire”.",
+"date": "2026-10-23",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2FcvGuzdmmM"
+}
+},
+{
+"id": "ms31",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Rebuilding the Broken Altar”?",
+"options": [
+"Dr. D.K. Olukoya",
+"Pastor Atinuke Ibegbulem",
+"Pastor Israel",
+"Pastor Jacob Kuye"
+],
+"answer": 1,
+"explain": "“Rebuilding the Broken Altar” — Pastor Atinuke Ibegbulem, MFM Women Foundation Retreat 2026.",
+"date": "2026-10-22",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=D-eqmwm_jlY"
+}
+},
+{
+"id": "ms32",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Rebuilding the Broken Altar” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2026-10-22",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=D-eqmwm_jlY"
+}
+},
+{
+"id": "ms33",
+"pack": "messages",
+"level": "all",
+"q": "“Rebuilding the Broken Altar” was part of which event?",
+"options": [
+"Great Dallas Deliverance Crusade 2026",
+"Nashville Deliverance Crusade 2026",
+"MFM Women Foundation Retreat 2026",
+"Quarterly Gen218 Virtual Conference"
+],
+"answer": 2,
+"explain": "MFM Women Foundation Retreat 2026: “Rebuilding the Broken Altar”.",
+"date": "2026-10-22",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=D-eqmwm_jlY"
+}
+},
+{
+"id": "ms34",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Rekindling the Altar (Keynote)”?",
+"options": [
+"Pastor Abel Michael",
+"Pastor Olalekan Ademakin",
+"Pastor (Mrs.) Oluwatoyin Oni",
+"Pastor Kehinde Olajide"
+],
+"answer": 2,
+"explain": "“Rekindling the Altar (Keynote)” — Pastor (Mrs.) Oluwatoyin Oni, MFM Women Foundation Retreat 2026.",
+"date": "2026-10-19",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=tlIFAHwfEEw"
+}
+},
+{
+"id": "ms35",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Rekindling the Altar (Keynote)” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 3,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2026-10-19",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=tlIFAHwfEEw"
+}
+},
+{
+"id": "ms36",
+"pack": "messages",
+"level": "all",
+"q": "“Rekindling the Altar (Keynote)” was part of which event?",
+"options": [
+"Women Foundation Retreat 2026",
+"MFM Church Dedication 2026",
+"MFM Women Foundation Retreat 2026",
+"Quarterly Gen218 Virtual Conference"
+],
+"answer": 2,
+"explain": "MFM Women Foundation Retreat 2026: “Rekindling the Altar (Keynote)”.",
+"date": "2026-10-19",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=tlIFAHwfEEw"
+}
+},
+{
+"id": "ms37",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Rekindling the Altar” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter"
+],
+"answer": 2,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2026-10-10",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=q2tolFt52qw"
+}
+},
+{
+"id": "ms38",
+"pack": "messages",
+"level": "all",
+"q": "“Rekindling the Altar” was part of which event?",
+"options": [
+"MFM Church Dedication 2026",
+"Women Foundation Retreat 2026",
+"MFM Women Conference",
+"Nashville Deliverance Crusade 2026"
+],
+"answer": 1,
+"explain": "Women Foundation Retreat 2026: “Rekindling the Altar”.",
+"date": "2026-10-10",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=q2tolFt52qw"
+}
+},
+{
+"id": "ms39",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Rooted and Established” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter"
+],
+"answer": 2,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=LimW0zHUP0Y"
+}
+},
+{
+"id": "ms40",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Breakthrough Alert! 🚨 Day 1 of a New Thing” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=FBRzA38XqXc"
+}
+},
+{
+"id": "ms41",
+"pack": "messages",
+"level": "all",
+"q": "“Breakthrough Alert! 🚨 Day 1 of a New Thing” was part of which event?",
+"options": [
+"MFM Women Conference",
+"Thanksgiving Service 2024",
+"MFM North Carolina Church Dedication 2026",
+"Nashville Deliverance Crusade 2026"
+],
+"answer": 0,
+"explain": "MFM Women Conference: “Breakthrough Alert! 🚨 Day 1 of a New Thing”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=FBRzA38XqXc"
+}
+},
+{
+"id": "ms42",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Beauty From Ashes” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 3,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=tm5qVR9WqXk"
+}
+},
+{
+"id": "ms43",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Graced For More” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"Healing & Deliverance Hour",
+"MFM Women Foundation"
+],
+"answer": 3,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=mIbFNv0ynhI"
+}
+},
+{
+"id": "ms44",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Women of Impact” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 3,
+"explain": "It was preached on MFM Women Foundation.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=SE2ts3vqd8o"
+}
+},
+{
+"id": "ms45",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Spiritual Preparation for Marital Glory”?",
+"options": [
+"Pastor Olalekan Ademakin",
+"Pastor Oluyemi Jesurayibi",
+"Pastor (Mrs.) Obatusin",
+"Pastor Abel Michael"
+],
+"answer": 2,
+"explain": "“Spiritual Preparation for Marital Glory” — Pastor (Mrs.) Obatusin.",
+"date": "2026-11-07",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=SdYN6u8mLDM"
+}
+},
+{
+"id": "ms46",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Spiritual Preparation for Marital Glory” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Gen218.",
+"date": "2026-11-07",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=SdYN6u8mLDM"
+}
+},
+{
+"id": "ms47",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “GEN218 Regional Prayer Conference 2026” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 1,
+"explain": "It was preached on Gen218.",
+"date": "2026-10-10",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Tfv3mSJp1OY"
+}
+},
+{
+"id": "ms48",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Glory Revealed!” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 2,
+"explain": "It was preached on Gen218.",
+"date": "2025-05-18",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=82TOfp_eH-w"
+}
+},
+{
+"id": "ms49",
+"pack": "messages",
+"level": "all",
+"q": "“Glory Revealed!” was part of which event?",
+"options": [
+"Quarterly Gen218 Virtual Conference",
+"Nashville Deliverance Crusade 2026",
+"GEN 218 Single's Conference",
+"MFM North Carolina Church Dedication 2026"
+],
+"answer": 0,
+"explain": "Quarterly Gen218 Virtual Conference: “Glory Revealed!”.",
+"date": "2025-05-18",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=82TOfp_eH-w"
+}
+},
+{
+"id": "ms50",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “GEN 218 Single's Conference: It Is My Time To Rejoice” preached?",
+"options": [
+"Gen218",
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 0,
+"explain": "It was preached on Gen218.",
+"date": "2024-10-12",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Raib3YWzglY"
+}
+},
+{
+"id": "ms51",
+"pack": "messages",
+"level": "all",
+"q": "“Defeating Repeated Battles” was part of which event?",
+"options": [
+"Women Foundation Retreat 2026",
+"MFM North Carolina Church Dedication 2026",
+"MFM Women Conference",
+"Great Dallas Deliverance Crusade 2026"
+],
+"answer": 3,
+"explain": "Great Dallas Deliverance Crusade 2026: “Defeating Repeated Battles”.",
+"date": "2026-11-21",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=UTED-6TGePY"
+}
+},
+{
+"id": "ms52",
+"pack": "messages",
+"level": "all",
+"q": "“Dry Bones Shall Live Again” was part of which event?",
+"options": [
+"Quarterly Gen218 Virtual Conference",
+"Nashville Deliverance Crusade 2026",
+"A Power Packed Crusade",
+"GEN 218 Single's Conference"
+],
+"answer": 1,
+"explain": "Nashville Deliverance Crusade 2026: “Dry Bones Shall Live Again”.",
+"date": "2026-11-20",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2MyYAM-nsZw"
+}
+},
+{
+"id": "ms53",
+"pack": "messages",
+"level": "all",
+"q": "“A New Altar in Tampa” was part of which event?",
+"options": [
+"Great Dallas Deliverance Crusade 2026",
+"Quarterly Gen218 Virtual Conference",
+"MFM Church Dedication 2026",
+"A Great Deliverance Crusade: Binding The Strongman"
+],
+"answer": 2,
+"explain": "MFM Church Dedication 2026: “A New Altar in Tampa”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=QrhMZPQtuqo"
+}
+},
+{
+"id": "ms54",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Great North Carolina Deliverance Crusade”?",
+"options": [
+"Pastor Jesurayibi",
+"Dr. D.K. Olukoya",
+"Pastor Segun Obatusin",
+"Pastor (Mrs.) Sola Ajisafe"
+],
+"answer": 1,
+"explain": "“The Great North Carolina Deliverance Crusade” — Dr. D.K. Olukoya.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=E7a4haHhrDc"
+}
+},
+{
+"id": "ms55",
+"pack": "messages",
+"level": "all",
+"q": "“A New Altar is Rising” was part of which event?",
+"options": [
+"A Great Deliverance Crusade: Binding The Strongman",
+"MFM North Carolina Church Dedication 2026",
+"GEN 218 Single's Conference",
+"Thanksgiving Service 2024"
+],
+"answer": 1,
+"explain": "MFM North Carolina Church Dedication 2026: “A New Altar is Rising”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=b9yLZtDOoeU"
+}
+},
+{
+"id": "ms56",
+"pack": "messages",
+"level": "all",
+"q": "“Breaking Evil Limitation” was part of which event?",
+"options": [
+"A Power Packed Crusade",
+"MFM Women Foundation Retreat 2026",
+"Great Dallas Deliverance Crusade 2026",
+"MFM Church Dedication 2026"
+],
+"answer": 0,
+"explain": "A Power Packed Crusade: “Breaking Evil Limitation”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Z0erVczxqHg"
+}
+},
+{
+"id": "ms57",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Invisible Prison: The Pharaoh Behind Your Affliction”?",
+"options": [
+"Pastor Olalekan Ademakin",
+"Pastor Oluyemi Jesurayibi",
+"Pastor Abel Michael",
+"Pastor Kola Oloko"
+],
+"answer": 0,
+"explain": "“The Invisible Prison: The Pharaoh Behind Your Affliction” — Pastor Olalekan Ademakin.",
+"date": "2026-11-22",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=xAot6X1Lvuk"
+}
+},
+{
+"id": "ms58",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Invisible Prison: The Pharaoh Behind Your Affliction” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-11-22",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=xAot6X1Lvuk"
+}
+},
+{
+"id": "ms59",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Your Hard Season Has an Expiry Date”?",
+"options": [
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor Obatusin",
+"Pastor Kola Oloko",
+"Pastor Jesurayibi"
+],
+"answer": 2,
+"explain": "“Your Hard Season Has an Expiry Date” — Pastor Kola Oloko.",
+"date": "2026-11-12",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=04A55YnQecc"
+}
+},
+{
+"id": "ms60",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Your Hard Season Has an Expiry Date” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Open Heaven Encounter"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-11-12",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=04A55YnQecc"
+}
+},
+{
+"id": "ms61",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Say Bye-Bye to Your Pharaoh: A Final Separation”?",
+"options": [
+"Pastor Jacob Kuye",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor Obatusin"
+],
+"answer": 3,
+"explain": "“Say Bye-Bye to Your Pharaoh: A Final Separation” — Pastor Obatusin.",
+"date": "2026-11-11",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=pt1nYfljrDM"
+}
+},
+{
+"id": "ms62",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Say Bye-Bye to Your Pharaoh: A Final Separation” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-11-11",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=pt1nYfljrDM"
+}
+},
+{
+"id": "ms63",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Pharaoh Is Not in Egypt. He's in Your Father's House”?",
+"options": [
+"Pastor Olalekan Ademakin",
+"Pastor (Mrs.) Obatusin",
+"Pastor Kehinde Olajide",
+"Pastor Oluwatoyin Jesurayibi"
+],
+"answer": 2,
+"explain": "“The Pharaoh Is Not in Egypt. He's in Your Father's House” — Pastor Kehinde Olajide.",
+"date": "2026-10-28",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=oRrlfYCfqis"
+}
+},
+{
+"id": "ms64",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Pharaoh Is Not in Egypt. He's in Your Father's House” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-10-28",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=oRrlfYCfqis"
+}
+},
+{
+"id": "ms65",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Crossed Out at the Last Minute” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-10-25",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=-JF6vmirsgw"
+}
+},
+{
+"id": "ms66",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Come and See”?",
+"options": [
+"Pastor Jacob Kuye",
+"Pastor Abel Michael",
+"Pastor David Popoola",
+"Pastor Substance Ibegbulem"
+],
+"answer": 2,
+"explain": "“Come and See” — Pastor David Popoola.",
+"date": "2026-10-17",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Wbp9Q9SXpZc"
+}
+},
+{
+"id": "ms67",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Come and See” preached?",
+"options": [
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-10-17",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Wbp9Q9SXpZc"
+}
+},
+{
+"id": "ms68",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Anointing That Breaks the Yoke”?",
+"options": [
+"Pastor Tope Oluwayemiwo",
+"Pastor (Mrs.) Sola Ajisafe",
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor Substance Ibegbulem"
+],
+"answer": 0,
+"explain": "“The Anointing That Breaks the Yoke” — Pastor Tope Oluwayemiwo.",
+"date": "2026-10-13",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=YgNpvkDlPG0"
+}
+},
+{
+"id": "ms69",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Anointing That Breaks the Yoke” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-10-13",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=YgNpvkDlPG0"
+}
+},
+{
+"id": "ms70",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “From the Altar of Poverty to Prosperity” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2026-10-07",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=tK8mNtlw2h8"
+}
+},
+{
+"id": "ms71",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Touch Him By Faith & Be Made Whole” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=QZLt9h8mTW8"
+}
+},
+{
+"id": "ms72",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deliverance From Affliction” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=TbiTkB2IPnE"
+}
+},
+{
+"id": "ms73",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Getting Your Divine Position Back”?",
+"options": [
+"Pastor Atinuke Ibegbulem",
+"Pastor David Popoola",
+"Pastor Oluyemi Jesurayibi",
+"Pastor (Mrs.) Obatusin"
+],
+"answer": 1,
+"explain": "“Getting Your Divine Position Back” — Pastor David Popoola.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=gFsLV2o6ib8"
+}
+},
+{
+"id": "ms74",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Getting Your Divine Position Back” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=gFsLV2o6ib8"
+}
+},
+{
+"id": "ms75",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Don’t Block Your Miracle! 🚫” preached?",
+"options": [
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=MwZyYeNr5bc"
+}
+},
+{
+"id": "ms76",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Receive Your Healing Through the Name of JESUS”?",
+"options": [
+"Pastor Oluyemi Jesurayibi",
+"Pastor Israel",
+"Pastor Obatusin",
+"Pastor Substance Ibegbulem"
+],
+"answer": 0,
+"explain": "“Receive Your Healing Through the Name of JESUS” — Pastor Oluyemi Jesurayibi.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=ljwUwbMUII4"
+}
+},
+{
+"id": "ms77",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Receive Your Healing Through the Name of JESUS” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=ljwUwbMUII4"
+}
+},
+{
+"id": "ms78",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Mystery of Water”?",
+"options": [
+"Pastor Abel Michael",
+"Pastor Kola Oloko",
+"Pastor Obatusin",
+"Pastor Atinuke Ibegbulem"
+],
+"answer": 1,
+"explain": "“Mystery of Water” — Pastor Kola Oloko.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=w9bepciUEhQ"
+}
+},
+{
+"id": "ms79",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Mystery of Water” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Open Heaven Encounter"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=w9bepciUEhQ"
+}
+},
+{
+"id": "ms80",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Uprooting Evil Plantation”?",
+"options": [
+"Pastor Jacob Kuye",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor Obatusin",
+"Pastor David Bolaji"
+],
+"answer": 3,
+"explain": "“Uprooting Evil Plantation” — Pastor David Bolaji.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=N4XPRkq-nBg"
+}
+},
+{
+"id": "ms81",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Uprooting Evil Plantation” preached?",
+"options": [
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Gen218",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=N4XPRkq-nBg"
+}
+},
+{
+"id": "ms82",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Only One Thing Is Needed”?",
+"options": [
+"Pastor David Bolaji",
+"Pastor Segun Obatusin",
+"Pastor Tope Oluwayemiwo",
+"Pastor (Mrs.) Oluwatoyin Oni"
+],
+"answer": 1,
+"explain": "“Only One Thing Is Needed” — Pastor Segun Obatusin.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=uzDmoe6m2vg"
+}
+},
+{
+"id": "ms83",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Only One Thing Is Needed” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=uzDmoe6m2vg"
+}
+},
+{
+"id": "ms84",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Quenching The Fire of Afflictions Inside Your Organs” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=li5WlKy5Dtk"
+}
+},
+{
+"id": "ms85",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Dress To Kill”?",
+"options": [
+"Pastor Segun Obatusin",
+"Pastor Kehinde Olajide",
+"Pastor Substance Ibegbulem",
+"Pastor David Bolaji"
+],
+"answer": 2,
+"explain": "“Dress To Kill” — Pastor Substance Ibegbulem.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=LAMB4iMAqOA"
+}
+},
+{
+"id": "ms86",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Dress To Kill” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=LAMB4iMAqOA"
+}
+},
+{
+"id": "ms87",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Rejecting The Spirit of Sickness and Diseases”?",
+"options": [
+"Pastor David Bolaji",
+"Pastor Oluyemi Jesurayibi",
+"Pastor Kola Oloko",
+"Pastor (Mrs.) Sola Ajisafe"
+],
+"answer": 1,
+"explain": "“Rejecting The Spirit of Sickness and Diseases” — Pastor Oluyemi Jesurayibi.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=uEqPnfwQDJQ"
+}
+},
+{
+"id": "ms88",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Rejecting The Spirit of Sickness and Diseases” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=uEqPnfwQDJQ"
+}
+},
+{
+"id": "ms89",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Prayer Against Stubborn Condition”?",
+"options": [
+"Pastor Segun Obatusin",
+"Pastor Jesurayibi",
+"Pastor Olumide Oni",
+"Dr. Elizabeth Arisekola-Oloko"
+],
+"answer": 2,
+"explain": "“Prayer Against Stubborn Condition” — Pastor Olumide Oni.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Pkcynl_foUM"
+}
+},
+{
+"id": "ms90",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Prayer Against Stubborn Condition” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Pkcynl_foUM"
+}
+},
+{
+"id": "ms91",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Deliverance From the Spirit of Depression”?",
+"options": [
+"Pastor David Popoola",
+"Pastor Obatusin",
+"Pastor Olumide Oni",
+"Pastor Jacob Kuye"
+],
+"answer": 0,
+"explain": "“Deliverance From the Spirit of Depression” — Pastor David Popoola.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=b3afwDk4tM0"
+}
+},
+{
+"id": "ms92",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deliverance From the Spirit of Depression” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=b3afwDk4tM0"
+}
+},
+{
+"id": "ms93",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Jesus The Healer: The Power That Still Heals Today!” preached?",
+"options": [
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=jCP4RXC9t68"
+}
+},
+{
+"id": "ms94",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deliverance From Bad Finishing” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Nvr3KOg9qag"
+}
+},
+{
+"id": "ms95",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Thou Art Loose”?",
+"options": [
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor Jesurayibi",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor David Bolaji"
+],
+"answer": 3,
+"explain": "“Thou Art Loose” — Pastor David Bolaji.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=d88qTXKx1JY"
+}
+},
+{
+"id": "ms96",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Thou Art Loose” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Gen218",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=d88qTXKx1JY"
+}
+},
+{
+"id": "ms97",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “God of All Flesh, Undertake for Me 🙌 Divine Intervention in Times of Oppression!” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=PD13Y-3LLZM"
+}
+},
+{
+"id": "ms98",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deliverance From Evil Garments: Breaking Free From Spiritual Bondage” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=UuQ1YT0BfYo"
+}
+},
+{
+"id": "ms99",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Divine Intervention Through Desperate Prayers”?",
+"options": [
+"Dr. D.K. Olukoya",
+"Pastor Substance Ibegbulem",
+"Pastor Oluyemi Jesurayibi",
+"Pastor Tope Oluwayemiwo"
+],
+"answer": 1,
+"explain": "“Divine Intervention Through Desperate Prayers” — Pastor Substance Ibegbulem.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2oAzOe8m3OY"
+}
+},
+{
+"id": "ms100",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Divine Intervention Through Desperate Prayers” preached?",
+"options": [
+"MFM Women Foundation",
+"Gen218",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter"
+],
+"answer": 2,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2oAzOe8m3OY"
+}
+},
+{
+"id": "ms101",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Healing By Deliverance”?",
+"options": [
+"Pastor Kola Oloko",
+"Pastor Tope Oluwayemiwo",
+"Pastor Jacob Kuye",
+"Pastor Oluyemi Jesurayibi"
+],
+"answer": 3,
+"explain": "“Healing By Deliverance” — Pastor Oluyemi Jesurayibi.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=NbI-nd_4zZ8"
+}
+},
+{
+"id": "ms102",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Healing By Deliverance” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Gen218"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=NbI-nd_4zZ8"
+}
+},
+{
+"id": "ms103",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Deeply Rooted Problems Must Surrender”?",
+"options": [
+"Pastor Jacob Kuye",
+"Pastor Jesurayibi",
+"Pastor Olumide Oni",
+"Pastor Abel Michael"
+],
+"answer": 2,
+"explain": "“Deeply Rooted Problems Must Surrender” — Pastor Olumide Oni.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=GYCQRppzFSY"
+}
+},
+{
+"id": "ms104",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deeply Rooted Problems Must Surrender” preached?",
+"options": [
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=GYCQRppzFSY"
+}
+},
+{
+"id": "ms105",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Deliverance From Divination”?",
+"options": [
+"Pastor Oluwatoyin Jesurayibi",
+"Pastor David Popoola",
+"Dr. D.K. Olukoya",
+"Pastor Oluyemi Jesurayibi"
+],
+"answer": 1,
+"explain": "“Deliverance From Divination” — Pastor David Popoola.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=HJoROC9HrYI"
+}
+},
+{
+"id": "ms106",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deliverance From Divination” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Gen218",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=HJoROC9HrYI"
+}
+},
+{
+"id": "ms107",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Mystery of Prayer Battle Cry”?",
+"options": [
+"Pastor David Popoola",
+"Pastor Tope Oluwayemiwo",
+"Pastor Jacob Kuye",
+"Pastor (Mrs.) Oluwatoyin Oni"
+],
+"answer": 1,
+"explain": "“The Mystery of Prayer Battle Cry” — Pastor Tope Oluwayemiwo.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=qXUhnUJztRI"
+}
+},
+{
+"id": "ms108",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Mystery of Prayer Battle Cry” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=qXUhnUJztRI"
+}
+},
+{
+"id": "ms109",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “My Faith & My Healing”?",
+"options": [
+"Pastor Kola Oloko",
+"Dr. D.K. Olukoya",
+"Pastor Olalekan Ademakin",
+"Pastor David Bolaji"
+],
+"answer": 0,
+"explain": "“My Faith & My Healing” — Pastor Kola Oloko.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=gs6vj1hrWso"
+}
+},
+{
+"id": "ms110",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “My Faith & My Healing” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=gs6vj1hrWso"
+}
+},
+{
+"id": "ms111",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “When The Wicked Wants To Kill You Because of Your Testimony” preached?",
+"options": [
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=B04lSnrpH-I"
+}
+},
+{
+"id": "ms112",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Breaking Out Of The Dark Prison”?",
+"options": [
+"Pastor Segun Obatusin",
+"Pastor Kehinde Olajide",
+"Pastor Tope Oluwayemiwo",
+"Pastor Olumide Oni"
+],
+"answer": 0,
+"explain": "“Breaking Out Of The Dark Prison” — Pastor Segun Obatusin.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=eezx7k5AkDM"
+}
+},
+{
+"id": "ms113",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Breaking Out Of The Dark Prison” preached?",
+"options": [
+"Gen218",
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=eezx7k5AkDM"
+}
+},
+{
+"id": "ms114",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Operating Evil Plantations”?",
+"options": [
+"Pastor Israel",
+"Pastor Substance Ibegbulem",
+"Pastor Jesurayibi",
+"Pastor Olumide Oni"
+],
+"answer": 1,
+"explain": "“Operating Evil Plantations” — Pastor Substance Ibegbulem.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=ENcPpxZzVy4"
+}
+},
+{
+"id": "ms115",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Operating Evil Plantations” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=ENcPpxZzVy4"
+}
+},
+{
+"id": "ms116",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Your Healing Is Possible”?",
+"options": [
+"Pastor Jesurayibi",
+"Pastor Abel Michael",
+"Dr. D.K. Olukoya",
+"Pastor Olumide Oni"
+],
+"answer": 0,
+"explain": "“Your Healing Is Possible” — Pastor Jesurayibi.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=bJwRWY3c4sM"
+}
+},
+{
+"id": "ms117",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Your Healing Is Possible” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Open Heaven Encounter",
+"Gen218"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=bJwRWY3c4sM"
+}
+},
+{
+"id": "ms118",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “If You Don't Need It, Reject It”?",
+"options": [
+"Pastor Oluyemi Jesurayibi",
+"Pastor Olalekan Ademakin",
+"Pastor Abel Michael",
+"Pastor Olumide Oni"
+],
+"answer": 3,
+"explain": "“If You Don't Need It, Reject It” — Pastor Olumide Oni.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=u4Br6Hzd6S4"
+}
+},
+{
+"id": "ms119",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “If You Don't Need It, Reject It” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218"
+],
+"answer": 2,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=u4Br6Hzd6S4"
+}
+},
+{
+"id": "ms120",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The Killer Affliction In My Father's House Will Not Kill Me Before My Time”?",
+"options": [
+"Pastor Jacob Kuye",
+"Pastor Olumide Oni",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor Kehinde Olajide"
+],
+"answer": 3,
+"explain": "“The Killer Affliction In My Father's House Will Not Kill Me Before My Time” — Pastor Kehinde Olajide.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2yzAH_KPmaY"
+}
+},
+{
+"id": "ms121",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “The Killer Affliction In My Father's House Will Not Kill Me Before My Time” preached?",
+"options": [
+"Gen218",
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=2yzAH_KPmaY"
+}
+},
+{
+"id": "ms122",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Divine Prescription”?",
+"options": [
+"Dr. D.K. Olukoya",
+"Pastor Kola Oloko",
+"Pastor Olalekan Ademakin",
+"Pastor Olumide Oni"
+],
+"answer": 1,
+"explain": "“Divine Prescription” — Pastor Kola Oloko.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=EgdU4Wnl2kU"
+}
+},
+{
+"id": "ms123",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Divine Prescription” preached?",
+"options": [
+"Open Heaven Encounter",
+"MFM Women Foundation",
+"Gen218",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=EgdU4Wnl2kU"
+}
+},
+{
+"id": "ms124",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Deliverance of The Soul”?",
+"options": [
+"Pastor Kola Oloko",
+"Pastor David Popoola",
+"Pastor Segun Obatusin",
+"Pastor (Mrs.) Sola Ajisafe"
+],
+"answer": 1,
+"explain": "“Deliverance of The Soul” — Pastor David Popoola.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=-NgEYxg9jyo"
+}
+},
+{
+"id": "ms125",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Deliverance of The Soul” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=-NgEYxg9jyo"
+}
+},
+{
+"id": "ms126",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Sermon”?",
+"options": [
+"Pastor Obatusin",
+"Pastor Substance Ibegbulem",
+"Pastor Jacob Kuye",
+"Pastor (Mrs.) Sola Ajisafe"
+],
+"answer": 0,
+"explain": "“Sermon” — Pastor Obatusin.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=xicA13Wzmg0"
+}
+},
+{
+"id": "ms127",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Sermon” preached?",
+"options": [
+"Gen218",
+"Open Heaven Encounter",
+"Healing & Deliverance Hour",
+"MFM Women Foundation"
+],
+"answer": 2,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=xicA13Wzmg0"
+}
+},
+{
+"id": "ms128",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Special Call For Deliverance”?",
+"options": [
+"Pastor Atinuke Ibegbulem",
+"Pastor (Mrs.) Oluwatoyin Oni",
+"Pastor Tope Oluwayemiwo",
+"Pastor Oluwatoyin Jesurayibi"
+],
+"answer": 2,
+"explain": "“Special Call For Deliverance” — Pastor Tope Oluwayemiwo.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=CGJp-pn-Tck"
+}
+},
+{
+"id": "ms129",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Special Call For Deliverance” preached?",
+"options": [
+"MFM Women Foundation",
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 1,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=CGJp-pn-Tck"
+}
+},
+{
+"id": "ms130",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “When You Are Up & Against Overwhelming Demonic Forces”?",
+"options": [
+"Pastor Atinuke Ibegbulem",
+"Pastor Obatusin",
+"Pastor Kehinde Olajide",
+"Pastor Israel"
+],
+"answer": 2,
+"explain": "“When You Are Up & Against Overwhelming Demonic Forces” — Pastor Kehinde Olajide.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=rP6UubGthNs"
+}
+},
+{
+"id": "ms131",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “When You Are Up & Against Overwhelming Demonic Forces” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=rP6UubGthNs"
+}
+},
+{
+"id": "ms132",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Peace Be Still”?",
+"options": [
+"Dr. D.K. Olukoya",
+"Pastor Segun Obatusin",
+"Pastor Substance Ibegbulem",
+"Pastor Abel Michael"
+],
+"answer": 2,
+"explain": "“Peace Be Still” — Pastor Substance Ibegbulem.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=bWX5OutflgU"
+}
+},
+{
+"id": "ms133",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Peace Be Still” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=bWX5OutflgU"
+}
+},
+{
+"id": "ms134",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Fight Back”?",
+"options": [
+"Pastor Kehinde Olajide",
+"Pastor (Mrs.) Sola Ajisafe",
+"Pastor Olalekan Ademakin",
+"Pastor Jesurayibi"
+],
+"answer": 3,
+"explain": "“Fight Back” — Pastor Jesurayibi.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=FnRcMlR51_A"
+}
+},
+{
+"id": "ms135",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Fight Back” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"MFM Women Foundation",
+"Gen218",
+"Open Heaven Encounter"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=FnRcMlR51_A"
+}
+},
+{
+"id": "ms136",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “Sermon & Prayer on Faith Materials” preached?",
+"options": [
+"Healing & Deliverance Hour",
+"Gen218",
+"Open Heaven Encounter",
+"MFM Women Foundation"
+],
+"answer": 0,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=LdWDxW78uvA"
+}
+},
+{
+"id": "ms137",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “A Battle Cry For Deliverance” preached?",
+"options": [
+"MFM Women Foundation",
+"Open Heaven Encounter",
+"Gen218",
+"Healing & Deliverance Hour"
+],
+"answer": 3,
+"explain": "It was preached on Healing & Deliverance Hour.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=azP0flKD-gI"
+}
+},
+{
+"id": "ms138",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “GEN 218 Singles: Night of Marital Solution”?",
+"options": [
+"Pastor Kehinde Olajide",
+"Dr. D.K. Olukoya",
+"Pastor Israel",
+"Pastor Olalekan Ademakin"
+],
+"answer": 1,
+"explain": "“GEN 218 Singles: Night of Marital Solution” — Dr. D.K. Olukoya.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=Wf1efztViX4"
+}
+},
+{
+"id": "ms139",
+"pack": "messages",
+"level": "all",
+"q": "“Recognizing Outstanding Service: Citation and Awards Presentation” was part of which event?",
+"options": [
+"A Power Packed Crusade",
+"Thanksgiving Service 2024",
+"MFM Women Conference",
+"Quarterly Gen218 Virtual Conference"
+],
+"answer": 1,
+"explain": "Thanksgiving Service 2024: “Recognizing Outstanding Service: Citation and Awards Presentation”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=MfSJD5aPLIw"
+}
+},
+{
+"id": "ms140",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Word of Exhortation”?",
+"options": [
+"Pastor (Mrs.) Obatusin",
+"Dr. Elizabeth Arisekola-Oloko",
+"Pastor Kehinde Olajide",
+"Pastor Olumide Oni"
+],
+"answer": 3,
+"explain": "“Word of Exhortation” — Pastor Olumide Oni, Thanksgiving Service 2024.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=jD5xLABdHsU"
+}
+},
+{
+"id": "ms141",
+"pack": "messages",
+"level": "all",
+"q": "“Word of Exhortation” was part of which event?",
+"options": [
+"MFM Women Conference",
+"Great Dallas Deliverance Crusade 2026",
+"Thanksgiving Service 2024",
+"MFM Church Dedication 2026"
+],
+"answer": 2,
+"explain": "Thanksgiving Service 2024: “Word of Exhortation”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=jD5xLABdHsU"
+}
+},
+{
+"id": "ms142",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Appreciation & Motherly Blessings”?",
+"options": [
+"Pastor Substance Ibegbulem",
+"Pastor Segun Obatusin",
+"Pastor Atinuke Ibegbulem",
+"Pastor (Mrs.) Oluwatoyin Oni"
+],
+"answer": 3,
+"explain": "“Appreciation & Motherly Blessings” — Pastor (Mrs.) Oluwatoyin Oni, Thanksgiving Service 2024.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=nH-UksWwxMc"
+}
+},
+{
+"id": "ms143",
+"pack": "messages",
+"level": "all",
+"q": "“Appreciation & Motherly Blessings” was part of which event?",
+"options": [
+"GEN 218 Single's Conference",
+"Women Foundation Retreat 2026",
+"MFM Women Foundation Retreat 2026",
+"Thanksgiving Service 2024"
+],
+"answer": 3,
+"explain": "Thanksgiving Service 2024: “Appreciation & Motherly Blessings”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=nH-UksWwxMc"
+}
+},
+{
+"id": "ms144",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “How To Maintain & Sustain A Relationship”?",
+"options": [
+"Pastor Oluyemi Jesurayibi",
+"Pastor Kola Oloko",
+"Pastor Israel",
+"Pastor Jacob Kuye"
+],
+"answer": 2,
+"explain": "“How To Maintain & Sustain A Relationship” — Pastor Israel, GEN 218 Single's Conference.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=KHPNqOX5HrQ"
+}
+},
+{
+"id": "ms145",
+"pack": "messages",
+"level": "all",
+"q": "On which programme was “How To Maintain & Sustain A Relationship” preached?",
+"options": [
+"Open Heaven Encounter",
+"Gen218",
+"MFM Women Foundation",
+"Healing & Deliverance Hour"
+],
+"answer": 1,
+"explain": "It was preached on Gen218.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=KHPNqOX5HrQ"
+}
+},
+{
+"id": "ms146",
+"pack": "messages",
+"level": "all",
+"q": "“How To Maintain & Sustain A Relationship” was part of which event?",
+"options": [
+"Nashville Deliverance Crusade 2026",
+"A Power Packed Crusade",
+"MFM Women Foundation Retreat 2026",
+"GEN 218 Single's Conference"
+],
+"answer": 3,
+"explain": "GEN 218 Single's Conference: “How To Maintain & Sustain A Relationship”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=KHPNqOX5HrQ"
+}
+},
+{
+"id": "ms147",
+"pack": "messages",
+"level": "all",
+"q": "“Day 2” was part of which event?",
+"options": [
+"Women Foundation Retreat 2026",
+"Nashville Deliverance Crusade 2026",
+"GEN 218 Single's Conference",
+"A Great Deliverance Crusade: Binding The Strongman"
+],
+"answer": 3,
+"explain": "A Great Deliverance Crusade: Binding The Strongman: “Day 2”.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=JiZAOjWK_t8"
+}
+},
+{
+"id": "ms148",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “The School of Dreams (5)”?",
+"options": [
+"Pastor Kehinde Olajide",
+"Dr. D.K. Olukoya",
+"Pastor Jesurayibi",
+"Pastor Oluyemi Jesurayibi"
+],
+"answer": 1,
+"explain": "“The School of Dreams (5)” — Dr. D.K. Olukoya.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=azBsn57n2m0"
+}
+},
+{
+"id": "ms149",
+"pack": "messages",
+"level": "all",
+"q": "Who preached “Welcome Address”?",
+"options": [
+"Pastor Kola Oloko",
+"Pastor David Popoola",
+"Pastor (Mrs.) Oluwatoyin Oni",
+"Pastor Kehinde Olajide"
+],
+"answer": 2,
+"explain": "“Welcome Address” — Pastor (Mrs.) Oluwatoyin Oni.",
+"date": "2000-01-01",
+"source": {
+"label": "Watch on YouTube — MFM Mega Region 2 USA",
+"url": "https://www.youtube.com/watch?v=UdDj_EJmT7w"
+}
+}
+]

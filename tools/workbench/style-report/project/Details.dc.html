@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Smaller fixes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&amp;family=Inter+Tight:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#142240}a:hover{color:#b23d14}
+</style>
+</helmet>
+<div style="width:1400px;height:1400px;box-sizing:border-box;background:#f8f6f1;color:#142240;font-family:'Inter Tight',sans-serif;padding:56px 72px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+<p style="margin:0;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase">5 · Smaller fixes</p>
+<h2 style="margin:0;font-family:Fraunces,serif;font-weight:500;font-size:44px">Five one-off details.</h2>
+<p style="margin:0;max-width:820px;font-size:16px;line-height:1.6;color:#4a5568">Each has one suggested fix. Say "all the small fixes", or name the ones you want.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<div style="background:#fff;border:1px solid #e3ded2;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center">
+<b style="font-family:Fraunces,serif;font-weight:500;font-size:22px">a · Privacy title sits on the left</b>
+<img src="/_blob/0cbf390a3a2198a832b3e2e4942eeb8e" alt="Privacy page banner with the title on the left" style="width:540px;height:auto;border-radius:10px;display:block">
+<span style="font-size:14px;line-height:1.55;color:#4a5568">It's the only page title not centred. Fix: centre it like every other page; the policy text below stays left, as reading text should.</span>
+</div>
+<div style="background:#fff;border:1px solid #e3ded2;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center">
+<b style="font-family:Fraunces,serif;font-weight:500;font-size:22px">b · Subscribe uses a different font</b>
+<img src="/_blob/5ff53cd3fc9bfea7f90dee806f285533" alt="Subscribe page banner set in Georgia" style="width:540px;height:auto;border-radius:10px;display:block">
+<span style="font-size:14px;line-height:1.55;color:#4a5568">Its titles are Georgia, borrowed from the newsletter emails; the rest of the site is Fraunces. Fix: Fraunces and Inter Tight on Subscribe and the newsletter web pages (the emails stay as they are).</span>
+</div>
+<div style="background:#fff;border:1px solid #e3ded2;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center">
+<b style="font-family:Fraunces,serif;font-weight:500;font-size:22px">c · Two date styles on Live</b>
+<img src="/_blob/8e1217ba01b6b78aec94797a41d7f920" alt="Live page cards titled with 12-01-2026 next to December 3, 2026" style="width:520px;height:auto;border-radius:10px;display:block">
+<span style="font-size:14px;line-height:1.55;color:#4a5568">"Healing &amp; Deliverance Hour — 12-01-2026" sits next to "Open Heaven Encounter — December 3, 2026". Fix: card titles always written "Tuesday, December 1", wherever the date comes from.</span>
+</div>
+<div style="background:#fff;border:1px solid #e3ded2;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center">
+<b style="font-family:Fraunces,serif;font-weight:500;font-size:22px">d · Gen218 card on Ministries</b>
+<img src="/_blob/11f5f3c9dbfc8861e7c3ac03b0611cc7" alt="Ministries page Gen218 card showing a logo in a white box" style="width:440px;height:auto;border-radius:10px;display:block">
+<span style="font-size:14px;line-height:1.55;color:#4a5568">The other ministries show a photo; Gen218 shows its logo in a white box. Fix: the Gen218 conference picture used on the Gen218 page, until real Gen218 photos arrive.</span>
+</div>
+</div>
+<div style="background:#142240;border-radius:16px;padding:22px 28px;display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;color:#fff">
+<b style="font-family:Fraunces,serif;font-weight:500;font-size:22px">e · Footer labels are 9px</b>
+<span style="font-size:15px;line-height:1.55;color:#d4dce9;max-width:900px">"Explore", "Ministries", "Connect" and "Obadiah 1:17" in the footer are 9px, too small to read comfortably on a phone. Fix: 12px, in the label style you pick on board 3.</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1400,"height":1400}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

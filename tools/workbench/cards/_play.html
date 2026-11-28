@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter+Tight:wght@500;600;700&display=block" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{background:#0e1a33;font-family:'Inter Tight',sans-serif;color:#fff;position:relative}
+.bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 85% at 50% -10%,rgba(232,186,90,.30),transparent 62%),radial-gradient(ellipse 50% 60% at 50% 120%,rgba(232,93,38,.22),transparent 70%),linear-gradient(180deg,#172848 0%,#101d38 55%,#0b1529 100%)}
+.shaft{position:absolute;left:50%;top:-140px;width:520px;height:900px;transform:translateX(-50%) rotate(0deg);background:linear-gradient(180deg,rgba(255,226,160,.16),rgba(255,226,160,0) 70%);clip-path:polygon(38% 0,62% 0,100% 100%,0 100%);filter:blur(8px)}
+.grain{position:absolute;inset:0;background:url(grain.png);opacity:.10;mix-blend-mode:overlay}
+.frame{position:absolute;inset:22px;border:1px solid rgba(240,199,96,.28)}
+.wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 90px 70px}
+.icon{width:118px;height:118px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#1d2f55 0%,#142240 70%);box-shadow:0 0 0 10px rgba(240,199,96,.10),0 0 60px rgba(240,180,80,.35);margin-bottom:26px}
+.icon svg{width:76px;height:76px}
+.k{font:700 17px/1 'Inter Tight',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#f0c760;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.k:before,.k:after{content:"";width:34px;height:1.5px;background:currentColor;opacity:.8}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:96px;line-height:1;letter-spacing:-.02em;font-variation-settings:'opsz' 144}
+h1 em{font-style:italic;color:#f0c760;font-weight:500}
+.sub{margin-top:20px;font:500 28px/1.35 'Inter Tight',sans-serif;color:#d6deea;max-width:900px}
+.chips{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+.chips span{font:600 19px/1 'Inter Tight',sans-serif;color:#142240;background:#f0c760;border-radius:100px;padding:11px 20px}
+.chips span.o{background:transparent;color:#f6e7c1;border:1.5px solid rgba(240,199,96,.55)}
+.verse{margin-top:24px;font:italic 500 23px/1.4 Fraunces,Georgia,serif;color:#e9d9b4;max-width:880px}
+.verse b{display:block;font:700 14px/1 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#f0c760;margin-top:10px;font-style:normal}
+.foot{position:absolute;z-index:2;left:0;right:0;bottom:44px;display:flex;align-items:center;justify-content:center;gap:12px;font:600 18px/1 'Inter Tight',sans-serif;color:#aebbd0;letter-spacing:.02em}
+.foot img{width:34px;height:34px;object-fit:contain}
+.bar{position:absolute;left:0;right:0;bottom:0;height:8px;background:linear-gradient(90deg,#c9952c,#e85d26,#c9952c)}
+</style></head><body><div class="bg"></div><div class="shaft"></div><div class="grain"></div><div class="frame"></div>
+<div class="wrap" id="w"></div><div class="foot"><img src="logo.png" alt="">mfmmegaregion2usa.org</div><div class="bar"></div>
+<script>
+var C={"icon":"<svg viewBox=\"0 0 64 64\" ><defs><linearGradient id=\"pgG\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#f6da8a\"/><stop offset=\"1\" stop-color=\"#c9952c\"/></linearGradient><linearGradient id=\"pgF\" x1=\"0\" y1=\"1\" x2=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#e85d26\"/><stop offset=\"1\" stop-color=\"#ffc061\"/></linearGradient></defs><path d=\"M19 9h26v11c0 8.5-5.8 15-13 15s-13-6.5-13-15Z\" fill=\"url(#pgG)\"/><path d=\"M19 13h-7v4c0 6 4 10 9 11M45 13h7v4c0 6-4 10-9 11\" fill=\"none\" stroke=\"url(#pgG)\" stroke-width=\"3.2\" stroke-linecap=\"round\"/><path d=\"M29 35h6v8h-6z\" fill=\"#c9952c\"/><path d=\"M22 43h20l3 9H19z\" fill=\"url(#pgG)\"/><path d=\"M32 12.5c4.8 4.3 7 7.6 7 11.6a7 7 0 0 1-14 0c0-3.2 1.8-5.6 3.4-7.4.1 2.2 1.1 3.6 2.4 3.9-.9-3.1-.2-5.8 1.2-8.1Z\" fill=\"url(#pgF)\"/><path d=\"M32 21c1.8 1.7 2.8 3.1 2.8 4.8a2.8 2.8 0 0 1-5.6 0c0-1.5.9-2.8 2.8-4.8Z\" fill=\"#fff3d6\"/></svg>","k":"Daily Bible games","h":"Play &amp; Grow","sub":"10 questions a day. Can you get them all?","chips":["Play free","Word of the Day","60-second Blitz","Team Battle"]};var w=document.getElementById('w');
+w.innerHTML=(C.icon?'<div class="icon">'+C.icon+'</div>':'')+'<div class="k">'+C.k+'</div><h1>'+C.h+'</h1>'+(C.sub?'<p class="sub">'+C.sub+'</p>':'')+(C.chips?'<div class="chips">'+C.chips.map(function(c,i){return '<span class="'+(i?'o':'')+'">'+c+'</span>'}).join('')+'</div>':'')+(C.verse?'<p class="verse">“'+C.verse[0]+'”<b>'+C.verse[1]+'</b></p>':'');
+if(C.h1)document.querySelector('h1').style.fontSize=C.h1+'px';
+</script></body></html>

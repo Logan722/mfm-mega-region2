@@ -1,0 +1,66 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-27T20:04:14Z"
+ },
+ "title": "MFM website style check: findings and alternatives",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1400,
+   "h": 960,
+   "title": "Overview"
+  },
+  "Buttons.dc.html": {
+   "x": 1480,
+   "y": 0,
+   "w": 1400,
+   "h": 1300,
+   "title": "1 \u00b7 Buttons"
+  },
+  "Titles.dc.html": {
+   "x": 0,
+   "y": 1420,
+   "w": 1400,
+   "h": 1400,
+   "title": "2 \u00b7 Titles"
+  },
+  "Labels.dc.html": {
+   "x": 1480,
+   "y": 1420,
+   "w": 1400,
+   "h": 1400,
+   "title": "3 \u00b7 Small labels"
+  },
+  "Cards.dc.html": {
+   "x": 0,
+   "y": 2940,
+   "w": 1400,
+   "h": 1560,
+   "title": "4 \u00b7 Corners and spacing"
+  },
+  "Details.dc.html": {
+   "x": 1480,
+   "y": 2940,
+   "w": 1400,
+   "h": 1400,
+   "title": "5 \u00b7 Smaller fixes"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "Buttons.dc.html",
+  "Titles.dc.html",
+  "Labels.dc.html",
+  "Cards.dc.html",
+  "Details.dc.html"
+ ],
+ "notes": {},
+ "designSystems": []
+}

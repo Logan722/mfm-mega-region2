@@ -1,0 +1,4 @@
+const { chromium } = require('playwright');
+(async()=>{const b=await chromium.launch();const p=await b.newPage();await p.goto('http://localhost:8097/events.html');await p.waitForTimeout(800);
+console.log(await p.evaluate(()=>{const e=document.getElementById('evtTickets');const out=[getComputedStyle(e).display,e.getAttribute('style'),e.offsetParent?'visible':'not-rendered',e.closest('[class]')?.className, e.parentElement.className];
+for(const s of document.styleSheets){let rs;try{rs=s.cssRules}catch(x){continue}const walk=l=>{for(const r of l){if(r.cssRules&&!r.selectorText)walk(r.cssRules);else if(r.selectorText&&r.style&&r.style.display&&e.matches(r.selectorText))out.push((s.href||'inline').split('/').pop()+' :: '+r.selectorText.slice(0,120)+' => '+r.style.display+(r.style.getPropertyPriority('display')?' !':''))}};walk(rs)}return out.join('\n')}));await b.close()})();

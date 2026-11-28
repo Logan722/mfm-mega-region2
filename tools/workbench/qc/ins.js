@@ -1,0 +1,3 @@
+const { chromium } = require('playwright');
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:390,height:844}});await p.goto('http://localhost:8093/index.html');await p.waitForTimeout(1200);
+console.log(await p.evaluate(()=>{const s=document.querySelector('.tsa-small'),l=document.querySelector('.tsa-list'),g=document.querySelector('.tsa-grid');const c=getComputedStyle(s);return {h:s.getBoundingClientRect().height,minh:c.minHeight,pad:c.padding,lrows:getComputedStyle(l).gridTemplateRows,lh:l.getBoundingClientRect().height,grows:getComputedStyle(g).gridTemplateRows,ldisp:getComputedStyle(l).display,kids:[...s.children].map(k=>k.tagName+':'+Math.round(k.getBoundingClientRect().height))}}));await b.close();})();

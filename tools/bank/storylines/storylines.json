@@ -1,0 +1,131 @@
+{
+ "_about": "Story progress for Bible Stories. The weekly run reads this to know what is done and what comes next, and updates it after each release. Shelf data shown on the site lives in js/stories.js; chapter sources in tools/stories/<id>.js; the leaderboard list in netlify/functions/leaderboard.mjs (STORIES).",
+ "weekly_plan": {
+  "recommended": "4 new characters a week, chapters to fit each story (up to 4, never padded); move to 8 after 3-4 clean weeks",
+  "dawn_said": "8 characters x 4 chapters (asked for a recommendation, Nov 27 2026)",
+  "final": null,
+  "release_day": null,
+  "auto_go_live": "yes, once all three checks pass (Dawn, Nov 27 2026)"
+ },
+ "characters": {
+  "joseph": {
+   "status": "in progress",
+   "chapters_done": [
+    {
+     "id": "joseph-1",
+     "title": "The Coat and the Pit",
+     "ref": "Genesis 37",
+     "checked": "36 quotes, 0 mismatches"
+    },
+    {
+     "id": "joseph-2",
+     "title": "Potiphar's House",
+     "ref": "Genesis 39",
+     "checked": "24 quotes, 0 mismatches"
+    },
+    {
+     "id": "joseph-3",
+     "title": "The Prison and the Palace",
+     "ref": "Genesis 40-41",
+     "checked": "51 quotes, 0 mismatches"
+    }
+   ],
+   "next": [
+    {
+     "title": "(to name) brothers come to Egypt, Joseph makes himself known",
+     "ref": "Genesis 42-45"
+    },
+    {
+     "title": "(to name) Jacob goes down to Egypt; God meant it unto good",
+     "ref": "Genesis 46-50"
+    }
+   ],
+   "note": "Genesis 38 is about Judah, not Joseph, so it is not one of the Joseph chapters."
+  },
+  "moses": {
+   "status": "coming soon",
+   "ref": "Exodus"
+  },
+  "david": {
+   "status": "coming soon",
+   "ref": "1 Samuel 16-17"
+  },
+  "daniel": {
+   "status": "coming soon",
+   "ref": "Daniel 1-6"
+  },
+  "elijah": {
+   "status": "coming soon",
+   "ref": "1 Kings 17-18"
+  },
+  "esther": {
+   "status": "coming soon",
+   "ref": "Esther"
+  },
+  "jabez": {
+   "status": "coming soon",
+   "ref": "1 Chronicles 4:9-10",
+   "note": "short text: 1 chapter only"
+  },
+  "ebedmelech": {
+   "status": "coming soon",
+   "ref": "Jeremiah 38"
+  },
+  "obadiah": {
+   "status": "coming soon",
+   "ref": "1 Kings 18"
+  },
+  "caleb": {
+   "status": "coming soon",
+   "ref": "Joshua 14"
+  },
+  "maid": {
+   "status": "coming soon",
+   "ref": "2 Kings 5",
+   "name": "Naaman's servant girl"
+  },
+  "hur": {
+   "status": "coming soon",
+   "ref": "Exodus 17"
+  }
+ },
+ "events": {
+  "christmas": {
+   "status": "done",
+   "chapters_done": [
+    {
+     "id": "christmas-1",
+     "title": "A Saviour Is Born",
+     "ref": "Luke 1-2, Matthew 1-2",
+     "checked": "50 quotes, 0 mismatches"
+    }
+   ],
+   "content_choices": "no wings on angels, no star over the manger, no donkey or stable animals (not in the text), the wise men visit a house (Matthew 2:11), their number is not given in Scripture"
+  },
+  "easter": {
+   "status": "coming soon",
+   "ref": "Matthew 26-28, Luke 24"
+  },
+  "noah": {
+   "status": "coming soon",
+   "ref": "Genesis 6-9"
+  },
+  "redsea": {
+   "status": "coming soon",
+   "ref": "Exodus 14"
+  },
+  "jericho": {
+   "status": "coming soon",
+   "ref": "Joshua 6"
+  },
+  "furnace": {
+   "status": "coming soon",
+   "ref": "Daniel 3"
+  },
+  "pentecost": {
+   "status": "coming soon",
+   "ref": "Acts 2"
+  }
+ },
+ "returning_characters": "A character can come back in a later week with new chapters that continue the story (for example David's later years, Paul's journeys)."
+}

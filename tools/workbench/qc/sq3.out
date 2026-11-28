@@ -1,0 +1,39 @@
+   (expected on local server only) 404 /.netlify/functions/latest-video
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop index {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":24}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop play {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop testimonies {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop reach-out {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop reach-out/prayer {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop reach-out/testimony {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop reach-out/contact {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop about {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":15}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS desktop branches/mfm-tampa {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":16}
+   (expected on local server only) 404 /.netlify/functions/latest-video
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone index {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":24}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone play {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone testimonies {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone reach-out {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone reach-out/prayer {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone reach-out/testimony {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone reach-out/contact {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":17}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone about {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":15}
+   (expected on local server only) 404 /.netlify/functions/live-status
+PASS phone branches/mfm-tampa {"overflow":0,"jsErrors":[],"csp":[],"brokenImgs":[],"failedRequests":[],"deadLinks":[],"links":16}
+FAILS 0

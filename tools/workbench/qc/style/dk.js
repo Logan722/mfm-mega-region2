@@ -1,0 +1,4 @@
+const { chromium } = require('playwright');
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1440,height:900}});
+for(const [pg,sel] of [['events/command-the-year-2027','.ev-k'],['branches/mfm-tampa','.bp-k'],['messages/the-problem-that-keeps-coming-back-ends-here','.rc-sp'],['newsletter/issue-5','.mag-archive-note']]){await p.goto('http://localhost:8097/'+pg+'.html');await p.waitForTimeout(400);
+console.log(pg,JSON.stringify(await p.evaluate(s=>{const e=document.querySelector(s);const c=getComputedStyle(e);let bg;for(let x=e;x;x=x.parentElement){const a=getComputedStyle(x).backgroundColor;if(a!=='rgba(0, 0, 0, 0)'){bg=a+' '+x.className;break}}return [e.textContent.trim().slice(0,20),c.color,c.fontSize,c.fontWeight,c.opacity,bg]},sel)))}await b.close()})();

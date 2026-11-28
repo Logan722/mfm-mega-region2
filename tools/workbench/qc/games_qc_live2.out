@@ -1,0 +1,45 @@
+PASS | desktop · six game tiles
+PASS | desktop · page has no sideways scroll
+PASS | desktop · Who's playing is centred
+PASS | desktop · "Other / visiting" asks for a place
+PASS | desktop · Daily has 10 questions
+PASS | desktop · question screen centred
+PASS | desktop · keyboard key answers
+PASS | desktop · Daily results screen
+PASS | desktop · score credited to the player
+PASS | desktop · Daily challenge link carries the questions
+PASS | desktop · results: no sideways scroll
+PASS | desktop · Daily is the same for everyone (same first question after reload)
+PASS | desktop · leaderboard renders
+PASS | desktop · Quiz setup centred
+PASS | desktop · Quiz asks for at least one topic
+PASS | desktop · 3 Bible rounds = 30 different questions | 30/30
+PASS | desktop · Quiz remembers the last topics
+PASS | desktop · Mix it up covers all 5 topics | Our Messages/MFM Family/The Bible/The G.O.'s Books/Pastor Oni's Books
+PASS | desktop · challenge screen opens
+PASS | desktop · challenge shows You vs friend
+PASS | desktop · challenge results: no sideways scroll
+PASS | desktop · challenge link has 10 question ids
+PASS | desktop · timer runs out → "Time's up"
+PASS | desktop · Escape closes the game
+PASS | desktop · Kids timer is 30 s
+PASS | desktop · Kids has 10 questions
+PASS | desktop · Kids results
+PASS | desktop · Kids results: no sideways scroll
+PASS | desktop · Word screen centred
+PASS | desktop · Word rejects made-up words
+PASS | desktop · Word win shows the word
+PASS | desktop · Word shows its verse with the word highlighted
+PASS | desktop · Word results: no sideways scroll
+PASS | desktop · Word of the Day stays solved after reopening
+PASS | desktop · Word practice: 6 tries then shows the answer
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForTimeout: Target page, context or browser has been closed
+    at /home/claude/qc/games_qc.js:94:154 {
+  log: []
+}
+
+Node.js v22.23.4
