@@ -82,8 +82,8 @@
   function chooser(id, solo, team, soloLabel) {
     var g = G[id]; ensureOpen(); setS({ title: g.name });
     frame('<div class="st-card gx-choose"><div class="gx-ico c-' + id + '">' + ICON[id] + '</div><p class="st-k">' + (X.gotwId() === id ? 'Game of the Week' : 'Play &amp; Grow') + '</p><h2 class="st-h">' + esc(g.name) + '</h2><p class="st-fine">' + esc(g.line) + '</p>' + '' + howList(id) +
-      '<div class="gx-modes"><button type="button" class="gx-mode" data-m="solo"><b>' + (soloLabel || 'Play solo') + '</b><small>' + (g.lb ? 'Your score counts for your branch' + (X.gotwId() === id ? ' this week' : ' when this is the Game of the Week') : 'Just you') + '</small></button>' +
-      '<button type="button" class="gx-mode team" data-m="team"><b>Play as teams</b><small>2 to 4 teams pass the phone or play on the TV</small></button></div></div>');
+      '<div class="gx-modes"><button type="button" class="gx-mode" data-m="solo"><b>Solo</b><small>' + (soloLabel ? soloLabel + ' &middot; ' : '') + (g.lb ? (X.gotwId() === id ? 'counts double for your branch this week' : 'your score counts for your branch') : 'just you') + '</small></button>' +
+      '<button type="button" class="gx-mode team" data-m="team"><b>Team</b><small>2 to 4 teams pass the phone or play on the TV</small></button></div></div>');
     bind('[data-m=solo]', function () { withPlayer(solo); });
     bind('[data-m=team]', function () { teamSetup(id, team); });
     var seen = ls('mfm-how') || {}; seen[id] = 1; ls('mfm-how', seen);
@@ -186,7 +186,7 @@
 
   /* ================================================================ Bible Connections */
   var CN_COL = ['', 'l1', 'l2', 'l3', 'l4'], CN_EMO = ['', '🟨', '🟩', '🟦', '🟪'];
-  X.games.connect = function () { chooser('connect', function () { cnStart(null); }, function (o) { cnStart(o); }, 'Play today&rsquo;s puzzle'); };
+  X.games.connect = function () { chooser('connect', function () { cnStart(null); }, function (o) { cnStart(o); }, 'Today&rsquo;s puzzle'); };
   function cnStart(team, practice) {
     loadingCard();
     load('connect').then(function (d) {
@@ -241,7 +241,7 @@
   }
 
   /* ================================================================ Bible Word Connect */
-  X.games.wheel = function () { chooser('wheel', function () { whStart(null); }, function (o) { whStart(o); }, 'Play today&rsquo;s 3 wheels'); };
+  X.games.wheel = function () { chooser('wheel', function () { whStart(null); }, function (o) { whStart(o); }, 'Today&rsquo;s 3 wheels'); };
   function whStart(team, practice) {
     loadingCard();
     load('wheel').then(function (d) {
@@ -305,7 +305,7 @@
   };
 
   /* ================================================================ Daily Verse */
-  X.games.dverse = function () { chooser('dverse', function () { dvStart(null); }, function (o) { dvStart(o); }, 'Play today&rsquo;s verse'); };
+  X.games.dverse = function () { chooser('dverse', function () { dvStart(null); }, function (o) { dvStart(o); }, 'Today&rsquo;s verse'); };
   var BOOK_ALIAS = { 'Psalms': 'Psalms' };
   function dvStart(team, practice) {
     loadingCard();
@@ -430,8 +430,8 @@
   X.games.pairs = function () {
     ensureOpen(); setS({ title: 'Noah’s Pairs' });
     frame('<div class="st-card gx-choose"><div class="gx-ico c-pairs">' + ICON.pairs + '</div><p class="st-k">' + (X.gotwId() === 'pairs' ? 'Game of the Week' : 'For children, fun for everyone') + '</p><h2 class="st-h">Noah&rsquo;s Pairs</h2><p class="st-fine">&ldquo;There went in two and two unto Noah into the ark.&rdquo; Genesis 7:9</p>' + howList('pairs') +
-      '<div class="gx-modes three"><button type="button" class="gx-mode" data-lv="6"><b>Easy</b><small>6 pairs</small></button><button type="button" class="gx-mode" data-lv="8"><b>Medium</b><small>8 pairs</small></button><button type="button" class="gx-mode" data-lv="10"><b>Hard</b><small>10 pairs</small></button></div>' +
-      '<button type="button" class="gx-mode team wide" data-m="team"><b>Play as teams</b><small>Take turns on one board. Find a pair and go again.</small></button></div>');
+      '<p class="gx-lab">Solo &middot; choose a board</p><div class="gx-modes three"><button type="button" class="gx-mode" data-lv="6"><b>Easy</b><small>6 pairs</small></button><button type="button" class="gx-mode" data-lv="8"><b>Medium</b><small>8 pairs</small></button><button type="button" class="gx-mode" data-lv="10"><b>Hard</b><small>10 pairs</small></button></div>' +
+      '<button type="button" class="gx-mode team wide" data-m="team"><b>Team</b><small>Take turns on one board. Find a pair and go again.</small></button></div>');
     bindAll('[data-lv]', function (b) { var n = +b.getAttribute('data-lv'); withPlayer(function () { prStart(n, null); }); });
     bind('[data-m=team]', function () { teamSetup('pairs', null, { perLabel: 'Board size (pairs)', pers: [6, 8, 10], note: 'Teams take turns turning over two cards. Find a pair and you go again.', custom: function (T) { T.custom = function (TT) { prStart(TT.per, TT); }; prStart(T.per, T); } }); });
   };
@@ -557,4 +557,52 @@
   var ROUND = { connect: function (o) { cnStart(o); }, wheel: function (o) { whStart(o); }, dverse: function (o) { dvStart(o); }, whoami: function (o) { waStart(o); }, build: function (o) { vbStart(o); } };
   var _teamSetup = teamSetup;
   teamSetup = function (id, round, opts) { _teamSetup(id, round || ROUND[id], opts); };
+})();
+
+/* Phone layouts for "Pick your game": swipe dots, tap-a-tile, filter chips. Desktop is unaffected (CSS hides these above 700px). */
+(function () {
+  var sec = document.getElementById('games'); if (!sec) return;
+  var m = /[#?&]gm-?=?([1-5])/.exec(location.hash + location.search); if (m) sec.setAttribute('data-gm', m[1]);
+  var grid = sec.querySelector('.gg-grid'); if (!grid) return;
+  function dots(scroller, after, count) {
+    var d = document.createElement('div'); d.className = 'gm-dots'; d.setAttribute('aria-hidden', 'true');
+    after.parentNode.insertBefore(d, after.nextSibling);
+    function pages() { var w = scroller.clientWidth || 1; return Math.max(1, Math.round(scroller.scrollWidth / w)); }
+    function draw() { var n = count ? count() : pages(); if (d.children.length !== n) d.innerHTML = new Array(n + 1).join('<i></i>'); upd(); }
+    function upd() { var n = d.children.length, max = scroller.scrollWidth - scroller.clientWidth, k = max > 0 ? Math.round(scroller.scrollLeft / max * (n - 1)) : 0;
+      Array.prototype.forEach.call(d.children, function (x, i) { x.className = i === k ? 'on' : ''; }); }
+    scroller.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', draw); setTimeout(draw, 50); return draw;
+  }
+  var gm = function () { return sec.getAttribute('data-gm'); };
+  // dots under the swipe layouts (1 = one card per page, 3 = shelf pages)
+  var gd = dots(grid, grid, function () { return gm() === '1' ? grid.querySelectorAll('.pg-tile:not([hidden])').length : Math.max(1, Math.round(grid.scrollWidth / (grid.clientWidth || 1))); });
+  var hint = document.createElement('p'); hint.className = 'gm-hint'; hint.setAttribute('aria-hidden', 'true'); hint.textContent = 'Swipe to see all the games →';
+  grid.parentNode.insertBefore(hint, grid.nextSibling.nextSibling);
+  function showExtras() { var g = gm(), sw = g === '1' || g === '3'; sec.querySelector('.gm-dots').style.display = sw ? '' : 'none'; hint.style.display = g === '3' ? '' : 'none'; gd(); }
+  // tap anywhere on a tile (app grid and list layouts) opens the game
+  grid.addEventListener('click', function (e) {
+    if (!/^[24]$/.test(gm() || '') || e.target.closest('button,a')) return;
+    var t = e.target.closest('.pg-tile'), b = t && t.querySelector('.pg-btn'); if (b) b.click();
+  });
+  Array.prototype.forEach.call(grid.querySelectorAll('.pg-tile'), function (t) {
+    var h = t.querySelector('h3'); if (h && !t.hasAttribute('tabindex')) { t.setAttribute('aria-label', h.textContent); }
+  });
+  // filter chips (layout 5)
+  var chips = document.createElement('div'); chips.className = 'gm-chips'; chips.setAttribute('role', 'group'); chips.setAttribute('aria-label', 'Show games');
+  var F = [['All', ''], ['Daily', 'Daily'], ['Solo', 'Solo'], ['Team', 'Team'], ['Kids', 'Kids']];
+  chips.innerHTML = F.map(function (f, i) { return '<button type="button" data-f="' + f[1] + '" aria-pressed="' + (i ? 'false' : 'true') + '">' + f[0] + '</button>'; }).join('');
+  grid.parentNode.insertBefore(chips, grid);
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return; var f = b.getAttribute('data-f');
+    Array.prototype.forEach.call(chips.children, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    Array.prototype.forEach.call(grid.querySelectorAll('.pg-tile'), function (t) {
+      var tags = Array.prototype.map.call(t.querySelectorAll('.gt-badges span'), function (s) { return s.textContent.trim(); });
+      var hide = !!f && tags.indexOf(f) < 0 && !(f === 'Kids' && t.getAttribute('data-game') === 'pairs');
+      if (hide) t.setAttribute('data-gm-hide', ''); else t.removeAttribute('data-gm-hide');
+    });
+  });
+  // swipe dots for the "how it works" steps
+  var steps = document.querySelector('.pg-how .pg-steps'); if (steps) dots(steps, steps, function () { return steps.children.length; });
+  showExtras();
+  new MutationObserver(showExtras).observe(sec, { attributes: true, attributeFilter: ['data-gm'] });
 })();
