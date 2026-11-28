@@ -44,12 +44,24 @@ Optional environment variables:
 ## The checks (run all of them before anything goes live)
 
 ```bash
-python3 tools/bank/checks/site/bank_qc.py                       # exits 1 on any issue
-python3 tools/bank/checks/story/verify2.py tools/stories/<id>.js  # quote check, one chapter
-CH=<id> node tools/bank/checks/story/play.js                     # play-through, computer + phone
-node tools/bank/checks/site/lb_unit.mjs                          # leaderboard rules
-node tools/bank/server/server.mjs . 8095 &                       # then: node tools/bank/checks/site/games_qc.js
+python3 tools/bank/checks/site/bank_qc.py                       # bank: prints NO ISSUES, exits 1 on any issue
+python3 tools/bank/checks/story/verify2.py tools/stories/<id>.js  # quote check, one chapter (0 mismatches)
+CH=<id> MAX=600000 node tools/bank/checks/story/play.js          # play-through; W=390 H=844 T=m for phone
+node tools/bank/checks/site/lb2_test.mjs                         # leaderboard rules (27)
+node tools/bank/checks/site/gotw_test.mjs                        # Game of the Week rotation (23)
+node tools/bank/checks/site/lb2_g.mjs                            # leaderboard with another featured game (27)
+node tools/bank/checks/site/live_server_test.mjs                 # live-room server (39)
+node tools/bank/server/server.mjs . 8095 &                       # local site + functions, then:
+node tools/bank/checks/site/games_qc.js                          #   every game, computer + phone
+node tools/bank/checks/site/live_room_e2e.js                     #   live room: host + phones
+node tools/bank/checks/site/axe_play.js                          #   accessibility on /play
 ```
+
+Results on Nov 27 2026: bank NO ISSUES; 4 stories 0 quote mismatches; 4 story play-throughs 500/600
+(question 2 is answered wrong on purpose) with no errors; leaderboard 27 + 23 + 27; live server 39.
+Other scripts in `checks/site/` (`lb_e2e.js`, `lb_gotw_e2e.js`, `art_lb.js`, `site_qc.js`, `axe_qc.js`, `axe_home.js`, `csp_game.js`)
+are from earlier rounds and may expect older screens. Update them before relying on them.
+Story checks save screenshots to a temp folder (or `$OUT`), never into the repo.
 
 For node checks, if `playwright` isn't found, set `NODE_PATH` to the global node_modules folder.
 

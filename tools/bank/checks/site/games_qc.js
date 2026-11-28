@@ -1,109 +1,139 @@
-// Full game QC: every mode, desktop + phone. Prints PASS/FAIL lines.
 const { chromium } = require('playwright');
-const fs=require('fs');
-const words=JSON.parse(fs.readFileSync((process.env.MFM_REPO||require('path').resolve(__dirname,'../../../..'))+'/js/quiz/words.json')).words;
-const R=[];const ok=(c,n,extra='')=>{R.push([c?'PASS':'FAIL',n,extra]);console.log((c?'PASS':'FAIL')+' | '+n+(extra?' | '+extra:''));};
-(async()=>{const b=await chromium.launch();
-for (const [w,h,t] of [[1440,900,'desktop'],[390,844,'phone']]){
- const ctx=await b.newContext({viewport:{width:w,height:h}});const p=await ctx.newPage();const errs=[];
- p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource/.test(m.text()))errs.push(m.text())});
- p.on('response',r=>{if(r.status()>=400&&!/live-status/.test(r.url()))errs.push(r.status()+' '+r.url())});
- await p.goto('http://localhost:8095/play.html',{waitUntil:'load'});await p.waitForTimeout(1500);
- const T=(n)=>t+' · '+n;
- const ov=async()=>await p.evaluate(()=>Math.max(document.documentElement.scrollWidth,document.getElementById('play-app').scrollWidth)-innerWidth);
- const centred=async()=>await p.evaluate(()=>{const s=document.getElementById('play-app');if(s.scrollHeight>innerHeight+2)return true;const top=s.querySelector('.st-top').getBoundingClientRect().bottom;const kids=[...s.querySelector('.st-body').children].filter(x=>!x.hidden&&x.getBoundingClientRect().height>0);const a=Math.min(...kids.map(k=>k.getBoundingClientRect().top)),z=Math.max(...kids.map(k=>k.getBoundingClientRect().bottom));return Math.abs((a-top)-(innerHeight-z))<=12});
- const qtext=async()=>(await p.locator('#play-app .st-question').textContent()).trim();
- const answerAll=async(n,pick=0,collect)=>{for(let i=0;i<n;i++){if(collect)collect.push(await qtext());await p.locator('#play-app .ans').nth(pick).click();await p.waitForTimeout(110);await p.locator('.st-next').click();await p.waitForTimeout(110);}};
- ok(await p.locator('.pg-games .pg-tile').count()===6,T('six game tiles'));
- ok(await ov()<=0,T('page has no sideways scroll'));
- // Daily 10 + who's playing (branch Other needs a place)
- await p.locator('.pg-ctas [data-mode="daily"]').click();await p.waitForTimeout(400);
- ok(await centred(),T("Who's playing is centred"));
- await p.fill('.st-form input[name=nick]','QC Tester');await p.selectOption('.st-form select','Other / visiting');await p.click('.st-form .pg-btn');await p.waitForTimeout(200);
- ok(await p.locator('.st-err').isVisible(),T('"Other / visiting" asks for a place'));
- await p.fill('.st-form input[name=other]','London, UK');await p.click('.st-form .pg-btn');await p.waitForTimeout(1500);
- ok((await p.locator('#play-app .st-qn').textContent()).includes('of 10'),T('Daily has 10 questions'));
- ok(await centred(),T('question screen centred'));
- const d1=[];
- // keyboard answers 1-4
- await p.keyboard.press('2');await p.waitForTimeout(200);ok(await p.locator('.st-sheet').isVisible(),T('keyboard key answers'));
- await p.locator('.st-next').click();await p.waitForTimeout(150);
- await answerAll(9,0);await p.waitForTimeout(1300);
- ok(await p.locator('.st-res').count()===1,T('Daily results screen'));
- ok((await p.locator('.st-lb').textContent()).includes('London, UK'),T('score credited to the player'));
- const link=await p.locator('[data-try]').getAttribute('data-try');ok(/\?c=daily&q=/.test(link),T('Daily challenge link carries the questions'));
- ok(await ov()<=0,T('results: no sideways scroll'));
- // Daily is the same on replay
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- await p.locator('.pg-ctas [data-mode="daily"]').click();await p.waitForTimeout(1500);const dA=await qtext();
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- await p.reload();await p.waitForTimeout(1500);await p.locator('.pg-ctas [data-mode="daily"]').click();await p.waitForTimeout(1500);const dB=await qtext();
- ok(dA===dB,T('Daily is the same for everyone (same first question after reload)'));
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- // Leaderboard shows the player
- const lb=await p.locator('#pg-boardview').textContent();ok(lb.includes('Visitors & friends')||lb.length>50,T('leaderboard renders'));
- // Quiz: three Bible rounds, no repeats
- const seen=[];
- for(let r=0;r<3;r++){await p.locator('.pg-games [data-mode="quiz"]').click();await p.waitForTimeout(400);
-   if(r===0){ok(await centred(),T('Quiz setup centred'));await p.locator('.tp-chip.mix').click();await p.locator('.st-go').click();await p.waitForTimeout(200);ok(await p.locator('.st-quiz .st-err').isVisible(),T('Quiz asks for at least one topic'));await p.locator('.tp-chip[data-tk="bible"]').click();}
-   await p.locator('.st-go').click();await p.waitForTimeout(1300);await answerAll(10,1,seen);await p.waitForTimeout(700);await p.locator('.st-x').click();await p.waitForTimeout(300);}
- ok(new Set(seen).size===30,T('3 Bible rounds = 30 different questions'),new Set(seen).size+'/30');
- // Quiz remembers topics; mix covers all 5
- await p.locator('.pg-games [data-mode="quiz"]').click();await p.waitForTimeout(400);
- ok(await p.locator('.tp-chip[data-tk="bible"][aria-pressed=true]').count()===1&&await p.locator('.tp-chip[data-tk="mfm"][aria-pressed=false]').count()===1,T('Quiz remembers the last topics'));
- await p.locator('.tp-chip.mix').click();await p.locator('.st-go').click();await p.waitForTimeout(1500);
- const pk=[];for(let i=0;i<10;i++){pk.push(await p.locator('#play-app .st-pack').textContent());await p.locator('#play-app .ans').first().click();await p.waitForTimeout(110);await p.locator('.st-next').click();await p.waitForTimeout(110);}
- ok(new Set(pk).size===5,T('Mix it up covers all 5 topics'),[...new Set(pk)].join('/'));
- await p.waitForTimeout(800);
- // Quiz challenge round-trip
- const ql=await p.locator('[data-try]').getAttribute('data-try');await p.locator('[data-try]').click();await p.waitForTimeout(400);
- ok(await p.locator('.st-chal').count()===1,T('challenge screen opens'));
- await p.locator('.st-accept').click();await p.waitForTimeout(1500);const cq=[];await answerAll(10,0,cq);await p.waitForTimeout(1300);
- ok(await p.locator('.st-versus').count()===1,T('challenge shows You vs friend'));ok(await ov()<=0,T('challenge results: no sideways scroll'));
- const qids=decodeURIComponent(ql.split('q=')[1].split('&')[0]).split(',');ok(qids.length===10,T('challenge link has 10 question ids'));
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- // Timer runs out
- await p.locator('.pg-games [data-mode="quiz"]').click();await p.waitForTimeout(400);await p.locator('.st-go').click();await p.waitForTimeout(1200);
- await p.waitForTimeout(21500);ok((await p.locator('.st-sheet').textContent()).includes('Time'),T("timer runs out → \"Time's up\""));
- await p.keyboard.press('Escape');await p.waitForTimeout(400);ok(await p.locator('#play-app').isHidden(),T('Escape closes the game'));
- // Kids: 30 s, 10 questions
- await p.locator('.pg-games [data-mode="kids"]').click();await p.waitForTimeout(1500);
- ok((await p.locator('#play-app .st-timer b').textContent()).trim()>='29',T('Kids timer is 30 s'));ok((await p.locator('#play-app .st-qn').textContent()).includes('of 10'),T('Kids has 10 questions'));
- await answerAll(10,0);await p.waitForTimeout(1200);ok(await p.locator('.st-res').count()===1,T('Kids results'));ok(await ov()<=0,T('Kids results: no sideways scroll'));await p.locator('.st-x').click();await p.waitForTimeout(300);
- // Word: invalid, lose path via practice, win daily, persistence
- await p.locator('.pg-games [data-mode="word"]').click();await p.waitForTimeout(1500);
- ok(await centred(),T('Word screen centred'));
- await p.keyboard.type('ZQXJK');await p.keyboard.press('Enter');await p.waitForTimeout(300);ok((await p.locator('.wd-msg').textContent()).includes('Not in the word list'),T('Word rejects made-up words'));
- for(let i=0;i<5;i++)await p.keyboard.press('Backspace');
- const day=await p.evaluate(()=>{const a=Date.parse('2026-12-01T00:00:00Z');const q={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).forEach(x=>q[x.type]=x.value);return Math.max(1,Math.floor((Date.parse(q.year+'-'+q.month+'-'+q.day+'T00:00:00Z')-a)/864e5)+1)});
- const ans=words[(day-1)%words.length].w;
- await p.keyboard.type('GRACE');await p.keyboard.press('Enter');await p.waitForTimeout(700);
- if(ans!=='GRACE'){await p.keyboard.type(ans);await p.keyboard.press('Enter');}await p.waitForTimeout(2200);
- ok((await p.locator('.wd-answer').textContent())===ans,T('Word win shows the word'));ok(await p.locator('.wd-verse mark').count()===1,T('Word shows its verse with the word highlighted'));ok(await ov()<=0,T('Word results: no sideways scroll'));
- await p.locator('.st-x').click();await p.waitForTimeout(300);await p.locator('.pg-games [data-mode="word"]').click();await p.waitForTimeout(1500);
- ok(await p.locator('.wd-end').count()===1,T('Word of the Day stays solved after reopening'));
- await p.locator('.st-prac').click();await p.waitForTimeout(1200);
- for(const g of ['GRACE','MERCY','FAITH','PEACE','HOUSE','LIGHT']){await p.keyboard.type(g);await p.keyboard.press('Enter');await p.waitForTimeout(250);}
- await p.waitForTimeout(1500);ok(await p.locator('.wd-end').count()===1,T('Word practice: 6 tries then shows the answer'));
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- // Team battle 3 teams x 3
- await p.locator('.pg-games [data-mode="team"]').click();await p.waitForTimeout(500);
- await p.locator('.tm-n label:has(input[value="3"])').first().click();await p.locator('.st-team label:has(input[name=per][value="3"])').click();
- if(await p.locator('.st-team .tp-chip.mix[aria-pressed=false]').count()) await p.locator('.st-team .tp-chip.mix').click();
- await p.click('.st-team .pg-btn.xl');await p.waitForTimeout(1500);
- for(let i=0;i<9;i++){await p.locator('.tm-pass .pg-btn').click();await p.waitForTimeout(150);await p.locator('#play-app .ans').nth(i%2).click();await p.waitForTimeout(120);await p.locator('.st-next').click();await p.waitForTimeout(150);}
- await p.waitForTimeout(1200);ok(await p.locator('.tm-row').count()===3,T('Team Battle: 3 teams on the scoreboard'));ok(await ov()<=0,T('Team results: no sideways scroll'));
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- // Blitz full 60s
- await p.locator('.pg-games [data-mode="blitz"]').click();await p.waitForTimeout(1500);
- ok(await centred(),T('Blitz centred'));
- let n=0;const end=Date.now()+61500;while(Date.now()<end && await p.locator('.bz-card').count()){await p.keyboard.press(n%2?'t':'f');n++;await p.waitForTimeout(220);}
- await p.waitForTimeout(1500);ok(await p.locator('.bz-big').count()===1,T('Blitz ends after 60 s with a score'),n+' answers');
- ok(await p.locator('.bz-miss').count()>0,T('Blitz shows the ones you missed'));ok(await ov()<=0,T('Blitz results: no sideways scroll'));
- const bl=await p.locator('[data-try]').getAttribute('data-try');ok(/c=blitz&seed=/.test(bl),T('Blitz challenge link'));
- await p.locator('.st-x').click();await p.waitForTimeout(300);
- ok(errs.length===0,T('no JavaScript or loading errors'),errs.slice(0,3).join(' | '));
- await ctx.close();}
-await b.close();
-console.log('TOTAL',R.length,'PASS',R.filter(r=>r[0]==='PASS').length);
+const BASE = process.env.BASE || 'http://localhost:8095/play.html';
+const OUT = process.env.OUT || require('path').join(require('os').tmpdir(),'games-qc');
+require('fs').mkdirSync(OUT, { recursive: true });
+(async () => {
+  const b = await chromium.launch();
+  const res = [];
+  for (const [tag, vw, vh, mob] of [['d', 1440, 900, false], ['m', 390, 844, true]]) {
+    const ctx = await b.newContext({ viewport: { width: vw, height: vh }, isMobile: mob, hasTouch: mob });
+    const p = await ctx.newPage(); const errs = [];
+    p.on('pageerror', e => errs.push(e.message)); p.on('console', m => { if (m.type() === 'error' && !/leaderboard|live-status|about:blank|Failed to load resource/.test(m.text())) errs.push('console: ' + m.text()); });
+    await p.goto(BASE, { waitUntil: 'networkidle' });
+    await p.waitForTimeout(800);
+    const ok = (name, cond, extra) => res.push({ tag, name, ok: !!cond, extra: extra || '' });
+    const over = async () => p.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    const stageOver = async () => p.evaluate(() => { const s = document.getElementById('play-app'); const W = s.clientWidth; let bad = []; s.querySelectorAll('*').forEach(e => { const r = e.getBoundingClientRect(); if (r.width && r.right > W + 2 && !e.closest('.st-confetti')) bad.push(e.className || e.tagName); }); return bad.slice(0, 4); });
+    const shot = async (n) => p.screenshot({ path: `${OUT}/${tag}-${n}.png` });
+    // page
+    const tiles = await p.$$eval('.gg .gt', a => a.length); ok('11 tiles', tiles === 11, tiles);
+    const gname = await p.$eval('.gw [data-gotw-name]', e => e.textContent); ok('gotw painted', gname && gname !== 'Game of the Week', gname);
+    ok('page no overflow', (await over()) <= 0);
+    await p.$eval('#games', e => e.scrollIntoView()); await p.waitForTimeout(400); await p.screenshot({ path: `${OUT}/${tag}-page-games.png`, fullPage: false });
+    const close = async () => { for (let k = 0; k < 3; k++) { if (await p.evaluate(() => document.getElementById('play-app').hidden)) break; await p.keyboard.press('Escape'); await p.waitForTimeout(350); } };
+    const S = () => p.evaluate(() => window.PG.get());
+    const play = async (id) => { await p.$eval(`.gt[data-game="${id}"] .pg-btn`, b => b.scrollIntoView({ block: 'center' })); await p.click(`.gt[data-game="${id}"] .pg-btn`); await p.waitForTimeout(400); };
+    const who = async () => { if (await p.$('#play-app .st-who')) { await p.fill('#play-app input[name=nick]', 'Grace QC'); await p.selectOption('#play-app select[name=branch]', { index: 1 }); await p.click('#play-app .st-who button[type=submit]'); await p.waitForTimeout(500); } };
+    const cards = async (n) => { const r = await p.evaluate(() => { const c = document.querySelector('#play-app .st-card'); if (!c) return null; const s = document.getElementById('play-app').getBoundingClientRect(); const r = c.getBoundingClientRect(); return { w: r.width, l: r.left, right: s.width - r.right }; }); return r; };
+
+    // Bible Connections solo
+    await play('connect'); await shot('connect-choose'); await p.click('#play-app [data-m=solo]'); await p.waitForTimeout(300); await who(); await p.waitForSelector('#play-app .cn-grid', { timeout: 8000 });
+    await shot('connect-1');
+    let s = await S();
+    for (let gi = 0; gi < 4; gi++) {
+      s = await S(); const words = s.P[gi][1];
+      for (const w of words) await p.click(`#play-app .cn-w[data-w="${w}"]`);
+      await p.click('#play-app .cn-go'); await p.waitForTimeout(250);
+      if (gi === 1) await shot('connect-2');
+    }
+    await p.waitForSelector('#play-app .gx-res', { timeout: 5000 }); await shot('connect-result');
+    s = await S(); ok('connect result 4/4', s.found.length === 4 && s.pts === 800, s.pts);
+    ok('connect stage fits', (await stageOver()).length === 0, (await stageOver()).join(','));
+    await close();
+
+    // Word Connect solo (3 wheels) by keyboard
+    await play('wheel'); await p.click('#play-app [data-m=solo]'); await p.waitForSelector('#play-app .wh-wheel', { timeout: 8000 }); await shot('wheel-1');
+    for (let w = 0; w < 3; w++) {
+      s = await S();
+      for (const word of s.P.t) { await p.keyboard.type(word.toLowerCase()); await p.keyboard.press('Enter'); await p.waitForTimeout(120); }
+      await p.waitForTimeout(900);
+    }
+    await p.waitForSelector('#play-app .gx-res', { timeout: 5000 }); s = await S(); ok('wheel all words', s.foundT === s.totalT, s.foundT + '/' + s.totalT); await shot('wheel-result'); await close();
+    // swipe test on one wheel (practice via team-free path): open wheel solo again shows today's (already played isn't locked for wheel) -> just test drag on first word
+    await play('wheel'); await p.click('#play-app [data-m=solo]'); await p.waitForSelector('#play-app .wh-wheel');
+    s = await S(); const target = s.P.t[0]; const used = [];
+    const pts = [];
+    for (const L of target) { const i = s.letters.findIndex((x, k) => x === L && !used.includes(k)); used.push(i); const bb = await p.$eval(`#play-app .wh-l[data-i="${i}"]`, e => { const r = e.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }); pts.push(bb); }
+    await p.mouse.move(pts[0][0], pts[0][1]); await p.mouse.down(); for (const q of pts.slice(1)) await p.mouse.move(q[0], q[1], { steps: 6 }); await p.mouse.up(); await p.waitForTimeout(300);
+    s = await S(); ok('wheel swipe finds word', s.found.indexOf(target) >= 0, target); await close();
+
+    // Daily Verse solo: one wrong guess then right
+    await play('dverse'); await p.click('#play-app [data-m=solo]'); await p.waitForSelector('#play-app .dv-form', { timeout: 8000 });
+    s = await S(); const wrongB = s.v[1] === 0 ? 1 : 0;
+    await p.selectOption('#play-app select[name=b]', String(wrongB)); await p.click('#play-app .dv-form button'); await p.waitForTimeout(300); await shot('dverse-1');
+    await p.selectOption('#play-app select[name=b]', String(s.v[1])); await p.selectOption('#play-app select[name=c]', String(s.v[2])); await p.click('#play-app .dv-form button');
+    await p.waitForSelector('#play-app .gx-res', { timeout: 5000 }); s = await S(); ok('dverse 2 tries = 500', s.pts === 500, s.pts); await shot('dverse-result'); await close();
+
+    // Who Am I? solo: get first after 1 clue, second after a wrong guess, rest straight
+    await play('whoami'); await p.click('#play-app [data-m=solo]'); await p.waitForSelector('#play-app .wa-opts', { timeout: 8000 }); await shot('whoami-1');
+    for (let i = 0; i < 5; i++) {
+      s = await S();
+      if (i === 1) { const wrong = s.opts.find(o => o !== s.p.n); await p.click(`#play-app .wa-o[data-o="${wrong}"]`); await p.waitForTimeout(200); }
+      await p.click(`#play-app .wa-o[data-o="${(await S()).p.n}"]`); await p.waitForTimeout(200); if (i === 0) await shot('whoami-2');
+      await p.click('#play-app .wa-next'); await p.waitForTimeout(250);
+    }
+    await p.waitForSelector('#play-app .gx-res'); s = await S(); ok('whoami 5/5 2400', s.right === 5 && s.pts === 2400, s.pts); await shot('whoami-result'); await close();
+
+    // Verse Builder solo: one mistake on verse 1
+    await play('build'); await p.click('#play-app [data-m=solo]'); await p.waitForSelector('#play-app .vb-pool', { timeout: 8000 }); await shot('build-1');
+    for (let i = 0; i < 5; i++) {
+      s = await S(); const n = s.v[1].length;
+      if (i === 0) { await p.click(`#play-app .vb-p[data-k="${n - 1}"]`); await p.waitForTimeout(100); }
+      for (let k = 0; k < n; k++) { await p.click(`#play-app .vb-p[data-k="${k}"]`); await p.waitForTimeout(40); if (i === 0 && k === 1) await shot('build-2'); }
+      await p.click('#play-app .vb-next'); await p.waitForTimeout(200);
+    }
+    await p.waitForSelector('#play-app .gx-res'); s = await S(); ok('build 5 verses', s.score === 5 && s.miss === 1, s.pts); await shot('build-result'); await close();
+
+    // Noah's Pairs solo easy, perfect
+    await play('pairs'); await shot('pairs-choose'); await p.click('#play-app [data-lv="6"]'); await p.waitForSelector('#play-app .pr-grid', { timeout: 8000 }); await shot('pairs-1');
+    s = await S(); const byName = {}; s.cards.forEach((c, i) => (byName[c.a[1]] = byName[c.a[1]] || []).push(i));
+    let first = true;
+    for (const nm of Object.keys(byName)) { await p.click(`#play-app .pr-c[data-i="${byName[nm][0]}"]`); await p.waitForTimeout(80); await p.click(`#play-app .pr-c[data-i="${byName[nm][1]}"]`); await p.waitForTimeout(150); if (first) { await shot('pairs-2'); first = false; } }
+    await p.waitForSelector('#play-app .gx-res', { timeout: 5000 }); s = await S(); ok('pairs 600', s.pts === 600 && s.moves === 6, s.pts + ' ' + s.moves); await shot('pairs-result'); await close();
+
+    // Imposter: 3 players
+    await play('imposter'); await p.waitForSelector('#play-app .imp'); await p.click('#play-app .gx-step button[data-d="-1"]'); await shot('imposter-setup');
+    await p.click('#play-app .imp button[type=submit]'); await p.waitForSelector('#play-app .imp-see', { timeout: 8000 });
+    let seenImp = 0, seenWord = 0;
+    for (let i = 0; i < 3; i++) { await p.click('#play-app .imp-see'); await p.waitForTimeout(150); if (await p.$('#play-app .imp-card.is-imp')) { seenImp++; if (i < 3) await shot('imposter-imp'); } else { seenWord++; await shot('imposter-word'); } await p.click('#play-app .imp-hide'); await p.waitForTimeout(150); }
+    ok('imposter one imposter', seenImp === 1 && seenWord === 2, seenImp + '/' + seenWord);
+    await shot('imposter-talk'); await p.click('#play-app .imp-rev'); await p.waitForTimeout(200); await shot('imposter-end'); await close();
+
+    // Team play: Connections, 2 teams x 1 turn
+    await play('connect'); await p.click('#play-app [data-m=team]'); await p.waitForSelector('#play-app .st-team'); await shot('team-setup');
+    await p.click('#play-app input[name=per][value="1"]', { force: true }); await p.click('#play-app .st-team button[type=submit]');
+    for (let t = 0; t < 2; t++) {
+      await p.waitForSelector('#play-app .tm-pass'); if (t === 0) await shot('team-pass'); await p.click('#play-app .tm-pass .pg-btn');
+      await p.waitForSelector('#play-app .cn-grid', { timeout: 8000 }); if (t === 0) await shot('team-connect');
+      for (let gi = 0; gi < (t === 0 ? 4 : 2); gi++) { s = await S(); for (const w of s.P[gi][1]) await p.click(`#play-app .cn-w[data-w="${w}"]`); await p.click('#play-app .cn-go'); await p.waitForTimeout(150); }
+      if (t === 1) { for (let m = 0; m < 4; m++) { s = await S(); const left = s.words.filter(x => s.found.indexOf(x.g) < 0); const pick = [left[m % left.length], ...left.filter(x => x.g !== left[m % left.length].g).slice(m % 2, (m % 2) + 3)]; const cl = await p.$('#play-app .cn-clear:not([disabled])'); if (cl) await cl.click(); for (const x of pick) await p.click(`#play-app .cn-w[data-w="${x.w}"]`); await p.click('#play-app .cn-go'); await p.waitForTimeout(150); if (!(await p.$('#play-app .cn-go'))) break; } }
+      await p.waitForSelector('#play-app .gx-between', { timeout: 6000 }); if (t === 0) await shot('team-between'); await p.click('#play-app .gx-between .pg-btn');
+    }
+    await p.waitForSelector('#play-app .tm-res', { timeout: 5000 }); await shot('team-result');
+    const win = await p.$eval('#play-app .tm-res .st-rank', e => e.textContent); ok('team result', /wins/.test(win), win); await close();
+
+    // Bible Quiz hub -> Daily 10 opens
+    await play('bquiz'); await shot('bquiz-hub'); await p.click('#play-app [data-q=daily]'); await p.waitForSelector('#play-app .st-question', { timeout: 8000 }); ok('bquiz daily opens', true); await shot('bquiz-daily'); await close();
+    // Word of the Day opens
+    await play('word'); await p.waitForSelector('#play-app .wd-row', { timeout: 8000 }); ok('word opens', true); await close();
+
+    // Charades (desktop only: waits for a 45 s turn)
+    if (tag === 'd') {
+      await play('charades'); await p.waitForSelector('#play-app .st-team'); await p.click('#play-app input[name=per][value="1"]', { force: true }); await p.click('#play-app input[name=secs][value="45"]', { force: true }); await shot('charades-setup');
+      await p.click('#play-app .st-team button[type=submit]'); await p.waitForSelector('#play-app .tm-pass'); await p.click('#play-app .tm-pass .pg-btn');
+      await p.waitForSelector('#play-app .ch-got', { timeout: 6000 }); await shot('charades-play');
+      for (let i = 0; i < 3; i++) { await p.click('#play-app .ch-got'); await p.waitForTimeout(150); } await p.click('#play-app .ch-pass');
+      await p.waitForSelector('#play-app .gx-between', { timeout: 50000 }); await shot('charades-between');
+      const g = await p.$eval('#play-app .gx-between .st-h', e => e.textContent); ok('charades 3 got', /^3/.test(g), g); await close();
+    }
+    // local leaderboard shows only the game of the week
+    const rows = await p.$$eval('#pg-boardview .lv4-card, #pg-boardview .lv4-mini', a => a.length); ok('board renders', rows >= 1, rows);
+    await p.$eval('#leaderboard', e => e.scrollIntoView()); await p.waitForTimeout(300); await shot('board');
+    ok('no JS errors', errs.length === 0, errs.slice(0, 3).join(' | '));
+    await ctx.close();
+  }
+  await b.close();
+  const bad = res.filter(r => !r.ok);
+  res.forEach(r => console.log((r.ok ? 'PASS ' : 'FAIL ') + r.tag + ' ' + r.name + (r.extra !== '' ? ' — ' + r.extra : '')));
+  console.log(`${res.length - bad.length}/${res.length} passed`);
 })();

@@ -1,0 +1,12 @@
+function ending(){const e=$('end');saveProgress();const back=$('backl').getAttribute('href');
+ e.innerHTML=`<div class="card"><span class="score"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#fff" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round"/></svg>${score} of ${MAXP} points · ${right} of 5 questions</span><h2>Chapter 1 complete</h2>
+ <blockquote>“But as for you, ye thought evil against me; but God meant it unto good…”</blockquote><cite>GENESIS 50:20 · KJV</cite>
+ ${lbBlock()}
+ <div class="sec"><h3>For your life today: has anyone ever hated you, or laughed at your dream?</h3><div class="row"><button class="go" data-r="1">Yes, I have</button><button class="go alt" data-r="2">Not that I know of</button></div>
+ <p class="pp" id="pp"></p></div><div class="next" id="nx"><div class="row"><button class="go" id="amen">Amen</button></div></div>
+ <div class="sec" id="ch2" style="display:none"><h3>Chapter 2: From the pit to Potiphar’s house</h3><p style="margin:0 0 .8em;color:#5a4a3a">Coming soon.</p><div class="row"><button class="go alt" id="again">Play Chapter 1 again</button><a class="go" href="${back}" style="display:inline-flex;align-items:center;text-decoration:none">Back to Play &amp; Grow</a></div></div></div>`;
+ e.classList.add('on');submit();
+ const wf=$('who');if(wf){$('wb').addEventListener('change',()=>{$('wol').hidden=$('wb').value!==OTHER});wf.addEventListener('submit',ev=>{ev.preventDefault();const nick=$('wn').value.trim().slice(0,20),br=$('wb').value;if(!nick||!br)return;ls('mfm-quiz-me',{nick,branch:br,other:br===OTHER?$('wo').value.trim().slice(0,40):'',guest:false});$('lbx').outerHTML=lbBlock();submit()})}
+ e.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{const pp=$('pp');pp.innerHTML=(b.dataset.r==='1'?'The pit is not the end of your story. What they meant for evil, God can turn for good.<br><br>':'When trouble comes, remember Joseph: God is with you in every place.<br><br>')+'<b>Pray:</b> Father, every pit dug against my destiny, turn it into a stepping stone to my palace. As You were with Joseph, be with me in every place, in the name of Jesus.';pp.classList.add('on');$('nx').classList.add('on')}));
+ e.onclick=ev=>{if(ev.target.id==='amen'){$('nx').classList.remove('on');$('ch2').style.display=''}if(ev.target.id==='again')start()};
+}
