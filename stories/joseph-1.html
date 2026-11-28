@@ -16,7 +16,7 @@
 <style>
 /* VOICE: joyful, reverent family storybook — Bible-true, never preachy
    IDEA: an animated cartoon Bible storybook that pauses to ask, then keeps turning
-   PICTURE: the stage — Genesis 37 told in seven animated scenes, bold outlined cartoon style (B)
+   PICTURE: the stage — Genesis 37 told in animated scenes, bold outlined cartoon style (B)
    COLOUR and TYPE: navy #142240 housing, gold #c9952c accent, scene colours bright; Fraunces + Inter Tight
    LAYOUT: stage first (16:9 desktop, 4:5 phone with a camera that follows the speaker), controls under it */
 :root{color-scheme:light dark;--navy:#142240;--gold:#c9952c;--ink:#2b1a10}
@@ -103,8 +103,9 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .p[data-expr=neutral] .ex-neutral,.p[data-expr=smile] .ex-smile,.p[data-expr=happy] .ex-happy,.p[data-expr=jealous] .ex-jealous,.p[data-expr=angry] .ex-angry,.p[data-expr=sad] .ex-sad,.p[data-expr=surprised] .ex-surprised,.p[data-expr=sleep] .ex-sleep{display:inline}
 .p[data-expr=sleep] .eyes{opacity:0}
 .p .armsX{opacity:0;transition:opacity .35s}.p[data-pose=cross] .armsX{opacity:1}.p[data-pose=cross] .arm{opacity:0}
-.coatwear{opacity:0;transition:opacity .6s}.p.coat .coatwear{opacity:1}
+.coatwear,.chainwear,.ringwear{opacity:0;transition:opacity .6s}.p.coat .coatwear,.p.chain .chainwear,.p.ring .ringwear{opacity:1}
 .mover{transition:transform 1s cubic-bezier(.4,.1,.2,1)}
+.p{transition:transform .7s cubic-bezier(.4,.1,.2,1);transform-box:fill-box;transform-origin:50% 100%}.p.bowR{transform:rotate(18deg)}.p.bowL{transform:rotate(-18deg)}
 .hop{animation:hop .5s ease-out 2}@keyframes hop{40%{transform:translateY(-20px)}}
 .p.walk .ft0{animation:stepA .5s linear infinite}.p.walk .ft1{animation:stepA .5s linear infinite reverse}
 @keyframes stepA{0%,100%{transform:translateX(-9px)}50%{transform:translateX(9px)}}
@@ -118,10 +119,14 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .bow{transition:transform 1.2s cubic-bezier(.4,.1,.2,1);transform-box:fill-box;transform-origin:50% 100%}
 .leg{animation:leg .6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 0}.leg.l2{animation-delay:-.3s}@keyframes leg{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
 .still .leg{animation:none}
-.beam{opacity:0;transition:opacity 1.2s}.beam.on{opacity:1}
+.beam{opacity:0;transition:opacity 1.2s;pointer-events:none}.beam.on{opacity:1}
+.stage>svg *{pointer-events:none}.stage>svg .tapme,.stage>svg .tapme *{pointer-events:auto}
+.tapme{cursor:pointer;animation:glowp .9s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}@keyframes glowp{from{filter:drop-shadow(0 0 0 #ffd23f)}to{filter:drop-shadow(0 0 16px #ffe27a) brightness(1.12)}}.done{cursor:default}
+.whl{animation:spin .8s linear infinite;transform-box:fill-box;transform-origin:center}.still .whl{animation:none}
+.fade{transition:opacity .9s}
 .spark{opacity:0}.spark.go{animation:spark 1s ease-out forwards}@keyframes spark{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.7)}}
 .coin{transition:transform .9s cubic-bezier(.5,0,.3,1),opacity .3s}
-@media (prefers-reduced-motion:reduce){.cloud,.rays,.tw,.fl,.p .eyes,.p .torso{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.cloud,.rays,.tw,.fl,.p .eyes,.p .torso,.whl{animation:none!important}.tapme{animation:none!important;filter:drop-shadow(0 0 10px #ffe27a)}}
 </style>
 </head>
 <body>
@@ -159,6 +164,13 @@ const LOOK={
  trader1:{name:'Trader',skin:'#8f603f',robe:'#c46a2b',sash:'#2f4f8f',turban:'#f1ece0',beard:'short',bc:'#1d130c',cls:'b1'},
  trader2:{name:'Trader',skin:'#9a6844',robe:'#2b7d78',sash:'#e9a826',turban:'#c8312b',beard:'short',bc:'#1d130c',cls:'b3'}
 };
+const DEFS_X='';
+const END={num:1,verse:'“But as for you, ye thought evil against me; but God meant it unto good…”',cite:'GENESIS 50:20 · KJV',
+ q:'has anyone ever hated you, or laughed at your dream?',a:['Yes, I have','Not that I know of'],
+ r:['The pit is not the end of your story. What they meant for evil, God can turn for good.','When trouble comes, remember Joseph: God is with you in every place.'],
+ pray:'Father, every pit dug against my destiny, turn it into a stepping stone to my palace. As You were with Joseph, be with me in every place, in the name of Jesus.',
+ next:{ch:'joseph-2',label:'Chapter 2',title:'Potiphar’s House',ready:1}};
+
 const POSES={stand:[-6,6],give:[-80,-8],receive:[-58,-48],joy:[-160,-150],point:[-100,-4],pray:[-128,-120],hold:[-62,-56],reach:[-120,-30],cross:[-6,6]};
 const shade=(h,d)=>{const n=parseInt(h.slice(1),16);return '#'+[n>>16,n>>8&255,n&255].map(v=>Math.max(0,Math.min(255,v+d)).toString(16).padStart(2,'0')).join('')};
 
@@ -183,13 +195,17 @@ function face(o){
  const X={neutral:brow(0,0),smile:brow(R*.04,R*.02),happy:brow(R*.1,R*.03),jealous:lids+brow(-R*.06,-R*.1),angry:lids+brow(-R*.08,-R*.15,R*.13),sad:sadBrow+tear,surprised:brow(R*.16,0),sleep:closed};
  const nose=`<path d="M${R*.9} ${-R*.08} Q${R*1.13} ${R*.16} ${R*.88} ${R*.25}" fill="${o.skin}" ${sk2}/>`;
  const blush=`<ellipse cx="${R*.72}" cy="${R*.26}" rx="${R*.14}" ry="${R*.09}" fill="#e0716a" opacity=".42"/>`;
- return `${nose}<g class="eyes">${eyes}</g>${blush}`+Object.keys(M).map(k=>`<g class="ex ex-${k}">${X[k]}<g class="mouth">${M[k]}</g></g>`).join('');
+ const lash=o.lash?[e1,e2].map((x,i)=>{const rx=R*(i?.2:.17),ry=R*(i?.24:.21);return `<path d="M${x+rx*.55} ${ey-ry*.85} l${R*.1} ${-R*.1} M${x+rx*.9} ${ey-ry*.45} l${R*.12} ${-R*.05}" stroke="${OL}" stroke-width="2.6" stroke-linecap="round"/>`}).join(''):'';
+ return `${nose}<g class="eyes">${eyes}${lash}</g>${blush}`+Object.keys(M).map(k=>`<g class="ex ex-${k}">${X[k]}<g class="mouth">${M[k]}</g></g>`).join('');
 }
 function head(o){
  let h='';
  if(o.wrap)h+=`<path d="M${.86*R} ${-.42*R} C${.72*R} ${-1.3*R} ${-.95*R} ${-1.38*R} ${-1.08*R} ${-.3*R} L${-1.2*R} ${1.6*R} Q${-.55*R} ${1.8*R} ${-.12*R} ${1.4*R} L${-.36*R} ${.2*R} Q${-.1*R} ${-.42*R} ${.86*R} ${-.42*R} Z" fill="${o.wrap}" ${sk()}/>`;
+ if(o.nemes)h+=`<path d="M${.7*R} ${-.6*R} C${.6*R} ${-1.45*R} ${-1.2*R} ${-1.45*R} ${-1.3*R} ${-.2*R} L${-1.42*R} ${1.95*R} L${-.2*R} ${1.95*R} L${-.3*R} ${.4*R} Z" fill="url(#nem)" ${sk()}/>`;
  h+=`<circle r="${R}" fill="${o.skin}" ${sk()}/>`;
- if(!o.wrap&&!o.turban)h+=`<circle cx="${-.12*R}" cy="${.05*R}" r="${.17*R}" fill="${o.skin}" ${sk(2.4)}/>`;
+ if(o.wig)h+=`<path d="M${.92*R} ${-.52*R} C${.8*R} ${-1.32*R} ${-1.02*R} ${-1.36*R} ${-1.16*R} ${-.2*R} L${-1.12*R} ${.8*R} Q${-.8*R} ${.9*R} ${-.5*R} ${.8*R} L${-.42*R} ${-.02*R} Q${-.08*R} ${-.52*R} ${.92*R} ${-.52*R} Z" fill="${o.wig}" ${sk()}/>`;
+ if(o.nemes)h+=`<path d="M${.95*R} ${-.56*R} C${.82*R} ${-1.4*R} ${-1.1*R} ${-1.42*R} ${-1.2*R} ${-.24*R} L${-.62*R} ${.46*R} L${-.46*R} ${-.58*R} Q${.3*R} ${-.66*R} ${.95*R} ${-.56*R} Z" fill="url(#nem)" ${sk()}/><path d="M${.95*R} ${-.56*R} Q${.3*R} ${-.66*R} ${-.46*R} ${-.58*R} L${-.62*R} ${.46*R}" stroke="#e9a826" stroke-width="${.15*R}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M${.95*R} ${-.56*R} Q${.3*R} ${-.66*R} ${-.46*R} ${-.58*R} L${-.62*R} ${.46*R}" stroke="${OL}" stroke-width="2.5" fill="none" opacity=".55" stroke-linejoin="round"/>`;
+ if(!o.wrap&&!o.turban&&!o.wig&&!o.nemes)h+=`<circle cx="${-.12*R}" cy="${.05*R}" r="${.17*R}" fill="${o.skin}" ${sk(2.4)}/>`;
  if(o.beard){const L=o.beard==='long'?1.85:1.18;h+=`<path d="M${-.36*R} ${.02*R} Q${-.34*R} ${(L-.6)*R} ${.22*R} ${L*R} Q${.7*R} ${(L-.55)*R} ${.98*R} ${.3*R} Q${.64*R} ${.72*R} ${.46*R} ${.6*R} Q${.2*R} ${.55*R} ${.02*R} ${.6*R} Q${-.1*R} ${.3*R} ${-.36*R} ${.02*R} Z" fill="${o.bc}" ${sk()}/><ellipse cx="${.5*R}" cy="${.3*R}" rx="${.26*R}" ry="${.08*R}" fill="${o.bc}"/>`}
  if(o.hair)h+=[[-.5,-.55,.5],[-.02,-.8,.44],[.46,-.7,.36],[-.86,-.12,.4],[-.78,.36,.3],[.72,-.5,.25]].map(([x,y,r])=>`<circle cx="${x*R}" cy="${y*R}" r="${r*R}" fill="${o.hair}" ${sk()}/>`).join('')+`<circle cx="${-.35*R}" cy="${-.35*R}" r="${.62*R}" fill="${o.hair}"/>`;
  h+=face(o);
@@ -200,7 +216,7 @@ function head(o){
 function arm(o,side,ang){
  const W=29,L=84,sx=side?16:-12,sleeve=side?o.robe:shade(o.robe,-16);
  const staff=(o.staff&&!side)?`<rect x="-5" y="${L-62}" width="10" height="150" rx="5" fill="#7a5230" ${sk()}/><path d="M0 ${L-62} q-3 -22 -20 -22 q-14 2 -10 16" fill="none" stroke="${OL}" stroke-width="15" stroke-linecap="round"/><path d="M0 ${L-62} q-3 -22 -20 -22 q-14 2 -10 16" fill="none" stroke="#7a5230" stroke-width="7" stroke-linecap="round"/>`:'';
- return `<g class="arm arm${side}" style="transform:translate(${sx}px,-196px) rotate(${ang}deg)"><g class="sw">${staff}<rect x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="${sleeve}" ${sk()}/>${o.coatable?`<rect class="coatwear" x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="url(#cp)" ${sk()}/>`:''}<circle cy="${L}" r="${W*.48}" fill="${o.skin}" ${sk()}/></g></g>`;
+ return `<g class="arm arm${side}" style="transform:translate(${sx}px,-196px) rotate(${ang}deg)"><g class="sw">${staff}<rect x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="${sleeve}" ${sk()}/>${o.coatable?`<rect class="coatwear" x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="url(#cp)" ${sk()}/>`:''}<circle cy="${L}" r="${W*.48}" fill="${o.skin}" ${sk()}/>${o.ringable&&side?`<g class="ringwear"><circle cx="${W*.34}" cy="${L-4}" r="6" fill="#ffd23f" ${sk(2.4)}/></g>`:''}</g></g>`;
 }
 const ROBE='M-34 -206 Q-47 -110 -59 -8 Q0 6 59 -8 Q47 -110 34 -206 Q0 -214 -34 -206 Z';
 function person(id,c){
@@ -208,10 +224,10 @@ function person(id,c){
  let g=`<ellipse cx="0" cy="0" rx="62" ry="10" fill="#000" opacity=".18"/>`+arm(o,0,a0);
  g+=`<g class="torso"><ellipse class="ft0" cx="-18" cy="-6" rx="17" ry="8" fill="#6b4a2b" ${sk()}/><ellipse class="ft1" cx="22" cy="-5" rx="18" ry="8" fill="#6b4a2b" ${sk()}/><path d="${ROBE}" fill="${o.robe}" ${sk()}/>`;
  if(o.coatable)g+=`<g class="coatwear"><path d="${ROBE}" fill="url(#cp)" ${sk()}/><path d="M-4 -206 L-6 -6" stroke="rgba(0,0,0,.2)" stroke-width="3"/></g>`;
- g+=`<rect x="-44" y="-132" width="88" height="15" rx="5" fill="${o.sash}" ${sk(3)} transform="rotate(-3)"/><rect x="-9" y="-224" width="20" height="24" rx="6" fill="${o.skin}"/><g transform="translate(4 ${-212-R*.92})">${head(o)}</g></g>`;
+ g+=`<rect x="-44" y="-132" width="88" height="15" rx="5" fill="${o.sash}" ${sk(3)} transform="rotate(-3)"/>${o.collar?`<path d="M-36 -205 Q0 -150 36 -205 Q0 -176 -36 -205Z" fill="${o.collar}" ${sk(3)}/><path d="M-27 -197 Q0 -164 27 -197" stroke="#2f6fd0" stroke-width="4" fill="none"/>`:''}${o.chainable?`<g class="chainwear"><path d="M-30 -204 Q0 -150 30 -204" stroke="${OL}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M-30 -204 Q0 -150 30 -204" stroke="#ffd23f" stroke-width="5" fill="none" stroke-dasharray="6 3" stroke-linecap="round"/><circle cx="0" cy="-176" r="9" fill="#ffd23f" ${sk(2.5)}/></g>`:''}<rect x="-9" y="-224" width="20" height="24" rx="6" fill="${o.skin}"/><g transform="translate(4 ${-212-R*.92})">${head(o)}</g></g>`;
  g+=`<g class="armsX"><rect x="-32" y="-170" width="70" height="25" rx="12" fill="${shade(o.robe,-16)}" ${sk()} transform="rotate(10 0 -158)"/><rect x="-34" y="-162" width="72" height="25" rx="12" fill="${o.robe}" ${sk()} transform="rotate(-8 0 -150)"/><circle cx="36" cy="-166" r="12" fill="${o.skin}" ${sk()}/><circle cx="-30" cy="-150" r="12" fill="${o.skin}" ${sk()}/></g>`+arm(o,1,a1);
  const k=o.k||1;
- return `<g class="mover" id="mv-${id}" style="transform:translate(${o.x}px,${o.y}px) scale(${k})"><g class="p ${o.cls||''} ${o.coat?'coat':''}" id="p-${id}" data-expr="${o.expr||'neutral'}" data-pose="${o.pose||'stand'}"><g transform="scale(${o.f*o.s} ${o.s})">${g}</g></g></g>`;
+ return `<g class="mover" id="mv-${id}" style="transform:translate(${o.x}px,${o.y}px) scale(${k})"><g class="p ${o.cls||''} ${o.coat?'coat':''} ${o.chain?'chain':''} ${o.ring?'ring':''}" id="p-${id}" data-expr="${o.expr||'neutral'}" data-pose="${o.pose||'stand'}"><g transform="scale(${o.f*o.s} ${o.s})">${g}</g></g></g>`;
 }
 /* ---------- props ---------- */
 const defs=`<defs><pattern id="cp" patternUnits="userSpaceOnUse" width="96" height="60" patternTransform="rotate(8)">${COAT.map((c,i)=>`<rect x="${i*16}" width="16" height="60" fill="${c}"/>`).join('')}<rect width="96" height="3" y="28" fill="rgba(255,255,255,.35)"/></pattern>
@@ -220,7 +236,9 @@ const defs=`<defs><pattern id="cp" patternUnits="userSpaceOnUse" width="96" heig
 <linearGradient id="skyN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1838"/><stop offset=".7" stop-color="#22336b"/><stop offset="1" stop-color="#3b4a86"/></linearGradient>
 <linearGradient id="skyE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fb7ef"/><stop offset=".6" stop-color="#ffd7a1"/><stop offset="1" stop-color="#ffb37a"/></linearGradient>
 <linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6c8" stop-opacity=".95"/><stop offset="1" stop-color="#ffe08a" stop-opacity=".15"/></linearGradient>
-<radialGradient id="dreamG" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#2a3e86"/><stop offset="1" stop-color="#16224f"/></radialGradient></defs>`;
+<radialGradient id="dreamG" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#2a3e86"/><stop offset="1" stop-color="#16224f"/></radialGradient><pattern id="brk" patternUnits="userSpaceOnUse" width="120" height="64"><rect width="120" height="64" fill="#5b4a3f"/><path d="M0 0 H120 M0 32 H120 M60 0 V32 M0 32 V64 M120 32 V64" stroke="#3a2e27" stroke-width="5"/><rect x="6" y="6" width="48" height="20" rx="4" fill="#6b584b"/><rect x="66" y="38" width="48" height="20" rx="4" fill="#64524a"/></pattern>
+<pattern id="egW" patternUnits="userSpaceOnUse" width="80" height="40"><rect width="80" height="40" fill="#2f6fd0"/><path d="M0 20 L20 4 L40 20 L60 4 L80 20" stroke="#e9a826" stroke-width="6" fill="none"/><rect y="30" width="80" height="10" fill="#c8312b"/></pattern>
+<linearGradient id="lampG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2a40"/><stop offset="1" stop-color="#6e4a3a"/></linearGradient><pattern id="nem" patternUnits="userSpaceOnUse" width="14" height="14"><rect width="14" height="14" fill="#e9b833"/><rect width="14" height="6" fill="#2f4f8f"/></pattern>${DEFS_X}</defs>`;
 const ol=sk(4);
 const cloud=(y,sc,dl)=>`<g class="cloud" style="animation-delay:${dl}s"><g transform="translate(0 ${y}) scale(${sc})"><ellipse rx="70" ry="28" fill="#fff" ${ol}/><ellipse cx="-40" cy="8" rx="44" ry="22" fill="#fff"/><ellipse cx="36" cy="-12" rx="46" ry="30" fill="#fff" ${ol}/><ellipse cx="0" cy="2" rx="62" ry="22" fill="#fff"/></g></g>`;
 const sun=(x,y)=>`<circle cx="${x}" cy="${y}" r="110" fill="url(#sunG)"/><g class="rays">${[...Array(12)].map((_,i)=>`<rect x="${x-6}" y="${y-88}" width="12" height="30" rx="6" fill="#ffd23f" ${ol} transform="rotate(${i*30} ${x} ${y})"/>`).join('')}</g><circle cx="${x}" cy="${y}" r="52" fill="#ffd23f" ${ol}/>`;
@@ -247,6 +265,24 @@ const camel=(id,x,y,f,s,bags)=>`<g class="mover" id="mv-${id}" style="transform:
 ${bags?`<path d="M-40 -150 Q-10 -168 26 -150 L30 -110 L-44 -110 Z" fill="#c8312b" ${ol}/><rect x="-62" y="-122" width="34" height="44" rx="12" fill="#e9a826" ${ol}/><rect x="16" y="-122" width="34" height="44" rx="12" fill="#2e9b57" ${ol}/>`:''}</g></g>`;
 const pit=(x,gy)=>`<g><rect x="${x-120}" y="${gy}" width="240" height="${720-gy+10}" fill="#3a2614" ${ol}/><rect x="${x-104}" y="${gy+6}" width="208" height="${720-gy}" fill="#22160b"/>${[...Array(8)].map((_,i)=>`<ellipse cx="${x-104+(i%2?6:202)}" cy="${gy+30+i*34}" rx="12" ry="8" fill="#5a3d22" ${sk(3)}/>`).join('')}<path d="M${x-140} ${gy} h280" stroke="${OL}" stroke-width="5"/>${[...Array(7)].map((_,i)=>`<ellipse cx="${x-130+i*43}" cy="${gy-4}" rx="22" ry="12" fill="#9a8f80" ${sk(3.5)}/>`).join('')}</g>`;
 const flock=(arr)=>arr.map(([x,y,s])=>sheep(x,y,s)).join('');
+/* Egypt props (chapters 2+) */
+const SAND=['#efd49a','#e5c27e','#f3dca8','#e8c98c'];
+const pyramid=(x,y,s,c='#e0b866')=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-150 0 L0 -150 L150 0Z" fill="${c}" ${ol}/><path d="M0 -150 L150 0 L40 0Z" fill="${shade(c,-26)}"/><path d="M-150 0 L0 -150 L150 0Z" fill="none" ${ol}/></g>`;
+const palm=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0 Q-8 -90 14 -190" stroke="${OL}" stroke-width="22" fill="none" stroke-linecap="round"/><path d="M0 0 Q-8 -90 14 -190" stroke="#9a6a3a" stroke-width="14" fill="none" stroke-linecap="round"/>${[[-70,-150],[80,-160],[-40,-215],[70,-215],[0,-232]].map(([dx,dy])=>`<path d="M14 -190 Q${(14+dx)/2} ${-230+(dy+190)/3} ${dx} ${dy}" stroke="${OL}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M14 -190 Q${(14+dx)/2} ${-230+(dy+190)/3} ${dx} ${dy}" stroke="#4f9a3c" stroke-width="12" fill="none" stroke-linecap="round"/>`).join('')}<circle cx="10" cy="-186" r="9" fill="#7a4a24" ${sk(3)}/></g>`;
+const nile=(y,h)=>`<rect x="-40" y="${y}" width="1360" height="${h}" fill="#4fb0e0" ${sk(4)}/>${[0,1,2].map(i=>`<path d="M${80+i*420} ${y+h*.45} q30 -8 60 0 t60 0" stroke="#fff" stroke-width="4" fill="none" opacity=".75"/>`).join('')}`;
+const stall=(x,y,s,c)=>`<g transform="translate(${x} ${y}) scale(${s})"><rect x="-92" y="-150" width="10" height="150" fill="#7a5230" ${ol}/><rect x="82" y="-150" width="10" height="150" fill="#7a5230" ${ol}/><path d="M-110 -150 L110 -150 L96 -112 Q80 -98 64 -112 Q48 -98 32 -112 Q16 -98 0 -112 Q-16 -98 -32 -112 Q-48 -98 -64 -112 Q-80 -98 -96 -112Z" fill="${c}" ${ol}/><rect x="-100" y="-62" width="200" height="62" rx="6" fill="#c9a46e" ${ol}/>${[-60,-10,40].map((dx,i)=>`<ellipse cx="${dx+10}" cy="-66" rx="22" ry="12" fill="${['#e9a826','#c8312b','#2e9b57'][i]}" ${sk(3)}/>`).join('')}</g>`;
+const column=(x,y,h,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><rect x="-34" y="${-h}" width="68" height="${h}" fill="#efe2c4" ${ol}/>${[.2,.45,.7].map(f=>`<rect x="-34" y="${-h*f-8}" width="68" height="14" fill="#2f6fd0" ${sk(3)}/>`).join('')}<path d="M-56 ${-h} Q-60 ${-h-60} -30 ${-h-78} L30 ${-h-78} Q60 ${-h-60} 56 ${-h}Z" fill="#7fb35a" ${ol}/><path d="M-30 ${-h-78} L-20 ${-h} M0 ${-h-78} V${-h} M30 ${-h-78} L20 ${-h}" stroke="${OL}" stroke-width="3" opacity=".5"/><rect x="-62" y="${-h-96}" width="124" height="20" rx="4" fill="#efe2c4" ${ol}/><rect x="-44" y="-12" width="88" height="12" fill="#d8c69e" ${sk(3)}/></g>`;
+const jar=(x,y,s=1,c='#c2703d')=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-16 -86 L16 -86 L14 -74 Q44 -60 40 -30 Q36 -6 0 0 Q-36 -6 -40 -30 Q-44 -60 -14 -74Z" fill="${c}" ${ol}/><path d="M-30 -44 Q0 -34 30 -44" stroke="#e9d9b0" stroke-width="5" fill="none"/><rect x="-20" y="-94" width="40" height="10" rx="4" fill="${shade(c,-20)}" ${sk(3)}/></g>`;
+const sack=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-36 0 Q-46 -50 -22 -70 L-14 -84 L14 -84 L22 -70 Q46 -50 36 0Z" fill="#d8b77a" ${ol}/><path d="M-18 -72 Q0 -64 18 -72" stroke="#8a5a2b" stroke-width="5" fill="none"/>${[[-12,-90],[0,-96],[12,-90]].map(([a,b])=>`<ellipse cx="${a}" cy="${b}" rx="5" ry="8" fill="#f2c94c" ${sk(2)}/>`).join('')}</g>`;
+const scrollT=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><rect x="-52" y="-46" width="104" height="10" rx="3" fill="#8a5a35" ${ol}/><rect x="-44" y="-36" width="10" height="36" fill="#8a5a35" ${sk(3)}/><rect x="34" y="-36" width="10" height="36" fill="#8a5a35" ${sk(3)}/><rect x="-36" y="-78" width="72" height="30" rx="4" fill="#f6e9c8" ${ol}/><rect x="-44" y="-82" width="12" height="38" rx="6" fill="#d9b880" ${sk(3)}/><rect x="32" y="-82" width="12" height="38" rx="6" fill="#d9b880" ${sk(3)}/><path d="M-24 -68 H22 M-24 -58 H14" stroke="#8a5a2b" stroke-width="3"/></g>`;
+const bread=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-44 -36 L44 -36 L34 0 L-34 0Z" fill="#b7853f" ${ol}/><path d="M-38 -24 H38 M-36 -12 H36" stroke="#8a5a2b" stroke-width="3"/>${[-24,0,24].map(dx=>`<ellipse cx="${dx}" cy="-40" rx="18" ry="11" fill="#e9b45f" ${sk(3)}/>`).join('')}</g>`;
+const keys=(id,x,y)=>`<g id="${id}" style="opacity:0;transform:translate(${x}px,${y}px);transition:transform 1s cubic-bezier(.45,.05,.25,1),opacity .3s"><circle r="13" fill="none" stroke="${OL}" stroke-width="8"/><circle r="13" fill="none" stroke="#e9a826" stroke-width="4"/><path d="M8 8 l22 22 m-8 -8 l6 -6 m2 14 l6 -6" stroke="${OL}" stroke-width="8" stroke-linecap="round"/><path d="M8 8 l22 22 m-8 -8 l6 -6 m2 14 l6 -6" stroke="#e9a826" stroke-width="4" stroke-linecap="round"/></g>`;
+const cloak=(id,x,y,show)=>`<g id="${id}" style="opacity:${show?1:0};transform:translate(${x}px,${y}px);transition:transform .9s,opacity .4s"><g transform="translate(-34 -30)"><path d="M6 0 H62 L70 62 Q36 72 0 62Z" fill="url(#cp)" ${ol}/><path d="M34 2 V64" stroke="rgba(0,0,0,.2)" stroke-width="3"/></g></g>`;
+const torch=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><circle cy="-46" r="60" fill="#ffb24a" opacity=".16"/><rect x="-7" y="-30" width="14" height="44" rx="4" fill="#6b4a2b" ${ol}/><g class="fl"><path d="M-14 -30 Q-18 -70 0 -92 Q18 -70 14 -30Z" fill="#ff8a2a" ${sk(3)}/><path d="M-6 -32 Q-8 -52 0 -64 Q8 -52 6 -32Z" fill="#ffe08a"/></g></g>`;
+const glint=(x,y)=>`<g transform="translate(${x} ${y})"><path class="tw" d="M0 -16 L4 -4 L16 0 L4 4 L0 16 L-4 4 L-16 0 L-4 -4Z" fill="#ffe27a" stroke="${OL}" stroke-width="2"/></g>`;
+const flick=(id)=>{const el=$(id);if(!el)return;el.style.transition='transform .25s';el.style.transform='translateY(-16px)';setTimeout(()=>el.style.transform='',260)};
+
+function burstAt(x,y){const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('transform',`translate(${x} ${y})`);g.innerHTML=[...Array(8)].map((_,i)=>{const a=i*45*Math.PI/180;return `<circle class="spark" cx="${Math.cos(a)*46}" cy="${Math.sin(a)*46}" r="${5+i%2*2}" fill="${i%2?'#ffd23f':'#fff'}" ${sk(2)} style="transform-box:fill-box;transform-origin:center"/>`}).join('');svg.appendChild(g);g.querySelectorAll('.spark').forEach(s=>s.classList.add('go'));setTimeout(()=>g.remove(),1100)}
 
 /* ---------- scenes ---------- */
 const SCENES=[];
@@ -378,8 +414,8 @@ function place(id,x,y,k){const c=cast[id]||(cast[id]={});c.x=x;c.y=y;if(k)c.k=k;
 function flip(id,f){const el=P(id);if(!el)return;const g=el.firstElementChild;if(g){const c=cast[id];const s=(c&&c.s)||.9;g.setAttribute('transform',`scale(${f*s} ${s})`)}else{const cm=$('c-'+id);cm.setAttribute('transform',cm.getAttribute('transform').replace(/scale\(([\d.-]+)/,(m,v)=>`scale(${f*Math.abs(+v)}`))}}
 function walkTo(id,x,y,ms){const mv=$('mv-'+id);if(!mv)return;mv.style.transition=`transform ${ms}ms linear`;const p=P(id);if(p)p.classList.add('walk');
  const c=cast[id]||(cast[id]={});c.x=x;c.y=y;mv.style.transform=`translate(${x}px,${y}px) scale(${c.k||1})`;setTimeout(()=>{if(p)p.classList.remove('walk');mv.style.transition=''},ms)}
-function wait(ms,hard){return new Promise(r=>{const t=setTimeout(done,ms);function done(){clearTimeout(t);if(skipFn===done)skipFn=null;r()}if(!hard)skipFn=done})}
-function headTop(id){const c=cast[id];const L=LOOK[id];return c.y-(212+R*1.95+(L.wrap||L.turban?R*.5:R*.3))*c.s*(c.k||1)-22}
+function wait(ms,hard){const my=running;return new Promise(r=>{const t=setTimeout(done,ms);function done(){clearTimeout(t);if(skipFn===done)skipFn=null;if(my===running)r()}if(!hard)skipFn=done})}
+function headTop(id){const c=cast[id];const L=LOOK[id];return c.y-(212+R*1.95+(L.wrap||L.turban||L.nemes?R*.5:R*.3))*c.s*(c.k||1)-22}
 let speaking=null;
 async function say(id,txt,o={}){document.querySelectorAll('.p.talking').forEach(e=>e.classList.remove('talking'));
  speaking=id;bub.classList.toggle('long',txt.length>70);bub.innerHTML=`<i>${o.name||LOOK[id].name}</i>${txt}${o.ref?`<small class="bref">${o.ref}</small>`:''}`;bub.classList.toggle('whisper',!!o.w);camFocus(cast[id].x);
@@ -400,6 +436,16 @@ function ask(o){camFocus(o.fx!=null?o.fx:SCENES[si].focus);return new Promise(re
 })}
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 function burstConfetti(){for(let i=0;i<18;i++){const d=document.createElement('div');d.className='pop';d.textContent='';d.style.cssText=`left:${50+(Math.random()*40-20)}%;top:${45+Math.random()*10}%;width:10px;height:14px;border:2px solid #2b1a10;background:${COAT[i%6]};border-radius:2px;animation:conf 1.1s ease-out forwards;--dx:${Math.random()*300-150}px;--dy:${-120-Math.random()*160}px`;stage.appendChild(d);setTimeout(()=>d.remove(),1200)}}
+/* tap the glowing things; auto-taps the next one after a pause so nobody gets stuck */
+async function tapGame(o){const els=o.ids.map(id=>$(id)).filter(Boolean);let n=0;
+ cap.innerHTML=o.hint+(o.ref?`<small>${o.ref}</small>`:'');cap.classList.add('on');if(o.fx!=null)camFocus(o.fx);
+ await new Promise(res=>{let t;const arm=()=>{clearTimeout(t);t=setTimeout(()=>{const el=els.find(e=>!e.classList.contains('done'));if(el)hit(el)},o.auto||6500)};
+  function hit(el){if(el.classList.contains('done'))return;el.classList.add('done');el.classList.remove('tapme');n++;if(o.onTap)o.onTap(el,n);if(n>=els.length){clearTimeout(t);setTimeout(res,o.after||900)}else arm()}
+  els.forEach(el=>{el.classList.add('tapme');el.addEventListener('click',ev=>{ev.stopPropagation();hit(el)})});arm()});
+ cap.classList.remove('on');addPts(50);pop('+50',50,30);await wait(400,true)}
+/* one big button the player taps to make the story move (auto after a pause) */
+async function tapOnce(label,bottom,ms){act.innerHTML=label;act.style.bottom=bottom||'46%';act.classList.add('on');
+ await new Promise(res=>{let t=setTimeout(go,ms||9000);function go(){clearTimeout(t);act.removeEventListener('click',go);res()}act.addEventListener('click',e=>{e.stopPropagation();go()},{once:true})});act.classList.remove('on')}
 document.head.insertAdjacentHTML('beforeend','<style>@keyframes conf{to{transform:translate(var(--dx),var(--dy)) rotate(540deg);opacity:0}}</style>');
 async function walkGame(){
  const W=$('world'),prog=$('prog'),pi=$('progI');let off=0,held=false,last=performance.now(),idle=0,said1=false,done=false;const END=3360;
@@ -426,6 +472,7 @@ async function prayMoment(){
  act.classList.remove('on');$('beam').classList.add('on');addPts(50);pop('+50',50,26);
  await narr('“The LORD is nigh unto all them that call upon him, to all that call upon him in truth.”','PSALM 145:18 · KJV',4400);
 }
+
 /* camera: phone portrait follows the speaker */
 let vb={x:0,w:1280},tgt=0;
 function portrait(){return stage.clientHeight>stage.clientWidth*.7}
@@ -439,7 +486,7 @@ function dots(){$('dots').innerHTML=SCENES.map((_,i)=>`<i class="${i<=si?'on':''
 async function play(from){const my=++running;score=from?score:0;if(!from)right=0;$('ptsN').textContent=score;$('end').classList.remove('on');
  for(si=from||0;si<SCENES.length;si++){if(my!==running)return;const sc=SCENES[si];dots();svg.innerHTML=defs+sc.draw();tgt=sc.focus;vb.x=Math.max(0,tgt-vb.w/2);svg.style.opacity=0;svg.style.transition='opacity .6s';requestAnimationFrame(()=>svg.style.opacity=1);await wait(700,true);await sc.run();if(my!==running)return;svg.style.opacity=0;await wait(600,true)}
  ending()}
-const CH='joseph-1',MAXP=600,OTHER='Other / visiting',BRANCHES=["MFM USA Prayer City","MFM Rehoboth","MFM Revival Chapel","MFM Houston 2","MFM Houston 3 — City of Refuge","MFM Houston 5 — New Glory","MFM 7 North Houston","MFM Greater Grace","MFM Northwest Houston","MFM Dallas","MFM House of His Glory","MFM Arlington","MFM Arlington — Matlock","MFM Grand Prairie","MFM Irving","MFM Mansfield","MFM The Lord Has Spoken","MFM San Antonio","MFM Pearland — Shadow of God","MFM Sugar Land","MFM Huntsville","MFM Tampa","MFM Broward","MFM Miami — Mount Zion","MFM Orlando — Citadel of Solution","MFM Tallahassee","MFM Revival Center","MFM Riverdale","MFM Citadel of Signs & Wonders","MFM Georgia Oasis of Grace","MFM Revival & Solution Center","MFM Tulsa","MFM Nashville","MFM Mega Region 2 Youth Church", OTHER];
+const CH='joseph-1',MAXP=600,NQ=5,OTHER='Other / visiting',BRANCHES=["MFM USA Prayer City","MFM Rehoboth","MFM Revival Chapel","MFM Houston 2","MFM Houston 3 — City of Refuge","MFM Houston 5 — New Glory","MFM 7 North Houston","MFM Greater Grace","MFM Northwest Houston","MFM Dallas","MFM House of His Glory","MFM Arlington","MFM Arlington — Matlock","MFM Grand Prairie","MFM Irving","MFM Mansfield","MFM The Lord Has Spoken","MFM San Antonio","MFM Pearland — Shadow of God","MFM Sugar Land","MFM Huntsville","MFM Tampa","MFM Broward","MFM Miami — Mount Zion","MFM Orlando — Citadel of Solution","MFM Tallahassee","MFM Revival Center","MFM Riverdale","MFM Citadel of Signs & Wonders","MFM Georgia Oasis of Grace","MFM Revival & Solution Center","MFM Tulsa","MFM Nashville","MFM Mega Region 2 Youth Church", OTHER];
 const ls=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>Number(n||0).toLocaleString('en-US');
@@ -452,33 +499,35 @@ function lbBlock(){const me=ls('mfm-quiz-me');
  return `<div class="sec lbx" id="lbx"><p class="lbm" id="lbm">Adding ${fmt(score)} points for ${esc(me.branch===OTHER?(me.other||'Visitors & friends'):me.branch)}…</p></div>`}
 function placeOf(p){return p.branch===OTHER?(p.other||'Visiting'):p.branch}
 function submit(){const me=ls('mfm-quiz-me');if(!me||me.guest||!me.nick)return;
- const body={dev:devId(),nick:me.nick,branch:me.branch,place:placeOf(me),mode:'story',ch:CH,pts:score,score:right,n:5,day:ctDay()};
- const mine=ls('mfm-quiz-local')||[];mine.push({nick:me.nick,branch:me.branch===OTHER?'Visitors & friends':me.branch,place:placeOf(me),score:right,pts:score,n:5,day:body.day,mode:'story',game:'story'});ls('mfm-quiz-local',mine.slice(-60));
+ const body={dev:devId(),nick:me.nick,branch:me.branch,place:placeOf(me),mode:'story',ch:CH,pts:score,score:right,n:NQ,day:ctDay()};
+ const mine=ls('mfm-quiz-local')||[];mine.push({nick:me.nick,branch:me.branch===OTHER?'Visitors & friends':me.branch,place:placeOf(me),score:right,pts:score,n:NQ,day:body.day,mode:'story',game:'story'});ls('mfm-quiz-local',mine.slice(-60));
  fetch('/.netlify/functions/leaderboard',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(r=>r.json()).then(d=>{if(d&&d.h)ls('mfm-quiz-h',d.h);rankPanel(d)}).catch(()=>{const m=$('lbm');if(m)m.textContent='Saved on this device. We could not reach the leaderboard just now.'})}
 function rankPanel(d){const box=$('lbx');if(!box)return;if(!d||!d.ok){box.innerHTML='<p class="lbm">We could not add your points this time.</p>';return}
  const me=d.me,row=(x,k)=>`<li class="${x.me?'me':''}"><b>${k}</b><span>${esc(x.name)}${x.sub?`<small>${esc(x.sub)}</small>`:''}</span><em>${fmt(x.pts)}</em></li>`;
  let h=`<p class="lbm"><b>${d.added>0?'+'+fmt(d.added)+' board points'+(d.featured?' (Game of the Week, double)':''):'Nothing new added'}</b>${d.added>0?'':' · '+esc(d.reason||'')}</p>`;
  if(me)h+=`<h3>Bible Stories this week</h3><p class="rky">You’re <b>${ord(me.rankGame)}</b> of ${me.nGame}</p><ol class="rkl">${me.top.map((x,k)=>row(x,k+1)).join('')}${me.meRow?'<li class="gap">···</li>'+row(me.meRow,me.rankGame):''}</ol><div class="rka"><div><b>${me.rankAll?ord(me.rankAll):'–'}</b><small>overall, all games</small></div><div><b>${fmt(me.lp)}</b><small>your board points</small></div><div><b>${me.rankBranch?ord(me.rankBranch):'–'}</b><small>${esc(me.branch)}</small></div></div>`;
  box.innerHTML=h}
-function ending(){const e=$('end');saveProgress();const back=$('backl').getAttribute('href');
- e.innerHTML=`<div class="card"><span class="score"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#fff" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round"/></svg>${score} of ${MAXP} points · ${right} of 5 questions</span><h2>Chapter 1 complete</h2>
- <blockquote>“But as for you, ye thought evil against me; but God meant it unto good…”</blockquote><cite>GENESIS 50:20 · KJV</cite>
+function chHref(id){return (location.protocol==='file:'||/\.html$/.test(location.pathname))?id+'.html':'/stories/'+id}
+function ending(){const e=$('end');saveProgress();const back=$('backl').getAttribute('href'),E=END,nx=E.next;
+ const nextBtn=nx&&nx.ready?`<a class="go" href="${chHref(nx.ch)}" style="display:inline-flex;align-items:center;text-decoration:none">Play ${esc(nx.label)}</a>`:'';
+ e.innerHTML=`<div class="card"><span class="score"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#fff" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round"/></svg>${score} of ${MAXP} points · ${right} of ${NQ} questions</span><h2>Chapter ${E.num} complete</h2>
+ <blockquote>${E.verse}</blockquote><cite>${E.cite}</cite>
  ${lbBlock()}
- <div class="sec"><h3>For your life today: has anyone ever hated you, or laughed at your dream?</h3><div class="row"><button class="go" data-r="1">Yes, I have</button><button class="go alt" data-r="2">Not that I know of</button></div>
+ <div class="sec"><h3>For your life today: ${E.q}</h3><div class="row"><button class="go" data-r="1">${E.a[0]}</button><button class="go alt" data-r="2">${E.a[1]}</button></div>
  <p class="pp" id="pp"></p></div><div class="next" id="nx"><div class="row"><button class="go" id="amen">Amen</button></div></div>
- <div class="sec" id="ch2" style="display:none"><h3>Chapter 2: From the pit to Potiphar’s house</h3><p style="margin:0 0 .8em;color:#5a4a3a">Coming soon.</p><div class="row"><button class="go alt" id="again">Play Chapter 1 again</button><a class="go" href="${back}" style="display:inline-flex;align-items:center;text-decoration:none">Back to Play &amp; Grow</a></div></div></div>`;
+ <div class="sec" id="ch2" style="display:none"><h3>${nx?esc(nx.label)+': '+esc(nx.title):esc(E.more||'More of this story is coming soon.')}</h3>${nx&&!nx.ready?'<p style="margin:0 0 .8em;color:#5a4a3a">Coming soon.</p>':''}<div class="row">${nextBtn}<button class="go alt" id="again">Play Chapter ${E.num} again</button><a class="go${nextBtn?' alt':''}" href="${back}" style="display:inline-flex;align-items:center;text-decoration:none">Back to Play &amp; Grow</a></div></div></div>`;
  e.classList.add('on');submit();
  const wf=$('who');if(wf){$('wb').addEventListener('change',()=>{$('wol').hidden=$('wb').value!==OTHER});wf.addEventListener('submit',ev=>{ev.preventDefault();const nick=$('wn').value.trim().slice(0,20),br=$('wb').value;if(!nick||!br)return;ls('mfm-quiz-me',{nick,branch:br,other:br===OTHER?$('wo').value.trim().slice(0,40):'',guest:false});$('lbx').outerHTML=lbBlock();submit()})}
- e.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{const pp=$('pp');pp.innerHTML=(b.dataset.r==='1'?'The pit is not the end of your story. What they meant for evil, God can turn for good.<br><br>':'When trouble comes, remember Joseph: God is with you in every place.<br><br>')+'<b>Pray:</b> Father, every pit dug against my destiny, turn it into a stepping stone to my palace. As You were with Joseph, be with me in every place, in the name of Jesus.';pp.classList.add('on');$('nx').classList.add('on')}));
+ e.querySelectorAll('[data-r]').forEach(b=>b.addEventListener('click',()=>{const pp=$('pp');pp.innerHTML=E.r[+b.dataset.r-1]+'<br><br><b>Pray:</b> '+E.pray;pp.classList.add('on');$('nx').classList.add('on')}));
  e.onclick=ev=>{if(ev.target.id==='amen'){$('nx').classList.remove('on');$('ch2').style.display=''}if(ev.target.id==='again')start()};
 }
 function start(){$('title').style.display='none';play(0)}
 $('start').addEventListener('click',start);
 if(location.protocol==='file:'||/\.html$/.test(location.pathname))$('backl').setAttribute('href','../play.html');
 $('restart').addEventListener('click',()=>{running++;skipFn=null;qEl.classList.remove('on');act.classList.remove('on');$('prog').classList.remove('on');bub.classList.remove('on');cap.classList.remove('on');start()});
-stage.addEventListener('click',e=>{if(e.target.closest('.q button,.big,.title,.end'))return;if(skipFn)skipFn()});
+stage.addEventListener('click',e=>{if(e.target.closest('.q button,.big,.title,.end,.tapme'))return;if(skipFn)skipFn()});
 const h=location.hash.match(/^#scene-(\d)$/);if(h){$('title').style.display='none';play(+h[1])}
-svg.innerHTML=defs+SCENES[0].draw();dots();
+else{svg.innerHTML=defs+SCENES[0].draw();dots()}
 }
 </script>
 </body>

@@ -22,8 +22,8 @@
     { id: 'heroes', title: 'Heroes of Faith', line: 'The stories everyone knows, told so you can walk inside them.', items: [
       { id: 'joseph', name: 'Joseph', ref: 'Genesis 37–50', tag: 'The dreamer', ico: 'coat', col: '#7a3fa0', chapters: [
         { id: 'joseph-1', title: 'The Coat and the Pit', ref: 'Genesis 37', ready: 1 },
-        { id: 'joseph-2', title: 'From the pit to Potiphar’s house', ref: 'Genesis 39' },
-        { id: 'joseph-3', title: 'From the prison to the palace', ref: 'Genesis 40–41' }] },
+        { id: 'joseph-2', title: 'Potiphar’s House', ref: 'Genesis 39', ready: 1 },
+        { id: 'joseph-3', title: 'The Prison and the Palace', ref: 'Genesis 40–41', ready: 1 }] },
       { id: 'moses', name: 'Moses', ref: 'Exodus', tag: 'Let my people go', ico: 'staff', col: '#2f6fd0' },
       { id: 'david', name: 'David', ref: '1 Samuel 16–17', tag: 'The shepherd boy', ico: 'sling', col: '#2e9b57' },
       { id: 'daniel', name: 'Daniel', ref: 'Daniel 1–6', tag: 'Faithful in Babylon', ico: 'lion', col: '#c48a1f' },
