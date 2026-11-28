@@ -1,11 +1,10 @@
 {
  "_about": "Story progress for Bible Stories. The weekly run reads this to know what is done and what comes next, and updates it after each release. Shelf data shown on the site lives in js/stories.js; chapter sources in tools/stories/<id>.js; the leaderboard list in netlify/functions/leaderboard.mjs (STORIES).",
  "weekly_plan": {
-  "recommended": "4 new characters a week, chapters to fit each story (up to 4, never padded); move to 8 after 3-4 clean weeks",
-  "dawn_said": "8 characters x 4 chapters (asked for a recommendation, Nov 27 2026)",
-  "final": null,
-  "release_day": null,
-  "auto_go_live": "yes, once all three checks pass (Dawn, Nov 27 2026)"
+  "volume": "4 new characters a week, chapters to fit each story (up to 4, never padded) - Dawn, Nov 27 2026",
+  "release_day": "Monday; the week runs Monday-Sunday CT, like the Weekly Scheduler",
+  "auto_go_live": "yes, once all three checks pass (Dawn, Nov 27 2026)",
+  "first_release": "the first Monday after the waiting batch goes live (Dawn: stories start next week, on a Monday)"
  },
  "characters": {
   "joseph": {

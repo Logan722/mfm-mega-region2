@@ -78,7 +78,7 @@ The pipeline:
 
 Read a builder before re-running it: some rebuild a whole pack, and the bank's ids must stay stable so the "seen" history and challenge links keep working.
 
-## Weekly Bible Stories run (plan; not switched on yet)
+## Weekly Bible Stories run (4 characters a week, live every Monday CT; not switched on yet)
 
 1. Read `RULES.md` and `storylines.json`, and pick this week's characters and chapters.
 2. Research each character's era and appearance, and write `tools/stories/<id>.js` straight from the KJV.

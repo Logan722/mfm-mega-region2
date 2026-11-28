@@ -46,10 +46,10 @@ when Dawn says something new in chat, add it here in the same session.
 - Vary the scenery across scenes; never the same background throughout.
 - Include popular characters and lesser-known ones, plus Great Events (Christmas, Easter, Noah, the Red Sea, Jericho, the fiery furnace, Pentecost, and so on).
 - **Library:** one "Bible Characters" shelf (no Heroes / Hidden Heroes split) and one "Great Events" shelf. On phones, shelves are two-row swipe cards.
-- **Weekly volume (recommended Nov 27 2026, Dawn's answer pending):** 4 new characters a week, with chapters that fit each story (up to 4, never padded).
-  Move to 8 after 3–4 clean weeks. Characters can come back later with new chapters that continue their story.
-  Dawn had said 8 characters × 4 chapters; record her final answer here when she gives it.
-- Release day: not decided yet (Dawn will say).
+- **Weekly volume (Dawn, Nov 27 2026): 4 new characters a week,** with chapters that fit each story (up to 4, never padded).
+  Characters can come back later with new chapters that continue their story.
+- **Release day: Monday.** The story week runs Monday to Sunday (US Central), the same week as the Weekly Scheduler.
+  New chapters go live on Monday in one push.
 
 ## 4. Games and the leaderboard
 
