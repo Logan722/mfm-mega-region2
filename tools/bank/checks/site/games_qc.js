@@ -1,4 +1,7 @@
 const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+
 const BASE = process.env.BASE || 'http://localhost:8095/play.html';
 const OUT = process.env.OUT || require('path').join(require('os').tmpdir(),'games-qc');
 require('fs').mkdirSync(OUT, { recursive: true });
@@ -6,7 +9,7 @@ require('fs').mkdirSync(OUT, { recursive: true });
   const b = await chromium.launch();
   const res = [];
   for (const [tag, vw, vh, mob] of (process.env.SIZES ? JSON.parse(process.env.SIZES) : [['d', 1440, 900, false], ['m', 390, 844, true]])) {
-    const ctx = await b.newContext({ viewport: { width: vw, height: vh }, isMobile: mob, hasTouch: mob });
+    const ctx = await __ctx(b, { viewport: { width: vw, height: vh }, isMobile: mob, hasTouch: mob });
     const p = await ctx.newPage(); const errs = [];
     p.on('pageerror', e => errs.push(e.message)); p.on('console', m => { if (m.type() === 'error' && !/leaderboard|live-status|about:blank|Failed to load resource/.test(m.text())) errs.push('console: ' + m.text()); });
     await p.goto(BASE, { waitUntil: 'networkidle' });

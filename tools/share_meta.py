@@ -53,6 +53,11 @@ def build_reach_pages(root, write):
     src = re.sub(r'((?:src|href|srcset)=")(?=(?:img|css|js)/)', r'\1/', src)
     for slug, (subj, title, desc, img, alt) in REACH.items():
         t = set_share(src, '/reach-out/' + slug, title, desc, img, alt)
+        # start with the picture for this page's message type (the page's script swaps it when the type changes)
+        ph = {'prayer': ('/img/photos/hero.webp', 'A worshipper praying with his arms raised to God'),
+              'testimony': ('/img/photos/worship.webp', 'A congregation lifting their hands in praise')}.get(slug)
+        if ph:
+            t = t.replace('<img src="/img/photos/community.webp" alt="Reaching out to the community in prayer"', '<img src="%s" alt="%s"' % ph, 1)
         t = t.replace("sub=p.get('subject')", "sub=(p.get('subject')||'%s')" % subj)
         t = t.replace("new URLSearchParams(location.search).get('subject')", "(new URLSearchParams(location.search).get('subject')||'%s')" % subj)
         write('reach-out/%s.html' % slug, t)

@@ -510,8 +510,8 @@
         document.body.style.overflow = open ? 'hidden' : '';
       }
 
-      hamburger.addEventListener('click', toggleDrawer);
-      overlay.addEventListener('click', toggleDrawer);
+      // The shared mobile menu (js/mobile-nav.js) replaced this page's old drawer; only wire it up if those elements exist
+      if (hamburger && drawer && overlay) { hamburger.addEventListener('click', toggleDrawer); overlay.addEventListener('click', toggleDrawer); }
 
       /* ── Nav scroll state ── */
       const nav = document.getElementById('siteNav');

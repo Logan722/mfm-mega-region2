@@ -1,6 +1,9 @@
 const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+
 (async()=>{const b=await chromium.launch();const R=[];const ok=(c,n,x='')=>{console.log((c?'PASS':'FAIL')+' | '+n+(x?' | '+x:''));R.push(c)};
-const mk=async(w,h)=>{const c=await b.newContext({viewport:{width:w,height:h}});const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));await p.goto('http://localhost:8095/play.html');await p.waitForTimeout(1500);return p;};
+const mk=async(w,h)=>{const c=await __ctx(b, {viewport:{width:w,height:h}});const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));await p.goto('http://localhost:8095/play.html');await p.waitForTimeout(1500);return p;};
 const A=await mk(1440,900), B=await mk(390,844);
 // both look at the board: empty
 for(const p of [A,B]){await p.evaluate(()=>document.getElementById('leaderboard').scrollIntoView());await p.waitForTimeout(1200);}

@@ -777,3 +777,11 @@ a.ek-btn,button.ek-btn{color:#142240!important}a.ek-btn.ghost{color:#142240!impo
 .tp-gw .gw-all{font-weight:700;color:#142240;text-decoration:none;border-bottom:1.5px solid currentColor}
 .tp-gw .gw-all:hover{color:#142240}
 @media(max-width:600px){.tp-gw .gw-badge{width:64px;height:64px;border-radius:18px}.tp-gw .gw-badge svg{width:42px!important;height:42px!important}}
+/* Reach Out (Dawn, Nov 28): the photo runs up behind the fixed header so there is never a white strip between them
+   (the header is 81px, the old top gap was 84px); the words and the form keep clear of the header. */
+.r4{--hdr:84px;padding-top:0}
+.r4 .ov{padding-top:calc(var(--hdr) + 48px)}
+.r4 .side{padding-top:calc(var(--hdr) + 48px)}
+.r4 .ph img{transition:opacity .35s ease}
+.r4 .ph img.ro-fade{opacity:0}
+@media(max-width:900px){.r4 .ph{min-height:calc(420px + var(--hdr))}.r4 .ov{padding-top:calc(var(--hdr) + 32px);padding-bottom:32px}.r4 .side{padding-top:40px}}

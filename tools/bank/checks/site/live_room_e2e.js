@@ -1,7 +1,10 @@
 const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+
 const B='http://localhost:8095';
 (async()=>{const b=await chromium.launch();const errs=[];
-const mk=async(w,h,tag)=>{const c=await b.newContext({viewport:{width:w,height:h},isMobile:w<500,hasTouch:w<500});const p=await c.newPage();p.on('pageerror',e=>errs.push(tag+': '+e.message));p.on('response',r=>{if(r.status()>=400)errs.push(tag+' '+r.status()+' '+r.url())});return p};
+const mk=async(w,h,tag)=>{const c=await __ctx(b, {viewport:{width:w,height:h},isMobile:w<500,hasTouch:w<500});const p=await c.newPage();p.on('pageerror',e=>errs.push(tag+': '+e.message));p.on('response',r=>{if(r.status()>=400)errs.push(tag+' '+r.status()+' '+r.url())});return p};
 const host=await mk(1280,900,'host');let n=0;const shot=async(p,name)=>{await p.screenshot({path:require('os').tmpdir()+'/'+`${String(++n).padStart(2,'0')}-${name}.png`})};
 await host.goto(B+'/play');await host.waitForTimeout(800);await host.locator('#live').scrollIntoViewIfNeeded();await host.locator('#live').screenshot({path:'00-section.png'});
 await host.click('#live [data-live="host"]');await host.waitForTimeout(500);await shot(host,'setup');

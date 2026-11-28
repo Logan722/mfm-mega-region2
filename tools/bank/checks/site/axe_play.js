@@ -1,7 +1,10 @@
-const { chromium } = require('playwright');const fs=require('fs');
+const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+const fs=require('fs');
 const AXE=fs.readFileSync(require.resolve('axe-core/axe.min.js',{paths:[__dirname,process.env.NODE_PATH||'']}),'utf8');
 (async()=>{const b=await chromium.launch();
-for(const [w,h,mob] of [[1440,900,false],[390,844,true]]){const c=await b.newContext({viewport:{width:w,height:h},isMobile:mob});const p=await c.newPage();
+for(const [w,h,mob] of [[1440,900,false],[390,844,true]]){const c=await __ctx(b, {viewport:{width:w,height:h},isMobile:mob});const p=await c.newPage();
  await p.goto('http://localhost:8095/play',{waitUntil:'load'});await p.waitForTimeout(1200);await p.addScriptTag({content:AXE});
  const run=async(tag)=>{const r=await p.evaluate(async()=>{const res=await axe.run(document,{runOnly:['wcag2a','wcag2aa']});return res.violations.map(v=>({id:v.id,n:v.nodes.length,ex:v.nodes.slice(0,4).map(n=>n.target.join(' ')+' '+(n.failureSummary||'').slice(0,120))}))});console.log(w,tag,r.length?JSON.stringify(r):'clean')};
  await run('page');

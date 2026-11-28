@@ -1,4 +1,7 @@
 const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+
 const OUTDIR=process.env.OUT||require('fs').mkdtempSync(require('path').join(require('os').tmpdir(),'story-shots-'));
 const W=+process.env.W||1280,H=+process.env.H||900,tag=process.env.T||'d',CH=process.env.CH||'joseph-2';
 const RIGHT={
@@ -6,8 +9,8 @@ const RIGHT={
  'joseph-2':['Potiphar, captain of the guard','The LORD blessed it for Joseph’s sake','He refused, because it would be sin against God','He put him into the prison','All the prisoners in the prison'],
  'christmas-1':['JESUS','Because he would save his people from their sins','In a manger','A babe wrapped in swaddling clothes, lying in a manger','In a house, with Mary his mother'],
  'joseph-3':['“Do not interpretations belong to God?”','The birds','No. He forgot him for two full years','“It is not in me: God shall give Pharaoh an answer of peace.”','Seven years of famine']}[CH];
-(async()=>{const b=await chromium.launch();const c=await b.newContext({viewport:{width:W,height:H},isMobile:W<500,hasTouch:W<500});const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.stack.slice(0,300)));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
-await p.goto(`file://${process.env.MFM_REPO||require("path").resolve(__dirname,"../../../..")}/stories/${CH}.html`);await p.waitForTimeout(600);
+(async()=>{const b=await chromium.launch();const c=await __ctx(b, {viewport:{width:W,height:H},isMobile:W<500,hasTouch:W<500});const p=await c.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.stack.slice(0,300)));p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});
+await p.goto(process.env.BASE ? `${process.env.BASE}/stories/${CH}.html` : `file://${process.env.MFM_REPO||require("path").resolve(__dirname,"../../../..")}/stories/${CH}.html`);await p.waitForTimeout(600);
 const box=p.locator('.box');let n=0;const shot=async(name)=>{await box.screenshot({path:OUTDIR+'/'+`${tag}-${String(++n).padStart(2,'0')}-${name}.png`})};
 await shot('title');await p.click('#start');
 let qn=0,t0=Date.now(),lastShot=0,miss=[];

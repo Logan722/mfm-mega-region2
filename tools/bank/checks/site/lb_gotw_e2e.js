@@ -1,7 +1,10 @@
 const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+
 (async () => {
   const b = await chromium.launch(); let pass = 0, fail = 0; const ok = (n, c, x) => { c ? pass++ : fail++; console.log((c ? 'PASS ' : 'FAIL ') + n + (x ? ' — ' + x : '')); };
-  const mk = async (w, h) => { const c = await b.newContext({ viewport: { width: w, height: h } }); const p = await c.newPage(); p.errs = []; p.on('pageerror', e => p.errs.push(e.message)); await p.goto('http://localhost:8096/play.html'); await p.waitForTimeout(1500); return p; };
+  const mk = async (w, h) => { const c = await __ctx(b, { viewport: { width: w, height: h } }); const p = await c.newPage(); p.errs = []; p.on('pageerror', e => p.errs.push(e.message)); await p.goto('http://localhost:8096/play.html'); await p.waitForTimeout(1500); return p; };
   const A = await mk(1440, 900), B = await mk(390, 844);
   const g = await A.$eval('.gw [data-gotw-name]', e => e.textContent); ok('gotw from server', g === 'Connections', g);
   await B.$eval('#leaderboard', e => e.scrollIntoView()); await B.waitForTimeout(800);

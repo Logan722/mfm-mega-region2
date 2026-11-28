@@ -1,5 +1,8 @@
 const { chromium } = require('playwright');
-(async()=>{const b=await chromium.launch();const p=await (await b.newContext({viewport:{width:1280,height:900}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+
+(async()=>{const b=await chromium.launch();const p=await (await __ctx(b, {viewport:{width:1280,height:900}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
 await p.goto('http://localhost:8095/play');await p.waitForTimeout(1200);
 await p.locator('[data-mode="story"]').first().click();await p.waitForTimeout(700);await p.locator('#play-app').screenshot({path:require('os').tmpdir()+'/'+'lib-events.png'});
 await p.locator('[data-story="christmas"]').click();await p.waitForTimeout(1500);console.log('url',p.url(),await p.title());

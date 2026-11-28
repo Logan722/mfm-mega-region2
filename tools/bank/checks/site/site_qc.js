@@ -1,11 +1,17 @@
-const { chromium } = require('playwright');const fs=require('fs'),path=require('path');
+const { chromium } = require('playwright');
+// AT=<ISO time> runs this check as if it were that moment (e.g. after the Play & Grow launch lock opens)
+const __ctx = async (br, o) => { const c = await br.newContext(o); if (process.env.AT) await c.clock.install({ time: new Date(process.env.AT) }); return c; };
+const fs=require('fs'),path=require('path');
 const ROOT=process.env.MFM_REPO||require('path').resolve(__dirname,'../../../..');
 const redirects=fs.readFileSync(ROOT+'/_redirects','utf8').split('\n').map(l=>l.trim().split(/\s+/)).filter(a=>a[0]&&a[0][0]==='/');
 const exists=(u)=>{let p=u.split('#')[0].split('?')[0];if(!p||p==='/')return true;if(redirects.some(r=>r[0]===p||r[0]===p.replace(/\/$/,'')))return true;const f=path.join(ROOT,p);if(fs.existsSync(f)&&fs.statSync(f).isFile())return true;if(fs.existsSync(f+'.html'))return true;if(fs.existsSync(path.join(f,'index.html')))return true;return false;};
-const pages=['index','play','testimonies','reach-out','reach-out/prayer','reach-out/testimony','reach-out/contact','about','branches/mfm-tampa'];
+let pages=['index','play','testimonies','reach-out','reach-out/prayer','reach-out/testimony','reach-out/contact','about','branches/mfm-tampa'];
+// PAGES=all sweeps every page on the site (top level, events, branches, messages, galleries, stories, newsletter)
+if (process.env.PAGES === 'all') { const g = (d) => fs.existsSync(path.join(ROOT, d)) ? fs.readdirSync(path.join(ROOT, d)).filter(f => f.endsWith('.html') && !f.startsWith('_')).map(f => (d ? d + '/' : '') + f.replace(/\.html$/, '')) : [];
+  pages = [].concat(g(''), g('events'), g('branches'), g('messages'), g('stories'), g('newsletter'), g('reach-out')).filter(x => !/^(404|preview-|_)/.test(x)); }
 (async()=>{const b=await chromium.launch();let fails=0;
 for(const [w,h,t] of [[1440,900,'desktop'],[390,844,'phone']]){
- for(const pg of pages){const ctx=await b.newContext({viewport:{width:w,height:h}});const p=await ctx.newPage();const errs=[],csp=[],bad=[];
+ for(const pg of pages){const ctx=await __ctx(b, {viewport:{width:w,height:h}});const p=await ctx.newPage();const errs=[],csp=[],bad=[];
   await p.addInitScript(()=>{document.addEventListener('securitypolicyviolation',e=>{(window.__csp=window.__csp||[]).push(e.violatedDirective+' '+e.blockedURI)})});
   p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error'&&!/Failed to load resource/.test(m.text()))errs.push(m.text().slice(0,160))});p.on('response',r=>{if(r.status()>=400)console.log('   (expected on local server only)',r.status(),r.url().replace('http://localhost:8095',''))});
   p.on('response',r=>{const u=r.url();if(r.status()>=400&&u.startsWith('http://localhost')&&!/\.netlify\/functions/.test(u))bad.push(r.status()+' '+u.replace('http://localhost:8095',''))});
