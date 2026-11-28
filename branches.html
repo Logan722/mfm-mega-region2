@@ -236,5 +236,6 @@ function slugify(n){return n.replace(/&amp;/g,'and').replace(/&/g,'and').toLower
 .branch-card .bc-actions a:hover{text-decoration:underline}
 </style>
 <script>/* ?q= from the homepage church search */(function(){try{var v=new URLSearchParams(location.search).get("q");if(!v)return;v=v.slice(0,60);var q=document.getElementById("locQuery");if(!q)return;q.value=v;["input","keyup","change"].forEach(function(t){q.dispatchEvent(new Event(t,{bubbles:true}));});}catch(e){}})();</script>
+  <script src="/js/fftw-widget.js" defer></script>
 </body>
 </html>
