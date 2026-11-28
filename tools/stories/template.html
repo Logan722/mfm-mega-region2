@@ -153,61 +153,85 @@ const svg=$('svg'),bub=$('bub'),cap=$('cap'),qEl=$('q'),act=$('act'),stage=$('st
 const R=41,OL='#2b1a10',SW=4.5;
 const sk=w=>`stroke="${OL}" stroke-width="${w||SW}" stroke-linejoin="round" stroke-linecap="round"`;
 /*@@LOOK@@*/
-const POSES={stand:[-6,6],give:[-80,-8],receive:[-58,-48],joy:[-160,-150],point:[-100,-4],pray:[-128,-120],hold:[-62,-56],reach:[-120,-30],cross:[-6,6]};
+const POSES={stand:[-6,6],give:[-80,-8],receive:[-58,-48],joy:[-160,174],point:[-100,-4],pray:[-128,168],hold:[-62,-56],reach:[-120,-30],cross:[-6,6]};
 const shade=(h,d)=>{const n=parseInt(h.slice(1),16);return '#'+[n>>16,n>>8&255,n&255].map(v=>Math.max(0,Math.min(255,v+d)).toString(16).padStart(2,'0')).join('')};
 
 /* ---------- character rig ---------- */
+/* 3/4 view, facing +x. Head is an egg shape with a real jaw and chin; features sit on a face line
+   at x≈.34R: eyes on the middle line, nose between eyes and mouth, mouth a third of the way up from the chin. */
+const PT=(x,y)=>`${(x*R).toFixed(1)} ${(y*R).toFixed(1)}`;
+const HEAD=`M${PT(0,-1.08)} C${PT(.64,-1.08)} ${PT(.96,-.64)} ${PT(.95,-.12)} C${PT(.94,.32)} ${PT(.82,.64)} ${PT(.58,.88)} Q${PT(.38,1.07)} ${PT(.12,1.04)} C${PT(-.3,.98)} ${PT(-.62,.72)} ${PT(-.8,.36)} C${PT(-.98,0)} ${PT(-.97,-.56)} ${PT(-.62,-.88)} C${PT(-.42,-1.04)} ${PT(-.22,-1.08)} ${PT(0,-1.08)} Z`;
+const EYE=[{x:.07,rx:.135,ry:.165},{x:.61,rx:.11,ry:.15}],EY=.03;
 function face(o){
- const e1=R*.12,e2=R*.58,ey=-R*.08,bw=R*.1,bc='#3b2414',mc='#5a2316',sk2=sk(2.4);
- const eyes=[e1,e2].map((x,i)=>`<ellipse cx="${x}" cy="${ey}" rx="${R*(i?.2:.17)}" ry="${R*(i?.24:.21)}" fill="#fff" ${sk2}/><circle cx="${x+R*.06}" cy="${ey+R*.02}" r="${R*.11}" fill="#2a1a12"/><circle cx="${x+R*.1}" cy="${ey-R*.03}" r="${R*.04}" fill="#fff"/>`).join('');
- const brow=(lift,tilt,w)=>[e1,e2].map((x,i)=>{const t=i?-tilt:tilt;return `<path d="M${x-R*.17} ${ey-R*.33-lift+t} L${x+R*.17} ${ey-R*.33-lift-t}" stroke="${bc}" stroke-width="${w||bw}" stroke-linecap="round" fill="none"/>`}).join('');
- const lids=[e1,e2].map((x,i)=>{const rx=R*(i?.22:.19),ry=R*(i?.26:.23);return `<path d="M${x-rx} ${ey-R*.02} A${rx} ${ry} 0 0 1 ${x+rx} ${ey-R*.02} Z" fill="${o.skin}" stroke="${OL}" stroke-width="2.4"/>`}).join('');
- const mx=R*.46,my=R*.44;
- const M={neutral:`<path d="M${mx-R*.14} ${my} L${mx+R*.14} ${my}" stroke="${mc}" stroke-width="${R*.08}" stroke-linecap="round"/>`,
-  smile:`<path d="M${mx-R*.2} ${my-R*.04} Q${mx} ${my+R*.17} ${mx+R*.2} ${my-R*.04}" stroke="${mc}" stroke-width="${R*.08}" fill="none" stroke-linecap="round"/>`,
-  happy:`<path d="M${mx-R*.25} ${my-R*.07} Q${mx} ${my+R*.36} ${mx+R*.25} ${my-R*.07} Z" fill="${mc}" stroke="${mc}" stroke-width="2" stroke-linejoin="round"/><path d="M${mx-R*.1} ${my+R*.13} Q${mx} ${my+R*.21} ${mx+R*.1} ${my+R*.13}" fill="#d9605a"/>`,
-  jealous:`<path d="M${mx-R*.18} ${my+R*.08} Q${mx} ${my-R*.06} ${mx+R*.18} ${my+R*.08}" stroke="${mc}" stroke-width="${R*.08}" fill="none" stroke-linecap="round"/>`,
-  angry:`<path d="M${mx-R*.22} ${my+R*.12} Q${mx} ${my-R*.14} ${mx+R*.22} ${my+R*.12} Z" fill="${mc}" stroke="${mc}" stroke-width="2" stroke-linejoin="round"/>`,
-  sad:`<path d="M${mx-R*.18} ${my+R*.1} Q${mx} ${my-R*.08} ${mx+R*.18} ${my+R*.1}" stroke="${mc}" stroke-width="${R*.08}" fill="none" stroke-linecap="round"/>`,
-  surprised:`<ellipse cx="${mx}" cy="${my+R*.04}" rx="${R*.11}" ry="${R*.15}" fill="${mc}"/>`,
-  sleep:`<path d="M${mx-R*.1} ${my} Q${mx} ${my+R*.08} ${mx+R*.1} ${my}" stroke="${mc}" stroke-width="${R*.07}" fill="none" stroke-linecap="round"/>`};
- const closed=[e1,e2].map(x=>`<path d="M${x-R*.16} ${ey} Q${x} ${ey+R*.12} ${x+R*.16} ${ey}" stroke="${OL}" stroke-width="3" fill="none" stroke-linecap="round"/>`).join('');
- const sadBrow=[e1,e2].map((x,i)=>`<path d="M${x-R*.17} ${ey-R*.3+(i?-R*.1:R*.04)} L${x+R*.17} ${ey-R*.3+(i?R*.04:-R*.1)}" stroke="${bc}" stroke-width="${bw}" stroke-linecap="round"/>`).join('');
- const tear=`<path class="tear" d="M${e2+R*.05} ${ey+R*.2} q${R*.07} ${R*.12} 0 ${R*.18} q${-R*.07} ${-R*.06} 0 ${-R*.18}Z" fill="#7cc6ff" stroke="${OL}" stroke-width="1.6"/>`;
- const X={neutral:brow(0,0),smile:brow(R*.04,R*.02),happy:brow(R*.1,R*.03),jealous:lids+brow(-R*.06,-R*.1),angry:lids+brow(-R*.08,-R*.15,R*.13),sad:sadBrow+tear,surprised:brow(R*.16,0),sleep:closed};
- const nose=`<path d="M${R*.9} ${-R*.08} Q${R*1.13} ${R*.16} ${R*.88} ${R*.25}" fill="${o.skin}" ${sk2}/>`;
- const blush=`<ellipse cx="${R*.72}" cy="${R*.26}" rx="${R*.14}" ry="${R*.09}" fill="#e0716a" opacity=".42"/>`;
- const lash=o.lash?[e1,e2].map((x,i)=>{const rx=R*(i?.2:.17),ry=R*(i?.24:.21);return `<path d="M${x+rx*.55} ${ey-ry*.85} l${R*.1} ${-R*.1} M${x+rx*.9} ${ey-ry*.45} l${R*.12} ${-R*.05}" stroke="${OL}" stroke-width="2.6" stroke-linecap="round"/>`}).join(''):'';
- return `${nose}<g class="eyes">${eyes}${lash}</g>${blush}`+Object.keys(M).map(k=>`<g class="ex ex-${k}">${X[k]}<g class="mouth">${M[k]}</g></g>`).join('');
+ const bc=o.brow||'#3b2414',mc='#6a2a1c',sk2=sk(2.4),bw=R*.085,ey=EY*R;
+ const eyes=EYE.map(e=>{const x=e.x*R,rx=e.rx*R,ry=e.ry*R;return `<ellipse cx="${x}" cy="${ey}" rx="${rx}" ry="${ry}" fill="#fff" ${sk2}/><circle cx="${x+rx*.26}" cy="${ey+ry*.06}" r="${Math.min(rx,ry)*.6}" fill="#2a1a12"/><circle cx="${x+rx*.46}" cy="${ey-ry*.22}" r="${R*.035}" fill="#fff"/>`}).join('');
+ const brow=(lift,tilt,w)=>EYE.map((e,i)=>{const x=e.x*R,hw=e.rx*R*1.05,y=ey-e.ry*R-R*.11-lift,t=(i?-tilt:tilt);return `<path d="M${x-hw} ${y+t+R*.02} Q${x} ${y-R*.04} ${x+hw} ${y-t+R*.02}" stroke="${bc}" stroke-width="${w||bw}" stroke-linecap="round" fill="none"/>`}).join('');
+ const lids=EYE.map(e=>{const x=e.x*R,rx=e.rx*R+1.5,ry=e.ry*R+1.5;return `<path d="M${x-rx} ${ey-R*.01} A${rx} ${ry} 0 0 1 ${x+rx} ${ey-R*.01} Z" fill="${o.skin}" stroke="${OL}" stroke-width="2.4"/>`}).join('');
+ const mx=R*.36,my=R*.64,mw=R*.15;
+ const M={neutral:`<path d="M${mx-mw} ${my} Q${mx} ${my+R*.03} ${mx+mw} ${my-R*.01}" stroke="${mc}" stroke-width="${R*.065}" fill="none" stroke-linecap="round"/>`,
+  smile:`<path d="M${mx-mw*1.15} ${my-R*.04} Q${mx} ${my+R*.15} ${mx+mw*1.15} ${my-R*.05}" stroke="${mc}" stroke-width="${R*.065}" fill="none" stroke-linecap="round"/>`,
+  happy:`<path d="M${mx-mw*1.35} ${my-R*.06} Q${mx} ${my+R*.3} ${mx+mw*1.35} ${my-R*.07} Z" fill="${mc}" stroke="${mc}" stroke-width="2" stroke-linejoin="round"/><path d="M${mx-mw*.9} ${my-R*.04} Q${mx} ${my+R*.02} ${mx+mw*.9} ${my-R*.05}" stroke="#fff" stroke-width="${R*.05}" fill="none" stroke-linecap="round"/><path d="M${mx-mw*.55} ${my+R*.13} Q${mx} ${my+R*.19} ${mx+mw*.55} ${my+R*.13}" fill="#d9605a"/>`,
+  jealous:`<path d="M${mx-mw} ${my+R*.05} Q${mx} ${my-R*.04} ${mx+mw} ${my+R*.06}" stroke="${mc}" stroke-width="${R*.065}" fill="none" stroke-linecap="round"/>`,
+  angry:`<path d="M${mx-mw*1.2} ${my+R*.1} Q${mx} ${my-R*.12} ${mx+mw*1.2} ${my+R*.1} Z" fill="${mc}" stroke="${mc}" stroke-width="2" stroke-linejoin="round"/>`,
+  sad:`<path d="M${mx-mw} ${my+R*.07} Q${mx} ${my-R*.07} ${mx+mw} ${my+R*.07}" stroke="${mc}" stroke-width="${R*.065}" fill="none" stroke-linecap="round"/>`,
+  surprised:`<ellipse cx="${mx}" cy="${my+R*.03}" rx="${R*.075}" ry="${R*.11}" fill="${mc}"/>`,
+  sleep:`<path d="M${mx-mw*.7} ${my} Q${mx} ${my+R*.06} ${mx+mw*.7} ${my}" stroke="${mc}" stroke-width="${R*.06}" fill="none" stroke-linecap="round"/>`};
+ const closed=EYE.map(e=>{const x=e.x*R,rx=e.rx*R;return `<path d="M${x-rx} ${ey} Q${x} ${ey+R*.11} ${x+rx} ${ey}" stroke="${OL}" stroke-width="3" fill="none" stroke-linecap="round"/>`}).join('');
+ const sadBrow=EYE.map((e,i)=>{const x=e.x*R,hw=e.rx*R*1.05,y=ey-e.ry*R-R*.1;const inner=i?-1:1;/* inner ends (towards the nose) go up */return `<path d="M${x-hw} ${y+(i?-R*.08:R*.04)} L${x+hw} ${y+(i?R*.04:-R*.08)}" stroke="${bc}" stroke-width="${bw}" stroke-linecap="round"/>`}).join('');
+ const tear=`<path class="tear" d="M${EYE[0].x*R+R*.04} ${ey+R*.2} q${R*.06} ${R*.11} 0 ${R*.16} q${-R*.06} ${-R*.05} 0 ${-R*.16}Z" fill="#7cc6ff" stroke="${OL}" stroke-width="1.6"/>`;
+ const X={neutral:brow(0,0),smile:brow(R*.03,R*.01),happy:brow(R*.08,R*.02),jealous:lids+brow(-R*.05,-R*.08),angry:lids+brow(-R*.07,-R*.13,R*.11),sad:sadBrow+tear,surprised:brow(R*.14,0),sleep:closed};
+ /* 3/4 nose: bridge line down from between the eyes, soft tip, one nostril curl */
+ const nose=`<path d="M${PT(.36,.06)} Q${PT(.5,.24)} ${PT(.54,.36)} Q${PT(.52,.45)} ${PT(.4,.44)}" fill="none" stroke="${OL}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M${PT(.31,.42)} Q${PT(.35,.47)} ${PT(.4,.44)}" fill="none" stroke="${OL}" stroke-width="2.2" stroke-linecap="round" opacity=".7"/>`;
+ const blush=`<ellipse cx="${PT(.76,.4).split(' ')[0]}" cy="${.4*R}" rx="${R*.11}" ry="${R*.07}" fill="#e0716a" opacity=".35"/><ellipse cx="${-.1*R}" cy="${.42*R}" rx="${R*.14}" ry="${R*.08}" fill="#e0716a" opacity=".3"/>`;
+ const lash=o.lash?EYE.map(e=>{const x=e.x*R,rx=e.rx*R,ry=e.ry*R;return `<path d="M${x+rx*.35} ${ey-ry*.92} l${R*.04} ${-R*.09} M${x+rx*.78} ${ey-ry*.62} l${R*.08} ${-R*.07} M${x+rx*1.02} ${ey-ry*.2} l${R*.09} ${-R*.03}" stroke="${OL}" stroke-width="2.4" stroke-linecap="round"/>`}).join(''):'';
+ const age=o.age?`<path d="M${PT(-.2,-.58)} Q${PT(.3,-.66)} ${PT(.78,-.56)} M${PT(-.1,-.47)} Q${PT(.3,-.53)} ${PT(.7,-.46)}" stroke="${shade(o.skin,-42)}" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M${PT(.84,.06)} l${R*.08} ${-R*.04} M${PT(.84,.13)} l${R*.08} ${R*.02}" stroke="${shade(o.skin,-42)}" stroke-width="2" stroke-linecap="round"/>`:'';
+ return `${age}${nose}<g class="eyes">${eyes}${lash}</g>${blush}`+Object.keys(M).map(k=>`<g class="ex ex-${k}">${X[k]}<g class="mouth">${M[k]}</g></g>`).join('');
 }
 function head(o){
- let h='';
- if(o.wrap)h+=`<path d="M${.86*R} ${-.42*R} C${.72*R} ${-1.3*R} ${-.95*R} ${-1.38*R} ${-1.08*R} ${-.3*R} L${-1.2*R} ${1.6*R} Q${-.55*R} ${1.8*R} ${-.12*R} ${1.4*R} L${-.36*R} ${.2*R} Q${-.1*R} ${-.42*R} ${.86*R} ${-.42*R} Z" fill="${o.wrap}" ${sk()}/>`;
- if(o.nemes)h+=`<path d="M${.7*R} ${-.6*R} C${.6*R} ${-1.45*R} ${-1.2*R} ${-1.45*R} ${-1.3*R} ${-.2*R} L${-1.42*R} ${1.95*R} L${-.2*R} ${1.95*R} L${-.3*R} ${.4*R} Z" fill="url(#nem)" ${sk()}/>`;
- h+=`<circle r="${R}" fill="${o.skin}" ${sk()}/>`;
- if(o.wig)h+=`<path d="M${.92*R} ${-.52*R} C${.8*R} ${-1.32*R} ${-1.02*R} ${-1.36*R} ${-1.16*R} ${-.2*R} L${-1.12*R} ${.8*R} Q${-.8*R} ${.9*R} ${-.5*R} ${.8*R} L${-.42*R} ${-.02*R} Q${-.08*R} ${-.52*R} ${.92*R} ${-.52*R} Z" fill="${o.wig}" ${sk()}/>`;
- if(o.nemes)h+=`<path d="M${.95*R} ${-.56*R} C${.82*R} ${-1.4*R} ${-1.1*R} ${-1.42*R} ${-1.2*R} ${-.24*R} L${-.62*R} ${.46*R} L${-.46*R} ${-.58*R} Q${.3*R} ${-.66*R} ${.95*R} ${-.56*R} Z" fill="url(#nem)" ${sk()}/><path d="M${.95*R} ${-.56*R} Q${.3*R} ${-.66*R} ${-.46*R} ${-.58*R} L${-.62*R} ${.46*R}" stroke="#e9a826" stroke-width="${.15*R}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M${.95*R} ${-.56*R} Q${.3*R} ${-.66*R} ${-.46*R} ${-.58*R} L${-.62*R} ${.46*R}" stroke="${OL}" stroke-width="2.5" fill="none" opacity=".55" stroke-linejoin="round"/>`;
- if(!o.wrap&&!o.turban&&!o.wig&&!o.nemes)h+=`<circle cx="${-.12*R}" cy="${.05*R}" r="${.17*R}" fill="${o.skin}" ${sk(2.4)}/>`;
- if(o.beard){const L=o.beard==='long'?1.85:1.18;h+=`<path d="M${-.36*R} ${.02*R} Q${-.34*R} ${(L-.6)*R} ${.22*R} ${L*R} Q${.7*R} ${(L-.55)*R} ${.98*R} ${.3*R} Q${.64*R} ${.72*R} ${.46*R} ${.6*R} Q${.2*R} ${.55*R} ${.02*R} ${.6*R} Q${-.1*R} ${.3*R} ${-.36*R} ${.02*R} Z" fill="${o.bc}" ${sk()}/><ellipse cx="${.5*R}" cy="${.3*R}" rx="${.26*R}" ry="${.08*R}" fill="${o.bc}"/>`}
- if(o.hair)h+=[[-.5,-.55,.5],[-.02,-.8,.44],[.46,-.7,.36],[-.86,-.12,.4],[-.78,.36,.3],[.72,-.5,.25]].map(([x,y,r])=>`<circle cx="${x*R}" cy="${y*R}" r="${r*R}" fill="${o.hair}" ${sk()}/>`).join('')+`<circle cx="${-.35*R}" cy="${-.35*R}" r="${.62*R}" fill="${o.hair}"/>`;
+ let h='';const veil=o.wrap&&o.lash;
+ /* behind the head: drapes and lappets */
+ if(o.wrap)h+=veil?`<path d="M${PT(.2,-1.1)} C${PT(-.9,-1.2)} ${PT(-1.25,-.4)} ${PT(-1.25,.4)} L${PT(-1.4,1.85)} Q${PT(-.7,2.0)} ${PT(-.05,1.7)} L${PT(-.2,.9)} Z" fill="${shade(o.wrap,-14)}" ${sk()}/>`
+  :`<path d="M${PT(.1,-1.1)} C${PT(-.8,-1.15)} ${PT(-1.15,-.5)} ${PT(-1.12,.1)} L${PT(-1.3,1.6)} Q${PT(-.7,1.78)} ${PT(-.25,1.45)} L${PT(-.4,.55)} Z" fill="${shade(o.wrap,-14)}" ${sk()}/>`;
+ if(o.nemes)h+=`<path d="M${PT(.3,-1.0)} C${PT(-.7,-1.2)} ${PT(-1.25,-.5)} ${PT(-1.25,.1)} L${PT(-1.42,1.95)} L${PT(-.3,1.95)} L${PT(-.42,.5)} Z" fill="url(#nem)" ${sk()}/>`;
+ if(o.wig)h+=`<path d="M${PT(.2,-1.1)} C${PT(-.7,-1.18)} ${PT(-1.14,-.6)} ${PT(-1.14,0)} L${PT(-1.1,.92)} L${PT(-.4,.92)} Z" fill="${o.wig}" ${sk()}/>`;
+ /* the head */
+ h+=`<path d="${HEAD}" fill="${o.skin}" ${sk()}/>`;
+ /* ear (hidden by head-cloths and wigs) */
+ if(!o.wrap&&!o.wig&&!o.nemes)h+=`<path d="M${PT(-.52,-.12)} C${PT(-.82,-.2)} ${PT(-.86,.32)} ${PT(-.56,.34)}" fill="${o.skin}" ${sk(3.2)}/><path d="M${PT(-.6,-.02)} Q${PT(-.72,.08)} ${PT(-.6,.2)}" stroke="${shade(o.skin,-40)}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+ /* beard and moustache: frame the jaw, leave the mouth open */
+ if(o.beard){const L=o.beard==='long'?1.9:1.28,bc=o.bc;
+  h+=`<path d="M${PT(-.62,.1)} C${PT(-.62,.78)} ${PT(-.25,L)} ${PT(.2,L)} C${PT(.62,L-.04)} ${PT(.9,.78)} ${PT(.92,.16)} Q${PT(.86,.46)} ${PT(.66,.54)} Q${PT(.54,.86)} ${PT(.34,.86)} Q${PT(.14,.86)} ${PT(.06,.56)} Q${PT(-.3,.48)} ${PT(-.62,.1)} Z" fill="${bc}" ${sk()}/>`+
+   `<path d="M${PT(.1,.54)} Q${PT(.36,.42)} ${PT(.64,.52)} Q${PT(.52,.62)} ${PT(.37,.57)} Q${PT(.22,.62)} ${PT(.1,.54)} Z" fill="${bc}" ${sk(2.6)}/>`+(o.beard==='long'?`<path d="M${PT(0,1.2)} Q${PT(.2,1.5)} ${PT(.12,1.75)} M${PT(.42,1.15)} Q${PT(.5,1.45)} ${PT(.4,1.7)}" stroke="${shade(bc,-30)}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".6"/>`:'')}
+ /* hair: soft curls on the crown and back, hairline above the brows */
+ if(o.hair)h+=`<path d="M${PT(.9,-.5)} C${PT(.8,-1.2)} ${PT(-.6,-1.35)} ${PT(-.9,-.6)} C${PT(-1.05,-.2)} ${PT(-.95,.25)} ${PT(-.78,.42)} L${PT(-.6,.1)} Q${PT(-.52,-.35)} ${PT(-.18,-.48)} Q${PT(.35,-.66)} ${PT(.9,-.5)} Z" fill="${o.hair}" ${sk()}/>`+
+   [[-.62,-.78,.3],[-.2,-.98,.3],[.26,-.96,.27],[.66,-.76,.22],[-.92,-.36,.26],[-.86,.08,.22]].map(([x,y,r])=>`<circle cx="${x*R}" cy="${y*R}" r="${r*R}" fill="${o.hair}" ${sk(3.4)}/>`).join('')+
+   `<path d="M${PT(.9,-.5)} C${PT(.8,-1.2)} ${PT(-.6,-1.35)} ${PT(-.9,-.6)} C${PT(-1.05,-.2)} ${PT(-.95,.25)} ${PT(-.78,.42)} L${PT(-.6,.1)} Q${PT(-.52,-.35)} ${PT(-.18,-.48)} Q${PT(.35,-.66)} ${PT(.9,-.5)} Z" fill="${o.hair}"/>`+
+   `<path d="M${PT(.1,-.62)} q${R*.12} ${-R*.1} ${R*.24} 0 M${PT(-.4,-.6)} q${R*.1} ${-R*.12} ${R*.2} -.01" stroke="${shade(o.hair,40)}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".55"/>`;
+ /* front caps: cover the crown down to a hairline above the brows */
+ if(o.wig)h+=`<path d="M${PT(.94,-.48)} C${PT(.86,-1.28)} ${PT(-.96,-1.34)} ${PT(-1.06,-.3)} L${PT(-1.0,.86)} L${PT(-.34,.86)} L${PT(-.26,.04)} Q${PT(-.12,-.46)} ${PT(.3,-.52)} Q${PT(.64,-.56)} ${PT(.94,-.48)} Z" fill="${o.wig}" ${sk()}/><path d="M${PT(.1,-.6)} Q${PT(-.4,-.9)} ${PT(-.8,-.5)}" stroke="${shade(o.wig,40)}" stroke-width="2.4" fill="none" opacity=".5" stroke-linecap="round"/>`;
+ if(o.nemes){const fr=`M${PT(.96,-.5)} C${PT(.88,-1.36)} ${PT(-1.0,-1.42)} ${PT(-1.1,-.3)} L${PT(-1.02,1.62)} L${PT(-.34,1.62)} L${PT(-.3,.9)} Q${PT(-.36,.3)} ${PT(-.28,-.12)} Q${PT(-.1,-.5)} ${PT(.3,-.56)} Q${PT(.66,-.6)} ${PT(.96,-.5)} Z`,edge=`M${PT(.96,-.52)} Q${PT(.66,-.62)} ${PT(.3,-.58)} Q${PT(-.08,-.52)} ${PT(-.26,-.14)} Q${PT(-.34,.3)} ${PT(-.28,.9)}`;
+  h+=`<path d="${fr}" fill="url(#nem)" ${sk()}/><path d="${edge}" stroke="#e9a826" stroke-width="${.13*R}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${edge}" stroke="${OL}" stroke-width="2.2" fill="none" opacity=".5"/>`}
+ if(o.wrap)h+=veil?`<path d="M${PT(.92,-.44)} C${PT(.9,-1.32)} ${PT(-1.02,-1.42)} ${PT(-1.14,-.3)} L${PT(-1.18,.9)} Q${PT(-.8,1.15)} ${PT(-.3,1.02)} Q${PT(-.5,.6)} ${PT(-.42,.1)} Q${PT(-.34,-.4)} ${PT(.12,-.5)} Q${PT(.6,-.54)} ${PT(.92,-.44)} Z" fill="${o.wrap}" ${sk()}/><path d="M${PT(.1,-1.02)} Q${PT(-.6,-.9)} ${PT(-.86,.4)}" stroke="${shade(o.wrap,-22)}" stroke-width="2.4" fill="none" opacity=".7" stroke-linecap="round"/>`
+  :`<path d="M${PT(.92,-.44)} C${PT(.88,-1.28)} ${PT(-.98,-1.38)} ${PT(-1.08,-.3)} L${PT(-.9,.62)} Q${PT(-.66,.4)} ${PT(-.5,.05)} Q${PT(-.36,-.38)} ${PT(.12,-.5)} Q${PT(.6,-.54)} ${PT(.92,-.44)} Z" fill="${o.wrap}" ${sk()}/>`;
  h+=face(o);
- if(o.wrap)h+=`<path d="M${.9*R} ${-.46*R} Q${-.05*R} ${-.78*R} ${-1.04*R} ${-.4*R}" stroke="${o.band}" stroke-width="${.14*R}" fill="none" stroke-linecap="round"/>`;
- if(o.turban)h+=`<path d="M${-1.02*R} ${-.2*R} Q${-1.1*R} ${-1.35*R} ${.05*R} ${-1.4*R} Q${1.08*R} ${-1.32*R} ${.98*R} ${-.3*R} Q${0} ${-.58*R} ${-1.02*R} ${-.2*R} Z" fill="${o.turban}" ${sk()}/><path d="M${-.85*R} ${-.55*R} Q${.05*R} ${-1.05*R} ${.88*R} ${-.62*R} M${-.6*R} ${-.95*R} Q${.1*R} ${-1.3*R} ${.7*R} ${-1.0*R}" stroke="${OL}" stroke-width="2.6" fill="none" opacity=".55"/><circle cx="${.62*R}" cy="${-.58*R}" r="${.11*R}" fill="#e9a826" ${sk(2.4)}/>`;
+ if(o.wrap)h+=`<path d="M${PT(.93,-.47)} Q${PT(.3,-.6)} ${PT(-.2,-.48)} Q${PT(-.5,-.36)} ${PT(-.62,-.08)}" stroke="${o.band}" stroke-width="${.13*R}" fill="none" stroke-linecap="round"/><path d="M${PT(.93,-.47)} Q${PT(.3,-.6)} ${PT(-.2,-.48)} Q${PT(-.5,-.36)} ${PT(-.62,-.08)}" stroke="${OL}" stroke-width="2" fill="none" opacity=".45"/>`;
+ if(o.turban)h+=`<path d="M${PT(-1.0,-.12)} Q${PT(-1.12,-1.36)} ${PT(.04,-1.44)} Q${PT(1.06,-1.36)} ${PT(.97,-.36)} Q${PT(.2,-.62)} ${PT(-1.0,-.12)} Z" fill="${o.turban}" ${sk()}/><path d="M${PT(-.85,-.5)} Q${PT(.05,-1.0)} ${PT(.88,-.66)} M${PT(-.6,-.92)} Q${PT(.1,-1.28)} ${PT(.7,-1.02)}" stroke="${OL}" stroke-width="2.6" fill="none" opacity=".45"/><circle cx="${.6*R}" cy="${-.64*R}" r="${.1*R}" fill="#e9a826" ${sk(2.4)}/>`;
  return h;
 }
 function arm(o,side,ang){
- const W=29,L=84,sx=side?16:-12,sleeve=side?o.robe:shade(o.robe,-16);
+ const W=29,L=84,sx=side?ARM1X:ARM0X,sleeve=side?shade(o.robe,-18):o.robe;
  const staff=(o.staff&&!side)?`<rect x="-5" y="${L-62}" width="10" height="150" rx="5" fill="#7a5230" ${sk()}/><path d="M0 ${L-62} q-3 -22 -20 -22 q-14 2 -10 16" fill="none" stroke="${OL}" stroke-width="15" stroke-linecap="round"/><path d="M0 ${L-62} q-3 -22 -20 -22 q-14 2 -10 16" fill="none" stroke="#7a5230" stroke-width="7" stroke-linecap="round"/>`:'';
  return `<g class="arm arm${side}" style="transform:translate(${sx}px,-196px) rotate(${ang}deg)"><g class="sw">${staff}<rect x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="${sleeve}" ${sk()}/>${o.coatable?`<rect class="coatwear" x="${-W/2}" y="-10" width="${W}" height="${L}" rx="${W/2}" fill="url(#cp)" ${sk()}/>`:''}<circle cy="${L}" r="${W*.48}" fill="${o.skin}" ${sk()}/>${o.ringable&&side?`<g class="ringwear"><circle cx="${W*.34}" cy="${L-4}" r="6" fill="#ffd23f" ${sk(2.4)}/></g>`:''}</g></g>`;
 }
-const ROBE='M-34 -206 Q-47 -110 -59 -8 Q0 6 59 -8 Q47 -110 34 -206 Q0 -214 -34 -206 Z';
+const ARM1X=24,ARM0X=-16;
+const ROBE='M-30 -207 C-40 -150 -48 -80 -54 -8 Q6 8 64 -10 C58 -70 52 -128 47 -168 Q44 -200 36 -208 Q4 -216 -30 -207 Z';
 function person(id,c){
  const o=Object.assign({},LOOK[id],c),[a1,a0]=POSES[o.pose||'stand'];
- let g=`<ellipse cx="0" cy="0" rx="62" ry="10" fill="#000" opacity=".18"/>`+arm(o,0,a0);
- g+=`<g class="torso"><ellipse class="ft0" cx="-18" cy="-6" rx="17" ry="8" fill="#6b4a2b" ${sk()}/><ellipse class="ft1" cx="22" cy="-5" rx="18" ry="8" fill="#6b4a2b" ${sk()}/><path d="${ROBE}" fill="${o.robe}" ${sk()}/>`;
- if(o.coatable)g+=`<g class="coatwear"><path d="${ROBE}" fill="url(#cp)" ${sk()}/><path d="M-4 -206 L-6 -6" stroke="rgba(0,0,0,.2)" stroke-width="3"/></g>`;
- g+=`<rect x="-44" y="-132" width="88" height="15" rx="5" fill="${o.sash}" ${sk(3)} transform="rotate(-3)"/>${o.collar?`<path d="M-36 -205 Q0 -150 36 -205 Q0 -176 -36 -205Z" fill="${o.collar}" ${sk(3)}/><path d="M-27 -197 Q0 -164 27 -197" stroke="#2f6fd0" stroke-width="4" fill="none"/>`:''}${o.chainable?`<g class="chainwear"><path d="M-30 -204 Q0 -150 30 -204" stroke="${OL}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M-30 -204 Q0 -150 30 -204" stroke="#ffd23f" stroke-width="5" fill="none" stroke-dasharray="6 3" stroke-linecap="round"/><circle cx="0" cy="-176" r="9" fill="#ffd23f" ${sk(2.5)}/></g>`:''}<rect x="-9" y="-224" width="20" height="24" rx="6" fill="${o.skin}"/><g transform="translate(4 ${-212-R*.92})">${head(o)}</g></g>`;
- g+=`<g class="armsX"><rect x="-32" y="-170" width="70" height="25" rx="12" fill="${shade(o.robe,-16)}" ${sk()} transform="rotate(10 0 -158)"/><rect x="-34" y="-162" width="72" height="25" rx="12" fill="${o.robe}" ${sk()} transform="rotate(-8 0 -150)"/><circle cx="36" cy="-166" r="12" fill="${o.skin}" ${sk()}/><circle cx="-30" cy="-150" r="12" fill="${o.skin}" ${sk()}/></g>`+arm(o,1,a1);
+ let g=`<ellipse cx="6" cy="0" rx="64" ry="10" fill="#000" opacity=".18"/>`+arm(o,1,a1);
+ g+=`<g class="torso"><ellipse class="ft0" cx="-10" cy="-6" rx="18" ry="8" fill="#6b4a2b" ${sk()}/><ellipse class="ft1" cx="34" cy="-5" rx="19" ry="8" fill="#6b4a2b" ${sk()}/><path d="${ROBE}" fill="${o.robe}" ${sk()}/>`;
+ if(o.coatable)g+=`<g class="coatwear"><path d="${ROBE}" fill="url(#cp)" ${sk()}/><path d="M10 -208 L14 -6" stroke="rgba(0,0,0,.2)" stroke-width="3"/></g>`;
+ g+=`<path d="M-43 -134 L52 -138 L54 -122 L-45 -118 Z" fill="${o.sash}" ${sk(3)}/>${o.collar?`<path d="M-30 -206 Q8 -150 40 -206 Q8 -176 -30 -206Z" fill="${o.collar}" ${sk(3)}/><path d="M-21 -198 Q8 -164 31 -198" stroke="#2f6fd0" stroke-width="4" fill="none"/>`:''}${o.chainable?`<g class="chainwear"><path d="M-24 -205 Q8 -150 36 -205" stroke="${OL}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M-24 -205 Q8 -150 36 -205" stroke="#ffd23f" stroke-width="5" fill="none" stroke-dasharray="6 3" stroke-linecap="round"/><circle cx="8" cy="-176" r="9" fill="#ffd23f" ${sk(2.5)}/></g>`:''}<rect x="-6" y="-226" width="22" height="26" rx="6" fill="${o.skin}"/></g>`;
+ g+=`<g class="armsX"><rect x="-32" y="-170" width="70" height="25" rx="12" fill="${shade(o.robe,-16)}" ${sk()} transform="rotate(10 0 -158)"/><rect x="-34" y="-162" width="72" height="25" rx="12" fill="${o.robe}" ${sk()} transform="rotate(-8 0 -150)"/><circle cx="36" cy="-166" r="12" fill="${o.skin}" ${sk()}/><circle cx="-30" cy="-150" r="12" fill="${o.skin}" ${sk()}/></g>`+arm(o,0,a0)+`<g class="torso hd"><g transform="translate(4 ${-210-R*1.0})">${head(o)}</g></g>`;
  const k=o.k||1;
  return `<g class="mover" id="mv-${id}" style="transform:translate(${o.x}px,${o.y}px) scale(${k})"><g class="p ${o.cls||''} ${o.coat?'coat':''} ${o.chain?'chain':''} ${o.ring?'ring':''}" id="p-${id}" data-expr="${o.expr||'neutral'}" data-pose="${o.pose||'stand'}"><g transform="scale(${o.f*o.s} ${o.s})">${g}</g></g></g>`;
 }
@@ -278,7 +302,7 @@ let si=0,score=0,right=0,skipFn=null,running=0;
 function sparks(x,y){return `<g transform="translate(${x} ${y})">${[...Array(12)].map((_,i)=>{const a=i*30*Math.PI/180;return `<circle class="spark" cx="${Math.cos(a)*80}" cy="${Math.sin(a)*80-30}" r="${5+i%3*2}" fill="${i%2?'#ffd23f':'#fff'}" ${sk(2)} style="transform-box:fill-box;transform-origin:center"/>`}).join('')}</g>`}
 function burst(){document.querySelectorAll('.spark').forEach(s=>{s.classList.remove('go');void s.getBBox();s.classList.add('go')})}
 const P=id=>$('p-'+id);
-function pose(id,p){const el=P(id);if(!el)return;el.dataset.pose=p;const [a1,a0]=POSES[p];el.querySelector('.arm1').style.transform=`translate(16px,-196px) rotate(${a1}deg)`;el.querySelector('.arm0').style.transform=`translate(-12px,-196px) rotate(${a0}deg)`}
+function pose(id,p){const el=P(id);if(!el)return;el.dataset.pose=p;const [a1,a0]=POSES[p];el.querySelector('.arm1').style.transform=`translate(${ARM1X}px,-196px) rotate(${a1}deg)`;el.querySelector('.arm0').style.transform=`translate(${ARM0X}px,-196px) rotate(${a0}deg)`}
 function expr(id,e){const el=P(id);if(el)el.dataset.expr=e}
 function cls(id,c,on){const el=P(id);if(el)el.classList.toggle(c,!!on)}
 function hop(id){const el=P(id);el.classList.remove('hop');void el.offsetWidth;el.classList.add('hop')}
@@ -287,7 +311,7 @@ function flip(id,f){const el=P(id);if(!el)return;const g=el.firstElementChild;if
 function walkTo(id,x,y,ms){const mv=$('mv-'+id);if(!mv)return;mv.style.transition=`transform ${ms}ms linear`;const p=P(id);if(p)p.classList.add('walk');
  const c=cast[id]||(cast[id]={});c.x=x;c.y=y;mv.style.transform=`translate(${x}px,${y}px) scale(${c.k||1})`;setTimeout(()=>{if(p)p.classList.remove('walk');mv.style.transition=''},ms)}
 function wait(ms,hard){const my=running;return new Promise(r=>{const t=setTimeout(done,ms);function done(){clearTimeout(t);if(skipFn===done)skipFn=null;if(my===running)r()}if(!hard)skipFn=done})}
-function headTop(id){const c=cast[id];const L=LOOK[id];return c.y-(212+R*1.95+(L.wrap||L.turban||L.nemes?R*.5:R*.3))*c.s*(c.k||1)-22}
+function headTop(id){const c=cast[id];const L=LOOK[id];return c.y-(210+R*2.1+(L.turban?R*.36:L.wrap||L.nemes||L.hair||L.wig?R*.12:0))*c.s*(c.k||1)-22}
 let speaking=null;
 async function say(id,txt,o={}){document.querySelectorAll('.p.talking').forEach(e=>e.classList.remove('talking'));
  speaking=id;bub.classList.toggle('long',txt.length>70);bub.innerHTML=`<i>${o.name||LOOK[id].name}</i>${txt}${o.ref?`<small class="bref">${o.ref}</small>`:''}`;bub.classList.toggle('whisper',!!o.w);camFocus(cast[id].x);

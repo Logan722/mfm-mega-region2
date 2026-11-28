@@ -476,7 +476,7 @@
   X.games.imposter = function () {
     ensureOpen(); var last = ls('mfm-imp') || { n: 4, cat: 'Mix', hint: true };
     setS({ title: 'Imposter' });
-    frame('<div class="st-card st-team imp"><div class="gx-ico c-imposter">' + ICON.imposter + '</div><p class="st-k">A group game &middot; one phone</p><h2 class="st-h">Imposter</h2>' + howList('imposter') +
+    frame('<div class="st-card st-team imp"><div class="gx-ico c-imposter">' + ICON.imposter + '</div><p class="st-k">A team game &middot; one phone</p><h2 class="st-h">Imposter</h2>' + howList('imposter') +
       '<form class="st-form" autocomplete="off"><fieldset class="tm-n"><legend>How many players?</legend><div class="gx-step"><button type="button" data-d="-1" aria-label="Fewer players">&minus;</button><b class="imp-n">' + last.n + '</b><button type="button" data-d="1" aria-label="More players">+</button></div></fieldset>' + catChips(last.cat) +
       '<label class="gx-check"><input type="checkbox" name="hint"' + (last.hint ? ' checked' : '') + '> Tell the imposter the category</label><button class="pg-btn gold wide xl" type="submit">Deal the cards</button></form></div>');
     var n = last.n, f = document.querySelector('#play-app form');
@@ -504,7 +504,7 @@
   function impTalk(G1) {
     frame('<div class="st-card imp-talk"><p class="st-k">Everyone has seen their card</p><h2 class="st-h">Give your clues</h2><ol class="gx-steps"><li>Start with <b>Player ' + (G1.first + 1) + '</b> and go round the circle.</li><li>Each player says <b>one word</b> about the secret word. Not too obvious!</li><li>Go round twice if you like, then <b>vote</b>: who is the imposter?</li></ol><button type="button" class="pg-btn gold wide xl imp-rev" data-focus>Reveal the imposter</button></div>');
     bind('.imp-rev', function () {
-      frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res imp-end"><p class="st-k">The imposter was</p><h2 class="st-rank">Player ' + (G1.imp + 1) + '</h2><p class="st-msg">The word was <b>' + esc(G1.word) + '</b>.</p><p class="st-fine">If the group caught the imposter, they can still win by guessing the word.</p>' +
+      frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res imp-end"><p class="st-k">The imposter was</p><h2 class="st-rank">Player ' + (G1.imp + 1) + '</h2><p class="st-msg">The word was <b>' + esc(G1.word) + '</b>.</p><p class="st-fine">If the players caught the imposter, they can still win by guessing the word.</p>' +
         '<div class="st-acts"><button type="button" class="pg-btn gold imp-again">Play again</button><button type="button" class="pg-btn light imp-set">Change players or words</button></div><div class="st-acts two"><button type="button" class="pg-btn ghost gx-more">Play another game</button></div></div>', 'done');
       X.confetti();
       bind('.imp-again', function () { var last = ls('mfm-imp'); load('words').then(function (d) { var used = ls('mfm-imp-used') || [], pool = wordsFor(d, last.cat).filter(function (w) { return used.indexOf(w) < 0; }); if (!pool.length) { used = []; pool = wordsFor(d, last.cat); } var word = pool[Math.floor(Math.random() * pool.length)]; ls('mfm-imp-used', used.concat([word]).slice(-60)); var realCat = last.cat === 'Mix' ? ['People', 'Places', 'Things', 'Stories', 'MFM'].filter(function (c) { return (d[c] || []).indexOf(word) >= 0; })[0] : last.cat; impDeal({ n: G1.n, word: word, cat: realCat, hint: G1.hint, imp: Math.floor(Math.random() * G1.n), first: Math.floor(Math.random() * G1.n), i: 0 }); }); });
