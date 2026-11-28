@@ -1,10 +1,13 @@
 {
- "_about": "Story progress for Bible Stories. The weekly run reads this to know what is done and what comes next, and updates it after each release. Shelf data shown on the site lives in js/stories.js; chapter sources in tools/stories/<id>.js; the leaderboard list in netlify/functions/leaderboard.mjs (STORIES).",
+ "_about": "Story progress for Bible Stories. The weekly run reads this to know what is done and what comes next, and updates it after each release. Shelf data shown on the site lives in js/stories.js; chapter sources in tools/stories/<id>.js; the leaderboard list in netlify/functions/leaderboard.mjs (STORIES). Only released stories go into js/stories.js (with added:'<Monday>'); everything else waits here.",
  "weekly_plan": {
-  "volume": "4 new characters a week, chapters to fit each story (up to 4, never padded) - Dawn, Nov 27 2026",
+  "volume": "2 new characters + 1 new event every Monday, chapters to fit each story (up to 4, never padded) - Dawn, Nov 28 2026 (replaces 4 characters a week)",
+  "joseph_slot": "finishing a character already on the shelf counts as one of the 2 character slots (Joseph ch 4-5 on Dec 7) - Dawn, Nov 28 2026",
+  "shelf": "only released stories show; no greyed coming-soon cards; 'New this week' for 7 days; the library only grows - Dawn, Nov 28 2026",
+  "never_run_out": "keep adding characters and events from across the Bible to the waiting list",
   "release_day": "Monday; the week runs Monday-Sunday CT, like the Weekly Scheduler",
   "auto_go_live": "yes, once all three checks pass (Dawn, Nov 27 2026)",
-  "first_release": "the first Monday after the waiting batch goes live (Dawn: stories start next week, on a Monday)"
+  "first_release": "launch Mon Nov 30 2026 9:00 AM CT (Joseph 1-3, Christmas); first weekly release Mon Dec 7 2026"
  },
  "characters": {
   "joseph": {
@@ -39,52 +42,53 @@
      "ref": "Genesis 46-50"
     }
    ],
-   "note": "Genesis 38 is about Judah, not Joseph, so it is not one of the Joseph chapters."
+   "note": "Genesis 38 is about Judah, not Joseph, so it is not one of the Joseph chapters.",
+   "added": "2026-11-30"
   },
   "moses": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Exodus"
   },
   "david": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "1 Samuel 16-17"
   },
   "daniel": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Daniel 1-6"
   },
   "elijah": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "1 Kings 17-18"
   },
   "esther": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Esther"
   },
   "jabez": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "1 Chronicles 4:9-10",
    "note": "short text: 1 chapter only"
   },
   "ebedmelech": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Jeremiah 38"
   },
   "obadiah": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "1 Kings 18"
   },
   "caleb": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Joshua 14"
   },
   "maid": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "2 Kings 5",
    "name": "Naaman's servant girl"
   },
   "hur": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Exodus 17"
   }
  },
@@ -99,30 +103,31 @@
      "checked": "50 quotes, 0 mismatches"
     }
    ],
-   "content_choices": "no wings on angels, no star over the manger, no donkey or stable animals (not in the text), the wise men visit a house (Matthew 2:11), their number is not given in Scripture"
+   "content_choices": "no wings on angels, no star over the manger, no donkey or stable animals (not in the text), the wise men visit a house (Matthew 2:11), their number is not given in Scripture",
+   "added": "2026-11-30"
   },
   "easter": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Matthew 26-28, Luke 24"
   },
   "noah": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Genesis 6-9"
   },
   "redsea": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Exodus 14"
   },
   "jericho": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Joshua 6"
   },
   "furnace": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Daniel 3"
   },
   "pentecost": {
-   "status": "coming soon",
+   "status": "waiting list",
    "ref": "Acts 2"
   }
  },

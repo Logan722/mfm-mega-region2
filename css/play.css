@@ -776,22 +776,30 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
 .sb-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 12px 14px;border-radius:18px;background:#fff;color:#142240;text-align:center;box-shadow:0 10px 22px -14px rgba(0,0,0,.7);transition:transform .15s}
 .sb-card:hover{transform:translateY(-2px)}.sb-card:focus-visible{outline:3px solid #c9952c;outline-offset:3px}
 .sb-card b{font:700 18px/1.15 Fraunces,Georgia,serif}.sb-card small{font-size:13px;color:#4a5670;line-height:1.3}
-.sb-card.soon{cursor:default;opacity:.78}.sb-card.soon:hover{transform:none}
+.sb-card{position:relative}
+/* "New this week" (Dawn, 2026-11-28): navy pill, white words, gold dot; no words on a gold fill */
+.sb-new{display:inline-flex;align-items:center;gap:6px;font:800 11px/1 'Inter Tight',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#142240;border-radius:999px;padding:5px 10px 5px 8px;white-space:nowrap}
+.sb-new i{width:7px;height:7px;border-radius:50%;background:#c9952c;box-shadow:0 0 0 3px rgba(201,149,44,.28)}
+.sb-card>.sb-new{margin:-2px 0 4px}
+.sb-card.is-new{box-shadow:0 0 0 2px #c9952c,0 10px 22px -14px rgba(0,0,0,.7)}
+.sb-new.sm{vertical-align:2px;margin-left:6px;padding:3px 8px;font-size:10px}
+.sb-more{margin-top:4px;font:600 12px 'Inter Tight';color:#4a5670}
+.sb-more-l{margin:14px 0 0;font:600 14px 'Inter Tight';color:#e8d7a8;text-align:center}
+.sb-after{font:600 13px 'Inter Tight';color:#4a5670}
 .sb-ico{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 22%,#fff);box-shadow:inset 0 0 0 3px var(--c);margin-bottom:6px}
 .sb-ico svg{width:46px;height:46px}
 .sb>.sb-ico{margin:6px auto 8px;width:88px;height:88px}.sb>.sb-ico svg{width:56px;height:56px}
 .sb-meta{margin-top:6px;font:700 12.5px 'Inter Tight';color:#142240;background:#f1eadb;border-radius:999px;padding:3px 10px}
-.sb-soon{margin-top:6px;font:700 12px 'Inter Tight';color:#5b6472;background:#eef0f3;border-radius:999px;padding:3px 10px}
 .sb-back{all:unset;cursor:pointer;display:inline-block;margin-bottom:8px;font:700 14px 'Inter Tight';color:#e6ebf4;padding:8px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
 .sb-back:focus-visible{outline:3px solid #c9952c}
 .sb-chs{list-style:none;margin:18px auto 0;padding:0;max-width:640px;display:grid;gap:10px}
 .sb-chs li{display:grid;grid-template-columns:40px minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:#fff;color:#142240;text-align:left}
-.sb-chs li.locked{background:rgba(255,255,255,.75)}
+
 .sb-n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#142240;color:#fff;font:800 15px 'Inter Tight'}
 .sb-t b{display:block;font:700 16px/1.2 Fraunces,serif}.sb-t small{color:#4a5670;font-size:13px}
 .sb-stars{display:inline-flex;gap:2px}.sb-stars svg{width:18px;height:18px;fill:#e3e6ec;stroke:#142240;stroke-width:1.6}.sb-stars svg.on{fill:#c9952c}
 .sb-chs .pg-btn{min-height:40px;padding:0 18px}
-@media(max-width:560px){.sb-chs li{grid-template-columns:36px minmax(0,1fr);row-gap:8px}.sb-chs li .sb-stars,.sb-chs li .pg-btn,.sb-chs li .sb-soon{grid-column:2;justify-self:start}}
+@media(max-width:560px){.sb-chs li{grid-template-columns:36px minmax(0,1fr);row-gap:8px}.sb-chs li .sb-stars,.sb-chs li .pg-btn,.sb-chs li .sb-after{grid-column:2;justify-self:start}}
 .sb{text-align:center}.sb .st-h,.sb .st-k{text-align:center}.sb .st-sub{text-align:center}
 .sb-stage .st-pts{visibility:hidden}
 @media(max-width:560px){.sb-grid{gap:10px}.sb-grid>.sb-card{flex:0 1 calc(50% - 5px);min-width:0}.sb-card{padding:12px 8px}.sb-card b{font-size:16px}.sb-ico{width:58px;height:58px}.sb-ico svg{width:38px;height:38px}}
@@ -799,10 +807,12 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
 /* Bible Stories library: on phones each shelf is a two-row swipe carousel (Dawn, 2026-11-27) */
 .sb-swipe{display:none}
 @media(max-width:700px){
- .sb-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:calc(46% - 5px);gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0 4px;padding:2px 4px 10px;margin:0 -4px;justify-content:start;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .sb-grid{display:grid;grid-auto-flow:column;grid-template-rows:auto;grid-auto-columns:calc(46% - 5px);gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0 4px;padding:2px 4px 10px;margin:0 -4px;justify-content:safe center;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .sb-grid.two{grid-template-rows:repeat(2,auto);justify-content:start}
  .sb-grid::-webkit-scrollbar{display:none}
  .sb-grid>.sb-card{flex:none;min-width:0;scroll-snap-align:start}
- .sb-swipe{display:block;margin:2px 0 0;font:700 13px 'Inter Tight';color:#e8d7a8;text-align:center}
+ .sb-swipe{display:none;margin:2px 0 0;font:700 13px 'Inter Tight';color:#e8d7a8;text-align:center}
+ .sb-shelf.sb-over .sb-swipe{display:block}
 }
 
 /* ===== LIVE ROOM (Dawn, 2026-11-27): everyone on their own phone, anywhere ===== */

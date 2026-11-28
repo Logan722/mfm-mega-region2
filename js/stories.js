@@ -1,6 +1,6 @@
 /* Play & Grow — Bible Stories (Dawn, 2026-11-27): a library of animated Bible storybooks.
    Two shelves (Dawn, 2026-11-27): Bible Characters (well-known and hidden heroes together) and Great Events (one-chapter stories). On phones each shelf is a two-row swipe carousel. Each character has chapters that play in
-   order; each chapter is its own page under /stories/. Progress is kept on this device (localStorage "mfm-story"). */
+   order. Only released stories are listed (Dawn, 2026-11-28); the waiting list lives in tools/bank/storylines/storylines.json; each chapter is its own page under /stories/. Progress is kept on this device (localStorage "mfm-story"). */
 (function () {
   var X = window.PG; if (!X) return;
   var esc = X.esc, ls = X.ls;
@@ -25,29 +25,12 @@
   var SHELVES = [
     { id: 'characters', title: 'Bible Characters', line: 'Well-known heroes and hidden ones. Choose a character and walk inside their story.', items: [
       { id: 'joseph', name: 'Joseph', ref: 'Genesis 37–50', tag: 'The dreamer', ico: 'coat', col: '#7a3fa0', chapters: [
-        { id: 'joseph-1', title: 'The Coat and the Pit', ref: 'Genesis 37', ready: 1 },
-        { id: 'joseph-2', title: 'Potiphar’s House', ref: 'Genesis 39', ready: 1 },
-        { id: 'joseph-3', title: 'The Prison and the Palace', ref: 'Genesis 40–41', ready: 1 }] },
-      { id: 'moses', name: 'Moses', ref: 'Exodus', tag: 'Let my people go', ico: 'staff', col: '#2f6fd0' },
-      { id: 'david', name: 'David', ref: '1 Samuel 16–17', tag: 'The shepherd boy', ico: 'sling', col: '#2e9b57' },
-      { id: 'daniel', name: 'Daniel', ref: 'Daniel 1–6', tag: 'Faithful in Babylon', ico: 'lion', col: '#c48a1f' },
-      { id: 'elijah', name: 'Elijah', ref: '1 Kings 17–18', tag: 'Fire on Mount Carmel', ico: 'fire', col: '#e2511f' },
-      { id: 'esther', name: 'Esther', ref: 'Esther', tag: 'For such a time as this', ico: 'crown', col: '#d6336c' },
-      { id: 'jabez', name: 'Jabez', ref: '1 Chronicles 4:9–10', tag: 'The prayer God granted', ico: 'pray', col: '#c9952c' },
-      { id: 'ebedmelech', name: 'Ebed-melech', ref: 'Jeremiah 38', tag: 'Out of the pit', ico: 'rope', col: '#11908f' },
-      { id: 'obadiah', name: 'Obadiah', ref: '1 Kings 18', tag: 'A hundred prophets hidden', ico: 'cave', col: '#44557a' },
-      { id: 'caleb', name: 'Caleb', ref: 'Joshua 14', tag: 'Strong at eighty-five', ico: 'mount', col: '#3fa34d' },
-      { id: 'maid', name: 'Naaman’s servant girl', ref: '2 Kings 5', tag: 'One word of faith', ico: 'water', col: '#2c63d6' },
-      { id: 'hur', name: 'Hur', ref: 'Exodus 17', tag: 'Holding up the hands', ico: 'hands', col: '#8a5cc7' }] },
+        { id: 'joseph-1', title: 'The Coat and the Pit', ref: 'Genesis 37', ready: 1, added: '2026-11-30' },
+        { id: 'joseph-2', title: 'Potiphar’s House', ref: 'Genesis 39', ready: 1, added: '2026-11-30' },
+        { id: 'joseph-3', title: 'The Prison and the Palace', ref: 'Genesis 40–41', ready: 1, added: '2026-11-30' }], more: 1 }] },
     { id: 'events', title: 'Great Events', line: 'The great moments of the Bible, each one a story you can play in one go.', items: [
       { id: 'christmas', name: 'The First Christmas', ref: 'Luke 1–2 · Matthew 1–2', tag: 'A Saviour is born', ico: 'star', col: '#2f4f8f', chapters: [
-        { id: 'christmas-1', title: 'A Saviour Is Born', ref: 'Luke 1–2 · Matthew 1–2', ready: 1 }] },
-      { id: 'easter', name: 'The First Easter', ref: 'Matthew 26–28 · Luke 24', tag: 'He is risen', ico: 'tomb', col: '#c9952c' },
-      { id: 'noah', name: 'Noah and the Flood', ref: 'Genesis 6–9', tag: 'Two by two', ico: 'ark', col: '#11908f' },
-      { id: 'redsea', name: 'The Red Sea', ref: 'Exodus 14', tag: 'A path through the sea', ico: 'water', col: '#2c63d6' },
-      { id: 'jericho', name: 'The Walls of Jericho', ref: 'Joshua 6', tag: 'The walls fell down flat', ico: 'wall', col: '#b8862a' },
-      { id: 'furnace', name: 'The Fiery Furnace', ref: 'Daniel 3', tag: 'Four men in the fire', ico: 'fire', col: '#e2511f' },
-      { id: 'pentecost', name: 'Pentecost', ref: 'Acts 2', tag: 'Tongues like as of fire', ico: 'fire', col: '#c8312b' }] }
+        { id: 'christmas-1', title: 'A Saviour Is Born', ref: 'Luke 1–2 · Matthew 1–2', ready: 1, added: '2026-11-30' }] }] }
   ];
   var MAX = 600;
   function prog() { return ls('mfm-story') || {}; }
@@ -55,12 +38,21 @@
   function starRow(n) { var h = ''; for (var i = 0; i < 3; i++) h += '<svg viewBox="0 0 24 24" class="' + (i < n ? 'on' : '') + '" aria-hidden="true"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z"/></svg>'; return '<span class="sb-stars" aria-label="' + n + ' of 3 stars">' + h + '</span>'; }
   function href(ch) { return (/\.html$/.test(location.pathname) || location.protocol === 'file:' ? 'stories/' + ch + '.html' : '/stories/' + ch); }
   function ico(it) { return '<span class="sb-ico" style="--c:' + it.col + '"><svg viewBox="0 0 64 64" aria-hidden="true">' + ICO[it.ico] + '</svg></span>'; }
+  // Releases (Dawn, 2026-11-28): only released stories are on the shelves, never greyed "coming soon" cards.
+  // Each Monday's new characters/events/chapters carry added:'YYYY-MM-DD' (that Monday) and show "New this week"
+  // from 9:00 AM CT that Monday for seven days. Earlier releases stay on the shelf for good.
+  function relAt(d) { return Date.parse(d + 'T15:00:00Z'); } // 9:00 AM CST
+  function isNew(c) { if (!c || !c.added) return false; var t = relAt(c.added), n = Date.now(); return n >= t - 36e5 && n < t + 7 * 864e5; }
+  function live(it) { return (it.chapters || []).filter(function (c) { return c.ready; }); }
+  var NEWTAG = '<span class="sb-new"><i aria-hidden="true"></i>New this week</span>';
   function card(it) {
-    var chs = it.chapters || [], ready = chs.filter(function (c) { return c.ready; }).length;
+    var chs = live(it), ready = chs.length;
     var got = chs.reduce(function (s, c) { return s + stars(c.id); }, 0);
-    return '<button type="button" class="sb-card' + (ready ? '' : ' soon') + '" data-story="' + it.id + '"' + (ready ? '' : ' aria-disabled="true"') + '>' + ico(it) +
+    var nw = chs.some(isNew);
+    return '<button type="button" class="sb-card' + (nw ? ' is-new' : '') + '" data-story="' + it.id + '">' + (nw ? NEWTAG : '') + ico(it) +
       '<b>' + esc(it.name) + '</b><small>' + esc(it.tag) + ' &middot; ' + esc(it.ref) + '</small>' +
-      (ready ? '<span class="sb-meta">' + ready + (ready === 1 ? ' chapter' : ' chapters') + (chs.length > ready ? ' &middot; more coming' : '') + (got ? ' &middot; ' + got + ' &#9733;' : '') + '</span>' : '<span class="sb-soon">Coming soon</span>') + '</button>';
+      '<span class="sb-meta">' + ready + (ready === 1 ? ' chapter' : ' chapters') + (got ? ' &middot; ' + got + ' &#9733;' : '') + '</span>' +
+      (it.more ? '<span class="sb-more">More chapters coming</span>' : '') + '</button>';
   }
   // Wide screens show each shelf as one row that scrolls sideways (so the library fits on one screen as it grows);
   // arrow buttons appear only when a shelf has more cards than fit.
@@ -72,27 +64,28 @@
         b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + (dir === 'prev' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>';
         b.addEventListener('click', function () { g.scrollBy({ left: (dir === 'prev' ? -1 : 1) * Math.max(200, g.clientWidth * .8), behavior: 'smooth' }); }); wrap.appendChild(b); return b; };
       var pv = mk('prev', 'Show earlier ' + (sh.querySelector('h3') || {}).textContent), nx = mk('next', 'Show more ' + (sh.querySelector('h3') || {}).textContent);
-      var upd = function () { var over = g.scrollWidth - g.clientWidth > 4; wrap.classList.toggle('over', over); pv.disabled = g.scrollLeft < 4; nx.disabled = g.scrollLeft > g.scrollWidth - g.clientWidth - 4; };
+      var upd = function () { var over = g.scrollWidth - g.clientWidth > 4; wrap.classList.toggle('over', over); sh.classList.toggle('sb-over', over); pv.disabled = g.scrollLeft < 4; nx.disabled = g.scrollLeft > g.scrollWidth - g.clientWidth - 4; };
       g.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
     });
   }
   function library() {
     X.set({ mode: 'story', pts: 0, phase: 'lib' }); X.open();
     X.frame('<div class="st-card sb"><p class="st-k">Play &amp; Grow</p><h2 class="st-h">Bible Stories</h2><p class="st-sub">Choose a character or a great event and play it as an animated storybook. Questions follow what happened in the Bible; right or wrong, the story keeps going. Every chapter counts on the leaderboard.</p>' +
-      SHELVES.map(function (sh) { return '<section class="sb-shelf"><h3>' + esc(sh.title) + '</h3><p>' + esc(sh.line) + '</p><div class="sb-grid">' + sh.items.map(card).join('') + '</div><p class="sb-swipe" aria-hidden="true">Swipe to see more &rarr;</p></section>'; }).join('') + '</div>', 'sb-stage');
+      SHELVES.map(function (sh) { var its = sh.items.filter(function (i) { return live(i).length; }); if (!its.length) return '';
+        return '<section class="sb-shelf"><h3>' + esc(sh.title) + '</h3><p>' + esc(sh.line) + '</p><div class="sb-grid' + (its.length > 4 ? ' two' : '') + '">' + its.map(card).join('') + '</div><p class="sb-swipe" aria-hidden="true">Swipe to see more &rarr;</p></section>'; }).join('') + '</div>', 'sb-stage');
     var st = document.getElementById('play-app');
     shelfArrows(st);
-    st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); if (!it || !it.chapters) return; if (it.chapters.length === 1 && it.chapters[0].ready) { location.href = href(it.chapters[0].id); return; } chapters(it); }); });
+    st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); var cs = it && live(it); if (!cs || !cs.length) return; if (cs.length === 1 && !it.more) { location.href = href(cs[0].id); return; } chapters(it); }); });
   }
   function find(id) { var r = null; SHELVES.forEach(function (s) { s.items.forEach(function (i) { if (i.id === id) r = i; }); }); return r; }
   function chapters(it) {
-    var p = prog(), open = true;
+    var p = prog(), open = true, chs = live(it);
     X.frame('<div class="st-card sb">' + '<button type="button" class="sb-back">&larr; All stories</button>' + ico(it) + '<h2 class="st-h">' + esc(it.name) + '</h2><p class="st-sub">' + esc(it.tag) + ' &middot; ' + esc(it.ref) + '</p><ol class="sb-chs">' +
-      it.chapters.map(function (c, k) {
-        var can = c.ready && open, done = p[c.id] && p[c.id].done; if (!done) open = false;
-        return '<li class="' + (can ? '' : 'locked') + '"><span class="sb-n">' + (k + 1) + '</span><span class="sb-t"><b>' + esc(c.title) + '</b><small>' + esc(c.ref) + (done ? ' &middot; best ' + p[c.id].best + ' of ' + MAX : '') + '</small></span>' +
-          (can ? starRow(stars(c.id)) + '<a class="pg-btn light" href="' + href(c.id) + '">' + (done ? 'Play again' : 'Play') + '</a>' : '<span class="sb-soon">' + (c.ready ? 'Finish chapter ' + k + ' first' : 'Coming soon') + '</span>') + '</li>';
-      }).join('') + '</ol></div>', 'sb-stage');
+      chs.map(function (c, k) {
+        var can = open, done = p[c.id] && p[c.id].done; if (!done) open = false;
+        return '<li class="' + (can ? '' : 'next') + '"><span class="sb-n">' + (k + 1) + '</span><span class="sb-t"><b>' + esc(c.title) + (isNew(c) ? ' <span class="sb-new sm">New</span>' : '') + '</b><small>' + esc(c.ref) + (done ? ' &middot; best ' + p[c.id].best + ' of ' + MAX : '') + '</small></span>' +
+          (can ? starRow(stars(c.id)) + '<a class="pg-btn light" href="' + href(c.id) + '">' + (done ? 'Play again' : 'Play') + '</a>' : '<span class="sb-after">Play chapter ' + k + ' first</span>') + '</li>';
+      }).join('') + '</ol>' + (it.more ? '<p class="sb-more-l">More chapters of ' + esc(it.name) + '’s story are coming.</p>' : '') + '</div>', 'sb-stage');
     document.querySelector('#play-app .sb-back').addEventListener('click', library);
   }
   X.games.story = function () { library(); };

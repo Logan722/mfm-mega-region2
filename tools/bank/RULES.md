@@ -45,9 +45,15 @@ when Dawn says something new in chat, add it here in the same session.
 - **Jesus** may be drawn in gospel stories. **God is never drawn:** show Him as light, fire or a voice.
 - Vary the scenery across scenes; never the same background throughout.
 - Include popular characters and lesser-known ones, plus Great Events (Christmas, Easter, Noah, the Red Sea, Jericho, the fiery furnace, Pentecost, and so on).
-- **Library:** one "Bible Characters" shelf (no Heroes / Hidden Heroes split) and one "Great Events" shelf. On phones, shelves are two-row swipe cards.
-- **Weekly volume (Dawn, Nov 27 2026): 4 new characters a week,** with chapters that fit each story (up to 4, never padded).
-  Characters can come back later with new chapters that continue their story.
+- **Library:** one "Bible Characters" shelf (no Heroes / Hidden Heroes split) and one "Great Events" shelf. On phones, shelves are swipe cards (two rows once a shelf has more than 4).
+- **Only released stories are on the shelves (Dawn, Nov 28 2026).** Never a greyed "Coming soon" card. The waiting list lives in `storylines/storylines.json`, not in `js/stories.js`.
+  - Each release carries `added: '<that Monday>'` and shows a **"New this week"** tag (navy pill, white words, gold dot) for seven days from 9:00 AM CT.
+  - The library only grows: every released story stays, with players' stars and progress kept.
+  - A character with more chapters to come has `more: 1` ("More chapters coming", plain text, no greyed rows). Chapters still play in order.
+- **Weekly volume (Dawn, Nov 28 2026): 2 new characters + 1 new event every Monday,** with chapters that fit each story (up to 4, never padded). Replaces "4 characters a week". Start small.
+  - Finishing a character already on the shelf (for example Joseph's last 2 chapters on Dec 7) counts as one of the 2 character slots.
+  - Characters can come back later with new chapters that continue their story.
+- **Never "run out".** The Bible has many characters and events. Keep adding to the waiting list (popular and lesser-known) so there is always a next week.
 - **Release day: Monday.** The story week runs Monday to Sunday (US Central), the same week as the Weekly Scheduler.
   New chapters go live on Monday in one push.
 
