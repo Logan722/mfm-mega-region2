@@ -204,7 +204,7 @@ var pick=hero.querySelectorAll('[data-pick]');
 function show(n){n=T[n]?n:1;box.setAttribute('data-d',n);box.innerHTML=T[n];box.hidden=false;tick();for(var i=0;i<pick.length;i++)pick[i].setAttribute('aria-pressed',pick[i].getAttribute('data-pick')==n?'true':'false');}
 for(var i=0;i<pick.length;i++)pick[i].addEventListener('click',function(){show(+this.getAttribute('data-pick'));});
 show(3);setInterval(tick,1000);})();</script>
-<script src="/js/gotw.js?v=e595dab690"></script>
+<script src="/js/gotw.js?v=10bd477c18"></script>
 <script>/* Today card: real top branch + Game of the Week from the leaderboard */(function(){var el=document.querySelector("[data-home-top]");if(!el)return;fetch("/.netlify/functions/leaderboard").then(function(r){return r.json()}).then(function(d){if(d&&d.gotw&&window.GOTW){GOTW.server=d.gotw;GOTW.paint();}if(d&&d.branches&&d.branches[0]){el.innerHTML="Top branch this week: <b></b>";el.querySelector("b").textContent=d.branches[0].name;}}).catch(function(){});})();</script>
   <script src="/js/fftw-widget.js?v=e5c6c1210e" defer></script>
 </body></html>

@@ -44,6 +44,22 @@
     card.querySelectorAll('[data-gw-left]').forEach(function (e) { e.textContent = left(); });
     card.querySelectorAll('[data-gw-ico]').forEach(function (e) { e.innerHTML = ICON[id]; e.style.setProperty('--c', c[0]); e.style.setProperty('--c2', c[1]); });
     card.querySelectorAll('[data-gw-play]').forEach(function (a) { a.setAttribute('href', W.href(id)); });
+    if (Date.now() < LAUNCH) locked(card);
+  }
+  /* Before launch (Mon Nov 30 2026, 9:00 AM CT; same moment as js/pg-lock.js) the homepage card counts down instead */
+  var LAUNCH = Date.parse('2026-11-30T15:00:00Z'), lockT;
+  function locked(card) {
+    var k = card.querySelector('.k'); if (k) k.innerHTML = 'Play &amp; Grow &middot; coming Monday';
+    card.querySelectorAll('[data-gw-name]').forEach(function (e) { e.textContent = 'Something big is coming'; });
+    card.querySelectorAll('[data-gw-line]').forEach(function (e) { e.textContent = 'Eleven Bible games, animated Bible Stories and a live room to play with friends anywhere. Opens Monday, November 30 at 9:00 AM Central.'; });
+    card.querySelectorAll('[data-gw-ico]').forEach(function (e) { e.innerHTML = '<svg viewBox="0 0 96 112" aria-hidden="true"><path d="M26 50V34a22 22 0 0 1 44 0v16" fill="none" stroke="#ffe3a3" stroke-width="10" stroke-linecap="round"/><rect x="10" y="46" width="76" height="60" rx="16" fill="#e3b04b"/><rect x="16" y="52" width="64" height="48" rx="11" fill="#142240"/><path d="M48 94c-8-1-12-7-10-14 2-5 7-8 6-15 6 3 12 9 13 16 1 8-3 13-9 13z" fill="#ff9a3c"/></svg>'; e.style.setProperty('--c', '#2f4f8f'); e.style.setProperty('--c2', '#142240'); });
+    var chips = card.querySelector('.pg-chips'); if (chips) chips.innerHTML = '<span class="pg-chip">&#128274; Opens in <b data-gw-cd>&nbsp;</b></span>';
+    card.querySelectorAll('[data-gw-play]').forEach(function (a) { a.setAttribute('href', '/play'); a.textContent = 'See what\u2019s coming'; });
+    var all = card.querySelector('.gw-all'); if (all) all.hidden = true;
+    var cd = card.querySelector('[data-gw-cd]');
+    (function run() { var s = Math.max(0, Math.floor((LAUNCH - Date.now()) / 1000)); if (!s) { location.reload(); return; }
+      var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+      if (cd) cd.textContent = (d ? d + 'd ' : '') + h + 'h ' + m + 'm'; clearTimeout(lockT); lockT = setTimeout(run, 20000); })();
   }
   W.paint = paint;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paint); else paint();
