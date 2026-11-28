@@ -148,6 +148,9 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .note{margin-top:8px;font-size:13px}
 @media (min-width:900px) and (min-aspect-ratio:5/4){.box{width:min(100%,calc((100svh - 198px) * 16 / 9));margin:0 auto}}
 @media (max-width:600px){.band{padding:8px var(--bnd) 12px}.stx{width:40px;height:40px;border-radius:12px}.top{gap:8px;margin-bottom:8px}.top .tt span{display:none}.top .pill{display:inline-flex;font-size:14px}.top .pill small{display:inline;color:#6b5a4a}}
+.mu-wrap{display:inline-flex;align-items:center;gap:10px;justify-self:end}.mu-btn{width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+.mu-btn svg{width:22px;height:22px;fill:currentColor;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.mu-btn svg path+path{fill:none}.mu-btn.off{opacity:.75}.mu-btn:focus-visible{outline:3px solid #c9952c;outline-offset:2px}
+@media(max-width:480px){.mu-wrap{gap:6px}.mu-btn{width:36px;height:36px}.mu-btn svg{width:19px;height:19px}}
 </style>
 <script src="/js/pg-lock.js?v=5609ac4629"></script>
 </head>
@@ -553,5 +556,6 @@ const h=location.hash.match(/^#scene-(\d)$/);if(h){$('title').style.display='non
 else{svg.innerHTML=defs+SCENES[0].draw();dots()}
 }
 </script>
+<script src="/js/music.js?v=01c8ad0094"></script>
 </body>
 </html>

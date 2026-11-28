@@ -1009,3 +1009,10 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
  .pg-stage .gx-ico{width:72px;height:72px;margin-bottom:8px}
  .pg-stage .wh-wheel{width:min(72vw,240px)}
 }
+
+/* background music button (Dawn, Nov 28 2026: soft piano, on by default, tap to mute) */
+.st-top:has(.mu-btn){grid-template-columns:48px 1fr auto auto}
+.st-top .mu-btn{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}
+.st-top .mu-btn svg{width:22px;height:22px;fill:currentColor;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.st-top .mu-btn svg path+path{fill:none}
+.st-top .mu-btn.off{opacity:.7}.st-top .mu-btn:hover{background:rgba(255,255,255,.08)}.st-top .mu-btn:focus-visible{outline:3px solid #c9952c;outline-offset:2px}
+@media(max-width:600px){.st-top:has(.mu-btn){gap:8px}.st-top .mu-btn{width:40px;height:40px}}
