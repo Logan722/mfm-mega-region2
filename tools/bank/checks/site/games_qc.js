@@ -27,7 +27,9 @@ require('fs').mkdirSync(OUT, { recursive: true });
     await p.$eval('#games', e => e.scrollIntoView()); await p.waitForTimeout(400); await p.screenshot({ path: `${OUT}/${tag}-page-games.png`, fullPage: false });
     const close = async () => { for (let k = 0; k < 3; k++) { if (await p.evaluate(() => document.getElementById('play-app').hidden)) break; await p.keyboard.press('Escape'); await p.waitForTimeout(350); } };
     const S = () => p.evaluate(() => window.PG.get());
-    const play = async (id) => { await p.$eval(`.gt[data-game="${id}"] .pg-btn`, b => b.scrollIntoView({ block: 'center' })); await p.click(`.gt[data-game="${id}"] .pg-btn`); await p.waitForTimeout(400); };
+    // On phones the Game of the Week has no tile in the shelf (it is the banner above), so open it from its "Play now" button
+    const play = async (id) => { const sel = (await p.$eval(`.gt[data-game="${id}"]`, t => getComputedStyle(t).display !== 'none')) ? `.gt[data-game="${id}"] .pg-btn` : '[data-gotw-play]';
+      await p.$eval(sel, b => b.scrollIntoView({ block: 'center' })); await p.click(sel); await p.waitForTimeout(400); };
     const who = async () => { if (await p.$('#play-app .st-who')) { await p.fill('#play-app input[name=nick]', 'Grace QC'); await p.selectOption('#play-app select[name=branch]', { index: 1 }); await p.click('#play-app .st-who button[type=submit]'); await p.waitForTimeout(500); } };
     const cards = async (n) => { const r = await p.evaluate(() => { const c = document.querySelector('#play-app .st-card'); if (!c) return null; const s = document.getElementById('play-app').getBoundingClientRect(); const r = c.getBoundingClientRect(); return { w: r.width, l: r.left, right: s.width - r.right }; }); return r; };
 

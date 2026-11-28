@@ -559,50 +559,20 @@
   teamSetup = function (id, round, opts) { _teamSetup(id, round || ROUND[id], opts); };
 })();
 
-/* Phone layouts for "Pick your game": swipe dots, tap-a-tile, filter chips. Desktop is unaffected (CSS hides these above 700px). */
+/* Phones: "Pick your game" two-row shelf (dots + swipe hint) and swipeable "How it works" steps. CSS hides these above 700px. */
 (function () {
-  var sec = document.getElementById('games'); if (!sec) return;
-  var m = /[#?&]gm-?=?([1-5])/.exec(location.hash + location.search); if (m) sec.setAttribute('data-gm', m[1]);
-  var grid = sec.querySelector('.gg-grid'); if (!grid) return;
-  function dots(scroller, after, count) {
+  var sec = document.getElementById('games'), grid = sec && sec.querySelector('.gg-grid'); if (!grid) return;
+  function dots(scroller, count) {
     var d = document.createElement('div'); d.className = 'gm-dots'; d.setAttribute('aria-hidden', 'true');
-    after.parentNode.insertBefore(d, after.nextSibling);
-    function pages() { var w = scroller.clientWidth || 1; return Math.max(1, Math.round(scroller.scrollWidth / w)); }
-    function draw() { var n = count ? count() : pages(); if (d.children.length !== n) d.innerHTML = new Array(n + 1).join('<i></i>'); upd(); }
+    scroller.parentNode.insertBefore(d, scroller.nextSibling);
     function upd() { var n = d.children.length, max = scroller.scrollWidth - scroller.clientWidth, k = max > 0 ? Math.round(scroller.scrollLeft / max * (n - 1)) : 0;
       Array.prototype.forEach.call(d.children, function (x, i) { x.className = i === k ? 'on' : ''; }); }
-    scroller.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', draw); setTimeout(draw, 50); return draw;
+    function draw() { var n = Math.max(1, count()); if (d.children.length !== n) d.innerHTML = new Array(n + 1).join('<i></i>'); upd(); }
+    scroller.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', draw); setTimeout(draw, 60); setTimeout(draw, 1500);
+    return d;
   }
-  var gm = function () { return sec.getAttribute('data-gm'); };
-  // dots under the swipe layouts (1 = one card per page, 3 = shelf pages)
-  var gd = dots(grid, grid, function () { return gm() === '1' ? grid.querySelectorAll('.pg-tile:not([hidden])').length : Math.max(1, Math.round(grid.scrollWidth / (grid.clientWidth || 1))); });
+  dots(grid, function () { return Math.round(grid.scrollWidth / (grid.clientWidth || 1)); });
   var hint = document.createElement('p'); hint.className = 'gm-hint'; hint.setAttribute('aria-hidden', 'true'); hint.textContent = 'Swipe to see all the games →';
   grid.parentNode.insertBefore(hint, grid.nextSibling.nextSibling);
-  function showExtras() { var g = gm(), sw = g === '1' || g === '3'; sec.querySelector('.gm-dots').style.display = sw ? '' : 'none'; hint.style.display = g === '3' ? '' : 'none'; gd(); }
-  // tap anywhere on a tile (app grid and list layouts) opens the game
-  grid.addEventListener('click', function (e) {
-    if (!/^[24]$/.test(gm() || '') || e.target.closest('button,a')) return;
-    var t = e.target.closest('.pg-tile'), b = t && t.querySelector('.pg-btn'); if (b) b.click();
-  });
-  Array.prototype.forEach.call(grid.querySelectorAll('.pg-tile'), function (t) {
-    var h = t.querySelector('h3'); if (h && !t.hasAttribute('tabindex')) { t.setAttribute('aria-label', h.textContent); }
-  });
-  // filter chips (layout 5)
-  var chips = document.createElement('div'); chips.className = 'gm-chips'; chips.setAttribute('role', 'group'); chips.setAttribute('aria-label', 'Show games');
-  var F = [['All', ''], ['Daily', 'Daily'], ['Solo', 'Solo'], ['Team', 'Team'], ['Kids', 'Kids']];
-  chips.innerHTML = F.map(function (f, i) { return '<button type="button" data-f="' + f[1] + '" aria-pressed="' + (i ? 'false' : 'true') + '">' + f[0] + '</button>'; }).join('');
-  grid.parentNode.insertBefore(chips, grid);
-  chips.addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b) return; var f = b.getAttribute('data-f');
-    Array.prototype.forEach.call(chips.children, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-    Array.prototype.forEach.call(grid.querySelectorAll('.pg-tile'), function (t) {
-      var tags = Array.prototype.map.call(t.querySelectorAll('.gt-badges span'), function (s) { return s.textContent.trim(); });
-      var hide = !!f && tags.indexOf(f) < 0 && !(f === 'Kids' && t.getAttribute('data-game') === 'pairs');
-      if (hide) t.setAttribute('data-gm-hide', ''); else t.removeAttribute('data-gm-hide');
-    });
-  });
-  // swipe dots for the "how it works" steps
-  var steps = document.querySelector('.pg-how .pg-steps'); if (steps) dots(steps, steps, function () { return steps.children.length; });
-  showExtras();
-  new MutationObserver(showExtras).observe(sec, { attributes: true, attributeFilter: ['data-gm'] });
+  var steps = document.querySelector('.pg-how .pg-steps'); if (steps) dots(steps, function () { return steps.children.length; });
 })();

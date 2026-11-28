@@ -898,9 +898,9 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
  .pg-stage .st-body{padding:12px 0 16px}
  .pg-stage .st-body>.st-card{padding:18px 16px;border-radius:22px}
 }
-/* The "Fire for the Week" floating button stays out of the way while a game is open */
-body:has(.pg-stage.on) .fftw-float,body:has(.pg-stage.on) .fftw-popup{display:none!important}
-body:has(.pg-stage.on) .fftw-sparkles{display:none!important}
+/* The "Fire for the Week" floating flame does not show anywhere on the Play page or in its games (Dawn, Nov 28).
+   It is injected by js/fftw-widget.js on every page; play.css only loads on /play, so this hides it here alone. */
+.fftw-float,.fftw-sparkles,.fftw-overlay{display:none!important}
 /* Wide screens: fit every game on one screen */
 @media(min-width:1000px) and (min-aspect-ratio:5/4){
  .pg-stage .st-body{padding:18px 0}

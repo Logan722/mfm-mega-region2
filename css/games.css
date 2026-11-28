@@ -241,10 +241,10 @@
 .gx-lab+.gx-modes{margin-top:8px}
 .cs-b>.gx-lab:first-child{margin-top:0}
 
-/* ===== Phone layouts for "Pick your game" (Dawn to choose 1 of 5; desktop unchanged) ===== */
-.gm-dots,.gm-chips,.gm-hint{display:none}
+/* ===== Phones: "Pick your game" = two-row shelf (Dawn, Nov 28). Desktop unchanged. ===== */
+.gm-dots,.gm-hint{display:none}
 @media(max-width:700px){
- /* Shorter Game of the Week banner for every design: icon left, words right */
+ /* Shorter Game of the Week banner: icon left, words right */
  .pg-games[data-gm] .gw{grid-template-columns:96px minmax(0,1fr);margin:4px auto 22px;border-radius:22px}
  .pg-games[data-gm] .gw .gw-art{min-height:0;height:auto}
  .pg-games[data-gm] .gw .gw-art svg{width:58px;height:58px}
@@ -257,7 +257,6 @@
  .pg-games[data-gm] .gw-acts .pg-btn{min-height:40px;padding:0 14px;font-size:14px}
  .pg-games[data-gm] .gw-acts .pg-btn.ghost{display:none}
  .pg-games[data-gm] .gg-grid .pg-tile{grid-column:auto}
- .pg-games[data-gm="5"] .gg-grid .pg-tile:last-child:nth-child(odd){grid-column:1/-1}
  .gm-dots{display:flex;justify-content:center;gap:6px;margin:10px 0 0}
  .gm-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.28);transition:width .2s,background .2s}
  .gm-dots i.on{width:20px;border-radius:4px;background:#c9952c}
@@ -265,26 +264,8 @@
  .pg-games[data-gm] .gg-grid{scrollbar-width:none}
  .pg-games[data-gm] .gg-grid::-webkit-scrollbar{display:none}
 
- /* 1 · Spotlight carousel: one big card at a time, the next one peeking in */
- .pg-games[data-gm="1"] .gg-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:78vw;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin:0 calc(50% - 50vw);padding:6px 11vw 14px;scroll-padding:0 11vw}
- .pg-games[data-gm="1"] .pg-tile{scroll-snap-align:center;animation:none}
- .pg-games[data-gm="1"] .gg-grid .pg-art{height:150px}
- .pg-games[data-gm="1"] .gg-grid .pg-art svg{width:86px;height:86px}
- .pg-games[data-gm="1"] .gg-grid .pg-body h3{font-size:24px}
- .pg-games[data-gm="1"] .gg-grid .pg-body p{font-size:14.5px}
-
- /* 2 · App grid: like a phone home screen, three icons per row */
- .pg-games[data-gm="2"] .gg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 12px}
- .pg-games[data-gm="2"] .pg-tile{background:none;box-shadow:none;overflow:visible;border-radius:0;cursor:pointer}
- .pg-games[data-gm="2"] .gg-grid .pg-art{height:auto;aspect-ratio:1;border-radius:26px;box-shadow:0 6px 0 rgba(0,0,0,.35),0 14px 26px rgba(0,0,0,.3)}
- .pg-games[data-gm="2"] .gg-grid .pg-art svg{width:52%;height:52%}
- .pg-games[data-gm="2"] .gg-grid .gw-tag{top:-8px;font-size:8.5px;padding:4px 7px}
- .pg-games[data-gm="2"] .gg-grid .pg-body{padding:8px 0 0;background:none;gap:0}
- .pg-games[data-gm="2"] .gg-grid .pg-body h3{font:800 14px/1.2 'Inter Tight',sans-serif;color:#fff}
- .pg-games[data-gm="2"] .gg-grid .pg-body p,.pg-games[data-gm="2"] .gg-grid .gt-badges,.pg-games[data-gm="2"] .gg-grid .pg-body .pg-btn{display:none}
- .pg-games[data-gm="2"] .pg-tile:active .pg-art{transform:scale(.95)}
-
- /* 3 · Two-row shelf: compact cards in two rows that swipe sideways */
+ /* Two-row shelf: compact cards in two rows that swipe sideways; the Game of the Week is the banner above, so it is not repeated in the shelf */
+ .pg-games[data-gm="3"] .gg-grid .pg-tile:has(.gw-tag:not([hidden])){display:none}
  .pg-games[data-gm="3"] .gg-grid{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:58vw;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin:0 calc(50% - 50vw);padding:6px 20px 12px;scroll-padding:0 20px}
  .pg-games[data-gm="3"] .pg-tile{scroll-snap-align:start;animation:none}
  .pg-games[data-gm="3"] .gg-grid .pg-art{height:84px}
@@ -294,38 +275,8 @@
  .pg-games[data-gm="3"] .gg-grid .pg-body p{font-size:12.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
  .pg-games[data-gm="3"] .gg-grid .pg-body .pg-btn{min-height:38px;margin-top:4px;font-size:14px}
 
- /* 4 · Game list: one tidy list, icon + name + one line, tap a row to play */
- .pg-games[data-gm="4"] .gg-grid{display:block;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 0 rgba(0,0,0,.35),0 18px 36px rgba(0,0,0,.3)}
- .pg-games[data-gm="4"] .pg-tile{position:relative;flex-direction:row;align-items:center;border-radius:0;box-shadow:none;background:none;padding:12px 40px 12px 14px;border-bottom:1px solid #eceff5;cursor:pointer;animation:none}
- .pg-games[data-gm="4"] .pg-tile:last-child{border-bottom:0}
- .pg-games[data-gm="4"] .pg-tile::after{content:"";position:absolute;right:16px;top:50%;width:9px;height:9px;border-right:2.5px solid #9aa3b5;border-top:2.5px solid #9aa3b5;transform:translateY(-50%) rotate(45deg)}
- .pg-games[data-gm="4"] .gg-grid .pg-art{width:58px;height:58px;flex:none;border-radius:17px}
- .pg-games[data-gm="4"] .gg-grid .pg-art svg{width:34px;height:34px}
- .pg-games[data-gm="4"] .gg-grid .gw-tag{display:none!important}
- .pg-games[data-gm="4"] .pg-tile:has(.gw-tag:not([hidden])) .pg-body h3::after{content:"This week";margin-left:8px;vertical-align:middle;font:900 9.5px/1 'Inter Tight',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;border-radius:100px;background:#c9952c;color:#fff}
- .pg-games[data-gm="4"] .gg-grid .pg-body{align-items:flex-start;text-align:left;padding:0 0 0 14px;gap:3px}
- .pg-games[data-gm="4"] .gg-grid .pg-body h3{font-size:17px}
- .pg-games[data-gm="4"] .gg-grid .pg-body p{font-size:13px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
- .pg-games[data-gm="4"] .gg-grid .gt-badges{justify-content:flex-start;margin-top:2px}
- .pg-games[data-gm="4"] .gg-grid .pg-body .pg-btn{display:none}
-
- /* 5 · Filter + tiles: choose All / Daily / Solo / Team / Kids, then a compact two-column grid */
- .pg-games[data-gm="5"] .gm-chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(50% - 50vw) 14px;padding:2px 20px;justify-content:safe center}
- .pg-games[data-gm="5"] .gm-chips::-webkit-scrollbar{display:none}
- .gm-chips button{flex:none;min-height:38px;padding:0 16px;border-radius:100px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff;font:800 14px 'Inter Tight',sans-serif;cursor:pointer}
- .gm-chips button[aria-pressed="true"]{background:#fff;color:#14213d;border-color:#fff}
- .gm-chips button:focus-visible{outline:3px solid #c9952c;outline-offset:2px}
- .pg-games[data-gm="5"] .gg-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
- .pg-games[data-gm="5"] .gg-grid .pg-art{height:78px}
- .pg-games[data-gm="5"] .gg-grid .pg-art svg{width:46px;height:46px}
- .pg-games[data-gm="5"] .gg-grid .pg-body{padding:10px 10px 12px;gap:6px}
- .pg-games[data-gm="5"] .gg-grid .pg-body h3{font-size:16.5px}
- .pg-games[data-gm="5"] .gg-grid .pg-body p{display:none}
- .pg-games[data-gm="5"] .gg-grid .pg-body .pg-btn{min-height:38px;margin-top:2px;font-size:14px}
-
  /* "How it works" steps: swipe cards on phones */
  .pg-how .pg-steps{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:80vw;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;width:auto;margin:0;padding:4px 10vw 4px;scroll-padding:0 10vw;scrollbar-width:none}
  .pg-how .pg-steps::-webkit-scrollbar{display:none}
  .pg-how .pg-steps>div{scroll-snap-align:center;padding:22px 18px}
 }
-@media(max-width:700px){.pg-games[data-gm="5"] .pg-tile[data-gm-hide]{display:none!important}}
