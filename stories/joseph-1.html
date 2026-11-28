@@ -127,14 +127,34 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .spark{opacity:0}.spark.go{animation:spark 1s ease-out forwards}@keyframes spark{0%{opacity:1;transform:scale(.3)}100%{opacity:0;transform:scale(1.7)}}
 .coin{transition:transform .9s cubic-bezier(.5,0,.3,1),opacity .3s}
 @media (prefers-reduced-motion:reduce){.cloud,.rays,.tw,.fl,.p .eyes,.p .torso,.whl{animation:none!important}.tapme{animation:none!important;filter:drop-shadow(0 0 10px #ffe27a)}}
+/* Same boundaries as the site header and the game screens: X on the left boundary, points on the right.
+   On wide screens the scene is sized from the screen height so the whole story fits without scrolling. */
+:root{--bnd:24px}
+@media (min-width:1200px){:root{--bnd:clamp(32px,3.2vw,64px)}}
+.band{padding:12px var(--bnd) 16px}
+.wrap{max-width:none}
+.top{display:grid;grid-template-columns:46px minmax(0,1fr) auto;align-items:center;gap:12px;margin-bottom:12px}
+.top .tt{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.top .tt h1{font-size:clamp(18px,2.2vw,28px)}
+.top .tt span{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#aab6cc}
+.stx{display:grid;place-items:center;width:46px;height:46px;padding:0;margin:0;border-radius:14px;box-shadow:none;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06)}
+.stx svg{width:20px;height:20px;stroke:#fff;stroke-width:2.4;stroke-linecap:round;fill:none}
+.top .pill{font-size:16px;justify-self:end;color:var(--ink)}
+.top .pill svg{width:20px;height:20px}
+.top .pill small{font-size:12px;font-weight:700;color:#6b5a4a}
+.hud{justify-content:flex-end}
+.ctl{margin-top:10px}
+.note{margin-top:8px;font-size:13px}
+@media (min-width:900px) and (min-aspect-ratio:5/4){.box{width:min(100%,calc((100svh - 198px) * 16 / 9));margin:0 auto}}
+@media (max-width:600px){.band{padding:8px var(--bnd) 12px}.stx{width:40px;height:40px;border-radius:12px}.top{gap:8px;margin-bottom:8px}.top .tt span{display:none}.top .pill{display:inline-flex;font-size:14px}.top .pill small{display:inline;color:#6b5a4a}}
 </style>
 </head>
 <body>
 <section class="band"><div class="wrap">
-<div class="top"><a class="backl" id="backl" href="/play">&larr; Play &amp; Grow</a><h1>Joseph · Chapter 1</h1><span>Bible Stories</span></div>
+<div class="top"><a class="backl stx" id="backl" href="/play" aria-label="Close the story and go back to Play &amp; Grow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a><div class="tt"><h1>Joseph · Chapter 1</h1><span>Bible Stories</span></div><span class="pill" id="pts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#ffd23f" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round"/></svg><b id="ptsN">0</b><small>pts</small></span></div>
 <div class="box"><div class="stage" id="stage">
 <svg id="svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Animated Bible story: Joseph, Genesis 37"></svg>
-<div class="hud"><span class="pill" id="pts"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.6 7 .7-5.3 4.7 1.6 7L12 17.3 5.7 21l1.6-7L2 9.3l7-.7z" fill="#ffd23f" stroke="#2b1a10" stroke-width="2" stroke-linejoin="round"/></svg><b id="ptsN">0</b></span><span class="dots" id="dots"></span></div>
+<div class="hud"><span class="dots" id="dots"></span></div>
 <div class="bub" id="bub"></div>
 <div class="cap" id="cap"></div>
 <div class="q" id="q"></div>

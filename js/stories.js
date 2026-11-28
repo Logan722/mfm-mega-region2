@@ -62,11 +62,26 @@
       '<b>' + esc(it.name) + '</b><small>' + esc(it.tag) + ' &middot; ' + esc(it.ref) + '</small>' +
       (ready ? '<span class="sb-meta">' + ready + (ready === 1 ? ' chapter' : ' chapters') + (chs.length > ready ? ' &middot; more coming' : '') + (got ? ' &middot; ' + got + ' &#9733;' : '') + '</span>' : '<span class="sb-soon">Coming soon</span>') + '</button>';
   }
+  // Wide screens show each shelf as one row that scrolls sideways (so the library fits on one screen as it grows);
+  // arrow buttons appear only when a shelf has more cards than fit.
+  function shelfArrows(root) {
+    root.querySelectorAll('.sb-shelf').forEach(function (sh) {
+      var g = sh.querySelector('.sb-grid'); if (!g) return;
+      var wrap = document.createElement('div'); wrap.className = 'sb-row'; g.parentNode.insertBefore(wrap, g); wrap.appendChild(g);
+      var mk = function (dir, label) { var b = document.createElement('button'); b.type = 'button'; b.className = 'sb-arr ' + dir; b.setAttribute('aria-label', label);
+        b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + (dir === 'prev' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>';
+        b.addEventListener('click', function () { g.scrollBy({ left: (dir === 'prev' ? -1 : 1) * Math.max(200, g.clientWidth * .8), behavior: 'smooth' }); }); wrap.appendChild(b); return b; };
+      var pv = mk('prev', 'Show earlier ' + (sh.querySelector('h3') || {}).textContent), nx = mk('next', 'Show more ' + (sh.querySelector('h3') || {}).textContent);
+      var upd = function () { var over = g.scrollWidth - g.clientWidth > 4; wrap.classList.toggle('over', over); pv.disabled = g.scrollLeft < 4; nx.disabled = g.scrollLeft > g.scrollWidth - g.clientWidth - 4; };
+      g.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
+    });
+  }
   function library() {
     X.set({ mode: 'story', pts: 0, phase: 'lib' }); X.open();
     X.frame('<div class="st-card sb"><p class="st-k">Play &amp; Grow</p><h2 class="st-h">Bible Stories</h2><p class="st-sub">Choose a character or a great event and play it as an animated storybook. Questions follow what happened in the Bible; right or wrong, the story keeps going. Every chapter counts on the leaderboard.</p>' +
       SHELVES.map(function (sh) { return '<section class="sb-shelf"><h3>' + esc(sh.title) + '</h3><p>' + esc(sh.line) + '</p><div class="sb-grid">' + sh.items.map(card).join('') + '</div><p class="sb-swipe" aria-hidden="true">Swipe to see more &rarr;</p></section>'; }).join('') + '</div>', 'sb-stage');
     var st = document.getElementById('play-app');
+    shelfArrows(st);
     st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); if (!it || !it.chapters) return; if (it.chapters.length === 1 && it.chapters[0].ready) { location.href = href(it.chapters[0].id); return; } chapters(it); }); });
   }
   function find(id) { var r = null; SHELVES.forEach(function (s) { s.items.forEach(function (i) { if (i.id === id) r = i; }); }); return r; }

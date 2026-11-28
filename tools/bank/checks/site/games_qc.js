@@ -5,7 +5,7 @@ require('fs').mkdirSync(OUT, { recursive: true });
 (async () => {
   const b = await chromium.launch();
   const res = [];
-  for (const [tag, vw, vh, mob] of [['d', 1440, 900, false], ['m', 390, 844, true]]) {
+  for (const [tag, vw, vh, mob] of (process.env.SIZES ? JSON.parse(process.env.SIZES) : [['d', 1440, 900, false], ['m', 390, 844, true]])) {
     const ctx = await b.newContext({ viewport: { width: vw, height: vh }, isMobile: mob, hasTouch: mob });
     const p = await ctx.newPage(); const errs = [];
     p.on('pageerror', e => errs.push(e.message)); p.on('console', m => { if (m.type() === 'error' && !/leaderboard|live-status|about:blank|Failed to load resource/.test(m.text())) errs.push('console: ' + m.text()); });
@@ -14,7 +14,12 @@ require('fs').mkdirSync(OUT, { recursive: true });
     const ok = (name, cond, extra) => res.push({ tag, name, ok: !!cond, extra: extra || '' });
     const over = async () => p.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     const stageOver = async () => p.evaluate(() => { const s = document.getElementById('play-app'); const W = s.clientWidth; let bad = []; s.querySelectorAll('*').forEach(e => { const r = e.getBoundingClientRect(); if (r.width && r.right > W + 2 && !e.closest('.st-confetti')) bad.push(e.className || e.tagName); }); return bad.slice(0, 4); });
-    const shot = async (n) => p.screenshot({ path: `${OUT}/${tag}-${n}.png` });
+    const shot = async (n) => { await p.screenshot({ path: `${OUT}/${tag}-${n}.png` });
+      // Layout fit: does the game screen scroll, and do the X / points / card sit on the header boundaries?
+      const f = await p.evaluate(() => { const s = document.querySelector('.pg-stage.on'); if (!s) return null;
+        const r = e => { const x = s.querySelector(e); if (!x) return null; const b = x.getBoundingClientRect(); return [Math.round(b.left), Math.round(b.right)]; };
+        return { over: s.scrollHeight - s.clientHeight, x: r('.st-x'), pts: r('.st-pts'), card: r('.st-body>.st-card') || r('.st-body>*'), w: innerWidth }; });
+      if (f) console.log('FIT', `${tag}-${n}`, JSON.stringify(f)); };
     // page
     const tiles = await p.$$eval('.gg .gt', a => a.length); ok('11 tiles', tiles === 11, tiles);
     const gname = await p.$eval('.gw [data-gotw-name]', e => e.textContent); ok('gotw painted', gname && gname !== 'Game of the Week', gname);

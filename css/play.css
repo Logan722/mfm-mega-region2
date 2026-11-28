@@ -880,3 +880,122 @@ html.pg-lock,html.pg-lock body{overflow:hidden!important}
 .st-body{width:min(calc(100% - 28px),1040px)}
 .st-body>.st-card{width:100%}
 .st-quiz{max-width:880px}.st-res{max-width:780px}.st-team{max-width:780px}.st-who{max-width:680px}.st-chal{max-width:680px}
+
+/* ===== Game stage layout (Dawn, Nov 27 2026) =====
+   Boundaries match the site header: left = where the logo starts, right = where "Request prayer" ends.
+   X sits on the left boundary, points on the right, and every game card fills the space between them.
+   Desktop screens fit without scrolling; phones stay compact. */
+.pg-stage{--bnd:24px}
+@media(min-width:1200px){.pg-stage{--bnd:clamp(32px,3.2vw,64px)}}
+.pg-stage .st-top{width:100%;max-width:none;box-sizing:border-box;padding:12px var(--bnd) 10px;grid-template-columns:46px 1fr auto}
+.pg-stage .st-body{width:calc(100% - 2*var(--bnd));max-width:none;box-sizing:border-box}
+.pg-stage .st-body>.st-card{width:100%;max-width:none;margin-left:0;margin-right:0;box-sizing:border-box}
+.pg-stage .st-body>.st-prog,.pg-stage .st-body>.tm-bar,.pg-stage .st-body>.bz-clock{width:100%;max-width:none}
+@media(max-width:600px){
+ .pg-stage .st-top{padding:8px var(--bnd) 6px}
+ .pg-stage .st-x{width:40px;height:40px;border-radius:12px}
+ .pg-stage .st-pts{padding:6px 11px}
+ .pg-stage .st-body{padding:12px 0 16px}
+ .pg-stage .st-body>.st-card{padding:18px 16px;border-radius:22px}
+}
+/* The "Fire for the Week" floating button stays out of the way while a game is open */
+body:has(.pg-stage.on) .fftw-float,body:has(.pg-stage.on) .fftw-popup{display:none!important}
+body:has(.pg-stage.on) .fftw-sparkles{display:none!important}
+/* Wide screens: fit every game on one screen */
+@media(min-width:1000px) and (min-aspect-ratio:5/4){
+ .pg-stage .st-body{padding:18px 0}
+ .pg-stage .st-body>.st-card{padding:clamp(22px,3vh,36px) clamp(26px,3vw,48px)}
+ /* Result cards: two columns */
+ .pg-stage .st-res.rs-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px 48px;align-items:center}
+ .pg-stage .rs-a,.pg-stage .rs-b{min-width:0}
+ .pg-stage .rs-a>:first-child,.pg-stage .rs-b>:first-child{margin-top:0}
+ .pg-stage .rs-a>:last-child,.pg-stage .rs-b>:last-child{margin-bottom:0}
+ .pg-stage .rs-b{max-height:calc(100svh - 190px);overflow:auto;scrollbar-width:thin}
+ /* Noah's Pairs: the board is sized from the screen height so every row shows */
+ .pg-stage .pr-grid{width:min(100%,calc(var(--cols) * (100svh - 250px - (var(--rows) - 1) * 10px) / var(--rows) * .75 + (var(--cols) - 1) * 10px));margin:0 auto}
+ /* Word Connect: word slots left, wheel right */
+ .pg-stage .wh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"k wheel" "slots wheel" "cur row" "msg skip";column-gap:56px;align-items:center}
+ .pg-stage .wh>.st-k{grid-area:k}
+ .pg-stage .wh>.wh-slots{grid-area:slots;max-width:none;gap:12px 22px}
+ .pg-stage .wh>.wh-cur{grid-area:cur;font-size:38px;min-height:56px}
+ .pg-stage .wh>.wh-wheel{grid-area:wheel;width:min(100%,340px,44svh);margin:0 auto}
+ .pg-stage .wh>.gx-msg{grid-area:msg}
+ .pg-stage .wh>.gx-row{grid-area:row;margin-top:0}
+ .pg-stage .wh>.wh-skip{grid-area:skip}
+ .pg-stage .wh .wh-slot span{width:38px;height:38px;font-size:20px}
+ .pg-stage .wh .wh-l{width:66px;height:66px;font-size:28px}
+}
+@media(min-width:1000px) and (min-aspect-ratio:5/4){
+ .pg-stage .rs-a .st-fine{margin:10px 0 0}
+ .pg-stage .rs-a .st-acts.two{margin-top:10px}
+}
+@media(min-width:1000px) and (min-aspect-ratio:5/4) and (max-height:1000px){
+ .pg-stage .st-team .tm-n span{width:52px;height:42px;font-size:18px}
+ .pg-stage .st-team .tm-n legend{margin-bottom:4px}
+}
+/* Phones: result screens as compact as they can be */
+@media(max-width:600px){
+ .pg-stage .gx-num{font-size:50px}
+ .pg-stage .st-tally{gap:8px;margin-bottom:12px}
+ .pg-stage .st-tally div{padding:10px 6px;border-radius:14px}
+ .pg-stage .st-tally b{font-size:22px}
+ .pg-stage .st-lb{flex-wrap:nowrap;gap:10px;padding:10px 12px;text-align:left}
+ .pg-stage .st-acts{gap:8px;margin-top:10px}
+}
+/* Live room setup: two columns on wide screens so "Open the room" is on screen without scrolling */
+@media(min-width:1000px) and (min-aspect-ratio:5/4){
+ .pg-stage .lr-setup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:44px;row-gap:4px;align-items:start;grid-template-areas:"g t" "q s" "l n" "b b" "e e"}
+ .pg-stage .lr-setup>fieldset:nth-of-type(1){grid-area:g}
+ .pg-stage .lr-setup>fieldset:nth-of-type(2){grid-area:q}
+ .pg-stage .lr-setup>fieldset:nth-of-type(3){grid-area:l}
+ .pg-stage .lr-setup>fieldset:nth-of-type(4){grid-area:t}
+ .pg-stage .lr-setup>fieldset:nth-of-type(5){grid-area:s}
+ .pg-stage .lr-setup>.lr-nm{grid-area:n;align-self:center}
+ .pg-stage .lr-setup>button[type=submit]{grid-area:b;width:min(100%,560px);justify-self:center;margin-top:14px}
+ .pg-stage .lr-setup>.lr-err{grid-area:e}
+}
+/* Bible Stories library on wide screens: one sideways row per shelf, compact cards, arrows when a shelf overflows */
+.sb-row{position:relative}
+.sb-arr{display:none}
+@media(min-width:1000px) and (min-aspect-ratio:5/4){
+ .pg-stage .sb .st-sub{max-width:760px;margin-left:auto;margin-right:auto}
+ .pg-stage .sb-shelf{margin-top:18px}
+ .pg-stage .sb-grid{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(168px,13.5vw,210px);justify-content:safe center;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0 8px;padding:4px 8px 10px;scrollbar-width:none}
+ .pg-stage .sb-grid::-webkit-scrollbar{display:none}
+ .pg-stage .sb-card{flex:none;min-width:0;scroll-snap-align:start;padding:12px 10px}
+ .pg-stage .sb-ico{width:60px;height:60px;margin:2px auto 6px}
+ .pg-stage .sb-row.over{padding:0 50px}
+ .pg-stage .sb-row.over .sb-arr{display:grid;place-items:center;position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:#14213d;color:#fff;cursor:pointer;z-index:2}
+ .pg-stage .sb-arr.prev{left:2px}.pg-stage .sb-arr.next{right:2px}
+ .pg-stage .sb-arr:disabled{opacity:.35;cursor:default}
+ .pg-stage .sb-arr svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+ .pg-stage .sb-arr:focus-visible{outline:3px solid #fff;outline-offset:2px}
+ .pg-stage .sb-swipe{display:none}
+}
+@media(min-width:1000px) and (min-aspect-ratio:5/4) and (max-height:860px){
+ .pg-stage .sb .st-h{font-size:clamp(28px,3vw,38px);margin:2px 0 4px}
+ .pg-stage .sb .st-sub{font-size:14px;margin:0 auto}
+ .pg-stage .sb-shelf{margin-top:8px}
+ .pg-stage .sb-shelf>h3{margin:0}
+ .pg-stage .sb-shelf>p{margin:2px 0 8px;font-size:13.5px}
+ .pg-stage .sb-ico{width:46px;height:46px;margin:0 auto 4px}
+ .pg-stage .sb-card{padding:10px 8px}
+}
+/* Wide screens: game start/setup cards in two columns (intro + how to play | choices) */
+@media(min-width:1000px) and (min-aspect-ratio:5/4){
+ .pg-stage .st-card.cs-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:20px 48px;align-items:center}
+ .pg-stage .cs-a,.pg-stage .cs-b{min-width:0}
+ .pg-stage .cs-a>:first-child,.pg-stage .cs-b>:first-child{margin-top:0}
+ .pg-stage .cs-a>:last-child,.pg-stage .cs-b>:last-child{margin-bottom:0}
+ .pg-stage .cs-a .gx-hd{max-width:none}
+ .pg-stage .cs-b .gx-modes{margin-top:0}
+}
+/* Small phones (about 360 x 740): tighter question screens */
+@media(max-width:380px){
+ .pg-stage .st-question{font-size:21px;margin:4px 0 10px}
+ .pg-stage .ans{min-height:54px;padding:8px 12px}
+ .pg-stage .st-answers{gap:8px}
+ .pg-stage .st-body>.st-card{padding:14px 12px}
+ .pg-stage .gx-ico{width:72px;height:72px;margin-bottom:8px}
+ .pg-stage .wh-wheel{width:min(72vw,240px)}
+}

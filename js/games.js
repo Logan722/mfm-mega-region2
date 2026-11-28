@@ -446,7 +446,7 @@
     var s = S(), n = s.pairs, cols = n <= 6 ? 4 : n <= 8 ? 4 : 5;
     var T = s.T;
     frame((T ? teamBar(T, s.cur) : '') + '<div class="st-card pr">' + helpBtn('pairs') + '<p class="st-k">' + (T ? esc(T.teams[s.cur].name) + '&rsquo;s turn' : 'Find the pairs') + ' &middot; ' + Object.keys(s.got).length + '/' + n + ' pairs &middot; ' + s.moves + ' moves</p>' +
-      '<div class="pr-grid" style="--cols:' + cols + '">' + s.cards.map(function (c, i) { var up = s.open.indexOf(i) >= 0 || s.got[c.a[1]]; return '<button type="button" class="pr-c' + (up ? ' up' : '') + (s.got[c.a[1]] ? ' got' : '') + '" data-i="' + i + '" aria-label="' + (up ? c.a[1] : 'Card ' + (i + 1)) + '"' + (s.got[c.a[1]] ? ' disabled' : '') + '><span class="pr-f">' + c.a[0] + '<small>' + c.a[1] + '</small></span><span class="pr-b" aria-hidden="true"></span></button>'; }).join('') + '</div></div>', T ? 'team' : '');
+      '<div class="pr-grid" style="--cols:' + cols + ';--rows:' + Math.ceil(s.cards.length / cols) + '">' + s.cards.map(function (c, i) { var up = s.open.indexOf(i) >= 0 || s.got[c.a[1]]; return '<button type="button" class="pr-c' + (up ? ' up' : '') + (s.got[c.a[1]] ? ' got' : '') + '" data-i="' + i + '" aria-label="' + (up ? c.a[1] : 'Card ' + (i + 1)) + '"' + (s.got[c.a[1]] ? ' disabled' : '') + '><span class="pr-f">' + c.a[0] + '<small>' + c.a[1] + '</small></span><span class="pr-b" aria-hidden="true"></span></button>'; }).join('') + '</div></div>', T ? 'team' : '');
     bindAll('.pr-c', function (b) { prFlip(+b.getAttribute('data-i')); });
   }
   function prFlip(i) {

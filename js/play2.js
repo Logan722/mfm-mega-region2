@@ -135,12 +135,36 @@
     if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {}
     refreshHub();
   }
+  // Wide screens: result cards split into two columns (score + buttons left, details right) so they fit without scrolling.
+  // Phones keep the original single-column order.
+  var RES_LEFT = /^(st-k|gx-big|st-ring|wd-answer|tm-crown|st-rank|st-msg|st-versus|st-marks|st-tally|st-acts|st-fine)$/;
+  function splitRes(c) {
+    if (!c || !window.matchMedia || !matchMedia('(min-width:1000px) and (min-aspect-ratio:5/4)').matches) return;
+    var a = document.createElement('div'), b = document.createElement('div'); a.className = 'rs-a'; b.className = 'rs-b';
+    Array.prototype.slice.call(c.children).forEach(function (ch) {
+      var left = Array.prototype.some.call(ch.classList, function (k) { return RES_LEFT.test(k); });
+      (left ? a : b).appendChild(ch);
+    });
+    c.appendChild(a); if (b.children.length) { c.appendChild(b); c.classList.add('rs-split'); }
+  }
+  // Wide screens: game start/setup cards put the intro + "How to play" on the left and the choices on the right.
+  function splitIntro(c) {
+    if (!c || !window.matchMedia || !matchMedia('(min-width:1000px) and (min-aspect-ratio:5/4)').matches) return;
+    var kids = Array.prototype.slice.call(c.children), cut = -1;
+    kids.forEach(function (ch, i) { if (ch.classList.contains('gx-hd')) cut = i; });
+    if (cut < 0 || cut === kids.length - 1) return;
+    var a = document.createElement('div'), b = document.createElement('div'); a.className = 'cs-a'; b.className = 'cs-b';
+    kids.forEach(function (ch, i) { if (ch.classList.contains('gx-help')) return; (i <= cut ? a : b).appendChild(ch); });
+    c.appendChild(a); c.appendChild(b); c.classList.add('cs-split');
+  }
   function frame(inner, extra) {
     var top = '<div class="st-top"><button type="button" class="st-x" aria-label="Close the game"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '<div class="st-name">' + (S ? esc(titleOf()) : 'Play &amp; Grow') + '</div><div class="st-pts"><b>' + (S ? fmt(S.pts) : 0) + '</b><small>pts</small></div></div>';
     stage.className = 'pg-stage on' + (S && S.mode === 'kids' ? ' kids' : '') + (extra ? ' ' + extra : '');
     stage.innerHTML = '<div class="st-glow" aria-hidden="true"></div>' + top + '<div class="st-body">' + inner + '</div>';
     stage.scrollTop = 0;
+    splitRes(stage.querySelector('.st-body>.st-res'));
+    splitIntro(stage.querySelector('.st-body>.st-card:not(.st-res)'));
     stage.querySelector('.st-x').addEventListener('click', close);
     var f = stage.querySelector('[data-focus]') || stage.querySelector('button:not(.st-x), input, select');
     if (f) setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (e) {} }, 60);
