@@ -292,10 +292,25 @@
     var body = { dev: devId(), nick: p.nick, branch: p.branch, place: placeOf(p), mode: mode, pts: S.pts, score: S.score, n: rec.n, day: S.today }; if (qs) body.q = qs;
     fetch(LB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
       .then(function (r) { return r.json(); })
-      .then(function (d) { LB_LIVE = true; if (d && d.h) { myH = d.h; ls('mfm-quiz-h', d.h); } lbNote(d && d.ok ? (d.counted ? 'Added to this week\u2019s leaderboard' : 'Not added: ' + d.reason) : 'Could not add your score this time'); loadBoard(true); })
+      .then(function (d) { LB_LIVE = true; if (d && d.h) { myH = d.h; ls('mfm-quiz-h', d.h); } lbResult(d); loadBoard(true); })
       .catch(function () { lbNote(LB_LIVE ? 'Could not reach the leaderboard. Check your connection.' : 'Preview: saved on this device only'); renderBoard(); });
   }
   function lbNote(t) { var el = stage.querySelector('.st-lb small'); if (el) el.textContent = t; }
+  /* after a round (Nov 27): what it added to the main board, and where you stand in this game and overall */
+  function ord(n) { var s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+  function lbResult(d) {
+    if (!d || !d.ok) { lbNote('Could not add your score this time'); return; }
+    var G = (window.GOTW && window.GOTW.G) || {}, gname = (G[d.game] || {}).name || 'this game';
+    var b = stage.querySelector('.st-lb b');
+    if (b && d.added > 0) b.textContent = '+' + fmt(d.added) + ' board points' + (d.featured ? ' (Game of the Week, double)' : '');
+    lbNote(d.added > 0 ? 'Added to this week\u2019s leaderboard' : d.reason ? 'Nothing new added: ' + d.reason : 'Saved');
+    var me = d.me, box = stage.querySelector('.st-lb'); if (!me || !box || stage.querySelector('.st-rk')) return;
+    var row = function (x, k) { return '<li class="' + (x.me ? 'me' : '') + '"><b>' + k + '</b><span>' + esc(x.name) + (x.sub ? '<small>' + esc(x.sub) + '</small>' : '') + '</span><em>' + fmt(x.pts) + '</em></li>'; };
+    var list = me.top.map(function (x, k) { return row(x, k + 1); }).join('') + (me.meRow ? '<li class="gap" aria-hidden="true">&middot;&middot;&middot;</li>' + row(me.meRow, me.rankGame) : '');
+    var html = '<div class="st-rk"><p class="st-rk-h">' + esc(gname) + ' this week</p><p class="st-rk-you">You&rsquo;re <b>' + ord(me.rankGame) + '</b> of ' + me.nGame + ' in ' + esc(gname) + '</p><ol class="st-rk-list">' + list + '</ol>' +
+      '<div class="st-rk-all"><div><b>' + (me.rankAll ? ord(me.rankAll) : '&ndash;') + '</b><small>overall, all games</small></div><div><b>' + fmt(me.lp) + '</b><small>your board points</small></div><div><b>' + (me.rankBranch ? ord(me.rankBranch) : '&ndash;') + '</b><small>' + esc(me.branch) + '</small></div></div></div>';
+    box.insertAdjacentHTML('afterend', html);
+  }
   function loadBoard(fresh) {
     return fetch(LB_URL + (fresh ? '?fresh=' + Date.now() : ''), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw r; return r.json(); })
       .then(function (d) { LB = d; LB_OK = true; LB_LIVE = true; if (d && d.gotw) X.serverGotw = d.gotw; renderBoard(); })
@@ -561,13 +576,15 @@
   }
 
   /* ---------- hub: leaderboard, stats, countdowns ---------- */
+  var GT = 'all';   /* leaderboard game tab: all games, or one game's own ranking */
   function rows(tab) {
     if (LB_OK && LB) {
-      if (tab === 'branches') return LB.branches.map(function (b) { return { name: b.name, sub: b.players + (b.players === 1 ? ' player' : ' players'), pts: b.pts }; });
-      return LB.players.map(function (x) { return { name: x.name + (myH && x.h === myH ? ' (you)' : ''), sub: x.sub, pts: x.pts, me: !!(myH && x.h === myH) }; });
+      var src = GT !== 'all' && LB.games && LB.games[GT] ? LB.games[GT] : LB;
+      if (tab === 'branches') return (src.branches || []).map(function (b) { return { name: b.name, sub: b.players + (b.players === 1 ? ' player' : ' players'), pts: b.pts }; });
+      return (src.players || []).map(function (x) { return { name: x.name + (myH && x.h === myH ? ' (you)' : ''), sub: x.sub, pts: x.pts, me: !!(myH && x.h === myH) }; });
     }
     /* no server (private preview / offline): only this device's own scores, this week */
-    var wk = mondayCT(), g = X.gotwId ? X.gotwId() : null, mine = (ls('mfm-quiz-local') || []).filter(function (s) { return s.day >= wk && (!g || (s.game || X.gameOf(s.mode)) === g); });
+    var wk = mondayCT(), mine = (ls('mfm-quiz-local') || []).filter(function (s) { return s.day >= wk && (GT === 'all' || (s.game || X.gameOf(s.mode)) === GT); });
     if (tab === 'branches') { var m = {}; mine.forEach(function (s) { m[s.branch] = (m[s.branch] || 0) + (s.pts || 0); }); return Object.keys(m).map(function (k) { return { name: k, sub: '', pts: m[k] }; }).sort(function (a, b) { return b.pts - a.pts; }); }
     var tot = {}; mine.forEach(function (s) { var k = s.nick + '|' + s.place; tot[k] = (tot[k] || 0) + (s.pts || 0); });
     return Object.keys(tot).map(function (k) { var a = k.split('|'); return { name: a[0] + ' (you)', sub: a[1], pts: tot[k], me: true }; });
@@ -575,7 +592,7 @@
   function mondayCT() { var p = ctParts(), dow = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }[p.weekday]; return new Date(Date.parse(p.year + '-' + p.month + '-' + p.day + 'T12:00:00Z') - dow * 864e5).toISOString().slice(0, 10); }
   function emptyBoard() {
     return '<div class="lb-empty"><span class="lb-empty-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0zM5 5H3v1.5A3.5 3.5 0 0 0 6.6 10M19 5h2v1.5A3.5 3.5 0 0 1 17.4 10M10 13h4v3h-4zM8 16h8l1 4H7z"/></svg></span>' +
-      '<h3>No scores yet this week</h3><p>Be the first to put your branch on the board. Only <b data-gotw-name>the Game of the Week</b> counts this week.</p><button type="button" class="pg-btn gold" data-gotw-play>Play the Game of the Week</button></div>';
+      '<h3>' + (GT === 'all' ? 'No scores yet this week' : 'No ' + esc(((window.GOTW.G || {})[GT] || {}).name || '') + ' scores yet this week') + '</h3><p>Be the first to put your branch on the board. Every game counts, and <b data-gotw-name>the Game of the Week</b> counts double.</p><button type="button" class="pg-btn gold" data-gotw-play>Play the Game of the Week</button></div>';
   }
   /* five preview designs for the leaderboard (picker: Leaderboard 1–5) */
   var BV = 4, TAB = 'branches';  /* Dawn chose design 4, medal cards (Nov 26) */
@@ -615,7 +632,7 @@
     el.setAttribute('data-v', BV); el.innerHTML = r.length ? VIEWS[BV](r, top) : emptyBoard();
     var live = document.getElementById('pg-live'); if (live) live.innerHTML = LB_OK ? '<i></i>Live &middot; ' + LB.totals.players + (LB.totals.players === 1 ? ' player' : ' players') + ' this week &middot; updates as people play' : '<i></i>Preview: shows this device&rsquo;s scores until the site is live';
     document.querySelectorAll('[data-lpick]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lpick') == BV ? 'true' : 'false'); });
-    var br = rows('branches'); document.querySelectorAll('[data-topbranch]').forEach(function (x) { x.textContent = br[0] ? br[0].name : 'Be the first'; });
+    var keepGT = GT; GT = 'all'; var br = rows('branches'); GT = keepGT; document.querySelectorAll('[data-topbranch]').forEach(function (x) { x.textContent = br[0] ? br[0].name : 'Be the first'; });
     document.querySelectorAll('[data-heropodium]').forEach(function (hp) {
       hp.innerHTML = !br.length ? '<p class="hp-empty">Be the first branch on the board this week</p>' : [1, 0, 2].map(function (i) { var x = br[i]; return x ? '<div class="hp p' + (i + 1) + '"><b>' + esc(x.name.replace(/^MFM /, '')) + '</b><span>' + fmt(x.pts) + ' pts</span><i>' + (i + 1) + '</i></div>' : ''; }).join('');
     });
@@ -624,6 +641,14 @@
   }
   document.querySelectorAll('[data-lpick]').forEach(function (b) { b.addEventListener('click', function () { BV = +b.getAttribute('data-lpick'); renderBoard(); }); });
   document.querySelectorAll('.lb-tab').forEach(function (t) { t.addEventListener('click', function () { document.querySelectorAll('.lb-tab').forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-selected', x === t ? 'true' : 'false'); }); TAB = t.dataset.tab; renderBoard(); }); });
+  (function () {
+    var bar = document.getElementById('lb-gtabs'); if (!bar || !window.GOTW) return;
+    var ids = ['all', 'bquiz', 'word', 'connect', 'wheel', 'dverse', 'whoami', 'build', 'pairs', 'story'];
+    bar.innerHTML = ids.map(function (id) { return '<button type="button" role="tab" class="lb-gt' + (id === GT ? ' on' : '') + '" aria-selected="' + (id === GT) + '" data-gt="' + id + '">' + (id === 'all' ? 'All games' : esc(window.GOTW.G[id].name)) + '</button>'; }).join('');
+    bar.addEventListener('click', function (e) { var b = e.target.closest('[data-gt]'); if (!b) return; GT = b.getAttribute('data-gt'); bar.querySelectorAll('.lb-gt').forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      var note = document.getElementById('lb-gnote'); if (note) note.innerHTML = GT === 'all' ? 'Board points from every game. Each game is worth up to 100 a day; the Game of the Week counts double.' : esc(window.GOTW.G[GT].name) + ' ranking in real ' + esc(window.GOTW.G[GT].name) + ' points this week.';
+      renderBoard(); });
+  })();
 
   function tick() {
     var p = ctParts(), h = +p.hour % 24, secs = 86400 - (h * 3600 + (+p.minute) * 60 + (+p.second));

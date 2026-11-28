@@ -1,7 +1,7 @@
 /* Play & Grow: the ten games, Game of the Week, and the new game screens (Dawn, 2026-11-27) */
 .c-bquiz{--c:#2c63d6;--c2:#1d46a6}.c-word{--c:#1f9d63;--c2:#127046}.c-connect{--c:#8a5cc7;--c2:#5c3797}.c-wheel{--c:#e2511f;--c2:#a3330e}
 .c-dverse{--c:#c48a1f;--c2:#86590f}.c-whoami{--c:#11908f;--c2:#0a5e5d}.c-build{--c:#d6336c;--c2:#9a1d4a}.c-imposter{--c:#44557a;--c2:#232d46}
-.c-charades{--c:#ff8a3d;--c2:#c9501a}.c-pairs{--c:#3fa34d;--c2:#246f30}
+.c-charades{--c:#ff8a3d;--c2:#c9501a}.c-pairs{--c:#3fa34d;--c2:#246f30}.c-story{--c:#7a3fa0;--c2:#4f2470}
 
 /* games grid */
 .gg .gg-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
@@ -224,3 +224,6 @@
 @media(max-width:640px){.lv-opts{grid-template-columns:1fr;gap:12px}.lv-opt{padding:16px 14px 14px}.lv-opt b{font-size:20px}}
 .dv-hint{margin:12px auto 0;max-width:520px;padding:10px 14px;border-radius:14px;background:rgba(255,211,107,.14);border:1px solid rgba(255,211,107,.4);color:#ffe7ad;font-size:15px;text-align:center}
 .dv-hint b{color:#ffd36b}
+/* Bible Stories: one wide featured tile across the last row (Nov 27) */
+.gg .gt.c-story{grid-column:1/-1}
+@media(min-width:700px){.gg .gt.c-story{flex-direction:row;min-height:0}.gg .gt.c-story .pg-art{height:auto;flex:0 0 38%}.gg .gt.c-story .gt-ico svg{width:96px;height:96px}.gg .gt.c-story .pg-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 28px}.gg .gt.c-story .pg-body p{max-width:520px}.gg .gt.c-story .pg-btn{min-width:200px}}

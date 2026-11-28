@@ -10,7 +10,8 @@
     build: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="10" width="30" height="11" rx="3" class="w"/><rect x="26" y="26" width="30" height="11" rx="3" class="f"/><rect x="8" y="42" width="22" height="11" rx="3" class="w2"/><rect x="34" y="42" width="22" height="11" rx="3" class="o"/></svg>',
     imposter: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="18" cy="26" r="8" class="w"/><circle cx="46" cy="26" r="8" class="w"/><circle cx="32" cy="20" r="9" class="f"/><path d="M4 54c0-9 6-15 14-15s14 6 14 15ZM32 54c0-9 6-15 14-15s14 6 14 15Z" class="w"/><path d="M18 56c0-10 6-17 14-17s14 7 14 17Z" class="f"/><path d="M28 19h8" class="s2"/></svg>',
     charades: '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="16" y="6" width="32" height="20" rx="4" class="f"/><circle cx="32" cy="38" r="10" class="w"/><path d="M14 60c0-9 8-14 18-14s18 5 18 14Z" class="w"/><path d="M8 30l6 4M56 30l-6 4" class="s"/></svg>',
-    pairs: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 40h52l-6 12H12Z" class="w"/><path d="M14 40V26h36v14" class="w2"/><path d="M22 26l10-10 10 10" class="f"/><circle cx="24" cy="33" r="3" class="d"/><circle cx="40" cy="33" r="3" class="d"/></svg>'
+    pairs: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 40h52l-6 12H12Z" class="w"/><path d="M14 40V26h36v14" class="w2"/><path d="M22 26l10-10 10 10" class="f"/><circle cx="24" cy="33" r="3" class="d"/><circle cx="40" cy="33" r="3" class="d"/></svg>',
+    story: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 18c8-4 16-3 24 2 8-5 16-6 24-2v32c-8-4-16-3-24 2-8-5-16-6-24-2Z" class="w"/><path d="M32 20v32" class="s2"/><path d="M20 40c-3-5 1-9 3-13 2 4 6 6 3 12" class="f"/><circle cx="44" cy="32" r="5" class="d"/></svg>'
   };
   var G = {
     bquiz: { name: 'Quiz', line: 'Daily 10, a fresh quiz, a 60-second speed round, kids questions or a team battle. Questions from the Bible, MFM and our pastors\u2019 books.', badges: ['Daily', 'Solo', 'Teams'], lb: 1 },
@@ -22,11 +23,12 @@
     build: { name: 'Verse Builder', line: 'A verse in pieces. Put it back in order against the clock.', badges: ['Solo', 'Teams'], lb: 1, team: 1 },
     imposter: { name: 'Imposter', line: 'Everyone sees the same secret word except one. Give clues, then find the imposter.', badges: ['Group', '3+ players'], group: 1 },
     charades: { name: 'Charades', line: 'Phone on your forehead. Your team acts it out. Guess as many as you can in 60 seconds.', badges: ['Group', 'Teams'], group: 1 },
-    pairs: { name: 'Noah’s Pairs', line: 'Find the animals two by two. Made for children, fun for everyone.', badges: ['Kids', 'Solo', 'Teams'], lb: 1, team: 1 }
+    pairs: { name: 'Noah’s Pairs', line: 'Find the animals two by two. Made for children, fun for everyone.', badges: ['Kids', 'Solo', 'Teams'], lb: 1, team: 1 },
+    story: { name: 'Bible Stories', line: 'Play through a Bible story as an animated storybook. Choose your character, answer as the story unfolds, and it keeps going.', badges: ['Story', 'Solo', 'Kids'], lb: 1 }
   };
-  var COL = { bquiz: ['#2c63d6', '#1d46a6'], word: ['#1f9d63', '#127046'], connect: ['#8a5cc7', '#5c3797'], wheel: ['#e2511f', '#a3330e'], dverse: ['#c48a1f', '#86590f'], whoami: ['#11908f', '#0a5e5d'], build: ['#d6336c', '#9a1d4a'], imposter: ['#44557a', '#232d46'], charades: ['#ff8a3d', '#c9501a'], pairs: ['#3fa34d', '#246f30'] };
+  var COL = { bquiz: ['#2c63d6', '#1d46a6'], word: ['#1f9d63', '#127046'], connect: ['#8a5cc7', '#5c3797'], wheel: ['#e2511f', '#a3330e'], dverse: ['#c48a1f', '#86590f'], whoami: ['#11908f', '#0a5e5d'], build: ['#d6336c', '#9a1d4a'], imposter: ['#44557a', '#232d46'], charades: ['#ff8a3d', '#c9501a'], pairs: ['#3fa34d', '#246f30'], story: ['#7a3fa0', '#4f2470'] };
   /* weeks 1-8: each scorable game gets one turn; after that the server picks from play stats (netlify/functions/leaderboard.mjs uses the same ORDER and ROT_START) */
-  var ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs'], ROT_START = '2026-11-23';
+  var ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs', 'story'], ROT_START = '2026-11-23';
   function ct() { var p = {}; new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p; }
   function monday() { var p = ct(), dow = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }[p.weekday]; return new Date(Date.parse(p.year + '-' + p.month + '-' + p.day + 'T12:00:00Z') - dow * 864e5).toISOString().slice(0, 10); }
   function left() { var p = ct(), dow = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 }[p.weekday], h = 24 - (+p.hour % 24) - (+p.minute > 0 ? 1 : 0); var d = 6 - dow; if (h >= 24) { h -= 24; d++; } return d > 0 ? d + 'd ' + h + 'h' : h + 'h'; }

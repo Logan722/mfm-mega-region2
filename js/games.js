@@ -142,14 +142,14 @@
     bind('.gx-more', function () { X.close(); X.scrollToId('games'); });
   }
 
-  /* solo results (scores go to the weekly board when the game is the Game of the Week) */
+  /* solo results (every game counts on the weekly board; the Game of the Week counts double) */
   function result(o) {
     var s = S(), p = X.player() || {}, id = o.id, g = G[id];
     s.phase = 'r';
     if (o.lb) { s.lb = o.lb; s.added = false; X.addScore(); }
     var isG = X.gotwId() === id;
     var lb = !o.lb ? '' : p.guest ? '<div class="st-lb"><b>Want your points on the leaderboard?</b><button type="button" class="pg-btn light gx-join">Add my name and branch</button></div>'
-      : '<div class="st-lb"><span class="st-mini big">' + esc(X.initials(p.nick)) + '</span><span><b>+' + fmt(s.pts) + ' pts for ' + esc(X.placeOf(p)) + '</b><small>' + (isG ? 'Adding to this week&rsquo;s leaderboard&hellip;' : 'Saved. ' + esc(G[X.gotwId()].name) + ' is this week&rsquo;s leaderboard game.') + '</small></span></div>';
+      : '<div class="st-lb"><span class="st-mini big">' + esc(X.initials(p.nick)) + '</span><span><b>+' + fmt(s.pts) + ' pts for ' + esc(X.placeOf(p)) + '</b><small>' + (isG ? 'Game of the Week: counts double. Adding&hellip;' : 'Adding to this week&rsquo;s leaderboard&hellip;') + '</small></span></div>';
     var link = X.SITE + '?play=' + id;
     var share = 'MFM Play & Grow — ' + (o.shareTitle || g.name) + ': ' + o.shareLine + (o.grid ? '\n' + o.grid : '') + '\n' + (o.daily ? 'Same puzzle for everyone today. ' : '') + 'Can you beat me? ' + link;
     frame('<div class="st-confetti" aria-hidden="true"></div><div class="st-card st-res gx-res"><p class="st-k">' + esc(o.k || g.name) + '</p>' +

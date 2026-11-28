@@ -9,10 +9,14 @@
 //   agg/<week>                    the board as shown (updated on every score, rebuilt from s/… every 5 min)
 // The week starts Monday 00:00 Central Time, so the board resets on its own every Monday.
 //
-// Game of the Week (Dawn, 2026-11-27): only the featured game's scores count on the weekly board. Every finished
-// scorable game is still stored, so the play stats can pick later weeks' games. Weeks 1-8 give each scorable game one
-// turn (ORDER); from week 9 the game with the most players coming back on 2+ days over the last two weeks is chosen
-// (a game can be featured at most 2 weeks in a row). The pick is saved in gotw/<week> so it never changes mid-week.
+// Scoring (Dawn, 2026-11-27, replaces "only the Game of the Week counts"):
+//   - EVERY game counts on the main weekly board. Each game's score is converted to 0-100 board points by how close it
+//     is to that game's full marks (FULL), so no game outweighs another. Per game, the best of the day counts (the four
+//     quiz modes are one game). Each Bible Stories chapter counts once a week (best run).
+//   - The Game of the Week counts double (up to 200 board points a day).
+//   - Every game also has its own weekly ranking in that game's real points (games[g] in the GET answer).
+// Game of the Week pick: weeks 1-8 give each scorable game one turn (ORDER); from week 9 the game with the most players
+// coming back on 2+ days over the last two weeks is chosen (at most 2 weeks in a row). Saved in gotw/<week>.
 //
 // Rules (checked here, not in the browser):
 //   - Daily 10 and Word of the Day: only the first play of the day counts.
@@ -24,16 +28,20 @@ import { getStore } from '@netlify/blobs';
 
 export const BRANCHES = ["MFM USA Prayer City","MFM Rehoboth","MFM Revival Chapel","MFM Houston 2","MFM Houston 3 — City of Refuge","MFM Houston 5 — New Glory","MFM 7 North Houston","MFM Greater Grace","MFM Northwest Houston","MFM Dallas","MFM House of His Glory","MFM Arlington","MFM Arlington — Matlock","MFM Grand Prairie","MFM Irving","MFM Mansfield","MFM The Lord Has Spoken","MFM San Antonio","MFM Pearland — Shadow of God","MFM Sugar Land","MFM Huntsville","MFM Tampa","MFM Broward","MFM Miami — Mount Zion","MFM Orlando — Citadel of Solution","MFM Tallahassee","MFM Revival Center","MFM Riverdale","MFM Citadel of Signs & Wonders","MFM Georgia Oasis of Grace","MFM Revival & Solution Center","MFM Tulsa","MFM Nashville","MFM Mega Region 2 Youth Church"];
 export const VISITORS = 'Visitors & friends';
-const CAP = { daily: 1500, word: 400, quiz: 2000, kids: 1500, blitz: 9000, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000 };
+const CAP = { daily: 1500, word: 400, quiz: 2000, kids: 1500, blitz: 9000, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000, story: 600 };
+// full marks: a score this high is 100 board points (Blitz has no ceiling, so a very strong run counts as full marks)
+export const FULL = { daily: 1500, word: 400, quiz: 2000, kids: 1500, blitz: 4500, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000, story: 600 };
+export const STORIES = ['joseph-1', 'joseph-2', 'joseph-3'];
+export const GAMES_LB = ['bquiz', 'word', 'connect', 'wheel', 'dverse', 'whoami', 'build', 'pairs', 'story'];
 const FIRST_ONLY = { daily: 1, word: 1, connect: 1, dverse: 1, wheel: 1 };
 // most points one right answer / found item can earn (word and dverse are one-puzzle games, checked by CAP only)
-const PER = { daily: 150, quiz: 200, kids: 150, blitz: 150, connect: 200, wheel: 150, whoami: 500, build: 500, pairs: 100 };
-const EXTRA = { wheel: 100 };   // bonus words
-export const GAME = (m) => ({ daily: 'bquiz', quiz: 'bquiz', kids: 'bquiz', blitz: 'bquiz' }[m] || m);
-export const ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs'];
+const PER = { daily: 150, quiz: 200, kids: 150, blitz: 150, connect: 200, wheel: 150, whoami: 500, build: 500, pairs: 100, story: 100 };
+const EXTRA = { wheel: 100, story: 100 };   // bonus words; story walk + prayer moments
+export const GAME = (m) => (String(m).startsWith('story') ? 'story' : { daily: 'bquiz', quiz: 'bquiz', kids: 'bquiz', blitz: 'bquiz' }[m] || m);
+const baseMode = (m) => String(m).split('~')[0];
+export const lpOf = (mode, pts) => Math.max(0, Math.min(100, Math.round(pts / FULL[baseMode(mode)] * 100)));
+export const ORDER = ['connect', 'wheel', 'bquiz', 'dverse', 'word', 'whoami', 'build', 'pairs', 'story'];
 export const ROT_START = '2026-11-23';   // the Monday the rotation starts (week 1); set to the go-live week
-// scores saved before the Game of the Week went live (Nov 27, 2026) keep counting for that first week, whatever the game
-export const CUTOVER = Date.parse('2026-11-27T08:30:00Z');
 const BAD = /(https?:|www\.|\.(com|net|org)\b|\b(fuck\w*|shit\w*|bitch\w*|nigg\w*|porn\w*|pussy|asshole|bastard|satan\w*|sex\w*)\b)/i;
 const ORIGINS = ['https://mfmmegaregion2usa.org', 'https://www.mfmmegaregion2usa.org', 'https://mfmmegaregion2usa.netlify.app'];
 
@@ -79,29 +87,60 @@ export async function gotw(store, week) {
   await store.setJSON(`gotw/${week}`, { g, at: Date.now() });
   return g;
 }
-function emptyBoard(week, g) { return { week, gotw: g, players: {}, updated: Date.now(), built: 0 }; }
+function emptyBoard(week, g) { return { v: 2, week, gotw: g, players: {}, updated: Date.now(), built: 0 }; }
+// a player's totals: board points (lp, Game of the Week doubled) and each game's real points (raw)
+export function tally(p, gw) {
+  const best = {}, raw = {};
+  for (const k of Object.keys(p.r || {})) {
+    const x = p.r[k], g = GAME(x.mode), grp = g === 'story' ? 'st|' + x.mode : x.day + '|' + g;
+    best[grp] = Math.max(best[grp] || 0, lpOf(x.mode, x.pts) * (g === gw ? 2 : 1));
+    raw[g] = (raw[g] || 0) + x.pts;
+  }
+  return { lp: Object.values(best).reduce((s, v) => s + v, 0), raw };
+}
+const byPts = (x, y) => y.pts - x.pts || String(x.name).localeCompare(String(y.name));
+function ranked(agg) {
+  const ps = Object.values(agg.players).map((p) => Object.assign({ h: p.h, nick: p.nick, branch: p.branch, place: p.place }, tally(p, agg.gotw)));
+  const all = ps.filter((p) => p.lp > 0).map((p) => ({ name: p.nick, sub: p.place, pts: p.lp, h: p.h, branch: p.branch })).sort(byPts);
+  const br = {}; ps.forEach((p) => { if (!p.lp) return; const b = br[p.branch] || (br[p.branch] = { name: p.branch, pts: 0, players: 0 }); b.pts += p.lp; b.players += 1; });
+  const games = {};
+  for (const g of GAMES_LB) {
+    const pl = ps.filter((p) => p.raw[g] > 0).map((p) => ({ name: p.nick, sub: p.place, pts: p.raw[g], h: p.h, branch: p.branch })).sort(byPts);
+    const gb = {}; pl.forEach((p) => { const b = gb[p.branch] || (gb[p.branch] = { name: p.branch, pts: 0, players: 0 }); b.pts += p.pts; b.players += 1; });
+    games[g] = { players: pl, branches: Object.values(gb).sort(byPts) };
+  }
+  return { all, branches: Object.values(br).sort(byPts), games, ps };
+}
 function view(agg) {
-  const players = Object.values(agg.players);
-  const br = {};
-  players.forEach((p) => { const b = br[p.branch] || (br[p.branch] = { name: p.branch, pts: 0, players: 0 }); b.pts += p.pts; b.players += 1; });
-  const top = (a) => a.sort((x, y) => y.pts - x.pts || x.name.localeCompare(y.name)).slice(0, 10);
+  const r = ranked(agg), top = (a) => a.slice(0, 10);
   let nextMon = Date.parse(agg.week + 'T06:00:00Z') + 7 * 864e5;   // Monday 00:00 CT = 06:00 UTC (CST) or 05:00 UTC (CDT)
   if (new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', hour: 'numeric', hour12: false }).format(new Date(nextMon)) === '1') nextMon -= 3600e3;
+  const games = {}; for (const g of GAMES_LB) games[g] = { players: top(r.games[g].players).map(({ branch, ...x }) => x), branches: top(r.games[g].branches), n: r.games[g].players.length };
   return {
-    week: agg.week, gotw: agg.gotw, resetsAt: new Date(nextMon).toISOString(), updated: agg.updated,
-    totals: { players: players.length, branches: Object.keys(br).length, pts: players.reduce((s, p) => s + p.pts, 0) },
-    branches: top(Object.values(br)),
-    players: top(players.map((p) => ({ name: p.nick, sub: p.place, pts: p.pts, h: p.h }))),
+    week: agg.week, gotw: agg.gotw, resetsAt: new Date(nextMon).toISOString(), updated: agg.updated, scoring: 'all-games-v2',
+    totals: { players: r.all.length, branches: r.branches.length, pts: r.all.reduce((s, p) => s + p.pts, 0) },
+    branches: top(r.branches),
+    players: top(r.all).map(({ branch, ...x }) => x),
+    games,
   };
+}
+// where one player stands, for the results screen after a round
+function standing(agg, h, g) {
+  const r = ranked(agg), me = r.ps.find((p) => p.h === h); if (!me) return null;
+  const ia = r.all.findIndex((p) => p.h === h), gp = (r.games[g] || { players: [] }).players, ig = gp.findIndex((p) => p.h === h);
+  const ib = r.branches.findIndex((b) => b.name === me.branch);
+  const mark = (x) => ({ name: x.name, sub: x.sub, pts: x.pts, me: x.h === h });
+  return { lp: me.lp, rankAll: ia + 1, nAll: r.all.length, rankGame: ig + 1, nGame: gp.length, gamePts: me.raw[g] || 0, top: gp.slice(0, 5).map(mark), meRow: ig >= 5 ? mark(gp[ig]) : null, branch: me.branch, rankBranch: ib + 1, nBranch: r.branches.length };
 }
 async function rebuild(store, week) {
   const g = await gotw(store, week);
   const agg = emptyBoard(week, g);
   const { blobs } = await store.list({ prefix: `s/${week}/` });
   for (const b of blobs) {
-    const s = await store.get(b.key, { type: 'json' }); if (!s || (GAME(s.mode) !== g && !(s.ts && s.ts < CUTOVER))) continue;
-    const p = agg.players[s.h] || (agg.players[s.h] = { h: s.h, nick: s.nick, branch: s.branch, place: s.place, pts: 0 });
-    p.pts += s.pts; p.nick = s.nick; p.branch = s.branch; p.place = s.place;
+    const s = await store.get(b.key, { type: 'json' }); if (!s || !(baseMode(s.mode) in FULL)) continue;
+    const p = agg.players[s.h] || (agg.players[s.h] = { h: s.h, nick: s.nick, branch: s.branch, place: s.place, r: {} });
+    p.r[s.day + '|' + s.mode] = { mode: s.mode, day: s.day, pts: s.pts };
+    if (!p.ts || s.ts > p.ts) { p.nick = s.nick; p.branch = s.branch; p.place = s.place; p.ts = s.ts; }
   }
   agg.built = Date.now(); agg.updated = Date.now();
   await store.setJSON(`agg/${week}`, agg);
@@ -109,7 +148,7 @@ async function rebuild(store, week) {
 }
 async function board(store, week) {
   const agg = await store.get(`agg/${week}`, { type: 'json' });
-  if (!agg || !agg.gotw || Date.now() - (agg.built || 0) > 5 * 60e3) return rebuild(store, week);
+  if (!agg || agg.v !== 2 || !agg.gotw || Date.now() - (agg.built || 0) > 5 * 60e3) return rebuild(store, week);
   return agg;
 }
 function json(body, status, origin, cache) {
@@ -137,11 +176,12 @@ export async function handle(req, store, ip = '') {
   if (req.method !== 'POST') return json({ ok: false, error: 'method' }, 405, origin);
   if (origin && !ORIGINS.includes(origin) && !/^http:\/\/localhost(:\d+)?$/.test(origin)) return json({ ok: false, error: 'origin' }, 403, origin);
   let b; try { b = await req.json(); } catch (e) { return json({ ok: false, error: 'json' }, 400, origin); }
-  const mode = clean(b.mode, 10), dev = clean(b.dev, 40), nick = clean(b.nick, 20), day = ct().day;
+  let mode = clean(b.mode, 10), day = ct().day; const dev = clean(b.dev, 40), nick = clean(b.nick, 20), ch = clean(b.ch, 30);
   let branch = clean(b.branch, 60), place = clean(b.place, 40);
   const pts = Math.round(Number(b.pts)), score = Math.round(Number(b.score)), n = Math.round(Number(b.n));
   const q = typeof b.q === 'string' && /^[A-Za-z0-9_-]{1,30}[01](,[A-Za-z0-9_-]{1,30}[01]){0,99}$/.test(b.q) ? b.q : '';   // per-question right (1) / wrong (0), for difficulty stats
   if (!(mode in CAP)) return json({ ok: false, error: 'mode' }, 400, origin);
+  if (mode === 'story') { if (!STORIES.includes(ch)) return json({ ok: false, error: 'chapter' }, 400, origin); }
   if (!/^[a-z0-9]{12,40}$/i.test(dev)) return json({ ok: false, error: 'device' }, 400, origin);
   if (!nick || BAD.test(nick) || BAD.test(place)) return json({ ok: false, error: 'name' }, 400, origin);
   if (!Number.isFinite(pts) || pts < 0 || pts > CAP[mode]) return json({ ok: false, error: 'points' }, 400, origin);
@@ -155,24 +195,24 @@ export async function handle(req, store, ip = '') {
   const rl = (await store.get(rk, { type: 'json' })) || { c: 0 };
   if (rl.c >= 40) return json({ ok: false, error: 'slow down' }, 429, origin);
   await store.setJSON(rk, { c: rl.c + 1 });
-  const h = await hashId(dev), key = `s/${week}/${h}/${day}/${mode}`;
+  if (mode === 'story') { mode = 'story~' + ch; day = 'wk'; }   // each chapter counts once a week (best run)
+  const h = await hashId(dev), key = `s/${week}/${h}/${day}/${mode}`, g = GAME(mode);
   const prev = await store.get(key, { type: 'json' });
-  let counted = false, featured = false;
-  if (!prev || (!FIRST_ONLY[mode] && pts > prev.pts)) {
+  const agg = await board(store, week);   // read (or rebuild) the board BEFORE adding this score, so it is never counted twice
+  const p = agg.players[h] || (agg.players[h] = { h, nick, branch, place, r: {} }); p.r = p.r || {};
+  const before = tally(p, agg.gotw).lp;
+  let counted = false;
+  if (!prev || (!FIRST_ONLY[baseMode(mode)] && pts > prev.pts)) {
     const rec = { h, nick, branch, place, mode, pts, day, ts: Date.now() }; if (q) rec.q = q;
-    const agg = await board(store, week);   // read (or rebuild) the board BEFORE adding this score, so it is never counted twice
-    await store.setJSON(key, rec);          // stored for every game: the play stats use it
-    featured = GAME(mode) === agg.gotw;
-    if (featured) {
-    const p = agg.players[h] || (agg.players[h] = { h, nick, branch, place, pts: 0 });
-    p.pts += pts - (prev ? prev.pts : 0); p.nick = nick; p.branch = branch; p.place = place;
+    await store.setJSON(key, rec);          // source of truth (the play stats use it too)
+    p.r[day + '|' + mode] = { mode, day, pts }; p.nick = nick; p.branch = branch; p.place = place; p.ts = rec.ts;
     agg.updated = Date.now();
     await store.setJSON(`agg/${week}`, agg);
     counted = true;
-    }
   }
-  const reason = counted ? '' : prev && !featured && (FIRST_ONLY[mode] || pts <= prev.pts) ? (FIRST_ONLY[mode] ? 'first play of the day already counted' : 'your best today is higher') : !featured ? 'only the Game of the Week counts this week' : (FIRST_ONLY[mode] ? 'first play of the day already counted' : 'your best today is higher');
-  return json({ ok: true, counted, reason, h }, 200, origin);
+  const after = tally(p, agg.gotw).lp, featured = g === agg.gotw;
+  const reason = counted ? (after === before ? 'your best for this game today is already counted' : '') : FIRST_ONLY[baseMode(mode)] ? 'first play of the day already counted' : g === 'story' ? 'your best run of this chapter this week is higher' : 'your best today is higher';
+  return json({ ok: true, counted, added: after - before, reason, featured, game: g, h, me: standing(agg, h, g) }, 200, origin);
 }
 
 export default async (req, context) => {
