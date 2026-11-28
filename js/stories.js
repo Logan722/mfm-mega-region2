@@ -1,5 +1,5 @@
 /* Play & Grow — Bible Stories (Dawn, 2026-11-27): a library of animated Bible storybooks.
-   Two shelves: Heroes of Faith (well-known) and Hidden Heroes (less-known). Each character has chapters that play in
+   Three shelves: Heroes of Faith (well-known), Hidden Heroes (less-known) and Great Events (one-chapter stories). Each character has chapters that play in
    order; each chapter is its own page under /stories/. Progress is kept on this device (localStorage "mfm-story"). */
 (function () {
   var X = window.PG; if (!X) return;
@@ -16,6 +16,10 @@
     cave: '<path d="M6 54c4-26 16-40 26-40s22 14 26 40z" fill="#9a8f80" stroke="#2b1a10" stroke-width="3"/><path d="M20 54c2-12 6-20 12-20s10 8 12 20z" fill="#2b1a10"/>',
     mount: '<path d="M4 54l20-34 10 14 8-10 18 30z" fill="#7f9a45" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round"/><path d="M24 20l5 8-5-2-5 2z" fill="#fff"/>',
     water: '<path d="M32 10c8 12 14 20 14 28a14 14 0 0 1-28 0c0-8 6-16 14-28z" fill="#6cc3f0" stroke="#2b1a10" stroke-width="3"/><path d="M26 38a6 6 0 0 0 6 6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>',
+    star: '<circle cx="32" cy="30" r="20" fill="#fff1b8" opacity=".55"/><path d="M32 6l5 17 17 5-17 5-5 17-5-17-17-5 17-5z" fill="#ffe27a" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round"/><path d="M14 56h36" stroke="#2b1a10" stroke-width="3" stroke-linecap="round"/>',
+    ark: '<path d="M6 36h52l-8 16H14z" fill="#a0703c" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round"/><rect x="18" y="22" width="28" height="14" fill="#d9a06a" stroke="#2b1a10" stroke-width="3"/><path d="M4 58c6-4 10 4 16 0s10-4 16 0 10 4 16 0 8-2 8-2" fill="none" stroke="#6cc3f0" stroke-width="4" stroke-linecap="round"/>',
+    wall: '<path d="M8 54V22h12v-8h8v8h8v-8h8v8h12v32z" fill="#c9a46e" stroke="#2b1a10" stroke-width="3" stroke-linejoin="round"/><path d="M8 34h48M8 44h48M20 22v12M32 34v10M44 22v12" stroke="#2b1a10" stroke-width="2"/><path d="M40 6l4 6h-8z" fill="#e9a826"/>',
+    tomb: '<path d="M6 56c2-24 14-40 26-40s24 16 26 40z" fill="#9a8f80" stroke="#2b1a10" stroke-width="3"/><path d="M22 56c0-12 4-20 10-20s10 8 10 20z" fill="#fff1b8" stroke="#2b1a10" stroke-width="3"/><circle cx="52" cy="46" r="10" fill="#7d7466" stroke="#2b1a10" stroke-width="3"/>',
     hands: '<path d="M18 56V24M46 56V24" stroke="#2b1a10" stroke-width="9" stroke-linecap="round"/><path d="M18 56V24M46 56V24" stroke="#d9a06a" stroke-width="5" stroke-linecap="round"/><path d="M8 60h48" stroke="#9a8f80" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="16" r="8" fill="#ffd23f" stroke="#2b1a10" stroke-width="3"/>'
   };
   var SHELVES = [
@@ -29,6 +33,15 @@
       { id: 'daniel', name: 'Daniel', ref: 'Daniel 1–6', tag: 'Faithful in Babylon', ico: 'lion', col: '#c48a1f' },
       { id: 'elijah', name: 'Elijah', ref: '1 Kings 17–18', tag: 'Fire on Mount Carmel', ico: 'fire', col: '#e2511f' },
       { id: 'esther', name: 'Esther', ref: 'Esther', tag: 'For such a time as this', ico: 'crown', col: '#d6336c' }] },
+    { id: 'events', title: 'Great Events', line: 'The great moments of the Bible, each one a story you can play in one go.', items: [
+      { id: 'christmas', name: 'The First Christmas', ref: 'Luke 1–2 · Matthew 1–2', tag: 'A Saviour is born', ico: 'star', col: '#2f4f8f', chapters: [
+        { id: 'christmas-1', title: 'A Saviour Is Born', ref: 'Luke 1–2 · Matthew 1–2', ready: 1 }] },
+      { id: 'easter', name: 'The First Easter', ref: 'Matthew 26–28 · Luke 24', tag: 'He is risen', ico: 'tomb', col: '#c9952c' },
+      { id: 'noah', name: 'Noah and the Flood', ref: 'Genesis 6–9', tag: 'Two by two', ico: 'ark', col: '#11908f' },
+      { id: 'redsea', name: 'The Red Sea', ref: 'Exodus 14', tag: 'A path through the sea', ico: 'water', col: '#2c63d6' },
+      { id: 'jericho', name: 'The Walls of Jericho', ref: 'Joshua 6', tag: 'The walls fell down flat', ico: 'wall', col: '#b8862a' },
+      { id: 'furnace', name: 'The Fiery Furnace', ref: 'Daniel 3', tag: 'Four men in the fire', ico: 'fire', col: '#e2511f' },
+      { id: 'pentecost', name: 'Pentecost', ref: 'Acts 2', tag: 'Tongues like as of fire', ico: 'fire', col: '#c8312b' }] },
     { id: 'hidden', title: 'Hidden Heroes', line: 'Less-known men and women of the Bible whose faith changed everything.', items: [
       { id: 'jabez', name: 'Jabez', ref: '1 Chronicles 4:9–10', tag: 'The prayer God granted', ico: 'pray', col: '#c9952c' },
       { id: 'ebedmelech', name: 'Ebed-melech', ref: 'Jeremiah 38', tag: 'Out of the pit', ico: 'rope', col: '#11908f' },
@@ -52,10 +65,10 @@
   }
   function library() {
     X.set({ mode: 'story', pts: 0, phase: 'lib' }); X.open();
-    X.frame('<div class="st-card sb"><p class="st-k">Play &amp; Grow</p><h2 class="st-h">Bible Stories</h2><p class="st-sub">Choose a character and play their story as an animated storybook. Questions follow what happened in the Bible; right or wrong, the story keeps going. Every chapter counts on the leaderboard.</p>' +
+    X.frame('<div class="st-card sb"><p class="st-k">Play &amp; Grow</p><h2 class="st-h">Bible Stories</h2><p class="st-sub">Choose a character or a great event and play it as an animated storybook. Questions follow what happened in the Bible; right or wrong, the story keeps going. Every chapter counts on the leaderboard.</p>' +
       SHELVES.map(function (sh) { return '<section class="sb-shelf"><h3>' + esc(sh.title) + '</h3><p>' + esc(sh.line) + '</p><div class="sb-grid">' + sh.items.map(card).join('') + '</div></section>'; }).join('') + '</div>', 'sb-stage');
     var st = document.getElementById('play-app');
-    st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); if (it && it.chapters) chapters(it); }); });
+    st.querySelectorAll('[data-story]').forEach(function (b) { b.addEventListener('click', function () { var it = find(b.getAttribute('data-story')); if (!it || !it.chapters) return; if (it.chapters.length === 1 && it.chapters[0].ready) { location.href = href(it.chapters[0].id); return; } chapters(it); }); });
   }
   function find(id) { var r = null; SHELVES.forEach(function (s) { s.items.forEach(function (i) { if (i.id === id) r = i; }); }); return r; }
   function chapters(it) {

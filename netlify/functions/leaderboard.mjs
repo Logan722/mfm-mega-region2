@@ -31,7 +31,7 @@ export const VISITORS = 'Visitors & friends';
 const CAP = { daily: 1500, word: 400, quiz: 2000, kids: 1500, blitz: 9000, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000, story: 600 };
 // full marks: a score this high is 100 board points (Blitz has no ceiling, so a very strong run counts as full marks)
 export const FULL = { daily: 1500, word: 400, quiz: 2000, kids: 1500, blitz: 4500, connect: 800, wheel: 2600, dverse: 600, whoami: 2500, build: 2500, pairs: 1000, story: 600 };
-export const STORIES = ['joseph-1', 'joseph-2', 'joseph-3'];
+export const STORIES = ['joseph-1', 'joseph-2', 'joseph-3', 'christmas-1'];
 export const GAMES_LB = ['bquiz', 'word', 'connect', 'wheel', 'dverse', 'whoami', 'build', 'pairs', 'story'];
 const FIRST_ONLY = { daily: 1, word: 1, connect: 1, dverse: 1, wheel: 1 };
 // most points one right answer / found item can earn (word and dverse are one-puzzle games, checked by CAP only)

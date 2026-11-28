@@ -11,7 +11,11 @@ def build(f):
     h=tpl
     for k,v in {'look':'/*@@LOOK@@*/','scenes':'/*@@SCENES@@*/','moments':'/*@@MOMENTS@@*/'}.items():
         assert h.count(v)==1; h=h.replace(v,parts[k].rstrip('\n')+'\n')
-    for k in ('NAME','NUM','CTITLE','REF','MIN','DESC','CH'):
+    ev=m.get('event')
+    m['sub']=m['ctitle'] if ev else 'Chapter %s: %s'%(m['num'],m['ctitle'])
+    m['h1']=m['name'] if ev else '%s · Chapter %s'%(m['name'],m['num'])
+    m['full']=('%s: %s' if ev else '%s, Chapter %s: %s')%((m['name'],m['ctitle']) if ev else (m['name'],m['num'],m['ctitle']))
+    for k in ('FULL','SUB','H1','NAME','NUM','CTITLE','REF','MIN','DESC','CH'):
         h=h.replace('@@%s@@'%k,str(m[k.lower()]))
     assert '@@' not in re.sub(r'<script>.*</script>','',h,flags=re.S) or True
     left=re.findall(r'@@[A-Z]+@@',h); assert not left,left
